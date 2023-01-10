@@ -1,12 +1,248 @@
-# Introduction
+# Introduction to time series {#Intro}
 
-This is the first real chapter.
+A time series is an infinite sequence of random variables indexed by time: $\{y_t\}_{t=-\infty}^{+\infty}=\{\dots, y_{-2},y_{-1},y_{0},y_{1},\dots,y_t,\dots\}$, $y_i \in \mathbb{R}^k$. In practice, we only observe samples, typically: $\{y_{1},\dots,y_T\}$.
 
-:::{.theorem #Essai name="Essai"}
-We have:
+Standard time series models are built using **shocks** that we will often denote by $\varepsilon_t$. Typically, $\mathbb{E}(\varepsilon_t)=0$. In many models, the shocks are supposed to be i.i.d., but there exist other (less restrictive) notions of shocks. In particular, the definition of many processes is based on whote noises:
+
+:::{.definition #whitenoise name="White noise"}
+The process $\{\varepsilon_t\}_{t \in] -\infty,+\infty[}$ is a white noise if, for all $t$:
+
+a. $\mathbb{E}(\varepsilon_t)=0$,
+b. $\mathbb{E}(\varepsilon_t^2)=\sigma^2<\infty$ and
+c. for all $s\ne t$, $\mathbb{E}(\varepsilon_t \varepsilon_s)=0$.
+:::
+
+Another type of shocks that are commonly used are Martingale Difference Sequences:
+
+:::{.definition #MDS name="Martingale Difference Sequence"}
+The process $\{\varepsilon_t\}_{t = -\infty}^{+\infty}$ is a martingale difference sequence (MDS) if $\mathbb{E}(|\varepsilon_{t}|)<\infty$ and if, for all $t$,
 $$
-f(y)= \frac{1}{y}.
+\underbrace{\mathbb{E}_{t-1}(\varepsilon_{t})}_{\mbox{Expectation conditional on the past}}=0.
 $$
 :::
+
+By definition, if $y_t$ is a martingale, then $y_{t}-y_{t-1}$ is a MDS.
+
+:::{.example #ARCH name="ARCH process"}
+The Autoregressive conditional heteroskedasticity (ARCH) process is an example of shock that satisfies the MDS definition but that is not i.i.d.:
+$$
+\varepsilon_{t} = \sigma_t \times z_{t},
+$$
+where $z_t \sim i.i.d.\,\mathcal{N}(0,1)$ and $\sigma_t^2 = w + \alpha \varepsilon_{t-1}^2$.
+:::
+
+:::{.example #whiteNotMDS}
+A white noise process is not necessarily a MDS. This is for instance the following process:
+$$
+\varepsilon_{t} = z_t + z_{t-1}z_{t-2},
+$$
+where $z_t \sim i.i.d.\mathcal{N}(0,1)$.
+:::
+
+
+
+Let us now introduce the lag operator. The lag operator, denoted by $L$, is defined on the time series space and is defined by:
+\begin{equation}
+L: \{y_t\}_{t=-\infty}^{+\infty} \rightarrow \{w_t\}_{t=-\infty}^{+\infty} \quad \mbox{with} \quad w_t = y_{t-1}.(\#eq:lagOp)
+\end{equation}
+
+We have: $L^2 y_t = y_{t-2}$ and, more generally, $L^k y_t = y_{t-k}$.
+
+Consider a time series $y_t$ defined by $y_t = \mu + \phi y_{t-1} + \varepsilon_t$, where the $\varepsilon_t$'s are i.i.d. $\mathcal{N}(0,\sigma^2)$. Using the lag operator, the dynamics of $y_t$ can be expressed as follows:
+$$
+(1-\phi L) y_t = \mu + \varepsilon_t.
+$$
+
+It is easily checked that we have $L^2 y_t = y_{t-2}$ and, generally, $L^k y_t = y_{t-k}$.
+
+If it exists, the **unconditional (or marginal) mean** of the random variable $y_t$ is given by:
+$$
+\mu_t := \mathbb{E}(y_t) = \int_{-\infty}^{\infty} y_t f_{Y_t}(y_t) dy_t,
+$$
+where $f_{Y_t}$ is the unconditional (or marginal) density of $y_t$. Similarly, if it exists, the **unconditional (or marginal) variance** of the random variable $y_t$ is:
+$$
+\mathbb{V}ar(y_t) = \int_{-\infty}^{\infty} (y_t - \mathbb{E}(y_t))^2 f_{Y_t}(y_t) dy_t.
+$$
+
+:::{.definition #autocov name="Autocovariance"}
+
+The $j^{th}$ autocovariance of $y_t$ is given by:
+\begin{eqnarray*}
+\gamma_{j,t} &:=& \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} \dots \int_{-\infty}^{\infty} [y_t - \mathbb{E}(y_t)][y_{t-j} - \mathbb{E}(y_{t-j})] \times\\
+&& f_{Y_t,Y_{t-1},\dots,Y_{t-j}}(y_t,y_{t-1},\dots,y_{t-j}) dy_t dy_{t-1} \dots dy_{t-j} \\
+&=& \mathbb{E}([y_t - \mathbb{E}(y_t)][y_{t-j} - \mathbb{E}(y_{t-j})]),
+\end{eqnarray*}
+where $f_{Y_t,Y_{t-1},\dots,Y_{t-j}}(y_t,y_{t-1},\dots,y_{t-j})$ is the joint distribution of $y_t,y_{t-1},\dots,y_{t-j}$.
+:::
+
+In particular, $\gamma_{0,t} = \mathbb{V}ar(y_t)$.
+
+:::{.definition #covstat name="Covariance stationarity"}
+The process $y_t$ is covariance stationary ---or weakly stationary--- if, for all $t$ and $j$,
+$$
+\mathbb{E}(y_t) = \mu \quad \mbox{and} \quad \mathbb{E}\{(y_t - \mu)(y_{t-j} - \mu)\} = \gamma_j.
+$$
+:::
+
+Figure \@ref(fig:nonstat1) displays the simulation of a process that is not covariance stationary. This process follows $y_t = 0.1t + \varepsilon_t$, where $\varepsilon_t \sim\,i.i.d.\,\mathcal{N}(0,1)$. Indeed, for such a process, we have: $\mathbb{E}(y_t)=0.1t$, which depends on $t$.
+
+```{r nonstat1, echo=FALSE, fig.cap="Example of a process that is not covariance stationary ($y_t = 0.1t + \\varepsilon_t$, where $\\varepsilon_t \\sim \\mathcal{N}(0,1)$).", fig.asp = .6, out.width = "95%", fig.align = 'left-aligned'}
+T <- 200
+y <- 0.1*(1:T) + rnorm(T)
+par(plt=c(.1,.95,.1,.95))
+plot(y,xlab="",ylab="",type="l")
+```
+
+
+:::{.definition #strictstat name="Strict stationarity"}
+The process $y_t$ is strictly stationary if, for all $t$ and all sets of integers $J=\{j_1,\dots,j_n\}$, the distribution of $(y_{t},y_{t+j_1},\dots,y_{t+j_n})$ depends on $J$ but not on $t$.
+:::
+
+The following process is  covariance stationary but not strictly stationary:
+$$
+y_t = \mathbb{I}_{\{t<1000\}}\varepsilon_{1,t}+\mathbb{I}_{\{t\ge1000\}}\varepsilon_{2,t},
+$$
+where $\varepsilon_{1,t} \sim \mathcal{N}(0,1)$ and $\varepsilon_{2,t} \sim \sqrt{\frac{\nu - 2}{\nu}} t(\nu)$ and $\nu = 4$.
+
+```{r nonstat2, echo=FALSE, fig.cap="Example of a process that is covariance stationary but not strictly stationary. The red lines delineate the 99\\% confidence interval of the standard normal distribution ($\\pm 2.58$).", fig.asp = .6, out.width = "95%", fig.align = 'left-aligned'}
+T <- 2000
+y <- rnorm(T)
+y[(T/2):T] <- rt(n = T/2 + 1,df=4)
+par(plt=c(.1,.95,.15,.95))
+plot(y,xlab="",ylab="",type="l")
+abline(h=-2.58,col="red")
+abline(h=2.58,col="red")
+```
+
+
+
+:::{.proposition #gammaMinus}
+If $y_t$ is covariance stationary, then $\gamma_j = \gamma_{-j}$.
+:::
+:::{.proof}
+Since $y_t$ is covariance stationary, the covariance between $y_t$ and $y_{t-j}$ (i.e $\gamma_j$) is the same as that between $y_{t+j}$ and $y_{t+j-j}$ (i.e. $\gamma_{-j}$).
+:::
+
+
+:::{.definition #autocor name="Auto-correlation"}
+The $j^{th}$ auto-correlation of a covariance-stationary process is:
+$$
+\rho_j = \frac{\gamma_j}{\gamma_0}.
+$$
+:::
+
+
+Consider a long historical time series of the Swiss GDP growth, taken from the @JST_2017 dataset.[^FootnoteJST] 
+
+[^FootnoteJST]: Version 6 of the dataset, available on [this website](https://www.macrohistory.net).
+
+```{r autocov, echo=FALSE, fig.cap="Annual growth rate of Swiss GDP, based on the Jorda-Schularick-Taylor Macrohistory Database.", fig.asp = .6, out.width = "95%", fig.align = 'left-aligned'}
+library(AEC)
+data(JST)
+data <- subset(JST,iso=="CHE")
+par(plt=c(.1,.95,.1,.95))
+T <- dim(data)[1]
+data$growth <- c(NaN,log(data$gdp[2:T]/data$gdp[1:(T-1)]))
+plot(data$year,data$growth,type="l",xlab="",ylab="",lwd=2)
+abline(h=mean(data$growth,na.rm = TRUE),col="blue",lty=2,xlab="",ylab="")
+```
+
+
+
+
+```{r autocov2, echo=FALSE, fig.cap="For order $j$, the slope of the blue line is, approximately, $\\hat{\\gamma}_j/\\widehat{\\mathbb{V}ar}(y_t)$, where hats indicate sample moments.", fig.asp = .6, out.width = "95%", fig.align = 'left-aligned'}
+y <- data$growth
+j <- 1;y_1 <- c(rep(NaN,j),y[1:(T-j)])
+j <- 2;y_2 <- c(rep(NaN,j),y[1:(T-j)])
+j <- 3;y_3 <- c(rep(NaN,j),y[1:(T-j)])
+par(mfrow=c(1,2))
+plot(y_1,y,xlim=c(-.3,.3),ylim=c(-.3,.3),main="(a) order: one",
+     xlab=expression(y[t-1]),ylab=expression(y[t]))
+grid()
+abline(lm(y~y_1),col="blue")
+plot(y_3,y,xlim=c(-.3,.3),ylim=c(-.3,.3),main="(b) order: three",
+     xlab=expression(y[t-3]),ylab=expression(y[t]))
+grid()
+abline(lm(y~y_3),col="blue")
+```
+
+:::{.definition #ergodicity name="Mean ergodicity"}
+The covariance-stationary process $y_t$ is ergodic for the mean if:
+$$
+\mbox{plim}_{T \rightarrow +\infty} \frac{1}{T}\sum_{t=1}^T y_t = \mathbb{E}(y_t).
+$$
+:::
+
+:::{.definition #ergod2nd name="Second-moment ergodicity"}
+The covariance-stationary process $y_t$ is ergodic for second moments if, for all $j$:
+$$
+\mbox{plim}_{T \rightarrow +\infty} \frac{1}{T}\sum_{t=1}^T (y_t-\mu) (y_{t-j}-\mu) = \gamma_j.
+$$
+:::
+
+It should be noted that ergodicity and stationarity are different properties. Typically if the process $\{x_t\}$ is such that, $\forall t$, $x_t \equiv y$, where $y \sim\,\mathcal{N}(0,1)$ (say), then $\{x_t\}$ is stationary but not ergodic.
+
+:::{.theorem #CLTcovstat name="Central Limit Theorem for covariance-stationary processes"}
+
+If process $y_t$ is covariance stationary and if the series of autocovariances is absolutely summable ($\sum_{j=-\infty}^{+\infty} |\gamma_j| <\infty$), then:
+\begin{eqnarray}
+\bar{y}_T \overset{m.s.}{\rightarrow} \mu &=& \mathbb{E}(y_t) (\#eq:TCL20)\\
+\mbox{lim}_{T \rightarrow +\infty} T \mathbb{E}\left[(\bar{y}_T - \mu)^2\right] &=& \sum_{j=-\infty}^{+\infty} \gamma_j (\#eq:TCL2)\\
+\sqrt{T}(\bar{y}_T - \mu) &\overset{d}{\rightarrow}& \mathcal{N}\left(0,\sum_{j=-\infty}^{+\infty} \gamma_j \right) (\#eq:TCL4ts).
+\end{eqnarray}
+
+[Mean square (m.s.) and distribution (d.) convergences: see Definitions \@ref(def:cvgceDistri) and \@ref(def:convergenceLr).]
+:::
+
+:::{.proof}
+By Proposition \@ref(prp:absMs), Eq. \@ref(eq:TCL2) implies Eq. \@ref(eq:TCL20). For Eq. \@ref(eq:TCL2), see Appendix \@ref(AppendixProof). For Eq. \@ref(eq:TCL4ts), see @Anderson_1971, p. 429.
+:::
+
+:::{.definition #LRV name="Long-run variance"}
+Under the assumptions of Theorem \@ref(thm:CLTcovstat), the limit appearing in Eq. \@ref(eq:TCL2) exists and is called **long-run variance**. It is denoted by $S$, i.e.:
+$$
+S = \Sigma_{j=-\infty}^{+\infty} \gamma_j  = \mbox{lim}_{T \rightarrow +\infty} T \mathbb{E}[(\bar{y}_T - \mu)^2].
+$$
+:::
+
+
+If $y_t$ is ergodic for second moments (see Def. \@ref(def:ergod2nd)), a natural estimator of $S$ is:
+\begin{equation}
+\hat\gamma_0 + 2 \sum_{\nu=1}^{q} \hat\gamma_\nu, (\#eq:covSmplMean)
+\end{equation}
+where $\hat\gamma_\nu = \frac{1}{T}\sum_{\nu+1}^{T} (y_t - \bar{y})(y_{t-\nu} - \bar{y})$.
+
+However, for small samples, Eq. \@ref(eq:covSmplMean) does not necessarily result in a positive definite matrix. @Newey_West_1987 have proposed an estimator that does not have this defect. Their estimator is given by:
+\begin{equation}
+S^{NW}=\hat\gamma_0 + 2 \sum_{\nu=1}^{q}\left(1-\frac{\nu}{q+1}\right) \hat\gamma_\nu.(\#eq:NWest)
+\end{equation}
+
+Loosely speaking, Theorem \@ref(thm:CLTcovstat) says that, for a given sample size, the higher the "persistency" of a process, the lower the accuracy of the sample mean as an estimate of the population mean. To illustrate, consider three processes that feature the same marginal variance (equal to one, say), but different autocorrelations: 0\%, 70\%, and 99.9\%. Figure \@ref(fig:TVTCL) displays simulated paths of such three processes. It indeed appears that, the larger the autocorrelation of the process, the further the sample mean (dashed red line) from the population mean (red solid line).
+
+The same type of simulations can be performed using [this ShinyApp](https://jrenne.shinyapps.io/MacroEc/) (use panel "AR(1)").
+
+```{r TVTCL, echo=FALSE, fig.cap="The three samples have been simulated using the following data generating process: $x_t = \\mu + \\rho (x_{t-1}-\\mu) + \\sqrt{1-\\rho^2}\\varepsilon_t$, where $\\varepsilon_t \\sim \\mathcal{N}(0,1)$. Case A: $\\rho = 0$;  Case B: $\\rho = 0.7$;  Case C: $\\rho = 0.999$. In the three cases, $\\mathbb{E}(x_t)=\\mu=2$ and $\\mathbb{V}ar(x_t)=1$.", fig.asp = .6, out.width = "100%", fig.align = 'left-aligned'}
+all.rho <- c(0,.7,.999)
+par(plt=c(0.1,0.95,0.2,0.75))
+par(mfrow=c(3,1))
+count <- 0
+for(rho in all.rho){
+  count <- count + 1
+  if(count==1){main.t <- "Case A"}
+  if(count==2){main.t <- "Case B"}
+  if(count==3){main.t <- "Case C"}
+  N <- 200
+  X <- NULL
+  mu <- 2
+  X <- 2.5
+  sigma <- sqrt(1-rho^2)
+  for(i in 2:N){
+    X <- c(X,mu + rho*(X[length(X)]-mu) + sigma*rnorm(1))
+  }
+  plot(X,type="l",main=main.t,xlab="",ylab="",lwd=2)
+  abline(h=mu,col="red")
+  abline(h=mean(X),col="red",lty=2)
+}
+```
 
 

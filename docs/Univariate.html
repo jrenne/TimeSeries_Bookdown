@@ -1,0 +1,1377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Chapter 2 Univariate processes | Introduction to Time Series</title>
+<meta name="author" content="Jean-Paul Renne">
+<meta name="description" content="2.0.1 Moving Average (MA) processes  Definition 2.1 Consider a white noise process \(\{\varepsilon_t\}_{t = -\infty}^{+\infty}\) (Def. 1.1). Then \(y_t\) is a first-order moving average process...">
+<meta name="generator" content="bookdown 0.27 with bs4_book()">
+<meta property="og:title" content="Chapter 2 Univariate processes | Introduction to Time Series">
+<meta property="og:type" content="book">
+<meta property="og:description" content="2.0.1 Moving Average (MA) processes  Definition 2.1 Consider a white noise process \(\{\varepsilon_t\}_{t = -\infty}^{+\infty}\) (Def. 1.1). Then \(y_t\) is a first-order moving average process...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Chapter 2 Univariate processes | Introduction to Time Series">
+<meta name="twitter:description" content="2.0.1 Moving Average (MA) processes  Definition 2.1 Consider a white noise process \(\{\varepsilon_t\}_{t = -\infty}^{+\infty}\) (Def. 1.1). Then \(y_t\) is a first-order moving average process...">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.4.0/transition.js"></script><script src="libs/bs3compat-0.4.0/tabs.js"></script><script src="libs/bs3compat-0.4.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
+<style type="text/css">
+    /* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+        }
+    .hanging div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }
+  </style>
+<link rel="stylesheet" href="my-style.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">Introduction to Time Series</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html">Introduction to Time Series</a></li>
+<li><a class="" href="Intro.html"><span class="header-section-number">1</span> Introduction to time series</a></li>
+<li><a class="active" href="Univariate.html"><span class="header-section-number">2</span> Univariate processes</a></li>
+<li><a class="" href="VAR.html"><span class="header-section-number">3</span> Multivariate models</a></li>
+<li><a class="" href="forecasting.html"><span class="header-section-number">4</span> Forecasting</a></li>
+<li><a class="" href="NonStat.html"><span class="header-section-number">5</span> Non-Stationary Processes</a></li>
+<li><a class="" href="cointeg.html"><span class="header-section-number">6</span> Introduction to cointegration</a></li>
+<li><a class="" href="GARCH.html"><span class="header-section-number">7</span> ARCH and GARCH Models</a></li>
+<li><a class="" href="append.html"><span class="header-section-number">8</span> Appendix</a></li>
+<li><a class="" href="references.html">References</a></li>
+</ul>
+
+        <div class="book-extra">
+          
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="Univariate" class="section level1" number="2">
+<h1>
+<span class="header-section-number">2</span> Univariate processes<a class="anchor" aria-label="anchor" href="#Univariate"><i class="fas fa-link"></i></a>
+</h1>
+<div id="moving-average-ma-processes" class="section level3" number="2.0.1">
+<h3>
+<span class="header-section-number">2.0.1</span> Moving Average (MA) processes<a class="anchor" aria-label="anchor" href="#moving-average-ma-processes"><i class="fas fa-link"></i></a>
+</h3>
+<div class="definition">
+<p><span id="def:unlabeled-div-3" class="definition"><strong>Definition 2.1  </strong></span>Consider a white noise process <span class="math inline">\(\{\varepsilon_t\}_{t = -\infty}^{+\infty}\)</span> (Def. <a href="Intro.html#def:whitenoise">1.1</a>). Then <span class="math inline">\(y_t\)</span> is a first-order moving average process if, for all <span class="math inline">\(t\)</span>:
+<span class="math display">\[
+y_t = \mu + \varepsilon_t + \theta \varepsilon_{t-1}.
+\]</span></p>
+</div>
+<p>If <span class="math inline">\(\mathbb{E}(\varepsilon_t^2)=\sigma^2\)</span>, it is easily obtained that the unconditional mean and variances of <span class="math inline">\(y_t\)</span> are:
+<span class="math display">\[
+\mathbb{E}(y_t) = \mu, \quad \mathbb{V}ar(y_t) = (1+\theta^2)\sigma^2.
+\]</span></p>
+<p>The first auto-covariance is:
+<span class="math display">\[
+\gamma_1=\mathbb{E}\{(y_t - \mu)(y_{t-1} - \mu)\} = \theta \sigma^2.
+\]</span></p>
+<p>Higher-order auto-covariances are zero (<span class="math inline">\(\gamma_j=0\)</span> for <span class="math inline">\(j&gt;1\)</span>). Therefore: An MA(1) process is covariance-stationary (Def. <a href="Intro.html#def:covstat">1.4</a>).</p>
+<p>For a MA(1) process, the autocorrelation of order <span class="math inline">\(j\)</span> (see Def. <a href="Intro.html#def:autocor">1.6</a>) is given by:
+<span class="math display">\[
+\rho_j =
+\left\{
+\begin{array}{lll}
+1 &amp;\mbox{ if }&amp; j=0,\\
+\theta / (1 + \theta^2) &amp;\mbox{ if }&amp; j = 1\\
+0 &amp;\mbox{ if }&amp; j&gt;1.
+\end{array}
+\right.
+\]</span></p>
+<p>Notice that process <span class="math inline">\(y_t\)</span> defined through:
+<span class="math display">\[
+y_t = \mu + \varepsilon_t +\theta \varepsilon_{t-1},
+\]</span>
+where <span class="math inline">\(\mathbb{V}ar(\varepsilon_t)=\sigma^2\)</span>, has the same mean and autocovariances as
+<span class="math display">\[
+y_t = \mu + \varepsilon^*_t +\frac{1}{\theta}\varepsilon^*_{t-1},
+\]</span>
+where <span class="math inline">\(\mathbb{V}ar(\varepsilon^*_t)=\theta^2\sigma^2\)</span>. That is, even if we perfectly know the mean and auto-covariances of this process, it is not possible to identify which specification is the one that has been used to generate the data. Only one of these two specifications is said to be <em>fundamental</em>, that is the one that satisfies <span class="math inline">\(|\theta_1|&lt;1\)</span> (see Eq. <a href="Univariate.html#eq:invertible">(2.22)</a>).</p>
+<div class="definition">
+<p><span id="def:MAq" class="definition"><strong>Definition 2.2  (MA(q) process) </strong></span>A <span class="math inline">\(q^{th}\)</span> order Moving Average process is defined through:
+<span class="math display">\[
+y_t = \mu + \varepsilon_t + \theta_1 \varepsilon_{t-1} + \dots + \theta_q \varepsilon_{t-q}.
+\]</span>
+where <span class="math inline">\(\{\varepsilon_t\}_{t = -\infty}^{+\infty}\)</span> is a white noise process (Def. <a href="Intro.html#def:whitenoise">1.1</a>).</p>
+</div>
+<div class="proposition">
+<p><span id="prp:covMAq" class="proposition"><strong>Proposition 2.1  (Covariance-stationarity of an MA(q) process) </strong></span>Finite-order Moving Average processes are covariance-stationary.</p>
+<p>Moreover, the autocovariances of an MA(q) process (as defined in Def. <a href="Univariate.html#def:MAq">2.2</a>) are given by:
+<span class="math display" id="eq:autocovMA">\[\begin{equation}
+\gamma_j = \left\{ \begin{array}{ll} \sigma^2(\theta_j\theta_0 + \theta_{j+1}\theta_{1} +  \dots + \theta_{q}\theta_{q-j}) &amp;\mbox{for} \quad j \in \{0,\dots,q\} \\ 0 &amp;\mbox{for} \quad j&gt;q, \end{array} \right.\tag{2.1}
+\end{equation}\]</span>
+where we use the notation <span class="math inline">\(\theta_0=1\)</span>, and <span class="math inline">\(\mathbb{V}ar(\varepsilon_t)=\sigma^2\)</span>.</p>
+</div>
+<div class="proof">
+<p><span id="unlabeled-div-4" class="proof"><em>Proof</em>. </span>The unconditional expectation of <span class="math inline">\(y_t\)</span> does not depend on time, since <span class="math inline">\(\mathbb{E}(y_t)=\mu\)</span>. Let’s turn to autocovariances. We can extend the series of the <span class="math inline">\(\theta_j\)</span>’s by setting <span class="math inline">\(\theta_j=0\)</span> for <span class="math inline">\(j&gt;q\)</span>. We then have:
+<span class="math display">\[\begin{eqnarray*}
+\mathbb{E}((y_t-\mu)(y_{t-j}-\mu)) &amp;=&amp; \mathbb{E}\left[(\theta_0 \varepsilon_t +\theta_1 \varepsilon_{t-1} + \dots +\theta_j \varepsilon_{t-j}+\theta_{j+1} \varepsilon_{t-j-1} + \dots) \right.\times \\
+&amp;&amp;\left. (\theta_0 \varepsilon_{t-j} +\theta_1 \varepsilon_{t-j-1} + \dots)\right].
+\end{eqnarray*}\]</span>
+Then use the fact that <span class="math inline">\(\mathbb{E}(\varepsilon_t\varepsilon_s)=0\)</span> if <span class="math inline">\(t \ne s\)</span> (because <span class="math inline">\(\{\varepsilon_t\}_{t = -\infty}^{+\infty}\)</span> is a white noise process).</p>
+</div>
+<p>Figure <a href="Univariate.html#fig:simMA">2.1</a> displays simulated paths of two MA processes (an MA(1) and an MA(4)). Such simulations can be produced by using panel “ARMA(p,q)” of <a href="https://jrenne.shinyapps.io/MacroEc/">this web interface</a>.</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">AEC</span><span class="op">)</span></span>
+<span><span class="cn">T</span> <span class="op">&lt;-</span> <span class="fl">100</span>;<span class="va">nb.sim</span> <span class="op">&lt;-</span> <span class="fl">1</span></span>
+<span><span class="va">y.0</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span><span class="op">)</span></span>
+<span><span class="va">c</span> <span class="op">&lt;-</span> <span class="fl">1</span>;<span class="va">phi</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span><span class="op">)</span>;<span class="va">sigma</span> <span class="op">&lt;-</span> <span class="fl">1</span></span>
+<span><span class="va">theta</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">1</span><span class="op">)</span> <span class="co"># MA(1) specification</span></span>
+<span><span class="va">y.sim</span> <span class="op">&lt;-</span> <span class="fu">sim.arma</span><span class="op">(</span><span class="va">c</span>,<span class="va">phi</span>,<span class="va">theta</span>,<span class="va">sigma</span>,<span class="cn">T</span>,<span class="va">y.0</span>,<span class="va">nb.sim</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mfrow<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>plt<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">.2</span>,<span class="fl">.9</span>,<span class="fl">.2</span>,<span class="fl">.85</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">y.sim</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span>,xlab<span class="op">=</span><span class="st">""</span>,ylab<span class="op">=</span><span class="st">""</span>,type<span class="op">=</span><span class="st">"l"</span>,lwd<span class="op">=</span><span class="fl">2</span>,</span>
+<span>     main<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/expression.html">expression</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="va">theta</span><span class="op">[</span><span class="fl">0</span><span class="op">]</span>,<span class="st">"=1, "</span>,<span class="va">theta</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>,<span class="st">"=1"</span>,sep<span class="op">=</span><span class="st">""</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/abline.html">abline</a></span><span class="op">(</span>h<span class="op">=</span><span class="va">c</span><span class="op">)</span></span>
+<span><span class="va">theta</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">1</span>,<span class="fl">1</span>,<span class="fl">1</span>,<span class="fl">1</span><span class="op">)</span> <span class="co"># MA(4) specification</span></span>
+<span><span class="va">y.sim</span> <span class="op">&lt;-</span> <span class="fu">sim.arma</span><span class="op">(</span><span class="va">c</span>,<span class="va">phi</span>,<span class="va">theta</span>,<span class="va">sigma</span>,<span class="cn">T</span>,<span class="va">y.0</span>,<span class="va">nb.sim</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">y.sim</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span>,xlab<span class="op">=</span><span class="st">""</span>,ylab<span class="op">=</span><span class="st">""</span>,type<span class="op">=</span><span class="st">"l"</span>,lwd<span class="op">=</span><span class="fl">2</span>,</span>
+<span>     main<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/expression.html">expression</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="va">theta</span><span class="op">[</span><span class="fl">0</span><span class="op">]</span>,<span class="st">"=...="</span>,<span class="va">theta</span><span class="op">[</span><span class="fl">4</span><span class="op">]</span>,<span class="st">"=1"</span>,sep<span class="op">=</span><span class="st">""</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/abline.html">abline</a></span><span class="op">(</span>h<span class="op">=</span><span class="va">c</span><span class="op">)</span></span></code></pre></div>
+<div class="figure" style="text-align: left-aligned">
+<span style="display:block;" id="fig:simMA"></span>
+<img src="TimeSeries_files/figure-html/simMA-1.png" alt="Simulation of MA processes." width="95%"><p class="caption">
+Figure 2.1: Simulation of MA processes.
+</p>
+</div>
+<p>What if the order <span class="math inline">\(q\)</span> of an MA(q) process gets infinite? The notion of <strong>infinite-order Moving Average process</strong> exists and is important in time series analysis. The (infinite) sequence of <span class="math inline">\(\theta_j\)</span> has to satisfy some conditions for such a process to be well-defined (see Theorem <a href="Univariate.html#thm:infMA">2.1</a> below). These conditions relate to the “summability” of <span class="math inline">\(\{\theta_{i}\}_{i\in\mathbb{N}}\)</span> (see Definition <a href="Univariate.html#def:summability">2.3</a>).</p>
+<div class="definition">
+<p><span id="def:summability" class="definition"><strong>Definition 2.3  (Absolute and square summability) </strong></span>The sequence <span class="math inline">\(\{\theta_{i}\}_{i\in\mathbb{N}}\)</span> is absolutely summable if <span class="math inline">\(\sum_{i=0}^{\infty}|\theta_i| &lt; + \infty\)</span>, and it is square summable if <span class="math inline">\(\sum_{i=0}^{\infty} \theta_i^2 &lt; + \infty\)</span>.</p>
+</div>
+<p>According to Prop. <a href="append.html#prp:absMs">8.8</a>, absolute summability implies square summability.</p>
+<div class="theorem">
+<p><span id="thm:infMA" class="theorem"><strong>Theorem 2.1  (Existence condition for an infinite MA process) </strong></span>If <span class="math inline">\(\{\theta_{i}\}_{i\in\mathbb{N}}\)</span> is square summable (see Def. <a href="Univariate.html#def:summability">2.3</a>) and if <span class="math inline">\(\{\varepsilon_t\}_{t = -\infty}^{+\infty}\)</span> is a white noise process (see Def. <a href="Intro.html#def:whitenoise">1.1</a>), then
+<span class="math display">\[
+\mu + \sum_{i=0}^{+\infty} \theta_{i} \varepsilon_{t-i}
+\]</span>
+defines a well-behaved [covariance-stationary] process, called infinite-order MA process (MA(<span class="math inline">\(\infty\)</span>)).</p>
+</div>
+<div class="proof">
+<p><span id="unlabeled-div-5" class="proof"><em>Proof</em>. </span>See Appendix 3.A in Hamilton. “Well behaved” means that <span class="math inline">\(\Sigma_{i=0}^{T} \theta_{t-i} \varepsilon_{t-i}\)</span> converges in mean square (Def. <a href="append.html#def:convergenceLr">8.17</a>) to some random variable <span class="math inline">\(Z_t\)</span>. The proof makes use of the fact that:
+<span class="math display">\[
+\mathbb{E}\left[\left(\sum_{i=N}^{M}\theta_{i} \varepsilon_{t-i}\right)^2\right] = \sum_{i=N}^{M}|\theta_{i}|^2 \sigma^2,
+\]</span>
+and that, when <span class="math inline">\(\{\theta_{i}\}\)</span> is square summable, <span class="math inline">\(\forall \eta&gt;0\)</span>, <span class="math inline">\(\exists N\)</span> s.t. the right-hand-side term in the last equation is lower than <span class="math inline">\(\eta\)</span> for all <span class="math inline">\(M \ge N\)</span> (static Cauchy criterion, Theorem <a href="append.html#thm:cauchycritstatic">8.2</a>). This implies that <span class="math inline">\(\Sigma_{i=0}^{T} \theta_{i} \varepsilon_{t-i}\)</span> converges in mean square (stochastic Cauchy criterion, see Theorem <a href="append.html#thm:cauchycritstochastic">8.3</a>).</p>
+</div>
+<div class="proposition">
+<p><span id="prp:momentsMAinf" class="proposition"><strong>Proposition 2.2  (First two moments of an infinite MA process) </strong></span>If <span class="math inline">\(\{\theta_{i}\}_{i\in\mathbb{N}}\)</span> is absolutely summable, i.e. if <span class="math inline">\(\sum_{i=0}^{\infty}|\theta_i| &lt; + \infty\)</span>, then</p>
+<ol style="list-style-type: lower-roman">
+<li>
+<span class="math inline">\(y_t = \mu + \sum_{i=0}^{+\infty} \theta_{i} \varepsilon_{t-i}\)</span> exists (Theorem <a href="Univariate.html#thm:infMA">2.1</a>) and is such that:
+<span class="math display">\[\begin{eqnarray*}
+\mathbb{E}(y_t) &amp;=&amp; \mu\\
+\gamma_0 = \mathbb{E}([y_t-\mu]^2) &amp;=&amp; \sigma^2(\theta_0^2 +\theta_1^2 + \dots)\\
+\gamma_j = \mathbb{E}([y_t-\mu][y_{t-j}-\mu]) &amp;=&amp; \sigma^2(\theta_0\theta_j + \theta_{1}\theta_{j+1} + \dots).
+\end{eqnarray*}\]</span>
+</li>
+<li>Process <span class="math inline">\(y_t\)</span> has absolutely summable auto-covariances, which implies that the results of Theorem <a href="Intro.html#thm:CLTcovstat">1.1</a> (Central Limit) apply.</li>
+</ol>
+</div>
+<div class="proof">
+<p><span id="unlabeled-div-6" class="proof"><em>Proof</em>. </span>The absolute summability of <span class="math inline">\(\{\theta_{i}\}\)</span> and the fact that <span class="math inline">\(\mathbb{E}(\varepsilon^2)&lt;\infty\)</span> imply that the order of integration and summation is interchangeable (see Hamilton, 1994, Footnote p. 52), which proves (i). For (ii), see end of Appendix 3.A in Hamilton (1994).</p>
+</div>
+</div>
+<div id="ARsection" class="section level3" number="2.0.2">
+<h3>
+<span class="header-section-number">2.0.2</span> Auto-Regressive (AR) processes<a class="anchor" aria-label="anchor" href="#ARsection"><i class="fas fa-link"></i></a>
+</h3>
+<div class="definition">
+<p><span id="def:AR1" class="definition"><strong>Definition 2.4  (First-order AR process (AR(1))) </strong></span>Consider a white noise process <span class="math inline">\(\{\varepsilon_t\}_{t = -\infty}^{+\infty}\)</span> (see Def. <a href="Intro.html#def:whitenoise">1.1</a>). Process <span class="math inline">\(y_t\)</span> is an AR(1) process if it is defined by the following difference equation:
+<span class="math display">\[
+y_t = c + \phi y_{t-1} + \varepsilon_t.
+\]</span></p>
+</div>
+<p>If <span class="math inline">\(|\phi|\ge1\)</span>, <span class="math inline">\(y_t\)</span> is not stationary. Indeed, we have:
+<span class="math display">\[
+y_{t+k} = c + \varepsilon_{t+k} + \phi  ( c + \varepsilon_{t+k-1})+ \phi^2  ( c + \varepsilon_{t+k-2})+ \dots + \phi^{k-1}  ( c + \varepsilon_{t+1}) + \phi^k y_t.
+\]</span>
+Therefore, the conditional variance
+<span class="math display">\[
+\mathbb{V}ar_t(y_{t+k}) = \sigma^2(1 + \phi^2 + \phi^4 + \dots + \phi^{2(k-1)})
+\]</span>
+does not converge for large <span class="math inline">\(k\)</span>’s. This implies that <span class="math inline">\(\mathbb{V}ar(y_{t})\)</span> does not exist.</p>
+<p>By contrast, if <span class="math inline">\(|\phi| &lt; 1\)</span>, one can see that:
+<span class="math display">\[
+y_t = c + \varepsilon_t + \phi  ( c + \varepsilon_{t-1})+ \phi^2  ( c + \varepsilon_{t-2})+ \dots + \phi^k  ( c + \varepsilon_{t-k}) + \dots
+\]</span>
+Hence, if <span class="math inline">\(|\phi| &lt; 1\)</span>, the unconditional mean and variance of <span class="math inline">\(y_t\)</span> are:
+<span class="math display">\[
+\mathbb{E}(y_t) = \frac{c}{1-\phi} =: \mu \quad \mbox{and} \quad \mathbb{V}ar(y_t) = \frac{\sigma^2}{1-\phi^2}.
+\]</span></p>
+<p>Let us compute the <span class="math inline">\(j^{th}\)</span> autocovariance of the AR(1) process:
+<span class="math display">\[\begin{eqnarray*}
+\mathbb{E}([y_{t} - \mu][y_{t-j} - \mu]) &amp;=&amp; \mathbb{E}([\varepsilon_t + \phi  \varepsilon_{t-1}+ \phi^2 \varepsilon_{t-2} + \dots + \color{red}{\phi^j \varepsilon_{t-j}} + \color{blue}{\phi^{j+1} \varepsilon_{t-j-1}} \dots]\times \\
+&amp;&amp;[\color{red}{\varepsilon_{t-j}} + \color{blue}{\phi \varepsilon_{t-j-1}} + \phi^2 \varepsilon_{t-j-2} + \dots + \phi^k \varepsilon_{t-j-k} + \dots])\\
+&amp;=&amp; \mathbb{E}(\color{red}{\phi^j \varepsilon_{t-j}^2}+\color{blue}{\phi^{j+2} \varepsilon_{t-j-1}^2}+\phi^{j+4} \varepsilon_{t-j-2}^2+\dots)\\
+&amp;=&amp; \frac{\phi^j \sigma^2}{1 - \phi^2}.
+\end{eqnarray*}\]</span></p>
+<p>Therefore <span class="math inline">\(\rho_j = \phi^j\)</span>.</p>
+<p>By what precedes, we have:</p>
+<div class="proposition">
+<p><span id="prp:statioAR1" class="proposition"><strong>Proposition 2.3  (Covariance-stationarity of an AR(1) process) </strong></span>The AR(1) process, as defined in Def. <a href="Univariate.html#def:AR1">2.4</a>, is covariance-stationary iff <span class="math inline">\(|\phi|&lt;1\)</span>.</p>
+</div>
+<div class="definition">
+<p><span id="def:ARp" class="definition"><strong>Definition 2.5  (AR(p) process) </strong></span>Consider a white noise process <span class="math inline">\(\{\varepsilon_t\}_{t = -\infty}^{+\infty}\)</span> (see Def. <a href="Intro.html#def:whitenoise">1.1</a>). Process <span class="math inline">\(y_t\)</span> is a <span class="math inline">\(p^{th}\)</span>-order autoregressive process (AR(p)) if its dynamics is defined by the following difference equation (with <span class="math inline">\(\phi_p \ne 0\)</span>):
+<span class="math display" id="eq:AR">\[\begin{equation}
+y_t = c + \phi_1 y_{t-1} + \phi_2 y_{t-2} + \dots + \phi_p y_{t-p} + \varepsilon_t.\tag{2.2}
+\end{equation}\]</span></p>
+</div>
+<p>As we will see, the covariance-stationarity of process <span class="math inline">\(y_t\)</span> hinges on matrix <span class="math inline">\(F\)</span> defined as:
+<span class="math display" id="eq:F">\[\begin{equation}
+F = \left[
+\begin{array}{ccccc}
+\phi_1 &amp; \phi_2 &amp; \dots&amp; &amp; \phi_p \\
+1 &amp; 0 &amp;\dots &amp;&amp; 0 \\
+0 &amp; 1 &amp;\dots &amp;&amp; 0 \\
+\vdots &amp;  &amp; \ddots &amp;&amp; \vdots \\
+0 &amp; 0 &amp;\dots &amp;1&amp; 0 \\
+\end{array}
+\right].\tag{2.3}
+\end{equation}\]</span></p>
+<p>Note that this matrix <span class="math inline">\(F\)</span> is such that if <span class="math inline">\(y_t\)</span> follows Eq. <a href="Univariate.html#eq:AR">(2.2)</a>, then process <span class="math inline">\(\mathbf{y}_t\)</span> follows:
+<span class="math display">\[
+\mathbf{y}_t = \mathbf{c} + F \mathbf{y}_{t-1} + \boldsymbol\xi_t
+\]</span>
+with
+<span class="math display">\[
+\mathbf{c} =
+\left[\begin{array}{c}
+c\\
+0\\
+\vdots\\
+0
+\end{array}\right],
+\quad
+\boldsymbol\xi_t =
+\left[\begin{array}{c}
+\varepsilon_t\\
+0\\
+\vdots\\
+0
+\end{array}\right],
+\quad
+\mathbf{y}_t =
+\left[\begin{array}{c}
+y_t\\
+y_{t-1}\\
+\vdots\\
+y_{t-p+1}
+\end{array}\right].
+\]</span></p>
+<!-- :::{.definition #dynmult name="Dynamic multiplier"} -->
+<!-- The **dynamic multiplier** of $y_{t+j}$ w.r.t. $\varepsilon_{t}$ is $\dfrac{\partial y_{t+j}}{\partial \varepsilon_{t}}$. -->
+<!-- ::: -->
+<!-- Eq. \@ref(eq:Fyt) implies that we have: $\dfrac{\partial y_{t+j}}{\partial \varepsilon_{t}} = (F^j)_{[1,1]}$ -->
+<!-- (for any $M,i,j$, $(M)_{[i,j]}$ denotes the $(i,j)$ element of matrix $M$). -->
+<!-- Let us assume that the eigenvalues of $F$ (see Def. \@ref(def:determinant)), denoted by $\lambda_1,\dots,\lambda_p$, are distinct. -->
+<!-- Then, there exists a nonsingular matrix $P$ such that: -->
+<!-- $$ -->
+<!-- F = P -->
+<!-- \left[ -->
+<!-- \begin{array}{cccc} -->
+<!-- \lambda_1 & 0 & \dots& 0 \\ -->
+<!-- 0 & \lambda_2 & 0 & \dots \\ -->
+<!-- &&\ddots\\ -->
+<!-- 0 & \dots & 0& \lambda_p\\ -->
+<!-- \end{array} -->
+<!-- \right] -->
+<!-- P^{-1} = P D P^{-1}. -->
+<!-- $$ -->
+<!-- It can be seen that: -->
+<!-- $$ -->
+<!-- F^j = P -->
+<!-- \left[ -->
+<!-- \begin{array}{cccc} -->
+<!-- \lambda_1^j & 0 & \dots& 0 \\ -->
+<!-- 0 & \lambda_2^j & 0 & \dots \\ -->
+<!-- &&\ddots\\ -->
+<!-- 0 & \dots & 0& \lambda_p^j\\ -->
+<!-- \end{array} -->
+<!-- \right] -->
+<!-- P^{-1}. -->
+<!-- $$ -->
+<!-- Hence, the dynamic multiplier of $y_{t+j}$ w.r.t. $\varepsilon_{t}$ is given by: -->
+<!-- $$ -->
+<!-- \dfrac{\partial y_{t+j}}{\partial \varepsilon_{t}} = \sum_i (P)_{[1,i]}(P^{-1})_{[i,1]}\lambda_i^j. -->
+<!-- $$ -->
+<!-- Denoting by $c_i$ the scalar $(P)_{[1,i]}(P^{-1})_{[i,1]}$, we have $\dfrac{\partial y_{t+j}}{\partial \varepsilon_{t}} = \sum_i c_i\lambda_i^j$. If the eigenvalues of $F$ are distinct and nonzero, then $c_i \ne 0$. Therefore, if $\exists i$ s.t. $|\lambda_i|>1$ then: -->
+<!-- $$ -->
+<!-- \left| \dfrac{\partial y_{t+j}}{\partial \varepsilon_{t}} \right| \underset{j \rightarrow \infty}{\rightarrow} \infty. -->
+<!-- $$ -->
+<div class="proposition">
+<p><span id="prp:Feigen" class="proposition"><strong>Proposition 2.4  (The eigenvalues of matrix F) </strong></span>The eigenvalues of <span class="math inline">\(F\)</span> (defined by Eq. <a href="Univariate.html#eq:F">(2.3)</a>) are the solutions of:
+<span class="math display" id="eq:Feigen">\[\begin{equation}
+\lambda^p - \phi_1 \lambda^{p-1} - \dots - \phi_{p-1}\lambda - \phi_p = 0.\tag{2.4}
+\end{equation}\]</span></p>
+</div>
+<div class="proposition">
+<p><span id="prp:stability" class="proposition"><strong>Proposition 2.5  (Covariance-stationarity of an AR(p) process) </strong></span>These four statements are equivalent:</p>
+<ol style="list-style-type: lower-roman">
+<li>Process <span class="math inline">\(\{y_t\}\)</span>, defined in Def. <a href="Univariate.html#def:ARp">2.5</a>, is covariance-stationary.</li>
+<li>The eigenvalues of <span class="math inline">\(F\)</span> (as defined Eq. <a href="Univariate.html#eq:F">(2.3)</a>) lie strictly within the unit circle.</li>
+<li>The roots of Eq. <a href="Univariate.html#eq:outside">(2.5)</a> (below) lie strictly outside the unit circle.
+<span class="math display" id="eq:outside">\[\begin{equation}
+1 - \phi_1 z - \dots - \phi_{p-1}z^{p-1} - \phi_p z^p = 0.\tag{2.5}
+\end{equation}\]</span>
+</li>
+<li>The roots of Eq. <a href="Univariate.html#eq:inside">(2.6)</a> (below) lie strictly inside the unit circle.
+<span class="math display" id="eq:inside">\[\begin{equation}
+\lambda^p - \phi_1 \lambda^{p-1} - \dots - \phi_{p-1}\lambda - \phi_p = 0.\tag{2.6}
+\end{equation}\]</span>
+</li>
+</ol>
+</div>
+<div class="proof">
+<p><span id="unlabeled-div-7" class="proof"><em>Proof</em>. </span>We consider the case where the eigenvalues of <span class="math inline">\(F\)</span> are distinct; Jordan decomposition can be used in the general case. When the eigenvalues of <span class="math inline">\(F\)</span> are distinct, <span class="math inline">\(F\)</span> admits the following spectral decomposition: <span class="math inline">\(F = PDP^{-1}\)</span>, where <span class="math inline">\(D\)</span> is diagonal. Using the notations introduced in Eq. <a href="Univariate.html#eq:F">(2.3)</a>, we have:
+<span class="math display">\[
+\mathbf{y}_{t} = \mathbf{c} + F \mathbf{y}_{t-1} + \boldsymbol\xi_{t}.
+\]</span>
+Let’s introduce <span class="math inline">\(\mathbf{d} = P^{-1}\mathbf{c}\)</span>, <span class="math inline">\(\mathbf{z}_t = P^{-1}\mathbf{y}_t\)</span> and <span class="math inline">\(\boldsymbol\eta_t = P^{-1}\boldsymbol\xi_t\)</span>. We have:
+<span class="math display">\[
+\mathbf{z}_{t} = \mathbf{d} + D \mathbf{z}_{t-1} + \boldsymbol\eta_{t}.
+\]</span>
+Because <span class="math inline">\(D\)</span> is diagonal, the different component of <span class="math inline">\(\mathbf{z}_t\)</span>, denoted by <span class="math inline">\(z_{i,t}\)</span>, follow AR(1) processes. The (scalar) autoregressive parameters of these AR(1) processes are the diagonal entries of <span class="math inline">\(D\)</span> –which also are the eigenvalues of <span class="math inline">\(F\)</span>– that we denote by <span class="math inline">\(\lambda_i\)</span>.</p>
+<p>Process <span class="math inline">\(y_t\)</span> is covariance-stationary iff <span class="math inline">\(\mathbf{y}_{t}\)</span> also is covariance-stationary, which is the case iff all <span class="math inline">\(z_{i,t}\)</span>, <span class="math inline">\(i \in [1,p]\)</span>, are covariance-stationary. By Prop. <a href="Univariate.html#prp:statioAR1">2.3</a>, process <span class="math inline">\(z_{i,t}\)</span> is covariance-stationary iff <span class="math inline">\(|\lambda_i|&lt;1\)</span>. This proves that (i) is equivalent to (ii). Prop. <a href="Univariate.html#prp:Feigen">2.4</a> further proves that (ii) is equivalent to (iv). Finally, it is easily seen that (iii) is equivalent to (iv) (as long as <span class="math inline">\(\phi_p \ne 0\)</span>).</p>
+</div>
+<!-- Note that we have: -->
+<!-- \begin{equation} -->
+<!-- \bv{y}_{t+j} = \boldsymbol\xi_{t+j} + F \boldsymbol\xi_{t+j-1} + F^2 \boldsymbol\xi_{t+j-2} + \dots + F^{j-1} \boldsymbol\xi_{t+1} + F^{j} \bv{y}_{t} -->
+<!-- \end{equation} -->
+<!-- or -->
+<!-- \begin{equation} -->
+<!-- \bv{y}_{t+j} = \boldsymbol\xi_{t+j} + F \boldsymbol\xi_{t+j-1} + F^2 \boldsymbol\xi_{t+j-2} + \dots + F^{j} \boldsymbol\xi_{t} + F^{j+1} \bv{y}_{t-1}.(\#eq:Fyt) -->
+<!-- \end{equation} -->
+<p>Using the lag operator (see Eq <a href="Intro.html#eq:lagOp">(1.1)</a>), if <span class="math inline">\(y_t\)</span> is a covariance-stationary AR(p) process (Def. <a href="Univariate.html#def:ARp">2.5</a>), we can write:
+<span class="math display">\[
+y_t = \mu + \psi(L)\varepsilon_t,
+\]</span>
+where
+<span class="math display">\[\begin{equation}
+\psi(L) = (1 - \phi_1 L - \dots - \phi_p L^p)^{-1},
+\end{equation}\]</span>
+and
+<span class="math display" id="eq:EAR">\[\begin{equation}
+\mu = \mathbb{E}(y_t) = \dfrac{c}{1-\phi_1 -\dots - \phi_p}.\tag{2.7}
+\end{equation}\]</span></p>
+<p>In the following lines of codes, we compute the eigenvalues of the <span class="math inline">\(F\)</span> matrices associated with the following processes (where <span class="math inline">\(\varepsilon_t\)</span> is a white noise):
+<span class="math display">\[\begin{eqnarray*}
+x_t &amp;=&amp; 0.9 x_{t-1} -0.2 x_{t-2} + \varepsilon_t\\
+y_t &amp;=&amp; 1.1 y_{t-1} -0.3 y_{t-2} + \varepsilon_t\\
+w_t &amp;=&amp; 1.4 w_{t-1} -0.7 w_{t-2} + \varepsilon_t\\
+z_t &amp;=&amp; 0.9 z_{t-1} +0.2 z_{t-2} + \varepsilon_t
+\end{eqnarray*}\]</span></p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="cn">F</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">.9</span>,<span class="fl">1</span>,<span class="op">-</span><span class="fl">.2</span>,<span class="fl">0</span><span class="op">)</span>,<span class="fl">2</span>,<span class="fl">2</span><span class="op">)</span></span>
+<span><span class="va">lambda_x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/eigen.html">eigen</a></span><span class="op">(</span><span class="cn">F</span><span class="op">)</span><span class="op">$</span><span class="va">values</span></span>
+<span><span class="cn">F</span><span class="op">[</span><span class="fl">1</span>,<span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1.1</span>,<span class="op">-</span><span class="fl">.3</span><span class="op">)</span></span>
+<span><span class="va">lambda_y</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/eigen.html">eigen</a></span><span class="op">(</span><span class="cn">F</span><span class="op">)</span><span class="op">$</span><span class="va">values</span></span>
+<span><span class="cn">F</span><span class="op">[</span><span class="fl">1</span>,<span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1.4</span>,<span class="op">-</span><span class="fl">.7</span><span class="op">)</span></span>
+<span><span class="va">lambda_w</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/eigen.html">eigen</a></span><span class="op">(</span><span class="cn">F</span><span class="op">)</span><span class="op">$</span><span class="va">values</span></span>
+<span><span class="cn">F</span><span class="op">[</span><span class="fl">1</span>,<span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">.9</span>,<span class="fl">.2</span><span class="op">)</span></span>
+<span><span class="va">lambda_z</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/eigen.html">eigen</a></span><span class="op">(</span><span class="cn">F</span><span class="op">)</span><span class="op">$</span><span class="va">values</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html">rbind</a></span><span class="op">(</span><span class="va">lambda_x</span>,<span class="va">lambda_y</span>,<span class="va">lambda_w</span>,<span class="va">lambda_z</span><span class="op">)</span></span></code></pre></div>
+<pre><code>##                         [,1]                  [,2]
+## lambda_x 0.500000+0.0000000i  0.4000000+0.0000000i
+## lambda_y 0.600000+0.0000000i  0.5000000+0.0000000i
+## lambda_w 0.700000+0.4582576i  0.7000000-0.4582576i
+## lambda_z 1.084429+0.0000000i -0.1844289+0.0000000i</code></pre>
+<p>The absolute values of the eigenvalues associated with process <span class="math inline">\(w_t\)</span> are both equal to 0.837. Therefore, according to Proposition <a href="Univariate.html#prp:stability">2.5</a>, processes <span class="math inline">\(x_t\)</span>, <span class="math inline">\(y_t\)</span>, and <span class="math inline">\(w_t\)</span> are covariance-stationary, but not <span class="math inline">\(z_t\)</span> (because the absolute value of one of the eigenvalues of the <span class="math inline">\(F\)</span> matrix associated with this process is larger than 1).</p>
+<p>The computation of the autocovariances of <span class="math inline">\(y_t\)</span> is based on the so-called <strong>Yule-Walker equations</strong> (Eq. <a href="Univariate.html#eq:gammas">(2.8)</a>). Let’s rewrite Eq. <a href="Univariate.html#eq:AR">(2.2)</a>:
+<span class="math display">\[
+(y_t-\mu) = \phi_1 (y_{t-1}-\mu) + \phi_2 (y_{t-2}-\mu) + \dots + \phi_p (y_{t-p}-\mu) + \varepsilon_t.
+\]</span>
+Multiplying both sides by <span class="math inline">\(y_{t-j}-\mu\)</span> and taking expectations leads to the (Yule-Walker) equations:
+<span class="math display" id="eq:gammas">\[\begin{equation}
+\gamma_j = \left\{
+\begin{array}{l}
+\phi_1 \gamma_{j-1}+\phi_2 \gamma_{j-2}+ \dots + \phi_p \gamma_{j-p} \quad if \quad j&gt;0\\
+\phi_1 \gamma_{1}+\phi_2 \gamma_{2}+ \dots + \phi_p \gamma_{p} + \sigma^2 \quad for \quad j=0.
+\end{array}
+\right.\tag{2.8}
+\end{equation}\]</span>
+Using <span class="math inline">\(\gamma_j = \gamma_{-j}\)</span> (Prop. <a href="Intro.html#prp:gammaMinus">1.1</a>), one can express <span class="math inline">\((\gamma_0,\gamma_1,\dots,\gamma_{p})\)</span> as functions of <span class="math inline">\((\sigma^2,\phi_1,\dots,\phi_p)\)</span>.</p>
+</div>
+<div id="ar-ma-processes" class="section level3" number="2.0.3">
+<h3>
+<span class="header-section-number">2.0.3</span> AR-MA processes<a class="anchor" aria-label="anchor" href="#ar-ma-processes"><i class="fas fa-link"></i></a>
+</h3>
+<div class="definition">
+<p><span id="def:ARMApq" class="definition"><strong>Definition 2.6  (ARMA(p,q) process) </strong></span><span class="math inline">\(\{y_t\}\)</span> is an ARMA(<span class="math inline">\(p\)</span>,<span class="math inline">\(q\)</span>) process if its dynamics is described by the following equation:
+<span class="math display" id="eq:ARMApq">\[\begin{equation}
+y_t = c + \underbrace{\phi_1 y_{t-1} + \dots + \phi_p y_{t-p}}_{\mbox{AR part}} + \underbrace{\varepsilon_t + \theta_1 \varepsilon_{t-1} + \dots + \theta_q \varepsilon_{t-q}}_{\mbox{MA part}},\tag{2.9}
+\end{equation}\]</span>
+where <span class="math inline">\(\{\varepsilon_t\}_{t \in ] -\infty,+\infty[}\)</span> is a white noise process (see Def. <a href="Intro.html#def:whitenoise">1.1</a>).</p>
+</div>
+<div class="proposition">
+<p><span id="prp:statioARMApq" class="proposition"><strong>Proposition 2.6  (Stationarity of an ARMA(p,q) process) </strong></span>The ARMA(<span class="math inline">\(p\)</span>,<span class="math inline">\(q\)</span>) process defined in <a href="Univariate.html#def:ARMApq">2.6</a> is covariance stationary iff the roots of
+<span class="math display">\[
+1 - \phi_1 z - \dots - \phi_p z^p=0
+\]</span>
+lie strictly outside the unit circle or, equivalently, iff those of
+<span class="math display">\[
+\lambda^p - \phi_1 \lambda^{p-1} - \dots - \phi_p=0
+\]</span>
+lie strictly within the unit circle.</p>
+</div>
+<div class="proof">
+<p><span id="unlabeled-div-8" class="proof"><em>Proof</em>. </span>The proof of Prop. <a href="Univariate.html#prp:stability">2.5</a> can be adapted to the present case.</p>
+</div>
+<p>We can write:
+<span class="math display">\[
+(1 - \phi_1 L - \dots - \phi_p L^p)y_t = c + (1 + \theta_1 L + \dots + \theta_q L^q)\varepsilon_t.
+\]</span></p>
+<p>If the roots of <span class="math inline">\(1 - \phi_1 z - \dots - \phi_p z^p=0\)</span> lie outside the unit circle, we have:
+<span class="math display" id="eq:ARMAwold">\[\begin{equation}
+y_t = \mu + \psi(L)\varepsilon_t,\tag{2.10}
+\end{equation}\]</span>
+where
+<span class="math display">\[
+\psi(L) = \frac{1 + \theta_1 L + \dots + \theta_q L^q}{1 - \phi_1 L - \dots - \phi_p L^p} \quad and \quad \mu = \dfrac{c}{1-\phi_1 -\dots - \phi_p}.
+\]</span></p>
+<p>Eq. <a href="Univariate.html#eq:ARMAwold">(2.10)</a> is the <strong>Wold representation</strong> of this ARMA process (see Theorem <a href="Univariate.html#thm:Wold">2.2</a> below).</p>
+<p>The stationarity of the process depends only on the AR specification (or on the eigenvalues of matrix <span class="math inline">\(F\)</span>, exactly as in Prop. <a href="Univariate.html#prp:stability">2.5</a>). If the process is stationary, the weights in <span class="math inline">\(\psi(L)\)</span> decay at a geometric rate.</p>
+</div>
+<div id="PACFapproach" class="section level3" number="2.0.4">
+<h3>
+<span class="header-section-number">2.0.4</span> PACF approach to identify AR/MA processes<a class="anchor" aria-label="anchor" href="#PACFapproach"><i class="fas fa-link"></i></a>
+</h3>
+<p>We have seen that the <span class="math inline">\(k^{th}\)</span>-order auto-correlation of a MA(q) process is null if <span class="math inline">\(k&gt;q\)</span>. This is exploited, in practice, to determine the order of a MA process. Moreover, since this is not the case for an AR process, this can be used to distinguish an AR from an MA process.</p>
+<p>There exists an equivalent approach to determine whether a process can be modeled as an AR process; it is based on partial auto-correlations:</p>
+<!-- :::{.definition #partialC name="Partial correlation"} -->
+<!-- The partial correlation between $X$ and $Y$, given $Z$, is the correlation between: -->
+<!-- a. the residuals of the linear regression of $X$ on $Z$ and -->
+<!-- b. the residuals of the linear regression of $Y$ on $Z$. -->
+<!-- ::: -->
+<div class="definition">
+<p><span id="def:partialAC" class="definition"><strong>Definition 2.7  (Partial auto-correlation) </strong></span>In a time series context, the partial auto-correlation (<span class="math inline">\(\phi_{h,h}\)</span>) of process <span class="math inline">\(\{y_t\}\)</span> is defined as the partial correlation of <span class="math inline">\(y_{t+h}\)</span> and <span class="math inline">\(y_t\)</span> given <span class="math inline">\(y_{t+h-1},\dots,y_{t+1}\)</span>. (see Def. <a href="append.html#def:partialcorrel">8.5</a> for the definition of partial correlation.)</p>
+</div>
+<p>If <span class="math inline">\(h&gt;p\)</span>, the regression of <span class="math inline">\(y_{t+h}\)</span> on <span class="math inline">\(y_{t+h-1},\dots,y_{t+1}\)</span> is:
+<span class="math display">\[
+y_{t+h} = c + \phi_1 y_{t+h-1}+\dots+ \phi_p  y_{t+h-p} + \varepsilon_{t+h}.
+\]</span>
+The residuals of the latter regressions (<span class="math inline">\(\varepsilon_{t+h}\)</span>) are uncorrelated to <span class="math inline">\(y_t\)</span>. Then the partial autocorrelation is zero for <span class="math inline">\(h&gt;p\)</span>.</p>
+<p>Besides, it can be shown that <span class="math inline">\(\phi_{p,p}=\phi_p\)</span>. Hence <span class="math inline">\(\phi_{p,p}=\phi_p\)</span> but <span class="math inline">\(\phi_{h,h}=0\)</span> for <span class="math inline">\(h&gt;p\)</span>. This can be used to determine the order of an AR process. By contrast (importantly) if <span class="math inline">\(y_t\)</span> follows an MA(q) process, then <span class="math inline">\(\phi_{k,k}\)</span> asymptotically approaches zero instead of cutting off abruptly.</p>
+<p>As illustrated below, functions <code>acf</code> and <code>pacf</code> can be conveniently used to employ the (P)ACF approach. (Note also the use of function <code>sim.arma</code> to simulate ARMA processes.)</p>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">AEC</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mfrow<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">3</span>,<span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>plt<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">.2</span>,<span class="fl">.9</span>,<span class="fl">.2</span>,<span class="fl">.95</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">theta</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">1</span><span class="op">)</span>;<span class="va">phi</span><span class="op">=</span><span class="fl">0</span></span>
+<span><span class="va">y.sim</span> <span class="op">&lt;-</span> <span class="fu">sim.arma</span><span class="op">(</span>c<span class="op">=</span><span class="fl">0</span>,<span class="va">phi</span>,<span class="va">theta</span>,sigma<span class="op">=</span><span class="fl">1</span>,T<span class="op">=</span><span class="fl">1000</span>,y.0<span class="op">=</span><span class="fl">0</span>,nb.sim<span class="op">=</span><span class="fl">1</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mfg<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">1</span><span class="op">)</span><span class="op">)</span>;<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">y.sim</span>,type<span class="op">=</span><span class="st">"l"</span>,lwd<span class="op">=</span><span class="fl">2</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mfg<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">1</span><span class="op">)</span><span class="op">)</span>;<span class="fu"><a href="https://rdrr.io/r/stats/acf.html">acf</a></span><span class="op">(</span><span class="va">y.sim</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mfg<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">3</span>,<span class="fl">1</span><span class="op">)</span><span class="op">)</span>;<span class="fu"><a href="https://rdrr.io/r/stats/acf.html">pacf</a></span><span class="op">(</span><span class="va">y.sim</span><span class="op">)</span></span>
+<span><span class="va">theta</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span>;<span class="va">phi</span><span class="op">=</span><span class="fl">0.9</span></span>
+<span><span class="va">y.sim</span> <span class="op">&lt;-</span> <span class="fu">sim.arma</span><span class="op">(</span>c<span class="op">=</span><span class="fl">0</span>,<span class="va">phi</span>,<span class="va">theta</span>,sigma<span class="op">=</span><span class="fl">1</span>,T<span class="op">=</span><span class="fl">1000</span>,y.0<span class="op">=</span><span class="fl">0</span>,nb.sim<span class="op">=</span><span class="fl">1</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mfg<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span><span class="op">)</span><span class="op">)</span>;<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">y.sim</span>,type<span class="op">=</span><span class="st">"l"</span>,lwd<span class="op">=</span><span class="fl">2</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mfg<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">2</span><span class="op">)</span><span class="op">)</span>;<span class="fu"><a href="https://rdrr.io/r/stats/acf.html">acf</a></span><span class="op">(</span><span class="va">y.sim</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mfg<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">3</span>,<span class="fl">2</span><span class="op">)</span><span class="op">)</span>;<span class="fu"><a href="https://rdrr.io/r/stats/acf.html">pacf</a></span><span class="op">(</span><span class="va">y.sim</span><span class="op">)</span></span></code></pre></div>
+<div class="figure" style="text-align: left-aligned">
+<span style="display:block;" id="fig:pacf"></span>
+<img src="TimeSeries_files/figure-html/pacf-1.png" alt="ACF/PACF analysis of two processes (MA process on the left, AR on the right)." width="100%"><p class="caption">
+Figure 2.2: ACF/PACF analysis of two processes (MA process on the left, AR on the right).
+</p>
+</div>
+</div>
+<div id="wold-decomposition" class="section level3" number="2.0.5">
+<h3>
+<span class="header-section-number">2.0.5</span> Wold decomposition<a class="anchor" aria-label="anchor" href="#wold-decomposition"><i class="fas fa-link"></i></a>
+</h3>
+<p>The Wold decomposition is an important result in time series analysis:</p>
+<div class="theorem">
+<p><span id="thm:Wold" class="theorem"><strong>Theorem 2.2  (Wold decomposition) </strong></span>Any covariance-stationary process admits the following representation:
+<span class="math display">\[
+y_t = \mu + \sum_{0}^{+\infty} \theta_i \varepsilon_{t-i} + \kappa_t,
+\]</span>
+where</p>
+<ul>
+<li>
+<span class="math inline">\(\theta_0 = 1\)</span>, <span class="math inline">\(\sum_{i=0}^{\infty} \theta_i^2 &lt; +\infty\)</span> (square summability, see Def. <a href="Univariate.html#def:summability">2.3</a>).</li>
+<li>
+<span class="math inline">\(\{\varepsilon_t\}\)</span> is a white noise (see Def. <a href="Intro.html#def:whitenoise">1.1</a>); <span class="math inline">\(\varepsilon_t\)</span> is the error made when forecasting <span class="math inline">\(y_t\)</span> based on a linear combination of lagged <span class="math inline">\(y_t\)</span>’s (<span class="math inline">\(\varepsilon_t = y_t - \hat{\mathbb{E}}[y_t|y_{t-1},y_{t-2},\dots]\)</span>).</li>
+<li>For any <span class="math inline">\(j \ge 1\)</span>, <span class="math inline">\(\kappa_t\)</span> is not correlated with <span class="math inline">\(\varepsilon_{t-j}\)</span>; but <span class="math inline">\(\kappa_t\)</span> can be perfectly forecasted based on a linear combination of lagged <span class="math inline">\(y_t\)</span>’s (i.e. <span class="math inline">\(\kappa_t = \hat{\mathbb{E}}(\kappa_t|y_{t-1},y_{t-2},\dots)\)</span>). <span class="math inline">\(\kappa_t\)</span> is called the <strong>deterministic component</strong> of <span class="math inline">\(y_t\)</span>.</li>
+</ul>
+</div>
+<div class="proof">
+<p><span id="unlabeled-div-9" class="proof"><em>Proof</em>. </span>See <span class="citation">Anderson (<a href="references.html#ref-Anderson_1971" role="doc-biblioref">1971</a>)</span>. Partial proof in <a href="http://faculty.wcas.northwestern.edu/~lchrist/finc520/wold.pdf">L. Christiano</a>.</p>
+</div>
+<p>For an ARMA process, the Wold representation is given by Eq. <a href="Univariate.html#eq:ARMAwold">(2.10)</a>. As detailed in Prop. <a href="Univariate.html#prp:computPsi">2.7</a>, it can be computed by recursively replacing the lagged <span class="math inline">\(y_t\)</span>’s in Eq. <a href="Univariate.html#eq:ARMApq">(2.9)</a>. In this case, the deterministic component (<span class="math inline">\(\kappa\)</span>) is null.</p>
+</div>
+<div id="impulse-response-functions-irfs-in-arma-models" class="section level3" number="2.0.6">
+<h3>
+<span class="header-section-number">2.0.6</span> Impulse Response Functions (IRFs) in ARMA models<a class="anchor" aria-label="anchor" href="#impulse-response-functions-irfs-in-arma-models"><i class="fas fa-link"></i></a>
+</h3>
+<p>Consider the ARMA(p,q) process defined in Def. <a href="Univariate.html#def:ARMApq">2.6</a>, whose associated sequence of white noise is <span class="math inline">\(\{\varepsilon_t\}\)</span>. Let us construct a novel (counterfactual) sequence of shocks <span class="math inline">\(\{\tilde\varepsilon_t^{(s)}\}\)</span>:
+<span class="math display">\[
+\tilde\varepsilon_t^{(s)} = \left\{
+\begin{array}{lcc}
+\varepsilon_{t} &amp; if &amp; t \ne s,\\
+\varepsilon_{t} + \delta &amp;if&amp; t=s.
+\end{array}
+\right.
+\]</span>
+We denote by <span class="math inline">\(\{\tilde{y}_t^{(s)}\}\)</span> the process following Eq. <a href="Univariate.html#eq:ARMApq">(2.9)</a> where <span class="math inline">\(\{\varepsilon_t\}\)</span> is replaced with <span class="math inline">\(\{\tilde\varepsilon_t^{(s)}\}\)</span>. The time series <span class="math inline">\(\{\tilde{y}_t^{(s)}\}\)</span> is the counterfactual series <span class="math inline">\(\{y_t\}\)</span> that would have prevailed if <span class="math inline">\(\varepsilon_t\)</span> had been shifted by <span class="math inline">\(\delta\)</span> on date <span class="math inline">\(s\)</span> (and that would be the only change).</p>
+<p>The relationship between <span class="math inline">\(\{y_t\}\)</span> and <span class="math inline">\(\{\tilde{y}_t^{(s)}\}\)</span> defines the <strong>dynamic multiplier</strong>. The latter is denoted by <span class="math inline">\(\frac{\partial y_t}{\partial \varepsilon_{s}}\)</span> and is such that:
+<span class="math display">\[
+\tilde{y}_t^{(s)} = y_t + \frac{\partial y_t}{\partial \varepsilon_{s}}\delta.
+\]</span>
+We will see that the dynamic multipliers are closely related to the infinite MA representation (or <strong>Wold decomposition</strong>, Theorem <a href="Univariate.html#thm:Wold">2.2</a>) of <span class="math inline">\(y_t\)</span>:
+<span class="math display">\[
+y_t = \mu + \sum_{i=0}^{+\infty} \psi_i \varepsilon_{t-i}.
+\]</span>
+For <span class="math inline">\(t&lt;s\)</span>, we have <span class="math inline">\(y_t = \tilde{y}_t^{(s)}\)</span> (because <span class="math inline">\(\tilde{\varepsilon}_{t-i}= \varepsilon_{t-i}\)</span> for all <span class="math inline">\(i \ge 0\)</span> if <span class="math inline">\(t&lt;s\)</span>).</p>
+<p>For <span class="math inline">\(t \ge s\)</span>:
+<span class="math display">\[
+\tilde{y}_t^{(s)} = \mu + \left( \sum_{i=0}^{t-s-1} \psi_i \varepsilon_{t-i} \right) + \psi_{t-s}(\varepsilon_{s}+\delta) + \left( \sum_{i=t-s+1}^{+\infty} \psi_i \varepsilon_{t-i} \right)=y_t + \frac{\partial y_t}{\partial \varepsilon_{s}}\delta.
+\]</span>
+Therefore, for <span class="math inline">\(t \ge s\)</span>, we have:
+<span class="math display">\[
+\boxed{\dfrac{\partial y_t}{\partial \varepsilon_{s}}=\psi_{t-s}.}
+\]</span>
+That is, <span class="math inline">\(\{y_t\}\)</span>’s dynamic multiplier of order <span class="math inline">\(k\)</span> is the same object as the <span class="math inline">\(k^{th}\)</span> loading <span class="math inline">\(\psi_k\)</span> in the Wold decomposition of <span class="math inline">\(\{y_t\}\)</span>. The sequence <span class="math inline">\(\left\{\dfrac{\partial y_{t+h}}{\partial \varepsilon_{t}}\right\}_{h \ge 0} \equiv \left\{\psi_h\right\}_{h \ge 0}\)</span> defines the <strong>impulse response function (IRF)</strong> of <span class="math inline">\(y_t\)</span> to the shock <span class="math inline">\(\varepsilon_t\)</span>.</p>
+<p>For ARMA processes, the computation of the IRFs is easy:</p>
+<div class="proposition">
+<p><span id="prp:computPsi" class="proposition"><strong>Proposition 2.7  (IRF of an ARMA(p,q) process) </strong></span>The coefficients <span class="math inline">\(\psi_h\)</span>, that define the IRF of process <span class="math inline">\(y_t\)</span> to <span class="math inline">\(\varepsilon_t\)</span>, can be computed recursively as follows:</p>
+<ol style="list-style-type: decimal">
+<li>Set <span class="math inline">\(\psi_{-1}=\dots=\psi_{-p}=0\)</span>.</li>
+<li>For <span class="math inline">\(h \ge 0\)</span>, (recursively) apply:
+<span class="math display">\[
+\psi_h = \phi_1 \psi_{h-1} + \dots + \phi_p \psi_{h-p} + \theta_h,
+\]</span>
+where <span class="math inline">\(\theta_h = 0\)</span> for <span class="math inline">\(h&gt;q\)</span>.</li>
+</ol>
+</div>
+<div class="proof">
+<p><span id="unlabeled-div-10" class="proof"><em>Proof</em>. </span>This is obtained by applying the operator <span class="math inline">\(\frac{\partial}{\partial \varepsilon_{t}}\)</span> on both sides of Eq. <a href="Univariate.html#eq:ARMApq">(2.9)</a>:
+<span class="math display">\[
+y_{t+h} = c + \phi_1 y_{t+h-1} + \dots + \phi_p y_{t+h-p} + \varepsilon_{t+h} + \theta_1 \varepsilon_{t+h-1} + \dots + \theta_q \varepsilon_{t+h-q}.
+\]</span></p>
+</div>
+<p>Note that Proposition <a href="Univariate.html#prp:computPsi">2.7</a> constitutes a simple way to compute the MA(<span class="math inline">\(\infty\)</span>) representation (or Wold representation) of an ARMA process.</p>
+<p>One can use function <code>sim.arma</code> of package <code>AEC</code> to compute ARMA’s IRFs (with the argument <code>make.IRF = 1</code>):</p>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="cn">T</span> <span class="op">&lt;-</span> <span class="fl">21</span> <span class="co"># number of periods for IRF</span></span>
+<span><span class="va">theta</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">1</span>,<span class="fl">1</span><span class="op">)</span>;<span class="va">phi</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span><span class="op">)</span>;<span class="va">c</span> <span class="op">&lt;-</span> <span class="fl">0</span></span>
+<span><span class="va">y.sim</span> <span class="op">&lt;-</span> <span class="fu">sim.arma</span><span class="op">(</span><span class="va">c</span>,<span class="va">phi</span>,<span class="va">theta</span>,sigma<span class="op">=</span><span class="fl">1</span>,<span class="cn">T</span>,y.0<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">phi</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>                  nb.sim<span class="op">=</span><span class="fl">1</span>,make.IRF <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mfrow<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">3</span><span class="op">)</span><span class="op">)</span>;<span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>plt<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">.25</span>,<span class="fl">.95</span>,<span class="fl">.2</span>,<span class="fl">.85</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="fl">0</span><span class="op">:</span><span class="op">(</span><span class="cn">T</span><span class="op">-</span><span class="fl">1</span><span class="op">)</span>,<span class="va">y.sim</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span>,type<span class="op">=</span><span class="st">"l"</span>,lwd<span class="op">=</span><span class="fl">2</span>,</span>
+<span>     main<span class="op">=</span><span class="st">"(a) Process 1"</span>,xlab<span class="op">=</span><span class="st">"Time after shock on epsilon"</span>,</span>
+<span>     ylab<span class="op">=</span><span class="st">"Dynamic multiplier (shock on epsilon at t=0)"</span>,col<span class="op">=</span><span class="st">"red"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/abline.html">abline</a></span><span class="op">(</span>h<span class="op">=</span><span class="fl">0</span><span class="op">)</span></span>
+<span><span class="va">theta</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">.5</span><span class="op">)</span>;<span class="va">phi</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.6</span><span class="op">)</span></span>
+<span><span class="va">y.sim</span> <span class="op">&lt;-</span> <span class="fu">sim.arma</span><span class="op">(</span><span class="va">c</span>,<span class="va">phi</span>,<span class="va">theta</span>,sigma<span class="op">=</span><span class="fl">1</span>,<span class="cn">T</span>,y.0<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">phi</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>                  nb.sim<span class="op">=</span><span class="fl">1</span>,make.IRF <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="fl">0</span><span class="op">:</span><span class="op">(</span><span class="cn">T</span><span class="op">-</span><span class="fl">1</span><span class="op">)</span>,<span class="va">y.sim</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span>,type<span class="op">=</span><span class="st">"l"</span>,lwd<span class="op">=</span><span class="fl">2</span>,</span>
+<span>     main<span class="op">=</span><span class="st">"(b) Process 2"</span>,xlab<span class="op">=</span><span class="st">"Time after shock on epsilon"</span>,</span>
+<span>     ylab<span class="op">=</span><span class="st">""</span>,col<span class="op">=</span><span class="st">"red"</span><span class="op">)</span></span>
+<span><span class="va">theta</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">1</span>,<span class="fl">1</span><span class="op">)</span>;<span class="va">phi</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">0</span>,<span class="fl">.5</span>,<span class="fl">.4</span><span class="op">)</span></span>
+<span><span class="va">y.sim</span> <span class="op">&lt;-</span> <span class="fu">sim.arma</span><span class="op">(</span><span class="va">c</span>,<span class="va">phi</span>,<span class="va">theta</span>,sigma<span class="op">=</span><span class="fl">1</span>,<span class="cn">T</span>,y.0<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">phi</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>                  nb.sim<span class="op">=</span><span class="fl">1</span>,make.IRF <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="fl">0</span><span class="op">:</span><span class="op">(</span><span class="cn">T</span><span class="op">-</span><span class="fl">1</span><span class="op">)</span>,<span class="va">y.sim</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span>,type<span class="op">=</span><span class="st">"l"</span>,lwd<span class="op">=</span><span class="fl">2</span>,</span>
+<span>     main<span class="op">=</span><span class="st">"(c) Process 3"</span>,xlab<span class="op">=</span><span class="st">"Time after shock on epsilon"</span>,</span>
+<span>     ylab<span class="op">=</span><span class="st">""</span>,col<span class="op">=</span><span class="st">"red"</span><span class="op">)</span></span></code></pre></div>
+<div class="figure" style="text-align: left-aligned">
+<span style="display:block;" id="fig:IRFarma"></span>
+<img src="TimeSeries_files/figure-html/IRFarma-1.png" alt="IRFs associated with the three processes. Process 1 (MA(2)): $y_t = \varepsilon_t + \varepsilon_{t-1} + \varepsilon_{t-2}$. Process 2 (ARMA(1,1)): $y_{t}=0.6y_{t-1} + \varepsilon_t + 0.5\varepsilon_{t-1}$. Process 3 (ARMA(4,2)): $y_{t}=0.5y_{t-3} + 0.4y_{t-4} + \varepsilon_t + \varepsilon_{t-1} + \varepsilon_{t-2}$." width="100%"><p class="caption">
+Figure 2.3: IRFs associated with the three processes. Process 1 (MA(2)): <span class="math inline">\(y_t = \varepsilon_t + \varepsilon_{t-1} + \varepsilon_{t-2}\)</span>. Process 2 (ARMA(1,1)): <span class="math inline">\(y_{t}=0.6y_{t-1} + \varepsilon_t + 0.5\varepsilon_{t-1}\)</span>. Process 3 (ARMA(4,2)): <span class="math inline">\(y_{t}=0.5y_{t-3} + 0.4y_{t-4} + \varepsilon_t + \varepsilon_{t-1} + \varepsilon_{t-2}\)</span>.
+</p>
+</div>
+<p>Consider the annual Swiss GDP growth from the JST macro-history database. Let us first determine relevant orders for AR and MA processes using the (P)ACF approach.</p>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">AEC</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">JST</span><span class="op">)</span></span>
+<span><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/subset.html">subset</a></span><span class="op">(</span><span class="va">JST</span>,<span class="va">iso</span><span class="op">==</span><span class="st">"CHE"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>plt<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">.1</span>,<span class="fl">.95</span>,<span class="fl">.1</span>,<span class="fl">.95</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="cn">T</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="va">data</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span></span>
+<span><span class="va">growth</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="va">data</span><span class="op">$</span><span class="va">gdp</span><span class="op">[</span><span class="fl">2</span><span class="op">:</span><span class="cn">T</span><span class="op">]</span><span class="op">/</span><span class="va">data</span><span class="op">$</span><span class="va">gdp</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="op">(</span><span class="cn">T</span><span class="op">-</span><span class="fl">1</span><span class="op">)</span><span class="op">]</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mfrow<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">3</span>,<span class="fl">1</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>plt<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">.1</span>,<span class="fl">.95</span>,<span class="fl">.15</span>,<span class="fl">.95</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">data</span><span class="op">$</span><span class="va">year</span><span class="op">[</span><span class="fl">2</span><span class="op">:</span><span class="cn">T</span><span class="op">]</span>,<span class="va">growth</span>,type<span class="op">=</span><span class="st">"l"</span>,xlab<span class="op">=</span><span class="st">""</span>,ylab<span class="op">=</span><span class="st">""</span>,lwd<span class="op">=</span><span class="fl">2</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/abline.html">abline</a></span><span class="op">(</span>h<span class="op">=</span><span class="fl">0</span>,lty<span class="op">=</span><span class="fl">2</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/stats/acf.html">acf</a></span><span class="op">(</span><span class="va">growth</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/stats/acf.html">pacf</a></span><span class="op">(</span><span class="va">growth</span><span class="op">)</span></span></code></pre></div>
+<div class="figure" style="text-align: left-aligned">
+<span style="display:block;" id="fig:IRFgdp1"></span>
+<img src="TimeSeries_files/figure-html/IRFgdp1-1.png" alt="(P)ACF analysis of Swiss GDP growth." width="100%"><p class="caption">
+Figure 2.4: (P)ACF analysis of Swiss GDP growth.
+</p>
+</div>
+<p>The two bottom plots of Figure <a href="Univariate.html#fig:IRFgdp1">2.4</a> suggest that either an MA(2) or an AR(1) could be used to model the GDP growth rate series. Figure <a href="Univariate.html#fig:IRFgdp2">2.5</a> shows the IRFs based on these two respective specifications.</p>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Fit an AR process:</span></span>
+<span><span class="va">res</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/arima.html">arima</a></span><span class="op">(</span><span class="va">growth</span>,order<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">0</span>,<span class="fl">0</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">phi</span> <span class="op">&lt;-</span> <span class="va">res</span><span class="op">$</span><span class="va">coef</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span></span>
+<span><span class="cn">T</span> <span class="op">&lt;-</span> <span class="fl">11</span></span>
+<span><span class="va">y.sim</span> <span class="op">&lt;-</span> <span class="fu">sim.arma</span><span class="op">(</span>c<span class="op">=</span><span class="fl">0</span>,<span class="va">phi</span>,theta<span class="op">=</span><span class="fl">1</span>,sigma<span class="op">=</span><span class="fl">1</span>,<span class="cn">T</span>,y.0<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">phi</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>                  nb.sim<span class="op">=</span><span class="fl">1</span>,make.IRF <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>plt<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">.15</span>,<span class="fl">.95</span>,<span class="fl">.25</span>,<span class="fl">.95</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="fl">0</span><span class="op">:</span><span class="op">(</span><span class="cn">T</span><span class="op">-</span><span class="fl">1</span><span class="op">)</span>,<span class="va">y.sim</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span>,type<span class="op">=</span><span class="st">"l"</span>,lwd<span class="op">=</span><span class="fl">3</span>,</span>
+<span>     xlab<span class="op">=</span><span class="st">"Time after shock on epsilon"</span>,</span>
+<span>     ylab<span class="op">=</span><span class="st">"Dynamic multiplier (shock on epsilon at t=0)"</span>,col<span class="op">=</span><span class="st">"red"</span><span class="op">)</span></span>
+<span><span class="co"># Fit a MA process:</span></span>
+<span><span class="va">res</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/arima.html">arima</a></span><span class="op">(</span><span class="va">growth</span>,order<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">0</span>,<span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">phi</span> <span class="op">&lt;-</span> <span class="fl">0</span>;<span class="va">theta</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="va">res</span><span class="op">$</span><span class="va">coef</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">]</span><span class="op">)</span></span>
+<span><span class="va">y.sim</span> <span class="op">&lt;-</span> <span class="fu">sim.arma</span><span class="op">(</span>c<span class="op">=</span><span class="fl">0</span>,<span class="va">phi</span>,<span class="va">theta</span>,sigma<span class="op">=</span><span class="fl">1</span>,<span class="cn">T</span>,y.0<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">phi</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>                  nb.sim<span class="op">=</span><span class="fl">1</span>,make.IRF <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/lines.html">lines</a></span><span class="op">(</span><span class="fl">0</span><span class="op">:</span><span class="op">(</span><span class="cn">T</span><span class="op">-</span><span class="fl">1</span><span class="op">)</span>,<span class="va">y.sim</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span>,lwd<span class="op">=</span><span class="fl">3</span>,col<span class="op">=</span><span class="st">"red"</span>,lty<span class="op">=</span><span class="fl">2</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/abline.html">abline</a></span><span class="op">(</span>h<span class="op">=</span><span class="fl">0</span><span class="op">)</span></span></code></pre></div>
+<div class="figure" style="text-align: left-aligned">
+<span style="display:block;" id="fig:IRFgdp2"></span>
+<img src="TimeSeries_files/figure-html/IRFgdp2-1.png" alt="Dynamic response of Swiss annual growth to a shock on the innovation $\varepsilon_t$ at date $t=0$. The solid line corresponds to an AR(1) specification; the dashed line corresponds to a MA(2) specification." width="100%"><p class="caption">
+Figure 2.5: Dynamic response of Swiss annual growth to a shock on the innovation <span class="math inline">\(\varepsilon_t\)</span> at date <span class="math inline">\(t=0\)</span>. The solid line corresponds to an AR(1) specification; the dashed line corresponds to a MA(2) specification.
+</p>
+</div>
+<p>The same kind of algorithm can be used to compute the impact of an increase in an exogenous variable <span class="math inline">\(x_t\)</span> within an ARMAX(p,q,r) model (see next section).</p>
+</div>
+<div id="ARMAIRF" class="section level3" number="2.0.7">
+<h3>
+<span class="header-section-number">2.0.7</span> ARMA processes with exogenous variables (ARMA-X)<a class="anchor" aria-label="anchor" href="#ARMAIRF"><i class="fas fa-link"></i></a>
+</h3>
+<!-- Recall that $\{y_t\}$ follows an ARMAX(p,q,r) model if its dynamics is of the form (see Def. \@ref(def:ARMAX)): -->
+<!-- \begin{eqnarray} -->
+<!-- y_t &=& \underbrace{c + \phi_1 y_{t-1} + \dots + \phi_p y_{t-p}}_{\mbox{AR(p) part}} + \underbrace{\beta_0 x_t + \dots + \beta_{r} x_{t-r}}_{\mbox{X(r) part}} + \nonumber \\ -->
+<!-- &&\underbrace{\varepsilon_t + \theta_1\varepsilon_{t-1}+\dots +\theta_{q}\varepsilon_{t-q}.}_{\mbox{MA(q) part}}(\#eq:armaxirf) -->
+<!-- \end{eqnarray} -->
+<!-- where $\{\varepsilon_t\}$ is an i.i.d. white noise sequence and $\{x_t\}$ is an exogenous variable. -->
+<!-- This algorithm was presented in Prop. \@ref(prop:computPsiARMAX). -->
+<p>ARMA processes do not allow to investigate the influence of an exogenous variable (say <span class="math inline">\(x_t\)</span>) on the variable of interest (say <span class="math inline">\(y_t\)</span>). When <span class="math inline">\(x_t\)</span> and <span class="math inline">\(y_t\)</span> have reciprocal influences, the Vector Autoregressive (VAR) model may be used (this tools will be studied later, in Section <a href="VAR.html#VAR">3</a>). However, when one suspects that <span class="math inline">\(x_t\)</span> has an “exogenous” influence on <span class="math inline">\(y_t\)</span>, then a simple extension of the ARMA processes may be considered. Loosely speaking, <span class="math inline">\(x_t\)</span> has an “exogenous” influence on <span class="math inline">\(y_t\)</span> if <span class="math inline">\(y_t\)</span> does not affect <span class="math inline">\(x_t\)</span>. This extension is called ARMAX(p,q,r).</p>
+<p>To begin with, let us formalize this notion of exogeneity. Consider a white noise sequence <span class="math inline">\(\{\varepsilon_t\}\)</span> (Def. <a href="Intro.html#def:whitenoise">1.1</a>).</p>
+<div class="definition">
+<p><span id="def:exogeneity" class="definition"><strong>Definition 2.8  (Exogeneity) </strong></span>We say that <span class="math inline">\(x_t\)</span> is (strictly) exogenous to <span class="math inline">\(\{\varepsilon_t\}\)</span> if
+<span class="math display">\[
+\mathbb{E}(\varepsilon_t|\underbrace{\dots,x_{t+1}}_{\mbox{future}},\underbrace{x_t,x_{t-1},\dots}_{\mbox{present and past}}) = 0.
+\]</span></p>
+</div>
+<!-- If $x_t$ is exogenous to $\{\varepsilon_t\}$ then, in particular: -->
+<!-- \begin{equation} -->
+<!-- \mathbb{E}(\varepsilon_t|x_{t-k},x_{t-k-1},\dots)=0 \mbox{ for any } k\ge0,(\#eq:expepsx) -->
+<!-- \end{equation} -->
+<!-- which implies that: -->
+<!-- \begin{equation} -->
+<!-- \mathbb{E}(\varepsilon_tx_t|x_{t-k},x_{t-k-1},\dots)=0 \mbox{ for any } k\ge0, -->
+<!-- \end{equation} -->
+<!-- or -->
+<!-- \begin{equation} -->
+<!-- \mathbb{C}ov(\varepsilon_t,x_t|x_{t-k},x_{t-k-1},\dots)=0 \mbox{ for any } k\ge0, -->
+<!-- \end{equation} -->
+<!-- Past values of the exogenous variable do not allow to predict present and future values of $\varepsilon_t$ (Eq. \@ref(eq:expepsx)). -->
+<p>Hence, if <span class="math inline">\(\{x_t\}\)</span> is strictly exogenous to <span class="math inline">\(\varepsilon_t\)</span>, then past, present and future values of <span class="math inline">\(x_t\)</span> do not allow to predict the <span class="math inline">\(\varepsilon_t\)</span>’s.</p>
+<p>In the following, we assume that <span class="math inline">\(\{x_t\}\)</span> is a covariance stationary process.</p>
+<div class="definition">
+<p><span id="def:ARMAX" class="definition"><strong>Definition 2.9  (ARMAX(p,q,r) model) </strong></span>The process <span class="math inline">\(\{y_t\}\)</span> is an ARMAX(p,q,r) if it follows a difference equation:
+<span class="math display" id="eq:DLM">\[\begin{eqnarray}
+y_t &amp;=&amp; \underbrace{c + \phi_1 y_{t-1} + \dots + \phi_p y_{t-p}}_{\mbox{AR(p) part}} + \underbrace{\beta_0 x_t + \dots + \beta_{r} x_{t-r}}_{\mbox{X(r) part}} + \nonumber \\
+&amp;&amp;\underbrace{\varepsilon_t + \theta_1\varepsilon_{t-1}+\dots +\theta_{q}\varepsilon_{t-q}.}_{\mbox{MA(q) part}} \tag{2.11}
+\end{eqnarray}\]</span>
+where <span class="math inline">\(\{\varepsilon_t\}\)</span> is an i.i.d. white noise sequence and <span class="math inline">\(\{x_t\}\)</span> is exogenous to <span class="math inline">\(y_t\)</span>.</p>
+</div>
+<!-- The Autoregressive Distributed Lag (ADL) Model ADL(p,r) is an ARMAX(p,0,r) model (see @Stock_Watson_2003, Chapter 16). -->
+<p>What is the effect of a one-unit increase in <span class="math inline">\(x_t\)</span> on <span class="math inline">\(y_t\)</span>? To address this question, this notion of “effect” has to be formalized. Let us introduce two related sequences of values for <span class="math inline">\(\{x\}\)</span>. Denote the first by <span class="math inline">\(\{a\}\)</span> and the second by <span class="math inline">\(\{\tilde{a}^t\}\)</span>. Further, we posit <span class="math inline">\(a_s = \tilde{a}_s^t\)</span> for all <span class="math inline">\(s \ne t\)</span>, and <span class="math inline">\(\tilde{a}_t^t = a_t+1\)</span>.</p>
+<p>With these notations, we define <span class="math inline">\(\frac{\partial y_{t+h}}{\partial x_t}\)</span> as follows:
+<span class="math display" id="eq:dynmultX">\[\begin{equation}
+\frac{\partial y_{t+h}}{\partial x_t} := \mathbb{E}(y_{t+h}|\{x\} = \{\tilde{a}^t\}) - \mathbb{E}(y_{t+h}|\{x\} = \{a\}).\tag{2.12}
+\end{equation}\]</span>
+Under the exogeneity assumption, it is easily seen that
+<!-- \begin{eqnarray*} -->
+<!-- y_t = c + \phi_1 y_{t-1} + \dots + \phi_p y_{t-p} + \\ -->
+<!-- &&\beta_0 x_t + \dots + \beta_{r} x_{t-r} +\\ -->
+<!-- &&\varepsilon_t + \theta_1\varepsilon_{t-1}+\dots +\theta_{q}\varepsilon_{t-q}. -->
+<!-- \end{eqnarray*} --></p>
+<p><span class="math display">\[
+\frac{\partial y_t}{\partial x_t} = \beta_0.
+\]</span>
+Now, since
+<span class="math display">\[\begin{eqnarray*}
+y_{t+1} &amp;=&amp; c + \phi_1 y_{t} + \dots + \phi_p y_{t+1-p} + \beta_0 x_{t+1} + \dots + \beta_{r} x_{t+1-r} +\\
+&amp;&amp;\varepsilon_{t+1} + \theta_1\varepsilon_{t}+\dots +\theta_{q}\varepsilon_{t+1-q},
+\end{eqnarray*}\]</span>
+and using the exogeneity assumption, we obtain:
+<span class="math display">\[
+\frac{\partial y_{t+1}}{\partial x_t} := \phi_1 \frac{\partial y_{t}}{\partial x_t} + \beta_1 = \phi_1\beta_0 + \beta_1.
+\]</span>
+This can be applied recursively to give <span class="math inline">\(\dfrac{\partial y_{t+h}}{\partial x_t}\)</span> for any <span class="math inline">\(h \ge 0\)</span>:</p>
+<div class="proposition">
+<p><span id="prp:computPsiARMAX" class="proposition"><strong>Proposition 2.8  (Dynamic multipliers in ARMAX models) </strong></span>One can recursively compute the dynamic multipliers <span class="math inline">\(\frac{\partial y_{t+h}}{\partial x_t}\)</span> as follows:</p>
+<ol style="list-style-type: lower-roman">
+<li>Initialization: <span class="math inline">\(\dfrac{\partial y_{t+h}}{\partial x_t}=0\)</span> for <span class="math inline">\(h&lt;0\)</span>.</li>
+<li>For <span class="math inline">\(h \ge 0\)</span> and assuming that the first <span class="math inline">\(h-1\)</span> multipliers have been computed, we have:
+<span class="math display" id="eq:dynmultX">\[\begin{eqnarray}
+\dfrac{\partial y_{t+h}}{\partial x_t} &amp;=&amp; \phi_1 \dfrac{\partial y_{t+h-1}}{\partial x_t} + \dots + \phi_p \dfrac{\partial y_{t+h-p}}{\partial x_t} + \beta_h,\tag{2.12}
+\end{eqnarray}\]</span>
+where we use the notation <span class="math inline">\(\beta_h=0\)</span> if <span class="math inline">\(h&gt;r\)</span>.</li>
+</ol>
+</div>
+<p>Remark that the resulting dynamic multipliers are the same as those obtained for an ARMA(p,r) model where the <span class="math inline">\(\theta_i\)</span>’s are replaced with <span class="math inline">\(\beta_i\)</span>’s (see Proposition <a href="Univariate.html#prp:computPsi">2.7</a> in Section <a href="Univariate.html#ARMAIRF">2.0.7</a>).</p>
+<p>It has to be stressed that the definition of the dynamic multipliers (Eq. <a href="Univariate.html#eq:dynmultX">(2.12)</a>) does not reflect a potential persistency of the shock occuring on date <span class="math inline">\(t\)</span> in process <span class="math inline">\(\{x\}\)</span> itself. Going in this direction would necessitate to model the joint dynamics of <span class="math inline">\(x_t\)</span> (for instance using a VAR model , see Section <a href="VAR.html#VAR">3</a>).</p>
+<div class="example">
+<p><span id="exm:OrangeJuice" class="example"><strong>Example 2.1  (Influence of the number of freezing days on the price of orange juice) </strong></span>This example is based on data used in <span class="citation">J. Stock and Watson (<a href="references.html#ref-Stock_Watson_2003" role="doc-biblioref">2003</a>)</span> (Chapter 16). The objective is to study the influence of the number of freezing days on the price of orange juice. Let us first estimate a ARMAX(0,0,12) model:</p>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">AEC</span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">AER</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="st">"FrozenJuice"</span><span class="op">)</span></span>
+<span><span class="va">FJ</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span><span class="op">(</span><span class="va">FrozenJuice</span><span class="op">)</span></span>
+<span><span class="va">date</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/time.html">time</a></span><span class="op">(</span><span class="va">FrozenJuice</span><span class="op">)</span></span>
+<span><span class="va">price</span> <span class="op">&lt;-</span> <span class="va">FJ</span><span class="op">$</span><span class="va">price</span><span class="op">/</span><span class="va">FJ</span><span class="op">$</span><span class="va">ppi</span></span>
+<span><span class="cn">T</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">price</span><span class="op">)</span></span>
+<span><span class="va">k</span> <span class="op">&lt;-</span> <span class="fl">1</span></span>
+<span><span class="va">dprice</span> <span class="op">&lt;-</span> <span class="fl">100</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="va">price</span><span class="op">[</span><span class="op">(</span><span class="va">k</span><span class="op">+</span><span class="fl">1</span><span class="op">)</span><span class="op">:</span><span class="cn">T</span><span class="op">]</span><span class="op">/</span><span class="va">price</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="op">(</span><span class="cn">T</span><span class="op">-</span><span class="va">k</span><span class="op">)</span><span class="op">]</span><span class="op">)</span></span>
+<span><span class="va">fdd</span> <span class="op">&lt;-</span> <span class="va">FJ</span><span class="op">$</span><span class="va">fdd</span><span class="op">[</span><span class="op">(</span><span class="va">k</span><span class="op">+</span><span class="fl">1</span><span class="op">)</span><span class="op">:</span><span class="cn">T</span><span class="op">]</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mfrow<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">3</span>,<span class="fl">1</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>plt<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">.1</span>,<span class="fl">.95</span>,<span class="fl">.15</span>,<span class="fl">.75</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">date</span>,<span class="va">price</span>,type<span class="op">=</span><span class="st">"l"</span>,xlab<span class="op">=</span><span class="st">""</span>,ylab<span class="op">=</span><span class="st">""</span>,</span>
+<span>     main<span class="op">=</span><span class="st">"(a) Price of orange Juice"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">date</span>,<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="cn">NaN</span>,<span class="va">dprice</span><span class="op">)</span>,type<span class="op">=</span><span class="st">"l"</span>,xlab<span class="op">=</span><span class="st">""</span>,ylab<span class="op">=</span><span class="st">""</span>,</span>
+<span>     main<span class="op">=</span><span class="st">"(b) Monthly pct Change (y)"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">date</span>,<span class="va">FJ</span><span class="op">$</span><span class="va">fdd</span>,type<span class="op">=</span><span class="st">"l"</span>,xlab<span class="op">=</span><span class="st">""</span>,ylab<span class="op">=</span><span class="st">""</span>,</span>
+<span>     main<span class="op">=</span><span class="st">"(c) Number of freezing days (x)"</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-figure"><img src="TimeSeries_files/figure-html/freez-1.png" width="672"></div>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">nb.lags</span> <span class="op">&lt;-</span> <span class="fl">12</span></span>
+<span><span class="va">FDD</span> <span class="op">&lt;-</span> <span class="va">FJ</span><span class="op">$</span><span class="va">fdd</span><span class="op">[</span><span class="op">(</span><span class="va">nb.lags</span><span class="op">+</span><span class="fl">1</span><span class="op">)</span><span class="op">:</span><span class="cn">T</span><span class="op">]</span></span>
+<span><span class="va">names.FDD</span> <span class="op">&lt;-</span> <span class="cn">NULL</span></span>
+<span><span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="va">nb.lags</span><span class="op">)</span><span class="op">{</span></span>
+<span>  <span class="va">FDD</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span><span class="va">FDD</span>,<span class="va">FJ</span><span class="op">$</span><span class="va">fdd</span><span class="op">[</span><span class="op">(</span><span class="va">nb.lags</span><span class="op">+</span><span class="fl">1</span><span class="op">-</span><span class="va">i</span><span class="op">)</span><span class="op">:</span><span class="op">(</span><span class="cn">T</span><span class="op">-</span><span class="va">i</span><span class="op">)</span><span class="op">]</span><span class="op">)</span></span>
+<span>  <span class="va">names.FDD</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">names.FDD</span>,<span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="st">" Lag "</span>,<span class="fu"><a href="https://rdrr.io/r/base/toString.html">toString</a></span><span class="op">(</span><span class="va">i</span><span class="op">)</span>,sep<span class="op">=</span><span class="st">""</span><span class="op">)</span><span class="op">)</span><span class="op">}</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="va">FDD</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">" Lag 0"</span>,<span class="va">names.FDD</span><span class="op">)</span></span>
+<span><span class="va">dprice</span> <span class="op">&lt;-</span> <span class="va">dprice</span><span class="op">[</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">dprice</span><span class="op">)</span><span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="va">FDD</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">+</span><span class="fl">1</span><span class="op">)</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">dprice</span><span class="op">)</span><span class="op">]</span></span>
+<span><span class="va">eq</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">dprice</span><span class="op">~</span><span class="va">FDD</span><span class="op">)</span></span>
+<span><span class="co"># Compute the Newey-West std errors:</span></span>
+<span><span class="va">var.cov.mat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://sandwich.R-Forge.R-project.org/reference/NeweyWest.html">NeweyWest</a></span><span class="op">(</span><span class="va">eq</span>,lag <span class="op">=</span> <span class="fl">7</span>, prewhite <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="va">robust_se</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/diag.html">diag</a></span><span class="op">(</span><span class="va">var.cov.mat</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co"># Stargazer output (with and without Robust SE)</span></span>
+<span><span class="fu">stargazer</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/stargazer/man/stargazer.html">stargazer</a></span><span class="op">(</span><span class="va">eq</span>, <span class="va">eq</span>, type <span class="op">=</span> <span class="st">"text"</span>,</span>
+<span>                     column.labels<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"(no HAC)"</span>,<span class="st">"(HAC)"</span><span class="op">)</span>,keep.stat<span class="op">=</span><span class="st">"n"</span>,</span>
+<span>                     se <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="cn">NULL</span>,<span class="va">robust_se</span><span class="op">)</span>,no.space <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## 
+## =========================================
+##                  Dependent variable:     
+##              ----------------------------
+##                         dprice           
+##                 (no HAC)        (HAC)    
+##                   (1)            (2)     
+## -----------------------------------------
+## FDD Lag 0       0.496***      0.496***   
+##                 (0.058)        (0.139)   
+## FDD Lag 1       0.150***       0.150*    
+##                 (0.058)        (0.087)   
+## FDD Lag 2        0.046          0.046    
+##                 (0.057)        (0.056)   
+## FDD Lag 3        0.062          0.062    
+##                 (0.057)        (0.046)   
+## FDD Lag 4        0.024          0.024    
+##                 (0.057)        (0.030)   
+## FDD Lag 5        0.036          0.036    
+##                 (0.057)        (0.030)   
+## FDD Lag 6        0.037          0.037    
+##                 (0.057)        (0.046)   
+## FDD Lag 7        0.019          0.019    
+##                 (0.057)        (0.015)   
+## FDD Lag 8        -0.038        -0.038    
+##                 (0.057)        (0.034)   
+## FDD Lag 9        -0.006        -0.006    
+##                 (0.057)        (0.050)   
+## FDD Lag 10      -0.112*        -0.112    
+##                 (0.057)        (0.069)   
+## FDD Lag 11       -0.063        -0.063    
+##                 (0.058)        (0.052)   
+## FDD Lag 12      -0.140**       -0.140*   
+##                 (0.058)        (0.078)   
+## Constant        -0.426*        -0.426*   
+##                 (0.238)        (0.243)   
+## -----------------------------------------
+## Observations      600            600     
+## =========================================
+## Note:         *p&lt;0.1; **p&lt;0.05; ***p&lt;0.01</code></pre>
+<p>Let us now use function <code>estim.armax</code>, from package <code>AEC</code>to estimate an ARMA-X(2,0,1) model:</p>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">nb.lags</span> <span class="op">&lt;-</span> <span class="fl">1</span></span>
+<span><span class="va">FDD</span> <span class="op">&lt;-</span> <span class="va">FJ</span><span class="op">$</span><span class="va">fdd</span><span class="op">[</span><span class="op">(</span><span class="va">nb.lags</span><span class="op">+</span><span class="fl">1</span><span class="op">)</span><span class="op">:</span><span class="cn">T</span><span class="op">]</span></span>
+<span><span class="va">names.FDD</span> <span class="op">&lt;-</span> <span class="cn">NULL</span></span>
+<span><span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="va">nb.lags</span><span class="op">)</span><span class="op">{</span></span>
+<span>  <span class="va">FDD</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span><span class="va">FDD</span>,<span class="va">FJ</span><span class="op">$</span><span class="va">fdd</span><span class="op">[</span><span class="op">(</span><span class="va">nb.lags</span><span class="op">+</span><span class="fl">1</span><span class="op">-</span><span class="va">i</span><span class="op">)</span><span class="op">:</span><span class="op">(</span><span class="cn">T</span><span class="op">-</span><span class="va">i</span><span class="op">)</span><span class="op">]</span><span class="op">)</span></span>
+<span>  <span class="va">names.FDD</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">names.FDD</span>,<span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="st">" Lag "</span>,<span class="fu"><a href="https://rdrr.io/r/base/toString.html">toString</a></span><span class="op">(</span><span class="va">i</span><span class="op">)</span>,sep<span class="op">=</span><span class="st">""</span><span class="op">)</span><span class="op">)</span><span class="op">}</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="va">FDD</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">" Lag 0"</span>,<span class="va">names.FDD</span><span class="op">)</span></span>
+<span><span class="va">dprice</span> <span class="op">&lt;-</span> <span class="fl">100</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="va">price</span><span class="op">[</span><span class="op">(</span><span class="va">k</span><span class="op">+</span><span class="fl">1</span><span class="op">)</span><span class="op">:</span><span class="cn">T</span><span class="op">]</span><span class="op">/</span><span class="va">price</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="op">(</span><span class="cn">T</span><span class="op">-</span><span class="va">k</span><span class="op">)</span><span class="op">]</span><span class="op">)</span></span>
+<span><span class="va">dprice</span> <span class="op">&lt;-</span> <span class="va">dprice</span><span class="op">[</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">dprice</span><span class="op">)</span><span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="va">FDD</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">+</span><span class="fl">1</span><span class="op">)</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">dprice</span><span class="op">)</span><span class="op">]</span></span>
+<span><span class="va">res.armax</span> <span class="op">&lt;-</span> <span class="fu">estim.armax</span><span class="op">(</span>Y <span class="op">=</span> <span class="va">dprice</span>,p<span class="op">=</span><span class="fl">3</span>,q<span class="op">=</span><span class="fl">0</span>,X<span class="op">=</span><span class="va">FDD</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## [1] "=================================================="
+## [1] "  ESTIMATING"
+## [1] "=================================================="
+## [1] "  END OF ESTIMATION"
+## [1] "=================================================="
+## [1] ""
+## [1] "  RESULTS:"
+## [1] "  -----------------------"
+##                 THETA     st.dev   t.ratio
+## c         -0.46556249 0.19554352 -2.380864
+## phi   t-1  0.09788977 0.04025907  2.431496
+## phi   t-2  0.05049849 0.03827488  1.319364
+## phi   t-3  0.07155170 0.03764750  1.900570
+## sigma      4.64917949 0.13300769 34.954215
+## beta  t-0  0.47015552 0.05665344  8.298800
+## beta  t-1  0.10015862 0.05972526  1.676989
+## [1] "=================================================="</code></pre>
+<p>Figure <a href="Univariate.html#fig:freez4">2.6</a> shows the IRF associated with each of the two models.</p>
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">nb.periods</span> <span class="op">&lt;-</span> <span class="fl">20</span></span>
+<span><span class="va">IRF1</span> <span class="op">&lt;-</span> <span class="fu">sim.arma</span><span class="op">(</span>c<span class="op">=</span><span class="fl">0</span>,phi<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span><span class="op">)</span>,theta<span class="op">=</span><span class="va">eq</span><span class="op">$</span><span class="va">coefficients</span><span class="op">[</span><span class="fl">2</span><span class="op">:</span><span class="fl">13</span><span class="op">]</span>,sigma<span class="op">=</span><span class="fl">1</span>,</span>
+<span>                 T<span class="op">=</span><span class="va">nb.periods</span>,y.0<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span><span class="op">)</span>,nb.sim<span class="op">=</span><span class="fl">1</span>,make.IRF<span class="op">=</span><span class="fl">1</span><span class="op">)</span></span>
+<span><span class="va">IRF2</span> <span class="op">&lt;-</span> <span class="fu">sim.arma</span><span class="op">(</span>c<span class="op">=</span><span class="fl">0</span>,phi<span class="op">=</span><span class="va">res.armax</span><span class="op">$</span><span class="va">phi</span>,theta<span class="op">=</span><span class="va">res.armax</span><span class="op">$</span><span class="va">beta</span>,sigma<span class="op">=</span><span class="fl">1</span>,</span>
+<span>                 T<span class="op">=</span><span class="va">nb.periods</span>,y.0<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">res.armax</span><span class="op">$</span><span class="va">phi</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>                 nb.sim<span class="op">=</span><span class="fl">1</span>,make.IRF<span class="op">=</span><span class="fl">1</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>plt<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">.15</span>,<span class="fl">.95</span>,<span class="fl">.2</span>,<span class="fl">.95</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">IRF1</span>,type<span class="op">=</span><span class="st">"l"</span>,lwd<span class="op">=</span><span class="fl">2</span>,col<span class="op">=</span><span class="st">"red"</span>,xlab<span class="op">=</span><span class="st">"months after shock"</span>,</span>
+<span>     ylab<span class="op">=</span><span class="st">"Chge in price (percent)"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/lines.html">lines</a></span><span class="op">(</span><span class="va">IRF2</span>,lwd<span class="op">=</span><span class="fl">2</span>,col<span class="op">=</span><span class="st">"red"</span>,lty<span class="op">=</span><span class="fl">2</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/abline.html">abline</a></span><span class="op">(</span>h<span class="op">=</span><span class="fl">0</span>,col<span class="op">=</span><span class="st">"grey"</span><span class="op">)</span></span></code></pre></div>
+<div class="figure" style="text-align: left-aligned">
+<span style="display:block;" id="fig:freez4"></span>
+<img src="TimeSeries_files/figure-html/freez4-1.png" alt="Response of changes in orange juice price (in percent) to the number of freezing days. The solid (respectively dashed) line corresponds to the ARMAX(0,0,12) (resp. ARMAX(3,0,1)) model. The first model is estimated by OLS (see above), the second by MLE." width="95%"><p class="caption">
+Figure 2.6: Response of changes in orange juice price (in percent) to the number of freezing days. The solid (respectively dashed) line corresponds to the ARMAX(0,0,12) (resp. ARMAX(3,0,1)) model. The first model is estimated by OLS (see above), the second by MLE.
+</p>
+</div>
+</div>
+<!-- \begin{frame} -->
+<!-- \begin{scriptsize} -->
+<!-- \begin{exmpl}[Effect of monetary policy shocks] -->
+<!-- \begin{itemize} -->
+<!-- \item \href{https://www.aeaweb.org/articles?id=10.1257/mac.20130329}{Gertler and Karadi (2015)}'s type of shocks (high-frequency change in Euro-dollar futures). -->
+<!-- \item Effect on 12-month growth rate of Industrial Production (IP)? -->
+<!-- \item Data from \href{http://econweb.ucsd.edu/~vramey/research.html\#data}{Ramey's website}. -->
+<!-- \end{itemize} -->
+<!-- \begin{figure} -->
+<!-- \caption{IP and MP shocks} -->
+<!-- \begin{center} -->
+<!-- \includegraphics[width=.8\linewidth]{../../figures/Figure_Ramey.pdf} -->
+<!-- \end{center} -->
+<!-- \end{figure} -->
+<!-- \end{exmpl} -->
+<!-- \end{scriptsize} -->
+<!-- \end{frame} -->
+<!-- \begin{frame} -->
+<!-- \begin{scriptsize} -->
+<!-- \addtocounter{exmpl}{-1} -->
+<!-- \begin{exmpl}[Effect of monetary policy shocks (cont'd)] -->
+<!-- \begin{figure} -->
+<!-- \caption{IRF of IP growth rate to a 1 std-deviation MP shock} -->
+<!-- \begin{center} -->
+<!-- \includegraphics[width=.8\linewidth]{../../figures/Figure_Ramey2.pdf} -->
+<!-- \end{center} -->
+<!-- \begin{tiny} -->
+<!-- ARMAX(1,1,1). estimated by MLE (Section \ref{section:MLE_ARMA}). The initial shock corresponds to one standard deviation of the series of monetary-policy shocks. The blue lines delineate the 95\% confidence interval. -->
+<!-- \end{tiny} -->
+<!-- \end{figure} -->
+<!-- \end{exmpl} -->
+<!-- \end{scriptsize} -->
+<!-- \end{frame} -->
+<div class="example">
+<p><span id="exm:Ramey1" class="example"><strong>Example 2.2  (Real effect of a monetary policy shock) </strong></span>In this example, we make use of monetary shocks identified through high-frequency data (see <span class="citation">Gertler and Karadi (<a href="references.html#ref-Gertler_Karadi_2015" role="doc-biblioref">2015</a>)</span>). This dataset comes from <a href="https://econweb.ucsd.edu/~vramey/research.html">Valerie Ramey’s website</a> (see <span class="citation">Ramey (<a href="references.html#ref-Ramey_2016_NBER" role="doc-biblioref">2016</a>)</span>).</p>
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">AEC</span><span class="op">)</span></span>
+<span><span class="cn">T</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="va">Ramey</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span></span>
+<span><span class="co"># Construct growth series:</span></span>
+<span><span class="va">Ramey</span><span class="op">$</span><span class="va">growth</span> <span class="op">&lt;-</span> <span class="va">Ramey</span><span class="op">$</span><span class="va">LIP</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="cn">NaN</span>,<span class="fl">12</span><span class="op">)</span>,<span class="va">Ramey</span><span class="op">$</span><span class="va">LIP</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">Ramey</span><span class="op">$</span><span class="va">LIP</span><span class="op">)</span><span class="op">-</span><span class="fl">12</span><span class="op">)</span><span class="op">]</span><span class="op">)</span></span>
+<span><span class="co"># Prepare matrix of exogenous variables:</span></span>
+<span><span class="va">vec.lags</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">9</span>,<span class="fl">12</span>,<span class="fl">18</span><span class="op">)</span></span>
+<span><span class="va">Matrix.of.Exog</span> <span class="op">&lt;-</span> <span class="cn">NULL</span></span>
+<span><span class="va">shocks</span> <span class="op">&lt;-</span> <span class="va">Ramey</span><span class="op">$</span><span class="va">ED2_TC</span></span>
+<span><span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">vec.lags</span><span class="op">)</span><span class="op">)</span><span class="op">{</span><span class="va">Matrix.of.Exog</span> <span class="op">&lt;-</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span><span class="va">Matrix.of.Exog</span>,<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="cn">NaN</span>,<span class="va">vec.lags</span><span class="op">[</span><span class="va">i</span><span class="op">]</span><span class="op">)</span>,<span class="va">shocks</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="op">(</span><span class="cn">T</span><span class="op">-</span><span class="va">vec.lags</span><span class="op">[</span><span class="va">i</span><span class="op">]</span><span class="op">)</span><span class="op">]</span><span class="op">)</span><span class="op">)</span><span class="op">}</span></span>
+<span><span class="co"># Look for dates where data are available:</span></span>
+<span><span class="va">indic.good.dates</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/complete.cases.html">complete.cases</a></span><span class="op">(</span><span class="va">Matrix.of.Exog</span><span class="op">)</span></span></code></pre></div>
+<div class="figure" style="text-align: left-aligned">
+<span style="display:block;" id="fig:Ramey1fig"></span>
+<img src="TimeSeries_files/figure-html/Ramey1fig-1.png" alt="The blue line corresponds to monetary-policy shocks identified by means of the Gertler and Karadi (2015)'s approach (high-frequency change in Euro-dollar futures). The black slid line is the year-on-year growth rate of industrial production." width="95%"><p class="caption">
+Figure 2.7: The blue line corresponds to monetary-policy shocks identified by means of the Gertler and Karadi (2015)’s approach (high-frequency change in Euro-dollar futures). The black slid line is the year-on-year growth rate of industrial production.
+</p>
+</div>
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Estimate ARMAX:</span></span>
+<span><span class="va">p</span> <span class="op">&lt;-</span> <span class="fl">1</span>; <span class="va">q</span> <span class="op">&lt;-</span> <span class="fl">0</span></span>
+<span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu">estim.armax</span><span class="op">(</span><span class="va">Ramey</span><span class="op">$</span><span class="va">growth</span><span class="op">[</span><span class="va">indic.good.dates</span><span class="op">]</span>,<span class="va">p</span>,<span class="va">q</span>,</span>
+<span>                 X<span class="op">=</span><span class="va">Matrix.of.Exog</span><span class="op">[</span><span class="va">indic.good.dates</span>,<span class="op">]</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## [1] "=================================================="
+## [1] "  ESTIMATING"
+## [1] "=================================================="
+## [1] "  END OF ESTIMATION"
+## [1] "=================================================="
+## [1] ""
+## [1] "  RESULTS:"
+## [1] "  -----------------------"
+##                   THETA       st.dev    t.ratio
+## c         -0.0001716198 0.0005845907 -0.2935726
+## phi   t-1  0.9825608412 0.0120458531 81.5683897
+## sigma      0.0087948724 0.0003211748 27.3834438
+## beta  t-0 -0.0193570616 0.0087331529 -2.2165032
+## beta  t-1 -0.0225707935 0.0086750938 -2.6017925
+## beta  t-2 -0.0070131593 0.0086387440 -0.8118263
+## [1] "=================================================="</code></pre>
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Compute IRF:</span></span>
+<span><span class="va">irf</span> <span class="op">&lt;-</span> <span class="fu">sim.arma</span><span class="op">(</span><span class="fl">0</span>,<span class="va">x</span><span class="op">$</span><span class="va">phi</span>,<span class="va">x</span><span class="op">$</span><span class="va">beta</span>,<span class="va">x</span><span class="op">$</span><span class="va">sigma</span>,T<span class="op">=</span><span class="fl">60</span>,y.0<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">x</span><span class="op">$</span><span class="va">phi</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>                nb.sim<span class="op">=</span><span class="fl">1</span>,make.IRF<span class="op">=</span><span class="fl">1</span>,X<span class="op">=</span><span class="cn">NaN</span>,beta<span class="op">=</span><span class="cn">NaN</span><span class="op">)</span></span></code></pre></div>
+<p>Figure <a href="Univariate.html#fig:Ramey3">2.8</a> displays the resulting IRF, with a 95% confidence band. The code used to produce the confidence bands (i.e., to compute the standard deviation of the dynamic multipliers for the different horizons) is based on the Delta method (see Eq. <a href="#eq:DeltaMethod">(<strong>??</strong>)</a>). The codes are available in Appendix <a href="append.html#IRFDELTA">8.6.2</a>.</p>
+<div class="figure" style="text-align: left-aligned">
+<span style="display:block;" id="fig:Ramey3"></span>
+<img src="TimeSeries_files/figure-html/Ramey3-1.png" alt="Response of industrial-production growth to monetary-policy shocks. Dashed lines correpsond to the $\pm$  2-standard-deviation bands." width="95%"><p class="caption">
+Figure 2.8: Response of industrial-production growth to monetary-policy shocks. Dashed lines correpsond to the <span class="math inline">\(\pm\)</span> 2-standard-deviation bands.
+</p>
+</div>
+</div>
+</div>
+<div id="estimARMA" class="section level3" number="2.0.8">
+<h3>
+<span class="header-section-number">2.0.8</span> Maximum Likelihood Estimation of ARMA processes<a class="anchor" aria-label="anchor" href="#estimARMA"><i class="fas fa-link"></i></a>
+</h3>
+<p>Consider the general case (of any time series); assume we observe a sample <span class="math inline">\(\mathbf{y}=[y_1,\dots,y_T]'\)</span>. In order to implement ML techniques (see Section <a href="#secMLE"><strong>??</strong></a>), we need to evaluate the joint p.d.f. (or “likelihood”) of <span class="math inline">\(\mathbf{y}\)</span>, i.e., <span class="math inline">\(\mathcal{L}(\boldsymbol\theta;\mathbf{y})\)</span>, where <span class="math inline">\(\boldsymbol\theta\)</span> is a vector of parameters that characterizes the dynamics of <span class="math inline">\(y_t\)</span>. The Maximum Likelihood (ML) estimate of <span class="math inline">\(\boldsymbol\theta\)</span> is then given by:
+<span class="math display">\[
+\boxed{\boldsymbol\theta_{MLE} = \arg \max_{\boldsymbol\theta} \mathcal{L}(\boldsymbol\theta;\mathbf{y})  = \arg \max_{\boldsymbol\theta} \log \mathcal{L}(\boldsymbol\theta;\mathbf{y}).}
+\]</span></p>
+<p>In the time series context, if process <span class="math inline">\(y_t\)</span> is Markovian, then there exists a useful way to rewrite the likelihood <span class="math inline">\(\mathcal{L}(\boldsymbol\theta;\mathbf{y})\)</span>. Let us first recall the definition of a Markovian process (see also Def. <a href="#def:MC"><strong>??</strong></a>):</p>
+<div class="definition">
+<p><span id="def:Markov" class="definition"><strong>Definition 2.10  (Markovian process) </strong></span>Process <span class="math inline">\(y_t\)</span> is Markovian of order one if <span class="math inline">\(f_{Y_t|Y_{t-1},Y_{t-2},\dots} = f_{Y_t|Y_{t-1}}\)</span>. More generally, it is Markovian of order <span class="math inline">\(k\)</span> if <span class="math inline">\(f_{Y_t|Y_{t-1},Y_{t-2},\dots} = f_{Y_t|Y_{t-1},\dots,Y_{t-k}}\)</span>.</p>
+</div>
+<p>Now, remember Bayes’ formula:
+<span class="math display">\[
+\mathbb{P}(X_2=x,X_1=y) = \mathbb{P}(X_2=x|X_1=y)\mathbb{P}(X_1=y).
+\]</span>
+Using it leads to the following decomposition of our likelihood function:
+<span class="math display">\[\begin{eqnarray*}
+f_{Y_T,\dots,Y_1}(y_T,\dots,y_1;\boldsymbol\theta) &amp;=&amp;f_{Y_T|Y_{T-1},\dots,Y_1}(y_T,\dots,y_1;\boldsymbol\theta) \times \\
+&amp;&amp; f_{Y_{T-1},\dots,Y_1}(y_{T-1},\dots,y_1;\boldsymbol\theta).
+\end{eqnarray*}\]</span>
+Using the previous expression recursively, one obtains:
+<span class="math display" id="eq:recursMLE">\[\begin{equation}
+f_{Y_T,\dots,Y_1}(y_T,\dots,y_1;\boldsymbol\theta) = f_{Y_1}(y_1;\boldsymbol\theta) \prod_{t=2}^{T} f_{Y_t|Y_{t-1},\dots,Y_1}(y_t,\dots,y_1;\boldsymbol\theta).\tag{2.13}
+\end{equation}\]</span></p>
+<p>Let us start with the Gaussian AR(1) process (which is Markovian of order one):
+<span class="math display">\[
+y_t = c + \phi_1 y_{t-1} + \varepsilon_t, \quad \varepsilon_t \sim\,i.i.d.\, \mathcal{N}(0,\sigma^2).
+\]</span>
+For <span class="math inline">\(t&gt;1\)</span>:
+<span class="math display">\[
+f_{Y_t|Y_{t-1},\dots,Y_1}(y_t,\dots,y_1;\boldsymbol\theta) = f_{Y_t|Y_{t-1}}(y_t,y_{t-1};\boldsymbol\theta)
+\]</span>
+and
+<span class="math display">\[
+f_{Y_t|Y_{t-1}}(y_t,y_{t-1};\boldsymbol\theta) = \frac{1}{\sqrt{2\pi}\sigma}\exp\left(-\frac{(y_t - c - \phi_1 y_{t-1})^2}{2\sigma^2}\right).
+\]</span></p>
+<p>These expressions can be plugged into Eq. <a href="Univariate.html#eq:recursMLE">(2.13)</a>. But what about <span class="math inline">\(f_{Y_1}(y_1;\boldsymbol\theta)\)</span>? There exist two possibilities:</p>
+<ol style="list-style-type: decimal">
+<li>
+<strong>Case 1</strong>: We use the marginal distribution: <span class="math inline">\(y_1 \sim \mathcal{N}\left(\dfrac{c}{1-\phi_1},\dfrac{\sigma^2}{1-\phi_1^2}\right)\)</span>.</li>
+<li>
+<strong>Case 2</strong>: <span class="math inline">\(y_1\)</span> is considered to be deterministic. In a way, that means that the first observation is “sacrificed”.</li>
+</ol>
+<p>For a Gaussian AR(1) process, we have:</p>
+<ol style="list-style-type: decimal">
+<li><p><strong>Case 1</strong>: The (exact) log-likelihood is:
+<span class="math display">\[\begin{eqnarray}
+\log \mathcal{L}(\boldsymbol\theta;\mathbf{y})  &amp;=&amp; - \frac{T}{2} \log(2\pi) - T\log(\sigma) + \frac{1}{2}\log(1-\phi_1^2)\nonumber \\
+&amp;&amp; - \frac{(y_1 - c/(1-\phi_1))^2}{2\sigma^2/(1-\phi_1^2)} - \sum_{t=2}^T \left[\frac{(y_t - c - \phi_1 y_{t-1})^2}{2\sigma^2} \right].
+\end{eqnarray}\]</span>
+The Maximum Likelihood Estimator of <span class="math inline">\(\boldsymbol\theta= [c,\phi_1,\sigma^2]\)</span> is obtained by numerical optimization.</p></li>
+<li><p><strong>Case 2</strong>: The (conditional) log-likelihood is:
+<span class="math display" id="eq:Lstar">\[\begin{eqnarray}
+\log \mathcal{L}^*(\boldsymbol\theta;\mathbf{y})  &amp;=&amp; - \frac{T-1}{2} \log(2\pi) - (T-1)\log(\sigma)\nonumber\\
+&amp;&amp; - \sum_{t=2}^T \left[\frac{(y_t - c - \phi_1 y_{t-1})^2}{2\sigma^2} \right].\tag{2.14}
+\end{eqnarray}\]</span></p></li>
+</ol>
+<p>Exact MLE and conditional MLE have the same asymptotic (i.e. large-sample) distribution. Indeed, when the process is stationary, <span class="math inline">\(f_{Y_1}(y_1;\boldsymbol\theta)\)</span> makes a relatively negligible contribution to <span class="math inline">\(\log \mathcal{L}(\boldsymbol\theta;\mathbf{y})\)</span>.</p>
+<p>The conditional MLE has a substantial advantage: in the Gaussian case, the conditional MLE is simply obtained by OLS. Indeed, let us introduce the notations:
+<span class="math display">\[
+Y = \left[\begin{array}{c}
+y_2\\
+\vdots\\
+y_T
+\end{array}\right] \quad and \quad
+X = \left[\begin{array}{cc}
+1 &amp;y_1\\
+\vdots&amp;\vdots\\
+1&amp;y_{T-1}
+\end{array}\right].
+\]</span>
+Eq. <a href="Univariate.html#eq:Lstar">(2.14)</a> then rewrites:
+<span class="math display">\[\begin{eqnarray}
+\log \mathcal{L}^*(\boldsymbol\theta;\mathbf{y})  &amp;=&amp; - \frac{T-1}{2} \log(2\pi) - (T-1)\log(\sigma) \nonumber \\
+&amp;&amp; - \frac{1}{2\sigma^2} (Y-X[c,\phi_1]')'(Y-X[c,\phi_1]'),
+\end{eqnarray}\]</span>
+which is maximised for:
+<span class="math display" id="eq:AROLSsigma">\[\begin{eqnarray}
+[\hat{c},\hat\phi_1]' &amp;=&amp; (X'X)^{-1}X'Y \tag{2.15} \\
+\hat{\sigma^2} &amp;=&amp; \frac{1}{T-1} \sum_{t=2}^T (y_t - \hat{c} - \hat{\phi_1}y_{t-1})^2 \nonumber \\
+&amp;=&amp; \frac{1}{T-1} Y'(I - X(X'X)^{-1}X')Y. \tag{2.16}
+\end{eqnarray}\]</span></p>
+<p>Let us turn to the case of an AR(p) process. We have:
+<span class="math display">\[\begin{eqnarray*}
+\log \mathcal{L}(\boldsymbol\theta;\mathbf{y}) &amp;=&amp; \log f_{Y_p,\dots,Y_1}(y_p,\dots,y_1;\boldsymbol\theta) +\\
+&amp;&amp; \underbrace{\sum_{t=p+1}^{T} \log f_{Y_t|Y_{t-1},\dots,Y_{t-p}}(y_t,\dots,y_{t-p};\boldsymbol\theta)}_{\log \mathcal{L}^*(\boldsymbol\theta;\mathbf{y})}.
+\end{eqnarray*}\]</span>
+where <span class="math inline">\(f_{Y_p,\dots,Y_{1}}(y_p,\dots,y_{1};\boldsymbol\theta)\)</span> is the marginal distribution of <span class="math inline">\(\mathbf{y}_{1:p} := [y_p,\dots,y_1]'\)</span>. The marginal distribution of <span class="math inline">\(\mathbf{y}_{1:p}\)</span> is Gaussian; it is therefore fully characterised by its mean and covariance matrix:
+<span class="math display">\[\begin{eqnarray*}
+\mathbb{E}(\mathbf{y}_{1:p})&amp;=&amp;\frac{c}{1-\phi_1-\dots-\phi_p} \mathbf{1}_{p\times 1} \\
+\mathbb{V}ar(\mathbf{y}_{1:p}) &amp;=&amp; \left[\begin{array}{cccc}
+\gamma_0 &amp; \gamma_1 &amp; \dots &amp; \gamma_{p-1} \\
+\gamma_1 &amp; \gamma_0 &amp; \dots &amp; \gamma_{p-2} \\
+\vdots &amp;  &amp; \ddots &amp; \vdots \\
+\gamma_{p-1} &amp; \gamma_{p-2} &amp; \dots &amp; \gamma_{0} \\
+\end{array}\right],
+\end{eqnarray*}\]</span>
+where the <span class="math inline">\(\gamma_i\)</span>’s are computed using the Yule-Walker equations (Eq. <a href="Univariate.html#eq:gammas">(2.8)</a>). Note that they depend, in a non-linear way, on the model parameters. Hence, the maximization of the exact log-likelihood necessitates numerical oprimization procedures. By contrast, the maximization of the conditional log-likelihood <span class="math inline">\(\log \mathcal{L}^*(\boldsymbol\theta;\mathbf{y})\)</span> only requires OLS, using Eqs. <a href="Univariate.html#eq:AROLSmean">(2.15)</a> and <a href="Univariate.html#eq:AROLSsigma">(2.16)</a>, with:
+<span class="math display">\[
+Y = \left[\begin{array}{c}
+y_{p+1}\\
+\vdots\\
+y_T
+\end{array}\right] \quad and \quad
+X = \left[\begin{array}{cccc}
+1 &amp; y_p &amp; \dots &amp; y_1\\
+\vdots&amp;\vdots&amp;&amp;\vdots\\
+1&amp;y_{T-1}&amp;\dots&amp;y_{T-p}
+\end{array}\right].
+\]</span></p>
+<p>Again, for stationary processes, conditional and exact MLE have the same asymptotic (large-sample) distribution. In small samples, the OLS formula is however biased. Indeed, consider the regression (where <span class="math inline">\(y_t\)</span> follows an AR(p) process):
+<span class="math display" id="eq:OLSregARp">\[\begin{equation}
+y_t = \boldsymbol\beta'\mathbf{x}_t + \varepsilon_t,\tag{2.17}
+\end{equation}\]</span>
+with <span class="math inline">\(\mathbf{x}_t = [1,y_{t-1},\dots,y_{t-p}]'\)</span> and <span class="math inline">\(\boldsymbol\beta = [c,\phi_1,\dots,\phi_p]'\)</span>.</p>
+<p>The bias results from the fact that <span class="math inline">\(\mathbf{x}_t\)</span> correlates to the <span class="math inline">\(\varepsilon_s\)</span>’s for <span class="math inline">\(s&lt;t\)</span>. To be sure:
+<span class="math display" id="eq:olsar1">\[\begin{equation}
+\mathbf{b} = \boldsymbol{\beta} + (X'X)^{-1}X'\boldsymbol\varepsilon,\tag{2.18}
+\end{equation}\]</span>
+and because of the specific form of <span class="math inline">\(X\)</span>, we have non-zero correlation between <span class="math inline">\(\mathbf{x}_t\)</span> and <span class="math inline">\(\varepsilon_s\)</span> for <span class="math inline">\(s&lt;t\)</span>, therefore <span class="math inline">\(\mathbb{E}[(X'X)^{-1}X'\boldsymbol\varepsilon] \ne 0\)</span>. Again, asymptotically, the previous expectation goes to zero, and we have:</p>
+<div class="proposition">
+<p><span id="prp:cgceOLSARp" class="proposition"><strong>Proposition 2.9  (Large-sample porperties of the OLS estimator of AR(p) models) </strong></span>Assume <span class="math inline">\(\{y_t\}\)</span> follows the AR(p) process:
+<span class="math display">\[
+y_t = c + \phi_1 y_{t-1} + \dots + \phi_p y_{t-p} + \varepsilon_t
+\]</span>
+where <span class="math inline">\(\{\varepsilon_{t}\}\)</span> is an i.i.d. white noise process. If <span class="math inline">\(\mathbf{b}\)</span> is the OLS estimator of <span class="math inline">\(\boldsymbol\beta\)</span> (Eq. <a href="Univariate.html#eq:OLSregARp">(2.17)</a>), we have:
+<span class="math display">\[
+\sqrt{T}(\mathbf{b}-\boldsymbol{\beta}) =  \underbrace{\left[\frac{1}{T}\sum_{t=p}^T \mathbf{x}_t\mathbf{x}_t' \right]^{-1}}_{\overset{p}{\rightarrow} \mathbf{Q}^{-1}}
+\underbrace{\sqrt{T} \left[\frac{1}{T}\sum_{t=1}^T \mathbf{x}_t\varepsilon_t \right]}_{\overset{d}{\rightarrow} \mathcal{N}(0,\sigma^2\mathbf{Q})},
+\]</span>
+where <span class="math inline">\(\mathbf{Q} = \mbox{plim }\frac{1}{T}\sum_{t=p}^T \mathbf{x}_t\mathbf{x}_t'= \mbox{plim }\frac{1}{T}\sum_{t=1}^T \mathbf{x}_t\mathbf{x}_t'\)</span> is given by:
+<span class="math display" id="eq:Qols">\[\begin{equation}
+\mathbf{Q} = \left[
+\begin{array}{ccccc}
+1 &amp; \mu &amp;\mu &amp; \dots &amp; \mu \\
+\mu &amp; \gamma_0 + \mu^2 &amp; \gamma_1 + \mu^2 &amp; \dots &amp; \gamma_{p-1} + \mu^2\\
+\mu &amp; \gamma_1 + \mu^2 &amp; \gamma_0 + \mu^2 &amp; \dots &amp; \gamma_{p-2} + \mu^2\\
+\vdots &amp;\vdots &amp;\vdots &amp;\dots &amp;\vdots \\
+\mu &amp; \gamma_{p-1} + \mu^2 &amp; \gamma_{p-2} + \mu^2 &amp; \dots &amp; \gamma_{0} + \mu^2
+\end{array}
+\right].\tag{2.19}
+\end{equation}\]</span></p>
+</div>
+<div class="proof">
+<p><span id="unlabeled-div-11" class="proof"><em>Proof</em>. </span>Rearranging Eq. <a href="Univariate.html#eq:olsar1">(2.18)</a>, we have:
+<span class="math display">\[
+\sqrt{T}(\mathbf{b}-\boldsymbol{\beta}) =  (X'X/T)^{-1}\sqrt{T}(X'\boldsymbol\varepsilon/T).
+\]</span>
+Let us consider the autocovariances of <span class="math inline">\(\mathbf{v}_t = \mathbf{x}_t \varepsilon_t\)</span>, denoted by <span class="math inline">\(\gamma^v_j\)</span>. Using the fact that <span class="math inline">\(\mathbf{x}_t\)</span> is a linear combination of past <span class="math inline">\(\varepsilon_t\)</span>’s and that <span class="math inline">\(\varepsilon_t\)</span> is a white noise, we get that <span class="math inline">\(\mathbb{E}(\varepsilon_t\mathbf{x}_t)=0\)</span>. Therefore
+<span class="math display">\[
+\gamma^v_j = \mathbb{E}(\varepsilon_t\varepsilon_{t-j}\mathbf{x}_t\mathbf{x}_{t-j}').
+\]</span>
+If <span class="math inline">\(j&gt;0\)</span>, we have
+<span class="math display">\[\begin{eqnarray*}
+\mathbb{E}(\varepsilon_t\varepsilon_{t-j}\mathbf{x}_t\mathbf{x}_{t-j}')=\mathbb{E}(\mathbb{E}[\varepsilon_t\varepsilon_{t-j}\mathbf{x}_t\mathbf{x}_{t-j}'|\varepsilon_{t-j},\mathbf{x}_t,\mathbf{x}_{t-j}])\\
+&amp;=&amp;\mathbb{E}(\varepsilon_{t-j}\mathbf{x}_t\mathbf{x}_{t-j}'\mathbb{E}[\varepsilon_t|\varepsilon_{t-j},\mathbf{x}_t,\mathbf{x}_{t-j}])=0.
+\end{eqnarray*}\]</span>
+Note that, for <span class="math inline">\(j&gt;0\)</span>, we have <span class="math inline">\(\mathbb{E}[\varepsilon_t|\varepsilon_{t-j},\mathbf{x}_t,\mathbf{x}_{t-j}]=0\)</span> because <span class="math inline">\(\{\varepsilon_t\}\)</span> is an i.i.d. white noise sequence. If <span class="math inline">\(j=0\)</span>, we have:
+<span class="math display">\[
+\gamma^v_0 = \mathbb{E}(\varepsilon_t^2\mathbf{x}_t\mathbf{x}_{t}')= \mathbb{E}(\varepsilon_t^2) \mathbb{E}(\mathbf{x}_t\mathbf{x}_{t}')=\sigma^2\mathbf{Q}.
+\]</span>
+The convergence in distribution of <span class="math inline">\(\sqrt{T}(X'\boldsymbol\varepsilon/T)=\sqrt{T}\frac{1}{T}\sum_{t=1}^Tv_t\)</span> results from Theorem <a href="Intro.html#thm:CLTcovstat">1.1</a> (applied on <span class="math inline">\(\mathbf{v}_t=\mathbf{x}_t\varepsilon_t\)</span>), using the <span class="math inline">\(\gamma_j^v\)</span> computed above.</p>
+</div>
+<p>These two cases (exact or conditional log-likelihoods) can be implemented when asking R to fit an AR process by means of function <code>arima</code>. Let us for instance use the output gap of the <code>US3var</code> dataset (US quarterly data, covering the period 1959:2 to 2015:1, used in <span class="citation">Gouriéroux, Monfort, and Renne (<a href="references.html#ref-Gourieroux_Monfort_Renne_2017" role="doc-biblioref">2017</a>)</span>).</p>
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">AEC</span><span class="op">)</span></span>
+<span><span class="va">y</span> <span class="op">&lt;-</span> <span class="va">US3var</span><span class="op">$</span><span class="va">y.gdp.gap</span></span>
+<span><span class="va">ar3.Case1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/arima.html">arima</a></span><span class="op">(</span><span class="va">y</span>,order <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">3</span>,<span class="fl">0</span>,<span class="fl">0</span><span class="op">)</span>,method<span class="op">=</span><span class="st">"ML"</span><span class="op">)</span></span>
+<span><span class="va">ar3.Case2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/arima.html">arima</a></span><span class="op">(</span><span class="va">y</span>,order <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">3</span>,<span class="fl">0</span>,<span class="fl">0</span><span class="op">)</span>,method<span class="op">=</span><span class="st">"CSS"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html">rbind</a></span><span class="op">(</span><span class="va">ar3.Case1</span><span class="op">$</span><span class="va">coef</span>,<span class="va">ar3.Case2</span><span class="op">$</span><span class="va">coef</span><span class="op">)</span></span></code></pre></div>
+<pre><code>##           ar1         ar2        ar3  intercept
+## [1,] 1.191267 -0.08934705 -0.1781163 -0.9226007
+## [2,] 1.192003 -0.08811150 -0.1787662 -1.0341696</code></pre>
+<p>The two sets of estimated coefficients appear to be very close to each other.</p>
+<p>Let us now turn to Moving-Average processes. Start with the MA(1):
+<span class="math display">\[
+y_t = \mu + \varepsilon_t + \theta_1 \varepsilon_{t-1},\quad \varepsilon_t \sim i.i.d.\mathcal{N}(0,\sigma^2).
+\]</span>
+The <span class="math inline">\(\varepsilon_t\)</span>’s are easily computed recursively, starting with <span class="math inline">\(\varepsilon_t = y_t - \mu - \theta_1 \varepsilon_{t-1}\)</span>. We obtain:
+<span class="math display">\[
+\varepsilon_t = y_t - \theta_1 y_{t-1} + \theta_1^2 y_{t-2}^2 + \dots + (-1)^{t-1} \theta_1^{t-1} y_{1} + (-1)^t\theta_1^{t}\varepsilon_{0}.
+\]</span>
+Assume that one wants to recover the sequence of <span class="math inline">\(\{\varepsilon_t\}\)</span>’s based on observed values of <span class="math inline">\(y_t\)</span> (from date 1 to date <span class="math inline">\(t\)</span>). One can use the previous expression, but what value should be used for <span class="math inline">\(\varepsilon_0\)</span>? If one does not use the true value of <span class="math inline">\(\varepsilon_0\)</span> but 0 (say), one does not obtain <span class="math inline">\(\varepsilon_t\)</span>, but only an estimate of it (<span class="math inline">\(\hat\varepsilon_t\)</span>, say), with:
+<span class="math display">\[
+\hat\varepsilon_t = \varepsilon_t - (-1)^t\theta_1^{t}\varepsilon_{0}.
+\]</span>
+Clearly, if <span class="math inline">\(|\theta_1|&lt;1\)</span>, then the error becomes small for large <span class="math inline">\(t\)</span>. Formally, when <span class="math inline">\(|\theta_1|&lt;1\)</span>, we have:
+<span class="math display">\[
+\hat\varepsilon_t \overset{p}{\rightarrow} \varepsilon_t.
+\]</span>
+Hence, when <span class="math inline">\(|\theta_1|&lt;1\)</span>, a consistent estimate of the conditional log-likelihood is given by:
+<span class="math display" id="eq:MALstar">\[\begin{equation}
+\log \hat{\mathcal{L}}^*(\boldsymbol\theta;\mathbf{y}) = -\frac{T}{2}\log(2\pi) - \frac{T}{2}\log(\sigma^2) - \sum_{t=1}^T \frac{\hat\varepsilon_t^2}{2\sigma^2}.\tag{2.20}
+\end{equation}\]</span>
+Loosely speaking, if <span class="math inline">\(|\theta_1|&lt;1\)</span> and if <span class="math inline">\(T\)</span> is sufficiently large:
+<span class="math display">\[
+\mbox{approximate conditional MLE $\approx$ exact MLE.}
+\]</span></p>
+<p>Note that <span class="math inline">\(\hat{\mathcal{L}}^*(\boldsymbol\theta;\mathbf{y})\)</span> is a complicated nonlinear function of <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\theta\)</span>. Its maximization therefore has to be based on numerical optimization procedures.</p>
+<p>Let us not consider the case of a Gaussian MA(<span class="math inline">\(q\)</span>) process:
+<span class="math display" id="eq:estimMAq">\[\begin{equation}
+y_t = \mu + \varepsilon_t + \theta_1 \varepsilon_{t-1} + \dots + \theta_q \varepsilon_{t-q} , \quad \varepsilon_t \sim i.i.d.\mathcal{N}(0,\sigma^2). \tag{2.21}
+\end{equation}\]</span></p>
+<p>Let us assume that this process is an <strong>invertible MA process</strong>. That is, assume that the roots of:
+<span class="math display" id="eq:invertible">\[\begin{equation}
+\lambda^q + \theta_1 \lambda^{q-1} + \dots + \theta_{q-1} \lambda + \theta_q = 0 \tag{2.22}
+\end{equation}\]</span>
+lie strictly inside of the unit circle. In this case, the polynomial form <span class="math inline">\(\Theta(L)=1 + \theta_1 L + \dots + \theta_q L^q\)</span> is <em>invertible</em> and Eq. <a href="Univariate.html#eq:estimMAq">(2.21)</a> writes:
+<span class="math display">\[
+\varepsilon_t = \Theta(L)^{-1}(y_t - \mu),
+\]</span>
+which implies that, if we knew all past values of <span class="math inline">\(y_t\)</span>, we would also know <span class="math inline">\(\varepsilon_t\)</span>. In this case, we can consistently estimate the <span class="math inline">\(\varepsilon_t\)</span>’s by recursively computing the <span class="math inline">\(\hat\varepsilon_t\)</span>’s as follows (for <span class="math inline">\(t&gt;0\)</span>):
+<span class="math display" id="eq:condiVarepsiMABB">\[\begin{equation}
+\hat\varepsilon_t = y_t - \mu - \theta_1 \hat\varepsilon_{t-1} - \dots  - \theta_q \hat\varepsilon_{t-q},\tag{2.23}
+\end{equation}\]</span>
+with
+<span class="math display" id="eq:condiVarepsiMA">\[\begin{equation}
+\hat\varepsilon_{0}=\dots=\hat\varepsilon_{-q+1}=0.\tag{2.24}
+\end{equation}\]</span></p>
+<p>In this context, a consistent estimate of the conditional log-likelihood is still given by Eq. <a href="Univariate.html#eq:MALstar">(2.20)</a>, using Eqs. <a href="Univariate.html#eq:condiVarepsiMABB">(2.23)</a> and <a href="Univariate.html#eq:condiVarepsiMA">(2.24)</a> to recursively compute the <span class="math inline">\(\hat\varepsilon_t\)</span>’s.</p>
+<p>Note that we could determine the exact likelihood of an MA process. Indeed, vector <span class="math inline">\(\mathbf{y} = [y_1,\dots,y_T]'\)</span> is a Gaussian-distributed vector of mean <span class="math inline">\(\boldsymbol\mu = [\mu,\dots,\mu]'\)</span> and of variance:
+<span class="math display">\[
+\boldsymbol\Omega = \left[\begin{array}{ccccccc}
+\gamma_0 &amp; \gamma_1&amp;\dots&amp;\gamma_q&amp;{\color{red}0}&amp;{\color{red}\dots}&amp;{\color{red}0}\\
+\gamma_1 &amp; \gamma_0&amp;\gamma_1&amp;&amp;\ddots&amp;{\color{red}\ddots}&amp;{\color{red}\vdots}\\
+\vdots &amp; \gamma_1&amp;\ddots&amp;\ddots&amp;&amp;\ddots&amp;{\color{red}0}\\
+\gamma_q &amp;&amp;\ddots&amp;&amp;&amp;&amp;\gamma_q\\
+{\color{red}0} &amp;&amp;&amp;\ddots&amp;\ddots&amp;\ddots&amp;\vdots\\
+{\color{red}\vdots}&amp;{\color{red}\ddots}&amp;\ddots&amp;&amp;\gamma_1&amp;\gamma_0&amp;\gamma_1\\
+{\color{red}0}&amp;{\color{red}\dots}&amp;{\color{red}0}&amp;\gamma_q&amp;\dots&amp;\gamma_1&amp;\gamma_0
+\end{array}\right],
+\]</span>
+where the <span class="math inline">\(\gamma_j\)</span>’s are given by Eq. <a href="Univariate.html#eq:autocovMA">(2.1)</a>. The p.d.f. of <span class="math inline">\(\mathbf{y}\)</span> is then given by (see Prop. <a href="append.html#prp:pdfMultivarGaussian">8.18</a>):
+<span class="math display">\[
+(2\pi)^{-T/2}|\boldsymbol\Omega|^{-1/2}\exp\left( -\frac{1}{2} (\mathbf{y}-\boldsymbol\mu)' \boldsymbol\Omega^{-1} (\mathbf{y}-\boldsymbol\mu)\right).
+\]</span>
+For large samples, the computation of this likelihood however becomes numerically demanding.</p>
+<p>Finally, let us consider the MLE of an ARMA(<span class="math inline">\(p\)</span>,<span class="math inline">\(q\)</span>) processes:
+<span class="math display">\[
+y_t = c + \phi_1 y_{t-1} + \dots + \phi_p y_{t-p} + \varepsilon_t + \theta_1 \varepsilon_{t-1} +
+\dots + \theta_q \varepsilon_{t-q} , \; \varepsilon_t \sim i.i.d.\,\mathcal{N}(0,\sigma^2).
+\]</span>
+If the MA part of this process is invertible, the log-likelihood function can be consistently approximated by its conditional counterpart (of the form of Eq. <a href="Univariate.html#eq:MALstar">(2.20)</a>), using consistent estimates <span class="math inline">\(\hat\varepsilon_t\)</span> of the <span class="math inline">\(\varepsilon_t\)</span>. The <span class="math inline">\(\hat\varepsilon_t\)</span>’s are computed recursively as:
+<span class="math display" id="eq:recvareps">\[\begin{equation}
+\hat\varepsilon_t = y_t - c - \phi_1 y_{t-1} - \dots - \phi_p y_{t-p} - \theta_1 \hat\varepsilon_{t-1} - \dots - \theta_q \hat\varepsilon_{t-q},\tag{2.25}
+\end{equation}\]</span>
+given some initial conditions, for instance:</p>
+<ol style="list-style-type: lower-alpha">
+<li>
+<span class="math inline">\(\hat\varepsilon_0=\dots=\hat\varepsilon_{-q+1}=0\)</span> and <span class="math inline">\(y_{0}=\dots=y_{-p+1}=\mathbb{E}(y_i)=\mu\)</span>. (Recursions in Eq. <a href="Univariate.html#eq:recvareps">(2.25)</a> then start for <span class="math inline">\(t=1\)</span>.)</li>
+<li>
+<span class="math inline">\(\hat\varepsilon_p=\dots=\hat\varepsilon_{p-q+1}=0\)</span> and actual values of the <span class="math inline">\(y_{i}\)</span>’s for <span class="math inline">\(i \in [1,p]\)</span>. In that case, the first <span class="math inline">\(p\)</span> observations of <span class="math inline">\(y_t\)</span> will not be used. Recursions in Eq. <a href="Univariate.html#eq:recvareps">(2.25)</a> then start for <span class="math inline">\(t=p+1\)</span>.</li>
+</ol>
+</div>
+<div id="specification-choice" class="section level3" number="2.0.9">
+<h3>
+<span class="header-section-number">2.0.9</span> Specification choice<a class="anchor" aria-label="anchor" href="#specification-choice"><i class="fas fa-link"></i></a>
+</h3>
+<p>The previouss section explains how to fit a given ARMA specification. But how to choose an appropriate specification? A possibility is to employ the (P)ACF approach (see Figure <a href="Univariate.html#fig:pacf">2.2</a>). However, the previous approach leads to either an AR or a MA process (and not an ARMA process). If one wants to consider various ARMA(p,q) specifications, for <span class="math inline">\(p \in \{1,\dots,P\}\)</span> and <span class="math inline">\(q \in \{1,\dots,Q\}\)</span>, say, then one can resort to <strong>information criteria</strong>.</p>
+<p>In general, when choosing a specification, one faces the following dilemma:</p>
+<ol style="list-style-type: lower-alpha">
+<li>Too rich a specification may lead to “overfitting”/misspecification, implying additional estimation errors (in out-of-sample forecasts).</li>
+<li>Too simple a specification may lead to potential omission of valuable information (e.g., contained in older lags).</li>
+</ol>
+<p>The lag selection approach based on the so-called <strong>information criteria</strong> consists in maximizing the fit of the data, but adding a penalty for the “richness” of the model. More precisely, using this approach amounts to minimizing a loss function that (a) negatively depends on the fitting errors and (b) positively depends on the number of parameters in the model.</p>
+<div class="definition">
+<p><span id="def:infocriteria" class="definition"><strong>Definition 2.11  (Information Criteria) </strong></span>The Akaike (AIC), Hannan-Quinn (HQ) and Schwarz information (BIC) criteria are of the form
+<span class="math display">\[
+c^{(i)}(k) = \underbrace{\frac{- 2 \log \mathcal{L}(\hat{\boldsymbol\theta}_T(k);\mathbf{y})}{T}}_{\mbox{decreases w.r.t. $k$}} \quad +
+\underbrace{
+\frac{k\phi^{(i)}(T)}{T},}_{\mbox{increases w.r.t. $k$}}
+\]</span>
+with <span class="math inline">\((i) \in\{AIC,HQ,BIC\}\)</span> and where <span class="math inline">\(\hat{\boldsymbol\theta}_T(k)\)</span> denotes the ML estimate of <span class="math inline">\(\boldsymbol\theta_0(k)\)</span>, which is a vector of parameters of length <span class="math inline">\(k\)</span>.</p>
+<p>The lag suggested by criterion <span class="math inline">\((i)\)</span> is then given by:
+<span class="math display">\[
+\boxed{\hat{k}^{(i)} = \underset{k}{\mbox{argmin}} \quad c^{(i)}(k).}
+\]</span></p>
+</div>
+<p>In the case of an ARMA(p,q) process, <span class="math inline">\(k=2+p+q\)</span>.</p>
+<div class="proposition">
+<p><span id="prp:infocriteria" class="proposition"><strong>Proposition 2.10  (Consistency of the criteria-based lag selection) </strong></span>The lag selection procedure is consistent (see Def. <a href="append.html#def:asmyptconsisttest">8.8</a>) if
+<span class="math display">\[
+\lim_{T \rightarrow \infty} \phi(T) = \infty \quad and \quad \lim_{T \rightarrow \infty} \phi(T)/T = 0.
+\]</span>
+This is notably the case of the HQ and the BIC criteria.</p>
+</div>
+<div class="proof">
+<p><span id="unlabeled-div-12" class="proof"><em>Proof</em>. </span>The true number of lags is denoted by <span class="math inline">\(k_0\)</span>. We will show that <span class="math inline">\(\lim_{T \rightarrow \infty} \mathbb{P}(\hat{k}_T \ne k_0)=0\)</span>.</p>
+<ul>
+<li>Case <span class="math inline">\(k &lt; k_0\)</span>: The model with <span class="math inline">\(k\)</span> parameter is misspecified, therefore:
+<span class="math display">\[
+\mbox{plim}_{T \rightarrow \infty}  \log \mathcal{L}(\hat{\boldsymbol\theta}_T(k);\mathbf{y})/T &lt; \mbox{plim}_{T \rightarrow \infty}  \log \mathcal{L}(\hat{\boldsymbol\theta}_T(k_0);\mathbf{y})/T.
+\]</span>
+Hence, if <span class="math inline">\(\lim_{T \rightarrow \infty} \phi(T)/T = 0\)</span>, we have: <span class="math inline">\(\lim_{T \rightarrow \infty} \mathbb{P}(c(k_0) \ge c(k)) \rightarrow 0\)</span> and
+<span class="math display">\[
+\lim_{T \rightarrow \infty} \mathbb{P}(\hat{k}&lt;k_0) \le \lim_{T \rightarrow \infty} \mathbb{P}\left\{c(k_0) \ge c(k) \mbox{ for some $k &lt; k_0$}\right\} = 0.
+\]</span>
+</li>
+<li>Case <span class="math inline">\(k &gt; k_0\)</span>: under the null hypothesis, the likelihood ratio (LR) test statistic (see Def. <a href="#def:LR"><strong>??</strong></a>) satisfies:
+<span class="math display">\[
+2 \left(\log \mathcal{L}(\hat{\boldsymbol\theta}_T(k);\mathbf{y})-\log \mathcal{L}(\hat{\boldsymbol\theta}_T(k_0);\mathbf{y})\right) \sim \chi^2(k-k_0).
+\]</span>
+If <span class="math inline">\(\lim_{T \rightarrow \infty} \phi(T) = \infty\)</span>, we have: <span class="math inline">\(\mbox{plim}_{T \rightarrow \infty} -2 \left(\log \mathcal{L}(\hat{\boldsymbol\theta}_T(k);\mathbf{y})-\log \mathcal{L}(\hat{\boldsymbol\theta}_T(k_0);\mathbf{y})\right)/\phi(T) = 0\)</span>. Hence <span class="math inline">\(\mbox{plim}_{T \rightarrow \infty} T[c(k_0) - c(k)]/\phi(T) \le -1\)</span> and <span class="math inline">\(\lim_{T \rightarrow \infty} \mathbb{P}(c(k_0) \ge c(k)) \rightarrow 0\)</span>, which implies, in the same spirit as before, that <span class="math inline">\(\lim_{T \rightarrow \infty} \mathbb{P}(\hat{k}&gt;k_0) = 0\)</span>.</li>
+</ul>
+<p>Therefore, <span class="math inline">\(\lim_{T \rightarrow \infty} \mathbb{P}(\hat{k}=k_0) = 1\)</span>.</p>
+</div>
+<div class="example">
+<p><span id="exm:ICOLS" class="example"><strong>Example 2.3  (Linear regression) </strong></span>Consider a linear regression with normal disturbances:
+<span class="math display">\[
+y_t = \mathbf{x}_t' \boldsymbol\beta + \varepsilon_t, \quad \varepsilon_t \sim i.i.d. \mathcal{N}(0,\sigma^2).
+\]</span>
+The associated log-likelihood is of the form of Eq. <a href="Univariate.html#eq:MALstar">(2.20)</a>. In that case, we have:
+<span class="math display">\[\begin{eqnarray*}
+c^{(i)}(k) &amp;=&amp; \frac{- 2 \log \mathcal{L}(\hat{\boldsymbol\theta}_T(k);\mathbf{y})}{T} + \frac{k\phi^{(i)}(T)}{T}\\
+&amp;\approx&amp; \log(2\pi) + \log(\widehat{\sigma^2}) + \frac{1}{T}\sum_{t=1}^T \frac{\varepsilon_t^2}{\widehat{\sigma^2}} + \frac{k\phi^{(i)}(T)}{T}.
+\end{eqnarray*}\]</span>
+For a large <span class="math inline">\(T\)</span>, for all consistent estimation scheme, we have:
+<span class="math display">\[
+\widehat{\sigma^2} \approx \frac{1}{T}\sum_{t=1}^T \varepsilon_t^2 = SSR/T.
+\]</span>
+Hence <span class="math inline">\(\hat{k}^{(i)} \approx \underset{k}{\mbox{argmin}} \quad \log(SSR/T) + \dfrac{k\phi^{(i)}(T)}{T}\)</span>.</p>
+</div>
+<div class="example">
+<p><span id="exm:SwissGrowthAIC" class="example"><strong>Example 2.4  (Swiss GDP growth) </strong></span>Consider a long historical time series of the Swiss GDP growth (see Figure <a href="Intro.html#fig:autocov">1.3</a>), taken from the <span class="citation">Jordà, Schularick, and Taylor (<a href="references.html#ref-JST_2017" role="doc-biblioref">2017</a>)</span> dataset. Let us look for the best ARMA specification using the AIC criteria:</p>
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">AEC</span><span class="op">)</span>;<span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">JST</span><span class="op">)</span></span>
+<span><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/subset.html">subset</a></span><span class="op">(</span><span class="va">JST</span>,<span class="va">iso</span><span class="op">==</span><span class="st">"CHE"</span><span class="op">)</span></span>
+<span><span class="cn">T</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="va">data</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span></span>
+<span><span class="va">y</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="cn">NaN</span>,<span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="va">data</span><span class="op">$</span><span class="va">gdp</span><span class="op">[</span><span class="fl">2</span><span class="op">:</span><span class="cn">T</span><span class="op">]</span><span class="op">/</span><span class="va">data</span><span class="op">$</span><span class="va">gdp</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="op">(</span><span class="cn">T</span><span class="op">-</span><span class="fl">1</span><span class="op">)</span><span class="op">]</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co"># Use AIC criteria to look for appropriate specif:</span></span>
+<span><span class="va">max.p</span> <span class="op">&lt;-</span> <span class="fl">3</span>;<span class="va">max.q</span> <span class="op">&lt;-</span> <span class="fl">3</span>;</span>
+<span><span class="va">all.AIC</span> <span class="op">&lt;-</span> <span class="cn">NULL</span></span>
+<span><span class="kw">for</span><span class="op">(</span><span class="va">p</span> <span class="kw">in</span> <span class="fl">0</span><span class="op">:</span><span class="va">max.p</span><span class="op">)</span><span class="op">{</span></span>
+<span>  <span class="kw">for</span><span class="op">(</span><span class="va">q</span> <span class="kw">in</span> <span class="fl">0</span><span class="op">:</span><span class="va">max.q</span><span class="op">)</span><span class="op">{</span></span>
+<span>    <span class="va">res</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/arima.html">arima</a></span><span class="op">(</span><span class="va">y</span>,order<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">p</span>,<span class="fl">0</span>,<span class="va">q</span><span class="op">)</span><span class="op">)</span></span>
+<span>    <span class="kw">if</span><span class="op">(</span><span class="va">res</span><span class="op">$</span><span class="va">aic</span><span class="op">&lt;</span><span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span><span class="op">(</span><span class="va">all.AIC</span><span class="op">)</span><span class="op">)</span><span class="op">{</span><span class="va">best.p</span><span class="op">&lt;-</span><span class="va">p</span>;<span class="va">best.q</span><span class="op">&lt;-</span><span class="va">q</span><span class="op">}</span></span>
+<span>    <span class="va">all.AIC</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">all.AIC</span>,<span class="va">res</span><span class="op">$</span><span class="va">aic</span><span class="op">)</span><span class="op">}</span><span class="op">}</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">best.p</span>,<span class="va">best.q</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## [1] 1 0</code></pre>
+<p>The best specification therefore is an AR(1) model. That is, although an AR(2) (say) would result in a better fit of the data, the fit improvement is not be large enough to compensate for the additional AIC cost associated with an additional parameter.</p>
+</div>
+
+</div>
+</div>
+  <div class="chapter-nav">
+<div class="prev"><a href="Intro.html"><span class="header-section-number">1</span> Introduction to time series</a></div>
+<div class="next"><a href="VAR.html"><span class="header-section-number">3</span> Multivariate models</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav"><li>
+<a class="nav-link" href="#Univariate"><span class="header-section-number">2</span> Univariate processes</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#moving-average-ma-processes"><span class="header-section-number">2.0.1</span> Moving Average (MA) processes</a></li>
+<li><a class="nav-link" href="#ARsection"><span class="header-section-number">2.0.2</span> Auto-Regressive (AR) processes</a></li>
+<li><a class="nav-link" href="#ar-ma-processes"><span class="header-section-number">2.0.3</span> AR-MA processes</a></li>
+<li><a class="nav-link" href="#PACFapproach"><span class="header-section-number">2.0.4</span> PACF approach to identify AR/MA processes</a></li>
+<li><a class="nav-link" href="#wold-decomposition"><span class="header-section-number">2.0.5</span> Wold decomposition</a></li>
+<li><a class="nav-link" href="#impulse-response-functions-irfs-in-arma-models"><span class="header-section-number">2.0.6</span> Impulse Response Functions (IRFs) in ARMA models</a></li>
+<li><a class="nav-link" href="#ARMAIRF"><span class="header-section-number">2.0.7</span> ARMA processes with exogenous variables (ARMA-X)</a></li>
+<li><a class="nav-link" href="#estimARMA"><span class="header-section-number">2.0.8</span> Maximum Likelihood Estimation of ARMA processes</a></li>
+<li><a class="nav-link" href="#specification-choice"><span class="header-section-number">2.0.9</span> Specification choice</a></li>
+</ul>
+</li></ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+          
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>Introduction to Time Series</strong>" was written by Jean-Paul Renne. It was last built on 2023-01-10.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
+</body>
+</html>

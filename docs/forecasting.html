@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Chapter 4 Forecasting | Introduction to Time Series</title>
+<meta name="author" content="Jean-Paul Renne">
+<meta name="description" content="Forecasting has always been an important part of the time series field (De Gooijer and Hyndman (2006)). Macroeconomic forecasts are done in many places: Public Administration (notably Treasuries),...">
+<meta name="generator" content="bookdown 0.27 with bs4_book()">
+<meta property="og:title" content="Chapter 4 Forecasting | Introduction to Time Series">
+<meta property="og:type" content="book">
+<meta property="og:description" content="Forecasting has always been an important part of the time series field (De Gooijer and Hyndman (2006)). Macroeconomic forecasts are done in many places: Public Administration (notably Treasuries),...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Chapter 4 Forecasting | Introduction to Time Series">
+<meta name="twitter:description" content="Forecasting has always been an important part of the time series field (De Gooijer and Hyndman (2006)). Macroeconomic forecasts are done in many places: Public Administration (notably Treasuries),...">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.4.0/transition.js"></script><script src="libs/bs3compat-0.4.0/tabs.js"></script><script src="libs/bs3compat-0.4.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
+<style type="text/css">
+    /* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+        }
+    .hanging div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }
+  </style>
+<link rel="stylesheet" href="my-style.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">Introduction to Time Series</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html">Introduction to Time Series</a></li>
+<li><a class="" href="Intro.html"><span class="header-section-number">1</span> Introduction to time series</a></li>
+<li><a class="" href="Univariate.html"><span class="header-section-number">2</span> Univariate processes</a></li>
+<li><a class="" href="VAR.html"><span class="header-section-number">3</span> Multivariate models</a></li>
+<li><a class="active" href="forecasting.html"><span class="header-section-number">4</span> Forecasting</a></li>
+<li><a class="" href="NonStat.html"><span class="header-section-number">5</span> Non-Stationary Processes</a></li>
+<li><a class="" href="cointeg.html"><span class="header-section-number">6</span> Introduction to cointegration</a></li>
+<li><a class="" href="GARCH.html"><span class="header-section-number">7</span> ARCH and GARCH Models</a></li>
+<li><a class="" href="append.html"><span class="header-section-number">8</span> Appendix</a></li>
+<li><a class="" href="references.html">References</a></li>
+</ul>
+
+        <div class="book-extra">
+          
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="forecasting" class="section level1" number="4">
+<h1>
+<span class="header-section-number">4</span> Forecasting<a class="anchor" aria-label="anchor" href="#forecasting"><i class="fas fa-link"></i></a>
+</h1>
+<p>Forecasting has always been an important part of the time series field (<span class="citation">De Gooijer and Hyndman (<a href="references.html#ref-DEGOOIJER2006443" role="doc-biblioref">2006</a>)</span>). Macroeconomic forecasts are done in many places: Public Administration (notably Treasuries), Central Banks, International Institutions (e.g. IMF, OECD), banks, big firms. These institutions are interested in the <strong>point estimates</strong> (<span class="math inline">\(\sim\)</span> most likely value) of the variable of interest. They also sometimes need to measure the <strong>uncertainty</strong> (<span class="math inline">\(\sim\)</span> dispersion of likely outcomes) associated to the point estimates.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;In its inflation report, the Bank of England displays charts showing the conditional distribution of future inflation, called fan charts. This fan charts show the uncertainty associated with future inflation. See &lt;a href="https://www.bankofengland.co.uk/quarterly-bulletin/1998/q1/the-inflation-report-projections-understanding-the-fan-chart"&gt;this page&lt;/a&gt;.&lt;/p&gt;'><sup>3</sup></a></p>
+<p>Forecasts produced by professional forecasters are available on these web pages:</p>
+<ul>
+<li>
+<a href="https://www.philadelphiafed.org/research-and-data/real-time-center/survey-of-professional-forecasters/">Philly Fed Survey of Professional Forecasters</a>.</li>
+<li>
+<a href="http://www.ecb.europa.eu/stats/prices/indic/forecast/html/index.en.html">ECB Survey of Professional Forecasters</a>.</li>
+<li>
+<a href="https://www.imf.org/external/pubs/ft/weo/2016/update/01/">IMF World Economic Outlook</a>.</li>
+<li>
+<a href="http://www.oecd.org/eco/economicoutlook.htm">OECD Global Economic Outlook</a>.</li>
+<li>
+<a href="http://ec.europa.eu/economy_finance/eu/forecasts/index_en.htm">European Commission Economic Forecasts</a>.</li>
+</ul>
+<p>How to formalize the forecasting problem? Assume the current date is <span class="math inline">\(t\)</span>. We want to forecast the value that variable <span class="math inline">\(y_t\)</span> will take on date <span class="math inline">\(t+1\)</span> (i.e., <span class="math inline">\(y_{t+1}\)</span>) based on the observation of a set of variables gathered in vector <span class="math inline">\(x_t\)</span> (<span class="math inline">\(x_t\)</span> may contain lagged values of <span class="math inline">\(y_t\)</span>).</p>
+<p>The forecaster aims at minimizing (a function of) the forecast error. It is usal to consider the following (quadratic) loss function:
+<span class="math display">\[
+\underbrace{\mathbb{E}([y_{t+1} - y^*_{t+1}]^2)}_{\mbox{Mean square error (MSE)}}
+\]</span>
+where <span class="math inline">\(y^*_{t+1}\)</span> is the forecast of <span class="math inline">\(y_{t+1}\)</span> (function of <span class="math inline">\(x_t\)</span>).</p>
+<div class="proposition">
+<p><span id="prp:smallestMSE" class="proposition"><strong>Proposition 4.1  (Smallest MSE) </strong></span>The smallest MSE is obtained with MSEthe expectation of <span class="math inline">\(y_{t+1}\)</span> conditional on <span class="math inline">\(x_t\)</span>.</p>
+</div>
+<div class="proof">
+<p><span id="unlabeled-div-16" class="proof"><em>Proof</em>. </span>See Appendix <a href="append.html#AppendixProof">8.5</a>.</p>
+</div>
+<div class="proposition" names="Smallest MSE for linear forecasts">
+<p><span id="prp:smallestMSElinear" class="proposition"><strong>Proposition 4.2  </strong></span>Among the class of linear forecasts, the smallest MSE is obtained with the linear projection of <span class="math inline">\(y_{t+1}\)</span> on <span class="math inline">\(x_t\)</span>.
+This projection, denoted by <span class="math inline">\(\hat{P}(y_{t+1}|x_t):=\boldsymbol\alpha'x_t\)</span>, satisfies:
+<span class="math display" id="eq:proj">\[\begin{equation}
+\mathbb{E}\left( [y_{t+1} - \boldsymbol\alpha'x_t]x_t \right)=\mathbf{0}.\tag{4.1}
+\end{equation}\]</span></p>
+</div>
+<div class="proof">
+<p><span id="unlabeled-div-17" class="proof"><em>Proof</em>. </span>Consider the function <span class="math inline">\(f:\)</span> <span class="math inline">\(\boldsymbol\alpha \rightarrow \mathbb{E}\left( [y_{t+1} - \boldsymbol\alpha'x_t]^2 \right)\)</span>. We have:
+<span class="math display">\[
+f(\boldsymbol\alpha) = \mathbb{E}\left( y_{t+1}^2 - 2 y_t x_t'\boldsymbol\alpha + \boldsymbol\alpha'x_t x_t'\boldsymbol\alpha] \right).
+\]</span>
+We have <span class="math inline">\(\partial f(\boldsymbol\alpha)/\partial \boldsymbol\alpha = \mathbb{E}(-2 y_{t+1} x_t + 2 x_t x_t'\boldsymbol\alpha)\)</span>. The function is minimised for <span class="math inline">\(\partial f(\boldsymbol\alpha)/\partial \boldsymbol\alpha =0\)</span>.</p>
+</div>
+<p>Eq. <a href="forecasting.html#eq:proj">(4.1)</a> implies that <span class="math inline">\(\mathbb{E}\left( y_{t+1}x_t \right)=\mathbb{E}\left(x_tx_t' \right)\boldsymbol\alpha\)</span>. (Note that <span class="math inline">\(x_t x_t'\boldsymbol\alpha=x_t (x_t'\boldsymbol\alpha)=(\boldsymbol\alpha'x_t) x_t'\)</span>.)</p>
+<p>Hence, if <span class="math inline">\(\mathbb{E}\left(x_tx_t' \right)\)</span> is nonsingular,
+<span class="math display" id="eq:linproj">\[\begin{equation}
+\boldsymbol\alpha=[\mathbb{E}\left(x_tx_t' \right)]^{-1}\mathbb{E}\left( y_{t+1}x_t \right).\tag{4.2}
+\end{equation}\]</span></p>
+<p>The MSE then is:
+<span class="math display">\[
+\mathbb{E}([y_{t+1} - \boldsymbol\alpha'x_t]^2) = \mathbb{E}{(y_{t+1}^2)} - \mathbb{E}\left( y_{t+1}x_t' \right)[\mathbb{E}\left(x_tx_t' \right)]^{-1}\mathbb{E}\left(x_ty_{t+1} \right).
+\]</span></p>
+<p>Consider the regression <span class="math inline">\(y_{t+1} = \boldsymbol\beta'\mathbf{x}_t + \varepsilon_{t+1}\)</span>. The OLS estimate is:
+<span class="math display">\[
+\mathbf{b} = \left[ \underbrace{ \frac{1}{T} \sum_{i=1}^T \mathbf{x}_t\mathbf{x}_t'}_{\mathbf{m}_1} \right]^{-1}\left[  \underbrace{ \frac{1}{T} \sum_{i=1}^T \mathbf{x}_t'y_{t+1}}_{\mathbf{m}_2} \right].
+\]</span>
+If <span class="math inline">\(\{x_t,y_t\}\)</span> is covariance-stationary and ergodic for the second moments then the sample moments (<span class="math inline">\(\mathbf{m}_1\)</span> and <span class="math inline">\(\mathbf{m}_2\)</span>) converges in probability to the associated population moments and <span class="math inline">\(\mathbf{b} \overset{p}{\rightarrow} \boldsymbol\alpha\)</span> (where <span class="math inline">\(\boldsymbol\alpha\)</span> is defined in Eq. <a href="forecasting.html#eq:linproj">(4.2)</a>).</p>
+<div class="example">
+<p><span id="exm:fcstMAq" class="example"><strong>Example 4.1  (Forecasting an MA(q) process) </strong></span>Consider the MA(q) process:
+<span class="math display">\[
+y_t = \mu + \varepsilon_t + \theta_1 \varepsilon_{t-1} + \dots + \theta_q \varepsilon_{t-q},
+\]</span>
+where <span class="math inline">\(\{\varepsilon_t\}\)</span> is a white noise sequence (Def. <a href="Intro.html#def:whitenoise">1.1</a>).</p>
+<p>We have:
+<span class="math display">\[\begin{eqnarray*}
+&amp;&amp;\mathbb{E}(y_{t+h}|\varepsilon_{t},\varepsilon_{t-1},\dots) =\\
+&amp;&amp;\left\{
+\begin{array}{lll}
+\mu + \theta_h \varepsilon_{t} + \dots + \theta_q \varepsilon_{t-q+h}  \quad &amp;for&amp; \quad h \in [1,q]\\
+\mu \quad &amp;for&amp; \quad h &gt; q
+\end{array}
+\right.
+\end{eqnarray*}\]</span>
+and
+<span class="math display">\[\begin{eqnarray*}
+&amp;&amp;\mathbb{V}ar(y_{t+h}|\varepsilon_{t},\varepsilon_{t-1},\dots)= \mathbb{E}\left( [y_{t+h} - \mathbb{E}(y_{t+h}|\varepsilon_{t},\varepsilon_{t-1},\dots)]^2 \right) =\\
+&amp;&amp;\left\{
+\begin{array}{lll}
+\sigma^2(1+\theta_1^2+\dots+\theta_{h-1}^2) \quad &amp;for&amp; \quad h \in [1,q]\\
+\sigma^2(1+\theta_1^2+\dots+\theta_q^2) \quad &amp;for&amp; \quad h&gt;q.
+\end{array}
+\right.
+\end{eqnarray*}\]</span></p>
+<p>Remark: The previous reasoning relies on the assumption that the <span class="math inline">\(\varepsilon_t\)</span>s are observed. But this is generally not the case in practice. Note that consistent estimates are available if the MA process is invertible (see Eq. <a href="Univariate.html#eq:invertible">(2.22)</a>) .</p>
+</div>
+<div class="example">
+<p><span id="exm:fcstARp" class="example"><strong>Example 4.2  (Forecasting an AR(p) process) </strong></span>(See <a href="https://jrenne.shinyapps.io/ARpFcst">this web interface</a>.) Consider the AR(p) process:
+<span class="math display">\[
+y_t = c + \phi_1 y_{t-1} + \phi_2 y_{t-2} + \dots + \phi_p y_{t-p} + \varepsilon_t,
+\]</span>
+where <span class="math inline">\(\{\varepsilon_t\}\)</span> is a white noise sequence (Def. <a href="Intro.html#def:whitenoise">1.1</a>).</p>
+<p>Using the notation of Eq. <a href="Univariate.html#eq:F">(2.3)</a>, we have:
+<span class="math display">\[
+\mathbf{y}_t - \boldsymbol\mu = F (\mathbf{y}_{t-1}- \boldsymbol\mu) + \boldsymbol\xi_t,
+\]</span>
+with <span class="math inline">\(\boldsymbol\mu = [\mu,\dots,\mu]'\)</span> (<span class="math inline">\(\mu\)</span> is defined in Eq. <a href="Univariate.html#eq:EAR">(2.7)</a>). Hence:
+<span class="math display">\[
+\mathbf{y}_{t+h} - \boldsymbol\mu = \boldsymbol\xi_{t+h} + F \boldsymbol\xi_{t+h-1} + \dots + F^{h-1} \boldsymbol\xi_{t+1} + F^h (\mathbf{y}_{t}- \mu).
+\]</span>
+Therefore:
+<span class="math display">\[\begin{eqnarray*}
+\mathbb{E}(\mathbf{y}_{t+h}|y_{t},y_{t-1},\dots) &amp;=&amp; \boldsymbol\mu + F^{h}(\mathbf{y}_t - \boldsymbol\mu)\\
+\mathbb{V}ar\left( [\mathbf{y}_{t+h} - \mathbb{E}(\mathbf{y}_{t+h}|y_{t},y_{t-1},\dots)] \right) &amp;=&amp; \Sigma + F\Sigma F' + \dots + F^{h-1}\Sigma (F^{h-1})',
+\end{eqnarray*}\]</span>
+where:
+<span class="math display">\[
+\Sigma = \left[
+\begin{array}{ccc}
+\sigma^2  &amp; 0&amp; \dots\\
+0  &amp; 0 &amp; \\
+\vdots  &amp; &amp; \ddots \\
+\end{array}
+\right].
+\]</span></p>
+<p>Alternative approach: Taking the (conditional) expectations of both sides of
+<span class="math display">\[
+y_{t+h} - \mu = \phi_1 (y_{t+h-1} - \mu) + \phi_2 (y_{t+h-2} - \mu) + \dots + \phi_p (y_{t-p} - \mu) + \varepsilon_{t+h},
+\]</span>
+we obtain:
+<span class="math display">\[\begin{eqnarray*}
+\mathbb{E}(y_{t+h}|y_{t},y_{t-1},\dots) &amp;=&amp; \mu + \phi_1\left(\mathbb{E}[y_{t+h-1}|y_{t},y_{t-1},\dots] - \mu\right)+\\
+&amp;&amp;\phi_2\left(\mathbb{E}[y_{t+h-2}|y_{t},y_{t-1},\dots] - \mu\right) + \dots +\\
+&amp;&amp; \phi_p\left(\mathbb{E}[y_{t+h-p}|y_{t},y_{t-1},\dots] - \mu\right),
+\end{eqnarray*}\]</span>
+which can be exploited recursively.</p>
+<p>The recursion begins with <span class="math inline">\(\mathbb{E}(y_{t-k}|y_{t},y_{t-1},\dots)=y_{t-k}\)</span> (for any <span class="math inline">\(k \ge 0\)</span>).</p>
+</div>
+<div class="example">
+<p><span id="exm:fcstARMApq" class="example"><strong>Example 4.3  (Forecasting an ARMA(p,q) process) </strong></span>Consider the process:
+<span class="math display" id="eq:armaForecast">\[\begin{equation}
+y_t = c + \phi_1 y_{t-1} + \dots + \phi_p y_{t-p} + \varepsilon_t + \theta_1 \varepsilon_{t-1} + \dots + \theta_q \varepsilon_{t-q},\tag{4.3}
+\end{equation}\]</span>
+where <span class="math inline">\(\{\varepsilon_t\}\)</span> is a white noise sequence (Def. <a href="Intro.html#def:whitenoise">1.1</a>). We assume that the MA part of the process is invertible (see Eq. <a href="Univariate.html#eq:invertible">(2.22)</a>), which implies that the information contained in <span class="math inline">\(\{y_{t},y_{t-1},y_{t-2},\dots\}\)</span> is identical to that in <span class="math inline">\(\{\varepsilon_{t},\varepsilon_{t-1},\varepsilon_{t-2},\dots\}\)</span>.</p>
+<p>While one could use a recursive algorithm to compute the conditional mean (as in Example <a href="forecasting.html#exm:fcstARp">4.2</a>), it is convenient to employ the Wold decomposition of this process (see Theorem <a href="Univariate.html#thm:Wold">2.2</a> and Prop. <a href="Univariate.html#prp:computPsi">2.7</a> for the computation of the <span class="math inline">\(\psi_i\)</span>’s in the context of ARMA processes):
+<!-- We have: -->
+<!-- \begin{eqnarray*} -->
+<!-- &&\mathbb{E}(y_{t+h}|y_{t},y_{t-1},\dots) =\\ -->
+<!-- &&\left\{ -->
+<!-- \begin{array}{ll} -->
+<!-- \mu + \phi_1\left(\mathbb{E}(y_{t+h-1}|y_{t},y_{t-1},\dots) - \mu\right)+\\ -->
+<!-- \phi_2\left(\mathbb{E}(y_{t+h-2}|y_{t},y_{t-1},\dots) - \mu\right) + \dots +\\ -->
+<!-- \phi_p\left(\mathbb{E}(y_{t+h-p}|y_{t},y_{t-1},\dots) - \mu\right) +\\ -->
+<!-- \theta_{h}\varepsilon_{t} + \theta_{h+1}\varepsilon_{t-1} + \dots + \theta_{q}\varepsilon_{t+h-q} &\mbox{for  $h \in[1,q]$},\\ -->
+<!-- \\ -->
+<!-- \mu + \phi_1\left(\mathbb{E}(y_{t+h-1}|y_{t},y_{t-1},\dots) - \mu\right)+\\ -->
+<!-- \phi_2\left(\mathbb{E}(y_{t+h-2}|y_{t},y_{t-1},\dots) - \mu\right) + \dots +\\ -->
+<!-- \phi_p\left(\mathbb{E}(y_{t+h-p}|y_{t},y_{t-1},\dots) - \mu\right) & \mbox{for $h>q$}. -->
+<!-- \end{array} -->
+<!-- \right. -->
+<!-- \end{eqnarray*} -->
+<!-- To compute the MSE, it is convenient to use the Wold decomposition of the process (see Theorem \@ref(thm:Wold)): -->
+<span class="math display">\[
+y_t = \mu + \sum_{i=0}^{+\infty} \psi_i \varepsilon_{t-i}.
+\]</span>
+This implies:
+<span class="math display">\[\begin{eqnarray*}
+y_{t+h} &amp;=&amp; \mu + \sum_{i=0}^{h-1} \psi_i \varepsilon_{t+h-i} + \sum_{i=h}^{+\infty} \psi_i \varepsilon_{t+h-i}\\
+&amp;=&amp; \mu + \sum_{i=0}^{h-1} \psi_i \varepsilon_{t+h-i} + \sum_{i=0}^{+\infty} \psi_{i+h} \varepsilon_{t-i}.
+\end{eqnarray*}\]</span></p>
+<p>Since <span class="math inline">\(\mathbb{E}(y_{t+h}|y_t,y_{t-1},\dots)=\mu+\sum_{i=0}^{+\infty} \psi_{i+h} \varepsilon_{t-i}\)</span>, we get:
+<span class="math display">\[
+\mathbb{V}ar(y_{t+h}|y_t,y_{t-1},\dots) =\mathbb{V}ar\left(\sum_{i=0}^{h-1} \psi_i \varepsilon_{t+h-i}\right)= \sigma^2 \sum_{i=0}^{h-1} \psi_i^2.
+\]</span></p>
+</div>
+<p>How to use the previous formulas in practice?</p>
+<p>One has first to select a specification and to estimate the model.
+Two methods to determine relevant specifications:</p>
+<ol style="list-style-type: lower-alpha">
+<li>Information criteria (see Definition <a href="Univariate.html#def:infocriteria">2.11</a>).</li>
+<li>Box-Jenkins approach.</li>
+</ol>
+<p><span class="citation">Box and Jenkins (<a href="references.html#ref-boxjen76" role="doc-biblioref">1976</a>)</span> have proposed an approach that is now widely used.</p>
+<ol style="list-style-type: decimal">
+<li>Data transformation. The data should be transformed to “make them stationary”. To do so, one can e.g. take logarithms, take changes in the considered series, remove (deterministic) trends.</li>
+<li>Select <span class="math inline">\(p\)</span> and <span class="math inline">\(q\)</span>. This can be based on the PACF approach (see Section <a href="Univariate.html#PACFapproach">2.0.4</a>), or on selection criteria (see Definition <a href="Univariate.html#def:infocriteria">2.11</a>).</li>
+<li>Estimate the model parameters. See Section <a href="Univariate.html#estimARMA">2.0.8</a>.</li>
+<li>Check that the estimated model is consistent with the data. See below.</li>
+</ol>
+<!-- **Sample autocorrelation** --><!-- Population autocorrelation: $\rho_i = \gamma_i / \gamma_0$. Natural estimate based on sample moments: $\hat{\rho_i} = \hat\gamma_j / \hat\gamma_0$ where: --><!-- $$ --><!-- \gamma_j = \frac{1}{T} \sum_{t=j+1}^{T} (y_t - \bar{y})(y_{t-j} - \bar{y}). --><!-- $$ --><!-- For an MA($q$) process, $\rho_j = 0$ for $j>q$. --><!-- If the data are generated by a Gaussian MA($q$) process, then: --><!-- $$ --><!-- \mathbb{V}ar(\hat\rho_j) \approx \frac{1}{T}\left\{1 + 2 \sum_{i=1}^q \rho_i^2 \right\} --><!-- $$ --><!-- In particular, if the data correspond to a Gaussian white noise then $\hat\rho_i \in [\pm 2/\sqrt{T}]$ about 95\% of the time. --><!-- **Partial autocorrelation** --><!-- The $m^{th}$ population partial autocorrelation (see also Def. \@ref(def:partialAC)) is the $m^{th}$ coefficient in a linear projection of $y_{t+1}$ on its $m$ most recent lags: --><!-- $$ --><!-- \hat{y}_{t+1|t} = \mu + \phi_{1,m}(y_t - \mu) + \phi_{2,m}(y_{t-1} - \mu) + \dots +\phi_{m,m}(y_{t-m+1} - \mu). --><!-- $$ --><!-- Using the OLS formula, it can be shown that the (population) vector $\boldsymbol\phi_{.,m}=[\phi_{1,m},\dots,\phi_{m,m}]'$ satisfies: --><!-- $$ --><!-- \boldsymbol\phi_{.,m} = \left[ --><!-- \begin{array}{cccc} --><!-- \gamma_0 & \gamma_1& \dots & \gamma_{m-1}\\ --><!-- \gamma_1 & \gamma_0& \dots & \gamma_{m-2}\\ --><!-- \vdots & & \ddots & \\ --><!-- \gamma_{m-1} & \gamma_{m-2}& \dots & \gamma_{0} --><!-- \end{array} --><!-- \right]^{-1}\left[ --><!-- \begin{array}{c} --><!-- \gamma_1\\ --><!-- \gamma_2\\ --><!-- \vdots\\ --><!-- \gamma_{m} --><!-- \end{array} --><!-- \right]. --><!-- $$ --><!-- For an AR($p$) process, $\phi_{m,m}=0$ for $m>p$, which reflects the fact that only the first $p$ lags are useful to forecast $y_{t}$. --><!-- A natural estimate $\hat\phi_{m,m}$ of $\phi_{m,m}$ is obtained by running the regression: --><!-- $$ --><!-- \hat{y}_{t+1} = \hat{c} + \hat\phi_{1,m}y_t + \hat\phi_{2,m}y_{t-1} + \dots + \hat\phi_{m,m}y_{t-m+1} + \hat\varepsilon_{t+1}. --><!-- $$ --><!-- Under the hypothesis that the data are generated by an AR($p$) process: --><!-- $$ --><!-- \mathbb{V}ar(\hat\phi_{m,m}) \approx \frac{1}{T} \quad \mbox{for} \quad m > p. --><!-- $$ --><!-- Besides, for $i,j>p$, $\hat\phi_{i,i}$ and $\hat\phi_{j,j}$ are asymptotically independent. --><p><strong>Assessing the performances of a forecasting model</strong></p>
+<p>Once one has fitted a model on a given dataset (of length <span class="math inline">\(T\)</span>, say), one compute MSE (mean square errors) to evaluate the performance of the model. But this MSE is the <strong>in-sample</strong> one. It is easy to reduce in-sample MSE. Typically, if the model is estimated by OLS, adding covariates mechanically reduces the MSE (see Props. <a href="#prp:chgeR2"><strong>??</strong></a> and <a href="#prp:chgeInR2"><strong>??</strong></a>). That is, even if additional data are irrelevant, the <span class="math inline">\(R^2\)</span> of the regression increases. Adding irrelevant variables increases the (in-sample) <span class="math inline">\(R^2\)</span> but is bound to increase the <strong>out-of-sample</strong> MSE.</p>
+<p>Therefore, it is important to analyse <strong>out-of-sample</strong> performances of the forecasting model:</p>
+<ol style="list-style-type: lower-alpha">
+<li>Estimate a model on a sample of reduced size (<span class="math inline">\(1,\dots,T^*\)</span>, with <span class="math inline">\(T^*&lt;T\)</span>)</li>
+<li>Use the remaining available periods (<span class="math inline">\(T^*+1,\dots,T\)</span>) to compute <strong>out-of-sample</strong> forecasting errors (and compute their MSE). In an out-of-sample exercise, it is important to make sure that the data used to produce a forecasts (as of date <span class="math inline">\(T^*\)</span>) where indeed available on date <span class="math inline">\(T^*\)</span>.</li>
+</ol>
+<p><strong>Diebold-Mariano test</strong></p>
+<p>How to compare different forecasting approaches? <span class="citation">Diebold and Mariano (<a href="references.html#ref-Diebold_Mariano_1995" role="doc-biblioref">1995</a>)</span> have proposed a simple test to address this question.</p>
+<p>Assume that you want to compare approaches A and B. You have historical data sets and you have implemented both approaches in the past, providing you with two sets of forecasting errors: <span class="math inline">\(\{e^{A}_t\}_{t=1,\dots,T}\)</span> and <span class="math inline">\(\{e^{B}_t\}_{t=1,\dots,T}\)</span>.</p>
+<p>It may be the case that your forecasts serve a specific purpose and that, for instance, you dislike positive forecasting errors and you care less about negative errors. We assume you are able to formalise this by means of a <strong>loss function <span class="math inline">\(L(e)\)</span></strong>. For instance:</p>
+<ul>
+<li>If you dislike large positive errors, you may set <span class="math inline">\(L(e)=\exp(e)\)</span>.</li>
+<li>If you are concerned about both positive and negative errors (indifferently), you may set <span class="math inline">\(L(e)=e^2\)</span> (standard approach).</li>
+</ul>
+<p>Let us define the sequence <span class="math inline">\(\{d_t\}_{t=1,\dots,T} \equiv \{L(e^{A}_t)-L(e^{B}_t)\}_{t=1,\dots,T}\)</span> and assume that this sequence is covariance stationary. We consider the following null hypothesis: <span class="math inline">\(H_0:\)</span> <span class="math inline">\(\bar{d}=0\)</span>, where <span class="math inline">\(\bar{d}\)</span> denotes the population mean of the <span class="math inline">\(d_t\)</span>s. Under <span class="math inline">\(H_0\)</span> and under the assumption of covariance-stationarity of <span class="math inline">\(d_t\)</span>, we have (Theorem @ref{(hm:CLTcovstat)):
+<span class="math display">\[
+\sqrt{T} \bar{d}_T \overset{d}{\rightarrow} \mathcal{N}\left(0,\sum_{j=-\infty}^{+\infty} \gamma_j \right),
+\]</span><br>
+where the <span class="math inline">\(\gamma_j\)</span>s are the autocovariances of <span class="math inline">\(d_t\)</span>.</p>
+<p>Hence, assuming that <span class="math inline">\(\hat{\sigma}^2\)</span> is a consistent estimate of <span class="math inline">\(\sum_{j=-\infty}^{+\infty} \gamma_j\)</span> (for instance the one given by the Newey-West formula, see Def. <a href="#def:NW"><strong>??</strong></a>), we have, under <span class="math inline">\(H_0\)</span>:
+<span class="math display">\[
+DM_T := \sqrt{T}\frac{\bar{d}_T}{\sqrt{\hat{\sigma}^2}} \overset{d}{\rightarrow}  \mathcal{N}(0,1).
+\]</span>
+<span class="math inline">\(DM_T\)</span> is the test statistics. For a test of size <span class="math inline">\(\alpha\)</span>, the critical region is:<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;This &lt;a href="https://jrenne.shinyapps.io/tests/"&gt;ShinyApp application&lt;/a&gt; illustrates the notion of statistical test (illustrating the p-value and the cirtical region, in particular).&lt;/p&gt;'><sup>4</sup></a>
+<span class="math display">\[
+]-\infty,-\Phi^{-1}(1-\alpha/2)] \cup [\Phi^{-1}(1-\alpha/2),+\infty[,
+\]</span>
+where <span class="math inline">\(\Phi\)</span> is the c.d.f. of the standard normal distribution.</p>
+<div class="example">
+<p><span id="exm:SwissOutOfSample" class="example"><strong>Example 4.4  (Forecasting Swiss GDP growth) </strong></span>We use a long historical time series of the Swiss GDP growth taken from the <span class="citation">Jordà, Schularick, and Taylor (<a href="references.html#ref-JST_2017" role="doc-biblioref">2017</a>)</span> dataset (see Figure <a href="Intro.html#fig:autocov">1.3</a>, and Example <a href="Univariate.html#exm:SwissGrowthAIC">2.4</a>).</p>
+<p>We want to forecast this GDP growth. We envision two specifications : an AR(1) specification (the one advocated by the AIC criteria, see Example <a href="Univariate.html#exm:SwissGrowthAIC">2.4</a>), and an ARMA(2,2) specification. We are interested in 2-year-ahead forecasts (i.e., <span class="math inline">\(h=2\)</span> since the data are yearly).</p>
+<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">AEC</span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://pkg.robjhyndman.com/forecast/">forecast</a></span><span class="op">)</span></span></code></pre></div>
+<pre><code>## Registered S3 method overwritten by 'quantmod':
+##   method            from
+##   as.zoo.data.frame zoo</code></pre>
+<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/subset.html">subset</a></span><span class="op">(</span><span class="va">JST</span>,<span class="va">iso</span><span class="op">==</span><span class="st">"CHE"</span><span class="op">)</span></span>
+<span><span class="cn">T</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="va">data</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span></span>
+<span><span class="va">y</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="cn">NaN</span>,<span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="va">data</span><span class="op">$</span><span class="va">gdp</span><span class="op">[</span><span class="fl">2</span><span class="op">:</span><span class="cn">T</span><span class="op">]</span><span class="op">/</span><span class="va">data</span><span class="op">$</span><span class="va">gdp</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="op">(</span><span class="cn">T</span><span class="op">-</span><span class="fl">1</span><span class="op">)</span><span class="op">]</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">first.date</span> <span class="op">&lt;-</span> <span class="cn">T</span><span class="op">-</span><span class="fl">50</span></span>
+<span><span class="va">e1</span> <span class="op">&lt;-</span> <span class="cn">NULL</span>; <span class="va">e2</span> <span class="op">&lt;-</span> <span class="cn">NULL</span>;<span class="va">h</span><span class="op">&lt;-</span><span class="fl">2</span></span>
+<span><span class="kw">for</span><span class="op">(</span><span class="va">T.star</span> <span class="kw">in</span> <span class="va">first.date</span><span class="op">:</span><span class="op">(</span><span class="cn">T</span><span class="op">-</span><span class="va">h</span><span class="op">)</span><span class="op">)</span><span class="op">{</span></span>
+<span>  <span class="va">estim.model.1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/arima.html">arima</a></span><span class="op">(</span><span class="va">y</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="va">T.star</span><span class="op">]</span>,order<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">0</span>,<span class="fl">0</span><span class="op">)</span><span class="op">)</span></span>
+<span>  <span class="va">estim.model.2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/arima.html">arima</a></span><span class="op">(</span><span class="va">y</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="va">T.star</span><span class="op">]</span>,order<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">0</span>,<span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
+<span>  <span class="va">e1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">e1</span>,<span class="va">y</span><span class="op">[</span><span class="va">T.star</span><span class="op">+</span><span class="va">h</span><span class="op">]</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span><span class="op">(</span><span class="va">estim.model.1</span>,n.ahead<span class="op">=</span><span class="va">h</span><span class="op">)</span><span class="op">$</span><span class="va">pred</span><span class="op">[</span><span class="va">h</span><span class="op">]</span><span class="op">)</span></span>
+<span>  <span class="va">e2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">e2</span>,<span class="va">y</span><span class="op">[</span><span class="va">T.star</span><span class="op">+</span><span class="va">h</span><span class="op">]</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span><span class="op">(</span><span class="va">estim.model.2</span>,n.ahead<span class="op">=</span><span class="va">h</span><span class="op">)</span><span class="op">$</span><span class="va">pred</span><span class="op">[</span><span class="va">h</span><span class="op">]</span><span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span><span class="va">res.DM</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://pkg.robjhyndman.com/forecast/reference/dm.test.html">dm.test</a></span><span class="op">(</span><span class="va">e1</span>,<span class="va">e2</span>,h <span class="op">=</span> <span class="va">h</span>,alternative <span class="op">=</span> <span class="st">"greater"</span><span class="op">)</span></span>
+<span><span class="va">res.DM</span></span></code></pre></div>
+<pre><code>## 
+##  Diebold-Mariano Test
+## 
+## data:  e1e2
+## DM = -0.82989, Forecast horizon = 2, Loss function power = 2, p-value =
+## 0.7946
+## alternative hypothesis: greater</code></pre>
+<p>With <code>alternative = "greater"</code> The alternative hypothesis is that method 2 is more accurate than method 1. Since we do not reject the null (the p-value being of 0.795), we are not led to use the more sophisticated model (ARMA(2,2)) and we keep the simple AR(1) model.</p>
+<p>Assume now that we want to compare the AR(1) process to a VAR model (see Def. <a href="VAR.html#def:SVAR">3.1</a>). We consider a bivariate VAR, where GDP growth is complemented with CPI-based inflation rate.</p>
+<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://www.pfaffikus.de">vars</a></span><span class="op">)</span></span>
+<span><span class="va">infl</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="cn">NaN</span>,<span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="va">data</span><span class="op">$</span><span class="va">cpi</span><span class="op">[</span><span class="fl">2</span><span class="op">:</span><span class="cn">T</span><span class="op">]</span><span class="op">/</span><span class="va">data</span><span class="op">$</span><span class="va">cpi</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="op">(</span><span class="cn">T</span><span class="op">-</span><span class="fl">1</span><span class="op">)</span><span class="op">]</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">y_var</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span><span class="va">y</span>,<span class="va">infl</span><span class="op">)</span></span>
+<span><span class="va">e3</span> <span class="op">&lt;-</span> <span class="cn">NULL</span></span>
+<span><span class="kw">for</span><span class="op">(</span><span class="va">T.star</span> <span class="kw">in</span> <span class="va">first.date</span><span class="op">:</span><span class="op">(</span><span class="cn">T</span><span class="op">-</span><span class="va">h</span><span class="op">)</span><span class="op">)</span><span class="op">{</span></span>
+<span>  <span class="va">estim.model.3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/vars/man/VAR.html">VAR</a></span><span class="op">(</span><span class="va">y_var</span><span class="op">[</span><span class="fl">2</span><span class="op">:</span><span class="va">T.star</span>,<span class="op">]</span>,p<span class="op">=</span><span class="fl">1</span><span class="op">)</span></span>
+<span>  <span class="va">e3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">e3</span>,<span class="va">y</span><span class="op">[</span><span class="va">T.star</span><span class="op">+</span><span class="va">h</span><span class="op">]</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span><span class="op">(</span><span class="va">estim.model.3</span>,n.ahead<span class="op">=</span><span class="va">h</span><span class="op">)</span><span class="op">$</span><span class="va">fcst</span><span class="op">$</span><span class="va">y</span><span class="op">[</span><span class="va">h</span>,<span class="fl">1</span><span class="op">]</span><span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span><span class="va">res.DM</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://pkg.robjhyndman.com/forecast/reference/dm.test.html">dm.test</a></span><span class="op">(</span><span class="va">e1</span>,<span class="va">e2</span>,h <span class="op">=</span> <span class="va">h</span>,alternative <span class="op">=</span> <span class="st">"greater"</span><span class="op">)</span></span>
+<span><span class="va">res.DM</span></span></code></pre></div>
+<pre><code>## 
+##  Diebold-Mariano Test
+## 
+## data:  e1e2
+## DM = -0.82989, Forecast horizon = 2, Loss function power = 2, p-value =
+## 0.7946
+## alternative hypothesis: greater</code></pre>
+<p>Again, we do not find that the alternative model (here the VAR(1) model) is better than the AR(1) model to forecast GDP growth.</p>
+</div>
+
+</div>
+
+  <div class="chapter-nav">
+<div class="prev"><a href="VAR.html"><span class="header-section-number">3</span> Multivariate models</a></div>
+<div class="next"><a href="NonStat.html"><span class="header-section-number">5</span> Non-Stationary Processes</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav"><li><a class="nav-link" href="#forecasting"><span class="header-section-number">4</span> Forecasting</a></li></ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+          
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>Introduction to Time Series</strong>" was written by Jean-Paul Renne. It was last built on 2023-01-10.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
+</body>
+</html>

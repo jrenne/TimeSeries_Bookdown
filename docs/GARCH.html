@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Chapter 7 ARCH and GARCH Models | Introduction to Time Series</title>
+<meta name="author" content="Jean-Paul Renne">
+<meta name="description" content="Many financial and macroeconomic variables are hit by shocks whose variance is not constant through time, i.e. by heteroskedatic shocks. Often, the conditional variance of shocks features a...">
+<meta name="generator" content="bookdown 0.27 with bs4_book()">
+<meta property="og:title" content="Chapter 7 ARCH and GARCH Models | Introduction to Time Series">
+<meta property="og:type" content="book">
+<meta property="og:description" content="Many financial and macroeconomic variables are hit by shocks whose variance is not constant through time, i.e. by heteroskedatic shocks. Often, the conditional variance of shocks features a...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Chapter 7 ARCH and GARCH Models | Introduction to Time Series">
+<meta name="twitter:description" content="Many financial and macroeconomic variables are hit by shocks whose variance is not constant through time, i.e. by heteroskedatic shocks. Often, the conditional variance of shocks features a...">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.4.0/transition.js"></script><script src="libs/bs3compat-0.4.0/tabs.js"></script><script src="libs/bs3compat-0.4.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
+<style type="text/css">
+    /* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+        }
+    .hanging div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }
+  </style>
+<link rel="stylesheet" href="my-style.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">Introduction to Time Series</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html">Introduction to Time Series</a></li>
+<li><a class="" href="Intro.html"><span class="header-section-number">1</span> Introduction to time series</a></li>
+<li><a class="" href="Univariate.html"><span class="header-section-number">2</span> Univariate processes</a></li>
+<li><a class="" href="VAR.html"><span class="header-section-number">3</span> Multivariate models</a></li>
+<li><a class="" href="forecasting.html"><span class="header-section-number">4</span> Forecasting</a></li>
+<li><a class="" href="NonStat.html"><span class="header-section-number">5</span> Non-Stationary Processes</a></li>
+<li><a class="" href="cointeg.html"><span class="header-section-number">6</span> Introduction to cointegration</a></li>
+<li><a class="active" href="GARCH.html"><span class="header-section-number">7</span> ARCH and GARCH Models</a></li>
+<li><a class="" href="append.html"><span class="header-section-number">8</span> Appendix</a></li>
+<li><a class="" href="references.html">References</a></li>
+</ul>
+
+        <div class="book-extra">
+          
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="GARCH" class="section level1" number="7">
+<h1>
+<span class="header-section-number">7</span> ARCH and GARCH Models<a class="anchor" aria-label="anchor" href="#GARCH"><i class="fas fa-link"></i></a>
+</h1>
+<p>Many financial and macroeconomic variables are hit by shocks whose variance is not constant through time, i.e. by <em>heteroskedatic</em> shocks. Often, the conditional variance of shocks features a persistent behavior (volatility clustering). The observation that large shocks (in absolute value) tend to be followed by other important shocks has notably been established by <span class="citation">Mandelbrot (<a href="references.html#ref-Mandelbrot_1963" role="doc-biblioref">1963</a>)</span>. Such a situation is illustrated by Figure <a href="GARCH.html#fig:GARCHsmireturns">7.1</a>.</p>
+<p>Autoregressive Conditional Heteroskedasticity (ARCH) and its generalized version (GARCH) constitute useful tools to model such time series.</p>
+<div class="figure" style="text-align: left-aligned">
+<span style="display:block;" id="fig:GARCHsmireturns"></span>
+<img src="TimeSeries_files/figure-html/GARCHsmireturns-1.png" alt="Upper plot: SMI index (daily Close prices); lower plot: daily log returns." width="100%"><p class="caption">
+Figure 7.1: Upper plot: SMI index (daily Close prices); lower plot: daily log returns.
+</p>
+</div>
+<p>Consider the auto-regressive process following:
+<span class="math display" id="eq:linearreg">\[\begin{equation}
+    y_t = c + \phi_1 y_{t-1} + \dots + \phi_p y_{t-p} + u_t,\tag{7.1}
+    \end{equation}\]</span>
+where <span class="math inline">\(u_t\)</span> is a white noise (Def. <a href="Intro.html#def:whitenoise">1.1</a>), i.e. <span class="math inline">\(\mathbb{E}(u_t)=0\)</span>, <span class="math inline">\(\mathbb{E}(u_t^2)=\sigma^2\)</span> and <span class="math inline">\(\mathbb{E}(u_t u_s)=0\)</span> if <span class="math inline">\(s \ne t\)</span>.</p>
+<p>While the <em>unconditional variance</em> of <span class="math inline">\(u_t\)</span> is <span class="math inline">\(\sigma^2\)</span>, its <em>conditional variance</em> can be time-varying.</p>
+<p>In the ARCH(m) model, <span class="math inline">\(u_t\)</span> follows:
+<span class="math display" id="eq:ut2">\[\begin{equation}
+    u_t^2 = \zeta + \alpha_1 u_{t-1}^2 + \dots + \alpha_m u_{t-m}^2 + w_t,\tag{7.2}
+    \end{equation}\]</span>
+where <span class="math inline">\(w_t\)</span> is a non-autocorrelated white noise process that is exogenous to <span class="math inline">\(u_t\)</span>, in the sense that:
+<span class="math display">\[
+    \mathbb{E}(w_t|u_{t-1},u_{t-2},\dots)=0.
+    \]</span></p>
+<p>In this case:
+<span class="math display" id="eq:condvar">\[\begin{equation}
+    \mathbb{E}(u_t^2|u_{t-1},u_{t-2},\dots) = \zeta + \alpha_1 u_{t-1}^2 + \dots + \alpha_m u_{t-m}^2.\tag{7.3}
+    \end{equation}\]</span></p>
+<p><span class="math inline">\(\zeta + \alpha_1 u_{t-1}^2 + \dots + \alpha_m u_{t-m}^2 + w_t\)</span> has to be nonnegative for all realisations of <span class="math inline">\(\{u_t\}\)</span>. This is the case if <span class="math inline">\(w_t &gt; -\zeta\)</span>, with <span class="math inline">\(\zeta&gt;0\)</span> and if <span class="math inline">\(\alpha_i\ge0\)</span> for <span class="math inline">\(i \in \{1,\dots,m\}\)</span>.</p>
+<p><span class="math inline">\(u_t^2\)</span> is covariance-stationary if the roots of:
+<span class="math display">\[
+    g(z)=1 - \alpha_1 z - \dots - \alpha_m z^m = 0
+    \]</span>
+lie outside the unit circle (Prop. <a href="#thm:stability"><strong>??</strong></a>).</p>
+<p>We have <span class="math inline">\(g(0)=1\)</span> and <span class="math inline">\(g(1)=1-\sum_i \alpha_i\)</span>. A necessary condition for not having a root between 0 and 1 is that <span class="math inline">\(\sum_i \alpha_i&lt;1\)</span>.</p>
+<p>This is also a sufficient condition. Indeed, for <span class="math inline">\(z \in [-1,1]\)</span>, we have:
+<span class="math display">\[
+    1 - \alpha_1 z - \dots - \alpha_m z^m \ge 1 - \sum_i |\alpha_iz^i| \ge 1 - \sum_i \alpha_i &gt; 0.
+    \]</span></p>
+<p>If <span class="math inline">\(w_t &gt; -\zeta\)</span>, with <span class="math inline">\(\zeta&gt;0\)</span>, <span class="math inline">\(\alpha_i\ge0\)</span> for <span class="math inline">\(i \in \{1,\dots,m\}\)</span> and <span class="math inline">\(\sum_i \alpha_i&lt;1\)</span>, then the unconditional variance of <span class="math inline">\(u_t\)</span> is:
+<span class="math display">\[
+    \sigma^2 = \mathbb{E}(u_t^2) = \frac{\zeta}{1 - \sum_{i=1}^m \alpha_i}.
+    \]</span></p>
+<p>Alternative representation of an ARCH(m) process:
+<span class="math display" id="eq:uhv">\[\begin{equation}
+    u_t = \sqrt{h_t}v_t,\tag{7.4}
+    \end{equation}\]</span>
+where <span class="math inline">\(v_t\)</span> is an i.i.d. sequence with zero mean and unit variance, i.e.:
+<span class="math display">\[
+    \mathbb{E}(v_t) = 0, \quad \mathbb{E}(v_t^2) = 1.
+    \]</span>
+If <span class="math inline">\(h_t\)</span> follows:
+<span class="math display" id="eq:hARCH">\[\begin{equation}
+    h_t = \zeta + \alpha_1 u_{t-1}^2 + \dots + \alpha_m u_{t-m}^2,\tag{7.5}
+    \end{equation}\]</span>
+then Eq. <a href="GARCH.html#eq:condvar">(7.3)</a> is also true.</p>
+<p>Since <span class="math inline">\(u_t^2 = h_t v_t^2\)</span>, Eq. <a href="GARCH.html#eq:ut2">(7.2)</a> holds with <span class="math inline">\(w_t = h_t (v_t^2-1)\)</span>.</p>
+<p>This alternative representation is convenient because <span class="math inline">\(v_t\)</span> is not necessarily bounded.</p>
+<p>Maximum Likelihood Estimation of an ARCH</p>
+<p>Assume the complete model is:
+<span class="math display">\[
+    y_t = \mathbf{x}_t'\boldsymbol\beta + u_t,
+    \]</span>
+where <span class="math inline">\(\mathbf{x}_t\)</span> is a <span class="math inline">\(k \times 1\)</span> vector of explanatory variables and <span class="math inline">\(u_t\)</span> is as specified in Eq. <a href="GARCH.html#eq:uhv">(7.4)</a>.</p>
+<p>To write the likelihood function, it is convenient to condition on the first <span class="math inline">\(m\)</span> observations. Let us denote by <span class="math inline">\(\mathcal{I}_t\)</span> the following set of information:
+<span class="math display">\[
+    \mathcal{I}_t = (y_t,y_{t-1},\dots,y_0,y_{-1},\dots,y_{-m+1}, \mathbf{x}_t,\mathbf{x}_{t-1},\dots,\mathbf{x}_0,\mathbf{x}_{-1},\dots,\mathbf{x}_{-m+1}).
+    \]</span></p>
+<p>If <span class="math inline">\(v_t \sim \mathcal{N}(0,1)\)</span>, we have, for <span class="math inline">\(t\ge1\)</span>:
+<span class="math display" id="eq:densityN">\[\begin{equation}
+    f(y_t|\mathbf{x_t},\mathcal{I}_{t-1}) = \frac{1}{\sqrt{2 \pi h_t}}\exp\left(\frac{-(y_t-\mathbf{x}_t'\boldsymbol\beta)^2}{2h_t}\right),\tag{7.6}
+    \end{equation}\]</span>
+where <span class="math inline">\(h_t\)</span> is given by:
+<span class="math display">\[
+    h_t = \zeta + \alpha_1 (y_{t-1} - \mathbf{x}_{t-1}'\boldsymbol\beta)^2 + \dots + \alpha_m (y_{t-m} - \mathbf{x}_{t-m}'\boldsymbol\beta)^2.
+    \]</span></p>
+<p>The log likelihood function is given by:
+<span class="math display">\[
+    \log \mathcal{L}(\theta) = \sum_{t=1}^T \log(f(y_t|\mathbf{x_t},\mathcal{I}_{t-1})),
+    \]</span>
+where <span class="math inline">\(\theta\)</span>, the vector of unknown parameters, is <span class="math inline">\([\boldsymbol\beta',\zeta,\alpha_1,\dots,\alpha_m]'\)</span>.</p>
+<p>The maximisation of the log likelihood is performed numerically.</p>
+<p>Alternative distributions of <span class="math inline">\(v_t\)</span> can be used (instead of the normal distribution, used in Eq. <a href="GARCH.html#eq:densityN">(7.6)</a>).</p>
+<p>Remark: If <span class="math inline">\(v_t\)</span> is Gaussian, <span class="math inline">\(u_t\)</span> is conditionally Gaussian but is not unconditionally Gaussian.</p>
+<p>If needed, alternative distributions of <span class="math inline">\(v_t\)</span> can be used (instead of the normal distribution).</p>
+<!-- \begin{frame}{} -->
+<!-- \begin{footnotesize} -->
+<!-- \begin{figure} -->
+<!--    \caption{Fitted ARCH(3), $\alpha_1 = 0.20$, $\alpha_2 = 0.23$, $\alpha_3 = 0.21$.} -->
+<!--    \includegraphics[width=\linewidth]{../../figures/Figure_GARCH_smi2.pdf} -->
+<!--    \begin{tiny} -->
+<!-- In the upper plot, the red lines delineate the 95\% confidence band ($\pm2\sqrt{h_t}$). -->
+<!-- \end{tiny} -->
+<!-- \end{figure} -->
+<!-- \end{footnotesize} -->
+<!-- \end{frame} -->
+<p>One can test whether a time series exhibit time-varying heteroskedasticity.</p>
+<p>Consider the context of Eq. @ref(eq:linear_reg). <span class="citation">Engle (<a href="references.html#ref-Engle_1982" role="doc-biblioref">1982</a>)</span> proposes the following test:</p>
+<ol style="list-style-type: lower-alpha">
+<li>Estimate Eq. <a href="GARCH.html#eq:linearreg">(7.1)</a> by OLS. The residuals of this regression are denoted by <span class="math inline">\(\hat{u}_t\)</span>.</li>
+<li>Regress <span class="math inline">\(\hat{u}_t^2\)</span> on <span class="math inline">\(\{1,\hat{u}_{t-1}^2,\hat{u}_{t-2}^2,\dots,\hat{u}_{t-m}^2\}\)</span>.</li>
+<li>Under the null hypothesis that <span class="math inline">\(u_t\)</span> is i.i.d., we have:
+<span class="math display">\[
+     T \times R^2 \overset{d}{\rightarrow} \chi^2(m),
+     \]</span>
+where <span class="math inline">\(R^2\)</span> is the centered <span class="math inline">\(R^2\)</span> of the OLS regression.</li>
+</ol>
+<div id="garch-models" class="section level2" number="7.1">
+<h2>
+<span class="header-section-number">7.1</span> GARCH models<a class="anchor" aria-label="anchor" href="#garch-models"><i class="fas fa-link"></i></a>
+</h2>
+<p>One can generalize the model and replace Eq. <a href="GARCH.html#eq:hARCH">(7.5)</a> with:
+<span class="math display" id="eq:hGARCH">\[\begin{eqnarray}
+    h_t &amp;=&amp; (1-\delta_1 - \delta_2 - \dots - \delta_r) \zeta + \nonumber \\
+    &amp;&amp;\delta_1 h_{t-1} + \delta_2 h_{t-2} + \dots + \delta_r h_{t-r} + \nonumber \\
+    &amp;&amp;\alpha_1 u_{t-1}^2 + \dots + \alpha_m u_{t-m}^2. \tag{7.7}
+    \end{eqnarray}\]</span></p>
+<p>This generalised autoregressive conditional heteroskedasticity model is denoted by GARCH(r,m).</p>
+<p>Denoting <span class="math inline">\(u_t^2 - h_t\)</span> by <span class="math inline">\(w_t\)</span> and <span class="math inline">\((1-\delta_1 - \dots - \delta_r) \zeta\)</span> by <span class="math inline">\(\kappa\)</span>, it can be checked that:
+<span class="math display">\[\begin{eqnarray}
+    u_t^2 &amp;=&amp; \kappa + (\delta_1 + \alpha_1)u_{t-1}^2 + (\delta_2 + \alpha_2)u_{t-2}^2 + \dots \nonumber \\
+    &amp;&amp; + (\delta_p + \alpha_p)u_{t-p}^2 + w_t - \delta_1 w_{t-1} - \dots - \delta_r w_{t-r},
+    \end{eqnarray}\]</span>
+where <span class="math inline">\(p=max(m,r)\)</span>, <span class="math inline">\(\alpha_j=0\)</span> for <span class="math inline">\(j&gt;m\)</span> and <span class="math inline">\(\delta_j=0\)</span> for <span class="math inline">\(j&gt;r\)</span>.</p>
+<p>Remark: <span class="math inline">\(w_t=h_t(v_t^2 - 1)\)</span> is a martingale difference sequence (see Def. <a href="Intro.html#def:MDS">1.2</a>) because <span class="math inline">\(v_t\)</span> is a zero-mean unit-root i.i.d. sequence.</p>
+<p>Non-negativity is satisfied (in particular) if <span class="math inline">\(\kappa&gt;0\)</span>, <span class="math inline">\(\alpha_j \ge 0\)</span>, <span class="math inline">\(\delta_j \ge 0\)</span> for <span class="math inline">\(j \le p\)</span> (easier to see in Eq. <a href="GARCH.html#eq:hGARCH">(7.7)</a>).</p>
+<ul>
+<li>
+<span class="math inline">\(u_t^2\)</span> follows an ARMA(p,r) process.</li>
+<li>
+<span class="math inline">\(u_t^2\)</span> is covariance stationary if the roots of:
+<span class="math display">\[
+  1 - (\delta_1 + \alpha_1)z - \dots - (\delta_1 + \alpha_1)z^p = 0
+  \]</span>
+lie outside the unit circle (Prop. <a href="#thm:stability"><strong>??</strong></a>).</li>
+</ul>
+<p>Because the <span class="math inline">\(\delta_i + \alpha_i\)</span> are nonnegative, we must have (using the same reasoning as in Slide XXX):
+<span class="math display">\[
+    \sum_i \delta_i + \sum_i \alpha_i &lt; 1.
+    \]</span></p>
+<p>In that case, the unconditional variance of <span class="math inline">\(u_t\)</span>, i.e. the unconditional mean of <span class="math inline">\(u_t^2\)</span>, is:
+<span class="math display">\[
+    \mathbb{E}(u_t^2) = \sigma^2 = \frac{\kappa}{1 - \sum_i \delta_i - \sum_i \alpha_i}.
+    \]</span></p>
+<!-- \begin{frame}{} -->
+<!-- \begin{footnotesize} -->
+<!-- \begin{figure} -->
+<!--    \caption{Simulation of a GARCH(1,1), $\zeta = 1$, $\alpha_1 = 0.45$, $\delta_1 = 0.5$.} -->
+<!--    \includegraphics[width=\linewidth]{../../figures/Figure_GARCH_illus.pdf} -->
+<!--    \begin{tiny} -->
+<!-- In the upper plot, the red lines delineate the 95\% confidence band ($\pm2\sqrt{h_t}$). -->
+<!-- \end{tiny} -->
+<!-- \end{figure} -->
+<!-- \end{footnotesize} -->
+<!-- \end{frame} -->
+<p>Another extension of the ARCH model is the ARCH-in-Mean, or ARCH-M model. That model is close to that specified by Eqs. <a href="GARCH.html#eq:linearreg">(7.1)</a>, <a href="GARCH.html#eq:uhv">(7.4)</a> and <a href="GARCH.html#eq:hARCH">(7.5)</a>, but allowing for a potential effect of <span class="math inline">\(h_t\)</span> on <span class="math inline">\(\mathbb{E}_{t-1}(y_{t})\)</span>.</p>
+<p>Such a model reads:
+<span class="math display">\[\begin{eqnarray*}
+    y_t &amp;=&amp; c + \phi_1 y_{t-1} + \dots + \phi_p y_{t-p} + {\color{blue}\delta h_t}+ u_t \\
+    u_t &amp;=&amp; \sqrt{h_t} v_t \\
+    h_t &amp;=&amp; \zeta + \alpha_1 u_{t-1}^2 + \dots + \alpha_m u_{t-m}^2,
+    \end{eqnarray*}\]</span>
+where <span class="math inline">\(v_t\)</span> is a zero-mean unit-variance i.i.d. sequence.</p>
+
+</div>
+</div>
+  <div class="chapter-nav">
+<div class="prev"><a href="cointeg.html"><span class="header-section-number">6</span> Introduction to cointegration</a></div>
+<div class="next"><a href="append.html"><span class="header-section-number">8</span> Appendix</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#GARCH"><span class="header-section-number">7</span> ARCH and GARCH Models</a></li>
+<li><a class="nav-link" href="#garch-models"><span class="header-section-number">7.1</span> GARCH models</a></li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+          
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>Introduction to Time Series</strong>" was written by Jean-Paul Renne. It was last built on 2023-01-10.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
+</body>
+</html>

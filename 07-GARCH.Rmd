@@ -1,0 +1,210 @@
+# ARCH and GARCH Models {#GARCH}
+
+Many financial and macroeconomic variables are hit by shocks whose variance is not constant through time, i.e. by *heteroskedatic* shocks. Often, the conditional variance of shocks features a persistent behavior  (volatility clustering). The observation that large shocks (in absolute value) tend to be followed by other important shocks has notably been established by @Mandelbrot_1963. Such a situation is illustrated by Figure \@ref(fig:GARCHsmireturns).
+
+Autoregressive Conditional Heteroskedasticity (ARCH) and its generalized version (GARCH) constitute useful tools to model such time series.
+
+```{r GARCHsmireturns, echo=FALSE, fig.cap="Upper plot: SMI index (daily Close prices); lower plot: daily log returns.", fig.asp = .6, out.width = "100%", fig.align = 'left-aligned'}
+all.rho <- c(0,.7,.999)
+par(plt=c(0.1,0.95,0.2,0.75))
+library(AEC)
+T <- dim(smi)[1]
+smi$r <- 100*c(NaN,log(smi$Close[2:T]/smi$Close[1:(T-1)]))
+par(plt=c(.15,.95,.2,.95));par(mfrow=c(2,1))
+plot(smi$Date,smi$Close,type="l",xlab="",ylab="",las=1)
+plot(smi$Date,smi$r,type="l",ylab="in percent",xlab="",las=1)
+```
+	
+
+
+Consider the auto-regressive process following:
+	\begin{equation}
+	y_t = c + \phi_1 y_{t-1} + \dots + \phi_p y_{t-p} + u_t,(\#eq:linearreg)
+	\end{equation}
+	where $u_t$ is a white noise (Def. \@ref(def:whitenoise)), i.e. $\mathbb{E}(u_t)=0$, $\mathbb{E}(u_t^2)=\sigma^2$ and $\mathbb{E}(u_t u_s)=0$ if $s \ne t$.
+
+While the *unconditional variance* of $u_t$ is $\sigma^2$, its *conditional variance* can be time-varying. 
+
+In the ARCH(m) model, $u_t$ follows:
+	\begin{equation}
+	u_t^2 = \zeta + \alpha_1 u_{t-1}^2 + \dots + \alpha_m u_{t-m}^2 + w_t,(\#eq:ut2)
+	\end{equation}
+	where $w_t$ is a non-autocorrelated white noise process that is exogenous to $u_t$, in the sense that:
+	$$
+	\mathbb{E}(w_t|u_{t-1},u_{t-2},\dots)=0.
+	$$
+
+In this case:
+	\begin{equation}
+	\mathbb{E}(u_t^2|u_{t-1},u_{t-2},\dots) = \zeta + \alpha_1 u_{t-1}^2 + \dots + \alpha_m u_{t-m}^2.(\#eq:condvar)
+	\end{equation}
+
+$\zeta + \alpha_1 u_{t-1}^2 + \dots + \alpha_m u_{t-m}^2 + w_t$ has to be nonnegative for all realisations of $\{u_t\}$. This is the case if $w_t > -\zeta$, with $\zeta>0$ and if $\alpha_i\ge0$ for $i \in \{1,\dots,m\}$.
+
+$u_t^2$ is covariance-stationary if the roots of:
+	$$
+	g(z)=1 - \alpha_1 z - \dots - \alpha_m z^m = 0
+	$$
+	lie outside the unit circle (Prop. \@ref(thm:stability)).
+
+We have $g(0)=1$ and $g(1)=1-\sum_i \alpha_i$. A necessary condition for not having a root between 0 and 1 is that $\sum_i \alpha_i<1$.
+
+This is also a sufficient condition. Indeed, for $z \in [-1,1]$, we have:
+	$$
+	1 - \alpha_1 z - \dots - \alpha_m z^m \ge 1 - \sum_i |\alpha_iz^i| \ge 1 - \sum_i \alpha_i > 0.
+	$$
+
+If $w_t > -\zeta$, with $\zeta>0$, $\alpha_i\ge0$ for $i \in \{1,\dots,m\}$ and $\sum_i \alpha_i<1$, then the unconditional variance of $u_t$ is:
+	$$
+	\sigma^2 = \mathbb{E}(u_t^2) = \frac{\zeta}{1 - \sum_{i=1}^m \alpha_i}.
+	$$
+
+Alternative representation of an ARCH(m) process:
+	\begin{equation}
+	u_t = \sqrt{h_t}v_t,(\#eq:uhv)
+	\end{equation}
+	where $v_t$ is an i.i.d. sequence with zero mean and unit variance, i.e.:
+	$$
+	\mathbb{E}(v_t) = 0, \quad \mathbb{E}(v_t^2) = 1.
+	$$
+If $h_t$ follows:
+	\begin{equation}
+	h_t = \zeta + \alpha_1 u_{t-1}^2 + \dots + \alpha_m u_{t-m}^2,(\#eq:hARCH)
+	\end{equation}
+	then Eq. \@ref(eq:condvar) is also true.
+
+Since $u_t^2 = h_t v_t^2$, Eq. \@ref(eq:ut2) holds with $w_t = h_t (v_t^2-1)$.
+
+This alternative representation is convenient because $v_t$ is not necessarily bounded.
+
+
+Maximum Likelihood Estimation of an ARCH
+
+Assume the complete model is:
+	$$
+	y_t = \bv{x}_t'\boldsymbol\beta + u_t,
+	$$
+	where $\bv{x}_t$ is a $k \times 1$ vector of explanatory variables and $u_t$ is as specified in Eq. \@ref(eq:uhv).
+
+To write the likelihood function, it is convenient to condition on the first $m$ observations. Let us denote by $\mathcal{I}_t$ the following set of information:
+	$$
+	\mathcal{I}_t = (y_t,y_{t-1},\dots,y_0,y_{-1},\dots,y_{-m+1}, \bv{x}_t,\bv{x}_{t-1},\dots,\bv{x}_0,\bv{x}_{-1},\dots,\bv{x}_{-m+1}).
+	$$
+
+If $v_t \sim \mathcal{N}(0,1)$, we have, for $t\ge1$:
+	\begin{equation}
+	f(y_t|\bv{x_t},\mathcal{I}_{t-1}) = \frac{1}{\sqrt{2 \pi h_t}}\exp\left(\frac{-(y_t-\bv{x}_t'\boldsymbol\beta)^2}{2h_t}\right),(\#eq:densityN)
+	\end{equation}
+	where $h_t$ is given by:
+	$$
+	h_t = \zeta + \alpha_1 (y_{t-1} - \bv{x}_{t-1}'\boldsymbol\beta)^2 + \dots + \alpha_m (y_{t-m} - \bv{x}_{t-m}'\boldsymbol\beta)^2.
+	$$
+
+The log likelihood function is given by:
+	$$
+	\log \mathcal{L}(\theta) = \sum_{t=1}^T \log(f(y_t|\bv{x_t},\mathcal{I}_{t-1})),
+	$$
+	where $\theta$, the vector of unknown parameters, is $[\boldsymbol\beta',\zeta,\alpha_1,\dots,\alpha_m]'$.
+
+The maximisation of the log likelihood is performed numerically.
+
+Alternative distributions of  $v_t$ can be used (instead of the normal distribution, used in Eq. \@ref(eq:densityN)).
+
+Remark: If $v_t$ is Gaussian, $u_t$ is conditionally Gaussian but is not unconditionally Gaussian.
+
+If needed, alternative distributions of  $v_t$ can be used (instead of the normal distribution).
+
+
+<!-- \begin{frame}{} -->
+<!-- \begin{footnotesize} -->
+<!-- \begin{figure} -->
+<!-- 	\caption{Fitted ARCH(3), $\alpha_1 = 0.20$, $\alpha_2 = 0.23$, $\alpha_3 = 0.21$.} -->
+<!-- 	\includegraphics[width=\linewidth]{../../figures/Figure_GARCH_smi2.pdf} -->
+<!-- 	\begin{tiny} -->
+<!-- In the upper plot, the red lines delineate the 95\% confidence band ($\pm2\sqrt{h_t}$). -->
+<!-- \end{tiny} -->
+<!-- \end{figure} -->
+<!-- \end{footnotesize} -->
+<!-- \end{frame} -->
+
+
+One can test whether a time series exhibit time-varying heteroskedasticity.
+
+Consider the context of Eq. \@ref(eq:linear_reg). @Engle_1982 proposes the following test:
+
+a. Estimate Eq. \@ref(eq:linearreg) by OLS. The residuals of this regression are denoted by $\hat{u}_t$.
+b. Regress $\hat{u}_t^2$ on $\{1,\hat{u}_{t-1}^2,\hat{u}_{t-2}^2,\dots,\hat{u}_{t-m}^2\}$.
+c. Under the null hypothesis that $u_t$ is i.i.d., we have:
+		$$
+		T \times R^2 \overset{d}{\rightarrow} \chi^2(m),
+		$$
+		where $R^2$ is the centered $R^2$ of the OLS regression.
+
+## GARCH models
+
+One can generalize the model and replace Eq. \@ref(eq:hARCH) with:
+	\begin{eqnarray}
+	h_t &=& (1-\delta_1 - \delta_2 - \dots - \delta_r) \zeta + \nonumber \\
+	&&\delta_1 h_{t-1} + \delta_2 h_{t-2} + \dots + \delta_r h_{t-r} + \nonumber \\
+	&&\alpha_1 u_{t-1}^2 + \dots + \alpha_m u_{t-m}^2. (\#eq:hGARCH)
+	\end{eqnarray}
+
+This generalised autoregressive conditional heteroskedasticity model is denoted by GARCH(r,m).
+
+Denoting $u_t^2 - h_t$ by $w_t$ and $(1-\delta_1 - \dots - \delta_r) \zeta$ by $\kappa$, it can be checked that:
+	\begin{eqnarray}
+	u_t^2 &=& \kappa + (\delta_1 + \alpha_1)u_{t-1}^2 + (\delta_2 + \alpha_2)u_{t-2}^2 + \dots \nonumber \\
+	&& + (\delta_p + \alpha_p)u_{t-p}^2 + w_t - \delta_1 w_{t-1} - \dots - \delta_r w_{t-r},
+	\end{eqnarray}
+	where $p=max(m,r)$, $\alpha_j=0$ for $j>m$ and $\delta_j=0$ for $j>r$.
+
+Remark: $w_t=h_t(v_t^2 - 1)$ is a martingale difference sequence (see Def. \@ref(def:MDS)) because $v_t$ is a zero-mean unit-root i.i.d. sequence.
+
+Non-negativity is satisfied (in particular) if $\kappa>0$, $\alpha_j \ge 0$, $\delta_j \ge 0$ for $j \le p$ (easier to see in Eq. \@ref(eq:hGARCH)).
+
+* $u_t^2$ follows an ARMA(p,r) process.
+* $u_t^2$ is covariance stationary if the roots of:
+	$$
+	1 - (\delta_1 + \alpha_1)z - \dots - (\delta_1 + \alpha_1)z^p = 0
+	$$
+	lie outside the unit circle (Prop. \@ref(thm:stability)).
+
+Because the $\delta_i + \alpha_i$ are nonnegative, we must have (using the same reasoning as in Slide XXX):
+	$$
+	\sum_i \delta_i + \sum_i \alpha_i < 1.
+	$$
+
+In that case, the unconditional variance of $u_t$, i.e. the unconditional mean of $u_t^2$, is:
+	$$
+	\mathbb{E}(u_t^2) = \sigma^2 = \frac{\kappa}{1 - \sum_i \delta_i - \sum_i \alpha_i}.
+	$$
+
+
+<!-- \begin{frame}{} -->
+<!-- \begin{footnotesize} -->
+<!-- \begin{figure} -->
+<!-- 	\caption{Simulation of a GARCH(1,1), $\zeta = 1$, $\alpha_1 = 0.45$, $\delta_1 = 0.5$.} -->
+<!-- 	\includegraphics[width=\linewidth]{../../figures/Figure_GARCH_illus.pdf} -->
+
+<!-- 	\begin{tiny} -->
+<!-- In the upper plot, the red lines delineate the 95\% confidence band ($\pm2\sqrt{h_t}$). -->
+<!-- \end{tiny} -->
+
+<!-- \end{figure} -->
+<!-- \end{footnotesize} -->
+<!-- \end{frame} -->
+
+
+Another extension of the ARCH model is the ARCH-in-Mean, or ARCH-M model. That model is close to that specified by Eqs. \@ref(eq:linearreg), \@ref(eq:uhv) and \@ref(eq:hARCH), but allowing for a potential effect of $h_t$ on $\mathbb{E}_{t-1}(y_{t})$.
+
+Such a model reads:
+	\begin{eqnarray*}
+	y_t &=& c + \phi_1 y_{t-1} + \dots + \phi_p y_{t-p} + {\color{blue}\delta h_t}+ u_t \\
+	u_t &=& \sqrt{h_t} v_t \\
+	h_t &=& \zeta + \alpha_1 u_{t-1}^2 + \dots + \alpha_m u_{t-m}^2,
+	\end{eqnarray*}
+	where $v_t$ is a zero-mean unit-variance i.i.d. sequence.
+
+
+
+

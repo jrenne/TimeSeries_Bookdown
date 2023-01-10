@@ -1,0 +1,335 @@
+# Forecasting {#forecasting}
+
+Forecasting has always been an important part of the time series field (@DEGOOIJER2006443). Macroeconomic forecasts are done in many places: Public Administration (notably Treasuries), Central Banks, International Institutions (e.g. IMF, OECD), banks, big firms. These institutions are interested in the **point estimates** ($\sim$ most likely value) of the variable of interest. They also sometimes need to measure the **uncertainty** ($\sim$ dispersion of likely outcomes) associated to the point estimates.[^FootnoteFamChart]
+
+[^FootnoteFamChart]: In its inflation report, the Bank of England displays charts showing the conditional distribution of future inflation, called fan charts. This fan charts show the uncertainty associated with future inflation. See  [this page](https://www.bankofengland.co.uk/quarterly-bulletin/1998/q1/the-inflation-report-projections-understanding-the-fan-chart).
+
+Forecasts produced by professional forecasters are available on these web pages:
+
+* [Philly Fed Survey of Professional Forecasters](https://www.philadelphiafed.org/research-and-data/real-time-center/survey-of-professional-forecasters/).
+* [ECB Survey of Professional Forecasters](http://www.ecb.europa.eu/stats/prices/indic/forecast/html/index.en.html).
+* [IMF World Economic Outlook](https://www.imf.org/external/pubs/ft/weo/2016/update/01/).
+* [OECD Global Economic Outlook](http://www.oecd.org/eco/economicoutlook.htm).
+* [European Commission Economic Forecasts](http://ec.europa.eu/economy_finance/eu/forecasts/index_en.htm).
+
+How to formalize the forecasting problem? Assume the current date is $t$. We want to forecast the value that variable $y_t$ will take on date $t+1$ (i.e., $y_{t+1}$) based on the observation of a set of variables gathered in vector $x_t$ ($x_t$ may contain lagged values of $y_t$).
+
+The forecaster aims at minimizing (a function of) the forecast error. It is usal to consider the following (quadratic) loss function:
+$$
+\underbrace{\mathbb{E}([y_{t+1} - y^*_{t+1}]^2)}_{\mbox{Mean square error (MSE)}}
+$$
+where $y^*_{t+1}$ is the forecast of $y_{t+1}$ (function of $x_t$).
+
+:::{.proposition #smallestMSE name="Smallest MSE"}
+The smallest MSE is obtained with  MSEthe expectation of $y_{t+1}$ conditional on $x_t$.
+:::
+:::{.proof}
+See Appendix \@ref(AppendixProof).
+:::
+
+:::{.proposition #smallestMSElinear names="Smallest MSE for linear forecasts"}
+Among the class of linear forecasts, the smallest MSE is obtained with the linear projection of $y_{t+1}$ on $x_t$.
+This projection, denoted by $\hat{P}(y_{t+1}|x_t):=\boldsymbol\alpha'x_t$, satisfies:
+\begin{equation}
+\mathbb{E}\left( [y_{t+1} - \boldsymbol\alpha'x_t]x_t \right)=\bv{0}.(\#eq:proj)
+\end{equation}
+:::
+:::{.proof}
+Consider the function $f:$ $\boldsymbol\alpha \rightarrow \mathbb{E}\left( [y_{t+1} - \boldsymbol\alpha'x_t]^2 \right)$. We have:
+$$
+f(\boldsymbol\alpha) = \mathbb{E}\left( y_{t+1}^2 - 2 y_t x_t'\boldsymbol\alpha + \boldsymbol\alpha'x_t x_t'\boldsymbol\alpha] \right).
+$$
+We have $\partial f(\boldsymbol\alpha)/\partial \boldsymbol\alpha = \mathbb{E}(-2 y_{t+1} x_t + 2 x_t x_t'\boldsymbol\alpha)$. The function is minimised for $\partial f(\boldsymbol\alpha)/\partial \boldsymbol\alpha =0$.
+:::
+
+Eq. \@ref(eq:proj) implies that $\mathbb{E}\left( y_{t+1}x_t \right)=\mathbb{E}\left(x_tx_t' \right)\boldsymbol\alpha$. (Note that $x_t x_t'\boldsymbol\alpha=x_t (x_t'\boldsymbol\alpha)=(\boldsymbol\alpha'x_t) x_t'$.)
+
+Hence, if $\mathbb{E}\left(x_tx_t' \right)$ is nonsingular,
+\begin{equation}
+\boldsymbol\alpha=[\mathbb{E}\left(x_tx_t' \right)]^{-1}\mathbb{E}\left( y_{t+1}x_t \right).(\#eq:linproj)
+\end{equation}
+
+The MSE then is:
+$$
+\mathbb{E}([y_{t+1} - \boldsymbol\alpha'x_t]^2) = \mathbb{E}{(y_{t+1}^2)} - \mathbb{E}\left( y_{t+1}x_t' \right)[\mathbb{E}\left(x_tx_t' \right)]^{-1}\mathbb{E}\left(x_ty_{t+1} \right).
+$$
+
+Consider the regression $y_{t+1} = \boldsymbol\beta'\bv{x}_t + \varepsilon_{t+1}$. The OLS estimate is:
+$$
+\bv{b} = \left[ \underbrace{ \frac{1}{T} \sum_{i=1}^T \bv{x}_t\bv{x}_t'}_{\bv{m}_1} \right]^{-1}\left[  \underbrace{ \frac{1}{T} \sum_{i=1}^T \bv{x}_t'y_{t+1}}_{\bv{m}_2} \right].
+$$
+If $\{x_t,y_t\}$ is covariance-stationary and ergodic for the second moments then the sample moments ($\bv{m}_1$ and $\bv{m}_2$) converges in probability to the associated population moments and $\bv{b} \overset{p}{\rightarrow} \boldsymbol\alpha$ (where $\boldsymbol\alpha$ is defined in Eq. \@ref(eq:linproj)).
+
+:::{.example #fcstMAq name="Forecasting an MA(q) process"}
+
+Consider the MA(q) process:
+$$
+y_t = \mu + \varepsilon_t + \theta_1 \varepsilon_{t-1} + \dots + \theta_q \varepsilon_{t-q},
+$$
+where $\{\varepsilon_t\}$ is a white noise sequence (Def. \@ref(def:whitenoise)).
+
+We have:
+\begin{eqnarray*}
+&&\mathbb{E}(y_{t+h}|\varepsilon_{t},\varepsilon_{t-1},\dots) =\\
+&&\left\{
+\begin{array}{lll}
+\mu + \theta_h \varepsilon_{t} + \dots + \theta_q \varepsilon_{t-q+h}  \quad &for& \quad h \in [1,q]\\
+\mu \quad &for& \quad h > q
+\end{array}
+\right.
+\end{eqnarray*}
+and
+\begin{eqnarray*}
+&&\mathbb{V}ar(y_{t+h}|\varepsilon_{t},\varepsilon_{t-1},\dots)= \mathbb{E}\left( [y_{t+h} - \mathbb{E}(y_{t+h}|\varepsilon_{t},\varepsilon_{t-1},\dots)]^2 \right) =\\
+&&\left\{
+\begin{array}{lll}
+\sigma^2(1+\theta_1^2+\dots+\theta_{h-1}^2) \quad &for& \quad h \in [1,q]\\
+\sigma^2(1+\theta_1^2+\dots+\theta_q^2) \quad &for& \quad h>q.
+\end{array}
+\right.
+\end{eqnarray*}
+
+Remark: The previous reasoning relies on the assumption that the $\varepsilon_t$s are observed. But this is generally not the case in practice. Note that consistent estimates are available if the MA process is invertible (see Eq. \@ref(eq:invertible)) .
+
+:::
+
+:::{.example #fcstARp name="Forecasting an AR(p) process"}
+
+(See [this web  interface](https://jrenne.shinyapps.io/ARpFcst).) Consider the AR(p) process:
+$$
+y_t = c + \phi_1 y_{t-1} + \phi_2 y_{t-2} + \dots + \phi_p y_{t-p} + \varepsilon_t,
+$$
+where $\{\varepsilon_t\}$ is a white noise sequence (Def. \@ref(def:whitenoise)).
+
+Using the notation of Eq. \@ref(eq:F), we have:
+$$
+\bv{y}_t - \boldsymbol\mu = F (\bv{y}_{t-1}- \boldsymbol\mu) + \boldsymbol\xi_t,
+$$
+with $\boldsymbol\mu = [\mu,\dots,\mu]'$ ($\mu$ is defined in Eq. \@ref(eq:EAR)). Hence:
+$$
+\bv{y}_{t+h} - \boldsymbol\mu = \boldsymbol\xi_{t+h} + F \boldsymbol\xi_{t+h-1} + \dots + F^{h-1} \boldsymbol\xi_{t+1} + F^h (\bv{y}_{t}- \mu).
+$$
+Therefore:
+\begin{eqnarray*}
+\mathbb{E}(\bv{y}_{t+h}|y_{t},y_{t-1},\dots) &=& \boldsymbol\mu + F^{h}(\bv{y}_t - \boldsymbol\mu)\\
+\mathbb{V}ar\left( [\bv{y}_{t+h} - \mathbb{E}(\bv{y}_{t+h}|y_{t},y_{t-1},\dots)] \right) &=& \Sigma + F\Sigma F' + \dots + F^{h-1}\Sigma (F^{h-1})',
+\end{eqnarray*}
+where:
+$$
+\Sigma = \left[
+\begin{array}{ccc}
+\sigma^2  & 0& \dots\\
+0  & 0 & \\
+\vdots  & & \ddots \\
+\end{array}
+\right].
+$$
+
+Alternative approach: Taking the (conditional) expectations of both sides of
+$$
+y_{t+h} - \mu = \phi_1 (y_{t+h-1} - \mu) + \phi_2 (y_{t+h-2} - \mu) + \dots + \phi_p (y_{t-p} - \mu) + \varepsilon_{t+h},
+$$
+we obtain:
+\begin{eqnarray*}
+\mathbb{E}(y_{t+h}|y_{t},y_{t-1},\dots) &=& \mu + \phi_1\left(\mathbb{E}[y_{t+h-1}|y_{t},y_{t-1},\dots] - \mu\right)+\\
+&&\phi_2\left(\mathbb{E}[y_{t+h-2}|y_{t},y_{t-1},\dots] - \mu\right) + \dots +\\
+&& \phi_p\left(\mathbb{E}[y_{t+h-p}|y_{t},y_{t-1},\dots] - \mu\right),
+\end{eqnarray*}
+which can be exploited recursively.
+
+The recursion begins with $\mathbb{E}(y_{t-k}|y_{t},y_{t-1},\dots)=y_{t-k}$ (for any $k \ge 0$).
+
+:::
+
+:::{.example #fcstARMApq name="Forecasting an ARMA(p,q) process"}
+
+Consider the process:
+\begin{equation}
+y_t = c + \phi_1 y_{t-1} + \dots + \phi_p y_{t-p} + \varepsilon_t + \theta_1 \varepsilon_{t-1} + \dots + \theta_q \varepsilon_{t-q},(\#eq:armaForecast)
+\end{equation}
+where $\{\varepsilon_t\}$ is a white noise sequence (Def. \@ref(def:whitenoise)). We assume that the MA part of the process is invertible (see Eq. \@ref(eq:invertible)), which implies that the information contained in $\{y_{t},y_{t-1},y_{t-2},\dots\}$ is identical to that in $\{\varepsilon_{t},\varepsilon_{t-1},\varepsilon_{t-2},\dots\}$.
+
+While one could use a recursive algorithm to compute the conditional mean (as in Example \@ref(exm:fcstARp)), it is convenient to employ the Wold decomposition of this process (see Theorem \@ref(thm:Wold) and Prop. \@ref(prp:computPsi) for the computation of the $\psi_i$'s in the context of ARMA processes):
+<!-- We have: -->
+<!-- \begin{eqnarray*} -->
+<!-- &&\mathbb{E}(y_{t+h}|y_{t},y_{t-1},\dots) =\\ -->
+<!-- &&\left\{ -->
+<!-- \begin{array}{ll} -->
+<!-- \mu + \phi_1\left(\mathbb{E}(y_{t+h-1}|y_{t},y_{t-1},\dots) - \mu\right)+\\ -->
+<!-- \phi_2\left(\mathbb{E}(y_{t+h-2}|y_{t},y_{t-1},\dots) - \mu\right) + \dots +\\ -->
+<!-- \phi_p\left(\mathbb{E}(y_{t+h-p}|y_{t},y_{t-1},\dots) - \mu\right) +\\ -->
+<!-- \theta_{h}\varepsilon_{t} + \theta_{h+1}\varepsilon_{t-1} + \dots + \theta_{q}\varepsilon_{t+h-q} &\mbox{for  $h \in[1,q]$},\\ -->
+<!-- \\ -->
+<!-- \mu + \phi_1\left(\mathbb{E}(y_{t+h-1}|y_{t},y_{t-1},\dots) - \mu\right)+\\ -->
+<!-- \phi_2\left(\mathbb{E}(y_{t+h-2}|y_{t},y_{t-1},\dots) - \mu\right) + \dots +\\ -->
+<!-- \phi_p\left(\mathbb{E}(y_{t+h-p}|y_{t},y_{t-1},\dots) - \mu\right) & \mbox{for $h>q$}. -->
+<!-- \end{array} -->
+<!-- \right. -->
+<!-- \end{eqnarray*} -->
+<!-- To compute the MSE, it is convenient to use the Wold decomposition of the process (see Theorem \@ref(thm:Wold)): -->
+$$
+y_t = \mu + \sum_{i=0}^{+\infty} \psi_i \varepsilon_{t-i}.
+$$
+This implies:
+\begin{eqnarray*}
+y_{t+h} &=& \mu + \sum_{i=0}^{h-1} \psi_i \varepsilon_{t+h-i} + \sum_{i=h}^{+\infty} \psi_i \varepsilon_{t+h-i}\\
+&=& \mu + \sum_{i=0}^{h-1} \psi_i \varepsilon_{t+h-i} + \sum_{i=0}^{+\infty} \psi_{i+h} \varepsilon_{t-i}.
+\end{eqnarray*}
+
+Since $\mathbb{E}(y_{t+h}|y_t,y_{t-1},\dots)=\mu+\sum_{i=0}^{+\infty} \psi_{i+h} \varepsilon_{t-i}$, we get:
+$$
+\mathbb{V}ar(y_{t+h}|y_t,y_{t-1},\dots) =\mathbb{V}ar\left(\sum_{i=0}^{h-1} \psi_i \varepsilon_{t+h-i}\right)= \sigma^2 \sum_{i=0}^{h-1} \psi_i^2.
+$$
+:::
+
+How to use the previous formulas in practice?
+
+One has first to select a specification and to estimate the model.
+Two methods to determine relevant specifications:
+
+a. Information criteria (see Definition \@ref(def:infocriteria)).
+b. Box-Jenkins approach.
+
+@boxjen76 have proposed an approach that is now widely used.
+
+1. Data transformation. The data should be transformed to "make them stationary". To do so, one can e.g. take logarithms, take changes in the considered series, remove (deterministic) trends.
+2. Select $p$ and $q$. This can be based on the PACF approach (see Section \@ref(PACFapproach)), or on selection criteria (see Definition \@ref(def:infocriteria)).
+3. Estimate the model parameters. See Section \@ref(estimARMA).
+4. Check that the estimated model is consistent with the data. See below.
+
+
+<!-- **Sample autocorrelation** -->
+
+<!-- Population autocorrelation: $\rho_i = \gamma_i / \gamma_0$. Natural estimate based on sample moments: $\hat{\rho_i} = \hat\gamma_j / \hat\gamma_0$ where: -->
+<!-- $$ -->
+<!-- \gamma_j = \frac{1}{T} \sum_{t=j+1}^{T} (y_t - \bar{y})(y_{t-j} - \bar{y}). -->
+<!-- $$ -->
+<!-- For an MA($q$) process, $\rho_j = 0$ for $j>q$. -->
+
+<!-- If the data are generated by a Gaussian MA($q$) process, then: -->
+<!-- $$ -->
+<!-- \mathbb{V}ar(\hat\rho_j) \approx \frac{1}{T}\left\{1 + 2 \sum_{i=1}^q \rho_i^2 \right\} -->
+<!-- $$ -->
+<!-- In particular, if the data correspond to a Gaussian white noise then $\hat\rho_i \in [\pm 2/\sqrt{T}]$ about 95\% of the time. -->
+
+<!-- **Partial autocorrelation** -->
+
+<!-- The $m^{th}$ population partial autocorrelation (see also Def. \@ref(def:partialAC)) is the $m^{th}$ coefficient in a linear projection of $y_{t+1}$ on its $m$ most recent lags: -->
+<!-- $$ -->
+<!-- \hat{y}_{t+1|t} = \mu + \phi_{1,m}(y_t - \mu) + \phi_{2,m}(y_{t-1} - \mu) + \dots +\phi_{m,m}(y_{t-m+1} - \mu). -->
+<!-- $$ -->
+<!-- Using the OLS formula, it can be shown that the (population) vector $\boldsymbol\phi_{.,m}=[\phi_{1,m},\dots,\phi_{m,m}]'$ satisfies: -->
+<!-- $$ -->
+<!-- \boldsymbol\phi_{.,m} = \left[ -->
+<!-- \begin{array}{cccc} -->
+<!-- \gamma_0 & \gamma_1& \dots & \gamma_{m-1}\\ -->
+<!-- \gamma_1 & \gamma_0& \dots & \gamma_{m-2}\\ -->
+<!-- \vdots & & \ddots & \\ -->
+<!-- \gamma_{m-1} & \gamma_{m-2}& \dots & \gamma_{0} -->
+<!-- \end{array} -->
+<!-- \right]^{-1}\left[ -->
+<!-- \begin{array}{c} -->
+<!-- \gamma_1\\ -->
+<!-- \gamma_2\\ -->
+<!-- \vdots\\ -->
+<!-- \gamma_{m} -->
+<!-- \end{array} -->
+<!-- \right]. -->
+<!-- $$ -->
+<!-- For an AR($p$) process, $\phi_{m,m}=0$ for $m>p$, which reflects the fact that only the first $p$ lags are useful to forecast $y_{t}$. -->
+
+<!-- A natural estimate $\hat\phi_{m,m}$ of $\phi_{m,m}$ is obtained by running the regression: -->
+<!-- $$ -->
+<!-- \hat{y}_{t+1} = \hat{c} + \hat\phi_{1,m}y_t + \hat\phi_{2,m}y_{t-1} + \dots + \hat\phi_{m,m}y_{t-m+1} + \hat\varepsilon_{t+1}. -->
+<!-- $$ -->
+<!-- Under the hypothesis that the data are generated by an AR($p$) process: -->
+<!-- $$ -->
+<!-- \mathbb{V}ar(\hat\phi_{m,m}) \approx \frac{1}{T} \quad \mbox{for} \quad m > p. -->
+<!-- $$ -->
+<!-- Besides, for $i,j>p$, $\hat\phi_{i,i}$ and $\hat\phi_{j,j}$ are asymptotically independent. -->
+
+**Assessing the performances of a forecasting model**
+
+Once one has fitted a model on a given dataset (of length $T$, say), one compute MSE (mean square errors) to evaluate the performance of the model. But this MSE is the **in-sample** one. It is easy to reduce in-sample MSE. Typically, if the model is estimated by OLS, adding covariates mechanically reduces the MSE (see Props. \@ref(prp:chgeR2) and \@ref(prp:chgeInR2)). That is, even if additional data are irrelevant, the $R^2$ of the regression increases. Adding irrelevant variables increases the (in-sample) $R^2$ but is bound to increase the **out-of-sample** MSE.
+
+Therefore, it is important to analyse **out-of-sample** performances of the forecasting model:
+
+a. Estimate a model on a sample of reduced size ($1,\dots,T^*$, with $T^*<T$)
+b. Use the remaining available periods ($T^*+1,\dots,T$) to compute **out-of-sample** forecasting errors (and compute their MSE). In an out-of-sample exercise, it is important to make sure that the data used to produce a forecasts (as of date $T^*$) where indeed available on date $T^*$.
+
+**Diebold-Mariano test**
+
+How to compare different forecasting approaches? @Diebold_Mariano_1995 have proposed a simple test to address this question.
+
+Assume that you want to compare approaches A and B. You have historical data sets and you have implemented both approaches in the past, providing you with two sets of forecasting errors: $\{e^{A}_t\}_{t=1,\dots,T}$ and $\{e^{B}_t\}_{t=1,\dots,T}$.
+
+It may be the case that your forecasts serve a specific purpose and that, for instance, you dislike positive forecasting errors and you care less about negative errors. We assume you are able to formalise this by means of a **loss function $L(e)$**. For instance:
+
+* If you dislike large positive errors, you may set $L(e)=\exp(e)$.
+* If you are concerned about both positive and negative errors (indifferently), you may set $L(e)=e^2$ (standard approach).
+
+Let us define the sequence $\{d_t\}_{t=1,\dots,T} \equiv \{L(e^{A}_t)-L(e^{B}_t)\}_{t=1,\dots,T}$ and assume that this sequence is covariance stationary. We consider the following null hypothesis: $H_0:$ $\bar{d}=0$, where $\bar{d}$ denotes the population mean of the $d_t$s. Under $H_0$ and under the assumption of covariance-stationarity of $d_t$, we have (Theorem \@ref{(hm:CLTcovstat)):
+$$
+\sqrt{T} \bar{d}_T \overset{d}{\rightarrow} \mathcal{N}\left(0,\sum_{j=-\infty}^{+\infty} \gamma_j \right),
+$$	
+where the $\gamma_j$s are the autocovariances of $d_t$.
+
+Hence, assuming that $\hat{\sigma}^2$ is a consistent estimate of $\sum_{j=-\infty}^{+\infty} \gamma_j$ (for instance the one given by the Newey-West formula, see Def. \@ref(def:NW)), we have, under $H_0$:
+$$
+DM_T := \sqrt{T}\frac{\bar{d}_T}{\sqrt{\hat{\sigma}^2}} \overset{d}{\rightarrow}  \mathcal{N}(0,1).
+$$
+$DM_T$ is the test statistics. For a test of size $\alpha$, the critical region is:[^FootnoteShinyApptest]
+$$
+]-\infty,-\Phi^{-1}(1-\alpha/2)] \cup [\Phi^{-1}(1-\alpha/2),+\infty[,
+$$
+where $\Phi$ is the c.d.f. of the standard normal distribution.
+
+[^FootnoteShinyApptest]: This [ShinyApp application](https://jrenne.shinyapps.io/tests/) illustrates the notion of statistical test (illustrating the p-value and the cirtical region, in particular).
+
+
+
+:::{.example #SwissOutOfSample name="Forecasting Swiss GDP growth"}
+
+We use a long historical time series of the Swiss GDP growth taken from the @JST_2017 dataset (see Figure \@ref(fig:autocov), and Example \@ref(exm:SwissGrowthAIC)).
+
+We want to forecast this GDP growth. We envision two specifications : an AR(1) specification (the one advocated by the AIC criteria, see Example \@ref(exm:SwissGrowthAIC)), and an ARMA(2,2) specification. We are interested in 2-year-ahead forecasts (i.e., $h=2$ since the data are yearly).
+
+```{r fcstARMA, warning=FALSE, fig.cap="XXX.", fig.asp = .6, out.width = "95%", fig.align = 'left-aligned'}
+library(AEC)
+library(forecast)
+data <- subset(JST,iso=="CHE")
+T <- dim(data)[1]
+y <- c(NaN,log(data$gdp[2:T]/data$gdp[1:(T-1)]))
+first.date <- T-50
+e1 <- NULL; e2 <- NULL;h<-2
+for(T.star in first.date:(T-h)){
+  estim.model.1 <- arima(y[1:T.star],order=c(1,0,0))
+  estim.model.2 <- arima(y[1:T.star],order=c(2,0,2))
+  e1 <- c(e1,y[T.star+h] - predict(estim.model.1,n.ahead=h)$pred[h])
+  e2 <- c(e2,y[T.star+h] - predict(estim.model.2,n.ahead=h)$pred[h])
+}
+res.DM <- dm.test(e1,e2,h = h,alternative = "greater")
+res.DM
+```
+With `alternative = "greater"` The alternative hypothesis is that method 2 is more accurate than method 1. Since we do not reject the null (the p-value being of `r round(res.DM$p.value,3)`), we are not led to use the more sophisticated model (ARMA(2,2)) and we keep the simple AR(1) model.
+
+Assume now that we want to compare the AR(1) process to a VAR model (see Def. \@ref(def:SVAR)). We consider a bivariate VAR, where GDP growth is complemented with CPI-based inflation rate.
+
+```{r fcstVAR, warning=FALSE,message=FALSE,fig.cap="XXX.", fig.asp = .6, out.width = "95%", fig.align = 'left-aligned'}
+library(vars)
+infl <- c(NaN,log(data$cpi[2:T]/data$cpi[1:(T-1)]))
+y_var <- cbind(y,infl)
+e3 <- NULL
+for(T.star in first.date:(T-h)){
+  estim.model.3 <- VAR(y_var[2:T.star,],p=1)
+  e3 <- c(e3,y[T.star+h] - predict(estim.model.3,n.ahead=h)$fcst$y[h,1])
+}
+res.DM <- dm.test(e1,e2,h = h,alternative = "greater")
+res.DM
+```
+Again, we do not find that the alternative model (here the VAR(1) model) is better than the AR(1) model to forecast GDP growth.
+:::
+
+
+
+

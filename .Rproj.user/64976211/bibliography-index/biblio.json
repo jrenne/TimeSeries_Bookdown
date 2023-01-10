@@ -1,6 +1,366 @@
 {
     "sources": [
         {
+            "ISSN": "00129682, 14680262",
+            "URL": "http://www.jstor.org/stable/1912773",
+            "accessed": {
+                "date-parts": [
+                    [
+                        2023,
+                        1,
+                        10
+                    ]
+                ]
+            },
+            "author": [
+                {
+                    "family": "Engle",
+                    "given": "Robert F."
+                }
+            ],
+            "container-title": "Econometrica",
+            "id": "Engle_1982",
+            "issue": "4",
+            "issued": {
+                "date-parts": [
+                    [
+                        1982
+                    ]
+                ]
+            },
+            "page": "987-1007",
+            "publisher": "[Wiley, Econometric Society]",
+            "title": "Autoregressive conditional heteroscedasticity with estimates of the variance of united kingdom inflation",
+            "type": "article-journal",
+            "volume": "50"
+        },
+        {
+            "URL": "http://www.jstor.org/stable/2938278",
+            "accessed": {
+                "date-parts": [
+                    [
+                        2023,
+                        1,
+                        10
+                    ]
+                ]
+            },
+            "author": [
+                {
+                    "family": "Johansen",
+                    "given": "Søren"
+                }
+            ],
+            "container-title": "Econometrica",
+            "id": "Johansen_1991",
+            "issue": "6",
+            "issued": {
+                "date-parts": [
+                    [
+                        1991
+                    ]
+                ]
+            },
+            "page": "1551-1580",
+            "publisher": "[Wiley, Econometric Society]",
+            "title": "Estimation and hypothesis testing of cointegration vectors in gaussian vector autoregressive models",
+            "type": "article-journal",
+            "volume": "59"
+        },
+        {
+            "URL": "https://EconPapers.repec.org/RePEc:ucp:jnlbus:v:36:y:1963:p:394",
+            "author": [
+                {
+                    "family": "Mandelbrot",
+                    "given": "Benoit"
+                }
+            ],
+            "container-title": "The Journal of Business",
+            "id": "Mandelbrot_1963",
+            "issued": {
+                "date-parts": [
+                    [
+                        1963
+                    ]
+                ]
+            },
+            "title": "The variation of certain speculative prices",
+            "type": "article-journal",
+            "volume": "36"
+        },
+        {
+            "ISSN": "00129682, 14680262",
+            "URL": "http://www.jstor.org/stable/2938339",
+            "accessed": {
+                "date-parts": [
+                    [
+                        2023,
+                        1,
+                        10
+                    ]
+                ]
+            },
+            "author": [
+                {
+                    "family": "Phillips",
+                    "given": "P. C. B."
+                },
+                {
+                    "family": "Ouliaris",
+                    "given": "S."
+                }
+            ],
+            "container-title": "Econometrica",
+            "id": "Phillips_Ouliaris_1990",
+            "issue": "1",
+            "issued": {
+                "date-parts": [
+                    [
+                        1990
+                    ]
+                ]
+            },
+            "page": "165-193",
+            "publisher": "[Wiley, Econometric Society]",
+            "title": "Asymptotic properties of residual based tests for cointegration",
+            "type": "article-journal",
+            "volume": "58"
+        },
+        {
+            "URL": "https://doi.org/10.1080/01621459.1979.10482531",
+            "author": [
+                {
+                    "family": "Dickey",
+                    "given": "David A."
+                },
+                {
+                    "family": "Fuller",
+                    "given": "Wayne A."
+                }
+            ],
+            "container-title": "Journal of the American Statistical Association",
+            "id": "DF1979",
+            "issue": "366a",
+            "issued": {
+                "date-parts": [
+                    [
+                        1979
+                    ]
+                ]
+            },
+            "page": "427-431",
+            "publisher": "Taylor & Francis",
+            "title": "Distribution of the estimators for autoregressive time series with a unit root",
+            "type": "article-journal",
+            "volume": "74"
+        },
+        {
+            "URL": "https://doi.org/10.1093/biomet/75.2.335",
+            "author": [
+                {
+                    "family": "Phillips",
+                    "given": "Peter C. B."
+                },
+                {
+                    "family": "Perron",
+                    "given": "Pierre"
+                }
+            ],
+            "container-title": "Biometrika",
+            "id": "Phillips_Perron_1988",
+            "issue": "2",
+            "issued": {
+                "date-parts": [
+                    [
+                        1988,
+                        6
+                    ]
+                ]
+            },
+            "page": "335-346",
+            "title": "Testing for a unit root in time series regression",
+            "type": "article-journal",
+            "volume": "75"
+        },
+        {
+            "ISSN": "00129682, 14680262",
+            "URL": "http://www.jstor.org/stable/1913236",
+            "accessed": {
+                "date-parts": [
+                    [
+                        2023,
+                        1,
+                        9
+                    ]
+                ]
+            },
+            "author": [
+                {
+                    "family": "Engle",
+                    "given": "Robert F."
+                },
+                {
+                    "family": "Granger",
+                    "given": "C. W. J."
+                }
+            ],
+            "container-title": "Econometrica",
+            "id": "Engle_Granger_1987",
+            "issue": "2",
+            "issued": {
+                "date-parts": [
+                    [
+                        1987
+                    ]
+                ]
+            },
+            "page": "251-276",
+            "publisher": "[Wiley, Econometric Society]",
+            "title": "Co-integration and error correction: Representation, estimation, and testing",
+            "title-short": "Co-integration and error correction",
+            "type": "article-journal",
+            "volume": "55"
+        },
+        {
+            "ISSN": "0304-4076",
+            "URL": "https://www.sciencedirect.com/science/article/pii/030440769290104Y",
+            "author": [
+                {
+                    "family": "Kwiatkowski",
+                    "given": "Denis"
+                },
+                {
+                    "family": "Phillips",
+                    "given": "Peter C. B."
+                },
+                {
+                    "family": "Schmidt",
+                    "given": "Peter"
+                },
+                {
+                    "family": "Shin",
+                    "given": "Yongcheol"
+                }
+            ],
+            "container-title": "Journal of Econometrics",
+            "id": "KWIATKOWSKI1992159",
+            "issue": "1",
+            "issued": {
+                "date-parts": [
+                    [
+                        1992
+                    ]
+                ]
+            },
+            "page": "159-178",
+            "title": "Testing the null hypothesis of stationarity against the alternative of a unit root: How sure are we that economic time series have a unit root?",
+            "title-short": "Testing the null hypothesis of stationarity against the alternative of a unit root",
+            "type": "article-journal",
+            "volume": "54"
+        },
+        {
+            "ISSN": "07350015",
+            "URL": "http://www.jstor.org/stable/1391432",
+            "accessed": {
+                "date-parts": [
+                    [
+                        2023,
+                        1,
+                        9
+                    ]
+                ]
+            },
+            "author": [
+                {
+                    "family": "Schwert",
+                    "given": "G. William"
+                }
+            ],
+            "container-title": "Journal of Business & Economic Statistics",
+            "id": "Schwert_1989",
+            "issue": "2",
+            "issued": {
+                "date-parts": [
+                    [
+                        1989
+                    ]
+                ]
+            },
+            "page": "147-159",
+            "publisher": "[American Statistical Association, Taylor & Francis, Ltd.]",
+            "title": "Tests for Unit Roots: A Monte Carlo Investigation",
+            "type": "article-journal",
+            "volume": "7"
+        },
+        {
+            "ISSN": "00129682, 14680262",
+            "URL": "http://www.jstor.org/stable/1913237",
+            "accessed": {
+                "date-parts": [
+                    [
+                        2023,
+                        1,
+                        9
+                    ]
+                ]
+            },
+            "author": [
+                {
+                    "family": "Phillips",
+                    "given": "P. C. B."
+                }
+            ],
+            "container-title": "Econometrica",
+            "id": "Phillips_1987",
+            "issue": "2",
+            "issued": {
+                "date-parts": [
+                    [
+                        1987
+                    ]
+                ]
+            },
+            "page": "277-301",
+            "publisher": "[Wiley, Econometric Society]",
+            "title": "Time series regression with a unit root",
+            "type": "article-journal",
+            "volume": "55"
+        },
+        {
+            "ISSN": "02664666, 14694360",
+            "URL": "http://www.jstor.org/stable/3532005",
+            "accessed": {
+                "date-parts": [
+                    [
+                        2023,
+                        1,
+                        9
+                    ]
+                ]
+            },
+            "author": [
+                {
+                    "family": "Abadir",
+                    "given": "Karim M."
+                }
+            ],
+            "container-title": "Econometric Theory",
+            "id": "Abadir_1993",
+            "issue": "1",
+            "issued": {
+                "date-parts": [
+                    [
+                        1993
+                    ]
+                ]
+            },
+            "page": "81-93",
+            "publisher": "Cambridge University Press",
+            "title": "OLS bias in a nonstationary autoregression",
+            "type": "article-journal",
+            "volume": "9"
+        },
+        {
             "URL": "https://ideas.repec.org/p/ecb/ecbwps/20210.html",
             "author": [
                 {
@@ -2720,6 +3080,270 @@
             "title": "Econometric Methods for Program Evaluation",
             "type": "article-journal",
             "volume": "10"
+        },
+        {
+            "URL": "https://www.R-project.org/",
+            "author": [
+                {
+                    "literal": "R Core Team"
+                }
+            ],
+            "id": "R-base",
+            "issued": {
+                "date-parts": [
+                    [
+                        2022
+                    ]
+                ]
+            },
+            "publisher": "R Foundation for Statistical Computing",
+            "publisher-place": "Vienna, Austria",
+            "title": "R: A language and environment for statistical computing",
+            "title-short": "R",
+            "type": "book"
+        },
+        {
+            "URL": "https://CRAN.R-project.org/package=bookdown",
+            "author": [
+                {
+                    "family": "Xie",
+                    "given": "Yihui"
+                }
+            ],
+            "id": "R-bookdown",
+            "issued": {
+                "date-parts": [
+                    [
+                        2022
+                    ]
+                ]
+            },
+            "note": "R package version 0.27",
+            "title": "Bookdown: Authoring books and technical documents with r markdown",
+            "title-short": "Bookdown",
+            "type": "book"
+        },
+        {
+            "URL": "https://yihui.org/knitr/",
+            "author": [
+                {
+                    "family": "Xie",
+                    "given": "Yihui"
+                }
+            ],
+            "id": "R-knitr",
+            "issued": {
+                "date-parts": [
+                    [
+                        2022
+                    ]
+                ]
+            },
+            "note": "R package version 1.39",
+            "title": "Knitr: A general-purpose package for dynamic report generation in r",
+            "title-short": "Knitr",
+            "type": "book"
+        },
+        {
+            "URL": "https://CRAN.R-project.org/package=rmarkdown",
+            "author": [
+                {
+                    "family": "Allaire",
+                    "given": "JJ"
+                },
+                {
+                    "family": "Xie",
+                    "given": "Yihui"
+                },
+                {
+                    "family": "McPherson",
+                    "given": "Jonathan"
+                },
+                {
+                    "family": "Luraschi",
+                    "given": "Javier"
+                },
+                {
+                    "family": "Ushey",
+                    "given": "Kevin"
+                },
+                {
+                    "family": "Atkins",
+                    "given": "Aron"
+                },
+                {
+                    "family": "Wickham",
+                    "given": "Hadley"
+                },
+                {
+                    "family": "Cheng",
+                    "given": "Joe"
+                },
+                {
+                    "family": "Chang",
+                    "given": "Winston"
+                },
+                {
+                    "family": "Iannone",
+                    "given": "Richard"
+                }
+            ],
+            "id": "R-rmarkdown",
+            "issued": {
+                "date-parts": [
+                    [
+                        2022
+                    ]
+                ]
+            },
+            "note": "R package version 2.14",
+            "title": "Rmarkdown: Dynamic documents for r",
+            "title-short": "Rmarkdown",
+            "type": "book"
+        },
+        {
+            "URL": "https://bookdown.org/yihui/bookdown",
+            "author": [
+                {
+                    "family": "Xie",
+                    "given": "Yihui"
+                }
+            ],
+            "id": "bookdown2016",
+            "issued": {
+                "date-parts": [
+                    [
+                        2016
+                    ]
+                ]
+            },
+            "note": "ISBN 978-1138700109",
+            "publisher": "Chapman; Hall/CRC",
+            "publisher-place": "Boca Raton, Florida",
+            "title": "Bookdown: Authoring books and technical documents with R markdown",
+            "title-short": "Bookdown",
+            "type": "book"
+        },
+        {
+            "URL": "https://yihui.org/knitr/",
+            "author": [
+                {
+                    "family": "Xie",
+                    "given": "Yihui"
+                }
+            ],
+            "edition": "2nd",
+            "id": "knitr2015",
+            "issued": {
+                "date-parts": [
+                    [
+                        2015
+                    ]
+                ]
+            },
+            "note": "ISBN 978-1498716963",
+            "publisher": "Chapman; Hall/CRC",
+            "publisher-place": "Boca Raton, Florida",
+            "title": "Dynamic documents with R and knitr",
+            "type": "book"
+        },
+        {
+            "URL": "http://www.crcpress.com/product/isbn/9781466561595",
+            "author": [
+                {
+                    "family": "Xie",
+                    "given": "Yihui"
+                }
+            ],
+            "container-title": "Implementing reproducible computational research",
+            "editor": [
+                {
+                    "family": "Stodden",
+                    "given": "Victoria"
+                },
+                {
+                    "family": "Leisch",
+                    "given": "Friedrich"
+                },
+                {
+                    "family": "Peng",
+                    "given": "Roger D."
+                }
+            ],
+            "id": "knitr2014",
+            "issued": {
+                "date-parts": [
+                    [
+                        2014
+                    ]
+                ]
+            },
+            "note": "ISBN 978-1466561595",
+            "publisher": "Chapman; Hall/CRC",
+            "title": "Knitr: A comprehensive tool for reproducible research in R",
+            "title-short": "Knitr",
+            "type": "chapter"
+        },
+        {
+            "URL": "https://bookdown.org/yihui/rmarkdown",
+            "author": [
+                {
+                    "family": "Xie",
+                    "given": "Yihui"
+                },
+                {
+                    "family": "Allaire",
+                    "given": "J. J."
+                },
+                {
+                    "family": "Grolemund",
+                    "given": "Garrett"
+                }
+            ],
+            "id": "rmarkdown2018",
+            "issued": {
+                "date-parts": [
+                    [
+                        2018
+                    ]
+                ]
+            },
+            "note": "ISBN 9781138359338",
+            "publisher": "Chapman; Hall/CRC",
+            "publisher-place": "Boca Raton, Florida",
+            "title": "R markdown: The definitive guide",
+            "title-short": "R markdown",
+            "type": "book"
+        },
+        {
+            "URL": "https://bookdown.org/yihui/rmarkdown-cookbook",
+            "author": [
+                {
+                    "family": "Xie",
+                    "given": "Yihui"
+                },
+                {
+                    "family": "Dervieux",
+                    "given": "Christophe"
+                },
+                {
+                    "family": "Riederer",
+                    "given": "Emily"
+                }
+            ],
+            "id": "rmarkdown2020",
+            "issued": {
+                "date-parts": [
+                    [
+                        2020
+                    ]
+                ]
+            },
+            "note": "ISBN 9780367563837",
+            "publisher": "Chapman; Hall/CRC",
+            "publisher-place": "Boca Raton, Florida",
+            "title": "R markdown cookbook",
+            "type": "book"
         }
     ],
     "project_biblios": [
