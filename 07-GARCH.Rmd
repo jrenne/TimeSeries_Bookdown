@@ -173,9 +173,10 @@ knitr::kable(tab.results,caption = "ARCH(2), ML estimation results.
 par(mfrow=c(1,1))
 par(plt=c(0.15,0.95,0.2,0.95))
 plot(smi$Date,smi$r,xlab="",ylab="in percent",type="l")
-lines(smi$Date,-2*sqrt(estim.arch$h),col="red")
-lines(smi$Date,+2*sqrt(estim.arch$h),col="red")
+lines(smi$Date,-2*sqrt(estim.arch$h),col="red",lty=3)
+lines(smi$Date,+2*sqrt(estim.arch$h),col="red",lty=3)
 ```
+
 
 ## The GARCH model {#GARCH}
 

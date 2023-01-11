@@ -1,4 +1,4 @@
-# Non-Stationary Processes {#NonStat}
+# Non-stationary processes {#NonStat}
 
 In time series analysis, nonstationarity has several crucial implications. Indeed, various time-series regression procedures are not reliable anymore when processes are nonstationary. 
 
