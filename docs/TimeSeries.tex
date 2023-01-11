@@ -118,7 +118,7 @@
 
 \title{Introduction to Time Series}
 \author{Jean-Paul Renne}
-\date{2023-01-10}
+\date{2023-01-11}
 
 \usepackage{amsthm}
 \newtheorem{theorem}{Theorem}[chapter]
@@ -155,7 +155,7 @@ Codes associated with this course are part of the \texttt{AEC} package, which is
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{install.packages}\NormalTok{(}\StringTok{"devtools"}\NormalTok{) }\CommentTok{\# in case you do not have already loaded this package.}
+\FunctionTok{install.packages}\NormalTok{(}\StringTok{"devtools"}\NormalTok{) }\CommentTok{\# in case you do not have that one.}
 \FunctionTok{library}\NormalTok{(devtools)}
 \FunctionTok{install\_github}\NormalTok{(}\StringTok{"jrenne/AEC"}\NormalTok{)}
 \FunctionTok{library}\NormalTok{(AEC)}
@@ -2741,10 +2741,10 @@ Function \texttt{VAR.Boot} of package \texttt{VAR.etp} (\citet{VARetp}) can be u
 \end{Shaded}
 
 \begin{verbatim}
-##         inv(-1)   inc(-1)   con(-1)    inv(-2)   inc(-2)   con(-2)       const
-## [1,] -0.3091054 0.1729828 0.9509229 -0.1268992 0.2041839 0.9142982 -0.02007515
-## [2,] -0.3196310 0.1459888 0.9612190 -0.1605511 0.1146050 0.9343938 -0.01672199
-## [3,] -0.3196310 0.1459888 0.9612190 -0.1605511 0.1146050 0.9343938 -0.01672199
+##        inv(-1)   inc(-1)   con(-1)    inv(-2)   inc(-2)   con(-2)       const
+## [1,] -0.318624 0.1911445 0.9394235 -0.1528560 0.1649888 0.9141702 -0.01768261
+## [2,] -0.319631 0.1459888 0.9612190 -0.1605511 0.1146050 0.9343938 -0.01672199
+## [3,] -0.319631 0.1459888 0.9612190 -0.1605511 0.1146050 0.9343938 -0.01672199
 \end{verbatim}
 
 \hypertarget{forecasting}{%
@@ -3714,8 +3714,11 @@ di\_2 & -0.0393 & 0.5625 & 0.0828 & 0.1626\\
 Imporantly, one of the parameters associated with \(z_{t-1}\) (parameters that are called speeds of adjustement) is significant and with the expected signs: if the short term nominal interest rate \(i_t\) is high then \(z_t\) becomes positive (since, up to an intercept, \(z_t = i_t - \beta \pi_t\), where \(\beta\) comes from the first-step regression), but since \(B_{1,1}\) is negative (it is equal to -0.104), a positive \(z_t\) will generate a negative correction (i.e., \(B_{1,1}z_t\)) for \(i_{t+1}\) on date \(t+1\), thereby ``correcting'' the high level of \(i_t\).
 \end{example}
 
-\hypertarget{GARCH}{%
-\chapter{ARCH and GARCH Models}\label{GARCH}}
+\hypertarget{ARCHGARCH}{%
+\chapter{ARCH and GARCH Models}\label{ARCHGARCH}}
+
+\hypertarget{conditional-heteroskedasticity}{%
+\section{Conditional heteroskedasticity}\label{conditional-heteroskedasticity}}
 
 Many financial and macroeconomic variables are hit by shocks whose variance is not constant through time, i.e.~by \emph{heteroskedatic} shocks. Often, the conditional variance of shocks features a persistent behavior (volatility clustering). The observation that large shocks (in absolute value) tend to be followed by other important shocks has notably been established by \citet{Mandelbrot_1963}. Such a situation is illustrated by Figure \ref{fig:GARCHsmireturns}.
 
@@ -3725,174 +3728,258 @@ Autoregressive Conditional Heteroskedasticity (ARCH) and its generalized version
 \includegraphics[width=1\linewidth]{TimeSeries_files/figure-latex/GARCHsmireturns-1} \caption{Upper plot: SMI index (daily Close prices); lower plot: daily log returns.}\label{fig:GARCHsmireturns}
 \end{figure}
 
+In order to test whether a times series of shocks \(\{u_1,\dots,u_T\}\) features persistent conditional heteroskedasticity, a simple test has been designed by \citet{Engle_1982}. This test consists in regressing \(u_t^2\) on it last \(m\) lags (i.e., on \(u_{t-1}^2,\dots,u_{t-m}^2\)) by OLS.Under the null hypothesis that \(u_t\) is i.i.d., we have:
+\[
+T \times R^2 \overset{d}{\rightarrow} \chi^2(m),
+\]
+where \(R^2\) is the centered \(R^2\) of the OLS regression.
+
+Let us employ this test on the return series plotted in the lower panel of Figure \ref{fig:GARCHsmireturns}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(AEC);}\FunctionTok{data}\NormalTok{(smi)}
+\NormalTok{smi }\OtherTok{\textless{}{-}}\NormalTok{ smi[}\FunctionTok{complete.cases}\NormalTok{(smi),] }\CommentTok{\# remove NaNs}
+\NormalTok{T }\OtherTok{\textless{}{-}} \FunctionTok{dim}\NormalTok{(smi)[}\DecValTok{1}\NormalTok{]}
+\NormalTok{smi}\SpecialCharTok{$}\NormalTok{r }\OtherTok{\textless{}{-}} \DecValTok{100}\SpecialCharTok{*}\FunctionTok{c}\NormalTok{(}\ConstantTok{NaN}\NormalTok{,}\FunctionTok{log}\NormalTok{(smi}\SpecialCharTok{$}\NormalTok{Close[}\DecValTok{2}\SpecialCharTok{:}\NormalTok{T]}\SpecialCharTok{/}\NormalTok{smi}\SpecialCharTok{$}\NormalTok{Close[}\DecValTok{1}\SpecialCharTok{:}\NormalTok{(T}\DecValTok{{-}1}\NormalTok{)]))}
+\NormalTok{u }\OtherTok{\textless{}{-}}\NormalTok{ smi}\SpecialCharTok{$}\NormalTok{r}\SpecialCharTok{\^{}}\DecValTok{2}
+\NormalTok{u\_1 }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\ConstantTok{NaN}\NormalTok{,smi}\SpecialCharTok{$}\NormalTok{r[}\DecValTok{1}\SpecialCharTok{:}\NormalTok{(T}\DecValTok{{-}1}\NormalTok{)]}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{)}
+\NormalTok{u\_2 }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\ConstantTok{NaN}\NormalTok{,}\ConstantTok{NaN}\NormalTok{,smi}\SpecialCharTok{$}\NormalTok{r[}\DecValTok{1}\SpecialCharTok{:}\NormalTok{(T}\DecValTok{{-}2}\NormalTok{)]}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{)}
+\NormalTok{eq }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(u}\SpecialCharTok{\^{}}\DecValTok{2} \SpecialCharTok{\textasciitilde{}}\NormalTok{ u\_1}\SpecialCharTok{\^{}}\DecValTok{2} \SpecialCharTok{+}\NormalTok{ u\_2}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{)}
+\NormalTok{test.stat }\OtherTok{\textless{}{-}} \FunctionTok{length}\NormalTok{(u)}\SpecialCharTok{*}\FunctionTok{summary}\NormalTok{(eq)}\SpecialCharTok{$}\NormalTok{r.squared}
+\NormalTok{pvalue }\OtherTok{\textless{}{-}} \DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{pchisq}\NormalTok{(}\AttributeTok{q =}\NormalTok{ test.stat,}\AttributeTok{df=}\DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+The p-value is extremely close to zero. Hence we strongly reject the null of an i.i.d. SMI return.
+
+\hypertarget{ARCH}{%
+\section{The ARCH model}\label{ARCH}}
+
+\hypertarget{the-two-arch-specifications}{%
+\subsection{The two ARCH specifications}\label{the-two-arch-specifications}}
+
 Consider the auto-regressive process following:
 \begin{equation}
-    y_t = c + \phi_1 y_{t-1} + \dots + \phi_p y_{t-p} + u_t,\label{eq:linearreg}
-    \end{equation}
-where \(u_t\) is a white noise (Def. \ref{def:whitenoise}), i.e.~\(\mathbb{E}(u_t)=0\), \(\mathbb{E}(u_t^2)=\sigma^2\) and \(\mathbb{E}(u_t u_s)=0\) if \(s \ne t\).
-
-While the \emph{unconditional variance} of \(u_t\) is \(\sigma^2\), its \emph{conditional variance} can be time-varying.
+y_t = c + \phi_1 y_{t-1} + \dots + \phi_p y_{t-p} + u_t,\label{eq:linearreg}
+\end{equation}
+where \(u_t\) is a white noise (Def. \ref{def:whitenoise}), i.e.~\(\mathbb{E}(u_t)=0\), \(\mathbb{E}(u_t^2)=\sigma^2\) and \(\mathbb{E}(u_t u_s)=0\) if \(s \ne t\). Importantly, note that while the \emph{unconditional variance} of \(u_t\) is \(\sigma^2\), its \emph{conditional variance} can be time-varying. This is the case in the context of (G)ARCH models.
 
 In the ARCH(m) model, \(u_t\) follows:
 \begin{equation}
-    u_t^2 = \zeta + \alpha_1 u_{t-1}^2 + \dots + \alpha_m u_{t-m}^2 + w_t,\label{eq:ut2}
-    \end{equation}
+u_t^2 = \zeta + \alpha_1 u_{t-1}^2 + \dots + \alpha_m u_{t-m}^2 + w_t,\label{eq:ut2}
+\end{equation}
 where \(w_t\) is a non-autocorrelated white noise process that is exogenous to \(u_t\), in the sense that:
 \[
-    \mathbb{E}(w_t|u_{t-1},u_{t-2},\dots)=0.
-    \]
-
+\mathbb{E}(w_t|u_{t-1},u_{t-2},\dots)=0.
+\]
 In this case:
 \begin{equation}
-    \mathbb{E}(u_t^2|u_{t-1},u_{t-2},\dots) = \zeta + \alpha_1 u_{t-1}^2 + \dots + \alpha_m u_{t-m}^2.\label{eq:condvar}
-    \end{equation}
+\mathbb{E}(u_t^2|u_{t-1},u_{t-2},\dots) = \zeta + \alpha_1 u_{t-1}^2 + \dots + \alpha_m u_{t-m}^2.\label{eq:condvar}
+\end{equation}
 
-\(\zeta + \alpha_1 u_{t-1}^2 + \dots + \alpha_m u_{t-m}^2 + w_t\) has to be nonnegative for all realisations of \(\{u_t\}\). This is the case if \(w_t > -\zeta\), with \(\zeta>0\) and if \(\alpha_i\ge0\) for \(i \in \{1,\dots,m\}\).
-
-\(u_t^2\) is covariance-stationary if the roots of:
+For Eq. \eqref{eq:ut2} to make sense, it has to be the case that
 \[
-    g(z)=1 - \alpha_1 z - \dots - \alpha_m z^m = 0
-    \]
-lie outside the unit circle (Prop. \ref{thm:stability}).
-
-We have \(g(0)=1\) and \(g(1)=1-\sum_i \alpha_i\). A necessary condition for not having a root between 0 and 1 is that \(\sum_i \alpha_i<1\).
-
-This is also a sufficient condition. Indeed, for \(z \in [-1,1]\), we have:
+\zeta + \alpha_1 u_{t-1}^2 + \dots + \alpha_m u_{t-m}^2 + w_t \le 0
+\]
+for all realisations of \(\{u_t\}\). This is the case if \(w_t > -\zeta\), with \(\zeta>0\), and if \(\alpha_i \ge 0\) for \(i \in \{1,\dots,m\}\). Assuming this is the case, \(u_t^2\) is covariance-stationary if the roots of:
 \[
-    1 - \alpha_1 z - \dots - \alpha_m z^m \ge 1 - \sum_i |\alpha_iz^i| \ge 1 - \sum_i \alpha_i > 0.
-    \]
+g(z) = 1 - \alpha_1 z - \dots - \alpha_m z^m = 0
+\]
+lie outside the unit circle (Prop. \ref{thm:stability}). A necessary condition for not having a root between 0 and 1 is that \(\sum_i \alpha_i<1\).\footnote{If we have \(1-\sum_i \alpha_i \le 0\), then \(g(1) \le 0\). We would then have \(g(0)=1>0\) and \(g(1)\le 0\). Since \(g\) is continuous, this would imply that \(\exists z \in [0,1]\) s.t. \(g(z)=0\).} This is also a sufficient condition.\footnote{Indeed, for \(z \in [-1,1]\), we have \(1 - \alpha_1 z - \dots - \alpha_m z^m \ge 1 - \sum_i |\alpha_iz^i| \ge 1 - \sum_i \alpha_i > 0\).}
 
 If \(w_t > -\zeta\), with \(\zeta>0\), \(\alpha_i\ge0\) for \(i \in \{1,\dots,m\}\) and \(\sum_i \alpha_i<1\), then the unconditional variance of \(u_t\) is:
 \[
-    \sigma^2 = \mathbb{E}(u_t^2) = \frac{\zeta}{1 - \sum_{i=1}^m \alpha_i}.
-    \]
+\sigma^2 = \mathbb{E}(u_t^2) = \frac{\zeta}{1 - \sum_{i=1}^m \alpha_i}.
+\]
 
-Alternative representation of an ARCH(m) process:
+An alternative representation of an ARCH(m) process is as follows:
 \begin{equation}
-    u_t = \sqrt{h_t}v_t,\label{eq:uhv}
-    \end{equation}
+u_t = \sqrt{h_t}v_t,\label{eq:uhv}
+\end{equation}
 where \(v_t\) is an i.i.d. sequence with zero mean and unit variance, i.e.:
 \[
-    \mathbb{E}(v_t) = 0, \quad \mathbb{E}(v_t^2) = 1.
-    \]
+\mathbb{E}(v_t) = 0, \quad \mathbb{E}(v_t^2) = 1.
+\]
 If \(h_t\) follows:
 \begin{equation}
-    h_t = \zeta + \alpha_1 u_{t-1}^2 + \dots + \alpha_m u_{t-m}^2,\label{eq:hARCH}
-    \end{equation}
-then Eq. \eqref{eq:condvar} is also true.
+h_t = \zeta + \alpha_1 u_{t-1}^2 + \dots + \alpha_m u_{t-m}^2,\label{eq:hARCH}
+\end{equation}
+then Eq. \eqref{eq:condvar} is also true. Since \(u_t^2 = h_t v_t^2\), Eq. \eqref{eq:ut2} holds with \(w_t = h_t (v_t^2-1)\). This alternative representation is convenient because \(v_t\) is not necessarily bounded.
 
-Since \(u_t^2 = h_t v_t^2\), Eq. \eqref{eq:ut2} holds with \(w_t = h_t (v_t^2-1)\).
-
-This alternative representation is convenient because \(v_t\) is not necessarily bounded.
-
-Maximum Likelihood Estimation of an ARCH
+\hypertarget{maximum-likelihood-estimation-of-an-arch-process}{%
+\subsection{Maximum Likelihood Estimation of an ARCH process}\label{maximum-likelihood-estimation-of-an-arch-process}}
 
 Assume the complete model is:
 \[
-    y_t = \mathbf{x}_t'\boldsymbol\beta + u_t,
-    \]
+y_t = \mathbf{x}_t'\boldsymbol\beta + u_t,
+\]
 where \(\mathbf{x}_t\) is a \(k \times 1\) vector of explanatory variables and \(u_t\) is as specified in Eq. \eqref{eq:uhv}.
 
-To write the likelihood function, it is convenient to condition on the first \(m\) observations. Let us denote by \(\mathcal{I}_t\) the following set of information:
+To write the likelihood function, it is convenient to condition on the first \(m\) observations. Let us denote by \(\mathcal{I}_t\) the following information set:
 \[
-    \mathcal{I}_t = (y_t,y_{t-1},\dots,y_0,y_{-1},\dots,y_{-m+1}, \mathbf{x}_t,\mathbf{x}_{t-1},\dots,\mathbf{x}_0,\mathbf{x}_{-1},\dots,\mathbf{x}_{-m+1}).
-    \]
+\mathcal{I}_t = (y_t,y_{t-1},\dots,y_0,y_{-1},\dots,y_{-m+1}, \mathbf{x}_t,\mathbf{x}_{t-1},\dots,\mathbf{x}_0,\mathbf{x}_{-1},\dots,\mathbf{x}_{-m+1}).
+\]
 
 If \(v_t \sim \mathcal{N}(0,1)\), we have, for \(t\ge1\):
 \begin{equation}
-    f(y_t|\mathbf{x_t},\mathcal{I}_{t-1}) = \frac{1}{\sqrt{2 \pi h_t}}\exp\left(\frac{-(y_t-\mathbf{x}_t'\boldsymbol\beta)^2}{2h_t}\right),\label{eq:densityN}
-    \end{equation}
+f(y_t|\mathbf{x_t},\mathcal{I}_{t-1}) = \frac{1}{\sqrt{2 \pi h_t}}\exp\left(\frac{-(y_t-\mathbf{x}_t'\boldsymbol\beta)^2}{2h_t}\right),\label{eq:densityN}
+\end{equation}
 where \(h_t\) is given by:
 \[
-    h_t = \zeta + \alpha_1 (y_{t-1} - \mathbf{x}_{t-1}'\boldsymbol\beta)^2 + \dots + \alpha_m (y_{t-m} - \mathbf{x}_{t-m}'\boldsymbol\beta)^2.
-    \]
+h_t = \zeta + \alpha_1 (y_{t-1} - \mathbf{x}_{t-1}'\boldsymbol\beta)^2 + \dots + \alpha_m (y_{t-m} - \mathbf{x}_{t-m}'\boldsymbol\beta)^2.
+\]
 
 The log likelihood function is given by:
 \[
-    \log \mathcal{L}(\theta) = \sum_{t=1}^T \log(f(y_t|\mathbf{x_t},\mathcal{I}_{t-1})),
-    \]
-where \(\theta\), the vector of unknown parameters, is \([\boldsymbol\beta',\zeta,\alpha_1,\dots,\alpha_m]'\).
+\log \mathcal{L}(\theta) = \sum_{t=1}^T \log(f(y_t|\mathbf{x_t},\mathcal{I}_{t-1})),
+\]
+where \(\theta\), the vector of unknown parameters, is \([\boldsymbol\beta',\zeta,\boldsymbol\alpha']'\), where \(\boldsymbol\alpha=[\alpha_1,\dots,\alpha_m]'\). The maximisation of the log likelihood is performed numerically.
 
-The maximisation of the log likelihood is performed numerically.
+Note that one can also use non-Gaussian distributions for \(v_t\). (For that, one has to replace the normal distribution in Eq. \eqref{eq:densityN}.)
 
-Alternative distributions of \(v_t\) can be used (instead of the normal distribution, used in Eq. \eqref{eq:densityN}).
-
-Remark: If \(v_t\) is Gaussian, \(u_t\) is conditionally Gaussian but is not unconditionally Gaussian.
-
-If needed, alternative distributions of \(v_t\) can be used (instead of the normal distribution).
-
-One can test whether a time series exhibit time-varying heteroskedasticity.
-
-Consider the context of Eq. @ref(eq:linear\_reg). \citet{Engle_1982} proposes the following test:
-
-\begin{enumerate}
-\def\labelenumi{\alph{enumi}.}
-\tightlist
-\item
-  Estimate Eq. \eqref{eq:linearreg} by OLS. The residuals of this regression are denoted by \(\hat{u}_t\).
-\item
-  Regress \(\hat{u}_t^2\) on \(\{1,\hat{u}_{t-1}^2,\hat{u}_{t-2}^2,\dots,\hat{u}_{t-m}^2\}\).
-\item
-  Under the null hypothesis that \(u_t\) is i.i.d., we have:
-  \[
-       T \times R^2 \overset{d}{\rightarrow} \chi^2(m),
-       \]
-  where \(R^2\) is the centered \(R^2\) of the OLS regression.
-\end{enumerate}
-
-\hypertarget{garch-models}{%
-\section{GARCH models}\label{garch-models}}
-
-One can generalize the model and replace Eq. \eqref{eq:hARCH} with:
-\begin{eqnarray}
-    h_t &=& (1-\delta_1 - \delta_2 - \dots - \delta_r) \zeta + \nonumber \\
-    &&\delta_1 h_{t-1} + \delta_2 h_{t-2} + \dots + \delta_r h_{t-r} + \nonumber \\
-    &&\alpha_1 u_{t-1}^2 + \dots + \alpha_m u_{t-m}^2. \label{eq:hGARCH}
-    \end{eqnarray}
-
-This generalised autoregressive conditional heteroskedasticity model is denoted by GARCH(r,m).
-
-Denoting \(u_t^2 - h_t\) by \(w_t\) and \((1-\delta_1 - \dots - \delta_r) \zeta\) by \(\kappa\), it can be checked that:
-\begin{eqnarray}
-    u_t^2 &=& \kappa + (\delta_1 + \alpha_1)u_{t-1}^2 + (\delta_2 + \alpha_2)u_{t-2}^2 + \dots \nonumber \\
-    && + (\delta_p + \alpha_p)u_{t-p}^2 + w_t - \delta_1 w_{t-1} - \dots - \delta_r w_{t-r},
-    \end{eqnarray}
-where \(p=max(m,r)\), \(\alpha_j=0\) for \(j>m\) and \(\delta_j=0\) for \(j>r\).
-
-Remark: \(w_t=h_t(v_t^2 - 1)\) is a martingale difference sequence (see Def. \ref{def:MDS}) because \(v_t\) is a zero-mean unit-root i.i.d. sequence.
-
-Non-negativity is satisfied (in particular) if \(\kappa>0\), \(\alpha_j \ge 0\), \(\delta_j \ge 0\) for \(j \le p\) (easier to see in Eq. \eqref{eq:hGARCH}).
+Let us fit an ARCH(2) model on the SMI return data (lower plot of Figure \ref{fig:GARCHsmireturns}). For this, we make use of function \texttt{compute.garch} of package \texttt{AEC}. This function takes four arguments:
 
 \begin{itemize}
 \tightlist
 \item
-  \(u_t^2\) follows an ARMA(p,r) process.
+  vector \texttt{theta} contains the model parameterization: first, \(\zeta\), then the \(\alpha_i\)'s, then for GARCH models (see Subsection \ref{GARCH} below), the \(\delta_i\)'s.
 \item
-  \(u_t^2\) is covariance stationary if the roots of:
-  \[
-    1 - (\delta_1 + \alpha_1)z - \dots - (\delta_1 + \alpha_1)z^p = 0
-    \]
-  lie outside the unit circle (Prop. \ref{thm:stability}).
+  vector \texttt{x} contains the observations of the process.
+\item
+  \texttt{m} is the number of lags in the ARCH specification.
+\item
+  \texttt{r} is the number of lags in the GARCH specification (see Subsection \ref{GARCH} below).
 \end{itemize}
 
-Because the \(\delta_i + \alpha_i\) are nonnegative, we must have (using the same reasoning as in Slide XXX):
-\[
-    \sum_i \delta_i + \sum_i \alpha_i < 1.
-    \]
+Function \texttt{compute.garch} returns a list, one entry of each is the log-likelihood associated with a parameterization \([\zeta,\boldsymbol\alpha']'\), the second being the resulting sequence of \(h_t\)'s (see Eq. \eqref{eq:hARCH}). Let us create a function that returns only the log-likelihood:
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{loglik }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(theta,x,m,r)\{}
+  \CommentTok{\# first parameter of theta: zeta}
+  \CommentTok{\# next: alpha\textquotesingle{}s (ARCH)}
+  \CommentTok{\# next: delta\textquotesingle{}s (GARCH)}
+\NormalTok{  Garch }\OtherTok{\textless{}{-}} \FunctionTok{compute.garch}\NormalTok{(theta,x,m,r)}
+  \FunctionTok{return}\NormalTok{(Garch}\SpecialCharTok{$}\NormalTok{logf)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+Now, let us maximize the log-likelihood:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{m }\OtherTok{\textless{}{-}} \DecValTok{2}
+\NormalTok{r }\OtherTok{\textless{}{-}} \DecValTok{0} \CommentTok{\# for ARCH models, r=0}
+\NormalTok{smi }\OtherTok{\textless{}{-}}\NormalTok{ smi[}\DecValTok{4000}\SpecialCharTok{:}\FunctionTok{dim}\NormalTok{(smi)[}\DecValTok{1}\NormalTok{],] }\CommentTok{\# reduce sample}
+\NormalTok{par0 }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\FloatTok{0.62}\NormalTok{,}\FloatTok{0.2}\NormalTok{,}\FloatTok{0.2}\NormalTok{)}
+\NormalTok{res.opt }\OtherTok{\textless{}{-}} \FunctionTok{optim}\NormalTok{(}\AttributeTok{par=}\NormalTok{par0,}\AttributeTok{x=}\NormalTok{smi}\SpecialCharTok{$}\NormalTok{r,}\AttributeTok{m=}\NormalTok{m,}\AttributeTok{r=}\NormalTok{r,loglik,}
+                 \AttributeTok{method=}\StringTok{"BFGS"}\NormalTok{,}\AttributeTok{hessian=}\ConstantTok{TRUE}\NormalTok{,}
+                 \AttributeTok{control =} \FunctionTok{list}\NormalTok{(}\AttributeTok{trace=}\ConstantTok{TRUE}\NormalTok{,}\AttributeTok{maxit =} \DecValTok{10}\NormalTok{))}
+\NormalTok{estim.param }\OtherTok{\textless{}{-}}\NormalTok{ res.opt}\SpecialCharTok{$}\NormalTok{par}
+\NormalTok{std.dev }\OtherTok{\textless{}{-}} \FunctionTok{sqrt}\NormalTok{(}\FunctionTok{diag}\NormalTok{(}\FunctionTok{solve}\NormalTok{(res.opt}\SpecialCharTok{$}\NormalTok{hessian)))}
+\NormalTok{t.stat }\OtherTok{\textless{}{-}}\NormalTok{ estim.param}\SpecialCharTok{/}\NormalTok{std.dev}
+\end{Highlighting}
+\end{Shaded}
+
+Table \ref{tab:estimGARCH2} reports the estimated parameters and their standard deviation. Figure \ref{fig:estimGARCH3} displays the resulting 95\% confidence intervals (i.e., \(\pm 2 \sqrt{h_t}\)).
+
+\begin{table}
+
+\caption{\label{tab:estimGARCH2}ARCH(2), ML estimation results.
+             Data: SMI daily returns.}
+\centering
+\begin{tabular}[t]{l|r|r|r}
+\hline
+  & Estim. param. & Std dev. & t-stat\\
+\hline
+zeta & 0.6042 & 0.0230 & 26.3054\\
+\hline
+alpha1 & 0.2939 & 0.0289 & 10.1704\\
+\hline
+alpha2 & 0.2321 & 0.0250 & 9.2838\\
+\hline
+\end{tabular}
+\end{table}
+
+\begin{figure}
+\includegraphics{TimeSeries_files/figure-latex/estimGARCH3-1} \caption{SMI daily returns (in black) and, in red, 95\% confidence interval based on the ARCH(2) estimated model ($\pm 2 \sqrt{h_t}$).}\label{fig:estimGARCH3}
+\end{figure}
+
+\hypertarget{GARCH}{%
+\section{The GARCH model}\label{GARCH}}
+
+One can generalize the model and replace Eq. \eqref{eq:hARCH} with:
+\begin{eqnarray}
+h_t &=& (1-\delta_1 - \delta_2 - \dots - \delta_r) \zeta + \nonumber \\
+&&\delta_1 h_{t-1} + \delta_2 h_{t-2} + \dots + \delta_r h_{t-r} + \nonumber \\
+&&\alpha_1 u_{t-1}^2 + \dots + \alpha_m u_{t-m}^2. \label{eq:hGARCH}
+\end{eqnarray}
+This generalised autoregressive conditional heteroskedasticity model is denoted by GARCH(r,m). Non-negativity is satisfied as soon as \(\kappa>0\), \(\alpha_j \ge 0\), \(\delta_j \ge 0\) for \(j \le p\).
+
+Denoting \(u_t^2 - h_t\) by \(w_t\), and \((1-\delta_1 - \dots - \delta_r) \zeta\) by \(\kappa\), it can be checked that:\footnote{Note that \(w_t=h_t(v_t^2 - 1)\) is a martingale difference sequence (see Def. \ref{def:MDS}) because \(v_t\) is a zero-mean unit-root i.i.d. sequence.}
+\begin{eqnarray}
+u_t^2 &=& \kappa + (\delta_1 + \alpha_1)u_{t-1}^2 + (\delta_2 + \alpha_2)u_{t-2}^2 + \dots \nonumber \\
+&& + (\delta_p + \alpha_p)u_{t-p}^2 + w_t - \delta_1 w_{t-1} - \dots - \delta_r w_{t-r},
+\end{eqnarray}
+where \(p=max(m,r)\), \(\alpha_j=0\) for \(j>m\) and \(\delta_j=0\) for \(j>r\).
+
+We have \(w_t = h_t(v_t^2 - 1)\). Under regularity assumptions, \(\{w_t\}\) is a white noise. Hence, \(u_t^2\) follows an ARMA(p,r) process. Accordingly, it comes that \(u_t^2\) is covariance stationary if the roots of:
+\[
+1 - (\delta_1 + \alpha_1)z - \dots - (\delta_1 + \alpha_1)z^p = 0
+\]
+lie outside the unit circle (Prop. \ref{thm:stability}). When the \(\delta_i + \alpha_i\) are nonnegative, and using the same reasoning as for ARCH models, this is the case iff:
+\[
+\sum_i \delta_i + \sum_i \alpha_i < 1.
+\]
 In that case, the unconditional variance of \(u_t\), i.e.~the unconditional mean of \(u_t^2\), is:
 \[
-    \mathbb{E}(u_t^2) = \sigma^2 = \frac{\kappa}{1 - \sum_i \delta_i - \sum_i \alpha_i}.
-    \]
+\mathbb{E}(u_t^2) = \sigma^2 = \frac{\kappa}{1 - \sum_i \delta_i - \sum_i \alpha_i}.
+\]
 
-Another extension of the ARCH model is the ARCH-in-Mean, or ARCH-M model. That model is close to that specified by Eqs. \eqref{eq:linearreg}, \eqref{eq:uhv} and \eqref{eq:hARCH}, but allowing for a potential effect of \(h_t\) on \(\mathbb{E}_{t-1}(y_{t})\).
+GARCH models can also be estimated by the ML approach.Table \ref{tab:estimGARCH2X} reports the estimated parameters when fitting an GARCH(1,1) model on the SMI return dataset. Figure
 
-Such a model reads:
+Figure \ref{fig:estimGARCH3X} compare the condiitonal standard deviations (\(\sqrt{h_t}\)) resulting from the ARCH(2) and the GARCH(1,1) specifications.
+
+\begin{verbatim}
+## initial  value 5703.217726 
+## iter  10 value 5359.604659
+## final  value 5359.604659 
+## stopped after 10 iterations
+\end{verbatim}
+
+\begin{table}
+
+\caption{\label{tab:estimGARCH2X}ARCH(2), ML estimation results.
+             Data: SMI daily returns.}
+\centering
+\begin{tabular}[t]{l|r|r|r}
+\hline
+  & Estim. param. & Std dev. & t-stat\\
+\hline
+zeta & 0.2195 & 0.0216 & 10.1753\\
+\hline
+alpha1 & 0.1450 & 0.0152 & 9.5297\\
+\hline
+delta1 & 0.8299 & 0.0152 & 54.5175\\
+\hline
+\end{tabular}
+\end{table}
+
+\begin{figure}
+\includegraphics{TimeSeries_files/figure-latex/estimGARCH3X-1} \caption{Estimated conditional standard deviations ($\sqrt{h_t}$) of SMI daily returns: ARCH(2) [black line] and GARCH(11) [dotted red line] specifications.}\label{fig:estimGARCH3X}
+\end{figure}
+
+\hypertarget{arch-in-mean}{%
+\subsection{ARCH-in-mean}\label{arch-in-mean}}
+
+Another extension of the ARCH model is the \textbf{ARCH-in-Mean}, or ARCH-M model. That model is close to that specified by Eqs. \eqref{eq:linearreg}, \eqref{eq:uhv} and \eqref{eq:hARCH}, but it also allows for a potential effect of \(h_t\) on \(\mathbb{E}_{t-1}(y_{t})\):
 \begin{eqnarray*}
-    y_t &=& c + \phi_1 y_{t-1} + \dots + \phi_p y_{t-p} + {\color{blue}\delta h_t}+ u_t \\
-    u_t &=& \sqrt{h_t} v_t \\
-    h_t &=& \zeta + \alpha_1 u_{t-1}^2 + \dots + \alpha_m u_{t-m}^2,
-    \end{eqnarray*}
+y_t &=& c + \phi_1 y_{t-1} + \dots + \phi_p y_{t-p} + {\color{blue}\delta h_t}+ u_t \\
+u_t &=& \sqrt{h_t} v_t \\
+h_t &=& \zeta + \alpha_1 u_{t-1}^2 + \dots + \alpha_m u_{t-m}^2,
+\end{eqnarray*}
 where \(v_t\) is a zero-mean unit-variance i.i.d. sequence.
 
 \hypertarget{append}{%

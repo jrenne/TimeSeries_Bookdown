@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999994 (TeX Live 2022) (preloaded format=xelatex 2023.1.3)  10 JAN 2023 16:44
+This is XeTeX, Version 3.141592653-2.6-0.999994 (TeX Live 2022) (preloaded format=xelatex 2023.1.3)  11 JAN 2023 17:10
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -980,23 +980,23 @@ Underfull \hbox (badness 4819) in paragraph at lines 2691--2693
  []
 
 [80]
-Overfull \hbox (110.57982pt too wide) in paragraph at lines 2748--2748
-[]\TU/lmtt/m/n/12 ##         inv(-1)   inc(-1)   con(-1)    inv(-2)   inc(-2)   con(-2)       const[] 
+Overfull \hbox (104.39983pt too wide) in paragraph at lines 2748--2748
+[]\TU/lmtt/m/n/12 ##        inv(-1)   inc(-1)   con(-1)    inv(-2)   inc(-2)   con(-2)       const[] 
  []
 
 
-Overfull \hbox (110.44797pt too wide) in paragraph at lines 2748--2748
-[]\TU/lmtt/m/n/12 ## [1,] -0.3091054 0.1729828 0.9509229 -0.1268992 0.2041839 0.9142982 -0.02007515[] 
+Overfull \hbox (104.27997pt too wide) in paragraph at lines 2748--2748
+[]\TU/lmtt/m/n/12 ## [1,] -0.318624 0.1911445 0.9394235 -0.1528560 0.1649888 0.9141702 -0.01768261[] 
  []
 
 
-Overfull \hbox (110.42395pt too wide) in paragraph at lines 2748--2748
-[]\TU/lmtt/m/n/12 ## [2,] -0.3196310 0.1459888 0.9612190 -0.1605511 0.1146050 0.9343938 -0.01672199[] 
+Overfull \hbox (104.24396pt too wide) in paragraph at lines 2748--2748
+[]\TU/lmtt/m/n/12 ## [2,] -0.319631 0.1459888 0.9612190 -0.1605511 0.1146050 0.9343938 -0.01672199[] 
  []
 
 
-Overfull \hbox (110.42395pt too wide) in paragraph at lines 2748--2748
-[]\TU/lmtt/m/n/12 ## [3,] -0.3196310 0.1459888 0.9612190 -0.1605511 0.1146050 0.9343938 -0.01672199[] 
+Overfull \hbox (104.24396pt too wide) in paragraph at lines 2748--2748
+[]\TU/lmtt/m/n/12 ## [3,] -0.319631 0.1459888 0.9612190 -0.1605511 0.1146050 0.9343938 -0.01672199[] 
  []
 
 [81] [82
@@ -1090,126 +1090,137 @@ File: TimeSeries_files/figure-latex/GARCHsmireturns-1.pdf Graphic file (type pdf
 <use TimeSeries_files/figure-latex/GARCHsmireturns-1.pdf>
 [117
 
-] [118]
+] [118] [119]
 
-LaTeX Warning: Reference `thm:stability' on page 119 undefined on input line 3756.
+LaTeX Warning: Reference `thm:stability' on page 120 undefined on input line 3789.
 
-[119] [120]
+[120]
+Underfull \hbox (badness 3229) in paragraph at lines 3836--3838
+\TU/lmr/m/n/12 where $[]$, the vector of unknown parameters, is $[][][][] [][] [][][][]$, where
+ []
 
-LaTeX Warning: Reference `thm:stability' on page 121 undefined on input line 3875.
+[121]
+File: TimeSeries_files/figure-latex/estimGARCH3-1.pdf Graphic file (type pdf)
+<use TimeSeries_files/figure-latex/estimGARCH3-1.pdf>
+[122] [123]
 
-[121] [122]
+LaTeX Warning: Reference `thm:stability' on page 124 undefined on input line 3932.
+
+[124]
+File: TimeSeries_files/figure-latex/estimGARCH3X-1.pdf Graphic file (type pdf)
+<use TimeSeries_files/figure-latex/estimGARCH3X-1.pdf>
+[125] [126]
 Chapter 8.
 
 Underfull \vbox (badness 1147) has occurred while \output is active []
 
-[123
+[127
 
-] [124] [125]
+] [128] [129]
 File: TimeSeries_files/figure-latex/USydsPCA1-1.pdf Graphic file (type pdf)
 <use TimeSeries_files/figure-latex/USydsPCA1-1.pdf>
-[126] [127]
-Overfull \hbox (8.45407pt too wide) in alignment at lines 4115--4119
+[130] [131]
+Overfull \hbox (8.45407pt too wide) in alignment at lines 4202--4206
  [][][] []
  []
 
-[128] [129] [130]
-Overfull \hbox (0.5146pt too wide) in paragraph at lines 4257--4258
+[132] [133] [134]
+Overfull \hbox (0.5146pt too wide) in paragraph at lines 4344--4345
 []$[] [] [] [][][][]$ \TU/lmr/m/n/12 is a convex function. Therefore $[][][][] [] [][][][][][][][][][][] []
  []
 
-[131]
+[135]
 File: TimeSeries_files/figure-latex/Cauchy-1.pdf Graphic file (type pdf)
 <use TimeSeries_files/figure-latex/Cauchy-1.pdf>
-[132]
+[136]
 Underfull \vbox (badness 7099) has occurred while \output is active []
 
-[133] [134]
+[137] [138]
 
-Package hyperref Warning: Suppressing link with empty target on input line 4426.
+Package hyperref Warning: Suppressing link with empty target on input line 4513.
 
-[135] [136] [137] [138]
+[139] [140] [141] [142]
 File: TimeSeries_files/figure-latex/inverseMills-1.pdf Graphic file (type pdf)
 <use TimeSeries_files/figure-latex/inverseMills-1.pdf>
 
-LaTeX Warning: Reference `prp:MLEproperties' on page 139 undefined on input line 4597.
+LaTeX Warning: Reference `prp:MLEproperties' on page 143 undefined on input line 4684.
 
 
-LaTeX Warning: Reference `hyp:MLEregularity' on page 139 undefined on input line 4600.
+LaTeX Warning: Reference `hyp:MLEregularity' on page 143 undefined on input line 4687.
 
-[139] [140]
+[143] [144]
 
-LaTeX Warning: Reference `prp:Walddistri' on page 141 undefined on input line 4638.
-
-
-LaTeX Warning: Reference `(' on page 141 undefined on input line 4641.
-
-[141]
-
-LaTeX Warning: Reference `prp:LMdistri' on page 142 undefined on input line 4665.
-
-[142] [143]
-
-LaTeX Warning: Reference `eq:xiLM' on page 144 undefined on input line 4728.
+LaTeX Warning: Reference `prp:Walddistri' on page 145 undefined on input line 4725.
 
 
-LaTeX Warning: Reference `prp:equivLRLMW' on page 144 undefined on input line 4731.
-
-[144]
-
-LaTeX Warning: Reference `(' on page 145 undefined on input line 4768.
-
-
-LaTeX Warning: Reference `(' on page 145 undefined on input line 4783.
-
-
-Overfull \hbox (33.54968pt too wide) in alignment at lines 4803--4809
- [][][] []
- []
+LaTeX Warning: Reference `(' on page 145 undefined on input line 4728.
 
 [145]
-Overfull \hbox (68.05292pt too wide) in alignment at lines 4822--4827
+
+LaTeX Warning: Reference `prp:LMdistri' on page 146 undefined on input line 4752.
+
+[146] [147]
+
+LaTeX Warning: Reference `eq:xiLM' on page 148 undefined on input line 4815.
+
+
+LaTeX Warning: Reference `prp:equivLRLMW' on page 148 undefined on input line 4818.
+
+[148]
+
+LaTeX Warning: Reference `(' on page 149 undefined on input line 4855.
+
+
+LaTeX Warning: Reference `(' on page 149 undefined on input line 4870.
+
+
+Overfull \hbox (33.54968pt too wide) in alignment at lines 4890--4896
  [][][] []
  []
 
-[146]
-Overfull \hbox (36.3554pt too wide) detected at line 4836
+[149]
+Overfull \hbox (68.05292pt too wide) in alignment at lines 4909--4914
+ [][][] []
+ []
+
+[150]
+Overfull \hbox (36.3554pt too wide) detected at line 4923
 [] [] [] [] [] [][][][]
  []
 
-[147]
-Overfull \hbox (6.7202pt too wide) in paragraph at lines 4868--4870
+[151]
+Overfull \hbox (6.7202pt too wide) in paragraph at lines 4955--4957
 \TU/lmr/m/n/12 This implies that $[][][][][] [] [][][][][]$ is always larger than $[][]$[],
  []
 
 
-LaTeX Warning: Reference `prp:multivarG' on page 148 undefined on input line 4875.
+LaTeX Warning: Reference `prp:multivarG' on page 152 undefined on input line 4962.
 
 
-LaTeX Warning: Reference `XXX' on page 148 undefined on input line 4875.
+LaTeX Warning: Reference `XXX' on page 152 undefined on input line 4962.
 
-[148] [149]
+[152] [153]
 
-LaTeX Warning: Reference `fig:GEV' on page 150 undefined on input line 4938.
+LaTeX Warning: Reference `fig:GEV' on page 154 undefined on input line 5025.
 
-[150] [151]
-Overfull \hbox (87.66412pt too wide) in paragraph at lines 5019--5084
+[154] [155]
+Overfull \hbox (87.66412pt too wide) in paragraph at lines 5106--5171
  [][] 
  []
 
 
-Overfull \hbox (47.19214pt too wide) in paragraph at lines 5143--5190
+Overfull \hbox (47.19214pt too wide) in paragraph at lines 5230--5277
  [][] 
  []
 
 
-Overfull \hbox (138.59213pt too wide) in paragraph at lines 5196--5249
+Overfull \hbox (138.59213pt too wide) in paragraph at lines 5283--5336
  [][] 
  []
 
-(./TimeSeries.bbl [152] [153] [154] [155] [156] [157
+(./TimeSeries.bbl [156] [157] [158] [159] [160] [161
 
-] [158] [159]) [160] (./TimeSeries.aux)
+] [162] [163]) [164] (./TimeSeries.aux)
 
 LaTeX Warning: There were undefined references.
 
@@ -1217,15 +1228,15 @@ LaTeX Warning: There were undefined references.
 LaTeX Warning: There were multiply-defined labels.
 
 Package rerunfilecheck Info: File `TimeSeries.out' has not changed.
-(rerunfilecheck)             Checksum: 316281FF90FA9ADB1DA152EE1487B7FC;3474.
+(rerunfilecheck)             Checksum: 722E58E8095A417C71648175EA04BD42;3831.
  ) 
 Here is how much of TeX's memory you used:
- 18289 strings out of 478777
- 341913 string characters out of 5850045
+ 18318 strings out of 478777
+ 343111 string characters out of 5850045
  1957979 words of memory out of 5000000
- 38009 multiletter control sequences out of 15000+600000
+ 38036 multiletter control sequences out of 15000+600000
  521255 words of font info for 112 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  86i,13n,121p,968b,586s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on TimeSeries.pdf (160 pages).
+Output written on TimeSeries.pdf (164 pages).

@@ -1,209 +1,253 @@
-# ARCH and GARCH Models {#GARCH}
+# ARCH and GARCH Models {#ARCHGARCH}
+
+## Conditional heteroskedasticity
 
 Many financial and macroeconomic variables are hit by shocks whose variance is not constant through time, i.e. by *heteroskedatic* shocks. Often, the conditional variance of shocks features a persistent behavior  (volatility clustering). The observation that large shocks (in absolute value) tend to be followed by other important shocks has notably been established by @Mandelbrot_1963. Such a situation is illustrated by Figure \@ref(fig:GARCHsmireturns).
 
 Autoregressive Conditional Heteroskedasticity (ARCH) and its generalized version (GARCH) constitute useful tools to model such time series.
 
 ```{r GARCHsmireturns, echo=FALSE, fig.cap="Upper plot: SMI index (daily Close prices); lower plot: daily log returns.", fig.asp = .6, out.width = "100%", fig.align = 'left-aligned'}
-all.rho <- c(0,.7,.999)
+library(AEC);data(smi)
 par(plt=c(0.1,0.95,0.2,0.75))
-library(AEC)
+smi <- smi[complete.cases(smi),] # remove NaNs
 T <- dim(smi)[1]
 smi$r <- 100*c(NaN,log(smi$Close[2:T]/smi$Close[1:(T-1)]))
 par(plt=c(.15,.95,.2,.95));par(mfrow=c(2,1))
 plot(smi$Date,smi$Close,type="l",xlab="",ylab="",las=1)
 plot(smi$Date,smi$r,type="l",ylab="in percent",xlab="",las=1)
 ```
-	
 
+In order to test whether a times series of shocks $\{u_1,\dots,u_T\}$ features persistent conditional heteroskedasticity, a simple test has been designed by @Engle_1982. This test consists in regressing $u_t^2$ on it last $m$ lags (i.e., on $u_{t-1}^2,\dots,u_{t-m}^2$) by OLS.Under the null hypothesis that $u_t$ is i.i.d., we have:
+$$
+T \times R^2 \overset{d}{\rightarrow} \chi^2(m),
+$$
+where $R^2$ is the centered $R^2$ of the OLS regression.
+
+Let us employ this test on the return series plotted in the lower panel of Figure \@ref(fig:GARCHsmireturns):
+
+```{r tesHeterosk}
+library(AEC);data(smi)
+smi <- smi[complete.cases(smi),] # remove NaNs
+T <- dim(smi)[1]
+smi$r <- 100*c(NaN,log(smi$Close[2:T]/smi$Close[1:(T-1)]))
+u <- smi$r^2
+u_1 <- c(NaN,smi$r[1:(T-1)]^2)
+u_2 <- c(NaN,NaN,smi$r[1:(T-2)]^2)
+eq <- lm(u^2 ~ u_1^2 + u_2^2)
+test.stat <- length(u)*summary(eq)$r.squared
+pvalue <- 1 - pchisq(q = test.stat,df=2)
+```
+
+The p-value is extremely close to zero. Hence we strongly reject the null of an i.i.d. SMI return.
+
+
+## The ARCH model {#ARCH}
+
+### The two ARCH specifications
 
 Consider the auto-regressive process following:
-	\begin{equation}
-	y_t = c + \phi_1 y_{t-1} + \dots + \phi_p y_{t-p} + u_t,(\#eq:linearreg)
-	\end{equation}
-	where $u_t$ is a white noise (Def. \@ref(def:whitenoise)), i.e. $\mathbb{E}(u_t)=0$, $\mathbb{E}(u_t^2)=\sigma^2$ and $\mathbb{E}(u_t u_s)=0$ if $s \ne t$.
-
-While the *unconditional variance* of $u_t$ is $\sigma^2$, its *conditional variance* can be time-varying. 
+\begin{equation}
+y_t = c + \phi_1 y_{t-1} + \dots + \phi_p y_{t-p} + u_t,(\#eq:linearreg)
+\end{equation}
+where $u_t$ is a white noise (Def. \@ref(def:whitenoise)), i.e. $\mathbb{E}(u_t)=0$, $\mathbb{E}(u_t^2)=\sigma^2$ and $\mathbb{E}(u_t u_s)=0$ if $s \ne t$. Importantly, note that while the *unconditional variance* of $u_t$ is $\sigma^2$, its *conditional variance* can be time-varying. This is the case in the context of (G)ARCH models.
 
 In the ARCH(m) model, $u_t$ follows:
-	\begin{equation}
-	u_t^2 = \zeta + \alpha_1 u_{t-1}^2 + \dots + \alpha_m u_{t-m}^2 + w_t,(\#eq:ut2)
-	\end{equation}
-	where $w_t$ is a non-autocorrelated white noise process that is exogenous to $u_t$, in the sense that:
-	$$
-	\mathbb{E}(w_t|u_{t-1},u_{t-2},\dots)=0.
-	$$
-
+\begin{equation}
+u_t^2 = \zeta + \alpha_1 u_{t-1}^2 + \dots + \alpha_m u_{t-m}^2 + w_t,(\#eq:ut2)
+\end{equation}
+where $w_t$ is a non-autocorrelated white noise process that is exogenous to $u_t$, in the sense that:
+$$
+\mathbb{E}(w_t|u_{t-1},u_{t-2},\dots)=0.
+$$
 In this case:
-	\begin{equation}
-	\mathbb{E}(u_t^2|u_{t-1},u_{t-2},\dots) = \zeta + \alpha_1 u_{t-1}^2 + \dots + \alpha_m u_{t-m}^2.(\#eq:condvar)
-	\end{equation}
+\begin{equation}
+\mathbb{E}(u_t^2|u_{t-1},u_{t-2},\dots) = \zeta + \alpha_1 u_{t-1}^2 + \dots + \alpha_m u_{t-m}^2.(\#eq:condvar)
+\end{equation}
 
-$\zeta + \alpha_1 u_{t-1}^2 + \dots + \alpha_m u_{t-m}^2 + w_t$ has to be nonnegative for all realisations of $\{u_t\}$. This is the case if $w_t > -\zeta$, with $\zeta>0$ and if $\alpha_i\ge0$ for $i \in \{1,\dots,m\}$.
-
-$u_t^2$ is covariance-stationary if the roots of:
-	$$
-	g(z)=1 - \alpha_1 z - \dots - \alpha_m z^m = 0
-	$$
-	lie outside the unit circle (Prop. \@ref(thm:stability)).
-
-We have $g(0)=1$ and $g(1)=1-\sum_i \alpha_i$. A necessary condition for not having a root between 0 and 1 is that $\sum_i \alpha_i<1$.
-
-This is also a sufficient condition. Indeed, for $z \in [-1,1]$, we have:
-	$$
-	1 - \alpha_1 z - \dots - \alpha_m z^m \ge 1 - \sum_i |\alpha_iz^i| \ge 1 - \sum_i \alpha_i > 0.
-	$$
+For Eq. \@ref(eq:ut2) to make sense, it has to be the case that
+$$
+\zeta + \alpha_1 u_{t-1}^2 + \dots + \alpha_m u_{t-m}^2 + w_t \le 0
+$$
+for all realisations of $\{u_t\}$. This is the case if $w_t > -\zeta$, with $\zeta>0$, and if $\alpha_i \ge 0$ for $i \in \{1,\dots,m\}$. Assuming this is the case, $u_t^2$ is covariance-stationary if the roots of:
+$$
+g(z) = 1 - \alpha_1 z - \dots - \alpha_m z^m = 0
+$$
+lie outside the unit circle (Prop. \@ref(thm:stability)). A necessary condition for not having a root between 0 and 1 is that $\sum_i \alpha_i<1$.^[If we have $1-\sum_i \alpha_i \le 0$, then $g(1) \le 0$. We would then have $g(0)=1>0$ and $g(1)\le 0$. Since $g$ is continuous, this would imply that $\exists z \in [0,1]$ s.t. $g(z)=0$.] This is also a sufficient condition.^[Indeed, for $z \in [-1,1]$, we have $1 - \alpha_1 z - \dots - \alpha_m z^m \ge 1 - \sum_i |\alpha_iz^i| \ge 1 - \sum_i \alpha_i > 0$.]
 
 If $w_t > -\zeta$, with $\zeta>0$, $\alpha_i\ge0$ for $i \in \{1,\dots,m\}$ and $\sum_i \alpha_i<1$, then the unconditional variance of $u_t$ is:
-	$$
-	\sigma^2 = \mathbb{E}(u_t^2) = \frac{\zeta}{1 - \sum_{i=1}^m \alpha_i}.
-	$$
+$$
+\sigma^2 = \mathbb{E}(u_t^2) = \frac{\zeta}{1 - \sum_{i=1}^m \alpha_i}.
+$$
 
-Alternative representation of an ARCH(m) process:
-	\begin{equation}
-	u_t = \sqrt{h_t}v_t,(\#eq:uhv)
-	\end{equation}
-	where $v_t$ is an i.i.d. sequence with zero mean and unit variance, i.e.:
-	$$
-	\mathbb{E}(v_t) = 0, \quad \mathbb{E}(v_t^2) = 1.
-	$$
+An alternative representation of an ARCH(m) process is as follows:
+\begin{equation}
+u_t = \sqrt{h_t}v_t,(\#eq:uhv)
+\end{equation}
+where $v_t$ is an i.i.d. sequence with zero mean and unit variance, i.e.:
+$$
+\mathbb{E}(v_t) = 0, \quad \mathbb{E}(v_t^2) = 1.
+$$
 If $h_t$ follows:
-	\begin{equation}
-	h_t = \zeta + \alpha_1 u_{t-1}^2 + \dots + \alpha_m u_{t-m}^2,(\#eq:hARCH)
-	\end{equation}
-	then Eq. \@ref(eq:condvar) is also true.
+\begin{equation}
+h_t = \zeta + \alpha_1 u_{t-1}^2 + \dots + \alpha_m u_{t-m}^2,(\#eq:hARCH)
+\end{equation}
+then Eq. \@ref(eq:condvar) is also true. Since $u_t^2 = h_t v_t^2$, Eq. \@ref(eq:ut2) holds with $w_t = h_t (v_t^2-1)$. This alternative representation is convenient because $v_t$ is not necessarily bounded.
 
-Since $u_t^2 = h_t v_t^2$, Eq. \@ref(eq:ut2) holds with $w_t = h_t (v_t^2-1)$.
-
-This alternative representation is convenient because $v_t$ is not necessarily bounded.
-
-
-Maximum Likelihood Estimation of an ARCH
+### Maximum Likelihood Estimation of an ARCH process
 
 Assume the complete model is:
-	$$
-	y_t = \bv{x}_t'\boldsymbol\beta + u_t,
-	$$
-	where $\bv{x}_t$ is a $k \times 1$ vector of explanatory variables and $u_t$ is as specified in Eq. \@ref(eq:uhv).
+$$
+y_t = \bv{x}_t'\boldsymbol\beta + u_t,
+$$
+where $\bv{x}_t$ is a $k \times 1$ vector of explanatory variables and $u_t$ is as specified in Eq. \@ref(eq:uhv).
 
-To write the likelihood function, it is convenient to condition on the first $m$ observations. Let us denote by $\mathcal{I}_t$ the following set of information:
-	$$
-	\mathcal{I}_t = (y_t,y_{t-1},\dots,y_0,y_{-1},\dots,y_{-m+1}, \bv{x}_t,\bv{x}_{t-1},\dots,\bv{x}_0,\bv{x}_{-1},\dots,\bv{x}_{-m+1}).
-	$$
+To write the likelihood function, it is convenient to condition on the first $m$ observations. Let us denote by $\mathcal{I}_t$ the following information set:
+$$
+\mathcal{I}_t = (y_t,y_{t-1},\dots,y_0,y_{-1},\dots,y_{-m+1}, \bv{x}_t,\bv{x}_{t-1},\dots,\bv{x}_0,\bv{x}_{-1},\dots,\bv{x}_{-m+1}).
+$$
 
 If $v_t \sim \mathcal{N}(0,1)$, we have, for $t\ge1$:
-	\begin{equation}
-	f(y_t|\bv{x_t},\mathcal{I}_{t-1}) = \frac{1}{\sqrt{2 \pi h_t}}\exp\left(\frac{-(y_t-\bv{x}_t'\boldsymbol\beta)^2}{2h_t}\right),(\#eq:densityN)
-	\end{equation}
-	where $h_t$ is given by:
-	$$
-	h_t = \zeta + \alpha_1 (y_{t-1} - \bv{x}_{t-1}'\boldsymbol\beta)^2 + \dots + \alpha_m (y_{t-m} - \bv{x}_{t-m}'\boldsymbol\beta)^2.
-	$$
+\begin{equation}
+f(y_t|\bv{x_t},\mathcal{I}_{t-1}) = \frac{1}{\sqrt{2 \pi h_t}}\exp\left(\frac{-(y_t-\bv{x}_t'\boldsymbol\beta)^2}{2h_t}\right),(\#eq:densityN)
+\end{equation}
+where $h_t$ is given by:
+$$
+h_t = \zeta + \alpha_1 (y_{t-1} - \bv{x}_{t-1}'\boldsymbol\beta)^2 + \dots + \alpha_m (y_{t-m} - \bv{x}_{t-m}'\boldsymbol\beta)^2.
+$$
 
 The log likelihood function is given by:
-	$$
-	\log \mathcal{L}(\theta) = \sum_{t=1}^T \log(f(y_t|\bv{x_t},\mathcal{I}_{t-1})),
-	$$
-	where $\theta$, the vector of unknown parameters, is $[\boldsymbol\beta',\zeta,\alpha_1,\dots,\alpha_m]'$.
+$$
+\log \mathcal{L}(\theta) = \sum_{t=1}^T \log(f(y_t|\bv{x_t},\mathcal{I}_{t-1})),
+$$
+where $\theta$, the vector of unknown parameters, is $[\boldsymbol\beta',\zeta,\boldsymbol\alpha']'$, where $\boldsymbol\alpha=[\alpha_1,\dots,\alpha_m]'$. The maximisation of the log likelihood is performed numerically.
 
-The maximisation of the log likelihood is performed numerically.
+Note that one can also use non-Gaussian distributions for $v_t$. (For that, one has to replace the normal distribution in Eq. \@ref(eq:densityN).)
 
-Alternative distributions of  $v_t$ can be used (instead of the normal distribution, used in Eq. \@ref(eq:densityN)).
+Let us fit an ARCH(2) model on the SMI return data (lower plot of Figure \@ref(fig:GARCHsmireturns)). For this, we make use of function `compute.garch` of package `AEC`. This function takes four arguments:
 
-Remark: If $v_t$ is Gaussian, $u_t$ is conditionally Gaussian but is not unconditionally Gaussian.
+* vector `theta` contains the model parameterization: first, $\zeta$, then the $\alpha_i$'s, then for GARCH models (see Subsection \@ref(GARCH) below), the $\delta_i$'s.
+* vector `x` contains the observations of the process.
+* `m` is the number of lags in the ARCH specification.
+* `r` is the number of lags in the GARCH specification (see Subsection \@ref(GARCH) below).
 
-If needed, alternative distributions of  $v_t$ can be used (instead of the normal distribution).
+Function `compute.garch` returns a list, one entry of each is the log-likelihood associated with a parameterization $[\zeta,\boldsymbol\alpha']'$, the second being the resulting sequence of $h_t$'s (see Eq. \@ref(eq:hARCH)). Let us create a function that returns only the log-likelihood:
+
+```{r estimGARCH0,message=FALSE}
+loglik <- function(theta,x,m,r){
+  # first parameter of theta: zeta
+  # next: alpha's (ARCH)
+  # next: delta's (GARCH)
+  Garch <- compute.garch(theta,x,m,r)
+  return(Garch$logf)
+}
+```
+
+Now, let us maximize the log-likelihood:
+
+```{r estimGARCH1,message=FALSE,results = FALSE}
+m <- 2
+r <- 0 # for ARCH models, r=0
+smi <- smi[4000:dim(smi)[1],] # reduce sample
+par0 <- c(0.62,0.2,0.2)
+res.opt <- optim(par=par0,x=smi$r,m=m,r=r,loglik,
+                 method="BFGS",hessian=TRUE,
+                 control = list(trace=TRUE,maxit = 10))
+estim.param <- res.opt$par
+std.dev <- sqrt(diag(solve(res.opt$hessian)))
+t.stat <- estim.param/std.dev
+```
+
+Table \@ref(tab:estimGARCH2) reports the estimated parameters and their standard deviation. Figure \@ref(fig:estimGARCH3) displays the resulting 95\% confidence intervals (i.e., $\pm 2 \sqrt{h_t}$).
+
+```{r estimGARCH2,message=FALSE,echo=FALSE}
+tab.results <- cbind(estim.param,std.dev,t.stat)
+estim.arch <- compute.garch(res.opt$par,smi$r,m,r)
+rownames(tab.results) <- estim.arch$names.param
+colnames(tab.results) <- c("Estim. param.","Std dev.","t-stat")
+knitr::kable(tab.results,caption = "ARCH(2), ML estimation results.
+             Data: SMI daily returns.", digits=4)
+```
 
 
-<!-- \begin{frame}{} -->
-<!-- \begin{footnotesize} -->
-<!-- \begin{figure} -->
-<!-- 	\caption{Fitted ARCH(3), $\alpha_1 = 0.20$, $\alpha_2 = 0.23$, $\alpha_3 = 0.21$.} -->
-<!-- 	\includegraphics[width=\linewidth]{../../figures/Figure_GARCH_smi2.pdf} -->
-<!-- 	\begin{tiny} -->
-<!-- In the upper plot, the red lines delineate the 95\% confidence band ($\pm2\sqrt{h_t}$). -->
-<!-- \end{tiny} -->
-<!-- \end{figure} -->
-<!-- \end{footnotesize} -->
-<!-- \end{frame} -->
+```{r estimGARCH3, echo=FALSE, fig.cap="SMI daily returns (in black) and, in red, 95\\% confidence interval based on the ARCH(2) estimated model ($\\pm 2 \\sqrt{h_t}$).", fig.align = 'left-aligned'}
+par(mfrow=c(1,1))
+par(plt=c(0.15,0.95,0.2,0.95))
+plot(smi$Date,smi$r,xlab="",ylab="in percent",type="l")
+lines(smi$Date,-2*sqrt(estim.arch$h),col="red")
+lines(smi$Date,+2*sqrt(estim.arch$h),col="red")
+```
 
-
-One can test whether a time series exhibit time-varying heteroskedasticity.
-
-Consider the context of Eq. \@ref(eq:linear_reg). @Engle_1982 proposes the following test:
-
-a. Estimate Eq. \@ref(eq:linearreg) by OLS. The residuals of this regression are denoted by $\hat{u}_t$.
-b. Regress $\hat{u}_t^2$ on $\{1,\hat{u}_{t-1}^2,\hat{u}_{t-2}^2,\dots,\hat{u}_{t-m}^2\}$.
-c. Under the null hypothesis that $u_t$ is i.i.d., we have:
-		$$
-		T \times R^2 \overset{d}{\rightarrow} \chi^2(m),
-		$$
-		where $R^2$ is the centered $R^2$ of the OLS regression.
-
-## GARCH models
+## The GARCH model {#GARCH}
 
 One can generalize the model and replace Eq. \@ref(eq:hARCH) with:
-	\begin{eqnarray}
-	h_t &=& (1-\delta_1 - \delta_2 - \dots - \delta_r) \zeta + \nonumber \\
-	&&\delta_1 h_{t-1} + \delta_2 h_{t-2} + \dots + \delta_r h_{t-r} + \nonumber \\
-	&&\alpha_1 u_{t-1}^2 + \dots + \alpha_m u_{t-m}^2. (\#eq:hGARCH)
-	\end{eqnarray}
+\begin{eqnarray}
+h_t &=& (1-\delta_1 - \delta_2 - \dots - \delta_r) \zeta + \nonumber \\
+&&\delta_1 h_{t-1} + \delta_2 h_{t-2} + \dots + \delta_r h_{t-r} + \nonumber \\
+&&\alpha_1 u_{t-1}^2 + \dots + \alpha_m u_{t-m}^2. (\#eq:hGARCH)
+\end{eqnarray}
+This generalised autoregressive conditional heteroskedasticity model is denoted by GARCH(r,m). Non-negativity is satisfied as soon as $\kappa>0$, $\alpha_j \ge 0$, $\delta_j \ge 0$ for $j \le p$.
 
-This generalised autoregressive conditional heteroskedasticity model is denoted by GARCH(r,m).
+Denoting $u_t^2 - h_t$ by $w_t$, and $(1-\delta_1 - \dots - \delta_r) \zeta$ by $\kappa$, it can be checked that:^[Note that $w_t=h_t(v_t^2 - 1)$ is a martingale difference sequence (see Def. \@ref(def:MDS)) because $v_t$ is a zero-mean unit-root i.i.d. sequence.]
+\begin{eqnarray}
+u_t^2 &=& \kappa + (\delta_1 + \alpha_1)u_{t-1}^2 + (\delta_2 + \alpha_2)u_{t-2}^2 + \dots \nonumber \\
+&& + (\delta_p + \alpha_p)u_{t-p}^2 + w_t - \delta_1 w_{t-1} - \dots - \delta_r w_{t-r},
+\end{eqnarray}
+where $p=max(m,r)$, $\alpha_j=0$ for $j>m$ and $\delta_j=0$ for $j>r$.
 
-Denoting $u_t^2 - h_t$ by $w_t$ and $(1-\delta_1 - \dots - \delta_r) \zeta$ by $\kappa$, it can be checked that:
-	\begin{eqnarray}
-	u_t^2 &=& \kappa + (\delta_1 + \alpha_1)u_{t-1}^2 + (\delta_2 + \alpha_2)u_{t-2}^2 + \dots \nonumber \\
-	&& + (\delta_p + \alpha_p)u_{t-p}^2 + w_t - \delta_1 w_{t-1} - \dots - \delta_r w_{t-r},
-	\end{eqnarray}
-	where $p=max(m,r)$, $\alpha_j=0$ for $j>m$ and $\delta_j=0$ for $j>r$.
-
-Remark: $w_t=h_t(v_t^2 - 1)$ is a martingale difference sequence (see Def. \@ref(def:MDS)) because $v_t$ is a zero-mean unit-root i.i.d. sequence.
-
-Non-negativity is satisfied (in particular) if $\kappa>0$, $\alpha_j \ge 0$, $\delta_j \ge 0$ for $j \le p$ (easier to see in Eq. \@ref(eq:hGARCH)).
-
-* $u_t^2$ follows an ARMA(p,r) process.
-* $u_t^2$ is covariance stationary if the roots of:
-	$$
-	1 - (\delta_1 + \alpha_1)z - \dots - (\delta_1 + \alpha_1)z^p = 0
-	$$
-	lie outside the unit circle (Prop. \@ref(thm:stability)).
-
-Because the $\delta_i + \alpha_i$ are nonnegative, we must have (using the same reasoning as in Slide XXX):
-	$$
-	\sum_i \delta_i + \sum_i \alpha_i < 1.
-	$$
-
+We have $w_t = h_t(v_t^2 - 1)$. Under regularity assumptions, $\{w_t\}$ is a white noise. Hence, $u_t^2$ follows an ARMA(p,r) process. Accordingly, it comes that $u_t^2$ is covariance stationary if the roots of:
+$$
+1 - (\delta_1 + \alpha_1)z - \dots - (\delta_1 + \alpha_1)z^p = 0
+$$
+lie outside the unit circle (Prop. \@ref(thm:stability)). When the $\delta_i + \alpha_i$ are nonnegative, and using the same reasoning as for ARCH models, this is the case iff:
+$$
+\sum_i \delta_i + \sum_i \alpha_i < 1.
+$$
 In that case, the unconditional variance of $u_t$, i.e. the unconditional mean of $u_t^2$, is:
-	$$
-	\mathbb{E}(u_t^2) = \sigma^2 = \frac{\kappa}{1 - \sum_i \delta_i - \sum_i \alpha_i}.
-	$$
+$$
+\mathbb{E}(u_t^2) = \sigma^2 = \frac{\kappa}{1 - \sum_i \delta_i - \sum_i \alpha_i}.
+$$
 
 
-<!-- \begin{frame}{} -->
-<!-- \begin{footnotesize} -->
-<!-- \begin{figure} -->
-<!-- 	\caption{Simulation of a GARCH(1,1), $\zeta = 1$, $\alpha_1 = 0.45$, $\delta_1 = 0.5$.} -->
-<!-- 	\includegraphics[width=\linewidth]{../../figures/Figure_GARCH_illus.pdf} -->
+GARCH models can also be estimated by the ML approach.Table \@ref(tab:estimGARCH2X) reports the estimated parameters when fitting an GARCH(1,1) model on the SMI return dataset. Figure
 
-<!-- 	\begin{tiny} -->
-<!-- In the upper plot, the red lines delineate the 95\% confidence band ($\pm2\sqrt{h_t}$). -->
-<!-- \end{tiny} -->
+Figure \@ref(fig:estimGARCH3X) compare the condiitonal standard deviations ($\sqrt{h_t}$) resulting from the ARCH(2) and the GARCH(1,1) specifications.
 
-<!-- \end{figure} -->
-<!-- \end{footnotesize} -->
-<!-- \end{frame} -->
+```{r estimGARCH2X,message=FALSE,echo=FALSE}
+m <- 1
+r <- 1 # for ARCH models, r=0
+par0 <- c(0.62,0.2,0.2)
+res.opt <- optim(par=par0,x=smi$r,m=m,r=r,loglik,
+                 method="BFGS",hessian=TRUE,
+                 control = list(trace=TRUE,maxit = 10))
+estim.param <- res.opt$par
+std.dev <- sqrt(diag(solve(res.opt$hessian)))
+t.stat <- estim.param/std.dev
+tab.results <- cbind(estim.param,std.dev,t.stat)
+estim.garch <- compute.garch(res.opt$par,smi$r,m,r)
+rownames(tab.results) <- estim.garch$names.param
+colnames(tab.results) <- c("Estim. param.","Std dev.","t-stat")
+knitr::kable(tab.results,caption = "ARCH(2), ML estimation results.
+             Data: SMI daily returns.", digits=4)
+```
 
 
-Another extension of the ARCH model is the ARCH-in-Mean, or ARCH-M model. That model is close to that specified by Eqs. \@ref(eq:linearreg), \@ref(eq:uhv) and \@ref(eq:hARCH), but allowing for a potential effect of $h_t$ on $\mathbb{E}_{t-1}(y_{t})$.
+```{r estimGARCH3X, echo=FALSE, fig.cap="Estimated conditional standard deviations ($\\sqrt{h_t}$) of SMI daily returns: ARCH(2) [black line] and GARCH(11) [dotted red line] specifications.", fig.align = 'left-aligned'}
+par(mfrow=c(1,1))
+par(plt=c(0.15,0.95,0.2,0.95))
+plot(smi$Date,sqrt(estim.arch$h),ylab="in percent",type="l")
+lines(smi$Date,sqrt(estim.garch$h),ylab="in percent",type="l",col="red",lty=3)
+```
 
-Such a model reads:
-	\begin{eqnarray*}
-	y_t &=& c + \phi_1 y_{t-1} + \dots + \phi_p y_{t-p} + {\color{blue}\delta h_t}+ u_t \\
-	u_t &=& \sqrt{h_t} v_t \\
-	h_t &=& \zeta + \alpha_1 u_{t-1}^2 + \dots + \alpha_m u_{t-m}^2,
-	\end{eqnarray*}
-	where $v_t$ is a zero-mean unit-variance i.i.d. sequence.
+
+### ARCH-in-mean
+
+Another extension of the ARCH model is the **ARCH-in-Mean**, or ARCH-M model. That model is close to that specified by Eqs. \@ref(eq:linearreg), \@ref(eq:uhv) and \@ref(eq:hARCH), but it also allows for a potential effect of $h_t$ on $\mathbb{E}_{t-1}(y_{t})$:
+\begin{eqnarray*}
+y_t &=& c + \phi_1 y_{t-1} + \dots + \phi_p y_{t-p} + {\color{blue}\delta h_t}+ u_t \\
+u_t &=& \sqrt{h_t} v_t \\
+h_t &=& \zeta + \alpha_1 u_{t-1}^2 + \dots + \alpha_m u_{t-m}^2,
+\end{eqnarray*}
+where $v_t$ is a zero-mean unit-variance i.i.d. sequence.
 
 
 

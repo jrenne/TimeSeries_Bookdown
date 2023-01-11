@@ -152,7 +152,11 @@ eq:condvar
 eq:uhv
 eq:hARCH
 eq:densityN
+tab:estimGARCH2
+fig:estimGARCH3
 eq:hGARCH
+tab:estimGARCH2X
+fig:estimGARCH3X
 eq:PCA11
 fig:USydsPCA1
 def:determinant
@@ -251,8 +255,13 @@ intuition
 the-bivariate-case
 multivariate-case-and-vecm
 cointegration-in-practice
+ARCHGARCH
+conditional-heteroskedasticity
+ARCH
+the-two-arch-specifications
+maximum-likelihood-estimation-of-an-arch-process
 GARCH
-garch-models
+arch-in-mean
 append
 PCAapp
 LinAlgebra
