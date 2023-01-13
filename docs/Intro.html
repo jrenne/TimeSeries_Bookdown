@@ -4,16 +4,16 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Chapter 1 Introduction to time series | Introduction to Time Series</title>
+<title>Chapter 1 To start with | Introduction to Time Series</title>
 <meta name="author" content="Jean-Paul Renne">
-<meta name="description" content="A time series is an infinite sequence of random variables indexed by time: \(\{y_t\}_{t=-\infty}^{+\infty}=\{\dots, y_{-2},y_{-1},y_{0},y_{1},\dots,y_t,\dots\}\), \(y_i \in \mathbb{R}^k\). In...">
+<meta name="description" content="1.1 Shocks and lag operator A time series is an infinite sequence of random variables indexed by time: \(\{y_t\}_{t=-\infty}^{+\infty}=\{\dots, y_{-2},y_{-1},y_{0},y_{1},\dots,y_t,\dots\}\), \(y_i...">
 <meta name="generator" content="bookdown 0.27 with bs4_book()">
-<meta property="og:title" content="Chapter 1 Introduction to time series | Introduction to Time Series">
+<meta property="og:title" content="Chapter 1 To start with | Introduction to Time Series">
 <meta property="og:type" content="book">
-<meta property="og:description" content="A time series is an infinite sequence of random variables indexed by time: \(\{y_t\}_{t=-\infty}^{+\infty}=\{\dots, y_{-2},y_{-1},y_{0},y_{1},\dots,y_t,\dots\}\), \(y_i \in \mathbb{R}^k\). In...">
+<meta property="og:description" content="1.1 Shocks and lag operator A time series is an infinite sequence of random variables indexed by time: \(\{y_t\}_{t=-\infty}^{+\infty}=\{\dots, y_{-2},y_{-1},y_{0},y_{1},\dots,y_t,\dots\}\), \(y_i...">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Chapter 1 Introduction to time series | Introduction to Time Series">
-<meta name="twitter:description" content="A time series is an infinite sequence of random variables indexed by time: \(\{y_t\}_{t=-\infty}^{+\infty}=\{\dots, y_{-2},y_{-1},y_{0},y_{1},\dots,y_t,\dots\}\), \(y_i \in \mathbb{R}^k\). In...">
+<meta name="twitter:title" content="Chapter 1 To start with | Introduction to Time Series">
+<meta name="twitter:description" content="1.1 Shocks and lag operator A time series is an infinite sequence of random variables indexed by time: \(\{y_t\}_{t=-\infty}^{+\infty}=\{\dots, y_{-2},y_{-1},y_{0},y_{1},\dots,y_t,\dots\}\), \(y_i...">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
 <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.4.0/transition.js"></script><script src="libs/bs3compat-0.4.0/tabs.js"></script><script src="libs/bs3compat-0.4.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
@@ -66,11 +66,11 @@
       <nav aria-label="Table of contents"><h2>Table of contents</h2>
         <ul class="book-toc list-unstyled">
 <li><a class="" href="index.html">Introduction to Time Series</a></li>
-<li><a class="active" href="Intro.html"><span class="header-section-number">1</span> Introduction to time series</a></li>
+<li><a class="active" href="Intro.html"><span class="header-section-number">1</span> To start with</a></li>
 <li><a class="" href="Univariate.html"><span class="header-section-number">2</span> Univariate processes</a></li>
 <li><a class="" href="VAR.html"><span class="header-section-number">3</span> Multivariate models</a></li>
 <li><a class="" href="forecasting.html"><span class="header-section-number">4</span> Forecasting</a></li>
-<li><a class="" href="NonStat.html"><span class="header-section-number">5</span> Non-Stationary Processes</a></li>
+<li><a class="" href="NonStat.html"><span class="header-section-number">5</span> Non-stationary processes</a></li>
 <li><a class="" href="cointeg.html"><span class="header-section-number">6</span> Introduction to cointegration</a></li>
 <li><a class="" href="ARCHGARCH.html"><span class="header-section-number">7</span> ARCH and GARCH Models</a></li>
 <li><a class="" href="append.html"><span class="header-section-number">8</span> Appendix</a></li>
@@ -84,17 +84,21 @@
 </div>
   </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="Intro" class="section level1" number="1">
 <h1>
-<span class="header-section-number">1</span> Introduction to time series<a class="anchor" aria-label="anchor" href="#Intro"><i class="fas fa-link"></i></a>
+<span class="header-section-number">1</span> To start with<a class="anchor" aria-label="anchor" href="#Intro"><i class="fas fa-link"></i></a>
 </h1>
+<div id="shocks-and-lag-operator" class="section level2" number="1.1">
+<h2>
+<span class="header-section-number">1.1</span> Shocks and lag operator<a class="anchor" aria-label="anchor" href="#shocks-and-lag-operator"><i class="fas fa-link"></i></a>
+</h2>
 <p>A time series is an infinite sequence of random variables indexed by time: <span class="math inline">\(\{y_t\}_{t=-\infty}^{+\infty}=\{\dots, y_{-2},y_{-1},y_{0},y_{1},\dots,y_t,\dots\}\)</span>, <span class="math inline">\(y_i \in \mathbb{R}^k\)</span>. In practice, we only observe samples, typically: <span class="math inline">\(\{y_{1},\dots,y_T\}\)</span>.</p>
-<p>Standard time series models are built using <strong>shocks</strong> that we will often denote by <span class="math inline">\(\varepsilon_t\)</span>. Typically, <span class="math inline">\(\mathbb{E}(\varepsilon_t)=0\)</span>. In many models, the shocks are supposed to be i.i.d., but there exist other (less restrictive) notions of shocks. In particular, the definition of many processes is based on whote noises:</p>
+<p>Standard time series models are built using <strong>shocks</strong> that we will often denote by <span class="math inline">\(\varepsilon_t\)</span>. Typically, <span class="math inline">\(\mathbb{E}(\varepsilon_t)=0\)</span>. In many models, the shocks are supposed to be i.i.d., but there exist other (less restrictive) notions of shocks. In particular, the definition of many processes is based on white noises:</p>
 <div class="definition">
 <p><span id="def:whitenoise" class="definition"><strong>Definition 1.1  (White noise) </strong></span>The process <span class="math inline">\(\{\varepsilon_t\}_{t \in] -\infty,+\infty[}\)</span> is a white noise if, for all <span class="math inline">\(t\)</span>:</p>
 <ol style="list-style-type: lower-alpha">
 <li>
 <span class="math inline">\(\mathbb{E}(\varepsilon_t)=0\)</span>,</li>
 <li>
-<span class="math inline">\(\mathbb{E}(\varepsilon_t^2)=\sigma^2&lt;\infty\)</span> and</li>
+<span class="math inline">\(\mathbb{E}(\varepsilon_t^2)=\sigma^2&lt;\infty\)</span>,</li>
 <li>for all <span class="math inline">\(s\ne t\)</span>, <span class="math inline">\(\mathbb{E}(\varepsilon_t \varepsilon_s)=0\)</span>.</li>
 </ol>
 </div>
@@ -102,19 +106,19 @@
 <div class="definition">
 <p><span id="def:MDS" class="definition"><strong>Definition 1.2  (Martingale Difference Sequence) </strong></span>The process <span class="math inline">\(\{\varepsilon_t\}_{t = -\infty}^{+\infty}\)</span> is a martingale difference sequence (MDS) if <span class="math inline">\(\mathbb{E}(|\varepsilon_{t}|)&lt;\infty\)</span> and if, for all <span class="math inline">\(t\)</span>,
 <span class="math display">\[
-\underbrace{\mathbb{E}_{t-1}(\varepsilon_{t})}_{\mbox{Expectation conditional on the past}}=0.
+\underbrace{\mathbb{E}_{t-1}(\varepsilon_{t})}_{\mbox{conditional on the past}}=0.
 \]</span></p>
 </div>
 <p>By definition, if <span class="math inline">\(y_t\)</span> is a martingale, then <span class="math inline">\(y_{t}-y_{t-1}\)</span> is a MDS.</p>
 <div class="example">
-<p><span id="exm:ARCH" class="example"><strong>Example 1.1  (ARCH process) </strong></span>The Autoregressive conditional heteroskedasticity (ARCH) process is an example of shock that satisfies the MDS definition but that is not i.i.d.:
+<p><span id="exm:ARCH" class="example"><strong>Example 1.1  (ARCH process) </strong></span>The Autoregressive conditional heteroskedasticity process—studied in Section <a href="ARCHGARCH.html#ARCHGARCH">7</a>—is an example of shock that satisfies the MDS definition but that is not i.i.d.:
 <span class="math display">\[
 \varepsilon_{t} = \sigma_t \times z_{t},
 \]</span>
 where <span class="math inline">\(z_t \sim i.i.d.\,\mathcal{N}(0,1)\)</span> and <span class="math inline">\(\sigma_t^2 = w + \alpha \varepsilon_{t-1}^2\)</span>.</p>
 </div>
 <div class="example">
-<p><span id="exm:whiteNotMDS" class="example"><strong>Example 1.2  </strong></span>A white noise process is not necessarily a MDS. This is for instance the following process:
+<p><span id="exm:whiteNotMDS" class="example"><strong>Example 1.2  </strong></span>A white noise process is not necessarily a MDS. This is for instance the case for following process:
 <span class="math display">\[
 \varepsilon_{t} = z_t + z_{t-1}z_{t-2},
 \]</span>
@@ -124,39 +128,44 @@ where <span class="math inline">\(z_t \sim i.i.d.\mathcal{N}(0,1)\)</span>.</p>
 <span class="math display" id="eq:lagOp">\[\begin{equation}
 L: \{y_t\}_{t=-\infty}^{+\infty} \rightarrow \{w_t\}_{t=-\infty}^{+\infty} \quad \mbox{with} \quad w_t = y_{t-1}.\tag{1.1}
 \end{equation}\]</span></p>
-<p>We have: <span class="math inline">\(L^2 y_t = y_{t-2}\)</span> and, more generally, <span class="math inline">\(L^k y_t = y_{t-k}\)</span>.</p>
-<p>Consider a time series <span class="math inline">\(y_t\)</span> defined by <span class="math inline">\(y_t = \mu + \phi y_{t-1} + \varepsilon_t\)</span>, where the <span class="math inline">\(\varepsilon_t\)</span>’s are i.i.d. <span class="math inline">\(\mathcal{N}(0,\sigma^2)\)</span>. Using the lag operator, the dynamics of <span class="math inline">\(y_t\)</span> can be expressed as follows:
+<p>It is easily seen that we have <span class="math inline">\(L^2 y_t =L(L y_t) = y_{t-2}\)</span> and, more generally, <span class="math inline">\(L^k y_t = y_{t-k}\)</span>.</p>
+<p>Consider a process that follows <span class="math inline">\(y_t\)</span> defined by <span class="math inline">\(y_t = \mu + \phi y_{t-1} + \varepsilon_t\)</span> (this is an AR(1) process, as we will see in Section <a href="Univariate.html#Univariate">2</a>), where the <span class="math inline">\(\varepsilon_t\)</span>’s are i.i.d. <span class="math inline">\(\mathcal{N}(0,\sigma^2)\)</span>. Using the lag operator, the dynamics of <span class="math inline">\(y_t\)</span> can be expressed as follows:
 <span class="math display">\[
 (1-\phi L) y_t = \mu + \varepsilon_t.
 \]</span></p>
-<p>It is easily checked that we have <span class="math inline">\(L^2 y_t = y_{t-2}\)</span> and, generally, <span class="math inline">\(L^k y_t = y_{t-k}\)</span>.</p>
+</div>
+<div id="conditional-and-unconditional-moments" class="section level2" number="1.2">
+<h2>
+<span class="header-section-number">1.2</span> Conditional and unconditional moments<a class="anchor" aria-label="anchor" href="#conditional-and-unconditional-moments"><i class="fas fa-link"></i></a>
+</h2>
 <p>If it exists, the <strong>unconditional (or marginal) mean</strong> of the random variable <span class="math inline">\(y_t\)</span> is given by:
 <span class="math display">\[
 \mu_t := \mathbb{E}(y_t) = \int_{-\infty}^{\infty} y_t f_{Y_t}(y_t) dy_t,
 \]</span>
-where <span class="math inline">\(f_{Y_t}\)</span> is the unconditional (or marginal) density of <span class="math inline">\(y_t\)</span>. Similarly, if it exists, the <strong>unconditional (or marginal) variance</strong> of the random variable <span class="math inline">\(y_t\)</span> is:
+where <span class="math inline">\(f_{Y_t}\)</span> is the unconditional, or marginal, density (p.d.f.) of <span class="math inline">\(y_t\)</span>. Note that, in the general case, <span class="math inline">\(Y_t\)</span> and <span class="math inline">\(Y_{t-1}\)</span>, may have different densities; that is, in general, <span class="math inline">\(f_{Y_t} \ne f_{Y_{t-1}}\)</span>.</p>
+<p>Similarly, if it exists, the <strong>unconditional (or marginal) variance</strong> of the random variable <span class="math inline">\(y_t\)</span> is:
 <span class="math display">\[
 \mathbb{V}ar(y_t) = \int_{-\infty}^{\infty} (y_t - \mathbb{E}(y_t))^2 f_{Y_t}(y_t) dy_t.
 \]</span></p>
 <div class="definition">
 <p><span id="def:autocov" class="definition"><strong>Definition 1.3  (Autocovariance) </strong></span>The <span class="math inline">\(j^{th}\)</span> autocovariance of <span class="math inline">\(y_t\)</span> is given by:
 <span class="math display">\[\begin{eqnarray*}
-\gamma_{j,t} &amp;:=&amp; \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} \dots \int_{-\infty}^{\infty} [y_t - \mathbb{E}(y_t)][y_{t-j} - \mathbb{E}(y_{t-j})] \times\\
-&amp;&amp; f_{Y_t,Y_{t-1},\dots,Y_{t-j}}(y_t,y_{t-1},\dots,y_{t-j}) dy_t dy_{t-1} \dots dy_{t-j} \\
-&amp;=&amp; \mathbb{E}([y_t - \mathbb{E}(y_t)][y_{t-j} - \mathbb{E}(y_{t-j})]),
+\gamma_{j,t} &amp;:=&amp; \mathbb{E}([y_t - \mathbb{E}(y_t)][y_{t-j} - \mathbb{E}(y_{t-j})])\\
+&amp;=&amp; \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} \dots \int_{-\infty}^{\infty} [y_t - \mathbb{E}(y_t)][y_{t-j} - \mathbb{E}(y_{t-j})] \times\\
+&amp;&amp; f_{Y_t,Y_{t-1},\dots,Y_{t-j}}(y_t,y_{t-1},\dots,y_{t-j}) dy_t dy_{t-1} \dots dy_{t-j},
 \end{eqnarray*}\]</span>
 where <span class="math inline">\(f_{Y_t,Y_{t-1},\dots,Y_{t-j}}(y_t,y_{t-1},\dots,y_{t-j})\)</span> is the joint distribution of <span class="math inline">\(y_t,y_{t-1},\dots,y_{t-j}\)</span>.</p>
 </div>
-<p>In particular, <span class="math inline">\(\gamma_{0,t} = \mathbb{V}ar(y_t)\)</span>.</p>
+<p>In particular, note that <span class="math inline">\(\gamma_{0,t} = \mathbb{V}ar(y_t)\)</span>.</p>
 <div class="definition">
 <p><span id="def:covstat" class="definition"><strong>Definition 1.4  (Covariance stationarity) </strong></span>The process <span class="math inline">\(y_t\)</span> is covariance stationary —or weakly stationary— if, for all <span class="math inline">\(t\)</span> and <span class="math inline">\(j\)</span>,
 <span class="math display">\[
 \mathbb{E}(y_t) = \mu \quad \mbox{and} \quad \mathbb{E}\{(y_t - \mu)(y_{t-j} - \mu)\} = \gamma_j.
 \]</span></p>
 </div>
-<p>Figure <a href="Intro.html#fig:nonstat1">1.1</a> displays the simulation of a process that is not covariance stationary. This process follows <span class="math inline">\(y_t = 0.1t + \varepsilon_t\)</span>, where <span class="math inline">\(\varepsilon_t \sim\,i.i.d.\,\mathcal{N}(0,1)\)</span>. Indeed, for such a process, we have: <span class="math inline">\(\mathbb{E}(y_t)=0.1t\)</span>, which depends on <span class="math inline">\(t\)</span>.</p>
+<p>Figure <a href="#fig:nonstat1"><strong>??</strong></a> displays the simulation of a process that is not covariance stationary. This process follows <span class="math inline">\(y_t = 0.1t + \varepsilon_t\)</span>, where <span class="math inline">\(\varepsilon_t \sim\,i.i.d.\,\mathcal{N}(0,1)\)</span>. Indeed, for such a process, we have: <span class="math inline">\(\mathbb{E}(y_t)=0.1t\)</span>, which depends on <span class="math inline">\(t\)</span>.</p>
 <div class="figure" style="text-align: left-aligned">
-<span style="display:block;" id="fig:nonstat1"></span>
+<span style="display:block;" id="fig:NONstat1"></span>
 <img src="TimeSeries_files/figure-html/nonstat1-1.png" alt="Example of a process that is not covariance stationary ($y_t = 0.1t + \varepsilon_t$, where $\varepsilon_t \sim \mathcal{N}(0,1)$)." width="95%"><p class="caption">
 Figure 1.1: Example of a process that is not covariance stationary (<span class="math inline">\(y_t = 0.1t + \varepsilon_t\)</span>, where <span class="math inline">\(\varepsilon_t \sim \mathcal{N}(0,1)\)</span>).
 </p>
@@ -170,7 +179,7 @@ y_t = \mathbb{I}_{\{t&lt;1000\}}\varepsilon_{1,t}+\mathbb{I}_{\{t\ge1000\}}\vare
 \]</span>
 where <span class="math inline">\(\varepsilon_{1,t} \sim \mathcal{N}(0,1)\)</span> and <span class="math inline">\(\varepsilon_{2,t} \sim \sqrt{\frac{\nu - 2}{\nu}} t(\nu)\)</span> and <span class="math inline">\(\nu = 4\)</span>.</p>
 <div class="figure" style="text-align: left-aligned">
-<span style="display:block;" id="fig:nonstat2"></span>
+<span style="display:block;" id="fig:NONstat2"></span>
 <img src="TimeSeries_files/figure-html/nonstat2-1.png" alt="Example of a process that is covariance stationary but not strictly stationary. The red lines delineate the 99\% confidence interval of the standard normal distribution ($\pm 2.58$)." width="95%"><p class="caption">
 Figure 1.2: Example of a process that is covariance stationary but not strictly stationary. The red lines delineate the 99% confidence interval of the standard normal distribution (<span class="math inline">\(\pm 2.58\)</span>).
 </p>
@@ -250,13 +259,18 @@ Figure 1.5: The three samples have been simulated using the following data gener
 </div>
 
 </div>
+</div>
 
   <div class="chapter-nav">
 <div class="prev"><a href="index.html">Introduction to Time Series</a></div>
 <div class="next"><a href="Univariate.html"><span class="header-section-number">2</span> Univariate processes</a></div>
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
     <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
-      <ul class="nav navbar-nav"><li><a class="nav-link" href="#Intro"><span class="header-section-number">1</span> Introduction to time series</a></li></ul>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#Intro"><span class="header-section-number">1</span> To start with</a></li>
+<li><a class="nav-link" href="#shocks-and-lag-operator"><span class="header-section-number">1.1</span> Shocks and lag operator</a></li>
+<li><a class="nav-link" href="#conditional-and-unconditional-moments"><span class="header-section-number">1.2</span> Conditional and unconditional moments</a></li>
+</ul>
 
       <div class="book-extra">
         <ul class="list-unstyled">
@@ -272,7 +286,7 @@ Figure 1.5: The three samples have been simulated using the following data gener
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Introduction to Time Series</strong>" was written by Jean-Paul Renne. It was last built on 2023-01-11.</p>
+    <p>"<strong>Introduction to Time Series</strong>" was written by Jean-Paul Renne. It was last built on 2023-01-13.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

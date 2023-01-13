@@ -5,9 +5,9 @@ exm:whiteNotMDS
 eq:lagOp
 def:autocov
 def:covstat
-fig:nonstat1
+fig:NONstat1
 def:strictstat
-fig:nonstat2
+fig:NONstat2
 prp:gammaMinus
 def:autocor
 fig:autocov
@@ -226,6 +226,8 @@ tab:Student
 tab:Chi2
 tab:Fstat
 Intro
+shocks-and-lag-operator
+conditional-and-unconditional-moments
 Univariate
 moving-average-ma-processes
 ARsection

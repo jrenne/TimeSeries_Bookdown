@@ -1,14 +1,16 @@
-# Introduction to time series {#Intro}
+# To start with {#Intro}
+
+## Shocks and lag operator
 
 A time series is an infinite sequence of random variables indexed by time: $\{y_t\}_{t=-\infty}^{+\infty}=\{\dots, y_{-2},y_{-1},y_{0},y_{1},\dots,y_t,\dots\}$, $y_i \in \mathbb{R}^k$. In practice, we only observe samples, typically: $\{y_{1},\dots,y_T\}$.
 
-Standard time series models are built using **shocks** that we will often denote by $\varepsilon_t$. Typically, $\mathbb{E}(\varepsilon_t)=0$. In many models, the shocks are supposed to be i.i.d., but there exist other (less restrictive) notions of shocks. In particular, the definition of many processes is based on whote noises:
+Standard time series models are built using **shocks** that we will often denote by $\varepsilon_t$. Typically, $\mathbb{E}(\varepsilon_t)=0$. In many models, the shocks are supposed to be i.i.d., but there exist other (less restrictive) notions of shocks. In particular, the definition of many processes is based on white noises:
 
 :::{.definition #whitenoise name="White noise"}
 The process $\{\varepsilon_t\}_{t \in] -\infty,+\infty[}$ is a white noise if, for all $t$:
 
 a. $\mathbb{E}(\varepsilon_t)=0$,
-b. $\mathbb{E}(\varepsilon_t^2)=\sigma^2<\infty$ and
+b. $\mathbb{E}(\varepsilon_t^2)=\sigma^2<\infty$,
 c. for all $s\ne t$, $\mathbb{E}(\varepsilon_t \varepsilon_s)=0$.
 :::
 
@@ -17,14 +19,14 @@ Another type of shocks that are commonly used are Martingale Difference Sequence
 :::{.definition #MDS name="Martingale Difference Sequence"}
 The process $\{\varepsilon_t\}_{t = -\infty}^{+\infty}$ is a martingale difference sequence (MDS) if $\mathbb{E}(|\varepsilon_{t}|)<\infty$ and if, for all $t$,
 $$
-\underbrace{\mathbb{E}_{t-1}(\varepsilon_{t})}_{\mbox{Expectation conditional on the past}}=0.
+\underbrace{\mathbb{E}_{t-1}(\varepsilon_{t})}_{\mbox{conditional on the past}}=0.
 $$
 :::
 
 By definition, if $y_t$ is a martingale, then $y_{t}-y_{t-1}$ is a MDS.
 
 :::{.example #ARCH name="ARCH process"}
-The Autoregressive conditional heteroskedasticity (ARCH) process is an example of shock that satisfies the MDS definition but that is not i.i.d.:
+The Autoregressive conditional heteroskedasticity process---studied in Section \@ref(ARCHGARCH)---is an example of shock that satisfies the MDS definition but that is not i.i.d.:
 $$
 \varepsilon_{t} = \sigma_t \times z_{t},
 $$
@@ -32,7 +34,7 @@ where $z_t \sim i.i.d.\,\mathcal{N}(0,1)$ and $\sigma_t^2 = w + \alpha \varepsil
 :::
 
 :::{.example #whiteNotMDS}
-A white noise process is not necessarily a MDS. This is for instance the following process:
+A white noise process is not necessarily a MDS. This is for instance the case for following process:
 $$
 \varepsilon_{t} = z_t + z_{t-1}z_{t-2},
 $$
@@ -46,20 +48,23 @@ Let us now introduce the lag operator. The lag operator, denoted by $L$, is defi
 L: \{y_t\}_{t=-\infty}^{+\infty} \rightarrow \{w_t\}_{t=-\infty}^{+\infty} \quad \mbox{with} \quad w_t = y_{t-1}.(\#eq:lagOp)
 \end{equation}
 
-We have: $L^2 y_t = y_{t-2}$ and, more generally, $L^k y_t = y_{t-k}$.
+It is easily seen that we have $L^2 y_t =L(L y_t) = y_{t-2}$ and, more generally, $L^k y_t = y_{t-k}$.
 
-Consider a time series $y_t$ defined by $y_t = \mu + \phi y_{t-1} + \varepsilon_t$, where the $\varepsilon_t$'s are i.i.d. $\mathcal{N}(0,\sigma^2)$. Using the lag operator, the dynamics of $y_t$ can be expressed as follows:
+Consider a process that follows $y_t$ defined by $y_t = \mu + \phi y_{t-1} + \varepsilon_t$ (this is an AR(1) process, as we will see in Section \@ref(Univariate)), where the $\varepsilon_t$'s are i.i.d. $\mathcal{N}(0,\sigma^2)$. Using the lag operator, the dynamics of $y_t$ can be expressed as follows:
 $$
 (1-\phi L) y_t = \mu + \varepsilon_t.
 $$
 
-It is easily checked that we have $L^2 y_t = y_{t-2}$ and, generally, $L^k y_t = y_{t-k}$.
+
+## Conditional and unconditional moments
 
 If it exists, the **unconditional (or marginal) mean** of the random variable $y_t$ is given by:
 $$
 \mu_t := \mathbb{E}(y_t) = \int_{-\infty}^{\infty} y_t f_{Y_t}(y_t) dy_t,
 $$
-where $f_{Y_t}$ is the unconditional (or marginal) density of $y_t$. Similarly, if it exists, the **unconditional (or marginal) variance** of the random variable $y_t$ is:
+where $f_{Y_t}$ is the unconditional, or marginal, density (p.d.f.) of $y_t$. Note that, in the general case, $Y_t$ and $Y_{t-1}$, may have different densities; that is, in general, $f_{Y_t} \ne f_{Y_{t-1}}$.
+
+Similarly, if it exists, the **unconditional (or marginal) variance** of the random variable $y_t$ is:
 $$
 \mathbb{V}ar(y_t) = \int_{-\infty}^{\infty} (y_t - \mathbb{E}(y_t))^2 f_{Y_t}(y_t) dy_t.
 $$
@@ -68,14 +73,14 @@ $$
 
 The $j^{th}$ autocovariance of $y_t$ is given by:
 \begin{eqnarray*}
-\gamma_{j,t} &:=& \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} \dots \int_{-\infty}^{\infty} [y_t - \mathbb{E}(y_t)][y_{t-j} - \mathbb{E}(y_{t-j})] \times\\
-&& f_{Y_t,Y_{t-1},\dots,Y_{t-j}}(y_t,y_{t-1},\dots,y_{t-j}) dy_t dy_{t-1} \dots dy_{t-j} \\
-&=& \mathbb{E}([y_t - \mathbb{E}(y_t)][y_{t-j} - \mathbb{E}(y_{t-j})]),
+\gamma_{j,t} &:=& \mathbb{E}([y_t - \mathbb{E}(y_t)][y_{t-j} - \mathbb{E}(y_{t-j})])\\
+&=& \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} \dots \int_{-\infty}^{\infty} [y_t - \mathbb{E}(y_t)][y_{t-j} - \mathbb{E}(y_{t-j})] \times\\
+&& f_{Y_t,Y_{t-1},\dots,Y_{t-j}}(y_t,y_{t-1},\dots,y_{t-j}) dy_t dy_{t-1} \dots dy_{t-j},
 \end{eqnarray*}
 where $f_{Y_t,Y_{t-1},\dots,Y_{t-j}}(y_t,y_{t-1},\dots,y_{t-j})$ is the joint distribution of $y_t,y_{t-1},\dots,y_{t-j}$.
 :::
 
-In particular, $\gamma_{0,t} = \mathbb{V}ar(y_t)$.
+In particular, note that $\gamma_{0,t} = \mathbb{V}ar(y_t)$.
 
 :::{.definition #covstat name="Covariance stationarity"}
 The process $y_t$ is covariance stationary ---or weakly stationary--- if, for all $t$ and $j$,
@@ -86,7 +91,7 @@ $$
 
 Figure \@ref(fig:nonstat1) displays the simulation of a process that is not covariance stationary. This process follows $y_t = 0.1t + \varepsilon_t$, where $\varepsilon_t \sim\,i.i.d.\,\mathcal{N}(0,1)$. Indeed, for such a process, we have: $\mathbb{E}(y_t)=0.1t$, which depends on $t$.
 
-```{r nonstat1, echo=FALSE, fig.cap="Example of a process that is not covariance stationary ($y_t = 0.1t + \\varepsilon_t$, where $\\varepsilon_t \\sim \\mathcal{N}(0,1)$).", fig.asp = .6, out.width = "95%", fig.align = 'left-aligned'}
+```{r NONstat1, echo=FALSE, fig.cap="Example of a process that is not covariance stationary ($y_t = 0.1t + \\varepsilon_t$, where $\\varepsilon_t \\sim \\mathcal{N}(0,1)$).", fig.asp = .6, out.width = "95%", fig.align = 'left-aligned'}
 T <- 200
 y <- 0.1*(1:T) + rnorm(T)
 par(plt=c(.1,.95,.1,.95))
@@ -104,7 +109,7 @@ y_t = \mathbb{I}_{\{t<1000\}}\varepsilon_{1,t}+\mathbb{I}_{\{t\ge1000\}}\varepsi
 $$
 where $\varepsilon_{1,t} \sim \mathcal{N}(0,1)$ and $\varepsilon_{2,t} \sim \sqrt{\frac{\nu - 2}{\nu}} t(\nu)$ and $\nu = 4$.
 
-```{r nonstat2, echo=FALSE, fig.cap="Example of a process that is covariance stationary but not strictly stationary. The red lines delineate the 99\\% confidence interval of the standard normal distribution ($\\pm 2.58$).", fig.asp = .6, out.width = "95%", fig.align = 'left-aligned'}
+```{r NONstat2, echo=FALSE, fig.cap="Example of a process that is covariance stationary but not strictly stationary. The red lines delineate the 99\\% confidence interval of the standard normal distribution ($\\pm 2.58$).", fig.asp = .6, out.width = "95%", fig.align = 'left-aligned'}
 T <- 2000
 y <- rnorm(T)
 y[(T/2):T] <- rt(n = T/2 + 1,df=4)

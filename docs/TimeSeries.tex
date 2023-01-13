@@ -118,7 +118,7 @@
 
 \title{Introduction to Time Series}
 \author{Jean-Paul Renne}
-\date{2023-01-11}
+\date{2023-01-13}
 
 \usepackage{amsthm}
 \newtheorem{theorem}{Theorem}[chapter]
@@ -149,7 +149,7 @@
 \hypertarget{intro}{%
 \chapter*{Introduction to Time Series}\label{intro}}
 
-Over the last decades, several methodologies have been proposed so as to estimate these responses. This course has been developed by \href{https://sites.google.com/site/jeanpaulrenne/home}{Jean-Paul Renne}.
+Time series constitute a prevalent data type in several disciplines, notably macroeconomics and finance. The modeling of time series is crucial for many purposes, including forecasting, understanding macroeconomic mechanisms, and risk assessment. This course proposes an introduction to time series analysis. It has been developed by \href{https://sites.google.com/site/jeanpaulrenne/home}{Jean-Paul Renne}.
 
 Codes associated with this course are part of the \texttt{AEC} package, which is available on GitHub. To load a package from GitHub, you need to use function \texttt{install\_github} from the \texttt{devtools} package:
 
@@ -190,11 +190,14 @@ Codes associated with this course are part of the \texttt{AEC} package, which is
 \end{itemize}
 
 \hypertarget{Intro}{%
-\chapter{Introduction to time series}\label{Intro}}
+\chapter{To start with}\label{Intro}}
+
+\hypertarget{shocks-and-lag-operator}{%
+\section{Shocks and lag operator}\label{shocks-and-lag-operator}}
 
 A time series is an infinite sequence of random variables indexed by time: \(\{y_t\}_{t=-\infty}^{+\infty}=\{\dots, y_{-2},y_{-1},y_{0},y_{1},\dots,y_t,\dots\}\), \(y_i \in \mathbb{R}^k\). In practice, we only observe samples, typically: \(\{y_{1},\dots,y_T\}\).
 
-Standard time series models are built using \textbf{shocks} that we will often denote by \(\varepsilon_t\). Typically, \(\mathbb{E}(\varepsilon_t)=0\). In many models, the shocks are supposed to be i.i.d., but there exist other (less restrictive) notions of shocks. In particular, the definition of many processes is based on whote noises:
+Standard time series models are built using \textbf{shocks} that we will often denote by \(\varepsilon_t\). Typically, \(\mathbb{E}(\varepsilon_t)=0\). In many models, the shocks are supposed to be i.i.d., but there exist other (less restrictive) notions of shocks. In particular, the definition of many processes is based on white noises:
 
 \begin{definition}[White noise]
 \protect\hypertarget{def:whitenoise}{}\label{def:whitenoise}
@@ -207,7 +210,7 @@ The process \(\{\varepsilon_t\}_{t \in] -\infty,+\infty[}\) is a white noise if,
 \item
   \(\mathbb{E}(\varepsilon_t)=0\),
 \item
-  \(\mathbb{E}(\varepsilon_t^2)=\sigma^2<\infty\) and
+  \(\mathbb{E}(\varepsilon_t^2)=\sigma^2<\infty\),
 \item
   for all \(s\ne t\), \(\mathbb{E}(\varepsilon_t \varepsilon_s)=0\).
 \end{enumerate}
@@ -219,14 +222,14 @@ Another type of shocks that are commonly used are Martingale Difference Sequence
 \begin{definition}[Martingale Difference Sequence]
 \protect\hypertarget{def:MDS}{}\label{def:MDS}The process \(\{\varepsilon_t\}_{t = -\infty}^{+\infty}\) is a martingale difference sequence (MDS) if \(\mathbb{E}(|\varepsilon_{t}|)<\infty\) and if, for all \(t\),
 \[
-\underbrace{\mathbb{E}_{t-1}(\varepsilon_{t})}_{\mbox{Expectation conditional on the past}}=0.
+\underbrace{\mathbb{E}_{t-1}(\varepsilon_{t})}_{\mbox{conditional on the past}}=0.
 \]
 \end{definition}
 
 By definition, if \(y_t\) is a martingale, then \(y_{t}-y_{t-1}\) is a MDS.
 
 \begin{example}[ARCH process]
-\protect\hypertarget{exm:ARCH}{}\label{exm:ARCH}The Autoregressive conditional heteroskedasticity (ARCH) process is an example of shock that satisfies the MDS definition but that is not i.i.d.:
+\protect\hypertarget{exm:ARCH}{}\label{exm:ARCH}The Autoregressive conditional heteroskedasticity process---studied in Section \ref{ARCHGARCH}---is an example of shock that satisfies the MDS definition but that is not i.i.d.:
 \[
 \varepsilon_{t} = \sigma_t \times z_{t},
 \]
@@ -234,7 +237,7 @@ where \(z_t \sim i.i.d.\,\mathcal{N}(0,1)\) and \(\sigma_t^2 = w + \alpha \varep
 \end{example}
 
 \begin{example}
-\protect\hypertarget{exm:whiteNotMDS}{}\label{exm:whiteNotMDS}A white noise process is not necessarily a MDS. This is for instance the following process:
+\protect\hypertarget{exm:whiteNotMDS}{}\label{exm:whiteNotMDS}A white noise process is not necessarily a MDS. This is for instance the case for following process:
 \[
 \varepsilon_{t} = z_t + z_{t-1}z_{t-2},
 \]
@@ -246,20 +249,23 @@ Let us now introduce the lag operator. The lag operator, denoted by \(L\), is de
 L: \{y_t\}_{t=-\infty}^{+\infty} \rightarrow \{w_t\}_{t=-\infty}^{+\infty} \quad \mbox{with} \quad w_t = y_{t-1}.\label{eq:lagOp}
 \end{equation}
 
-We have: \(L^2 y_t = y_{t-2}\) and, more generally, \(L^k y_t = y_{t-k}\).
+It is easily seen that we have \(L^2 y_t =L(L y_t) = y_{t-2}\) and, more generally, \(L^k y_t = y_{t-k}\).
 
-Consider a time series \(y_t\) defined by \(y_t = \mu + \phi y_{t-1} + \varepsilon_t\), where the \(\varepsilon_t\)'s are i.i.d. \(\mathcal{N}(0,\sigma^2)\). Using the lag operator, the dynamics of \(y_t\) can be expressed as follows:
+Consider a process that follows \(y_t\) defined by \(y_t = \mu + \phi y_{t-1} + \varepsilon_t\) (this is an AR(1) process, as we will see in Section \ref{Univariate}), where the \(\varepsilon_t\)'s are i.i.d. \(\mathcal{N}(0,\sigma^2)\). Using the lag operator, the dynamics of \(y_t\) can be expressed as follows:
 \[
 (1-\phi L) y_t = \mu + \varepsilon_t.
 \]
 
-It is easily checked that we have \(L^2 y_t = y_{t-2}\) and, generally, \(L^k y_t = y_{t-k}\).
+\hypertarget{conditional-and-unconditional-moments}{%
+\section{Conditional and unconditional moments}\label{conditional-and-unconditional-moments}}
 
 If it exists, the \textbf{unconditional (or marginal) mean} of the random variable \(y_t\) is given by:
 \[
 \mu_t := \mathbb{E}(y_t) = \int_{-\infty}^{\infty} y_t f_{Y_t}(y_t) dy_t,
 \]
-where \(f_{Y_t}\) is the unconditional (or marginal) density of \(y_t\). Similarly, if it exists, the \textbf{unconditional (or marginal) variance} of the random variable \(y_t\) is:
+where \(f_{Y_t}\) is the unconditional, or marginal, density (p.d.f.) of \(y_t\). Note that, in the general case, \(Y_t\) and \(Y_{t-1}\), may have different densities; that is, in general, \(f_{Y_t} \ne f_{Y_{t-1}}\).
+
+Similarly, if it exists, the \textbf{unconditional (or marginal) variance} of the random variable \(y_t\) is:
 \[
 \mathbb{V}ar(y_t) = \int_{-\infty}^{\infty} (y_t - \mathbb{E}(y_t))^2 f_{Y_t}(y_t) dy_t.
 \]
@@ -267,14 +273,14 @@ where \(f_{Y_t}\) is the unconditional (or marginal) density of \(y_t\). Similar
 \begin{definition}[Autocovariance]
 \protect\hypertarget{def:autocov}{}\label{def:autocov}The \(j^{th}\) autocovariance of \(y_t\) is given by:
 \begin{eqnarray*}
-\gamma_{j,t} &:=& \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} \dots \int_{-\infty}^{\infty} [y_t - \mathbb{E}(y_t)][y_{t-j} - \mathbb{E}(y_{t-j})] \times\\
-&& f_{Y_t,Y_{t-1},\dots,Y_{t-j}}(y_t,y_{t-1},\dots,y_{t-j}) dy_t dy_{t-1} \dots dy_{t-j} \\
-&=& \mathbb{E}([y_t - \mathbb{E}(y_t)][y_{t-j} - \mathbb{E}(y_{t-j})]),
+\gamma_{j,t} &:=& \mathbb{E}([y_t - \mathbb{E}(y_t)][y_{t-j} - \mathbb{E}(y_{t-j})])\\
+&=& \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} \dots \int_{-\infty}^{\infty} [y_t - \mathbb{E}(y_t)][y_{t-j} - \mathbb{E}(y_{t-j})] \times\\
+&& f_{Y_t,Y_{t-1},\dots,Y_{t-j}}(y_t,y_{t-1},\dots,y_{t-j}) dy_t dy_{t-1} \dots dy_{t-j},
 \end{eqnarray*}
 where \(f_{Y_t,Y_{t-1},\dots,Y_{t-j}}(y_t,y_{t-1},\dots,y_{t-j})\) is the joint distribution of \(y_t,y_{t-1},\dots,y_{t-j}\).
 \end{definition}
 
-In particular, \(\gamma_{0,t} = \mathbb{V}ar(y_t)\).
+In particular, note that \(\gamma_{0,t} = \mathbb{V}ar(y_t)\).
 
 \begin{definition}[Covariance stationarity]
 \protect\hypertarget{def:covstat}{}\label{def:covstat}The process \(y_t\) is covariance stationary ---or weakly stationary--- if, for all \(t\) and \(j\),
@@ -286,7 +292,7 @@ In particular, \(\gamma_{0,t} = \mathbb{V}ar(y_t)\).
 Figure \ref{fig:nonstat1} displays the simulation of a process that is not covariance stationary. This process follows \(y_t = 0.1t + \varepsilon_t\), where \(\varepsilon_t \sim\,i.i.d.\,\mathcal{N}(0,1)\). Indeed, for such a process, we have: \(\mathbb{E}(y_t)=0.1t\), which depends on \(t\).
 
 \begin{figure}
-\includegraphics[width=0.95\linewidth]{TimeSeries_files/figure-latex/nonstat1-1} \caption{Example of a process that is not covariance stationary ($y_t = 0.1t + \varepsilon_t$, where $\varepsilon_t \sim \mathcal{N}(0,1)$).}\label{fig:nonstat1}
+\includegraphics[width=0.95\linewidth]{TimeSeries_files/figure-latex/NONstat1-1} \caption{Example of a process that is not covariance stationary ($y_t = 0.1t + \varepsilon_t$, where $\varepsilon_t \sim \mathcal{N}(0,1)$).}\label{fig:NONstat1}
 \end{figure}
 
 \begin{definition}[Strict stationarity]
@@ -300,7 +306,7 @@ y_t = \mathbb{I}_{\{t<1000\}}\varepsilon_{1,t}+\mathbb{I}_{\{t\ge1000\}}\varepsi
 where \(\varepsilon_{1,t} \sim \mathcal{N}(0,1)\) and \(\varepsilon_{2,t} \sim \sqrt{\frac{\nu - 2}{\nu}} t(\nu)\) and \(\nu = 4\).
 
 \begin{figure}
-\includegraphics[width=0.95\linewidth]{TimeSeries_files/figure-latex/nonstat2-1} \caption{Example of a process that is covariance stationary but not strictly stationary. The red lines delineate the 99\% confidence interval of the standard normal distribution ($\pm 2.58$).}\label{fig:nonstat2}
+\includegraphics[width=0.95\linewidth]{TimeSeries_files/figure-latex/NONstat2-1} \caption{Example of a process that is covariance stationary but not strictly stationary. The red lines delineate the 99\% confidence interval of the standard normal distribution ($\pm 2.58$).}\label{fig:NONstat2}
 \end{figure}
 
 \begin{proposition}
@@ -2741,10 +2747,10 @@ Function \texttt{VAR.Boot} of package \texttt{VAR.etp} (\citet{VARetp}) can be u
 \end{Shaded}
 
 \begin{verbatim}
-##        inv(-1)   inc(-1)   con(-1)    inv(-2)   inc(-2)   con(-2)       const
-## [1,] -0.318624 0.1911445 0.9394235 -0.1528560 0.1649888 0.9141702 -0.01768261
-## [2,] -0.319631 0.1459888 0.9612190 -0.1605511 0.1146050 0.9343938 -0.01672199
-## [3,] -0.319631 0.1459888 0.9612190 -0.1605511 0.1146050 0.9343938 -0.01672199
+##         inv(-1)   inc(-1)   con(-1)    inv(-2)    inc(-2)   con(-2)       const
+## [1,] -0.3160728 0.1718247 0.9606726 -0.1351475 0.08833738 0.9665836 -0.01791907
+## [2,] -0.3196310 0.1459888 0.9612190 -0.1605511 0.11460498 0.9343938 -0.01672199
+## [3,] -0.3196310 0.1459888 0.9612190 -0.1605511 0.11460498 0.9343938 -0.01672199
 \end{verbatim}
 
 \hypertarget{forecasting}{%
@@ -3073,7 +3079,7 @@ Again, we do not find that the alternative model (here the VAR(1) model) is bett
 \end{example}
 
 \hypertarget{NonStat}{%
-\chapter{Non-Stationary Processes}\label{NonStat}}
+\chapter{Non-stationary processes}\label{NonStat}}
 
 In time series analysis, nonstationarity has several crucial implications. Indeed, various time-series regression procedures are not reliable anymore when processes are nonstationary.
 
