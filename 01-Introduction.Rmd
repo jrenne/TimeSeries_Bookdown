@@ -89,9 +89,9 @@ $$
 $$
 :::
 
-Figure \@ref(fig:nonstat1) displays the simulation of a process that is not covariance stationary. This process follows $y_t = 0.1t + \varepsilon_t$, where $\varepsilon_t \sim\,i.i.d.\,\mathcal{N}(0,1)$. Indeed, for such a process, we have: $\mathbb{E}(y_t)=0.1t$, which depends on $t$.
+Figure \@ref(fig:NONNstat1) displays the simulation of a process that is not covariance stationary. This process follows $y_t = 0.1t + \varepsilon_t$, where $\varepsilon_t \sim\,i.i.d.\,\mathcal{N}(0,1)$. Indeed, for such a process, we have: $\mathbb{E}(y_t)=0.1t$, which depends on $t$.
 
-```{r NONstat1, echo=FALSE, fig.cap="Example of a process that is not covariance stationary ($y_t = 0.1t + \\varepsilon_t$, where $\\varepsilon_t \\sim \\mathcal{N}(0,1)$).", fig.asp = .6, out.width = "95%", fig.align = 'left-aligned'}
+```{r NONNstat1, fig.cap="Example of a process that is not covariance stationary. it follows: $y_t = 0.1t + \\varepsilon_t$, where $\\varepsilon_t \\sim \\mathcal{N}(0,1)$.", fig.asp = .6, out.width = "95%", fig.align = 'left-aligned'}
 T <- 200
 y <- 0.1*(1:T) + rnorm(T)
 par(plt=c(.1,.95,.1,.95))
@@ -107,9 +107,9 @@ The following process is  covariance stationary but not strictly stationary:
 $$
 y_t = \mathbb{I}_{\{t<1000\}}\varepsilon_{1,t}+\mathbb{I}_{\{t\ge1000\}}\varepsilon_{2,t},
 $$
-where $\varepsilon_{1,t} \sim \mathcal{N}(0,1)$ and $\varepsilon_{2,t} \sim \sqrt{\frac{\nu - 2}{\nu}} t(\nu)$ and $\nu = 4$.
+where $\varepsilon_{1,t} \sim \mathcal{N}(0,1)$ and $\varepsilon_{2,t} \sim \sqrt{\frac{\nu - 2}{\nu}} t(\nu)$ and $\nu = 4$. A simulated path is displayed in Figure \@ref(fig:NONNstat2).
 
-```{r NONstat2, echo=FALSE, fig.cap="Example of a process that is covariance stationary but not strictly stationary. The red lines delineate the 99\\% confidence interval of the standard normal distribution ($\\pm 2.58$).", fig.asp = .6, out.width = "95%", fig.align = 'left-aligned'}
+```{r NONNstat2, fig.cap="Example of a process that is covariance stationary but not strictly stationary. The red lines delineate the 99\\% confidence interval of the standard normal distribution ($\\pm 2.58$).", fig.asp = .6, out.width = "95%", fig.align = 'left-aligned'}
 T <- 2000
 y <- rnorm(T)
 y[(T/2):T] <- rt(n = T/2 + 1,df=4)
@@ -125,7 +125,7 @@ abline(h=2.58,col="red")
 If $y_t$ is covariance stationary, then $\gamma_j = \gamma_{-j}$.
 :::
 :::{.proof}
-Since $y_t$ is covariance stationary, the covariance between $y_t$ and $y_{t-j}$ (i.e $\gamma_j$) is the same as that between $y_{t+j}$ and $y_{t+j-j}$ (i.e. $\gamma_{-j}$).
+Since $y_t$ is covariance stationary, the covariance between $y_t$ and $y_{t-j}$ (i.e., $\gamma_j$) is the same as that between $y_{t+j}$ and $y_{t+j-j}$ (i.e. $\gamma_{-j}$).
 :::
 
 
@@ -141,10 +141,9 @@ Consider a long historical time series of the Swiss GDP growth, taken from the @
 
 [^FootnoteJST]: Version 6 of the dataset, available on [this website](https://www.macrohistory.net).
 
-```{r autocov, echo=FALSE, fig.cap="Annual growth rate of Swiss GDP, based on the Jorda-Schularick-Taylor Macrohistory Database.", fig.asp = .6, out.width = "95%", fig.align = 'left-aligned'}
+```{r autocov, fig.cap="Annual growth rate of Swiss GDP, based on the Jorda-Schularick-Taylor Macrohistory Database.", fig.asp = .6, out.width = "95%", fig.align = 'left-aligned'}
 library(AEC)
-data(JST)
-data <- subset(JST,iso=="CHE")
+data(JST);data <- subset(JST,iso=="CHE")
 par(plt=c(.1,.95,.1,.95))
 T <- dim(data)[1]
 data$growth <- c(NaN,log(data$gdp[2:T]/data$gdp[1:(T-1)]))
@@ -152,7 +151,7 @@ plot(data$year,data$growth,type="l",xlab="",ylab="",lwd=2)
 abline(h=mean(data$growth,na.rm = TRUE),col="blue",lty=2,xlab="",ylab="")
 ```
 
-
+Figure \@ref(fig:autocov2) shows two scatter plots. In the first one, the coordinates of each point are of the form $(y_{t-1},y_t)$. Hence, the slope of the OLS regression line (in blue) is $\widehat{\mathbb{C}ov}(y_t,y_{t-1})/\widehat{\mathbb{V}ar}(y_{t-1})$ (where the hats indicate that these moments are the sample ones). Assuming that the process is covariance stationary, the slope therefore is an estimate of the auto-correlation of order one. By the same logic, the slope of the blue line in the second plot is an estimate of the auto-correlation of order three.
 
 
 ```{r autocov2, echo=FALSE, fig.cap="For order $j$, the slope of the blue line is, approximately, $\\hat{\\gamma}_j/\\widehat{\\mathbb{V}ar}(y_t)$, where hats indicate sample moments.", fig.asp = .6, out.width = "95%", fig.align = 'left-aligned'}
@@ -171,21 +170,10 @@ grid()
 abline(lm(y~y_3),col="blue")
 ```
 
-:::{.definition #ergodicity name="Mean ergodicity"}
-The covariance-stationary process $y_t$ is ergodic for the mean if:
-$$
-\mbox{plim}_{T \rightarrow +\infty} \frac{1}{T}\sum_{t=1}^T y_t = \mathbb{E}(y_t).
-$$
-:::
 
-:::{.definition #ergod2nd name="Second-moment ergodicity"}
-The covariance-stationary process $y_t$ is ergodic for second moments if, for all $j$:
-$$
-\mbox{plim}_{T \rightarrow +\infty} \frac{1}{T}\sum_{t=1}^T (y_t-\mu) (y_{t-j}-\mu) = \gamma_j.
-$$
-:::
+## Central Limit Theorem (CLT) for persistent processes
 
-It should be noted that ergodicity and stationarity are different properties. Typically if the process $\{x_t\}$ is such that, $\forall t$, $x_t \equiv y$, where $y \sim\,\mathcal{N}(0,1)$ (say), then $\{x_t\}$ is stationary but not ergodic.
+This subsection shows that the Central Limit Theorem (CLT, see Theorem \@ref(thm:LindbergLevyCLT)) can be extended to cases where the observations are auto-correlated. 
 
 :::{.theorem #CLTcovstat name="Central Limit Theorem for covariance-stationary processes"}
 
@@ -224,9 +212,9 @@ S^{NW}=\hat\gamma_0 + 2 \sum_{\nu=1}^{q}\left(1-\frac{\nu}{q+1}\right) \hat\gamm
 
 Loosely speaking, Theorem \@ref(thm:CLTcovstat) says that, for a given sample size, the higher the "persistency" of a process, the lower the accuracy of the sample mean as an estimate of the population mean. To illustrate, consider three processes that feature the same marginal variance (equal to one, say), but different autocorrelations: 0\%, 70\%, and 99.9\%. Figure \@ref(fig:TVTCL) displays simulated paths of such three processes. It indeed appears that, the larger the autocorrelation of the process, the further the sample mean (dashed red line) from the population mean (red solid line).
 
-The same type of simulations can be performed using [this ShinyApp](https://jrenne.shinyapps.io/MacroEc/) (use panel "AR(1)").
+The same type of simulations can be performed using [this web interface](https://jrenne.shinyapps.io/MacroEc/) (use panel "AR(1)").
 
-```{r TVTCL, echo=FALSE, fig.cap="The three samples have been simulated using the following data generating process: $x_t = \\mu + \\rho (x_{t-1}-\\mu) + \\sqrt{1-\\rho^2}\\varepsilon_t$, where $\\varepsilon_t \\sim \\mathcal{N}(0,1)$. Case A: $\\rho = 0$;  Case B: $\\rho = 0.7$;  Case C: $\\rho = 0.999$. In the three cases, $\\mathbb{E}(x_t)=\\mu=2$ and $\\mathbb{V}ar(x_t)=1$.", fig.asp = .6, out.width = "100%", fig.align = 'left-aligned'}
+```{r TVTCL, echo=FALSE, fig.cap="The three samples have been simulated using the following data generating process: $x_t = \\mu + \\rho (x_{t-1}-\\mu) + \\sqrt{1-\\rho^2}\\varepsilon_t$, where $\\varepsilon_t \\sim \\mathcal{N}(0,1)$. Case A: $\\rho = 0$;  Case B: $\\rho = 0.7$;  Case C: $\\rho = 0.999$. In the three cases, $\\mathbb{E}(x_t)=\\mu=2$ and $\\mathbb{V}ar(x_t)=1$. The dashed (respectively solid) red line indicate the sample (resp. unconditional) mean.", fig.asp = .6, out.width = "100%", fig.align = 'left-aligned'}
 all.rho <- c(0,.7,.999)
 par(plt=c(0.1,0.95,0.2,0.75))
 par(mfrow=c(3,1))

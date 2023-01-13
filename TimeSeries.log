@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999994 (TeX Live 2022) (preloaded format=xelatex 2023.1.3)  13 JAN 2023 13:02
+This is XeTeX, Version 3.141592653-2.6-0.999994 (TeX Live 2022) (preloaded format=xelatex 2023.1.3)  13 JAN 2023 15:18
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -778,33 +778,45 @@ Overfull \hbox (15.49843pt too wide) in paragraph at lines 279--281
 \TU/lmr/m/n/12 where $[][][][][][] [][][] [] [] [][][]$ is the joint distribution of $[][][] [][][] [] [] [][]$. 
  []
 
-
-LaTeX Warning: Reference `fig:nonstat1' on page 9 undefined on input line 292.
-
-File: TimeSeries_files/figure-latex/NONstat1-1.pdf Graphic file (type pdf)
-<use TimeSeries_files/figure-latex/NONstat1-1.pdf>
-File: TimeSeries_files/figure-latex/NONstat2-1.pdf Graphic file (type pdf)
-<use TimeSeries_files/figure-latex/NONstat2-1.pdf>
+File: TimeSeries_files/figure-latex/NONNstat1-1.pdf Graphic file (type pdf)
+<use TimeSeries_files/figure-latex/NONNstat1-1.pdf>
+[9] [10]
+File: TimeSeries_files/figure-latex/NONNstat2-1.pdf Graphic file (type pdf)
+<use TimeSeries_files/figure-latex/NONNstat2-1.pdf>
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 5.0pt on input line 327.
+(Font)              scaled to size 5.0pt on input line 348.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 5.00046pt on input line 327.
+(Font)              scaled to size 5.00046pt on input line 348.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 4.99947pt on input line 327.
-[9] [10] [11]
+(Font)              scaled to size 4.99947pt on input line 348.
+[11]
 File: TimeSeries_files/figure-latex/autocov-1.pdf Graphic file (type pdf)
 <use TimeSeries_files/figure-latex/autocov-1.pdf>
+[12]
 File: TimeSeries_files/figure-latex/autocov2-1.pdf Graphic file (type pdf)
 <use TimeSeries_files/figure-latex/autocov2-1.pdf>
-[12] [13]
+
+Underfull \vbox (badness 7486) has occurred while \output is active []
+
+
+Overfull \hbox (21.37357pt too wide) has occurred while \output is active
+\TU/lmr/m/sl/12 1.3.  CENTRAL LIMIT THEOREM (CLT) FOR PERSISTENT PROCESSES \TU/lmr/m/n/12 13
+ []
+
+[13] [14]
 File: TimeSeries_files/figure-latex/TVTCL-1.pdf Graphic file (type pdf)
 <use TimeSeries_files/figure-latex/TVTCL-1.pdf>
-[14] [15] [16
+
+Overfull \hbox (21.37357pt too wide) has occurred while \output is active
+\TU/lmr/m/sl/12 1.3.  CENTRAL LIMIT THEOREM (CLT) FOR PERSISTENT PROCESSES \TU/lmr/m/n/12 15
+ []
+
+[15] [16
 
 ]
 Chapter 2.
 [17]
-Overfull \hbox (19.12221pt too wide) in alignment at lines 461--464
+Overfull \hbox (19.12221pt too wide) in alignment at lines 483--486
  [][][] []
  []
 
@@ -812,34 +824,40 @@ Overfull \hbox (19.12221pt too wide) in alignment at lines 461--464
 File: TimeSeries_files/figure-latex/simMA-1.pdf Graphic file (type pdf)
 <use TimeSeries_files/figure-latex/simMA-1.pdf>
 [19]
-Underfull \hbox (badness 1237) in paragraph at lines 512--513
+Underfull \hbox (badness 1237) in paragraph at lines 534--535
 []\TU/lmr/m/n/12 See Appendix 3.A in Hamilton. “Well behaved” means that
  []
 
+
+LaTeX Warning: Reference `thm:cauchycritstatic' on page 20 undefined on input line 538.
+
+
+LaTeX Warning: Reference `thm:cauchycritstochastic' on page 20 undefined on input line 538.
+
 [20]
-Overfull \hbox (31.90216pt too wide) in alignment at lines 574--579
+Overfull \hbox (31.90216pt too wide) in alignment at lines 597--602
  [][][] []
  []
 
 [21]
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/b/n' will be
-(Font)              scaled to size 12.0pt on input line 611.
+(Font)              scaled to size 12.0pt on input line 634.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/b/n' will be
-(Font)              scaled to size 8.4pt on input line 611.
+(Font)              scaled to size 8.4pt on input line 634.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/b/n' will be
-(Font)              scaled to size 6.0pt on input line 611.
+(Font)              scaled to size 6.0pt on input line 634.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/b/n' will be
-(Font)              scaled to size 12.0011pt on input line 611.
+(Font)              scaled to size 12.0011pt on input line 634.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/b/n' will be
-(Font)              scaled to size 8.40076pt on input line 611.
+(Font)              scaled to size 8.40076pt on input line 634.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/b/n' will be
-(Font)              scaled to size 6.00055pt on input line 611.
+(Font)              scaled to size 6.00055pt on input line 634.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/b/n' will be
-(Font)              scaled to size 11.99872pt on input line 611.
+(Font)              scaled to size 11.99872pt on input line 634.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/b/n' will be
-(Font)              scaled to size 8.3991pt on input line 611.
+(Font)              scaled to size 8.3991pt on input line 634.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/b/n' will be
-(Font)              scaled to size 5.99936pt on input line 611.
+(Font)              scaled to size 5.99936pt on input line 634.
 [22] [23] [24] [25] [26]
 File: TimeSeries_files/figure-latex/pacf-1.pdf Graphic file (type pdf)
 <use TimeSeries_files/figure-latex/pacf-1.pdf>
@@ -852,15 +870,12 @@ File: TimeSeries_files/figure-latex/IRFgdp1-1.pdf Graphic file (type pdf)
 [32] [33]
 File: TimeSeries_files/figure-latex/IRFgdp2-1.pdf Graphic file (type pdf)
 <use TimeSeries_files/figure-latex/IRFgdp2-1.pdf>
-
-Underfull \hbox (badness 4353) in paragraph at lines 1018--1018
+[34]
+Underfull \hbox (badness 4353) in paragraph at lines 1041--1041
 []\TU/lmr/bx/n/14.4 ARMA processes with exogenous variables
  []
 
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-[34] [35] [36]
+[35] [36]
 File: TimeSeries_files/figure-latex/freez-1.pdf Graphic file (type pdf)
 <use TimeSeries_files/figure-latex/freez-1.pdf>
 
@@ -868,7 +883,7 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [37]
 LaTeX Font Info:    Font shape `TU/lmtt/bx/n' in size <12> not available
-(Font)              Font shape `TU/lmtt/b/n' tried instead on input line 1125.
+(Font)              Font shape `TU/lmtt/b/n' tried instead on input line 1147.
 [38] [39] [40]
 File: TimeSeries_files/figure-latex/freez4-1.pdf Graphic file (type pdf)
 <use TimeSeries_files/figure-latex/freez4-1.pdf>
@@ -876,39 +891,43 @@ File: TimeSeries_files/figure-latex/freez4-1.pdf Graphic file (type pdf)
 File: TimeSeries_files/figure-latex/Ramey1fig-1.pdf Graphic file (type pdf)
 <use TimeSeries_files/figure-latex/Ramey1fig-1.pdf>
 [42]
-
-LaTeX Warning: Reference `eq:DeltaMethod' on page 43 undefined on input line 1307.
-
 File: TimeSeries_files/figure-latex/Ramey3-1.pdf Graphic file (type pdf)
 <use TimeSeries_files/figure-latex/Ramey3-1.pdf>
 
-LaTeX Warning: Reference `secMLE' on page 43 undefined on input line 1318.
+LaTeX Warning: Reference `secMLE' on page 43 undefined on input line 1340.
+
+
+Underfull \vbox (badness 2343) has occurred while \output is active []
 
 [43]
 
-LaTeX Warning: Reference `def:MC' on page 44 undefined on input line 1323.
+LaTeX Warning: Reference `def:MC' on page 44 undefined on input line 1345.
 
 [44] [45]
-Underfull \hbox (badness 2913) in paragraph at lines 1417--1419
+Underfull \hbox (badness 2913) in paragraph at lines 1439--1441
 \TU/lmr/m/n/12 where $[][][][][][] [] [] [][][] [][]$ is the marginal distribution of $[][] [][]
  []
 
 [46] [47]
-Overfull \hbox (82.26929pt too wide) in alignment at lines 1488--1491
+Overfull \hbox (82.26929pt too wide) in alignment at lines 1510--1513
  [][][] []
  []
 
-[48] [49] [50] [51] [52]
+[48] [49] [50] [51]
 
-LaTeX Warning: Reference `def:LR' on page 53 undefined on input line 1678.
+LaTeX Warning: Reference `def:asmyptconsisttest' on page 52 undefined on input line 1678.
+
+[52]
+
+LaTeX Warning: Reference `def:LR' on page 53 undefined on input line 1700.
 
 
-Overfull \hbox (98.40404pt too wide) in paragraph at lines 1681--1683
+Overfull \hbox (98.40404pt too wide) in paragraph at lines 1703--1705
 \TU/lmr/m/n/12 If $[][] [][][][] [] []$, we have: $[][] [] [] [] [][][][][] []
  []
 
 
-Underfull \hbox (badness 1077) in paragraph at lines 1681--1683
+Underfull \hbox (badness 1077) in paragraph at lines 1703--1705
 [][][][][] [] []$\TU/lmr/m/n/12 , which implies, in the same spirit as before, that
  []
 
@@ -917,20 +936,20 @@ Chapter 3.
 [55
 
 ]
-Overfull \hbox (50.49586pt too wide) in alignment at lines 1764--1769
+Overfull \hbox (50.49586pt too wide) in alignment at lines 1786--1791
  [][][] []
  []
 
 [56]
 
-LaTeX Warning: Reference `Projections' on page 57 undefined on input line 1797.
+LaTeX Warning: Reference `Projections' on page 57 undefined on input line 1819.
 
 [57]
-Underfull \vbox (badness 10000) detected at line 1883
+Underfull \vbox (badness 10000) detected at line 1905
  []
 
 
-Underfull \vbox (badness 10000) detected at line 1883
+Underfull \vbox (badness 10000) detected at line 1905
  []
 
 [58]
@@ -938,24 +957,24 @@ File: TimeSeries_files/figure-latex/simVAR-1.pdf Graphic file (type pdf)
 <use TimeSeries_files/figure-latex/simVAR-1.pdf>
 [59]
 
-LaTeX Warning: Reference `eq:VARMAstd' on page 60 undefined on input line 1904.
+LaTeX Warning: Reference `eq:VARMAstd' on page 60 undefined on input line 1926.
 
 [60] [61]
-Overfull \hbox (40.25853pt too wide) in paragraph at lines 1982--1983
+Overfull \hbox (40.25853pt too wide) in paragraph at lines 2004--2005
 []\TU/lmr/m/n/12 Using []Hamilton[] ([]1994[])’s notations, denote with $[]$ the matrix $[][]$
  []
 
 [62] [63]
-Underfull \hbox (badness 2269) in paragraph at lines 2075--2076
+Underfull \hbox (badness 2269) in paragraph at lines 2097--2098
 []\TU/lmr/m/n/12 Naturally, in practice, $[]$ is replaced with $[]$, $[]$ is replaced with
  []
 
 
-LaTeX Warning: Reference `def:LR' on page 64 undefined on input line 2077.
+LaTeX Warning: Reference `def:LR' on page 64 undefined on input line 2099.
 
 [64] [65]
 
-LaTeX Warning: Reference `def:LR' on page 66 undefined on input line 2135.
+LaTeX Warning: Reference `def:LR' on page 66 undefined on input line 2157.
 
 [66] [67] [68] [69] [70]
 File: TimeSeries_files/figure-latex/CEE-1.pdf Graphic file (type pdf)
@@ -967,40 +986,40 @@ File: TimeSeries_files/figure-latex/BQ1-1.pdf Graphic file (type pdf)
 File: TimeSeries_files/figure-latex/BQ4-1.pdf Graphic file (type pdf)
 <use TimeSeries_files/figure-latex/BQ4-1.pdf>
 [75] [76]
-Underfull \hbox (badness 1655) in paragraph at lines 2563--2565
+Underfull \hbox (badness 1655) in paragraph at lines 2585--2587
 []\TU/lmr/m/n/12 Asymptotic normal approximation ([]Lütkepohl[] ([]1990[])), or Delta
  []
 
 
-LaTeX Warning: Reference `LLNappendix' on page 77 undefined on input line 2576.
+LaTeX Warning: Reference `LLNappendix' on page 77 undefined on input line 2598.
 
 [77] [78]
 
-LaTeX Warning: Reference `eq:DeltaMethod' on page 79 undefined on input line 2613.
+LaTeX Warning: Reference `eq:DeltaMethod' on page 79 undefined on input line 2635.
 
 [79]
-Underfull \hbox (badness 4819) in paragraph at lines 2697--2699
+Underfull \hbox (badness 4819) in paragraph at lines 2719--2721
 []\TU/lmr/m/n/12 Perform $[]$ replications and compute the median coefficients
  []
 
 [80]
-Overfull \hbox (116.75981pt too wide) in paragraph at lines 2754--2754
-[]\TU/lmtt/m/n/12 ##         inv(-1)   inc(-1)   con(-1)    inv(-2)    inc(-2)   con(-2)       const[] 
+Overfull \hbox (110.57982pt too wide) in paragraph at lines 2776--2776
+[]\TU/lmtt/m/n/12 ##         inv(-1)   inc(-1)   con(-1)    inv(-2)   inc(-2)   con(-2)       const[] 
  []
 
 
-Overfull \hbox (116.62796pt too wide) in paragraph at lines 2754--2754
-[]\TU/lmtt/m/n/12 ## [1,] -0.3160728 0.1718247 0.9606726 -0.1351475 0.08833738 0.9665836 -0.01791907[] 
+Overfull \hbox (110.50795pt too wide) in paragraph at lines 2776--2776
+[]\TU/lmtt/m/n/12 ## [1,] -0.3080873 0.1715443 0.9309628 -0.1402237 0.1808073 0.9395030 -0.01859803[] 
  []
 
 
-Overfull \hbox (116.59195pt too wide) in paragraph at lines 2754--2754
-[]\TU/lmtt/m/n/12 ## [2,] -0.3196310 0.1459888 0.9612190 -0.1605511 0.11460498 0.9343938 -0.01672199[] 
+Overfull \hbox (110.42395pt too wide) in paragraph at lines 2776--2776
+[]\TU/lmtt/m/n/12 ## [2,] -0.3196310 0.1459888 0.9612190 -0.1605511 0.1146050 0.9343938 -0.01672199[] 
  []
 
 
-Overfull \hbox (116.59195pt too wide) in paragraph at lines 2754--2754
-[]\TU/lmtt/m/n/12 ## [3,] -0.3196310 0.1459888 0.9612190 -0.1605511 0.11460498 0.9343938 -0.01672199[] 
+Overfull \hbox (110.42395pt too wide) in paragraph at lines 2776--2776
+[]\TU/lmtt/m/n/12 ## [3,] -0.3196310 0.1459888 0.9612190 -0.1605511 0.1146050 0.9343938 -0.01672199[] 
  []
 
 [81] [82
@@ -1009,22 +1028,22 @@ Overfull \hbox (116.59195pt too wide) in paragraph at lines 2754--2754
 Chapter 4.
 [83] [84] [85] [86]
 
-LaTeX Warning: Reference `prp:chgeR2' on page 87 undefined on input line 2958.
+LaTeX Warning: Reference `prp:chgeR2' on page 87 undefined on input line 2980.
 
 
-LaTeX Warning: Reference `prp:chgeInR2' on page 87 undefined on input line 2958.
+LaTeX Warning: Reference `prp:chgeInR2' on page 87 undefined on input line 2980.
 
 [87]
 
-LaTeX Warning: Reference `def:NW' on page 88 undefined on input line 2993.
+LaTeX Warning: Reference `def:NW' on page 88 undefined on input line 3015.
 
 [88] [89]
-Overfull \hbox (67.29582pt too wide) in paragraph at lines 3047--3047
+Overfull \hbox (67.29582pt too wide) in paragraph at lines 3069--3069
 []\TU/lmtt/m/n/12 ## DM = -0.82989, Forecast horizon = 2, Loss function power = 2, p-value =[] 
  []
 
 [90]
-Overfull \hbox (67.29582pt too wide) in paragraph at lines 3076--3076
+Overfull \hbox (67.29582pt too wide) in paragraph at lines 3098--3098
 []\TU/lmtt/m/n/12 ## DM = -0.82989, Forecast horizon = 2, Loss function power = 2, p-value =[] 
  []
 
@@ -1074,17 +1093,17 @@ File: TimeSeries_files/figure-latex/CointegEx-1.pdf Graphic file (type pdf)
 
 ] [106] [107]
 
-LaTeX Warning: Reference `def:Brownian' on page 108 undefined on input line 3443.
+LaTeX Warning: Reference `def:Brownian' on page 108 undefined on input line 3465.
 
 [108] [109] [110]
 File: TimeSeries_files/figure-latex/VECMexmpl-1.pdf Graphic file (type pdf)
 <use TimeSeries_files/figure-latex/VECMexmpl-1.pdf>
 [111] [112]
 
-LaTeX Warning: Reference `sec:nonstat' on page 113 undefined on input line 3634.
+LaTeX Warning: Reference `sec:nonstat' on page 113 undefined on input line 3656.
 
 [113]
-Overfull \hbox (42.5879pt too wide) in paragraph at lines 3671--3671
+Overfull \hbox (42.5879pt too wide) in paragraph at lines 3693--3693
 []\TU/lmtt/m/n/12 ## Phillips-Ouliaris demeaned = -29.484, Truncation lag parameter = 2,[] 
  []
 
@@ -1096,10 +1115,10 @@ File: TimeSeries_files/figure-latex/GARCHsmireturns-1.pdf Graphic file (type pdf
 
 ] [118] [119]
 
-LaTeX Warning: Reference `thm:stability' on page 120 undefined on input line 3795.
+LaTeX Warning: Reference `thm:stability' on page 120 undefined on input line 3817.
 
 [120]
-Underfull \hbox (badness 3229) in paragraph at lines 3842--3844
+Underfull \hbox (badness 3229) in paragraph at lines 3864--3866
 \TU/lmr/m/n/12 where $[]$, the vector of unknown parameters, is $[][][][] [][] [][][][]$, where
  []
 
@@ -1108,7 +1127,7 @@ File: TimeSeries_files/figure-latex/estimGARCH3-1.pdf Graphic file (type pdf)
 <use TimeSeries_files/figure-latex/estimGARCH3-1.pdf>
 [122] [123]
 
-LaTeX Warning: Reference `thm:stability' on page 124 undefined on input line 3938.
+LaTeX Warning: Reference `thm:stability' on page 124 undefined on input line 3960.
 
 [124]
 File: TimeSeries_files/figure-latex/estimGARCH3X-1.pdf Graphic file (type pdf)
@@ -1124,107 +1143,65 @@ Underfull \vbox (badness 1147) has occurred while \output is active []
 File: TimeSeries_files/figure-latex/USydsPCA1-1.pdf Graphic file (type pdf)
 <use TimeSeries_files/figure-latex/USydsPCA1-1.pdf>
 [130] [131]
-Overfull \hbox (8.45407pt too wide) in alignment at lines 4208--4212
+Overfull \hbox (8.45407pt too wide) in alignment at lines 4230--4234
  [][][] []
  []
 
-[132] [133] [134]
-Overfull \hbox (0.5146pt too wide) in paragraph at lines 4350--4351
-[]$[] [] [] [][][][]$ \TU/lmr/m/n/12 is a convex function. Therefore $[][][][] [] [][][][][][][][][][][] []
- []
+[132]
 
-[135]
+LaTeX Warning: Reference `thm:cauchycritstatic' on page 133 undefined on input line 4277.
+
+[133] [134] [135]
 File: TimeSeries_files/figure-latex/Cauchy-1.pdf Graphic file (type pdf)
 <use TimeSeries_files/figure-latex/Cauchy-1.pdf>
-[136]
-Underfull \vbox (badness 7099) has occurred while \output is active []
+[136] [137]
 
-[137] [138]
+LaTeX Warning: Reference `def:characteristic' on page 138 undefined on input line 4457.
 
-Package hyperref Warning: Suppressing link with empty target on input line 4519.
-
-[139] [140] [141] [142]
-File: TimeSeries_files/figure-latex/inverseMills-1.pdf Graphic file (type pdf)
-<use TimeSeries_files/figure-latex/inverseMills-1.pdf>
-
-LaTeX Warning: Reference `prp:MLEproperties' on page 143 undefined on input line 4690.
-
-
-LaTeX Warning: Reference `hyp:MLEregularity' on page 143 undefined on input line 4693.
-
-[143] [144]
-
-LaTeX Warning: Reference `prp:Walddistri' on page 145 undefined on input line 4731.
-
-
-LaTeX Warning: Reference `(' on page 145 undefined on input line 4734.
-
-[145]
-
-LaTeX Warning: Reference `prp:LMdistri' on page 146 undefined on input line 4758.
-
-[146] [147]
-
-LaTeX Warning: Reference `eq:xiLM' on page 148 undefined on input line 4821.
-
-
-LaTeX Warning: Reference `prp:equivLRLMW' on page 148 undefined on input line 4824.
-
-[148]
-
-LaTeX Warning: Reference `(' on page 149 undefined on input line 4861.
-
-
-LaTeX Warning: Reference `(' on page 149 undefined on input line 4876.
-
-
-Overfull \hbox (33.54968pt too wide) in alignment at lines 4896--4902
+[138]
+Overfull \hbox (33.54968pt too wide) in alignment at lines 4488--4494
  [][][] []
  []
 
-[149]
-Overfull \hbox (68.05292pt too wide) in alignment at lines 4915--4920
+[139]
+Overfull \hbox (68.05292pt too wide) in alignment at lines 4507--4512
  [][][] []
  []
 
-[150]
-Overfull \hbox (36.3554pt too wide) detected at line 4929
+
+LaTeX Warning: Reference `thm:cauchycritstatic' on page 140 undefined on input line 4514.
+
+
+Overfull \hbox (36.3554pt too wide) detected at line 4521
 [] [] [] [] [] [][][][]
  []
 
-[151]
-Overfull \hbox (6.7202pt too wide) in paragraph at lines 4961--4963
+[140]
+Overfull \hbox (6.7202pt too wide) in paragraph at lines 4553--4555
 \TU/lmr/m/n/12 This implies that $[][][][][] [] [][][][][]$ is always larger than $[][]$[],
  []
 
 
-LaTeX Warning: Reference `prp:multivarG' on page 152 undefined on input line 4968.
+LaTeX Warning: Reference `prp:multivarG' on page 141 undefined on input line 4560.
 
+[141] [142] [143]
+Overfull \hbox (87.66412pt too wide) in paragraph at lines 4665--4730
+ [][] 
+ []
 
-LaTeX Warning: Reference `XXX' on page 152 undefined on input line 4968.
-
-[152] [153]
-
-LaTeX Warning: Reference `fig:GEV' on page 154 undefined on input line 5031.
-
-[154] [155]
-Overfull \hbox (87.66412pt too wide) in paragraph at lines 5112--5177
+[144]
+Overfull \hbox (47.19214pt too wide) in paragraph at lines 4789--4836
  [][] 
  []
 
 
-Overfull \hbox (47.19214pt too wide) in paragraph at lines 5236--5283
+Overfull \hbox (138.59213pt too wide) in paragraph at lines 4842--4895
  [][] 
  []
 
+(./TimeSeries.bbl [145] [146] [147] [148] [149] [150
 
-Overfull \hbox (138.59213pt too wide) in paragraph at lines 5289--5342
- [][] 
- []
-
-(./TimeSeries.bbl [156] [157] [158] [159] [160] [161
-
-] [162] [163]) [164] (./TimeSeries.aux)
+] [151] [152] [153]) [154] (./TimeSeries.aux)
 
 LaTeX Warning: There were undefined references.
 
@@ -1232,15 +1209,15 @@ LaTeX Warning: There were undefined references.
 LaTeX Warning: There were multiply-defined labels.
 
 Package rerunfilecheck Info: File `TimeSeries.out' has not changed.
-(rerunfilecheck)             Checksum: 7EBE14ED0C9E8A9898260EAA60E7A850;4186.
+(rerunfilecheck)             Checksum: C4D46F5758A7ACC2DC4FF69CC65E8D56;4273.
  ) 
 Here is how much of TeX's memory you used:
- 18322 strings out of 478777
- 343200 string characters out of 5850045
- 1957979 words of memory out of 5000000
- 38040 multiletter control sequences out of 15000+600000
+ 18272 strings out of 478777
+ 342217 string characters out of 5850045
+ 1952979 words of memory out of 5000000
+ 37991 multiletter control sequences out of 15000+600000
  521255 words of font info for 112 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  86i,13n,121p,968b,586s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on TimeSeries.pdf (164 pages).
+Output written on TimeSeries.pdf (154 pages).

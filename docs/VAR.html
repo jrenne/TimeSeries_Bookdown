@@ -72,7 +72,7 @@
 <li><a class="" href="forecasting.html"><span class="header-section-number">4</span> Forecasting</a></li>
 <li><a class="" href="NonStat.html"><span class="header-section-number">5</span> Non-stationary processes</a></li>
 <li><a class="" href="cointeg.html"><span class="header-section-number">6</span> Introduction to cointegration</a></li>
-<li><a class="" href="ARCHGARCH.html"><span class="header-section-number">7</span> ARCH and GARCH Models</a></li>
+<li><a class="" href="ARCHGARCH.html"><span class="header-section-number">7</span> ARCH and GARCH models</a></li>
 <li><a class="" href="append.html"><span class="header-section-number">8</span> Appendix</a></li>
 <li><a class="" href="references.html">References</a></li>
 </ul>
@@ -184,7 +184,7 @@ y_{t-1} +
 \end{array}\right]}_{B}\eta_{t-1}.\tag{3.4}
 \end{eqnarray}\]</span></p>
 <p>We can use function <code>simul.VARMA</code> of package <code>AEC</code> to produce IRFs (using <code>indic.IRF=1</code> in the list of arguments):</p>
-<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">AEC</span><span class="op">)</span></span>
 <span><span class="va">distri</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>type<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"gaussian"</span>,<span class="st">"gaussian"</span><span class="op">)</span>,df<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">4</span>,<span class="fl">4</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">n</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">distri</span><span class="op">$</span><span class="va">type</span><span class="op">)</span> <span class="co"># dimension of y_t</span></span>
@@ -345,12 +345,12 @@ y_{i,t} = \beta_i'x_t + \varepsilon_{i,t},\tag{3.10}
 <p>The asymptotic distributions of these estimators are the ones resulting from standard OLS formula.</p>
 </div>
 <div class="proof">
-<p><span id="unlabeled-div-13" class="proof"><em>Proof</em>. </span>See Appendix <a href="append.html#AppendixProof">8.5</a>.</p>
+<p><span id="unlabeled-div-13" class="proof"><em>Proof</em>. </span>See Appendix <a href="append.html#AppendixProof">8.4</a>.</p>
 </div>
 <p>As stated by Proposition <a href="VAR.html#prp:OLSVAR">3.2</a>, when the shocks are not Gaussian, then the OLS regressions still provide consistent estimates of the model parameters. However, since <span class="math inline">\(x_t\)</span> correlates to <span class="math inline">\(\varepsilon_s\)</span> for <span class="math inline">\(s&lt;t\)</span>, the OLS estimator <span class="math inline">\(\mathbf{b}_i\)</span> of <span class="math inline">\(\boldsymbol\beta_i\)</span> is biased in small sample. (That is also the case for the ML estimator.)</p>
 <p>Indeed, denoting by <span class="math inline">\(\boldsymbol\varepsilon_i\)</span> the <span class="math inline">\(T \times 1\)</span> vector of <span class="math inline">\(\varepsilon_{i,t}\)</span>’s, and using the notations of <span class="math inline">\(b_i\)</span> and <span class="math inline">\(\beta_i\)</span> introduced in Proposition <a href="VAR.html#prp:estimVARGaussian">3.1</a>, we have:
 <span class="math display" id="eq:olsar1">\[\begin{equation}
-\mathbf{b}_i = \beta_i + (\mathbf{X}'\mathbf{X})^{-1}\mathbf{X}'\boldsymbol\varepsilon_i.\tag{2.18}
+\mathbf{b}_i = \beta_i + (\mathbf{X}'\mathbf{X})^{-1}\mathbf{X}'\boldsymbol\varepsilon_i.\tag{2.19}
 \end{equation}\]</span>
 We have non-zero correlation between <span class="math inline">\(x_t\)</span> and <span class="math inline">\(\varepsilon_{i,s}\)</span> for <span class="math inline">\(s&lt;t\)</span> and, therefore, <span class="math inline">\(\mathbb{E}[(\mathbf{X}'\mathbf{X})^{-1}\mathbf{X}'\boldsymbol\varepsilon_i] \ne 0\)</span>.</p>
 <p>However, when <span class="math inline">\(y_t\)</span> is covariance stationary, then <span class="math inline">\(\frac{1}{n}\mathbf{X}'\mathbf{X}\)</span> converges to a positive definite matrix <span class="math inline">\(\mathbf{Q}\)</span>, and <span class="math inline">\(\frac{1}{n}X'\boldsymbol\varepsilon_i\)</span> converges to 0. Hence <span class="math inline">\(\mathbf{b}_i \overset{p}{\rightarrow} \beta_i\)</span>. More precisely:</p>
@@ -370,11 +370,11 @@ where <span class="math inline">\(\sigma_i = \mathbb{V}ar(\varepsilon_{i,t})\)</
 \vdots &amp;\vdots &amp;\vdots &amp;\dots &amp;\vdots \\
 \mu &amp; \gamma_{p-1} + \mu\mu' &amp; \gamma_{p-2} + \mu\mu' &amp; \dots &amp; \gamma_{0} + \mu\mu'
 \end{array}
-\right].\tag{2.19}
+\right].\tag{2.20}
 \end{equation}\]</span></p>
 </div>
 <div class="proof">
-<p><span id="unlabeled-div-14" class="proof"><em>Proof</em>. </span>See Appendix <a href="append.html#AppendixProof">8.5</a>.</p>
+<p><span id="unlabeled-div-14" class="proof"><em>Proof</em>. </span>See Appendix <a href="append.html#AppendixProof">8.4</a>.</p>
 </div>
 <p>The following proposition extends the previous proposition and includes covariances between different <span class="math inline">\(\beta_i\)</span>’s as well as the asymptotic distribution of the ML estimates of <span class="math inline">\(\Omega\)</span>.</p>
 <div class="proposition">
@@ -674,7 +674,7 @@ B_{FS} &amp; B_{Fr} &amp; B_{FF}
 \]</span>
 where <span class="math inline">\(S\)</span>, <span class="math inline">\(r\)</span> and <span class="math inline">\(F\)</span> respectively correspond to <em>slow-moving variables</em>, the policy variable (short-term rate) and <em>fast-moving variables</em>. While <span class="math inline">\(\eta_{r,t}\)</span> is scalar, <span class="math inline">\(\boldsymbol\eta_{S,t}\)</span> and <span class="math inline">\(\boldsymbol\eta_{F,t}\)</span> may be vectors. The space spanned by <span class="math inline">\(\boldsymbol\varepsilon_{S,t}\)</span> is the same as that spanned by <span class="math inline">\(\boldsymbol\eta_{S,t}\)</span>. As a result, because <span class="math inline">\(\varepsilon_{r,t}\)</span> is a linear combination of <span class="math inline">\(\eta_{r,t}\)</span> and <span class="math inline">\(\boldsymbol\eta_{S,t}\)</span> (which are <span class="math inline">\(\perp\)</span>), it comes that the <span class="math inline">\(B_{rr}\eta_{r,t}\)</span>’s are the (population) residuals in the regression of <span class="math inline">\(\varepsilon_{r,t}\)</span> on <span class="math inline">\(\boldsymbol\varepsilon_{S,t}\)</span>. Because <span class="math inline">\(\mathbb{V}ar(\eta_{r,t})=1\)</span>, <span class="math inline">\(B_{rr}\)</span> is given by the square root of the variance of <span class="math inline">\(B_{rr}\eta_{r,t}\)</span>. <span class="math inline">\(B_{F,r}\)</span> is finally obtained by regressing the components of <span class="math inline">\(\boldsymbol\varepsilon_{F,t}\)</span> on the estimates of <span class="math inline">\(\eta_{r,t}\)</span>.</p>
 <p>An equivalent approach consists in computing the Cholesky decomposition of <span class="math inline">\(BB'\)</span> and the contemporaneous impacts of the monetary policy shock (on the <span class="math inline">\(n\)</span> endogenous variables) are the components of the column of <span class="math inline">\(B\)</span> corresponding to the policy variable.</p>
-<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">AEC</span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://www.pfaffikus.de">vars</a></span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="st">"USmonthly"</span><span class="op">)</span></span>
@@ -775,9 +775,9 @@ where <span class="math inline">\(\Theta_{ij}\)</span> is the element <span clas
 <!-- \Delta Y_{t} & = & (\varepsilon_{t}^{d}-\varepsilon_{t-1}^{d})+a.(\varepsilon_{t}^{s}-\varepsilon_{t-1}^{s})+\varepsilon_{t}^{s}\\ -->
 <!-- u_{t} & = & -\varepsilon_{t}^{d}-a\varepsilon_{t}^{s} -->
 <!-- \end{eqnarray*} -->
-<!-- Then, it appears that the demand shocks have no long-run cumulative impact on $\Delta Y_{t}$, the GDP growth, i.e. no long-term impact on output $Y_t$. The vector of endogenous variables is $y_t = [\Delta Y_{t} \quad u_{t}]'$ where $\Delta Y_{t}$ denotes the GDP growth. -->&lt;/p&gt;"><sup>2</sup></a></p>
+<!-- Then, it appears that the demand shocks have no long-run cumulative impact on $\Delta Y_{t}$, the GDP growth, i.e. no long-term impact on output $Y_t$. The vector of endogenous variables is $y_t = [\Delta Y_{t} \quad u_{t}]'$ where $\Delta Y_{t}$ denotes the GDP growth. -->&lt;/p&gt;"><sup>5</sup></a></p>
 <p><span class="citation">Blanchard and Quah (<a href="references.html#ref-Blanchard_Quah_1989" role="doc-biblioref">1989</a>)</span>’s dataset is quarterly, spanning the period from 1950:2 to 1987:4. Their VAR features 8 lags. Here are the data they use:</p>
-<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">AEC</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">BQ</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mfrow<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
@@ -787,13 +787,13 @@ where <span class="math inline">\(\Theta_{ij}\)</span> is the element <span clas
 <span>     xlab<span class="op">=</span><span class="st">""</span>,ylab<span class="op">=</span><span class="st">""</span>,lwd<span class="op">=</span><span class="fl">2</span><span class="op">)</span></span></code></pre></div>
 <div class="inline-figure"><img src="TimeSeries_files/figure-html/BQ1-1.png" width="672"></div>
 <p>Estimate a reduced-form VAR(8) model:</p>
-<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://www.pfaffikus.de">vars</a></span><span class="op">)</span></span>
 <span><span class="va">y</span> <span class="op">&lt;-</span> <span class="va">BQ</span><span class="op">[</span>,<span class="fl">2</span><span class="op">:</span><span class="fl">3</span><span class="op">]</span></span>
 <span><span class="va">est.VAR</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/vars/man/VAR.html">VAR</a></span><span class="op">(</span><span class="va">y</span>,p<span class="op">=</span><span class="fl">8</span><span class="op">)</span></span>
 <span><span class="va">Omega</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/cor.html">var</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/residuals.html">residuals</a></span><span class="op">(</span><span class="va">est.VAR</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p>Now, let us define a loss function (<code>loss</code>) that is equal to zero if (a) <span class="math inline">\(BB'=\Omega\)</span> and (b) the element (1,1) of <span class="math inline">\(\Theta B\)</span> is equal to zero:</p>
-<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Compute (Id - Phi)^{-1}:</span></span>
 <span><span class="va">Phi</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/vars/man/A.html">Acoef</a></span><span class="op">(</span><span class="va">est.VAR</span><span class="op">)</span></span>
 <span><span class="va">PHI</span> <span class="op">&lt;-</span> <span class="fu">make.PHI</span><span class="op">(</span><span class="va">Phi</span><span class="op">)</span></span>
@@ -810,13 +810,13 @@ where <span class="math inline">\(\Theta_{ij}\)</span> is the element <span clas
 <pre><code>## [1]  0.8570358 -0.2396345  0.1541395  0.1921221</code></pre>
 <p>(Note: one can use that type of approach, based on a loss function, to mix short- and long-run restrictions.)</p>
 <p>Figure <a href="VAR.html#fig:BQ4">3.3</a> displays the resulting IRFs. Note that, for GDP, we cumulate the GDP growth IRF, so as to have the response of the GDP in level.</p>
-<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">B.hat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="va">res.opt</span><span class="op">$</span><span class="va">par</span>,<span class="fl">2</span>,<span class="fl">2</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span><span class="va">Omega</span>,<span class="va">B.hat</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html">%*%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/t.html">t</a></span><span class="op">(</span><span class="va">B.hat</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <pre><code>##             Dgdp       unemp                       
 ## Dgdp   0.7582704 -0.17576173  0.7582694 -0.17576173
 ## unemp -0.1757617  0.09433658 -0.1757617  0.09433558</code></pre>
-<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">nb.sim</span> <span class="op">&lt;-</span> <span class="fl">40</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mfrow<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">2</span><span class="op">)</span><span class="op">)</span>;<span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>plt<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">.15</span>,<span class="fl">.95</span>,<span class="fl">.15</span>,<span class="fl">.8</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">Y</span> <span class="op">&lt;-</span> <span class="fu">simul.VAR</span><span class="op">(</span>c<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">2</span>,<span class="fl">1</span><span class="op">)</span>,<span class="va">Phi</span>,<span class="va">B.hat</span>,<span class="va">nb.sim</span>,y0.star<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">2</span><span class="op">*</span><span class="fl">8</span><span class="op">)</span>,</span>
@@ -954,7 +954,7 @@ with <span class="math inline">\(\hat\varepsilon_{t}^{(k)}=\hat\varepsilon_{s_t^
 <p>In step 5, check if the largest eigenvalue of <span class="math inline">\(\tilde\Phi\)</span> is of modulus &lt;1.
 If not, shrink the bias: for all <span class="math inline">\(j\)</span>s, set <span class="math inline">\(\widehat{\Theta}_j^{(i+1)}=\delta_{i+1}\widehat{\Theta}_j^{(i)}\)</span>, with <span class="math inline">\(\delta_{i+1}=\delta_i-0.01\)</span>, starting with <span class="math inline">\(\delta_1=1\)</span> and <span class="math inline">\(\widehat{\Theta}_j^{(1)} =\widehat{\Theta}_j\)</span>, and compute <span class="math inline">\(\widetilde{\Phi}_j^{(i+1)}=\widehat{\Phi}_j-\widehat{\Theta}_j^{(i+1)}\)</span> until the largest eigenvalue of <span class="math inline">\(\tilde\Phi^{(i+1)}\)</span> has modulus &lt;1.</p>
 <p>Function <code>VAR.Boot</code> of package <code>VAR.etp</code> (<span class="citation">Kim (<a href="references.html#ref-VARetp" role="doc-biblioref">2022</a>)</span>) can be used to operate the bias-correction approach of <span class="citation">Kilian (<a href="references.html#ref-Kilian_1998" role="doc-biblioref">1998</a>)</span>:</p>
-<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">VAR.etp</span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://www.pfaffikus.de">vars</a></span><span class="op">)</span> <span class="co">#standard VAR models</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">dat</span><span class="op">)</span> <span class="co"># part of VAR.etp package</span></span>
@@ -964,7 +964,7 @@ If not, shrink the bias: for all <span class="math inline">\(j\)</span>s, set <s
 <span>      <span class="op">(</span><span class="va">corrected</span><span class="op">$</span><span class="va">coef</span><span class="op">+</span><span class="va">corrected</span><span class="op">$</span><span class="va">Bias</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span>,<span class="op">]</span>,</span>
 <span>      <span class="va">noncorrec</span><span class="op">$</span><span class="va">varresult</span><span class="op">$</span><span class="va">inv</span><span class="op">$</span><span class="va">coefficients</span><span class="op">)</span></span></code></pre></div>
 <pre><code>##         inv(-1)   inc(-1)  con(-1)    inv(-2)   inc(-2)   con(-2)       const
-## [1,] -0.3288362 0.1769758 1.009629 -0.1354475 0.1844579 0.9891082 -0.02133508
+## [1,] -0.3248692 0.1212978 1.082585 -0.1492979 0.1155697 0.9691274 -0.01972115
 ## [2,] -0.3196310 0.1459888 0.961219 -0.1605511 0.1146050 0.9343938 -0.01672199
 ## [3,] -0.3196310 0.1459888 0.961219 -0.1605511 0.1146050 0.9343938 -0.01672199</code></pre>
 

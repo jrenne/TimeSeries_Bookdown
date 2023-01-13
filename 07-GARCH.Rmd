@@ -1,4 +1,4 @@
-# ARCH and GARCH Models {#ARCHGARCH}
+# ARCH and GARCH models {#ARCHGARCH}
 
 ## Conditional heteroskedasticity
 

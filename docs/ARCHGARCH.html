@@ -4,15 +4,15 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Chapter 7 ARCH and GARCH Models | Introduction to Time Series</title>
+<title>Chapter 7 ARCH and GARCH models | Introduction to Time Series</title>
 <meta name="author" content="Jean-Paul Renne">
 <meta name="description" content="7.1 Conditional heteroskedasticity Many financial and macroeconomic variables are hit by shocks whose variance is not constant through time, i.e. by heteroskedatic shocks. Often, the conditional...">
 <meta name="generator" content="bookdown 0.27 with bs4_book()">
-<meta property="og:title" content="Chapter 7 ARCH and GARCH Models | Introduction to Time Series">
+<meta property="og:title" content="Chapter 7 ARCH and GARCH models | Introduction to Time Series">
 <meta property="og:type" content="book">
 <meta property="og:description" content="7.1 Conditional heteroskedasticity Many financial and macroeconomic variables are hit by shocks whose variance is not constant through time, i.e. by heteroskedatic shocks. Often, the conditional...">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Chapter 7 ARCH and GARCH Models | Introduction to Time Series">
+<meta name="twitter:title" content="Chapter 7 ARCH and GARCH models | Introduction to Time Series">
 <meta name="twitter:description" content="7.1 Conditional heteroskedasticity Many financial and macroeconomic variables are hit by shocks whose variance is not constant through time, i.e. by heteroskedatic shocks. Often, the conditional...">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
@@ -72,7 +72,7 @@
 <li><a class="" href="forecasting.html"><span class="header-section-number">4</span> Forecasting</a></li>
 <li><a class="" href="NonStat.html"><span class="header-section-number">5</span> Non-stationary processes</a></li>
 <li><a class="" href="cointeg.html"><span class="header-section-number">6</span> Introduction to cointegration</a></li>
-<li><a class="active" href="ARCHGARCH.html"><span class="header-section-number">7</span> ARCH and GARCH Models</a></li>
+<li><a class="active" href="ARCHGARCH.html"><span class="header-section-number">7</span> ARCH and GARCH models</a></li>
 <li><a class="" href="append.html"><span class="header-section-number">8</span> Appendix</a></li>
 <li><a class="" href="references.html">References</a></li>
 </ul>
@@ -84,7 +84,7 @@
 </div>
   </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="ARCHGARCH" class="section level1" number="7">
 <h1>
-<span class="header-section-number">7</span> ARCH and GARCH Models<a class="anchor" aria-label="anchor" href="#ARCHGARCH"><i class="fas fa-link"></i></a>
+<span class="header-section-number">7</span> ARCH and GARCH models<a class="anchor" aria-label="anchor" href="#ARCHGARCH"><i class="fas fa-link"></i></a>
 </h1>
 <div id="conditional-heteroskedasticity" class="section level2" number="7.1">
 <h2>
@@ -104,7 +104,7 @@ T \times R^2 \overset{d}{\rightarrow} \chi^2(m),
 \]</span>
 where <span class="math inline">\(R^2\)</span> is the centered <span class="math inline">\(R^2\)</span> of the OLS regression.</p>
 <p>Let us employ this test on the return series plotted in the lower panel of Figure <a href="ARCHGARCH.html#fig:GARCHsmireturns">7.1</a>:</p>
-<div class="sourceCode" id="cb47"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb50"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">AEC</span><span class="op">)</span>;<span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">smi</span><span class="op">)</span></span>
 <span><span class="va">smi</span> <span class="op">&lt;-</span> <span class="va">smi</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/stats/complete.cases.html">complete.cases</a></span><span class="op">(</span><span class="va">smi</span><span class="op">)</span>,<span class="op">]</span> <span class="co"># remove NaNs</span></span>
 <span><span class="cn">T</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="va">smi</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span></span>
@@ -150,7 +150,7 @@ for all realisations of <span class="math inline">\(\{u_t\}\)</span>. This is th
 <span class="math display">\[
 g(z) = 1 - \alpha_1 z - \dots - \alpha_m z^m = 0
 \]</span>
-lie outside the unit circle (Prop. <a href="#thm:stability"><strong>??</strong></a>). A necessary condition for not having a root between 0 and 1 is that <span class="math inline">\(\sum_i \alpha_i&lt;1\)</span>.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;If we have &lt;span class="math inline"&gt;\(1-\sum_i \alpha_i \le 0\)&lt;/span&gt;, then &lt;span class="math inline"&gt;\(g(1) \le 0\)&lt;/span&gt;. We would then have &lt;span class="math inline"&gt;\(g(0)=1&amp;gt;0\)&lt;/span&gt; and &lt;span class="math inline"&gt;\(g(1)\le 0\)&lt;/span&gt;. Since &lt;span class="math inline"&gt;\(g\)&lt;/span&gt; is continuous, this would imply that &lt;span class="math inline"&gt;\(\exists z \in [0,1]\)&lt;/span&gt; s.t. &lt;span class="math inline"&gt;\(g(z)=0\)&lt;/span&gt;.&lt;/p&gt;'><sup>6</sup></a> This is also a sufficient condition.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;Indeed, for &lt;span class="math inline"&gt;\(z \in [-1,1]\)&lt;/span&gt;, we have &lt;span class="math inline"&gt;\(1 - \alpha_1 z - \dots - \alpha_m z^m \ge 1 - \sum_i |\alpha_iz^i| \ge 1 - \sum_i \alpha_i &amp;gt; 0\)&lt;/span&gt;.&lt;/p&gt;'><sup>7</sup></a></p>
+lie outside the unit circle (Prop. <a href="#thm:stability"><strong>??</strong></a>). A necessary condition for not having a root between 0 and 1 is that <span class="math inline">\(\sum_i \alpha_i&lt;1\)</span>.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;If we have &lt;span class="math inline"&gt;\(1-\sum_i \alpha_i \le 0\)&lt;/span&gt;, then &lt;span class="math inline"&gt;\(g(1) \le 0\)&lt;/span&gt;. We would then have &lt;span class="math inline"&gt;\(g(0)=1&amp;gt;0\)&lt;/span&gt; and &lt;span class="math inline"&gt;\(g(1)\le 0\)&lt;/span&gt;. Since &lt;span class="math inline"&gt;\(g\)&lt;/span&gt; is continuous, this would imply that &lt;span class="math inline"&gt;\(\exists z \in [0,1]\)&lt;/span&gt; s.t. &lt;span class="math inline"&gt;\(g(z)=0\)&lt;/span&gt;.&lt;/p&gt;'><sup>9</sup></a> This is also a sufficient condition.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;Indeed, for &lt;span class="math inline"&gt;\(z \in [-1,1]\)&lt;/span&gt;, we have &lt;span class="math inline"&gt;\(1 - \alpha_1 z - \dots - \alpha_m z^m \ge 1 - \sum_i |\alpha_iz^i| \ge 1 - \sum_i \alpha_i &amp;gt; 0\)&lt;/span&gt;.&lt;/p&gt;'><sup>10</sup></a></p>
 <p>If <span class="math inline">\(w_t &gt; -\zeta\)</span>, with <span class="math inline">\(\zeta&gt;0\)</span>, <span class="math inline">\(\alpha_i\ge0\)</span> for <span class="math inline">\(i \in \{1,\dots,m\}\)</span> and <span class="math inline">\(\sum_i \alpha_i&lt;1\)</span>, then the unconditional variance of <span class="math inline">\(u_t\)</span> is:
 <span class="math display">\[
 \sigma^2 = \mathbb{E}(u_t^2) = \frac{\zeta}{1 - \sum_{i=1}^m \alpha_i}.
@@ -206,7 +206,7 @@ where <span class="math inline">\(\theta\)</span>, the vector of unknown paramet
 <code>r</code> is the number of lags in the GARCH specification (see Subsection <a href="ARCHGARCH.html#GARCH">7.3</a> below).</li>
 </ul>
 <p>Function <code>compute.garch</code> returns a list, one entry of each is the log-likelihood associated with a parameterization <span class="math inline">\([\zeta,\boldsymbol\alpha']'\)</span>, the second being the resulting sequence of <span class="math inline">\(h_t\)</span>’s (see Eq. <a href="ARCHGARCH.html#eq:hARCH">(7.5)</a>). Let us create a function that returns only the log-likelihood:</p>
-<div class="sourceCode" id="cb48"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb51"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">loglik</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">theta</span>,<span class="va">x</span>,<span class="va">m</span>,<span class="va">r</span><span class="op">)</span><span class="op">{</span></span>
 <span>  <span class="co"># first parameter of theta: zeta</span></span>
 <span>  <span class="co"># next: alpha's (ARCH)</span></span>
@@ -215,7 +215,7 @@ where <span class="math inline">\(\theta\)</span>, the vector of unknown paramet
 <span>  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">Garch</span><span class="op">$</span><span class="va">logf</span><span class="op">)</span></span>
 <span><span class="op">}</span></span></code></pre></div>
 <p>Now, let us maximize the log-likelihood:</p>
-<div class="sourceCode" id="cb49"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb52"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">m</span> <span class="op">&lt;-</span> <span class="fl">2</span></span>
 <span><span class="va">r</span> <span class="op">&lt;-</span> <span class="fl">0</span> <span class="co"># for ARCH models, r=0</span></span>
 <span><span class="va">smi</span> <span class="op">&lt;-</span> <span class="va">smi</span><span class="op">[</span><span class="fl">4000</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="va">smi</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>,<span class="op">]</span> <span class="co"># reduce sample</span></span>
@@ -277,7 +277,7 @@ h_t &amp;=&amp; (1-\delta_1 - \delta_2 - \dots - \delta_r) \zeta + \nonumber \\
 &amp;&amp;\alpha_1 u_{t-1}^2 + \dots + \alpha_m u_{t-m}^2. \tag{7.7}
 \end{eqnarray}\]</span>
 This generalised autoregressive conditional heteroskedasticity model is denoted by GARCH(r,m). Non-negativity is satisfied as soon as <span class="math inline">\(\kappa&gt;0\)</span>, <span class="math inline">\(\alpha_j \ge 0\)</span>, <span class="math inline">\(\delta_j \ge 0\)</span> for <span class="math inline">\(j \le p\)</span>.</p>
-<p>Denoting <span class="math inline">\(u_t^2 - h_t\)</span> by <span class="math inline">\(w_t\)</span>, and <span class="math inline">\((1-\delta_1 - \dots - \delta_r) \zeta\)</span> by <span class="math inline">\(\kappa\)</span>, it can be checked that:<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;Note that &lt;span class="math inline"&gt;\(w_t=h_t(v_t^2 - 1)\)&lt;/span&gt; is a martingale difference sequence (see Def. &lt;a href="Intro.html#def:MDS"&gt;1.2&lt;/a&gt;) because &lt;span class="math inline"&gt;\(v_t\)&lt;/span&gt; is a zero-mean unit-root i.i.d. sequence.&lt;/p&gt;'><sup>8</sup></a>
+<p>Denoting <span class="math inline">\(u_t^2 - h_t\)</span> by <span class="math inline">\(w_t\)</span>, and <span class="math inline">\((1-\delta_1 - \dots - \delta_r) \zeta\)</span> by <span class="math inline">\(\kappa\)</span>, it can be checked that:<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;Note that &lt;span class="math inline"&gt;\(w_t=h_t(v_t^2 - 1)\)&lt;/span&gt; is a martingale difference sequence (see Def. &lt;a href="Intro.html#def:MDS"&gt;1.2&lt;/a&gt;) because &lt;span class="math inline"&gt;\(v_t\)&lt;/span&gt; is a zero-mean unit-root i.i.d. sequence.&lt;/p&gt;'><sup>11</sup></a>
 <span class="math display">\[\begin{eqnarray}
 u_t^2 &amp;=&amp; \kappa + (\delta_1 + \alpha_1)u_{t-1}^2 + (\delta_2 + \alpha_2)u_{t-2}^2 + \dots \nonumber \\
 &amp;&amp; + (\delta_p + \alpha_p)u_{t-p}^2 + w_t - \delta_1 w_{t-1} - \dots - \delta_r w_{t-r},
@@ -360,7 +360,7 @@ where <span class="math inline">\(v_t\)</span> is a zero-mean unit-variance i.i.
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
     <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
       <ul class="nav navbar-nav">
-<li><a class="nav-link" href="#ARCHGARCH"><span class="header-section-number">7</span> ARCH and GARCH Models</a></li>
+<li><a class="nav-link" href="#ARCHGARCH"><span class="header-section-number">7</span> ARCH and GARCH models</a></li>
 <li><a class="nav-link" href="#conditional-heteroskedasticity"><span class="header-section-number">7.1</span> Conditional heteroskedasticity</a></li>
 <li>
 <a class="nav-link" href="#ARCH"><span class="header-section-number">7.2</span> The ARCH model</a><ul class="nav navbar-nav">

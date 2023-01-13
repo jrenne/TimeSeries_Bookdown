@@ -2,11 +2,13 @@
 
 ### Moving Average (MA) processes
 
+Moving average processes are basic processes. The moving-average process of order one is defined as follows:
+
 :::{.definition}
 Consider a white noise process $\{\varepsilon_t\}_{t = -\infty}^{+\infty}$ (Def. \@ref(def:whitenoise)). Then $y_t$ is a first-order moving average process if, for all $t$:
-$$
-y_t = \mu + \varepsilon_t + \theta \varepsilon_{t-1}.
-$$
+\begin{equation}
+y_t = \mu + \varepsilon_t + \theta \varepsilon_{t-1}.(\#eq:MA1111)
+\end{equation}
 :::
 
 If $\mathbb{E}(\varepsilon_t^2)=\sigma^2$, it is easily obtained that the unconditional mean and variances of $y_t$ are:
@@ -16,12 +18,12 @@ $$
 
 The first auto-covariance is:
 $$
-\gamma_1=\mathbb{E}\{(y_t - \mu)(y_{t-1} - \mu)\} = \theta \sigma^2.
+\gamma_1=\mathbb{E}\{(y_t - \mu)(y_{t-1} - \mu)\}=\mathbb{E}\{(\varepsilon_t + \theta \color{red}{\varepsilon_{t-1}})(\color{red}{\varepsilon_{t-1}} + \theta \varepsilon_{t-2})\} = \theta \sigma^2.
 $$
 
 Higher-order auto-covariances are zero ($\gamma_j=0$ for $j>1$). Therefore: An MA(1) process is covariance-stationary (Def. \@ref(def:covstat)).
 
-For a MA(1) process, the autocorrelation of order $j$ (see Def. \@ref(def:autocor)) is given by:
+For an MA(1) process, the autocorrelation of order $j$ (see Def. \@ref(def:autocor)) is given by:
 $$
 \rho_j =
 \left\{
@@ -33,20 +35,16 @@ $$
 \right.
 $$
 
-Notice that process $y_t$ defined through:
-$$
-y_t = \mu + \varepsilon_t +\theta \varepsilon_{t-1}, 
-$$
-where $\mathbb{V}ar(\varepsilon_t)=\sigma^2$, has the same mean and autocovariances as 
+Notice that process $y_t$ defined through Eq. \@ref(eq:MA1111), with  $\mathbb{V}ar(\varepsilon_t)=\sigma^2$, has the same mean and autocovariances as 
 $$
 y_t = \mu + \varepsilon^*_t +\frac{1}{\theta}\varepsilon^*_{t-1},
 $$
-where $\mathbb{V}ar(\varepsilon^*_t)=\theta^2\sigma^2$. That is, even if we perfectly know the mean and auto-covariances of this process, it is not possible to identify which specification is the one that has been used to generate the data. Only one of these two specifications is said to be *fundamental*, that is the one that satisfies $|\theta_1|<1$ (see Eq. \@ref(eq:invertible)).
+where $\mathbb{V}ar(\varepsilon^*_t)=\theta^2\sigma^2$. That is, even if we perfectly know the mean and auto-covariances of an MA(1) process, it is not possible to identify which specification is the one that has been used to generate the data. Only one of these two specifications is said to be *fundamental*, that is the one that satisfies $|\theta_1|<1$ (see Eq. \@ref(eq:invertible)).
 
 :::{.definition #MAq name="MA(q) process"}
-A $q^{th}$ order Moving Average process is defined through:
+A $q^{th}$-order Moving Average process is defined through:
 $$
-y_t = \mu + \varepsilon_t + \theta_1 \varepsilon_{t-1} + \dots + \theta_q \varepsilon_{t-q}.
+y_t = \mu + \varepsilon_t + \theta_1 \varepsilon_{t-1} + \dots + \theta_q \varepsilon_{t-q},
 $$
 where $\{\varepsilon_t\}_{t = -\infty}^{+\infty}$ is a white noise process (Def. \@ref(def:whitenoise)).
 :::
@@ -62,15 +60,15 @@ where we use the notation $\theta_0=1$, and $\mathbb{V}ar(\varepsilon_t)=\sigma^
 :::
 
 :::{.proof}
-The unconditional expectation of $y_t$ does not depend on time, since  $\mathbb{E}(y_t)=\mu$. Let's turn to autocovariances. We can extend the series of the $\theta_j$'s by setting $\theta_j=0$ for $j>q$. We then have:
+The unconditional expectation of $y_t$ does not depend on time, since  $\mathbb{E}(y_t)=\mu$. Let's turn to autocovariances. We can extend the series of $\theta_j$'s by setting $\theta_j=0$ for $j>q$. We then have:
 \begin{eqnarray*}
-\mathbb{E}((y_t-\mu)(y_{t-j}-\mu)) &=& \mathbb{E}\left[(\theta_0 \varepsilon_t +\theta_1 \varepsilon_{t-1} + \dots +\theta_j \varepsilon_{t-j}+\theta_{j+1} \varepsilon_{t-j-1} + \dots) \right.\times \\
-&&\left. (\theta_0 \varepsilon_{t-j} +\theta_1 \varepsilon_{t-j-1} + \dots)\right].
+\mathbb{E}((y_t-\mu)(y_{t-j}-\mu)) &=& \mathbb{E}\left[(\theta_0 \varepsilon_t +\theta_1 \varepsilon_{t-1} + \dots +\theta_j \color{red}{\varepsilon_{t-j}}+\theta_{j+1} \color{blue}{\varepsilon_{t-j-1}} + \dots) \right.\times \\
+&&\left. (\theta_0 \color{red}{\varepsilon_{t-j}} +\theta_1 \color{blue}{\varepsilon_{t-j-1}} + \dots)\right].
 \end{eqnarray*}
 Then use the fact that $\mathbb{E}(\varepsilon_t\varepsilon_s)=0$ if $t \ne s$ (because $\{\varepsilon_t\}_{t = -\infty}^{+\infty}$ is a white noise process).
 :::
 
-Figure \@ref(fig:simMA) displays simulated paths of two MA processes (an MA(1) and an MA(4)). Such simulations can be produced by using panel "ARMA(p,q)" of [this web interface](https://jrenne.shinyapps.io/MacroEc/).
+Figure \@ref(fig:simMA) displays simulated paths of two MA processes (an MA(1) and an MA(4)). Such simulations can also be produced by using panel "ARMA(p,q)" of [this web interface](https://jrenne.shinyapps.io/MacroEc/).
 
 
 ```{r simMA, echo=TRUE, fig.cap="Simulation of MA processes.", fig.asp = .6, out.width = "95%", fig.align = 'left-aligned'}
@@ -118,7 +116,7 @@ and that, when $\{\theta_{i}\}$ is square summable, $\forall \eta>0$, $\exists N
 
 :::{.proposition #momentsMAinf name="First two moments of an infinite MA process"}
 
-If $\{\theta_{i}\}_{i\in\mathbb{N}}$ is absolutely summable, i.e. if $\sum_{i=0}^{\infty}|\theta_i| < + \infty$, then
+If $\{\theta_{i}\}_{i\in\mathbb{N}}$ is absolutely summable, i.e., if $\sum_{i=0}^{\infty}|\theta_i| < + \infty$, then
 
 i. $y_t = \mu + \sum_{i=0}^{+\infty} \theta_{i} \varepsilon_{t-i}$ exists (Theorem \@ref(thm:infMA)) and is such that:
 \begin{eqnarray*}
@@ -145,16 +143,17 @@ $$
 
 
 If $|\phi|\ge1$, $y_t$ is not stationary. Indeed, we have:
-$$
-y_{t+k} = c + \varepsilon_{t+k} + \phi  ( c + \varepsilon_{t+k-1})+ \phi^2  ( c + \varepsilon_{t+k-2})+ \dots + \phi^{k-1}  ( c + \varepsilon_{t+1}) + \phi^k y_t.
-$$
+\begin{eqnarray*}
+y_{t+k} &=& c + \varepsilon_{t+k} + \phi  ( c + \varepsilon_{t+k-1})+ \phi^2  ( c + \varepsilon_{t+k-2})+ \dots + \\
+&& \phi^{k-1}  ( c + \varepsilon_{t+1}) + \phi^k y_t.
+\end{eqnarray*}
 Therefore, the conditional variance
 $$
 \mathbb{V}ar_t(y_{t+k}) = \sigma^2(1 + \phi^2 + \phi^4 + \dots + \phi^{2(k-1)})
 $$
-does not converge for large $k$'s. This implies that $\mathbb{V}ar(y_{t})$ does not exist.
+does not converge when $k$ gets infinitely large. This implies that $\mathbb{V}ar(y_{t})$ does not exist.^[Indeed, by the law of total variance $\mathbb{V}ar(y_{t})=\mathbb{V}ar(\mathbb{E}_{t-k}(y_{t}))+\mathbb{E}(\mathbb{V}ar_{t-k}(y_{t}))>$. Since we have $\mathbb{V}ar(\mathbb{E}_{t-k}(y_{t})) \ge 0$ and $\mathbb{E}(\mathbb{V}ar_{t-k}(y_{t}))=\mathbb{V}ar_{t-k}(y_{t})$ that goes to $+\infty$ (by what precedes), it comes that $\mathbb{V}ar(y_{t})$ is not finite.]
 
-By contrast, if $|\phi| < 1$, one can see that:
+By contrast, if $|\phi| < 1$, we have:
 $$
 y_t = c + \varepsilon_t + \phi  ( c + \varepsilon_{t-1})+ \phi^2  ( c + \varepsilon_{t-2})+ \dots + \phi^k  ( c + \varepsilon_{t-k}) + \dots
 $$
@@ -171,7 +170,7 @@ Let us compute the $j^{th}$ autocovariance of the AR(1) process:
 &=& \frac{\phi^j \sigma^2}{1 - \phi^2}.
 \end{eqnarray*}
 
-Therefore $\rho_j = \phi^j$.
+Therefore, the auto-correlation is given by $\rho_j = \phi^j$.
 
 By what precedes, we have:
 
@@ -183,13 +182,13 @@ The AR(1) process, as defined in Def. \@ref(def:AR1), is covariance-stationary i
 
 
 :::{.definition #ARp name="AR(p) process"}
-Consider a white noise process $\{\varepsilon_t\}_{t = -\infty}^{+\infty}$ (see Def. \@ref(def:whitenoise)). Process $y_t$ is a $p^{th}$-order autoregressive process (AR(p)) if its dynamics is defined by the following difference equation (with $\phi_p \ne 0$):
+Consider a white noise process $\{\varepsilon_t\}_{t = -\infty}^{+\infty}$ (see Def. \@ref(def:whitenoise)) of variance $\sigma^2$. Process $y_t$ is a $p^{th}$-order autoregressive process (AR(p)) if its dynamics is defined by the following difference equation (with $\phi_p \ne 0$):
 \begin{equation}
 y_t = c + \phi_1 y_{t-1} + \phi_2 y_{t-2} + \dots + \phi_p y_{t-p} + \varepsilon_t.(\#eq:AR)
 \end{equation}
 :::
 
-As we will see, the covariance-stationarity of process $y_t$ hinges on matrix $F$ defined as:
+As we will see, the covariance-stationarity of process $y_t$ hinges on the eigenvalues of matrix $F$, defined as:
 \begin{equation}
 F = \left[
 \begin{array}{ccccc}
@@ -305,7 +304,7 @@ iv. The roots of Eq. \@ref(eq:inside) (below) lie strictly inside the unit circl
 \end{equation}
 :::
 :::{.proof}
-We consider the case where the eigenvalues of $F$ are distinct; Jordan decomposition can be used in the general case. When the eigenvalues of $F$ are distinct, $F$ admits the following spectral decomposition: $F = PDP^{-1}$, where $D$ is diagonal. Using the notations introduced in Eq. \@ref(eq:F), we have:
+We consider the case where the eigenvalues of $F$ are distinct.^[The Jordan matrix decomposition can be used in the general case.] When the eigenvalues of $F$ are distinct, $F$ admits the following spectral decomposition: $F = PDP^{-1}$, where $D$ is diagonal. Using the notations introduced in Eq. \@ref(eq:F), we have:
 $$
 \bv{y}_{t} = \bv{c} + F \bv{y}_{t-1} + \boldsymbol\xi_{t}.
 $$
@@ -313,9 +312,9 @@ Let's introduce $\bv{d} = P^{-1}\bv{c}$, $\bv{z}_t = P^{-1}\bv{y}_t$ and $\bolds
 $$
 \bv{z}_{t} = \bv{d} + D \bv{z}_{t-1} + \boldsymbol\eta_{t}.
 $$
-Because $D$ is diagonal, the different component of $\bv{z}_t$, denoted by $z_{i,t}$, follow AR(1) processes. The (scalar) autoregressive parameters of these AR(1) processes are the diagonal entries of $D$ --which also are the eigenvalues of $F$-- that we denote by $\lambda_i$.
+Because $D$ is diagonal, the different component of $\bv{z}_t$, denoted by $z_{i,t}$, follow AR(1) processes. The (scalar) autoregressive parameters of these AR(1) processes are the diagonal entries of $D$---which also are the eigenvalues of $F$---that we denote by $\lambda_i$.
 
-Process $y_t$ is covariance-stationary iff $\bv{y}_{t}$ also is covariance-stationary, which is the case iff all $z_{i,t}$, $i \in [1,p]$, are covariance-stationary. By Prop. \@ref(prp:statioAR1), process $z_{i,t}$ is covariance-stationary iff $|\lambda_i|<1$. This proves that (i) is equivalent to (ii). Prop. \@ref(prp:Feigen) further proves that (ii) is equivalent to (iv). Finally, it is easily seen that (iii) is equivalent to (iv) (as long as $\phi_p \ne 0$).
+Process $y_t$ is covariance-stationary iff $\bv{y}_{t}$ also is covariance-stationary, which is the case iff all $z_{i,t}$, $i \in \{1,\dots,p\}$, are covariance-stationary. By Prop. \@ref(prp:statioAR1), process $z_{i,t}$ is covariance-stationary iff $|\lambda_i|<1$. This proves that (i) is equivalent to (ii). Prop. \@ref(prp:Feigen) further proves that (ii) is equivalent to (iv). Finally, it is easily seen that (iii) is equivalent to (iv) (as long as $\phi_p \ne 0$).
 :::
 
 
@@ -362,7 +361,7 @@ F[1,] <- c(.9,.2)
 lambda_z <- eigen(F)$values
 rbind(lambda_x,lambda_y,lambda_w,lambda_z)
 ```
-The absolute values of the eigenvalues associated with process $w_t$ are both equal to `r round(abs(lambda_w),3)[1]`. Therefore, according to Proposition \@ref(prp:stability), processes $x_t$, $y_t$, and $w_t$ are covariance-stationary, but not $z_t$ (because the absolute value of one of the eigenvalues of the $F$ matrix associated with this process is larger than 1).
+The absolute values of the eigenvalues associated with process $w_t$ are both equal to `r round(abs(lambda_w),3)[1]`. Therefore, according to Proposition \@ref(prp:stability), processes $x_t$, $y_t$, and $w_t$ are covariance-stationary, but not $z_t$ (because, for the latter process, the absolute value of one of the eigenvalues of matrix $F$ is larger than 1).
 
 The computation of the autocovariances of $y_t$ is based on the so-called **Yule-Walker equations** (Eq. \@ref(eq:gammas)). Let's rewrite Eq. \@ref(eq:AR):
 $$
@@ -380,6 +379,7 @@ Multiplying both sides by $y_{t-j}-\mu$ and taking expectations leads to the (Yu
 Using $\gamma_j = \gamma_{-j}$ (Prop. \@ref(prp:gammaMinus)), one can express $(\gamma_0,\gamma_1,\dots,\gamma_{p})$ as functions of $(\sigma^2,\phi_1,\dots,\phi_p)$.
 
 
+
 ### AR-MA processes
 
 :::{.definition #ARMApq name="ARMA(p,q) process"}
@@ -387,7 +387,7 @@ $\{y_t\}$ is an ARMA($p$,$q$) process if its dynamics is described by the follow
 \begin{equation}
 y_t = c + \underbrace{\phi_1 y_{t-1} + \dots + \phi_p y_{t-p}}_{\mbox{AR part}} + \underbrace{\varepsilon_t + \theta_1 \varepsilon_{t-1} + \dots + \theta_q \varepsilon_{t-q}}_{\mbox{MA part}},(\#eq:ARMApq)
 \end{equation}
-where  $\{\varepsilon_t\}_{t \in ] -\infty,+\infty[}$ is a white noise process (see Def. \@ref(def:whitenoise)).
+where  $\{\varepsilon_t\}_{t \in ] -\infty,+\infty[}$, of variance $\sigma^2$ (say), is a white noise process (see Def. \@ref(def:whitenoise)).
 :::
 
 
@@ -425,14 +425,14 @@ $$
 
 Eq. \@ref(eq:ARMAwold) is the **Wold representation** of this ARMA process (see Theorem \@ref(thm:Wold) below).
 
-The stationarity of the process depends only on the AR specification (or on the eigenvalues of matrix $F$, exactly as in Prop. \@ref(prp:stability)). If the process is stationary, the weights in $\psi(L)$ decay at a geometric rate.
+Note that the stationarity of the process depends only on the AR specification (or on the eigenvalues of matrix $F$, exactly as in Prop. \@ref(prp:stability)). When an ARMA process is stationary, the weights in $\psi(L)$ decay at a geometric rate.
 
 
 ### PACF approach to identify AR/MA processes {#PACFapproach}
 
-We have seen that the $k^{th}$-order auto-correlation of a MA(q) process is null if $k>q$. This is exploited, in practice, to determine the order of a MA process. Moreover, since this is not the case for an AR process, this can be used to distinguish an AR from an MA process.
+We have seen that the $k^{th}$-order auto-correlation of an MA(q) process is null if $k>q$. This is exploited, in practice, to determine the order of an MA process. Moreover, since this is not the case for an AR process, this can be used to distinguish an AR from an MA process.
 
-There exists an equivalent approach to determine whether a process can be modeled as an AR process; it is based on partial auto-correlations:
+There exists an equivalent condition that satisfied by AR processes, and that can be used to determine whether a process can be modeled as such a process. This condition relates to partial auto-correlations:
 
 <!-- :::{.definition #partialC name="Partial correlation"} -->
 <!-- The partial correlation between $X$ and $Y$, given $Z$, is the correlation between: -->
@@ -442,7 +442,7 @@ There exists an equivalent approach to determine whether a process can be modele
 <!-- ::: -->
 
 :::{.definition #partialAC name="Partial auto-correlation"}
-In a time series context, the partial auto-correlation ($\phi_{h,h}$) of process $\{y_t\}$ is defined as the partial correlation of $y_{t+h}$ and $y_t$ given $y_{t+h-1},\dots,y_{t+1}$. (see Def. \@ref(def:partialcorrel) for the definition of partial correlation.)
+The partial auto-correlation ($\phi_{h,h}$) of process $\{y_t\}$ is defined as the partial correlation of $y_{t+h}$ and $y_t$ given $y_{t+h-1},\dots,y_{t+1}$. (see Def. \@ref(def:partialcorrel) for the definition of partial correlation.)
 :::
 
 
@@ -454,9 +454,9 @@ The residuals of the latter regressions ($\varepsilon_{t+h}$) are uncorrelated t
 
 Besides, it can be shown that $\phi_{p,p}=\phi_p$. Hence  $\phi_{p,p}=\phi_p$ but  $\phi_{h,h}=0$ for $h>p$. This can be used to determine the order of an AR process. By contrast (importantly) if $y_t$ follows an MA(q) process, then $\phi_{k,k}$ asymptotically approaches zero instead of cutting off abruptly.
 
-As illustrated below, functions `acf` and `pacf` can be conveniently used to employ the (P)ACF approach. (Note also the use of function `sim.arma` to simulate ARMA processes.)
+As illustrated below, the functions `acf` and `pacf` of R allow to conveniently implement the (P)ACF approach. (In these lines of codes, note also the use of function `sim.arma` to simulate ARMA processes.)
 
-```{r pacf, echo=TRUE, fig.cap="ACF/PACF analysis of two processes (MA process on the left, AR on the right).", fig.asp = .6, out.width = "100%", fig.align = 'left-aligned'}
+```{r pacf, echo=TRUE, fig.cap="ACF/PACF analysis of two processes (MA process on the left, AR on the right). The correlations are computed on samples of length 1000.", fig.asp = .6, out.width = "100%", fig.align = 'left-aligned'}
 library(AEC)
 par(mfrow=c(3,2))
 par(plt=c(.2,.9,.2,.95))
@@ -490,7 +490,7 @@ where
 :::
 
 :::{.proof}
-See @Anderson_1971. Partial proof in [L. Christiano](http://faculty.wcas.northwestern.edu/~lchrist/finc520/wold.pdf).
+See @Anderson_1971. Partial proof in [L. Christiano](http://faculty.wcas.northwestern.edu/~lchrist/finc520/wold.pdf)'s lecture notes.
 :::
 
 For an ARMA process, the Wold representation is given by Eq. \@ref(eq:ARMAwold). As detailed in Prop. \@ref(prp:computPsi), it can be computed by recursively replacing the lagged $y_t$'s in Eq. \@ref(eq:ARMApq). In this case, the deterministic component ($\kappa$) is null.
@@ -498,22 +498,24 @@ For an ARMA process, the Wold representation is given by Eq. \@ref(eq:ARMAwold).
 
 ### Impulse Response Functions (IRFs) in ARMA models
 
-Consider the ARMA(p,q) process defined in Def. \@ref(def:ARMApq), whose associated sequence of white noise is $\{\varepsilon_t\}$. Let us construct a novel (counterfactual) sequence of shocks $\{\tilde\varepsilon_t^{(s)}\}$:
+Consider the ARMA(p,q) process defined in Def. \@ref(def:ARMApq). Let us construct a novel (counterfactual) sequence of shocks $\{\tilde\varepsilon_t^{(s)}\}$:
 $$
 \tilde\varepsilon_t^{(s)} = \left\{
 \begin{array}{lcc}
 \varepsilon_{t} & if & t \ne s,\\
-\varepsilon_{t} + \delta &if& t=s.
+\varepsilon_{t} + 1 &if& t=s.
 \end{array}
 \right.
 $$
-We denote by $\{\tilde{y}_t^{(s)}\}$ the process following Eq. \@ref(eq:ARMApq) where $\{\varepsilon_t\}$ is replaced with $\{\tilde\varepsilon_t^{(s)}\}$. The time series $\{\tilde{y}_t^{(s)}\}$ is the counterfactual series $\{y_t\}$ that would have prevailed if $\varepsilon_t$ had been shifted by $\delta$ on date $s$ (and that would be the only change).
+Hence, the only difference between processes $\{\varepsilon_t^{(s)}\}$ and $\{\tilde\varepsilon_t^{(s)}\}$ pertains to date $s$, where $\varepsilon_s$ is replaced with $\varepsilon_s + 1$ in $\{\tilde\varepsilon_t^{(s)}\}$.
 
-The relationship between $\{y_t\}$ and $\{\tilde{y}_t^{(s)}\}$ defines the **dynamic multiplier**. The latter is denoted by $\frac{\partial y_t}{\partial \varepsilon_{s}}$ and is such that:
+We denote by $\{\tilde{y}_t^{(s)}\}$ the process following Eq. \@ref(eq:ARMApq) where $\{\varepsilon_t\}$ is replaced with $\{\tilde\varepsilon_t^{(s)}\}$. The time series $\{\tilde{y}_t^{(s)}\}$ is the counterfactual series $\{y_t\}$ that would have prevailed if $\varepsilon_t$ had been shifted by one unit on date $s$ (and that would be the only change).
+
+The relationship between $\{y_t\}$ and $\{\tilde{y}_t^{(s)}\}$ defines the **dynamic multipliers** of $\{y_t\}$. The dynamic multiplier $\frac{\partial y_t}{\partial \varepsilon_{s}}$ corresponds to the impact on $y_t$ of a unit increase in  $\varepsilon_s$ (on date $s$). Using the notation introduced before for $\tilde{y}_t^{(s)}$, we have:
 $$
-\tilde{y}_t^{(s)} = y_t + \frac{\partial y_t}{\partial \varepsilon_{s}}\delta.
+\tilde{y}_t^{(s)} = y_t + \frac{\partial y_t}{\partial \varepsilon_{s}}.
 $$
-We will see that the dynamic multipliers are closely related to the infinite MA representation (or **Wold decomposition**, Theorem \@ref(thm:Wold)) of $y_t$:
+Let us show that the dynamic multipliers are closely related to the infinite MA representation (or **Wold decomposition**, Theorem \@ref(thm:Wold)) of $y_t$:
 $$
 y_t = \mu + \sum_{i=0}^{+\infty} \psi_i \varepsilon_{t-i}.
 $$
@@ -521,15 +523,15 @@ For $t<s$, we have $y_t = \tilde{y}_t^{(s)}$ (because $\tilde{\varepsilon}_{t-i}
 
 For $t \ge s$:
 $$
-\tilde{y}_t^{(s)} = \mu + \left( \sum_{i=0}^{t-s-1} \psi_i \varepsilon_{t-i} \right) + \psi_{t-s}(\varepsilon_{s}+\delta) + \left( \sum_{i=t-s+1}^{+\infty} \psi_i \varepsilon_{t-i} \right)=y_t + \frac{\partial y_t}{\partial \varepsilon_{s}}\delta.
+\tilde{y}_t^{(s)} = \mu + \left( \sum_{i=0}^{t-s-1} \psi_i \varepsilon_{t-i} \right) + \psi_{t-s}(\varepsilon_{s}+1) + \left( \sum_{i=t-s+1}^{+\infty} \psi_i \varepsilon_{t-i} \right)=y_t + \frac{\partial y_t}{\partial \varepsilon_{s}}.
 $$
-Therefore, for $t \ge s$, we have:
+Therefore, it comes that the only difference between $\tilde{y}_t^{(s)}$ and $y_t$ is $\psi_{t-s}$. As a result, for $t \ge s$, we have:
 $$
 \boxed{\dfrac{\partial y_t}{\partial \varepsilon_{s}}=\psi_{t-s}.}
 $$
 That is, $\{y_t\}$'s dynamic multiplier of order $k$ is the same object as the $k^{th}$ loading $\psi_k$ in the Wold decomposition of $\{y_t\}$. The sequence $\left\{\dfrac{\partial y_{t+h}}{\partial \varepsilon_{t}}\right\}_{h \ge 0} \equiv \left\{\psi_h\right\}_{h \ge 0}$ defines the **impulse response function (IRF)** of $y_t$ to the shock $\varepsilon_t$.
 
-For ARMA processes, the computation of the IRFs is easy:
+For ARMA processes, one can compute the IRFs (or the Wold decomposition) by using a simple recursive algorithm:
 
 :::{.proposition #computPsi name="IRF of an ARMA(p,q) process"}
 The coefficients $\psi_h$, that define the IRF of process $y_t$ to $\varepsilon_t$, can be computed recursively as follows:
@@ -562,13 +564,14 @@ par(mfrow=c(1,3));par(plt=c(.25,.95,.2,.85))
 plot(0:(T-1),y.sim[,1],type="l",lwd=2,
      main="(a) Process 1",xlab="Time after shock on epsilon",
      ylab="Dynamic multiplier (shock on epsilon at t=0)",col="red")
-abline(h=0)
+
 theta <- c(1,.5);phi <- c(0.6)
 y.sim <- sim.arma(c,phi,theta,sigma=1,T,y.0=rep(0,length(phi)),
                   nb.sim=1,make.IRF = 1)
 plot(0:(T-1),y.sim[,1],type="l",lwd=2,
      main="(b) Process 2",xlab="Time after shock on epsilon",
      ylab="",col="red")
+
 theta <- c(1,1,1);phi <- c(0,0,.5,.4)
 y.sim <- sim.arma(c,phi,theta,sigma=1,T,y.0=rep(0,length(phi)),
                   nb.sim=1,make.IRF = 1)
@@ -582,17 +585,14 @@ Consider the annual Swiss GDP growth from the JST macro-history database. Let us
 
 ```{r IRFgdp1, echo=TRUE, fig.cap="(P)ACF analysis of Swiss GDP growth.", fig.asp = .6, out.width = "100%", fig.align = 'left-aligned'}
 library(AEC)
-data(JST)
-data <- subset(JST,iso=="CHE")
+data(JST);data <- subset(JST,iso=="CHE")
 par(plt=c(.1,.95,.1,.95))
 T <- dim(data)[1]
 growth <- log(data$gdp[2:T]/data$gdp[1:(T-1)])
-par(mfrow=c(3,1))
-par(plt=c(.1,.95,.15,.95))
+par(mfrow=c(3,1));par(plt=c(.1,.95,.15,.95))
 plot(data$year[2:T],growth,type="l",xlab="",ylab="",lwd=2)
 abline(h=0,lty=2)
-acf(growth)
-pacf(growth)
+acf(growth);pacf(growth)
 ```
 
 The two bottom plots of Figure \@ref(fig:IRFgdp1) suggest that either an MA(2) or an AR(1) could be used to model the GDP growth rate series. Figure \@ref(fig:IRFgdp2) shows the IRFs based on these two respective specifications.
@@ -618,7 +618,7 @@ abline(h=0)
 ```
 
 
-The same kind of algorithm can be used to compute the impact of an increase in an exogenous variable $x_t$ within an ARMAX(p,q,r) model (see next section).
+The same kind of algorithm (as in Prop. \@ref(prp:computPsi)) can be used to compute the impact of an increase in an exogenous variable $x_t$ within an ARMAX(p,q,r) model (see next section).
 
 ### ARMA processes with exogenous variables (ARMA-X) {#ARMAIRF}
 
@@ -633,9 +633,9 @@ The same kind of algorithm can be used to compute the impact of an increase in a
 
 
 
-ARMA processes do not allow to investigate the influence of an exogenous variable (say $x_t$) on the variable of interest (say $y_t$). When $x_t$ and $y_t$ have reciprocal influences, the Vector Autoregressive (VAR) model may be used (this tools will be studied later, in Section \@ref(VAR)). However, when one suspects that $x_t$ has an "exogenous" influence on $y_t$, then a simple extension of the ARMA processes may be considered. Loosely speaking, $x_t$ has an "exogenous" influence on $y_t$ if $y_t$ does not affect $x_t$. This extension is called ARMAX(p,q,r).
+ARMA processes do not allow to investigate the influence of an exogenous variable (say $x_t$) on the variable of interest (say $y_t$). When $x_t$ and $y_t$ have reciprocal influences, the Vector Autoregressive (VAR) model may be used (this tools will be studied later, in Section \@ref(VAR)). However, when one suspects that $x_t$ has an "exogenous" influence on $y_t$, then a simple extension of the ARMA processes may be considered. Loosely speaking, $x_t$ has an "exogenous" influence on $y_t$ if $y_t$ does not affect $x_t$. This extension is referred to as ARMA-X.
 
-To begin with, let us formalize this notion of exogeneity. Consider a white noise sequence $\{\varepsilon_t\}$ (Def. \@ref(def:whitenoise)).
+To begin with, let us formalize this notion of exogeneity. Consider a white noise sequence $\{\varepsilon_t\}$ (Def. \@ref(def:whitenoise)). This white noise will enter the dynamics of $y_t$, alongside with $x_t$; but $x_t$ will be exogenous to $\varepsilon_t$. (We will also say that $x_t$ is exogenous to $y_t$.)
 
 :::{.definition #exogeneity name="Exogeneity"}
 We say that $x_t$ is (strictly) exogenous to $\{\varepsilon_t\}$ if
@@ -665,10 +665,10 @@ Hence, if $\{x_t\}$ is strictly exogenous to  $\varepsilon_t$, then past, presen
 In the following, we assume that $\{x_t\}$ is a covariance stationary process.
 
 :::{.definition #ARMAX name="ARMAX(p,q,r) model"}
-The process $\{y_t\}$ is an ARMAX(p,q,r) if it follows a difference equation:
+The process $\{y_t\}$ is an ARMAX(p,q,r) if it follows a difference equation of the form:
 \begin{eqnarray}
 y_t &=& \underbrace{c + \phi_1 y_{t-1} + \dots + \phi_p y_{t-p}}_{\mbox{AR(p) part}} + \underbrace{\beta_0 x_t + \dots + \beta_{r} x_{t-r}}_{\mbox{X(r) part}} + \nonumber \\
-&&\underbrace{\varepsilon_t + \theta_1\varepsilon_{t-1}+\dots +\theta_{q}\varepsilon_{t-q}.}_{\mbox{MA(q) part}} (\#eq:DLM)
+&&\underbrace{\varepsilon_t + \theta_1\varepsilon_{t-1}+\dots +\theta_{q}\varepsilon_{t-q},}_{\mbox{MA(q) part}} (\#eq:DLM)
 \end{eqnarray}
 where $\{\varepsilon_t\}$ is an i.i.d. white noise sequence and $\{x_t\}$ is exogenous to $y_t$.
 :::
@@ -679,7 +679,7 @@ What is the effect of a one-unit increase in $x_t$ on $y_t$? To address this que
 
 With these notations, we define $\frac{\partial y_{t+h}}{\partial x_t}$ as follows:
 \begin{equation}
-\frac{\partial y_{t+h}}{\partial x_t} := \mathbb{E}(y_{t+h}|\{x\} = \{\tilde{a}^t\}) - \mathbb{E}(y_{t+h}|\{x\} = \{a\}).(\#eq:dynmultX)
+\frac{\partial y_{t+h}}{\partial x_t} := \mathbb{E}_{t-1}(y_{t+h}|\{x\} = \{\tilde{a}^t\}) - \mathbb{E}_{t-1}(y_{t+h}|\{x\} = \{a\}).(\#eq:dynmultX)
 \end{equation}
 Under the exogeneity assumption, it is easily seen that
 <!-- \begin{eqnarray*} -->
@@ -717,15 +717,14 @@ where we use the notation $\beta_h=0$ if $h>r$.
 
 Remark that the resulting dynamic multipliers are the same as those obtained for an ARMA(p,r) model where the $\theta_i$'s are replaced with $\beta_i$'s (see Proposition \@ref(prp:computPsi) in Section \@ref(ARMAIRF)).
 
-It has to be stressed that the definition of the dynamic multipliers (Eq. \@ref(eq:dynmultX)) does not reflect a potential persistency of the shock occuring on date $t$  in process $\{x\}$ itself. Going in this direction would necessitate to model the joint dynamics of $x_t$ (for instance using a VAR model , see Section \@ref(VAR)).
+It has to be stressed that the definition of the dynamic multipliers (Eq. \@ref(eq:dynmultX)) does not reflect a potential persistency of the shock occuring on date $t$  in process $\{x\}$ itself. Going in this direction would necessitate to model the joint dynamics of $x_t$ (for instance using a VAR model, see Section \@ref(VAR)).
 
 :::{.example #OrangeJuice name="Influence of the number of freezing days on the price of orange juice"}
 
 This example is based on data used in @Stock_Watson_2003 (Chapter 16). The objective is to study the influence of the number of freezing days on the price of orange juice. Let us first estimate a ARMAX(0,0,12) model:
 
 ```{r freez, warning=FALSE, message=FALSE}
-library(AEC)
-library(AER)
+library(AEC);library(AER)
 data("FrozenJuice")
 FJ <- as.data.frame(FrozenJuice)
 date <- time(FrozenJuice)
@@ -762,7 +761,7 @@ stargazer::stargazer(eq, eq, type = "text",
                      se = list(NULL,robust_se),no.space = TRUE)
 ```
 
-Let us now use function `estim.armax`, from package `AEC`to estimate an ARMA-X(2,0,1) model:
+Let us now use function `estim.armax`, from package `AEC`to fit an ARMA-X(2,0,1) model:
 
 ```{r freez3}
 nb.lags <- 1
@@ -884,7 +883,7 @@ irf <- sim.arma(0,x$phi,x$beta,x$sigma,T=60,y.0=rep(0,length(x$phi)),
                 nb.sim=1,make.IRF=1,X=NaN,beta=NaN)
 ```
 
-Figure \@ref(fig:Ramey3) displays the resulting IRF, with a 95\% confidence band. The code used to produce the confidence bands (i.e., to compute the standard deviation of the dynamic multipliers for the different horizons) is based on the Delta method (see Eq. \@ref(eq:DeltaMethod)). The codes are available in Appendix \@ref(IRFDELTA).
+Figure \@ref(fig:Ramey3) displays the resulting IRF, with a 95\% confidence band. The code used to produce the confidence bands (i.e., to compute the standard deviation of the dynamic multipliers for the different horizons) is based on the Delta method.^[This method consists in approximating $\mathbb{V}(ar)(f(\theta))$ with $\frac{\partial f(\theta)}{\partial \theta}' \mathbb{V}ar(\theta)\frac{\partial f(\theta)}{\partial \theta}$.] The codes are available in Appendix \@ref(IRFDELTA).
 
 
 ```{r Ramey3, echo=FALSE, fig.cap="Response of industrial-production growth to monetary-policy shocks. Dashed lines correpsond to the $\\pm$  2-standard-deviation bands.", fig.asp = .6, out.width = "95%", fig.align = 'left-aligned'}
