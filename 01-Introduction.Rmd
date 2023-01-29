@@ -1,4 +1,4 @@
-# To start with {#Intro}
+# Basics {#Intro}
 
 ## Shocks and lag operator
 
@@ -26,11 +26,26 @@ $$
 By definition, if $y_t$ is a martingale, then $y_{t}-y_{t-1}$ is a MDS.
 
 :::{.example #ARCH name="ARCH process"}
-The Autoregressive conditional heteroskedasticity process---studied in Section \@ref(ARCHGARCH)---is an example of shock that satisfies the MDS definition but that is not i.i.d.:
+The Autoregressive conditional heteroskedasticity process---studied in Section \@ref(ARCHGARCH)---is an example of shock that satisfies the white noise and MDS definitions, but that is not i.i.d.:
 $$
 \varepsilon_{t} = \sigma_t \times z_{t},
 $$
 where $z_t \sim i.i.d.\,\mathcal{N}(0,1)$ and $\sigma_t^2 = w + \alpha \varepsilon_{t-1}^2$.
+
+```{r simulGARCHointro, fig.cap="Simulation of $\\varepsilon_t$, where $\\varepsilon_{t} = \\sigma_t \\times z_{t}$, with $z_t \\sim i.i.d.\\,\\mathcal{N}(0,1)$.", fig.asp = .6, out.width = "95%", fig.align = 'left-aligned'}
+T <- 500
+w <- 1; alpha <- .98
+all_epsilon <- NULL; epsilon_1 <- 0
+for(t in 1:T){
+  sigma <- sqrt(w + alpha * epsilon_1^2)
+  epsilon <- sigma * rnorm(1)
+  all_epsilon <- c(all_epsilon,epsilon)
+  epsilon_1 <- epsilon
+}
+par(plt=c(.15,.95,.1,.95))
+plot(all_epsilon,type="l",lwd=2,
+     ylab=expression(epsilon[t]),xlab="")
+```
 :::
 
 :::{.example #whiteNotMDS}
@@ -39,6 +54,8 @@ $$
 \varepsilon_{t} = z_t + z_{t-1}z_{t-2},
 $$
 where $z_t \sim i.i.d.\mathcal{N}(0,1)$.
+
+Indeed, it can be shown that the $\varepsilon_t$'s are not correlated through time, we have $\mathbb{E}_{t-1}(\varepsilon_t)=z_{t-1}z_{t-2} \ne 0$.
 :::
 
 
@@ -50,7 +67,7 @@ L: \{y_t\}_{t=-\infty}^{+\infty} \rightarrow \{w_t\}_{t=-\infty}^{+\infty} \quad
 
 It is easily seen that we have $L^2 y_t =L(L y_t) = y_{t-2}$ and, more generally, $L^k y_t = y_{t-k}$.
 
-Consider a process that follows $y_t$ defined by $y_t = \mu + \phi y_{t-1} + \varepsilon_t$ (this is an AR(1) process, as we will see in Section \@ref(Univariate)), where the $\varepsilon_t$'s are i.i.d. $\mathcal{N}(0,\sigma^2)$. Using the lag operator, the dynamics of $y_t$ can be expressed as follows:
+Consider a process $y_t$ whose law of motion is $y_t = \mu + \phi y_{t-1} + \varepsilon_t$, where the $\varepsilon_t$'s are i.i.d. $\mathcal{N}(0,\sigma^2)$ (this is an AR(1) process, as we will see in Section \@ref(Univariate)). Using the lag operator, the dynamics of $y_t$ can be expressed as follows:
 $$
 (1-\phi L) y_t = \mu + \varepsilon_t.
 $$
@@ -62,7 +79,7 @@ If it exists, the **unconditional (or marginal) mean** of the random variable $y
 $$
 \mu_t := \mathbb{E}(y_t) = \int_{-\infty}^{\infty} y_t f_{Y_t}(y_t) dy_t,
 $$
-where $f_{Y_t}$ is the unconditional, or marginal, density (p.d.f.) of $y_t$. Note that, in the general case, $Y_t$ and $Y_{t-1}$, may have different densities; that is, in general, $f_{Y_t} \ne f_{Y_{t-1}}$.
+where $f_{Y_t}$ is the unconditional, or marginal, density (p.d.f.) of $y_t$. Note that, in the general case, $Y_t$ and $Y_{t-1}$, may have different densities; that is, in general, $f_{Y_t} \ne f_{Y_{t-1}}$ (and, in particular, $\mu_t \ne \mu_{t-1}$).
 
 Similarly, if it exists, the **unconditional (or marginal) variance** of the random variable $y_t$ is:
 $$
@@ -95,7 +112,7 @@ Figure \@ref(fig:NONNstat1) displays the simulation of a process that is not cov
 T <- 200
 y <- 0.1*(1:T) + rnorm(T)
 par(plt=c(.1,.95,.1,.95))
-plot(y,xlab="",ylab="",type="l")
+plot(y,xlab="",ylab="",lwd=2,type="l")
 ```
 
 
@@ -115,8 +132,8 @@ y <- rnorm(T)
 y[(T/2):T] <- rt(n = T/2 + 1,df=4)
 par(plt=c(.1,.95,.15,.95))
 plot(y,xlab="",ylab="",type="l")
-abline(h=-2.58,col="red")
-abline(h=2.58,col="red")
+abline(h=-2.58,col="red",lty=3)
+abline(h=2.58,col="red",lty=3)
 ```
 
 

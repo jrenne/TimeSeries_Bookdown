@@ -1,17 +1,18 @@
 # Univariate processes {#Univariate}
 
-### Moving Average (MA) processes
+## Moving Average (MA) processes
 
-Moving average processes are basic processes. The moving-average process of order one is defined as follows:
+Moving average (MA) processes are important basic processes. The moving-average process of order one (MA(1)) is defined as follows:
 
-:::{.definition}
-Consider a white noise process $\{\varepsilon_t\}_{t = -\infty}^{+\infty}$ (Def. \@ref(def:whitenoise)). Then $y_t$ is a first-order moving average process if, for all $t$:
+:::{.definition #MA1 name="Moving average process of order one"}
+Process $y_t$ is a first-order moving average process if, for all $t$:
 \begin{equation}
-y_t = \mu + \varepsilon_t + \theta \varepsilon_{t-1}.(\#eq:MA1111)
+y_t = \mu + \varepsilon_t + \theta \varepsilon_{t-1},(\#eq:MA1111)
 \end{equation}
+where $\{\varepsilon_t\}_{t = -\infty}^{+\infty}$ is a white noise process (see Def. \@ref(def:whitenoise)). 
 :::
 
-If $\mathbb{E}(\varepsilon_t^2)=\sigma^2$, it is easily obtained that the unconditional mean and variances of $y_t$ are:
+If $\mathbb{E}(\varepsilon_t^2)=\sigma^2$, it is easily obtained that the unconditional mean and variance of $y_t$ are:
 $$
 \mathbb{E}(y_t) = \mu, \quad \mathbb{V}ar(y_t) = (1+\theta^2)\sigma^2.
 $$
@@ -21,9 +22,9 @@ $$
 \gamma_1=\mathbb{E}\{(y_t - \mu)(y_{t-1} - \mu)\}=\mathbb{E}\{(\varepsilon_t + \theta \color{red}{\varepsilon_{t-1}})(\color{red}{\varepsilon_{t-1}} + \theta \varepsilon_{t-2})\} = \theta \sigma^2.
 $$
 
-Higher-order auto-covariances are zero ($\gamma_j=0$ for $j>1$). Therefore: An MA(1) process is covariance-stationary (Def. \@ref(def:covstat)).
+It is easily seen that higher-order auto-covariances are zero ($\gamma_j=0$ for $j>1$). Therefore: An MA(1) process is covariance-stationary (Def. \@ref(def:covstat)).
 
-For an MA(1) process, the autocorrelation of order $j$ (see Def. \@ref(def:autocor)) is given by:
+From what precedes, the autocorrelation of order $j$ (see Def. \@ref(def:autocor)) of an MA(1) process is given by:
 $$
 \rho_j =
 \left\{
@@ -39,10 +40,10 @@ Notice that process $y_t$ defined through Eq. \@ref(eq:MA1111), with  $\mathbb{V
 $$
 y_t = \mu + \varepsilon^*_t +\frac{1}{\theta}\varepsilon^*_{t-1},
 $$
-where $\mathbb{V}ar(\varepsilon^*_t)=\theta^2\sigma^2$. That is, even if we perfectly know the mean and auto-covariances of an MA(1) process, it is not possible to identify which specification is the one that has been used to generate the data. Only one of these two specifications is said to be *fundamental*, that is the one that satisfies $|\theta_1|<1$ (see Eq. \@ref(eq:invertible)).
+where $\mathbb{V}ar(\varepsilon^*_t)=\theta^2\sigma^2$. That is, knowing the mean and auto-covariances of an MA(1) process is not sufficient to identify the process, since two different processes possess the same moments. Only one of these two specifications is said to be *fundamental*, that is the one that satisfies $|\theta_1|<1$ (see Eq. \@ref(eq:invertible)).
 
 :::{.definition #MAq name="MA(q) process"}
-A $q^{th}$-order Moving Average process is defined through:
+A $q^{th}$-order Moving Average process $\{y_t\}$ is defined through:
 $$
 y_t = \mu + \varepsilon_t + \theta_1 \varepsilon_{t-1} + \dots + \theta_q \varepsilon_{t-q},
 $$
@@ -60,12 +61,12 @@ where we use the notation $\theta_0=1$, and $\mathbb{V}ar(\varepsilon_t)=\sigma^
 :::
 
 :::{.proof}
-The unconditional expectation of $y_t$ does not depend on time, since  $\mathbb{E}(y_t)=\mu$. Let's turn to autocovariances. We can extend the series of $\theta_j$'s by setting $\theta_j=0$ for $j>q$. We then have:
+The unconditional expectation of $y_t$ does not depend on time, since  $\mathbb{E}(y_t)=\mu$. Turning to the autocovariances, we can extend the series of $\theta_j$'s by setting $\theta_j=0$ for $j>q$. We then have:
 \begin{eqnarray*}
 \mathbb{E}((y_t-\mu)(y_{t-j}-\mu)) &=& \mathbb{E}\left[(\theta_0 \varepsilon_t +\theta_1 \varepsilon_{t-1} + \dots +\theta_j \color{red}{\varepsilon_{t-j}}+\theta_{j+1} \color{blue}{\varepsilon_{t-j-1}} + \dots) \right.\times \\
 &&\left. (\theta_0 \color{red}{\varepsilon_{t-j}} +\theta_1 \color{blue}{\varepsilon_{t-j-1}} + \dots)\right].
 \end{eqnarray*}
-Then use the fact that $\mathbb{E}(\varepsilon_t\varepsilon_s)=0$ if $t \ne s$ (because $\{\varepsilon_t\}_{t = -\infty}^{+\infty}$ is a white noise process).
+Using the fact that $\mathbb{E}(\varepsilon_t\varepsilon_s)=0$ if $t \ne s$ (because $\{\varepsilon_t\}_{t = -\infty}^{+\infty}$ is a white noise process) leads to the result.
 :::
 
 Figure \@ref(fig:simMA) displays simulated paths of two MA processes (an MA(1) and an MA(4)). Such simulations can also be produced by using panel "ARMA(p,q)" of [this web interface](https://jrenne.shinyapps.io/MacroEc/).
@@ -91,13 +92,13 @@ abline(h=c)
 ```
 
 
-What if the order $q$ of an MA(q) process gets infinite? The notion of **infinite-order Moving Average process** exists and is important in time series analysis. The (infinite) sequence of $\theta_j$ has to satisfy some conditions for such a process to be well-defined (see Theorem \@ref(thm:infMA) below). These conditions relate to the "summability" of $\{\theta_{i}\}_{i\in\mathbb{N}}$ (see Definition \@ref(def:summability)).
+What if the order $q$ of an MA(q) process gets infinite? The notion of **infinite-order Moving Average process** exists and is important in time series analysis, as it relates to impulse response functions (as illustrated in Section \@ref(IRFARMA)). The (infinite) sequence of $\theta_j$ has to satisfy some conditions for such a process to be well-defined (see Theorem \@ref(thm:infMA) below). These conditions relate to the "summability" of the components of the sequence $\{\theta_{i}\}_{i\in\mathbb{N}}$:
 
 :::{.definition #summability name="Absolute and square summability"}
 The sequence $\{\theta_{i}\}_{i\in\mathbb{N}}$ is absolutely summable if $\sum_{i=0}^{\infty}|\theta_i| < + \infty$, and it is square summable if $\sum_{i=0}^{\infty} \theta_i^2 < + \infty$.
 :::
 
-According to Prop. \@ref(prp:absMs), absolute summability implies square summability.
+According to Prop. \@ref(prp:absMs) (in the appendix), absolute summability implies square summability.
 
 :::{.theorem #infMA name="Existence condition for an infinite MA process"}
 If $\{\theta_{i}\}_{i\in\mathbb{N}}$ is square summable (see Def. \@ref(def:summability)) and if $\{\varepsilon_t\}_{t = -\infty}^{+\infty}$ is a white noise process (see Def. \@ref(def:whitenoise)), then
@@ -132,13 +133,14 @@ The absolute summability of $\{\theta_{i}\}$ and the fact that $\mathbb{E}(\vare
 :::
 
 
-### Auto-Regressive (AR) processes {#ARsection}
+## Auto-Regressive (AR) processes {#ARsection}
 
 :::{.definition #AR1 name="First-order AR process (AR(1))"}
-Consider a white noise process $\{\varepsilon_t\}_{t = -\infty}^{+\infty}$ (see Def. \@ref(def:whitenoise)). Process $y_t$ is an AR(1) process if it is defined by the following difference equation:
+Process $y_t$ is an AR(1) process if its dynamics is defined by the following difference equation:
 $$
-y_t = c + \phi y_{t-1} + \varepsilon_t.
+y_t = c + \phi y_{t-1} + \varepsilon_t,
 $$
+where $\{\varepsilon_t\}_{t = -\infty}^{+\infty}$ is a white noise process (see Def. \@ref(def:whitenoise)). 
 :::
 
 
@@ -151,9 +153,7 @@ Therefore, the conditional variance
 $$
 \mathbb{V}ar_t(y_{t+k}) = \sigma^2(1 + \phi^2 + \phi^4 + \dots + \phi^{2(k-1)})
 $$
-does not converge when $k$ gets infinitely large. This implies that $\mathbb{V}ar(y_{t})$ does not exist.^[Indeed, by the law of total variance $\mathbb{V}ar(y_{t})=\mathbb{V}ar(\mathbb{E}_{t-k}(y_{t}))+\mathbb{E}(\mathbb{V}ar_{t-k}(y_{t}))>$. Since we have $\mathbb{V}ar(\mathbb{E}_{t-k}(y_{t})) \ge 0$ and $\mathbb{E}(\mathbb{V}ar_{t-k}(y_{t}))=\mathbb{V}ar_{t-k}(y_{t})$ that goes to $+\infty$ (by what precedes), it comes that $\mathbb{V}ar(y_{t})$ is not finite.]
-
-By contrast, if $|\phi| < 1$, we have:
+ (where $\sigma^2$ is the variance of $\varepsilon_t$) does not converge when $k$ gets infinitely large. This implies that $\mathbb{V}ar(y_{t})$ does not exist.^[Indeed, by the law of total variance $\mathbb{V}ar(y_{t})=\mathbb{V}ar(\mathbb{E}_{t-k}(y_{t}))+\mathbb{E}(\mathbb{V}ar_{t-k}(y_{t}))>$. Since we have $\mathbb{V}ar(\mathbb{E}_{t-k}(y_{t})) \ge 0$ and $\mathbb{E}(\mathbb{V}ar_{t-k}(y_{t}))=\mathbb{V}ar_{t-k}(y_{t})$ that goes to $+\infty$ (by what precedes), it comes that $\mathbb{V}ar(y_{t})$ is not finite.] By contrast, if $|\phi| < 1$, we have:
 $$
 y_t = c + \varepsilon_t + \phi  ( c + \varepsilon_{t-1})+ \phi^2  ( c + \varepsilon_{t-2})+ \dots + \phi^k  ( c + \varepsilon_{t-k}) + \dots
 $$
@@ -182,10 +182,11 @@ The AR(1) process, as defined in Def. \@ref(def:AR1), is covariance-stationary i
 
 
 :::{.definition #ARp name="AR(p) process"}
-Consider a white noise process $\{\varepsilon_t\}_{t = -\infty}^{+\infty}$ (see Def. \@ref(def:whitenoise)) of variance $\sigma^2$. Process $y_t$ is a $p^{th}$-order autoregressive process (AR(p)) if its dynamics is defined by the following difference equation (with $\phi_p \ne 0$):
+Process $y_t$ is a $p^{th}$-order autoregressive process (AR(p)) if its dynamics is defined by the following difference equation (with $\phi_p \ne 0$):
 \begin{equation}
-y_t = c + \phi_1 y_{t-1} + \phi_2 y_{t-2} + \dots + \phi_p y_{t-p} + \varepsilon_t.(\#eq:AR)
+y_t = c + \phi_1 y_{t-1} + \phi_2 y_{t-2} + \dots + \phi_p y_{t-p} + \varepsilon_t,(\#eq:AR)
 \end{equation}
+where $\{\varepsilon_t\}_{t = -\infty}^{+\infty}$ is a white noise process (see Def. \@ref(def:whitenoise)). 
 :::
 
 As we will see, the covariance-stationarity of process $y_t$ hinges on the eigenvalues of matrix $F$, defined as:
@@ -347,7 +348,7 @@ In the following lines of codes, we compute the eigenvalues of the $F$ matrices 
 x_t &=& 0.9 x_{t-1} -0.2 x_{t-2} + \varepsilon_t\\
 y_t &=& 1.1 y_{t-1} -0.3 y_{t-2} + \varepsilon_t\\
 w_t &=& 1.4 w_{t-1} -0.7 w_{t-2} + \varepsilon_t\\
-z_t &=& 0.9 z_{t-1} +0.2 z_{t-2} + \varepsilon_t
+z_t &=& 0.9 z_{t-1} +0.2 z_{t-2} + \varepsilon_t.
 \end{eqnarray*}
 
 ```{r simulAR}
@@ -372,15 +373,46 @@ Multiplying both sides by $y_{t-j}-\mu$ and taking expectations leads to the (Yu
 \gamma_j = \left\{
 \begin{array}{l}
 \phi_1 \gamma_{j-1}+\phi_2 \gamma_{j-2}+ \dots + \phi_p \gamma_{j-p} \quad if \quad j>0\\
-\phi_1 \gamma_{1}+\phi_2 \gamma_{2}+ \dots + \phi_p \gamma_{p} + \sigma^2 \quad for \quad j=0.
+\phi_1 \gamma_{1}+\phi_2 \gamma_{2}+ \dots + \phi_p \gamma_{p} + \sigma^2 \quad for \quad j=0,
 \end{array}
 \right.(\#eq:gammas)
 \end{equation}
-Using $\gamma_j = \gamma_{-j}$ (Prop. \@ref(prp:gammaMinus)), one can express $(\gamma_0,\gamma_1,\dots,\gamma_{p})$ as functions of $(\sigma^2,\phi_1,\dots,\phi_p)$.
+where $\sigma^2$ is the variance of $\varepsilon_t$.
 
+Using $\gamma_j = \gamma_{-j}$ (Prop. \@ref(prp:gammaMinus)), one can express $(\gamma_0,\gamma_1,\dots,\gamma_{p})$ as functions of $(\sigma^2,\phi_1,\dots,\phi_p)$. Indeed, we have:
+$$
+\left[\begin{array}{c}
+\gamma_0 \\
+\gamma_1 \\
+\gamma_2 \\
+\vdots\\
+\gamma_p
+\end{array}\right] =
+\underbrace{\left[\begin{array}{cccccccc}
+0 & \phi_1 & \phi_2 & \dots &&& \phi_p \\
+\phi_1 & \phi_2 & \dots &&& \phi_p & 0 \\
+\phi_2 & (\phi_1 + \phi_3) & \phi_4 & \dots & \phi_p& 0& 0 \\
+\vdots\\
+\phi_p & \phi_{p-1} & \dots &&\phi_2& \phi_1 & 0
+\end{array}\right]}_{=H}\left[\begin{array}{c}
+\gamma_0 \\
+\gamma_1 \\
+\gamma_2 \\
+\vdots\\
+\gamma_p
+\end{array}\right] +
+\left[\begin{array}{c}
+\sigma^2 \\
+0 \\
+0 \\
+\vdots\\
+0
+\end{array}\right],
+$$
 
+which is easily solved by inversing matrix $H$.
 
-### AR-MA processes
+## AR-MA processes
 
 :::{.definition #ARMApq name="ARMA(p,q) process"}
 $\{y_t\}$ is an ARMA($p$,$q$) process if its dynamics is described by the following equation:
@@ -423,12 +455,12 @@ $$
 \psi(L) = \frac{1 + \theta_1 L + \dots + \theta_q L^q}{1 - \phi_1 L - \dots - \phi_p L^p} \quad and \quad \mu = \dfrac{c}{1-\phi_1 -\dots - \phi_p}.
 $$
 
-Eq. \@ref(eq:ARMAwold) is the **Wold representation** of this ARMA process (see Theorem \@ref(thm:Wold) below).
+Eq. \@ref(eq:ARMAwold) is the **Wold representation** of this ARMA process (see Theorem \@ref(thm:Wold) below). In Section \@ref(IRFARMA) (and more precisely in Proposition \@ref(prp:computPsi)), we will see how to obtain the first $h$ terms of the infinite polynomial $\Psi(L)$.
 
-Note that the stationarity of the process depends only on the AR specification (or on the eigenvalues of matrix $F$, exactly as in Prop. \@ref(prp:stability)). When an ARMA process is stationary, the weights in $\psi(L)$ decay at a geometric rate.
+Importantly, note that the stationarity of the process depends only on the AR specification (or on the eigenvalues of matrix $F$, exactly as in Prop. \@ref(prp:stability)). When an ARMA process is stationary, the weights in $\psi(L)$ decay at a geometric rate.
 
 
-### PACF approach to identify AR/MA processes {#PACFapproach}
+## PACF approach to identify AR/MA processes {#PACFapproach}
 
 We have seen that the $k^{th}$-order auto-correlation of an MA(q) process is null if $k>q$. This is exploited, in practice, to determine the order of an MA process. Moreover, since this is not the case for an AR process, this can be used to distinguish an AR from an MA process.
 
@@ -473,7 +505,7 @@ par(mfg=c(3,2));pacf(y.sim)
 ```
 
 
-### Wold decomposition
+## Wold decomposition
 
 The Wold decomposition is an important result in time series analysis:
 
@@ -496,7 +528,7 @@ See @Anderson_1971. Partial proof in [L. Christiano](http://faculty.wcas.northwe
 For an ARMA process, the Wold representation is given by Eq. \@ref(eq:ARMAwold). As detailed in Prop. \@ref(prp:computPsi), it can be computed by recursively replacing the lagged $y_t$'s in Eq. \@ref(eq:ARMApq). In this case, the deterministic component ($\kappa$) is null.
 
 
-### Impulse Response Functions (IRFs) in ARMA models
+## Impulse Response Functions (IRFs) in ARMA models {#IRFARMA}
 
 Consider the ARMA(p,q) process defined in Def. \@ref(def:ARMApq). Let us construct a novel (counterfactual) sequence of shocks $\{\tilde\varepsilon_t^{(s)}\}$:
 $$
@@ -620,7 +652,7 @@ abline(h=0)
 
 The same kind of algorithm (as in Prop. \@ref(prp:computPsi)) can be used to compute the impact of an increase in an exogenous variable $x_t$ within an ARMAX(p,q,r) model (see next section).
 
-### ARMA processes with exogenous variables (ARMA-X) {#ARMAIRF}
+## ARMA processes with exogenous variables (ARMA-X) {#ARMAIRF}
 
 <!-- Recall that $\{y_t\}$ follows an ARMAX(p,q,r) model if its dynamics is of the form (see Def. \@ref(def:ARMAX)): -->
 <!-- \begin{eqnarray} -->
@@ -743,7 +775,7 @@ plot(date,FJ$fdd,type="l",xlab="",ylab="",
      main="(c) Number of freezing days (x)")
 ```
 ```{r freez2, warning=FALSE, message=FALSE}
-nb.lags <- 12
+nb.lags <- 3
 FDD <- FJ$fdd[(nb.lags+1):T]
 names.FDD <- NULL
 for(i in 1:nb.lags){
@@ -764,13 +796,10 @@ stargazer::stargazer(eq, eq, type = "text",
 Let us now use function `estim.armax`, from package `AEC`to fit an ARMA-X(2,0,1) model:
 
 ```{r freez3}
-nb.lags <- 1
-FDD <- FJ$fdd[(nb.lags+1):T]
-names.FDD <- NULL
-for(i in 1:nb.lags){
-  FDD <- cbind(FDD,FJ$fdd[(nb.lags+1-i):(T-i)])
-  names.FDD <- c(names.FDD,paste(" Lag ",toString(i),sep=""))}
-colnames(FDD) <- c(" Lag 0",names.FDD)
+nb.lags.exog <- 1 # number of lags of exog. variable
+FDD <- FJ$fdd[(nb.lags.exog+1):T]
+for(i in 1:nb.lags.exog){
+  FDD <- cbind(FDD,FJ$fdd[(nb.lags.exog+1-i):(T-i)])}
 dprice <- 100*log(price[(k+1):T]/price[1:(T-k)])
 dprice <- dprice[(length(dprice)-dim(FDD)[1]+1):length(dprice)]
 res.armax <- estim.armax(Y = dprice,p=3,q=0,X=FDD)
@@ -778,9 +807,9 @@ res.armax <- estim.armax(Y = dprice,p=3,q=0,X=FDD)
 
 Figure \@ref(fig:freez4) shows the IRF associated with each of the two models.
 
-```{r freez4, echo=TRUE, fig.cap="Response of changes in orange juice price (in percent) to the number of freezing days. The solid (respectively dashed) line corresponds to the ARMAX(0,0,12) (resp. ARMAX(3,0,1)) model. The first model is estimated by OLS (see above), the second by MLE.", fig.asp = .6, out.width = "95%", fig.align = 'left-aligned'}
+```{r freez4, echo=TRUE, fig.cap="Response of changes in orange juice price (in percent) to the number of freezing days. The solid (respectively dashed) line corresponds to the ARMAX(0,0,3) (resp. ARMAX(3,0,1)) model. The first model is estimated by OLS (see above), the second by MLE.", fig.asp = .6, out.width = "95%", fig.align = 'left-aligned'}
 nb.periods <- 20
-IRF1 <- sim.arma(c=0,phi=c(0),theta=eq$coefficients[2:13],sigma=1,
+IRF1 <- sim.arma(c=0,phi=c(0),theta=eq$coefficients[2:(nb.lags+1)],sigma=1,
                  T=nb.periods,y.0=c(0),nb.sim=1,make.IRF=1)
 IRF2 <- sim.arma(c=0,phi=res.armax$phi,theta=res.armax$beta,sigma=1,
                  T=nb.periods,y.0=rep(0,length(res.armax$phi)),
@@ -883,7 +912,7 @@ irf <- sim.arma(0,x$phi,x$beta,x$sigma,T=60,y.0=rep(0,length(x$phi)),
                 nb.sim=1,make.IRF=1,X=NaN,beta=NaN)
 ```
 
-Figure \@ref(fig:Ramey3) displays the resulting IRF, with a 95\% confidence band. The code used to produce the confidence bands (i.e., to compute the standard deviation of the dynamic multipliers for the different horizons) is based on the Delta method.^[This method consists in approximating $\mathbb{V}(ar)(f(\theta))$ with $\frac{\partial f(\theta)}{\partial \theta}' \mathbb{V}ar(\theta)\frac{\partial f(\theta)}{\partial \theta}$.] The codes are available in Appendix \@ref(IRFDELTA).
+Figure \@ref(fig:Ramey3) displays the resulting IRF, with a 95\% confidence band. The code used to produce the confidence bands (i.e., to compute the standard deviation of the dynamic multipliers for the different horizons) is based on the Delta method (see Appendix \@ref(Delta)).^[This method consists in approximating $\mathbb{V}(ar)(f(\theta))$ with $\frac{\partial f(\theta)}{\partial \theta}' \mathbb{V}ar(\theta)\frac{\partial f(\theta)}{\partial \theta}$.]
 
 
 ```{r Ramey3, echo=FALSE, fig.cap="Response of industrial-production growth to monetary-policy shocks. Dashed lines correpsond to the $\\pm$  2-standard-deviation bands.", fig.asp = .6, out.width = "95%", fig.align = 'left-aligned'}
@@ -923,14 +952,14 @@ lines(IRF.0-2*sqrt(diag(mat.var.cov.IRF)),col="blue",lty=2,lwd=2)
 ```
 :::
 
-### Maximum Likelihood Estimation of ARMA processes {#estimARMA}
+## Maximum Likelihood Estimation (MLE) of ARMA processes {#estimARMA}
 
-Consider the general case (of any time series); assume we observe a sample $\bv{y}=[y_1,\dots,y_T]'$. In order to implement ML techniques (see Section \@ref(secMLE)), we need to evaluate the joint p.d.f. (or "likelihood") of $\bv{y}$, i.e., $\mathcal{L}(\boldsymbol\theta;\bv{y})$, where $\boldsymbol\theta$ is a vector of parameters that characterizes the dynamics of $y_t$. The Maximum Likelihood (ML) estimate of $\boldsymbol\theta$ is then given by:
+Consider the general case (of any time series); assume we observe a sample $\bv{y}=[y_1,\dots,y_T]'$. In order to implement ML techniques, we need to evaluate the joint p.d.f. (or "likelihood") of $\bv{y}$, i.e., $\mathcal{L}(\boldsymbol\theta;\bv{y})$, where $\boldsymbol\theta$ is a vector of parameters that characterizes the dynamics of $y_t$. The Maximum Likelihood (ML) estimate of $\boldsymbol\theta$ is then given by:
 $$
 \boxed{\boldsymbol\theta_{MLE} = \arg \max_{\boldsymbol\theta} \mathcal{L}(\boldsymbol\theta;\bv{y})  = \arg \max_{\boldsymbol\theta} \log \mathcal{L}(\boldsymbol\theta;\bv{y}).}
 $$
 
-In the time series context, if process $y_t$ is Markovian, then there exists a useful way to rewrite the likelihood $\mathcal{L}(\boldsymbol\theta;\bv{y})$. Let us first recall the definition of a Markovian process (see also Def. \@ref(def:MC)):
+In the time series context, if process $y_t$ is Markovian, then there exists a useful way to rewrite the likelihood $\mathcal{L}(\boldsymbol\theta;\bv{y})$. Let us first recall the definition of a Markovian process:
 
 :::{.definition #Markov name="Markovian process"}
 Process $y_t$ is Markovian of order one if $f_{Y_t|Y_{t-1},Y_{t-2},\dots} = f_{Y_t|Y_{t-1}}$. More generally, it is Markovian of order $k$ if $f_{Y_t|Y_{t-1},Y_{t-2},\dots} = f_{Y_t|Y_{t-1},\dots,Y_{t-k}}$.
@@ -1086,7 +1115,7 @@ $$
 $$
 If $j>0$, we have
 \begin{eqnarray*}
-\mathbb{E}(\varepsilon_t\varepsilon_{t-j}\bv{x}_t\bv{x}_{t-j}')=\mathbb{E}(\mathbb{E}[\varepsilon_t\varepsilon_{t-j}\bv{x}_t\bv{x}_{t-j}'|\varepsilon_{t-j},\bv{x}_t,\bv{x}_{t-j}])\\
+\mathbb{E}(\varepsilon_t\varepsilon_{t-j}\bv{x}_t\bv{x}_{t-j}')&=&\mathbb{E}(\mathbb{E}[\varepsilon_t\varepsilon_{t-j}\bv{x}_t\bv{x}_{t-j}'|\varepsilon_{t-j},\bv{x}_t,\bv{x}_{t-j}])\\
 &=&\mathbb{E}(\varepsilon_{t-j}\bv{x}_t\bv{x}_{t-j}'\mathbb{E}[\varepsilon_t|\varepsilon_{t-j},\bv{x}_t,\bv{x}_{t-j}])=0.
 \end{eqnarray*}
 Note that, for $j>0$, we have $\mathbb{E}[\varepsilon_t|\varepsilon_{t-j},\bv{x}_t,\bv{x}_{t-j}]=0$ because $\{\varepsilon_t\}$ is an i.i.d. white noise sequence. If $j=0$, we have:
@@ -1144,7 +1173,7 @@ Let us assume that this process is an **invertible MA process**. That is, assume
 \begin{equation}
 \lambda^q + \theta_1 \lambda^{q-1} + \dots + \theta_{q-1} \lambda + \theta_q = 0 (\#eq:invertible)
 \end{equation}
-lie strictly inside of the unit circle. In this case, the polynomial form $\Theta(L)=1 + \theta_1 L + \dots + \theta_q L^q$ is *invertible* and Eq. \@ref(eq:estimMAq) writes:
+lie strictly inside of the unit circle. In this case, the polynomial $\Theta(L)=1 + \theta_1 L + \dots + \theta_q L^q$ is *invertible* and Eq. \@ref(eq:estimMAq) writes:
 $$
 \varepsilon_t = \Theta(L)^{-1}(y_t - \mu),
 $$
@@ -1191,7 +1220,7 @@ given some initial conditions, for instance:
 a. $\hat\varepsilon_0=\dots=\hat\varepsilon_{-q+1}=0$ and $y_{0}=\dots=y_{-p+1}=\mathbb{E}(y_i)=\mu$. (Recursions in Eq. \@ref(eq:recvareps) then start for $t=1$.)
 b. $\hat\varepsilon_p=\dots=\hat\varepsilon_{p-q+1}=0$ and actual values of the $y_{i}$'s for $i \in [1,p]$. In that case, the first $p$ observations of $y_t$ will not be used. Recursions in Eq. \@ref(eq:recvareps) then start for $t=p+1$.
 
-### Specification choice
+## Specification choice
 
 The previouss section explains how to fit a given ARMA specification. But how to choose an appropriate specification? A possibility is to employ the (P)ACF approach (see Figure \@ref(fig:pacf)). However, the previous approach leads to either an AR or a MA process (and not an ARMA process). If one wants to consider various ARMA(p,q) specifications, for $p \in \{1,\dots,P\}$ and $q \in \{1,\dots,Q\}$, say, then one can resort to **information criteria**.
 
@@ -1233,7 +1262,7 @@ In the case of an ARMA(p,q) process, $k=2+p+q$.
 
 
 :::{.proposition #infocriteria name="Consistency of the criteria-based lag selection"}
-The lag selection procedure is consistent (see Def. \@ref(def:asmyptconsisttest)) if
+The lag selection procedure is consistent if
 $$
 \lim_{T \rightarrow \infty} \phi(T) = \infty \quad and \quad \lim_{T \rightarrow \infty} \phi(T)/T = 0.
 $$
@@ -1251,7 +1280,7 @@ Hence, if $\lim_{T \rightarrow \infty} \phi(T)/T = 0$, we have: $\lim_{T \righta
 $$
 \lim_{T \rightarrow \infty} \mathbb{P}(\hat{k}<k_0) \le \lim_{T \rightarrow \infty} \mathbb{P}\left\{c(k_0) \ge c(k) \mbox{ for some $k < k_0$}\right\} = 0.
 $$
-* Case $k > k_0$: under the null hypothesis, the likelihood ratio (LR) test statistic (see Def. \@ref(def:LR)) satisfies:
+* Case $k > k_0$: under the null hypothesis, the likelihood ratio (LR) test statistic satisfies:
 $$
 2 \left(\log \mathcal{L}(\hat{\boldsymbol\theta}_T(k);\bv{y})-\log \mathcal{L}(\hat{\boldsymbol\theta}_T(k_0);\bv{y})\right) \sim \chi^2(k-k_0).
 $$

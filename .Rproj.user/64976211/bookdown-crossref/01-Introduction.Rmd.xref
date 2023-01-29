@@ -1,4 +1,4 @@
-h1:Intro To start with
+h1:Intro Basics
 h2:shocks-and-lag-operator Shocks and lag operator
 h2:conditional-and-unconditional-moments Conditional and unconditional moments
 fig:NONNstat1 Example of a process that is not covariance stationary. it follows: $y_t = 0.1t + \\varepsilon_t$, where $\\varepsilon_t \\sim \\mathcal{N}(0,1)$.

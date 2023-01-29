@@ -75,7 +75,7 @@ ii. $\dfrac{1}{T^2}\sum_{t=1}^T y_t^2 \overset{d}{\rightarrow} \int_{0}^{1}y^2_{
 iii. $\dfrac{1}{T}\sum_{t=1}^T y_t(y_t-y_{t-1}) \overset{d}{\rightarrow} \dfrac{1}{2}y^2_{\infty}(1) + \dfrac{1}{2}\mathbb{V}ar(y_t - y_{t-1})$,
 iv. $\dfrac{1}{T}\sum_{t=1}^T y_t \eta_t \overset{d}{\rightarrow} \sigma_\eta \int_{0}^{1}y_{\infty}(r)dW_r^{\eta}$ where $\eta_t$ is a white noise of variance $\sigma_\eta^2$,
 
-where $y_{\infty}(r)$ is of the form $\omega W_r$ ($W_r$ being a Brownian motion, see \@ref(def:Brownian)), with $\omega = \sum_{k=-\infty}^{\infty} \gamma_k$, the $\gamma_k$s being the autocovariances of $H(L)\varepsilon_t$, and where $\eta_{\infty}(r)$ is of the form $\sigma_\eta W^{\eta}_r$ ($W^{\eta}_r$ Brownian motion "associated" to $\eta_t$).
+where $y_{\infty}(r)$ is of the form $\omega W_r$ ($W_r$ being a Brownian motion (see [extra material](https://www.dropbox.com/s/w4qc1c32pzkxngv/Simul_Brownian.pdf?dl=0)), with $\omega = \sum_{k=-\infty}^{\infty} \gamma_k$, the $\gamma_k$s being the autocovariances of $H(L)\varepsilon_t$, and where $\eta_{\infty}(r)$ is of the form $\sigma_\eta W^{\eta}_r$ ($W^{\eta}_r$ Brownian motion "associated" to $\eta_t$).
 :::
 :::{.proof}
 (of 1)
@@ -276,7 +276,7 @@ If the components of $y_t$ are  $I(1)$, one has to determine the existence of co
 2. We have no a priori regarding the cointegration relationship. We have to estimate (and test) the potential cointegration relationship.
 
 In the first case, we proceed in two steps:
-a. If $\pi^*$ is suspected to be a cointegrating vector, we can then use unit-root or stationarity tests on $z_t={\pi^*}' y_t$ (see Section \ref{sec:nonstat}).
+a. If $\pi^*$ is suspected to be a cointegrating vector, we can then use unit-root or stationarity tests on $z_t={\pi^*}' y_t$ (see Section \@ref{NonStat}).
 b. Estimate Eq. \@ref(eq:VECM3) by OLS.
 
 In the following, we focus on the second case, when there is at most one cointegration relationship. (In the general case, one can for instance implement the @Johansen_1991 approach.)

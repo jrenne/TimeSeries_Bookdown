@@ -68,7 +68,7 @@ y_t = \mu + \varepsilon_t + \theta_1 \varepsilon_{t-1} + \dots + \theta_q \varep
 $$
 where $\{\varepsilon_t\}$ is a white noise sequence (Def. \@ref(def:whitenoise)).
 
-We have:
+We have:^[The present reasoning relies on the assumption that the $\varepsilon_t$'s are observed. But this is generally not the case in practice, where the $\varepsilon_t$'s generally have to be estimated.]
 \begin{eqnarray*}
 &&\mathbb{E}(y_{t+h}|\varepsilon_{t},\varepsilon_{t-1},\dots) =\\
 &&\left\{
@@ -88,9 +88,6 @@ and
 \end{array}
 \right.
 \end{eqnarray*}
-
-Remark: The previous reasoning relies on the assumption that the $\varepsilon_t$s are observed. But this is generally not the case in practice. Note that consistent estimates are available if the MA process is invertible (see Eq. \@ref(eq:invertible)) .
-
 :::
 
 :::{.example #fcstARp name="Forecasting an AR(p) process"}

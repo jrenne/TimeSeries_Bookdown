@@ -72,7 +72,7 @@ for all realisations of $\{u_t\}$. This is the case if $w_t > -\zeta$, with $\ze
 $$
 g(z) = 1 - \alpha_1 z - \dots - \alpha_m z^m = 0
 $$
-lie outside the unit circle (Prop. \@ref(thm:stability)). A necessary condition for not having a root between 0 and 1 is that $\sum_i \alpha_i<1$.^[If we have $1-\sum_i \alpha_i \le 0$, then $g(1) \le 0$. We would then have $g(0)=1>0$ and $g(1)\le 0$. Since $g$ is continuous, this would imply that $\exists z \in [0,1]$ s.t. $g(z)=0$.] This is also a sufficient condition.^[Indeed, for $z \in [-1,1]$, we have $1 - \alpha_1 z - \dots - \alpha_m z^m \ge 1 - \sum_i |\alpha_iz^i| \ge 1 - \sum_i \alpha_i > 0$.]
+lie outside the unit circle (Prop. \@ref(prp:stability)). A necessary condition for not having a root between 0 and 1 is that $\sum_i \alpha_i<1$.^[If we have $1-\sum_i \alpha_i \le 0$, then $g(1) \le 0$. We would then have $g(0)=1>0$ and $g(1)\le 0$. Since $g$ is continuous, this would imply that $\exists z \in [0,1]$ s.t. $g(z)=0$.] This is also a sufficient condition.^[Indeed, for $z \in [-1,1]$, we have $1 - \alpha_1 z - \dots - \alpha_m z^m \ge 1 - \sum_i |\alpha_iz^i| \ge 1 - \sum_i \alpha_i > 0$.]
 
 If $w_t > -\zeta$, with $\zeta>0$, $\alpha_i\ge0$ for $i \in \{1,\dots,m\}$ and $\sum_i \alpha_i<1$, then the unconditional variance of $u_t$ is:
 $$
@@ -199,7 +199,7 @@ We have $w_t = h_t(v_t^2 - 1)$. Under regularity assumptions, $\{w_t\}$ is a whi
 $$
 1 - (\delta_1 + \alpha_1)z - \dots - (\delta_1 + \alpha_1)z^p = 0
 $$
-lie outside the unit circle (Prop. \@ref(thm:stability)). When the $\delta_i + \alpha_i$ are nonnegative, and using the same reasoning as for ARCH models, this is the case iff:
+lie outside the unit circle (Prop. \@ref(prp:stability)). When the $\delta_i + \alpha_i$ are nonnegative, and using the same reasoning as for ARCH models, this is the case iff:
 $$
 \sum_i \delta_i + \sum_i \alpha_i < 1.
 $$

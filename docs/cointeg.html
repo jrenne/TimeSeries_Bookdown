@@ -66,7 +66,7 @@
       <nav aria-label="Table of contents"><h2>Table of contents</h2>
         <ul class="book-toc list-unstyled">
 <li><a class="" href="index.html">Introduction to Time Series</a></li>
-<li><a class="" href="Intro.html"><span class="header-section-number">1</span> To start with</a></li>
+<li><a class="" href="Intro.html"><span class="header-section-number">1</span> Basics</a></li>
 <li><a class="" href="Univariate.html"><span class="header-section-number">2</span> Univariate processes</a></li>
 <li><a class="" href="VAR.html"><span class="header-section-number">3</span> Multivariate models</a></li>
 <li><a class="" href="forecasting.html"><span class="header-section-number">4</span> Forecasting</a></li>
@@ -140,7 +140,7 @@ where the random variables <span class="math inline">\(x^2_{\infty}\)</span> and
 <li>
 <span class="math inline">\(\dfrac{1}{T}\sum_{t=1}^T y_t \eta_t \overset{d}{\rightarrow} \sigma_\eta \int_{0}^{1}y_{\infty}(r)dW_r^{\eta}\)</span> where <span class="math inline">\(\eta_t\)</span> is a white noise of variance <span class="math inline">\(\sigma_\eta^2\)</span>,</li>
 </ol>
-<p>where <span class="math inline">\(y_{\infty}(r)\)</span> is of the form <span class="math inline">\(\omega W_r\)</span> (<span class="math inline">\(W_r\)</span> being a Brownian motion, see <a href="#def:Brownian"><strong>??</strong></a>), with <span class="math inline">\(\omega = \sum_{k=-\infty}^{\infty} \gamma_k\)</span>, the <span class="math inline">\(\gamma_k\)</span>s being the autocovariances of <span class="math inline">\(H(L)\varepsilon_t\)</span>, and where <span class="math inline">\(\eta_{\infty}(r)\)</span> is of the form <span class="math inline">\(\sigma_\eta W^{\eta}_r\)</span> (<span class="math inline">\(W^{\eta}_r\)</span> Brownian motion “associated” to <span class="math inline">\(\eta_t\)</span>).</p>
+<p>where <span class="math inline">\(y_{\infty}(r)\)</span> is of the form <span class="math inline">\(\omega W_r\)</span> (<span class="math inline">\(W_r\)</span> being a Brownian motion (see <a href="https://www.dropbox.com/s/w4qc1c32pzkxngv/Simul_Brownian.pdf?dl=0">extra material</a>), with <span class="math inline">\(\omega = \sum_{k=-\infty}^{\infty} \gamma_k\)</span>, the <span class="math inline">\(\gamma_k\)</span>s being the autocovariances of <span class="math inline">\(H(L)\varepsilon_t\)</span>, and where <span class="math inline">\(\eta_{\infty}(r)\)</span> is of the form <span class="math inline">\(\sigma_\eta W^{\eta}_r\)</span> (<span class="math inline">\(W^{\eta}_r\)</span> Brownian motion “associated” to <span class="math inline">\(\eta_t\)</span>).</p>
 </div>
 <div class="proof">
 <p><span id="unlabeled-div-19" class="proof"><em>Proof</em>. </span>(of 1)
@@ -307,7 +307,7 @@ Figure 6.2: Simulation of <span class="math inline">\(y_{1,t}\)</span> (in blue)
 <li>We have no a priori regarding the cointegration relationship. We have to estimate (and test) the potential cointegration relationship.</li>
 </ol>
 <p>In the first case, we proceed in two steps:
-a. If <span class="math inline">\(\pi^*\)</span> is suspected to be a cointegrating vector, we can then use unit-root or stationarity tests on <span class="math inline">\(z_t={\pi^*}' y_t\)</span> (see Section <span class="math inline">\(\ref{sec:nonstat}\)</span>).
+a. If <span class="math inline">\(\pi^*\)</span> is suspected to be a cointegrating vector, we can then use unit-root or stationarity tests on <span class="math inline">\(z_t={\pi^*}' y_t\)</span> (see Section @ref{NonStat}).
 b. Estimate Eq. <a href="cointeg.html#eq:VECM3">(6.7)</a> by OLS.</p>
 <p>In the following, we focus on the second case, when there is at most one cointegration relationship. (In the general case, one can for instance implement the <span class="citation">Johansen (<a href="references.html#ref-Johansen_1991" role="doc-biblioref">1991</a>)</span> approach.)</p>
 <p><span class="citation">Engle and Granger (<a href="references.html#ref-Engle_Granger_1987" role="doc-biblioref">1987</a>)</span> propose a two-step estimation procedure to estimate error-correction models. This method proceeds under the assumption that there is a single cointegration equation, i.e. <span class="math inline">\(A' = [\alpha_1,\dots,\alpha_n]\)</span>. (Recall that <span class="math inline">\(\Phi(1) = BA'\)</span>, see Eq. <a href="cointeg.html#eq:BAvecm">(6.5)</a>.) Without loss of generality, one can set <span class="math inline">\(\alpha_1=1\)</span>. In that case, the cointegration relationship, if it exists, is of the form:
@@ -319,7 +319,7 @@ where <span class="math inline">\(z_t \sim I(0)\)</span>.</p>
 <p>It remains to explain how to test for the existence of a cointegration relationship. This amounts to testing whether <span class="math inline">\(z_t\)</span> is stationary. Note however that we do not observe the “true” <span class="math inline">\(z_t\)</span>, but only OLS-based estimates <span class="math inline">\(\hat{z}_t\)</span>. Therefore, the critical values of the usual unit-root tests are not the same. The appropriate critical values are given by <span class="citation">P. C. B. Phillips and Ouliaris (<a href="references.html#ref-Phillips_Ouliaris_1990" role="doc-biblioref">1990</a>)</span>.</p>
 <div class="example">
 <p><span id="exm:VECMUS" class="example"><strong>Example 6.3  (VECM for US inflation and nominal interest rate) </strong></span>The data are as in Example <a href="NonStat.html#exm:NonStatExample">5.1</a>. In the first step, we compute <span class="math inline">\(z_t\)</span> and use <span class="citation">P. C. B. Phillips and Ouliaris (<a href="references.html#ref-Phillips_Ouliaris_1990" role="doc-biblioref">1990</a>)</span>’s test to see whether the two variables are cointegrated:</p>
-<div class="sourceCode" id="cb47"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb55"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">AEC</span><span class="op">)</span>;<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">tseries</span><span class="op">)</span></span>
 <span><span class="cn">T</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="va">US3var</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span></span>
 <span><span class="va">infl</span> <span class="op">&lt;-</span> <span class="va">US3var</span><span class="op">$</span><span class="va">infl</span></span>
@@ -334,7 +334,7 @@ where <span class="math inline">\(z_t \sim I(0)\)</span>.</p>
 ## Phillips-Ouliaris demeaned = -29.484, Truncation lag parameter = 2,
 ## p-value = 0.01</code></pre>
 <p>We reject the null hypothesis of unit root in the residuals. That is, the results are in favor of cointegration. Let us then esitmate the VECM model; this amounts to running two OLS regressions:</p>
-<div class="sourceCode" id="cb49"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb57"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">infl_1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="cn">NaN</span>,<span class="va">infl</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="op">(</span><span class="cn">T</span><span class="op">-</span><span class="fl">1</span><span class="op">)</span><span class="op">]</span><span class="op">)</span></span>
 <span><span class="va">infl_2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="cn">NaN</span>,<span class="cn">NaN</span>,<span class="va">infl</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="op">(</span><span class="cn">T</span><span class="op">-</span><span class="fl">2</span><span class="op">)</span><span class="op">]</span><span class="op">)</span></span>
 <span><span class="va">infl_3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="cn">NaN</span>,<span class="cn">NaN</span>,<span class="cn">NaN</span>,<span class="va">infl</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="op">(</span><span class="cn">T</span><span class="op">-</span><span class="fl">3</span><span class="op">)</span><span class="op">]</span><span class="op">)</span></span>
@@ -440,7 +440,7 @@ where <span class="math inline">\(z_t \sim I(0)\)</span>.</p>
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Introduction to Time Series</strong>" was written by Jean-Paul Renne. It was last built on 2023-01-13.</p>
+    <p>"<strong>Introduction to Time Series</strong>" was written by Jean-Paul Renne. It was last built on 2023-01-29.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

@@ -4,15 +4,15 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Chapter 1 To start with | Introduction to Time Series</title>
+<title>Chapter 1 Basics | Introduction to Time Series</title>
 <meta name="author" content="Jean-Paul Renne">
 <meta name="description" content="1.1 Shocks and lag operator A time series is an infinite sequence of random variables indexed by time: \(\{y_t\}_{t=-\infty}^{+\infty}=\{\dots, y_{-2},y_{-1},y_{0},y_{1},\dots,y_t,\dots\}\), \(y_i...">
 <meta name="generator" content="bookdown 0.27 with bs4_book()">
-<meta property="og:title" content="Chapter 1 To start with | Introduction to Time Series">
+<meta property="og:title" content="Chapter 1 Basics | Introduction to Time Series">
 <meta property="og:type" content="book">
 <meta property="og:description" content="1.1 Shocks and lag operator A time series is an infinite sequence of random variables indexed by time: \(\{y_t\}_{t=-\infty}^{+\infty}=\{\dots, y_{-2},y_{-1},y_{0},y_{1},\dots,y_t,\dots\}\), \(y_i...">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Chapter 1 To start with | Introduction to Time Series">
+<meta name="twitter:title" content="Chapter 1 Basics | Introduction to Time Series">
 <meta name="twitter:description" content="1.1 Shocks and lag operator A time series is an infinite sequence of random variables indexed by time: \(\{y_t\}_{t=-\infty}^{+\infty}=\{\dots, y_{-2},y_{-1},y_{0},y_{1},\dots,y_t,\dots\}\), \(y_i...">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
@@ -66,7 +66,7 @@
       <nav aria-label="Table of contents"><h2>Table of contents</h2>
         <ul class="book-toc list-unstyled">
 <li><a class="" href="index.html">Introduction to Time Series</a></li>
-<li><a class="active" href="Intro.html"><span class="header-section-number">1</span> To start with</a></li>
+<li><a class="active" href="Intro.html"><span class="header-section-number">1</span> Basics</a></li>
 <li><a class="" href="Univariate.html"><span class="header-section-number">2</span> Univariate processes</a></li>
 <li><a class="" href="VAR.html"><span class="header-section-number">3</span> Multivariate models</a></li>
 <li><a class="" href="forecasting.html"><span class="header-section-number">4</span> Forecasting</a></li>
@@ -84,7 +84,7 @@
 </div>
   </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="Intro" class="section level1" number="1">
 <h1>
-<span class="header-section-number">1</span> To start with<a class="anchor" aria-label="anchor" href="#Intro"><i class="fas fa-link"></i></a>
+<span class="header-section-number">1</span> Basics<a class="anchor" aria-label="anchor" href="#Intro"><i class="fas fa-link"></i></a>
 </h1>
 <div id="shocks-and-lag-operator" class="section level2" number="1.1">
 <h2>
@@ -111,11 +111,30 @@
 </div>
 <p>By definition, if <span class="math inline">\(y_t\)</span> is a martingale, then <span class="math inline">\(y_{t}-y_{t-1}\)</span> is a MDS.</p>
 <div class="example">
-<p><span id="exm:ARCH" class="example"><strong>Example 1.1  (ARCH process) </strong></span>The Autoregressive conditional heteroskedasticity process—studied in Section <a href="ARCHGARCH.html#ARCHGARCH">7</a>—is an example of shock that satisfies the MDS definition but that is not i.i.d.:
+<p><span id="exm:ARCH" class="example"><strong>Example 1.1  (ARCH process) </strong></span>The Autoregressive conditional heteroskedasticity process—studied in Section <a href="ARCHGARCH.html#ARCHGARCH">7</a>—is an example of shock that satisfies the white noise and MDS definitions, but that is not i.i.d.:
 <span class="math display">\[
 \varepsilon_{t} = \sigma_t \times z_{t},
 \]</span>
 where <span class="math inline">\(z_t \sim i.i.d.\,\mathcal{N}(0,1)\)</span> and <span class="math inline">\(\sigma_t^2 = w + \alpha \varepsilon_{t-1}^2\)</span>.</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="cn">T</span> <span class="op">&lt;-</span> <span class="fl">500</span></span>
+<span><span class="va">w</span> <span class="op">&lt;-</span> <span class="fl">1</span>; <span class="va">alpha</span> <span class="op">&lt;-</span> <span class="fl">.98</span></span>
+<span><span class="va">all_epsilon</span> <span class="op">&lt;-</span> <span class="cn">NULL</span>; <span class="va">epsilon_1</span> <span class="op">&lt;-</span> <span class="fl">0</span></span>
+<span><span class="kw">for</span><span class="op">(</span><span class="va">t</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="cn">T</span><span class="op">)</span><span class="op">{</span></span>
+<span>  <span class="va">sigma</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="va">w</span> <span class="op">+</span> <span class="va">alpha</span> <span class="op">*</span> <span class="va">epsilon_1</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span></span>
+<span>  <span class="va">epsilon</span> <span class="op">&lt;-</span> <span class="va">sigma</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span></span>
+<span>  <span class="va">all_epsilon</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">all_epsilon</span>,<span class="va">epsilon</span><span class="op">)</span></span>
+<span>  <span class="va">epsilon_1</span> <span class="op">&lt;-</span> <span class="va">epsilon</span></span>
+<span><span class="op">}</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>plt<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">.15</span>,<span class="fl">.95</span>,<span class="fl">.1</span>,<span class="fl">.95</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">all_epsilon</span>,type<span class="op">=</span><span class="st">"l"</span>,lwd<span class="op">=</span><span class="fl">2</span>,</span>
+<span>     ylab<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/expression.html">expression</a></span><span class="op">(</span><span class="va">epsilon</span><span class="op">[</span><span class="va">t</span><span class="op">]</span><span class="op">)</span>,xlab<span class="op">=</span><span class="st">""</span><span class="op">)</span></span></code></pre></div>
+<div class="figure" style="text-align: left-aligned">
+<span style="display:block;" id="fig:simulGARCHointro"></span>
+<img src="TimeSeries_files/figure-html/simulGARCHointro-1.png" alt="Simulation of $\varepsilon_t$, where $\varepsilon_{t} = \sigma_t \times z_{t}$, with $z_t \sim i.i.d.\,\mathcal{N}(0,1)$." width="95%"><p class="caption">
+Figure 1.1: Simulation of <span class="math inline">\(\varepsilon_t\)</span>, where <span class="math inline">\(\varepsilon_{t} = \sigma_t \times z_{t}\)</span>, with <span class="math inline">\(z_t \sim i.i.d.\,\mathcal{N}(0,1)\)</span>.
+</p>
+</div>
 </div>
 <div class="example">
 <p><span id="exm:whiteNotMDS" class="example"><strong>Example 1.2  </strong></span>A white noise process is not necessarily a MDS. This is for instance the case for following process:
@@ -123,13 +142,14 @@ where <span class="math inline">\(z_t \sim i.i.d.\,\mathcal{N}(0,1)\)</span> and
 \varepsilon_{t} = z_t + z_{t-1}z_{t-2},
 \]</span>
 where <span class="math inline">\(z_t \sim i.i.d.\mathcal{N}(0,1)\)</span>.</p>
+<p>Indeed, it can be shown that the <span class="math inline">\(\varepsilon_t\)</span>’s are not correlated through time, we have <span class="math inline">\(\mathbb{E}_{t-1}(\varepsilon_t)=z_{t-1}z_{t-2} \ne 0\)</span>.</p>
 </div>
 <p>Let us now introduce the lag operator. The lag operator, denoted by <span class="math inline">\(L\)</span>, is defined on the time series space and is defined by:
 <span class="math display" id="eq:lagOp">\[\begin{equation}
 L: \{y_t\}_{t=-\infty}^{+\infty} \rightarrow \{w_t\}_{t=-\infty}^{+\infty} \quad \mbox{with} \quad w_t = y_{t-1}.\tag{1.1}
 \end{equation}\]</span></p>
 <p>It is easily seen that we have <span class="math inline">\(L^2 y_t =L(L y_t) = y_{t-2}\)</span> and, more generally, <span class="math inline">\(L^k y_t = y_{t-k}\)</span>.</p>
-<p>Consider a process that follows <span class="math inline">\(y_t\)</span> defined by <span class="math inline">\(y_t = \mu + \phi y_{t-1} + \varepsilon_t\)</span> (this is an AR(1) process, as we will see in Section <a href="Univariate.html#Univariate">2</a>), where the <span class="math inline">\(\varepsilon_t\)</span>’s are i.i.d. <span class="math inline">\(\mathcal{N}(0,\sigma^2)\)</span>. Using the lag operator, the dynamics of <span class="math inline">\(y_t\)</span> can be expressed as follows:
+<p>Consider a process <span class="math inline">\(y_t\)</span> whose law of motion is <span class="math inline">\(y_t = \mu + \phi y_{t-1} + \varepsilon_t\)</span>, where the <span class="math inline">\(\varepsilon_t\)</span>’s are i.i.d. <span class="math inline">\(\mathcal{N}(0,\sigma^2)\)</span> (this is an AR(1) process, as we will see in Section <a href="Univariate.html#Univariate">2</a>). Using the lag operator, the dynamics of <span class="math inline">\(y_t\)</span> can be expressed as follows:
 <span class="math display">\[
 (1-\phi L) y_t = \mu + \varepsilon_t.
 \]</span></p>
@@ -142,7 +162,7 @@ L: \{y_t\}_{t=-\infty}^{+\infty} \rightarrow \{w_t\}_{t=-\infty}^{+\infty} \quad
 <span class="math display">\[
 \mu_t := \mathbb{E}(y_t) = \int_{-\infty}^{\infty} y_t f_{Y_t}(y_t) dy_t,
 \]</span>
-where <span class="math inline">\(f_{Y_t}\)</span> is the unconditional, or marginal, density (p.d.f.) of <span class="math inline">\(y_t\)</span>. Note that, in the general case, <span class="math inline">\(Y_t\)</span> and <span class="math inline">\(Y_{t-1}\)</span>, may have different densities; that is, in general, <span class="math inline">\(f_{Y_t} \ne f_{Y_{t-1}}\)</span>.</p>
+where <span class="math inline">\(f_{Y_t}\)</span> is the unconditional, or marginal, density (p.d.f.) of <span class="math inline">\(y_t\)</span>. Note that, in the general case, <span class="math inline">\(Y_t\)</span> and <span class="math inline">\(Y_{t-1}\)</span>, may have different densities; that is, in general, <span class="math inline">\(f_{Y_t} \ne f_{Y_{t-1}}\)</span> (and, in particular, <span class="math inline">\(\mu_t \ne \mu_{t-1}\)</span>).</p>
 <p>Similarly, if it exists, the <strong>unconditional (or marginal) variance</strong> of the random variable <span class="math inline">\(y_t\)</span> is:
 <span class="math display">\[
 \mathbb{V}ar(y_t) = \int_{-\infty}^{\infty} (y_t - \mathbb{E}(y_t))^2 f_{Y_t}(y_t) dy_t.
@@ -163,16 +183,16 @@ where <span class="math inline">\(f_{Y_t,Y_{t-1},\dots,Y_{t-j}}(y_t,y_{t-1},\dot
 \mathbb{E}(y_t) = \mu \quad \mbox{and} \quad \mathbb{E}\{(y_t - \mu)(y_{t-j} - \mu)\} = \gamma_j.
 \]</span></p>
 </div>
-<p>Figure <a href="Intro.html#fig:NONNstat1">1.1</a> displays the simulation of a process that is not covariance stationary. This process follows <span class="math inline">\(y_t = 0.1t + \varepsilon_t\)</span>, where <span class="math inline">\(\varepsilon_t \sim\,i.i.d.\,\mathcal{N}(0,1)\)</span>. Indeed, for such a process, we have: <span class="math inline">\(\mathbb{E}(y_t)=0.1t\)</span>, which depends on <span class="math inline">\(t\)</span>.</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<p>Figure <a href="Intro.html#fig:NONNstat1">1.2</a> displays the simulation of a process that is not covariance stationary. This process follows <span class="math inline">\(y_t = 0.1t + \varepsilon_t\)</span>, where <span class="math inline">\(\varepsilon_t \sim\,i.i.d.\,\mathcal{N}(0,1)\)</span>. Indeed, for such a process, we have: <span class="math inline">\(\mathbb{E}(y_t)=0.1t\)</span>, which depends on <span class="math inline">\(t\)</span>.</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="cn">T</span> <span class="op">&lt;-</span> <span class="fl">200</span></span>
 <span><span class="va">y</span> <span class="op">&lt;-</span> <span class="fl">0.1</span><span class="op">*</span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="cn">T</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="cn">T</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>plt<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">.1</span>,<span class="fl">.95</span>,<span class="fl">.1</span>,<span class="fl">.95</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">y</span>,xlab<span class="op">=</span><span class="st">""</span>,ylab<span class="op">=</span><span class="st">""</span>,type<span class="op">=</span><span class="st">"l"</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">y</span>,xlab<span class="op">=</span><span class="st">""</span>,ylab<span class="op">=</span><span class="st">""</span>,lwd<span class="op">=</span><span class="fl">2</span>,type<span class="op">=</span><span class="st">"l"</span><span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: left-aligned">
 <span style="display:block;" id="fig:NONNstat1"></span>
 <img src="TimeSeries_files/figure-html/NONNstat1-1.png" alt="Example of a process that is not covariance stationary. it follows: $y_t = 0.1t + \varepsilon_t$, where $\varepsilon_t \sim \mathcal{N}(0,1)$." width="95%"><p class="caption">
-Figure 1.1: Example of a process that is not covariance stationary. it follows: <span class="math inline">\(y_t = 0.1t + \varepsilon_t\)</span>, where <span class="math inline">\(\varepsilon_t \sim \mathcal{N}(0,1)\)</span>.
+Figure 1.2: Example of a process that is not covariance stationary. it follows: <span class="math inline">\(y_t = 0.1t + \varepsilon_t\)</span>, where <span class="math inline">\(\varepsilon_t \sim \mathcal{N}(0,1)\)</span>.
 </p>
 </div>
 <div class="definition">
@@ -182,19 +202,19 @@ Figure 1.1: Example of a process that is not covariance stationary. it follows: 
 <span class="math display">\[
 y_t = \mathbb{I}_{\{t&lt;1000\}}\varepsilon_{1,t}+\mathbb{I}_{\{t\ge1000\}}\varepsilon_{2,t},
 \]</span>
-where <span class="math inline">\(\varepsilon_{1,t} \sim \mathcal{N}(0,1)\)</span> and <span class="math inline">\(\varepsilon_{2,t} \sim \sqrt{\frac{\nu - 2}{\nu}} t(\nu)\)</span> and <span class="math inline">\(\nu = 4\)</span>. A simulated path is displayed in Figure <a href="Intro.html#fig:NONNstat2">1.2</a>.</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+where <span class="math inline">\(\varepsilon_{1,t} \sim \mathcal{N}(0,1)\)</span> and <span class="math inline">\(\varepsilon_{2,t} \sim \sqrt{\frac{\nu - 2}{\nu}} t(\nu)\)</span> and <span class="math inline">\(\nu = 4\)</span>. A simulated path is displayed in Figure <a href="Intro.html#fig:NONNstat2">1.3</a>.</p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="cn">T</span> <span class="op">&lt;-</span> <span class="fl">2000</span></span>
 <span><span class="va">y</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="cn">T</span><span class="op">)</span></span>
 <span><span class="va">y</span><span class="op">[</span><span class="op">(</span><span class="cn">T</span><span class="op">/</span><span class="fl">2</span><span class="op">)</span><span class="op">:</span><span class="cn">T</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/TDist.html">rt</a></span><span class="op">(</span>n <span class="op">=</span> <span class="cn">T</span><span class="op">/</span><span class="fl">2</span> <span class="op">+</span> <span class="fl">1</span>,df<span class="op">=</span><span class="fl">4</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>plt<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">.1</span>,<span class="fl">.95</span>,<span class="fl">.15</span>,<span class="fl">.95</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">y</span>,xlab<span class="op">=</span><span class="st">""</span>,ylab<span class="op">=</span><span class="st">""</span>,type<span class="op">=</span><span class="st">"l"</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/graphics/abline.html">abline</a></span><span class="op">(</span>h<span class="op">=</span><span class="op">-</span><span class="fl">2.58</span>,col<span class="op">=</span><span class="st">"red"</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/graphics/abline.html">abline</a></span><span class="op">(</span>h<span class="op">=</span><span class="fl">2.58</span>,col<span class="op">=</span><span class="st">"red"</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/abline.html">abline</a></span><span class="op">(</span>h<span class="op">=</span><span class="op">-</span><span class="fl">2.58</span>,col<span class="op">=</span><span class="st">"red"</span>,lty<span class="op">=</span><span class="fl">3</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/abline.html">abline</a></span><span class="op">(</span>h<span class="op">=</span><span class="fl">2.58</span>,col<span class="op">=</span><span class="st">"red"</span>,lty<span class="op">=</span><span class="fl">3</span><span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: left-aligned">
 <span style="display:block;" id="fig:NONNstat2"></span>
 <img src="TimeSeries_files/figure-html/NONNstat2-1.png" alt="Example of a process that is covariance stationary but not strictly stationary. The red lines delineate the 99\% confidence interval of the standard normal distribution ($\pm 2.58$)." width="95%"><p class="caption">
-Figure 1.2: Example of a process that is covariance stationary but not strictly stationary. The red lines delineate the 99% confidence interval of the standard normal distribution (<span class="math inline">\(\pm 2.58\)</span>).
+Figure 1.3: Example of a process that is covariance stationary but not strictly stationary. The red lines delineate the 99% confidence interval of the standard normal distribution (<span class="math inline">\(\pm 2.58\)</span>).
 </p>
 </div>
 <div class="proposition">
@@ -210,7 +230,7 @@ Figure 1.2: Example of a process that is covariance stationary but not strictly 
 \]</span></p>
 </div>
 <p>Consider a long historical time series of the Swiss GDP growth, taken from the <span class="citation">Jordà, Schularick, and Taylor (<a href="references.html#ref-JST_2017" role="doc-biblioref">2017</a>)</span> dataset.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;Version 6 of the dataset, available on &lt;a href="https://www.macrohistory.net"&gt;this website&lt;/a&gt;.&lt;/p&gt;'><sup>1</sup></a></p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">AEC</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">JST</span><span class="op">)</span>;<span class="va">data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/subset.html">subset</a></span><span class="op">(</span><span class="va">JST</span>,<span class="va">iso</span><span class="op">==</span><span class="st">"CHE"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>plt<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">.1</span>,<span class="fl">.95</span>,<span class="fl">.1</span>,<span class="fl">.95</span><span class="op">)</span><span class="op">)</span></span>
@@ -221,14 +241,14 @@ Figure 1.2: Example of a process that is covariance stationary but not strictly 
 <div class="figure" style="text-align: left-aligned">
 <span style="display:block;" id="fig:autocov"></span>
 <img src="TimeSeries_files/figure-html/autocov-1.png" alt="Annual growth rate of Swiss GDP, based on the Jorda-Schularick-Taylor Macrohistory Database." width="95%"><p class="caption">
-Figure 1.3: Annual growth rate of Swiss GDP, based on the Jorda-Schularick-Taylor Macrohistory Database.
+Figure 1.4: Annual growth rate of Swiss GDP, based on the Jorda-Schularick-Taylor Macrohistory Database.
 </p>
 </div>
-<p>Figure <a href="Intro.html#fig:autocov2">1.4</a> shows two scatter plots. In the first one, the coordinates of each point are of the form <span class="math inline">\((y_{t-1},y_t)\)</span>. Hence, the slope of the OLS regression line (in blue) is <span class="math inline">\(\widehat{\mathbb{C}ov}(y_t,y_{t-1})/\widehat{\mathbb{V}ar}(y_{t-1})\)</span> (where the hats indicate that these moments are the sample ones). Assuming that the process is covariance stationary, the slope therefore is an estimate of the auto-correlation of order one. By the same logic, the slope of the blue line in the second plot is an estimate of the auto-correlation of order three.</p>
+<p>Figure <a href="Intro.html#fig:autocov2">1.5</a> shows two scatter plots. In the first one, the coordinates of each point are of the form <span class="math inline">\((y_{t-1},y_t)\)</span>. Hence, the slope of the OLS regression line (in blue) is <span class="math inline">\(\widehat{\mathbb{C}ov}(y_t,y_{t-1})/\widehat{\mathbb{V}ar}(y_{t-1})\)</span> (where the hats indicate that these moments are the sample ones). Assuming that the process is covariance stationary, the slope therefore is an estimate of the auto-correlation of order one. By the same logic, the slope of the blue line in the second plot is an estimate of the auto-correlation of order three.</p>
 <div class="figure" style="text-align: left-aligned">
 <span style="display:block;" id="fig:autocov2"></span>
 <img src="TimeSeries_files/figure-html/autocov2-1.png" alt="For order $j$, the slope of the blue line is, approximately, $\hat{\gamma}_j/\widehat{\mathbb{V}ar}(y_t)$, where hats indicate sample moments." width="95%"><p class="caption">
-Figure 1.4: For order <span class="math inline">\(j\)</span>, the slope of the blue line is, approximately, <span class="math inline">\(\hat{\gamma}_j/\widehat{\mathbb{V}ar}(y_t)\)</span>, where hats indicate sample moments.
+Figure 1.5: For order <span class="math inline">\(j\)</span>, the slope of the blue line is, approximately, <span class="math inline">\(\hat{\gamma}_j/\widehat{\mathbb{V}ar}(y_t)\)</span>, where hats indicate sample moments.
 </p>
 </div>
 </div>
@@ -236,7 +256,7 @@ Figure 1.4: For order <span class="math inline">\(j\)</span>, the slope of the b
 <h2>
 <span class="header-section-number">1.3</span> Central Limit Theorem (CLT) for persistent processes<a class="anchor" aria-label="anchor" href="#central-limit-theorem-clt-for-persistent-processes"><i class="fas fa-link"></i></a>
 </h2>
-<p>This subsection shows that the Central Limit Theorem (CLT, see Theorem <a href="append.html#thm:LindbergLevyCLT">8.3</a>) can be extended to cases where the observations are auto-correlated.</p>
+<p>This subsection shows that the Central Limit Theorem (CLT, see Theorem <a href="append.html#thm:LindbergLevyCLT">8.5</a>) can be extended to cases where the observations are auto-correlated.</p>
 <div class="theorem">
 <p><span id="thm:CLTcovstat" class="theorem"><strong>Theorem 1.1  (Central Limit Theorem for covariance-stationary processes) </strong></span>If process <span class="math inline">\(y_t\)</span> is covariance stationary and if the series of autocovariances is absolutely summable (<span class="math inline">\(\sum_{j=-\infty}^{+\infty} |\gamma_j| &lt;\infty\)</span>), then:
 <span class="math display" id="eq:TCL4ts">\[\begin{eqnarray}
@@ -264,12 +284,12 @@ where <span class="math inline">\(\hat\gamma_\nu = \frac{1}{T}\sum_{\nu+1}^{T} (
 <span class="math display" id="eq:NWest">\[\begin{equation}
 S^{NW}=\hat\gamma_0 + 2 \sum_{\nu=1}^{q}\left(1-\frac{\nu}{q+1}\right) \hat\gamma_\nu.\tag{1.6}
 \end{equation}\]</span></p>
-<p>Loosely speaking, Theorem <a href="Intro.html#thm:CLTcovstat">1.1</a> says that, for a given sample size, the higher the “persistency” of a process, the lower the accuracy of the sample mean as an estimate of the population mean. To illustrate, consider three processes that feature the same marginal variance (equal to one, say), but different autocorrelations: 0%, 70%, and 99.9%. Figure <a href="Intro.html#fig:TVTCL">1.5</a> displays simulated paths of such three processes. It indeed appears that, the larger the autocorrelation of the process, the further the sample mean (dashed red line) from the population mean (red solid line).</p>
+<p>Loosely speaking, Theorem <a href="Intro.html#thm:CLTcovstat">1.1</a> says that, for a given sample size, the higher the “persistency” of a process, the lower the accuracy of the sample mean as an estimate of the population mean. To illustrate, consider three processes that feature the same marginal variance (equal to one, say), but different autocorrelations: 0%, 70%, and 99.9%. Figure <a href="Intro.html#fig:TVTCL">1.6</a> displays simulated paths of such three processes. It indeed appears that, the larger the autocorrelation of the process, the further the sample mean (dashed red line) from the population mean (red solid line).</p>
 <p>The same type of simulations can be performed using <a href="https://jrenne.shinyapps.io/MacroEc/">this web interface</a> (use panel “AR(1)”).</p>
 <div class="figure" style="text-align: left-aligned">
 <span style="display:block;" id="fig:TVTCL"></span>
 <img src="TimeSeries_files/figure-html/TVTCL-1.png" alt="The three samples have been simulated using the following data generating process: $x_t = \mu + \rho (x_{t-1}-\mu) + \sqrt{1-\rho^2}\varepsilon_t$, where $\varepsilon_t \sim \mathcal{N}(0,1)$. Case A: $\rho = 0$;  Case B: $\rho = 0.7$;  Case C: $\rho = 0.999$. In the three cases, $\mathbb{E}(x_t)=\mu=2$ and $\mathbb{V}ar(x_t)=1$. The dashed (respectively solid) red line indicate the sample (resp. unconditional) mean." width="100%"><p class="caption">
-Figure 1.5: The three samples have been simulated using the following data generating process: <span class="math inline">\(x_t = \mu + \rho (x_{t-1}-\mu) + \sqrt{1-\rho^2}\varepsilon_t\)</span>, where <span class="math inline">\(\varepsilon_t \sim \mathcal{N}(0,1)\)</span>. Case A: <span class="math inline">\(\rho = 0\)</span>; Case B: <span class="math inline">\(\rho = 0.7\)</span>; Case C: <span class="math inline">\(\rho = 0.999\)</span>. In the three cases, <span class="math inline">\(\mathbb{E}(x_t)=\mu=2\)</span> and <span class="math inline">\(\mathbb{V}ar(x_t)=1\)</span>. The dashed (respectively solid) red line indicate the sample (resp. unconditional) mean.
+Figure 1.6: The three samples have been simulated using the following data generating process: <span class="math inline">\(x_t = \mu + \rho (x_{t-1}-\mu) + \sqrt{1-\rho^2}\varepsilon_t\)</span>, where <span class="math inline">\(\varepsilon_t \sim \mathcal{N}(0,1)\)</span>. Case A: <span class="math inline">\(\rho = 0\)</span>; Case B: <span class="math inline">\(\rho = 0.7\)</span>; Case C: <span class="math inline">\(\rho = 0.999\)</span>. In the three cases, <span class="math inline">\(\mathbb{E}(x_t)=\mu=2\)</span> and <span class="math inline">\(\mathbb{V}ar(x_t)=1\)</span>. The dashed (respectively solid) red line indicate the sample (resp. unconditional) mean.
 </p>
 </div>
 
@@ -282,7 +302,7 @@ Figure 1.5: The three samples have been simulated using the following data gener
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
     <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
       <ul class="nav navbar-nav">
-<li><a class="nav-link" href="#Intro"><span class="header-section-number">1</span> To start with</a></li>
+<li><a class="nav-link" href="#Intro"><span class="header-section-number">1</span> Basics</a></li>
 <li><a class="nav-link" href="#shocks-and-lag-operator"><span class="header-section-number">1.1</span> Shocks and lag operator</a></li>
 <li><a class="nav-link" href="#conditional-and-unconditional-moments"><span class="header-section-number">1.2</span> Conditional and unconditional moments</a></li>
 <li><a class="nav-link" href="#central-limit-theorem-clt-for-persistent-processes"><span class="header-section-number">1.3</span> Central Limit Theorem (CLT) for persistent processes</a></li>
@@ -302,7 +322,7 @@ Figure 1.5: The three samples have been simulated using the following data gener
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Introduction to Time Series</strong>" was written by Jean-Paul Renne. It was last built on 2023-01-13.</p>
+    <p>"<strong>Introduction to Time Series</strong>" was written by Jean-Paul Renne. It was last built on 2023-01-29.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

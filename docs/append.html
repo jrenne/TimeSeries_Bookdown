@@ -66,7 +66,7 @@
       <nav aria-label="Table of contents"><h2>Table of contents</h2>
         <ul class="book-toc list-unstyled">
 <li><a class="" href="index.html">Introduction to Time Series</a></li>
-<li><a class="" href="Intro.html"><span class="header-section-number">1</span> To start with</a></li>
+<li><a class="" href="Intro.html"><span class="header-section-number">1</span> Basics</a></li>
 <li><a class="" href="Univariate.html"><span class="header-section-number">2</span> Univariate processes</a></li>
 <li><a class="" href="VAR.html"><span class="header-section-number">3</span> Multivariate models</a></li>
 <li><a class="" href="forecasting.html"><span class="header-section-number">4</span> Forecasting</a></li>
@@ -97,7 +97,7 @@
 <span class="math display" id="eq:PCA11">\[\begin{equation}
 \begin{array}{clll}
 \underset{u}{\arg\max} &amp; u'X'Xu. \\
-\mbox{s.t. } &amp; \left| u\right| =1
+\mbox{s.t. } &amp; \left\Vert u \right\Vert =1
 \end{array}\tag{8.1}
 \end{equation}\]</span></p>
 <p>Since <span class="math inline">\(X'X\)</span> is a positive definite matrix, it admits the following decomposition:
@@ -117,7 +117,7 @@ where <span class="math inline">\(P\)</span> is an orthogonal matrix whose colum
 y'Dy=\sum_{i=1}^{n}y_{i}^{2}\lambda_{i}\leq\lambda_{1}\sum_{i=1}^{n}y_{i}^{2}=\lambda_{1}.
 \]</span></p>
 <p>It is easily seen that the maximum is reached for <span class="math inline">\(y=\left[1,0,\cdots,0\right]'\)</span>. Therefore, the maximum of the optimization program (Eq. <a href="append.html#eq:PCA11">(8.1)</a>) is obtained for <span class="math inline">\(u=P\left[1,0,\cdots,0\right]'\)</span>. That is, <span class="math inline">\(u\)</span> is the eigenvector of <span class="math inline">\(X'X\)</span> that is associated with its larger eigenvalue (first column of <span class="math inline">\(P\)</span>).</p>
-<p>Let us denote with <span class="math inline">\(F\)</span> the vector that is given by the matrix product <span class="math inline">\(XP\)</span> (note that its last column is equal to <span class="math inline">\(Xu\)</span>). The columns of <span class="math inline">\(F\)</span>, denoted by <span class="math inline">\(F_{j}\)</span>, are called <strong>factors</strong>. We have:
+<p>Let us denote with <span class="math inline">\(F\)</span> the vector that is given by the matrix product <span class="math inline">\(XP\)</span>. The columns of <span class="math inline">\(F\)</span>, denoted by <span class="math inline">\(F_{j}\)</span>, are called <strong>factors</strong>. We have:
 <span class="math display">\[
 F'F=P'X'XP=D.
 \]</span>
@@ -127,20 +127,24 @@ Therefore, in particular, the <span class="math inline">\(F_{j}\)</span>’s are
 \hat{X}_{i,j} &amp; = &amp; p_{ij}F_{j}\\
 X_{i} &amp; = &amp; \sum_{j}\hat{X}_{i,j}=\sum_{j}p_{ij}F_{j}.
 \end{eqnarray*}\]</span></p>
-<p>Consider the share of variance that is explained –through the <span class="math inline">\(n\)</span> variables (<span class="math inline">\(X_{1},\ldots,X_{n}\)</span>)– by the first factor <span class="math inline">\(F_{1}\)</span>:
+<p>Consider the share of variance that is explained—through the <span class="math inline">\(n\)</span> variables (<span class="math inline">\(X_{1},\ldots,X_{n}\)</span>)—by the first factor <span class="math inline">\(F_{1}\)</span>:
 <span class="math display">\[\begin{eqnarray*}
-\frac{\sum_{i}\hat{X}_{i,1}\hat{X}'_{i,1}}{\sum_{i}X_{i}X'_{i}} &amp; = &amp; \frac{\sum_{i}p_{i1}F_{1}F'_{1}p_{i1}}{tr(X'X)} = \frac{\sum_{i}p_{i1}^{2}\lambda_{1}}{tr(X'X)} = \frac{\lambda_{1}}{\sum_{i}\lambda_{i}}.
+\frac{\sum_{i}\hat{X}'_{i,1}\hat{X}_{i,1}}{\sum_{i}X_{i}'X_{i}} &amp; = &amp; \frac{\sum_{i}p_{i1}F'_{1}F_{1}p_{i1}}{tr(X'X)} = \frac{\sum_{i}p_{i1}^{2}\lambda_{1}}{tr(X'X)} = \frac{\lambda_{1}}{\sum_{i}\lambda_{i}}.
 \end{eqnarray*}\]</span></p>
-<p>Intuitively, if the first eigenvalue is large, it means that the first factor embed a large share of the fluctutaions of the <span class="math inline">\(n\)</span> <span class="math inline">\(X_{i}\)</span>’s.</p>
+<p>Intuitively, if the first eigenvalue is large, it means that the first factor captures a large share of the fluctutaions of the <span class="math inline">\(n\)</span> <span class="math inline">\(X_{i}\)</span>’s.</p>
+<p>By the same token, it is easily seen that the fraction of the variance of the <span class="math inline">\(n\)</span> variables that is explained by factor <span class="math inline">\(j\)</span> is given by:
+<span class="math display">\[\begin{eqnarray*}
+\frac{\sum_{i}\hat{X}'_{i,j}\hat{X}_{i,j}}{\sum_{i}X_{i}'X_{i}} &amp; = &amp; \frac{\lambda_{j}}{\sum_{i}\lambda_{i}}.
+\end{eqnarray*}\]</span></p>
 <p>Let us illustrate PCA on the term structure of yields. The term strucutre of yields (or yield curve) is know to be driven by only a small number of factors (e.g., <span class="citation">Litterman and Scheinkman (<a href="references.html#ref-Litterman_Scheinkman_1991" role="doc-biblioref">1991</a>)</span>). One can typically employ PCA to recover such factors. The data used in the example below are taken from the <a href="https://fred.stlouisfed.org">Fred database</a> (tickers: “DGS6MO”,“DGS1”, …). The second plot shows the factor loardings, that indicate that the first factor is a level factor (loadings = black line), the second factor is a slope factor (loadings = blue line), the third factor is a curvature factor (loadings = red line).</p>
 <p>To run a PCA, one simply has to apply function <code>prcomp</code> to a matrix of data:</p>
-<div class="sourceCode" id="cb54"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb62"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">AEC</span><span class="op">)</span></span>
 <span><span class="va">USyields</span> <span class="op">&lt;-</span> <span class="va">USyields</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/stats/complete.cases.html">complete.cases</a></span><span class="op">(</span><span class="va">USyields</span><span class="op">)</span>,<span class="op">]</span></span>
 <span><span class="va">yds</span> <span class="op">&lt;-</span> <span class="va">USyields</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Y1"</span>,<span class="st">"Y2"</span>,<span class="st">"Y3"</span>,<span class="st">"Y5"</span>,<span class="st">"Y7"</span>,<span class="st">"Y10"</span>,<span class="st">"Y20"</span>,<span class="st">"Y30"</span><span class="op">)</span><span class="op">]</span></span>
 <span><span class="va">PCA.yds</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/prcomp.html">prcomp</a></span><span class="op">(</span><span class="va">yds</span>,center<span class="op">=</span><span class="cn">TRUE</span>,scale. <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
-<p>Let us know visualize some results. The first plot of Figure <a href="append.html#fig:USydsPCA1">8.1</a> shows the share of total variance explained by the different principal components (PCs). The second plot shows the facotr loadings. The two bottom plots show how yields (in black) are fitted by linear combinations of the first two PCs only.</p>
-<div class="sourceCode" id="cb55"><pre class="downlit sourceCode r">
+<p>Let us know visualize some results. The first plot of Figure <a href="append.html#fig:USydsPCA1">8.1</a> shows the share of total variance explained by the different principal components (PCs). The second plot shows the factor loadings. The two bottom plots show how yields (in black) are fitted by linear combinations of the first two PCs only.</p>
+<div class="sourceCode" id="cb63"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mfrow<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>plt<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">.1</span>,<span class="fl">.95</span>,<span class="fl">.2</span>,<span class="fl">.8</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/barplot.html">barplot</a></span><span class="op">(</span><span class="va">PCA.yds</span><span class="op">$</span><span class="va">sdev</span><span class="op">^</span><span class="fl">2</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">PCA.yds</span><span class="op">$</span><span class="va">sdev</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span>,</span>
@@ -284,7 +288,7 @@ We use the notation:
 \]</span></p>
 </div>
 <div class="proof">
-<p><span id="unlabeled-div-23" class="proof"><em>Proof</em>. </span>See Appendix 3.A in Hamilton. Idea: Absolute summability implies that there exist <span class="math inline">\(N\)</span> such that, for <span class="math inline">\(j&gt;N\)</span>, <span class="math inline">\(|\theta_j| &lt; 1\)</span> (deduced from Cauchy criterion, Theorem <a href="#thm:cauchycritstatic"><strong>??</strong></a> and therefore <span class="math inline">\(\theta_j^2 &lt; |\theta_j|\)</span>.</p>
+<p><span id="unlabeled-div-23" class="proof"><em>Proof</em>. </span>See Appendix 3.A in Hamilton. Idea: Absolute summability implies that there exist <span class="math inline">\(N\)</span> such that, for <span class="math inline">\(j&gt;N\)</span>, <span class="math inline">\(|\theta_j| &lt; 1\)</span> (deduced from Cauchy criterion, Theorem <a href="append.html#thm:cauchycritstatic">8.2</a> and therefore <span class="math inline">\(\theta_j^2 &lt; |\theta_j|\)</span>.</p>
 </div>
 </div>
 <div id="variousResults" class="section level2" number="8.3">
@@ -419,6 +423,18 @@ It is denoted as: <span class="math inline">\(x_n \overset{L^r}{\rightarrow} c\)
 for all <span class="math inline">\(s\)</span> at which <span class="math inline">\(F_X\)</span> –the cumulative distribution of <span class="math inline">\(X\)</span>– is continuous.</p>
 <p>It is denoted as: <span class="math inline">\(x_n \overset{d}{\rightarrow} x\)</span>.</p>
 </div>
+<div class="theorem">
+<p><span id="thm:cauchycritstatic" class="theorem"><strong>Theorem 8.2  (Cauchy criterion (non-stochastic case)) </strong></span>We have that <span class="math inline">\(\sum_{i=0}^{T} a_i\)</span> converges (<span class="math inline">\(T \rightarrow \infty\)</span>) iff, for any <span class="math inline">\(\eta &gt; 0\)</span>, there exists an integer <span class="math inline">\(N\)</span> such that, for all <span class="math inline">\(M\ge N\)</span>,
+<span class="math display">\[
+\left|\sum_{i=N+1}^{M} a_i\right| &lt; \eta.
+\]</span></p>
+</div>
+<div class="theorem">
+<p><span id="thm:cauchycritstochastic" class="theorem"><strong>Theorem 8.3  (Cauchy criterion (stochastic case)) </strong></span>We have that <span class="math inline">\(\sum_{i=0}^{T} \theta_i \varepsilon_{t-i}\)</span> converges in mean square (<span class="math inline">\(T \rightarrow \infty\)</span>) to a random variable iff, for any <span class="math inline">\(\eta &gt; 0\)</span>, there exists an integer <span class="math inline">\(N\)</span> such that, for all <span class="math inline">\(M\ge N\)</span>,
+<span class="math display">\[
+\mathbb{E}\left[\left(\sum_{i=N+1}^{M} \theta_i \varepsilon_{t-i}\right)^2\right] &lt; \eta.
+\]</span></p>
+</div>
 </div>
 <div id="multivariate-gaussian-distribution" class="section level3" number="8.3.4">
 <h3>
@@ -436,7 +452,7 @@ for all <span class="math inline">\(s\)</span> at which <span class="math inline
 <span class="header-section-number">8.3.5</span> Central limit theorem<a class="anchor" aria-label="anchor" href="#CLTappend"><i class="fas fa-link"></i></a>
 </h3>
 <div class="theorem">
-<p><span id="thm:LLNappendix" class="theorem"><strong>Theorem 8.2  (Law of large numbers) </strong></span>The sample mean is a consistent estimator of the population mean.</p>
+<p><span id="thm:LLNappendix" class="theorem"><strong>Theorem 8.4  (Law of large numbers) </strong></span>The sample mean is a consistent estimator of the population mean.</p>
 </div>
 <div class="proof">
 <p><span id="unlabeled-div-26" class="proof"><em>Proof</em>. </span>Let’s denote by <span class="math inline">\(\phi_{X_i}\)</span> the characteristic function of a r.v. <span class="math inline">\(X_i\)</span>. If the mean of <span class="math inline">\(X_i\)</span> is <span class="math inline">\(\mu\)</span> then the Talyor expansion of the characteristic function is:
@@ -450,7 +466,7 @@ The properties of the characteristic function (see Def. <a href="#def:characteri
 The facts that (a) <span class="math inline">\(e^{iu\mu}\)</span> is the characteristic function of the constant <span class="math inline">\(\mu\)</span> and (b) that a characteristic function uniquely characterises a distribution imply that the sample mean converges in distribution to the constant <span class="math inline">\(\mu\)</span>, which further implies that it converges in probability to <span class="math inline">\(\mu\)</span>.</p>
 </div>
 <div class="theorem">
-<p><span id="thm:LindbergLevyCLT" class="theorem"><strong>Theorem 8.3  (Lindberg-Levy Central limit theorem, CLT) </strong></span>If <span class="math inline">\(x_n\)</span> is an i.i.d. sequence of random variables with mean <span class="math inline">\(\mu\)</span> and variance <span class="math inline">\(\sigma^2\)</span> (<span class="math inline">\(\in ]0,+\infty[\)</span>), then:
+<p><span id="thm:LindbergLevyCLT" class="theorem"><strong>Theorem 8.5  (Lindberg-Levy Central limit theorem, CLT) </strong></span>If <span class="math inline">\(x_n\)</span> is an i.i.d. sequence of random variables with mean <span class="math inline">\(\mu\)</span> and variance <span class="math inline">\(\sigma^2\)</span> (<span class="math inline">\(\in ]0,+\infty[\)</span>), then:
 <span class="math display">\[
 \boxed{\sqrt{n} (\bar{x}_n - \mu) \overset{d}{\rightarrow} \mathcal{N}(0,\sigma^2), \quad \mbox{where} \quad \bar{x}_n = \frac{1}{n} \sum_{i=1}^{n} x_i.}
 \]</span></p>
@@ -497,7 +513,7 @@ And then:
 &amp;\le&amp; \frac{2}{T}\left(|\gamma_1| + 2|\gamma_2| + \dots + (q-1)|\gamma_{q-1}| +q|\gamma_q|\right) +\\
 &amp;&amp;2|\gamma_{q+1}| + \dots  + 2|\gamma_{T-1}| + 2|\gamma_T| + 2 |\gamma_{T+1}| + \dots
 \end{eqnarray*}\]</span></p>
-<p>Consider <span class="math inline">\(\varepsilon &gt; 0\)</span>. The fact that the autocovariances are absolutely summable implies that there exists <span class="math inline">\(q_0\)</span> such that (Cauchy criterion, Theorem <a href="#thm:cauchycritstatic"><strong>??</strong></a>):
+<p>Consider <span class="math inline">\(\varepsilon &gt; 0\)</span>. The fact that the autocovariances are absolutely summable implies that there exists <span class="math inline">\(q_0\)</span> such that (Cauchy criterion, Theorem <a href="append.html#thm:cauchycritstatic">8.2</a>):
 <span class="math display">\[
 2|\gamma_{q_0+1}|+2|\gamma_{q_0+2}|+2|\gamma_{q_0+3}|+\dots &lt; \varepsilon/2.
 \]</span>
@@ -591,23 +607,53 @@ If <span class="math inline">\(j&gt;0\)</span>, we have <span class="math inline
 The convergence in distribution of <span class="math inline">\(\sqrt{T}(X'\boldsymbol\varepsilon/T)=\sqrt{T}\frac{1}{T}\sum_{t=1}^Tv_t\)</span> results from the Central Limit Theorem for covariance-stationary processes, using the <span class="math inline">\(\gamma_j^v\)</span> computed above.</p>
 </div>
 </div>
-<div id="additional-codes" class="section level2" number="8.5">
+<div id="Inference" class="section level2" number="8.5">
 <h2>
-<span class="header-section-number">8.5</span> Additional codes<a class="anchor" aria-label="anchor" href="#additional-codes"><i class="fas fa-link"></i></a>
+<span class="header-section-number">8.5</span> Inference<a class="anchor" aria-label="anchor" href="#Inference"><i class="fas fa-link"></i></a>
 </h2>
-<div id="IRFDELTA" class="section level3" number="8.5.1">
+<div id="MonteCarlo" class="section level3" number="8.5.1">
 <h3>
-<span class="header-section-number">8.5.1</span> Computing the covariance matrix of IRF using the delta method<a class="anchor" aria-label="anchor" href="#IRFDELTA"><i class="fas fa-link"></i></a>
+<span class="header-section-number">8.5.1</span> Monte Carlo method<a class="anchor" aria-label="anchor" href="#MonteCarlo"><i class="fas fa-link"></i></a>
 </h3>
-<div class="sourceCode" id="cb56"><pre class="downlit sourceCode r">
+<p>We use Monte Carlo when we need to approximate the distribution of a variable whose distribution is unknown but which is a function of another variable whose distribution is known. For instance, suppose we know the distribution of a random variable <span class="math inline">\(X\)</span>, which takes values in <span class="math inline">\(\mathbb{R}\)</span>, with density function <span class="math inline">\(p\)</span>. Assume we want to compute the mean of <span class="math inline">\(\varphi(X)\)</span>. We have:
+<span class="math display">\[
+\mathbb{E}(\varphi(X))=\int_{-\infty}^{+\infty}\varphi(x)p(x)dx
+\]</span>
+Suppose that the above integral does not have a simple expression. We cannot compute <span class="math inline">\(\mathbb{E}(\varphi(X))\)</span> but, by virtue of the law of large numbers, we can approximate it as follows:
+<span class="math display">\[
+\mathbb{E}(\varphi(X))\approx\frac{1}{N}\sum_{i=1}^N\varphi(X^{(i)}),
+\]</span>
+where <span class="math inline">\(\{X^{(i)}\}_{i=1,...,N}\)</span> are <span class="math inline">\(N\)</span> independent draws of <span class="math inline">\(X\)</span>. More generally, the distribution of <span class="math inline">\(\varphi(X)\)</span> can be approximated by the empirical distribution of the <span class="math inline">\(\varphi(X^{(i)})\)</span>’s. Typically, if 10’000 values of <span class="math inline">\(\varphi(X^{(i)})\)</span> are drawn, the <span class="math inline">\(5^{th}\)</span> percentile of the p.d.f. of <span class="math inline">\(\varphi(X)\)</span> can be approximated by the <span class="math inline">\(500^{th}\)</span> value of the 10’000 draws of <span class="math inline">\(\varphi(X^{(i)})\)</span> (after arranging these values in ascending order).</p>
+<p>For instance, as regards the computation of confidence intervals around IRFs, one has to think of <span class="math inline">\(\{\widehat{\Phi}_j\}_{j=1,...,p}\)</span>, and of <span class="math inline">\(\widehat{\Omega}\)</span> as <span class="math inline">\(X\)</span> and <span class="math inline">\(\{\widehat{\Psi}_j\}_{j=1,...}\)</span> as <span class="math inline">\(\varphi(X)\)</span>. (Proposition <a href="VAR.html#prp:OLSVAR2">3.3</a> provides us with the asymptotic distribution of the “<span class="math inline">\(X\)</span>.”)</p>
+<p>To summarize, here are the steps one can implement to derive confidence intervals for the IRFs using the Monte-Carlo approach: For each iteration <span class="math inline">\(k\)</span>,</p>
+<ol style="list-style-type: decimal">
+<li>Draw <span class="math inline">\(\{\widehat{\Phi}_j^{(k)}\}_{j=1,...,p}\)</span> and <span class="math inline">\(\widehat{\Omega}^{(k)}\)</span> from their asymptotic distribution (using Proposition <a href="VAR.html#prp:OLSVAR2">3.3</a>).</li>
+<li>Compute the matrix <span class="math inline">\(B^{(k)}\)</span> so that <span class="math inline">\(\widehat{\Omega}^{(k)}=B^{(k)}B^{(k)'}\)</span>, according to your identification strategy.</li>
+<li>Compute the associated IRFs <span class="math inline">\(\{\widehat{\Psi}_j\}^{(k)}\)</span>.</li>
+</ol>
+<p>Perform <span class="math inline">\(N\)</span> replications and report the median impulse response (and its confidence intervals).</p>
+</div>
+<div id="Delta" class="section level3" number="8.5.2">
+<h3>
+<span class="header-section-number">8.5.2</span> Delta method<a class="anchor" aria-label="anchor" href="#Delta"><i class="fas fa-link"></i></a>
+</h3>
+<p>Suppose <span class="math inline">\(\beta\)</span> is a vector of parameters and <span class="math inline">\(\beta\)</span> is an estimator such that
+<span class="math display">\[
+\sqrt{T}(\hat\beta-\beta)\overset{d}{\rightarrow}\mathcal{N}(0,\Sigma_\beta),
+\]</span>
+where <span class="math inline">\(d\)</span> denotes convergence in distribution, <span class="math inline">\(N(0,\Sigma_\beta)\)</span> denotes the multivariate normal distribution with mean vector 0 and covariance matrix <span class="math inline">\(\Sigma_\beta\)</span> and <span class="math inline">\(T\)</span> is the sample size used for estimation.</p>
+<p>Let <span class="math inline">\(g(\beta) = (g_l(\beta),..., g_m(\beta))'\)</span> be a continuously differentiable function with values in <span class="math inline">\(\mathbb{R}^m\)</span>, and assume that <span class="math inline">\(\partial g_i/\partial \beta' = (\partial g_i/\partial \beta_j)\)</span> is nonzero at <span class="math inline">\(\beta\)</span> for <span class="math inline">\(i = 1,\dots, m\)</span>. Then
+<span class="math display">\[
+\sqrt{T}(g(\hat\beta)-g(\beta))\overset{d}{\rightarrow}\mathcal{N}\left(0,\frac{\partial g}{\partial \beta'}\Sigma_\beta\frac{\partial g'}{\partial \beta}\right).
+\]</span>
+Using this property, <span class="citation">Lütkepohl (<a href="references.html#ref-Lutkepohl_1990" role="doc-biblioref">1990</a>)</span> provides the asymptotic distributions of the <span class="math inline">\(\Psi_j\)</span>’s. The following lines of code can be used to get approximate confidence intervals for IRFs.</p>
+<div class="sourceCode" id="cb64"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">irf.function</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">THETA</span><span class="op">)</span><span class="op">{</span></span>
 <span>  <span class="va">c</span> <span class="op">&lt;-</span> <span class="va">THETA</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span></span>
 <span>  <span class="va">phi</span> <span class="op">&lt;-</span> <span class="va">THETA</span><span class="op">[</span><span class="fl">2</span><span class="op">:</span><span class="op">(</span><span class="va">p</span><span class="op">+</span><span class="fl">1</span><span class="op">)</span><span class="op">]</span></span>
 <span>  <span class="kw">if</span><span class="op">(</span><span class="va">q</span><span class="op">&gt;</span><span class="fl">0</span><span class="op">)</span><span class="op">{</span></span>
 <span>    <span class="va">theta</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="va">THETA</span><span class="op">[</span><span class="op">(</span><span class="fl">1</span><span class="op">+</span><span class="va">p</span><span class="op">+</span><span class="fl">1</span><span class="op">)</span><span class="op">:</span><span class="op">(</span><span class="fl">1</span><span class="op">+</span><span class="va">p</span><span class="op">+</span><span class="va">q</span><span class="op">)</span><span class="op">]</span><span class="op">)</span></span>
-<span>  <span class="op">}</span><span class="kw">else</span><span class="op">{</span></span>
-<span>    <span class="va">theta</span> <span class="op">&lt;-</span> <span class="fl">1</span></span>
-<span>  <span class="op">}</span></span>
+<span>  <span class="op">}</span><span class="kw">else</span><span class="op">{</span><span class="va">theta</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">}</span></span>
 <span>  <span class="va">sigma</span> <span class="op">&lt;-</span> <span class="va">THETA</span><span class="op">[</span><span class="fl">1</span><span class="op">+</span><span class="va">p</span><span class="op">+</span><span class="va">q</span><span class="op">+</span><span class="fl">1</span><span class="op">]</span></span>
 <span>  <span class="va">r</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="va">Matrix.of.Exog</span><span class="op">)</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span> <span class="op">-</span> <span class="fl">1</span></span>
 <span>  <span class="va">beta</span> <span class="op">&lt;-</span> <span class="va">THETA</span><span class="op">[</span><span class="op">(</span><span class="fl">1</span><span class="op">+</span><span class="va">p</span><span class="op">+</span><span class="va">q</span><span class="op">+</span><span class="fl">1</span><span class="op">+</span><span class="fl">1</span><span class="op">)</span><span class="op">:</span><span class="op">(</span><span class="fl">1</span><span class="op">+</span><span class="va">p</span><span class="op">+</span><span class="va">q</span><span class="op">+</span><span class="fl">1</span><span class="op">+</span><span class="op">(</span><span class="va">r</span><span class="op">+</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span><span class="op">]</span></span>
@@ -615,9 +661,7 @@ The convergence in distribution of <span class="math inline">\(\sqrt{T}(X'\bolds
 <span>  <span class="va">irf</span> <span class="op">&lt;-</span> <span class="fu">sim.arma</span><span class="op">(</span><span class="fl">0</span>,<span class="va">phi</span>,<span class="va">beta</span>,sigma<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">Ramey</span><span class="op">$</span><span class="va">ED3_TC</span>,na.rm<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span>,T<span class="op">=</span><span class="fl">60</span>,</span>
 <span>                  y.0<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">x</span><span class="op">$</span><span class="va">phi</span><span class="op">)</span><span class="op">)</span>,nb.sim<span class="op">=</span><span class="fl">1</span>,make.IRF<span class="op">=</span><span class="fl">1</span>,</span>
 <span>                  X<span class="op">=</span><span class="cn">NaN</span>,beta<span class="op">=</span><span class="cn">NaN</span><span class="op">)</span></span>
-<span>  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">irf</span><span class="op">)</span></span>
-<span><span class="op">}</span></span>
-<span></span>
+<span>  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">irf</span><span class="op">)</span><span class="op">}</span></span>
 <span><span class="va">IRF.0</span> <span class="op">&lt;-</span> <span class="fl">100</span><span class="op">*</span><span class="fu">irf.function</span><span class="op">(</span><span class="va">x</span><span class="op">$</span><span class="va">THETA</span><span class="op">)</span></span>
 <span><span class="va">eps</span> <span class="op">&lt;-</span> <span class="fl">.00000001</span></span>
 <span><span class="va">d.IRF</span> <span class="op">&lt;-</span> <span class="cn">NULL</span></span>
@@ -626,10 +670,37 @@ The convergence in distribution of <span class="math inline">\(\sqrt{T}(X'\bolds
 <span>  <span class="va">THETA.i</span><span class="op">[</span><span class="va">i</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">THETA.i</span><span class="op">[</span><span class="va">i</span><span class="op">]</span> <span class="op">+</span> <span class="va">eps</span></span>
 <span>  <span class="va">IRF.i</span> <span class="op">&lt;-</span> <span class="fl">100</span><span class="op">*</span><span class="fu">irf.function</span><span class="op">(</span><span class="va">THETA.i</span><span class="op">)</span></span>
 <span>  <span class="va">d.IRF</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span><span class="va">d.IRF</span>,</span>
-<span>                 <span class="op">(</span><span class="va">IRF.i</span> <span class="op">-</span> <span class="va">IRF.0</span><span class="op">)</span><span class="op">/</span><span class="va">eps</span></span>
-<span>                 <span class="op">)</span></span>
-<span><span class="op">}</span></span>
+<span>                 <span class="op">(</span><span class="va">IRF.i</span> <span class="op">-</span> <span class="va">IRF.0</span><span class="op">)</span><span class="op">/</span><span class="va">eps</span><span class="op">)</span><span class="op">}</span></span>
 <span><span class="va">mat.var.cov.IRF</span> <span class="op">&lt;-</span> <span class="va">d.IRF</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html">%*%</a></span> <span class="va">x</span><span class="op">$</span><span class="va">I</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html">%*%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/t.html">t</a></span><span class="op">(</span><span class="va">d.IRF</span><span class="op">)</span></span></code></pre></div>
+<p>A limit of the last two approaches (Monte Carlo and the Delta method) is that they rely on asymptotic results. Boostrapping approaches are more robust in small-sample situations.</p>
+</div>
+<div id="Bootstrap" class="section level3" number="8.5.3">
+<h3>
+<span class="header-section-number">8.5.3</span> Bootstrap<a class="anchor" aria-label="anchor" href="#Bootstrap"><i class="fas fa-link"></i></a>
+</h3>
+<p>IRFs’ confidence intervals are intervals where 90% (or 95%, 75%, …) of the IRFs would lie, if we were to repeat the estimation a large number of times in similar conditions (<span class="math inline">\(T\)</span> observations). We obviously cannot do this, because we have only one sample: <span class="math inline">\(\{y_t\}_{t=1,..,T}\)</span>. But we can try to <em>construct</em> such samples.</p>
+<p>Bootstrapping consists in:</p>
+<ul>
+<li>re-sampling <span class="math inline">\(N\)</span> times, i.e., constructing <span class="math inline">\(N\)</span> samples of <span class="math inline">\(T\)</span> observations, using the estimated
+VAR coefficients and</li>
+</ul>
+<ol style="list-style-type: lower-alpha">
+<li>a sample of residuals from the distribution <span class="math inline">\(N(0,BB')\)</span> (<strong>parametric approach</strong>), or</li>
+<li>a sample of residuals drawn randomly from the set of the actual estimated residuals <span class="math inline">\(\{\hat\varepsilon_t\}_{t=1,..,T}\)</span>. (<strong>non-parametric approach</strong>).</li>
+</ol>
+<ul>
+<li>re-estimating the SVAR <span class="math inline">\(N\)</span> times.</li>
+</ul>
+<p>Here is the algorithm:</p>
+<ol style="list-style-type: decimal">
+<li>Construct a sample
+<span class="math display">\[
+y_t^{(k)}=\widehat{\Phi}_1 y_{t-1}^{(k)} + \dots + \widehat{\Phi}_p y_{t-p}^{(k)} + \hat\varepsilon_t^{(k)},
+\]</span>
+with <span class="math inline">\(\hat\varepsilon_{t}^{(k)}=\hat\varepsilon_{s_t^{(k)}}\)</span>, where <span class="math inline">\(\{s_1^{(k)},..,s_T^{(k)}\}\)</span> is a random set from <span class="math inline">\(\{1,..,T\}^T\)</span>.</li>
+<li>Re-estimate the SVAR and compute the IRFs <span class="math inline">\(\{\widehat{\Psi}_j\}^{(k)}\)</span>.</li>
+</ol>
+<p>Perform <span class="math inline">\(N\)</span> replications and report the median impulse response (and its confidence intervals).</p>
 </div>
 </div>
 <div id="statistical-tables" class="section level2" number="8.6">
@@ -1931,7 +2002,11 @@ The convergence in distribution of <span class="math inline">\(\sqrt{T}(X'\bolds
 </li>
 <li><a class="nav-link" href="#AppendixProof"><span class="header-section-number">8.4</span> Proofs</a></li>
 <li>
-<a class="nav-link" href="#additional-codes"><span class="header-section-number">8.5</span> Additional codes</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#IRFDELTA"><span class="header-section-number">8.5.1</span> Computing the covariance matrix of IRF using the delta method</a></li></ul>
+<a class="nav-link" href="#Inference"><span class="header-section-number">8.5</span> Inference</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#MonteCarlo"><span class="header-section-number">8.5.1</span> Monte Carlo method</a></li>
+<li><a class="nav-link" href="#Delta"><span class="header-section-number">8.5.2</span> Delta method</a></li>
+<li><a class="nav-link" href="#Bootstrap"><span class="header-section-number">8.5.3</span> Bootstrap</a></li>
+</ul>
 </li>
 <li><a class="nav-link" href="#statistical-tables"><span class="header-section-number">8.6</span> Statistical Tables</a></li>
 </ul>
@@ -1950,7 +2025,7 @@ The convergence in distribution of <span class="math inline">\(\sqrt{T}(X'\bolds
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Introduction to Time Series</strong>" was written by Jean-Paul Renne. It was last built on 2023-01-13.</p>
+    <p>"<strong>Introduction to Time Series</strong>" was written by Jean-Paul Renne. It was last built on 2023-01-29.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

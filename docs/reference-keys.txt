@@ -1,6 +1,7 @@
 def:whitenoise
 def:MDS
 exm:ARCH
+fig:simulGARCHointro
 exm:whiteNotMDS
 eq:lagOp
 def:autocov
@@ -20,7 +21,7 @@ def:LRV
 eq:covSmplMean
 eq:NWest
 fig:TVTCL
-def:unlabeled-div-3
+def:MA1
 eq:MA1111
 def:MAq
 prp:covMAq
@@ -85,6 +86,7 @@ def:SVAR
 eq:yVAR
 def:SVARMA
 eq:yVARMA
+eq:boxIRFs
 eq:InfMA
 exm:IRFVARMA
 eq:VARMA111
@@ -92,6 +94,7 @@ fig:simVAR
 eq:condiInfiniteMA
 eq:VARMA2
 eq:matrixPHI
+fig:simulARMAbiased
 eq:PIVAR
 prp:estimVARGaussian
 eq:Pi
@@ -186,6 +189,8 @@ def:convergenceproba
 def:convergenceLr
 def:convergenceAlmost
 def:cvgceDistri
+thm:cauchycritstatic
+thm:cauchycritstochastic
 prp:pdfMultivarGaussian
 thm:LLNappendix
 thm:LindbergLevyCLT
@@ -204,7 +209,7 @@ ARsection
 ar-ma-processes
 PACFapproach
 wold-decomposition
-impulse-response-functions-irfs-in-arma-models
+IRFARMA
 ARMAIRF
 estimARMA
 specification-choice
@@ -214,8 +219,13 @@ IRFSVARMA
 covariance-stationary-varma-models
 estimVAR
 BlockGranger
-identification-problem-and-standard-identification-techniques
-Inference
+block-exogeneity
+granger-causality
+identifStruct
+IdentifPbm
+a-stylized-example-motivating-short-run-restrictions
+cholesky-a-specific-short-run-restriction-situation
+long-run-restrictions
 forecasting
 NonStat
 issues-when-working-with-nonstationary-time-series
@@ -244,6 +254,8 @@ StochConvergences
 multivariate-gaussian-distribution
 CLTappend
 AppendixProof
-additional-codes
-IRFDELTA
+Inference
+MonteCarlo
+Delta
+Bootstrap
 statistical-tables
