@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999994 (TeX Live 2022) (preloaded format=xelatex 2023.1.3)  29 JAN 2023 20:57
+This is XeTeX, Version 3.141592653-2.6-0.999994 (TeX Live 2022) (preloaded format=xelatex 2023.1.3)  17 FEB 2023 15:01
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1036,7 +1036,7 @@ Package rerunfilecheck Info: File `TimeSeries.out' has not changed.
 Here is how much of TeX's memory you used:
  18779 strings out of 478777
  350974 string characters out of 5850045
- 1952979 words of memory out of 5000000
+ 1953979 words of memory out of 5000000
  38490 multiletter control sequences out of 15000+600000
  521255 words of font info for 112 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
