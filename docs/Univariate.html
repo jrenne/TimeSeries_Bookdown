@@ -458,7 +458,7 @@ where <span class="math inline">\(\sigma^2\)</span> is the variance of <span cla
 0
 \end{array}\right],
 \]</span></p>
-<p>which is easily solved by inversing matrix <span class="math inline">\(H\)</span>.</p>
+<p>which is easily solved by inversing matrix <span class="math inline">\(Id - H\)</span>.</p>
 </div>
 <div id="ar-ma-processes" class="section level2" number="2.3">
 <h2>
@@ -1225,7 +1225,7 @@ given some initial conditions, for instance:</p>
 <h2>
 <span class="header-section-number">2.9</span> Specification choice<a class="anchor" aria-label="anchor" href="#specification-choice"><i class="fas fa-link"></i></a>
 </h2>
-<p>The previouss section explains how to fit a given ARMA specification. But how to choose an appropriate specification? A possibility is to employ the (P)ACF approach (see Figure <a href="Univariate.html#fig:pacf">2.2</a>). However, the previous approach leads to either an AR or a MA process (and not an ARMA process). If one wants to consider various ARMA(p,q) specifications, for <span class="math inline">\(p \in \{1,\dots,P\}\)</span> and <span class="math inline">\(q \in \{1,\dots,Q\}\)</span>, say, then one can resort to <strong>information criteria</strong>.</p>
+<p>The previous section explains how to fit a given ARMA specification. But how to choose an appropriate specification? A possibility is to employ the (P)ACF approach (see Figure <a href="Univariate.html#fig:pacf">2.2</a>). However, the previous approach leads to either an AR or a MA process (and not an ARMA process). If one wants to consider various ARMA(p,q) specifications, for <span class="math inline">\(p \in \{1,\dots,P\}\)</span> and <span class="math inline">\(q \in \{1,\dots,Q\}\)</span>, say, then one can resort to <strong>information criteria</strong>.</p>
 <p>In general, when choosing a specification, one faces the following dilemma:</p>
 <ol style="list-style-type: lower-alpha">
 <li>Too rich a specification may lead to “overfitting”/misspecification, implying additional estimation errors (in out-of-sample forecasts).</li>
@@ -1240,6 +1240,31 @@ c^{(i)}(k) = \underbrace{\frac{- 2 \log \mathcal{L}(\hat{\boldsymbol\theta}_T(k)
 \frac{k\phi^{(i)}(T)}{T},}_{\mbox{increases w.r.t. $k$}}
 \]</span>
 with <span class="math inline">\((i) \in\{AIC,HQ,BIC\}\)</span> and where <span class="math inline">\(\hat{\boldsymbol\theta}_T(k)\)</span> denotes the ML estimate of <span class="math inline">\(\boldsymbol\theta_0(k)\)</span>, which is a vector of parameters of length <span class="math inline">\(k\)</span>.</p>
+<div class="inline-table"><table class="table table-sm">
+<caption>(#tabcriteria) This table shows <span class="math inline">\(\phi\)</span> functions used by the different criteria.</caption>
+<thead><tr class="header">
+<th>Criterion</th>
+<th></th>
+<th><span class="math inline">\(\phi^{(i)}(T)\)</span></th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>Akaike</td>
+<td>AIC</td>
+<td><span class="math inline">\(2\)</span></td>
+</tr>
+<tr class="even">
+<td>Hannan-Quinn</td>
+<td>HQ</td>
+<td><span class="math inline">\(2\log(\log(T))\)</span></td>
+</tr>
+<tr class="odd">
+<td>Schwarz</td>
+<td>BIC</td>
+<td><span class="math inline">\(\log(T)\)</span></td>
+</tr>
+</tbody>
+</table></div>
 <p>The lag suggested by criterion <span class="math inline">\((i)\)</span> is then given by:
 <span class="math display">\[
 \boxed{\hat{k}^{(i)} = \underset{k}{\mbox{argmin}} \quad c^{(i)}(k).}
@@ -1344,7 +1369,7 @@ Hence <span class="math inline">\(\hat{k}^{(i)} \approx \underset{k}{\mbox{argmi
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Introduction to Time Series</strong>" was written by Jean-Paul Renne. It was last built on 2023-02-17.</p>
+    <p>"<strong>Introduction to Time Series</strong>" was written by Jean-Paul Renne. It was last built on 2023-03-28.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
