@@ -131,7 +131,7 @@
 
 \title{Introduction to Time Series}
 \author{Jean-Paul Renne}
-\date{2023-03-28}
+\date{2023-04-19}
 
 \usepackage{amsthm}
 \newtheorem{theorem}{Theorem}[chapter]
@@ -1877,7 +1877,7 @@ Hence, estimating IRFs amounts to estimating the \(\Psi_{h}\)'s. In general, the
   Approximate the infinite MA representation by estimating a parsimonious type of model, e.g.~\textbf{VAR(MA) models} (see Section \ref{estimVAR}). Once a (Structural) VARMA representation is obtained, Eq. \eqref{eq:InfMA} is easily deduced using the following proposition:
 \end{itemize}
 
-\begin{proposition}[IRF of an ARMA(p,q) process]
+\begin{proposition}[IRF of an VARMA(p,q) process]
 \protect\hypertarget{prp:computPsi}{}\label{prp:computPsi}
 
 If \(y_t\) follows the VARMA model described in Def. \ref{def:SVARMA}, then the matrices \(\Psi_h\) appearing in Eq. \eqref{eq:InfMA} can be computed recursively as follows:
@@ -1979,6 +1979,8 @@ We can use function \texttt{simul.VARMA} of package \texttt{AEC} to produce IRFs
 \end{figure}
 
 \end{example}
+
+\href{https://jrenne.shinyapps.io/MacroEc/}{This web interface} allows to explore IRFs in the context of a simple VAR(1) model with \(n=2\). (Select \emph{VAR(1) Simulation} and tick \emph{IRFs}.)
 
 \hypertarget{covariance-stationary-varma-models}{%
 \section{Covariance-stationary VARMA models}\label{covariance-stationary-varma-models}}
@@ -2133,7 +2135,7 @@ We have non-zero correlation between \(x_t\) and \(\varepsilon_{i,s}\) for \(s<t
 
 However, when \(y_t\) is covariance stationary, then \(\frac{1}{n}\mathbf{X}'\mathbf{X}\) converges to a positive definite matrix \(\mathbf{Q}\), and \(\frac{1}{n}X'\boldsymbol\varepsilon_i\) converges to 0. Hence \(\mathbf{b}_i \overset{p}{\rightarrow} \beta_i\). More precisely:
 
-\begin{proposition}[Asymptotic distribution of the OLS estimate of $\beta_i$]
+\begin{proposition}[Asymptotic distribution of the OLS estimate]
 \protect\hypertarget{prp:OLSVAR}{}\label{prp:OLSVAR}If \(y_t\) follows a VAR model, as defined in Definition \ref{def:SVAR}, we have:
 \[
 \sqrt{T}(\mathbf{b}_i-\beta_i) =  \underbrace{\left[\frac{1}{T}\sum_{t=p}^T x_t x_t' \right]^{-1}}_{\overset{p}{\rightarrow} \mathbf{Q}^{-1}}
@@ -2957,13 +2959,13 @@ It may be the case that your forecasts serve a specific purpose and that, for in
   If you are concerned about both positive and negative errors (indifferently), you may set \(L(e)=e^2\) (standard approach).
 \end{itemize}
 
-Let us define the sequence \(\{d_t\}_{t=1,\dots,T} \equiv \{L(e^{A}_t)-L(e^{B}_t)\}_{t=1,\dots,T}\) and assume that this sequence is covariance stationary. We consider the following null hypothesis: \(H_0:\) \(\bar{d}=0\), where \(\bar{d}\) denotes the population mean of the \(d_t\)s. Under \(H_0\) and under the assumption of covariance-stationarity of \(d_t\), we have (Theorem @ref\{(hm:CLTcovstat)):
+Let us define the sequence \(\{d_t\}_{t=1,\dots,T} \equiv \{L(e^{A}_t)-L(e^{B}_t)\}_{t=1,\dots,T}\) and assume that this sequence is covariance stationary. We consider the following null hypothesis: \(H_0:\) \(\bar{d}=0\), where \(\bar{d}\) denotes the population mean of the \(d_t\)s. Under \(H_0\) and under the assumption of covariance-stationarity of \(d_t\), we have (Theorem \ref{thm:CLTcovstat}):
 \[
 \sqrt{T} \bar{d}_T \overset{d}{\rightarrow} \mathcal{N}\left(0,\sum_{j=-\infty}^{+\infty} \gamma_j \right),
 \]\\
 where the \(\gamma_j\)s are the autocovariances of \(d_t\).
 
-Hence, assuming that \(\hat{\sigma}^2\) is a consistent estimate of \(\sum_{j=-\infty}^{+\infty} \gamma_j\) (for instance the one given by the Newey-West formula, see Def. \ref{def:NW}), we have, under \(H_0\):
+Hence, assuming that \(\hat{\sigma}^2\) is a consistent estimate of \(\sum_{j=-\infty}^{+\infty} \gamma_j\) (for instance the one given by the Newey-West formula, see Def. \eqref{eq:NWest}), we have, under \(H_0\):
 \[
 DM_T := \sqrt{T}\frac{\bar{d}_T}{\sqrt{\hat{\sigma}^2}} \overset{d}{\rightarrow}  \mathcal{N}(0,1).
 \]

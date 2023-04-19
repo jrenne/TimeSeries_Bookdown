@@ -275,12 +275,12 @@ Two methods to determine relevant specifications:</p>
 <li>If you dislike large positive errors, you may set <span class="math inline">\(L(e)=\exp(e)\)</span>.</li>
 <li>If you are concerned about both positive and negative errors (indifferently), you may set <span class="math inline">\(L(e)=e^2\)</span> (standard approach).</li>
 </ul>
-<p>Let us define the sequence <span class="math inline">\(\{d_t\}_{t=1,\dots,T} \equiv \{L(e^{A}_t)-L(e^{B}_t)\}_{t=1,\dots,T}\)</span> and assume that this sequence is covariance stationary. We consider the following null hypothesis: <span class="math inline">\(H_0:\)</span> <span class="math inline">\(\bar{d}=0\)</span>, where <span class="math inline">\(\bar{d}\)</span> denotes the population mean of the <span class="math inline">\(d_t\)</span>s. Under <span class="math inline">\(H_0\)</span> and under the assumption of covariance-stationarity of <span class="math inline">\(d_t\)</span>, we have (Theorem @ref{(hm:CLTcovstat)):
+<p>Let us define the sequence <span class="math inline">\(\{d_t\}_{t=1,\dots,T} \equiv \{L(e^{A}_t)-L(e^{B}_t)\}_{t=1,\dots,T}\)</span> and assume that this sequence is covariance stationary. We consider the following null hypothesis: <span class="math inline">\(H_0:\)</span> <span class="math inline">\(\bar{d}=0\)</span>, where <span class="math inline">\(\bar{d}\)</span> denotes the population mean of the <span class="math inline">\(d_t\)</span>s. Under <span class="math inline">\(H_0\)</span> and under the assumption of covariance-stationarity of <span class="math inline">\(d_t\)</span>, we have (Theorem <a href="Intro.html#thm:CLTcovstat">1.1</a>):
 <span class="math display">\[
 \sqrt{T} \bar{d}_T \overset{d}{\rightarrow} \mathcal{N}\left(0,\sum_{j=-\infty}^{+\infty} \gamma_j \right),
 \]</span><br>
 where the <span class="math inline">\(\gamma_j\)</span>s are the autocovariances of <span class="math inline">\(d_t\)</span>.</p>
-<p>Hence, assuming that <span class="math inline">\(\hat{\sigma}^2\)</span> is a consistent estimate of <span class="math inline">\(\sum_{j=-\infty}^{+\infty} \gamma_j\)</span> (for instance the one given by the Newey-West formula, see Def. <a href="#def:NW"><strong>??</strong></a>), we have, under <span class="math inline">\(H_0\)</span>:
+<p>Hence, assuming that <span class="math inline">\(\hat{\sigma}^2\)</span> is a consistent estimate of <span class="math inline">\(\sum_{j=-\infty}^{+\infty} \gamma_j\)</span> (for instance the one given by the Newey-West formula, see Def. <a href="Intro.html#eq:NWest">(1.6)</a>), we have, under <span class="math inline">\(H_0\)</span>:
 <span class="math display">\[
 DM_T := \sqrt{T}\frac{\bar{d}_T}{\sqrt{\hat{\sigma}^2}} \overset{d}{\rightarrow}  \mathcal{N}(0,1).
 \]</span>
@@ -365,7 +365,7 @@ where <span class="math inline">\(\Phi\)</span> is the c.d.f. of the standard no
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Introduction to Time Series</strong>" was written by Jean-Paul Renne. It was last built on 2023-03-28.</p>
+    <p>"<strong>Introduction to Time Series</strong>" was written by Jean-Paul Renne. It was last built on 2023-04-19.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

@@ -73,7 +73,7 @@ Hence, estimating IRFs amounts to estimating the $\Psi_{h}$'s. In general, there
 * Directly estimate the $\Psi_{h}$ based on *projection approaches* à la @Jorda_2005 (see [this web-page](https://jrenne.github.io/IdentifStructShocks/Projections.html)).
 * Approximate the infinite MA representation by estimating a parsimonious type of model, e.g. **VAR(MA) models** (see Section \@ref(estimVAR)). Once a (Structural) VARMA representation is obtained, Eq. \@ref(eq:InfMA) is easily deduced using the following proposition:
 
-:::{.proposition #computPsi name="IRF of an ARMA(p,q) process"}
+:::{.proposition #computPsi name="IRF of an VARMA(p,q) process"}
 If $y_t$ follows the VARMA model described in Def. \@ref(def:SVARMA), then the matrices $\Psi_h$ appearing in Eq. \@ref(eq:InfMA) can be computed recursively as follows:
 
 1. Set $\Psi_{-1}=\dots=\Psi_{-p}=0$.
@@ -169,6 +169,10 @@ for(i in 1:2){
 <!-- \begin{defn}[Covariance-stationary process] -->
 <!-- Process $y_t$ is covariance-stationary if $\mathbb{E}(y_t)$ and all autocovariances of $y_t$ are finite and do not depend on $t$. -->
 <!-- \end{defn} -->
+
+
+[This web interface](https://jrenne.shinyapps.io/MacroEc/) allows to explore IRFs in the context of a simple VAR(1) model with $n=2$. (Select *VAR(1) Simulation* and tick *IRFs*.)
+
 
 ## Covariance-stationary VARMA models
 
@@ -319,7 +323,7 @@ We have non-zero correlation between $x_t$ and $\varepsilon_{i,s}$ for $s<t$ and
 
 However, when $y_t$ is covariance stationary, then $\frac{1}{n}\bv{X}'\bv{X}$ converges to a positive definite matrix $\bv{Q}$, and $\frac{1}{n}X'\boldsymbol\varepsilon_i$ converges to 0. Hence $\bv{b}_i \overset{p}{\rightarrow} \beta_i$. More precisely:
 
-:::{.proposition #OLSVAR name="Asymptotic distribution of the OLS estimate of $\beta_i$"}
+:::{.proposition #OLSVAR name="Asymptotic distribution of the OLS estimate"}
 If $y_t$ follows a VAR model, as defined in Definition \@ref(def:SVAR), we have:
 $$
 \sqrt{T}(\bv{b}_i-\beta_i) =  \underbrace{\left[\frac{1}{T}\sum_{t=p}^T x_t x_t' \right]^{-1}}_{\overset{p}{\rightarrow} \bv{Q}^{-1}}
