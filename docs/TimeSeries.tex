@@ -131,7 +131,7 @@
 
 \title{Introduction to Time Series}
 \author{Jean-Paul Renne}
-\date{2023-04-19}
+\date{2023-04-21}
 
 \usepackage{amsthm}
 \newtheorem{theorem}{Theorem}[chapter]
@@ -3141,9 +3141,9 @@ t_{\phi=1} = \frac{\phi^{OLS}-1}{\sigma^{OLS}_{\phi}},
 \]
 where \(\phi^{OLS}\) is the OLS estimate of \(\phi\) and \(\sigma^{OLS}_{\phi}\) is the usual OLS-based standard error estimate of \(\phi^{OLS}\).
 
-Importantly, it has to be noted that, \{\color{blue}under the null hypothesis, \(t_{\phi=1}\) is not distributed as a Student-t variable\} (see Def. \ref{def:tStudent}).
+Importantly, it has to be noted that, \emph{under the null hypothesis, \(t_{\phi=1}\) is not distributed as a Student-t variable} (see Def. \ref{def:tStudent}).
 
-\begin{theorem}[Convergence results when $\phi=1$]
+\begin{theorem}[Convergence results]
 \protect\hypertarget{thm:cvgceunitroot}{}\label{thm:cvgceunitroot}If \(y_t\) follows Eq. \eqref{eq:AR1} (with \(\mathbb{V}ar(\varepsilon_t)=\sigma^2\)) and \(\phi=1\), then:
 \begin{eqnarray}
 T^{-3/2} \sum_{t=1}^{T} y_{t} &\overset{d}{\rightarrow}& \sigma \int_{0}^{1}W(r)dr\\
@@ -3163,19 +3163,15 @@ T(\phi^{OLS}-1) &\overset{d}{\rightarrow}& \frac{\int_{0}^{1}W(r)dW(r)}{\int_{0}
 t_{\phi=1} &\overset{d}{\rightarrow}& \frac{\int_{0}^{1}W(r)dW(r)}{\left(\int_{0}^{1}W(r)^2dr\right)^{1/2}}= \frac{\frac{1}{2}(W(1)^2-1)}{\left(\int_{0}^{1}W(r)^2dr\right)^{1/2}}\label{eq:tstat}
 \end{eqnarray}
 
-The previous theorem notably implies that the convergence rate of \(\phi^{OLS}\) (in \(T\)) is faster than if \(y_t\) was stationary (in which case it is in \(\sqrt{T}\)).
-
-it also implies that, asmptotically, (a) \(\phi^{OLS}\) is not normally distributed and (b) \(t_{\phi=1}\) is not standard normal.
+The previous theorem notably implies that the convergence rate of \(\phi^{OLS}\) (in \(T\)) is faster than if \(y_t\) was stationary (in which case it is in \(\sqrt{T}\)). It also implies that, asymptotically, (a) \(\phi^{OLS}\) is not normally distributed and (b) \(t_{\phi=1}\) is not standard normal.
 
 The limiting distribution of \(t_{\phi=1}\) has no closed form; it is called the \textbf{Dickey-Fuller distribution}.
 
 Although not available in closed form (it has to be evaluated numerically), the distribution of \(T(\phi^{OLS}-1)\) can be used to test for the null hypothesis \(\phi=1\).
 
-Nonstationarity tests: About trends again
+\textbf{Nonstationarity tests: About trends again}
 
-The right consideration for potential trends in \(y_t\)'s specification is crucial.
-
-We focus on two cases:
+The right consideration for potential trends in \(y_t\)'s specification is crucial. We focus on two types of null hypotheses:
 
 \begin{itemize}
 \tightlist
@@ -3197,9 +3193,7 @@ So far, we focused on AR(1) processes. But many time series have a more complica
 
 \textbf{Dickey-Fuller (DF) test}
 
-\citet{DF1979}
-
-Specification underlying the Dickey-Fuller (DF) test:
+The specification underlying the \citet{DF1979} test is:
 \begin{equation}
 y_t = \boldsymbol\beta'D_t + \phi y_{t-1} + \sum_{i=1}^{p}\psi_i \Delta y_{t-i} + \varepsilon_t,\label{eq:adf11}
 \end{equation}
@@ -3236,9 +3230,7 @@ Importantly, this test is \textbf{one-sided left-tailed} test: one rejects the n
 
 \textbf{Phillips-Perron (PP) test}
 
-\citet{Phillips_Perron_1988}
-
-Test regression: \(\Delta y_t = \boldsymbol\beta' D_t + \pi y_{t-1} + \varepsilon_t.\)
+The regression underyling the \citet{Phillips_Perron_1988} test is as follows: \(\Delta y_t = \boldsymbol\beta' D_t + \pi y_{t-1} + \varepsilon_t.\)
 
 The issue of serial correlation (and heteroskedasticity) in the residual is handled by adjusting the test statistics \(t_{\pi=0}\) and \(T\pi\):\footnote{See \citet{Hamilton_1994}, Table 17.2 p.514.}
 
@@ -3313,7 +3305,7 @@ This test is a \textbf{one-sided right-tailed} test: one rejects the null if \(\
 Let us use quarterly US data and test the stationarity of inflation and the 3-month short-term rate. Let us first plot the data:
 
 \begin{figure}
-\includegraphics[width=0.95\linewidth]{TimeSeries_files/figure-latex/figInflr-1} \caption{US Inflation and short-term nominal rates.}\label{fig:figInflr}
+\includegraphics[width=0.95\linewidth]{TimeSeries_files/figure-latex/figInflr-1} \caption{US Inflation (in black) and short-term nominal rates (in red).}\label{fig:figInflr}
 \end{figure}
 
 Let us now run the tests. Note that the default alternative hypothesis of function \texttt{adf.test} of package \texttt{tseries} is that the process is trend-stationary. Note that when \texttt{kpss.test} returns a p-value of \texttt{0.01}, it means that the true p-value is lower then that.

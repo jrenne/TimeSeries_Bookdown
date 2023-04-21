@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999994 (TeX Live 2022) (preloaded format=xelatex 2023.1.3)  19 APR 2023 11:13
+This is XeTeX, Version 3.141592653-2.6-0.999994 (TeX Live 2022) (preloaded format=xelatex 2023.1.3)  21 APR 2023 12:43
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -963,7 +963,7 @@ File: TimeSeries_files/figure-latex/VECMexmpl-1.pdf Graphic file (type pdf)
 ]
 Chapter 7.
 
-Underfull \hbox (badness 3826) in paragraph at lines 3706--3707
+Underfull \hbox (badness 3826) in paragraph at lines 3698--3699
 []\TU/lmr/m/n/12 Autoregressive Conditional Heteroskedasticity (ARCH) and its generalized version
  []
 
@@ -973,7 +973,7 @@ File: TimeSeries_files/figure-latex/GARCHsmireturns-1.pdf Graphic file (type pdf
 File: TimeSeries_files/figure-latex/estimGARCH3-1.pdf Graphic file (type pdf)
 <use TimeSeries_files/figure-latex/estimGARCH3-1.pdf>
 [103]
-Underfull \hbox (badness 2744) in paragraph at lines 3899--3901
+Underfull \hbox (badness 2744) in paragraph at lines 3891--3893
 \TU/lmr/m/n/12 This generalised autoregressive conditional heteroskedasticity model is denoted by
  []
 
@@ -991,29 +991,29 @@ File: TimeSeries_files/figure-latex/Cauchy-1.pdf Graphic file (type pdf)
 <use TimeSeries_files/figure-latex/Cauchy-1.pdf>
 [114] [115]
 
-LaTeX Warning: Reference `def:characteristic' on page 116 undefined on input line 4429.
+LaTeX Warning: Reference `def:characteristic' on page 116 undefined on input line 4421.
 
 
-Overfull \hbox (31.16512pt too wide) in paragraph at lines 4444--4445
+Overfull \hbox (31.16512pt too wide) in paragraph at lines 4436--4437
 []\TU/lmr/m/n/12 Let us introduce the r.v. $[][] [][] [][][] [] [][]$. We have $[][][][][] [] [][]$.
  []
 
 [116] [117]
 
-LaTeX Warning: Reference `prp:multivarG' on page 118 undefined on input line 4532.
+LaTeX Warning: Reference `prp:multivarG' on page 118 undefined on input line 4524.
 
 [118] [119]
-Overfull \hbox (58.59424pt too wide) in paragraph at lines 4581--4583
+Overfull \hbox (58.59424pt too wide) in paragraph at lines 4573--4575
 \TU/lmr/m/n/12 If $[] [] []$, we have $[][][][][][][][][][][] [] [][][][][][][][][][][][][][][][] [][][] [][][][] []$ $[][][][][][][][][][][][][][][][] [][][] [][][][] []
  []
 
 [120] [121] [122]
-Overfull \hbox (7.90913pt too wide) in paragraph at lines 4721--4786
+Overfull \hbox (7.90913pt too wide) in paragraph at lines 4713--4778
  [][] 
  []
 
 
-Overfull \hbox (58.83714pt too wide) in paragraph at lines 4898--4951
+Overfull \hbox (58.83714pt too wide) in paragraph at lines 4890--4943
  [][] 
  []
 

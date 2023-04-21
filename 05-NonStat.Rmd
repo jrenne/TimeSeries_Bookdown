@@ -135,10 +135,10 @@ t_{\phi=1} = \frac{\phi^{OLS}-1}{\sigma^{OLS}_{\phi}},
 $$
 where $\phi^{OLS}$ is the OLS estimate of $\phi$ and $\sigma^{OLS}_{\phi}$ is the usual OLS-based standard error estimate of $\phi^{OLS}$.
 
-Importantly, it has to be noted that, {\color{blue}under the null hypothesis, $t_{\phi=1}$  is not distributed as a Student-t variable} (see Def. \@ref(def:tStudent)).
+Importantly, it has to be noted that, *under the null hypothesis, $t_{\phi=1}$  is not distributed as a Student-t variable* (see Def. \@ref(def:tStudent)).
 
 
-:::{.theorem #cvgceunitroot name="Convergence results when $\phi=1$"}
+:::{.theorem #cvgceunitroot name="Convergence results"}
 If $y_t$ follows Eq. \@ref(eq:AR1) (with $\mathbb{V}ar(\varepsilon_t)=\sigma^2$) and $\phi=1$, then:
 \begin{eqnarray}
 T^{-3/2} \sum_{t=1}^{T} y_{t} &\overset{d}{\rightarrow}& \sigma \int_{0}^{1}W(r)dr\\
@@ -157,19 +157,15 @@ T(\phi^{OLS}-1) &\overset{d}{\rightarrow}& \frac{\int_{0}^{1}W(r)dW(r)}{\int_{0}
 t_{\phi=1} &\overset{d}{\rightarrow}& \frac{\int_{0}^{1}W(r)dW(r)}{\left(\int_{0}^{1}W(r)^2dr\right)^{1/2}}= \frac{\frac{1}{2}(W(1)^2-1)}{\left(\int_{0}^{1}W(r)^2dr\right)^{1/2}}(\#eq:tstat)
 \end{eqnarray}
 
-The previous theorem notably implies that the convergence rate of $\phi^{OLS}$ (in $T$) is faster than if $y_t$ was stationary (in which case it is in $\sqrt{T}$).
-
-it also implies that, asmptotically, (a) $\phi^{OLS}$ is not normally distributed and (b) $t_{\phi=1}$ is not standard normal.
+The previous theorem notably implies that the convergence rate of $\phi^{OLS}$ (in $T$) is faster than if $y_t$ was stationary (in which case it is in $\sqrt{T}$). It also implies that, asymptotically, (a) $\phi^{OLS}$ is not normally distributed and (b) $t_{\phi=1}$ is not standard normal.
 
 The limiting distribution of $t_{\phi=1}$ has no closed form; it is called the **Dickey-Fuller distribution**.
 
 Although not available in closed form (it has to be evaluated numerically), the distribution of $T(\phi^{OLS}-1)$ can be used to test for the null hypothesis $\phi=1$.
 
-Nonstationarity tests: About trends again
+**Nonstationarity tests: About trends again**
 
-The right consideration for potential trends in $y_t$'s specification is crucial.
-
-We focus on two cases:
+The right consideration for potential trends in $y_t$'s specification is crucial. We focus on two types of null hypotheses:
 
 * Constant only. Specification:
 $$
@@ -182,16 +178,12 @@ y_t = c + \delta t + \phi y_{t-1} + \varepsilon_t.
 $$
 $|\phi|<1$: $y_t$ is stationary around a deterministic time trend.
 
-
 So far, we focused on AR(1) processes. But many time series have a more complicated dynamic structure.
 
 
 **Dickey-Fuller (DF) test**
 
-@DF1979
-
-
-Specification underlying the Dickey-Fuller (DF) test:
+The specification underlying the @DF1979 test is:
 \begin{equation}
 y_t = \boldsymbol\beta'D_t + \phi y_{t-1} + \sum_{i=1}^{p}\psi_i \Delta y_{t-i} + \varepsilon_t,(\#eq:adf11)
 \end{equation}
@@ -228,9 +220,7 @@ Importantly, this test is **one-sided left-tailed** test: one rejects the null i
 
 **Phillips-Perron (PP) test**
 
-@Phillips_Perron_1988
-
-Test regression: $\Delta y_t = \boldsymbol\beta' D_t + \pi y_{t-1} + \varepsilon_t.$
+The regression underyling the @Phillips_Perron_1988 test is as follows: $\Delta y_t = \boldsymbol\beta' D_t + \pi y_{t-1} + \varepsilon_t.$
 
 The issue of serial correlation (and heteroskedasticity) in the residual is handled by adjusting the test statistics $t_{\pi=0}$ and $T\pi$:^[See @Hamilton_1994, Table 17.2 p.514.]
 
@@ -295,7 +285,7 @@ This test is a **one-sided right-tailed** test: one rejects the null if $\xi^{KP
 
 Let us use quarterly US data and test the stationarity of inflation and the 3-month short-term rate. Let us first plot the data:
 
-```{r figInflr,echo=FALSE, fig.align = 'left-aligned', out.width = "95%", fig.cap = "US Inflation and short-term nominal rates."}
+```{r figInflr,echo=FALSE, fig.align = 'left-aligned', out.width = "95%", fig.cap = "US Inflation (in black) and short-term nominal rates (in red)."}
 par(plt=c(.15,.95,.1,.95))
 plot(US3var$Date,US3var$infl,ylim=c(0,20),type="l",lwd=2,
      xlab="",ylab="rates, in percent",las=1)
