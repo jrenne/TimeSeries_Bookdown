@@ -135,7 +135,7 @@ Figure 5.1: The densities of based on 1000 simulations of samples of length <spa
 <h3>
 <span class="header-section-number">5.1.2</span> Spurious regressions<a class="anchor" aria-label="anchor" href="#spurious-regressions"><i class="fas fa-link"></i></a>
 </h3>
-<p>Consider two independent non-stationary (unit roots) variables. If we regress one on the other, and if we use the standard OLS formulas to compute the standard deviation of the regression parameter, it can be shown that we will tend to underestimate this standard deviation. As a result, if we use standard <span class="math inline">\(t\)</span>-statistics to test for the existence of a relationship between the two variables, we will often have false positive, i.e., we will often reject the null hypothesis of no relationship (<span class="math inline">\(H_0\)</span>: regression coefficient = 0). This phenomenon is called <em>spurious regressions</em> (see, e.g., these <a href="%5Chref%7Bhttp://www.eco.uc3m.es/~jgonzalo/teaching/timeseriesMA/examplesspuriousregression.pdf">examples</a>).</p>
+<p>Consider two independent non-stationary (unit roots) variables. If we regress one on the other, and if we use the standard OLS formulas to compute the standard deviation of the regression parameter, it can be shown that we will tend to underestimate this standard deviation. As a result, if we use standard <span class="math inline">\(t\)</span>-statistics to test for the existence of a relationship between the two variables, we will often have false positive, i.e., we will often reject the null hypothesis of no relationship (<span class="math inline">\(H_0\)</span>: regression coefficient = 0). This phenomenon is called <em>spurious regressions</em> (see, e.g., these <a href="https://www.tylervigen.com/spurious-correlations">examples</a>).</p>
 <p>This situation is illustrated by Figure <a href="NonStat.html#fig:nonStat2">5.2</a>. We simulate two independent random walks, <span class="math inline">\(x_t\)</span> and <span class="math inline">\(y_t\)</span>, and we regress <span class="math inline">\(y_t\)</span> on <span class="math inline">\(x_t\)</span> by OLS. (We consider two different sample sizes, <span class="math inline">\(T=50\)</span> and <span class="math inline">\(T=200\)</span>.) The black lines represent the densities of the estimated <span class="math inline">\(\beta\)</span>’s, that are the slope coefficients of the regressions. The blue density represent the asymptotic distribution of <span class="math inline">\(\beta\)</span> based on to the standard OLS formula (normal distribution of mean zero and of variance <span class="math inline">\(\hat\sigma^2/\widehat{\mathbb{V}ar}(x_t)\)</span>). The fact that the latter distribution features a smaller variance than the former implies that using the standard OLS inference is misleading, as this distribution overestimates the accuracy of the estimator.</p>
 <div class="figure" style="text-align: left-aligned">
 <span style="display:block;" id="fig:nonStat2"></span>
@@ -225,15 +225,17 @@ with <span class="math inline">\(\pi = \phi - 1\)</span>. Under the null hypothe
 \mbox{ADF $t$ statistic: } &amp;&amp; ADF_t = t_{\pi=0} = \frac{\pi^{OLS}}{\sigma^{OLS}_{\pi}}
 \end{eqnarray*}\]</span></p>
 <p>Under the null hypothesis (<span class="math inline">\(\phi=1\)</span>) and if the regression is as in Eq. <a href="NonStat.html#eq:AR1">(5.2)</a> the limiting distributions of the statistics are, respectively, as in Eq. <a href="NonStat.html#eq:biasstat">(5.3)</a> and Eq. <a href="NonStat.html#eq:tstat">(5.4)</a>.</p>
-<p>The selection of <span class="math inline">\(p\)</span> can rely on information criteria (see Def. <a href="Univariate.html#def:infocriteria">2.11</a>).</p>
-<p>Alternatively, <span class="citation">Schwert (<a href="references.html#ref-Schwert_1989" role="doc-biblioref">1989</a>)</span> proposes to use:
+<p>The selection of <span class="math inline">\(p\)</span> can rely on information criteria (see Def. <a href="Univariate.html#def:infocriteria">2.11</a>). Alternatively, <span class="citation">Schwert (<a href="references.html#ref-Schwert_1989" role="doc-biblioref">1989</a>)</span> proposes to use:
 <span class="math display">\[
 p=\left[12 \times \left( \frac{T}{100} \right)^{1/4}\right].
 \]</span></p>
 <p>Importantly, this test is <strong>one-sided left-tailed</strong> test: one rejects the null if the test statistics are sufficiently negative; we are therefore interested in the first quantiles of the limit distribution.</p>
 <p><strong>Phillips-Perron (PP) test</strong></p>
-<p>The regression underyling the <span class="citation">P. Phillips and Perron (<a href="references.html#ref-Phillips_Perron_1988" role="doc-biblioref">1988</a>)</span> test is as follows: <span class="math inline">\(\Delta y_t = \boldsymbol\beta' D_t + \pi y_{t-1} + \varepsilon_t.\)</span></p>
-<p>The issue of serial correlation (and heteroskedasticity) in the residual is handled by adjusting the test statistics <span class="math inline">\(t_{\pi=0}\)</span> and <span class="math inline">\(T\pi\)</span>:<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;See &lt;span class="citation"&gt;Hamilton (&lt;a href="references.html#ref-Hamilton_1994" role="doc-biblioref"&gt;1994&lt;/a&gt;)&lt;/span&gt;, Table 17.2 p.514.&lt;/p&gt;'><sup>11</sup></a></p>
+<p>The regression underyling the <span class="citation">P. Phillips and Perron (<a href="references.html#ref-Phillips_Perron_1988" role="doc-biblioref">1988</a>)</span> test is as follows:
+<span class="math display">\[
+\Delta y_t = \boldsymbol\beta' D_t + \pi y_{t-1} + \varepsilon_t.
+\]</span>
+The issue of serial correlation (and heteroskedasticity) in the residual is handled by adjusting the test statistics <span class="math inline">\(t_{\pi=0}\)</span> and <span class="math inline">\(T\pi\)</span>:<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;See &lt;span class="citation"&gt;Hamilton (&lt;a href="references.html#ref-Hamilton_1994" role="doc-biblioref"&gt;1994&lt;/a&gt;)&lt;/span&gt;, Table 17.2 p.514.&lt;/p&gt;'><sup>11</sup></a></p>
 <p><span class="math display">\[\begin{eqnarray*}
 \mbox{PP $t$ stat.: } &amp;&amp; Z_t = \sqrt{\frac{\hat\gamma_{0,T}}{\hat\lambda_T^2}} t_{\pi=0,T} - \frac{\hat\lambda_T^2-\hat\gamma_{0,T}}{2\hat\lambda_T}\left(\frac{T\sigma^{OLS}_{\pi,T}}{s_T}\right)\\
 \mbox{PP bias stat.: } &amp;&amp; Z_\pi = T\pi^{OLS}_T - \frac{1}{2}(\hat\lambda^2-\hat\gamma_{0,T}^2)\left(\frac{T \sigma^{OLS}_{\pi,T}}{s^2_T}\right)^2
@@ -264,7 +266,7 @@ s_T^2 &amp;=&amp; \frac{1}{T-k} \Sigma_{t=1}^{T} \hat{\varepsilon}^2_t \quad \mb
 <p><strong>Stationarity test: KPSS</strong></p>
 <p>The test proposed by <span class="citation">Kwiatkowski et al. (<a href="references.html#ref-KWIATKOWSKI1992159" role="doc-biblioref">1992</a>)</span> is a stationarity test, i.e., under the null hypothesis, the process is stationary. The underlying specificaiton is the following:
 <span class="math display">\[
-y_t = \boldsymbol\beta' D_t + \mu_t + \varepsilon_t
+y_t = \boldsymbol\beta' D_t + \mu_t + \varepsilon_t,
 \]</span>
 with <span class="math inline">\(\mu_t = \mu_{t-1} + \eta_t\)</span>, <span class="math inline">\(\mathbb{V}ar(\eta_t)=\sigma_\eta^2\)</span>, where <span class="math inline">\(D_t = 1\)</span> or <span class="math inline">\(D_t = [1,t]'\)</span> and where <span class="math inline">\(\{\varepsilon_t\}\)</span> is a covariance-stationary sequence.</p>
 <p>The KPSS statistic corresponds to the Lagrange Multiplier test statistic associated with the hypothesis <span class="math inline">\(\sigma_\eta^2=0\)</span>:
@@ -344,7 +346,7 @@ Figure 5.3: US Inflation (in black) and short-term nominal rates (in red).
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Introduction to Time Series</strong>" was written by Jean-Paul Renne. It was last built on 2023-04-21.</p>
+    <p>"<strong>Introduction to Time Series</strong>" was written by Jean-Paul Renne. It was last built on 2023-04-25.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

@@ -73,7 +73,7 @@ for(T in vec.T){
 
 ### Spurious regressions
 
-Consider two independent non-stationary (unit roots) variables. If we regress one on the other, and if we use the standard OLS formulas to compute the standard deviation of the regression parameter, it can be shown that we will tend to underestimate this standard deviation.  As a result, if we use standard $t$-statistics to test for the existence of a relationship between the two variables, we will often have false positive, i.e., we will often reject the null hypothesis of no relationship ($H_0$: regression coefficient = 0). This phenomenon is called *spurious regressions* (see, e.g., these [examples](\href{http://www.eco.uc3m.es/~jgonzalo/teaching/timeseriesMA/examplesspuriousregression.pdf)).
+Consider two independent non-stationary (unit roots) variables. If we regress one on the other, and if we use the standard OLS formulas to compute the standard deviation of the regression parameter, it can be shown that we will tend to underestimate this standard deviation.  As a result, if we use standard $t$-statistics to test for the existence of a relationship between the two variables, we will often have false positive, i.e., we will often reject the null hypothesis of no relationship ($H_0$: regression coefficient = 0). This phenomenon is called *spurious regressions* (see, e.g., these [examples](https://www.tylervigen.com/spurious-correlations)).
 
 This situation is illustrated by Figure \@ref(fig:nonStat2). We simulate two independent random walks, $x_t$ and $y_t$, and we regress $y_t$ on $x_t$ by OLS. (We consider two different sample sizes, $T=50$ and $T=200$.) The black lines represent the densities of the estimated $\beta$'s, that are the slope coefficients of the regressions. The blue density represent the asymptotic distribution of $\beta$ based on to the standard OLS formula (normal distribution of mean zero and of variance $\hat\sigma^2/\widehat{\mathbb{V}ar}(x_t)$). The fact that the latter distribution features a smaller variance than the former implies that using the standard OLS inference is misleading, as this distribution overestimates the accuracy of the estimator. 
 
@@ -209,9 +209,7 @@ with $\pi = \phi - 1$. Under the null hypothesis $\pi = 0$. In this case:
 
 Under the null hypothesis ($\phi=1$) and if the regression is as in Eq. \@ref(eq:AR1) the limiting distributions of the statistics are, respectively, as in Eq. \@ref(eq:biasstat) and Eq. \@ref(eq:tstat).
 
-The selection of $p$ can rely on information criteria (see Def. \@ref(def:infocriteria)). 
-
-Alternatively, @Schwert_1989 proposes to use:
+The selection of $p$ can rely on information criteria (see Def. \@ref(def:infocriteria)). Alternatively, @Schwert_1989 proposes to use:
 $$
 p=\left[12 \times \left( \frac{T}{100} \right)^{1/4}\right].
 $$
@@ -220,8 +218,10 @@ Importantly, this test is **one-sided left-tailed** test: one rejects the null i
 
 **Phillips-Perron (PP) test**
 
-The regression underyling the @Phillips_Perron_1988 test is as follows: $\Delta y_t = \boldsymbol\beta' D_t + \pi y_{t-1} + \varepsilon_t.$
-
+The regression underyling the @Phillips_Perron_1988 test is as follows:
+$$
+\Delta y_t = \boldsymbol\beta' D_t + \pi y_{t-1} + \varepsilon_t.
+$$
 The issue of serial correlation (and heteroskedasticity) in the residual is handled by adjusting the test statistics $t_{\pi=0}$ and $T\pi$:^[See @Hamilton_1994, Table 17.2 p.514.]
 
 \begin{eqnarray*}
@@ -257,7 +257,7 @@ As the ADF test, this test is **one-sided left-tailed** (reject the null if the 
 
 The test proposed by @KWIATKOWSKI1992159 is a stationarity test, i.e., under the null hypothesis, the process is stationary. The underlying specificaiton is the following:
 $$
-y_t = \boldsymbol\beta' D_t + \mu_t + \varepsilon_t
+y_t = \boldsymbol\beta' D_t + \mu_t + \varepsilon_t,
 $$
 with $\mu_t = \mu_{t-1} + \eta_t$, $\mathbb{V}ar(\eta_t)=\sigma_\eta^2$, where $D_t = 1$ or $D_t = [1,t]'$ and where $\{\varepsilon_t\}$ is a covariance-stationary sequence.
 
