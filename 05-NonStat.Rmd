@@ -109,7 +109,7 @@ for(T in vec.T){
 
 ```
 
-### Nonstationarity tests
+## Nonstationarity tests
 
 Hence, employing (OLS) regressions with non-stationary variables may be misleading. It is therefore important, before employing these techniques (OLS), to check that the variables are stationary. To do so, specific tests are used. These tests are called stationarity and non-stationarity (or unit-root) tests. In the context of a stationarity test, the null hypothesis that $y_t$ is stationary or trend-stationary (i.e. equal to the sum of a linear trend and a stationary component). In the context of a non-stationarity (or unit root) tests, the null hypothesis that $y_t$ is not (trend) stationary. 
 
@@ -253,7 +253,9 @@ If $|\phi|<1$, the OLS estimate $\phi^{OLS}_T$ is not consistent if the $\vareps
 As the ADF test, this test is **one-sided left-tailed** (reject the null if the test statistics are sufficiently negative). The critical values are obtained by simulation; they can for instance be found [here](http://www.econ.uiuc.edu/~econ508/DFtable.pdf).
 
 
-**Stationarity test: KPSS**
+
+## Stationarity test: KPSS
+
 
 The test proposed by @KWIATKOWSKI1992159 is a stationarity test, i.e., under the null hypothesis, the process is stationary. The underlying specificaiton is the following:
 $$

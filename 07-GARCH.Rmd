@@ -66,7 +66,7 @@ In this case:
 
 For Eq. \@ref(eq:ut2) to make sense, it has to be the case that
 $$
-\zeta + \alpha_1 u_{t-1}^2 + \dots + \alpha_m u_{t-m}^2 + w_t \le 0
+\zeta + \alpha_1 u_{t-1}^2 + \dots + \alpha_m u_{t-m}^2 + w_t \ge 0
 $$
 for all realisations of $\{u_t\}$. This is the case if $w_t > -\zeta$, with $\zeta>0$, and if $\alpha_i \ge 0$ for $i \in \{1,\dots,m\}$. Assuming this is the case, $u_t^2$ is covariance-stationary if the roots of:
 $$
@@ -232,7 +232,7 @@ knitr::kable(tab.results,caption = "ARCH(2), ML estimation results.
 ```
 
 
-```{r estimGARCH3X, echo=FALSE, fig.cap="Estimated conditional standard deviations ($\\sqrt{h_t}$) of SMI daily returns: ARCH(2) [black line] and GARCH(11) [dotted red line] specifications.", fig.align = 'left-aligned'}
+```{r estimGARCH3X, echo=FALSE, fig.cap="Estimated conditional standard deviations ($\\sqrt{h_t}$) of SMI daily returns: ARCH(2) [black line] and GARCH(1,1) [dotted red line] specifications.", fig.align = 'left-aligned'}
 par(mfrow=c(1,1))
 par(plt=c(0.15,0.95,0.2,0.95))
 plot(smi$Date,sqrt(estim.arch$h),ylab="in percent",type="l")
@@ -240,7 +240,7 @@ lines(smi$Date,sqrt(estim.garch$h),ylab="in percent",type="l",col="red",lty=3)
 ```
 
 
-### ARCH-in-mean
+## ARCH-in-mean
 
 Another extension of the ARCH model is the **ARCH-in-Mean**, or ARCH-M model. That model is close to that specified by Eqs. \@ref(eq:linearreg), \@ref(eq:uhv) and \@ref(eq:hARCH), but it also allows for a potential effect of $h_t$ on $\mathbb{E}_{t-1}(y_{t})$:
 \begin{eqnarray*}

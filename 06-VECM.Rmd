@@ -105,7 +105,7 @@ where $H(L)\varepsilon_t$ is a stationary process (but $(1-L)^{d-1}y_t$ is not).
 If $y_t$ is integrated of order $d$, then its components are said to be cointegrated if there exists a linear combination of the components of $y_t$ that is integrated of an order equal to, or lower than, $d-1$.
 :::
 
-For instance, Eq. \@ref(eq:yxI1) implies that $[1,-\beta]'$ is a **cointegrating vector** and that $[x_t,y_t]'$ is cointegrated.
+For instance, Eq. \@ref(eq:yxI1) implies that $[1,-\beta]'$ is a **cointegrating vector** and that $[y_t,x_t]'$ is cointegrated.
 
 Consider an $I(1)$ process, $y_t$, that is such that the Wold representation of $\Delta y_t$ is Eq. \@ref(eq:I1). We have:
 $$
@@ -124,7 +124,7 @@ Necessarily, we must have $\pi' \mu = 0$ and $\pi' H(1)=0$. Reciprocally, if $\p
 
 :::{.proposition #NScondCoint name="Necessary and sufficient conditions of cointegration"}
 
-If $y_t$ is $I(1)$ and admits the Wold representation Eq. \@ref(eq:I1), with $d=1$, then $\pi$ is a cointegrating vector iff
+If $y_t$ is $I(1)$ and admits the Wold representation Eq. \@ref(eq:I1), with $d=1$, then $\pi$ is a cointegrating vector if and only if (iff):
 $$
 \pi' \mu = 0 \mbox{ (scalar equation) and }\pi' H(1)=0\mbox{ (vectorial equation)}.
 $$
@@ -264,7 +264,7 @@ lines(Y[,2],type="l",col="blue",lwd=2)
 :::
 
 
-### Cointegration in practice
+## Cointegration in practice
 
 Assume that we have a vector of variables $y_t$ and that we want to investigate the joint dynamics of its components. If the $y_{i,t}$s are $I(1)$, we may need to use a VECM. Therefore, in the first place, one has to test for the stationarity of $y_t$'s components (see Section \@ref(NonStat)).
 
@@ -276,7 +276,7 @@ If the components of $y_t$ are  $I(1)$, one has to determine the existence of co
 2. We have no a priori regarding the cointegration relationship. We have to estimate (and test) the potential cointegration relationship.
 
 In the first case, we proceed in two steps:
-a. If $\pi^*$ is suspected to be a cointegrating vector, we can then use unit-root or stationarity tests on $z_t={\pi^*}' y_t$ (see Section \@ref{NonStat}).
+a. If $\pi^*$ is suspected to be a cointegrating vector, we can then use unit-root or stationarity tests on $z_t={\pi^*}' y_t$ (see Section \@ref(NonStat)).
 b. Estimate Eq. \@ref(eq:VECM3) by OLS.
 
 In the following, we focus on the second case, when there is at most one cointegration relationship. (In the general case, one can for instance implement the @Johansen_1991 approach.)

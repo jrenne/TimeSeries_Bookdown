@@ -7,7 +7,7 @@
 <title>Chapter 7 ARCH and GARCH models | Introduction to Time Series</title>
 <meta name="author" content="Jean-Paul Renne">
 <meta name="description" content="7.1 Conditional heteroskedasticity Many financial and macroeconomic variables are hit by shocks whose variance is not constant through time, i.e. by heteroskedatic shocks. Often, the conditional...">
-<meta name="generator" content="bookdown 0.27 with bs4_book()">
+<meta name="generator" content="bookdown 0.34 with bs4_book()">
 <meta property="og:title" content="Chapter 7 ARCH and GARCH models | Introduction to Time Series">
 <meta property="og:type" content="book">
 <meta property="og:description" content="7.1 Conditional heteroskedasticity Many financial and macroeconomic variables are hit by shocks whose variance is not constant through time, i.e. by heteroskedatic shocks. Often, the conditional...">
@@ -16,7 +16,7 @@
 <meta name="twitter:description" content="7.1 Conditional heteroskedasticity Many financial and macroeconomic variables are hit by shocks whose variance is not constant through time, i.e. by heteroskedatic shocks. Often, the conditional...">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
-<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.4.0/transition.js"></script><script src="libs/bs3compat-0.4.0/tabs.js"></script><script src="libs/bs3compat-0.4.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.5.0/transition.js"></script><script src="libs/bs3compat-0.5.0/tabs.js"></script><script src="libs/bs3compat-0.5.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
 <script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
     
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
@@ -90,7 +90,7 @@
 <h2>
 <span class="header-section-number">7.1</span> Conditional heteroskedasticity<a class="anchor" aria-label="anchor" href="#conditional-heteroskedasticity"><i class="fas fa-link"></i></a>
 </h2>
-<p>Many financial and macroeconomic variables are hit by shocks whose variance is not constant through time, i.e. by <em>heteroskedatic</em> shocks. Often, the conditional variance of shocks features a persistent behavior (volatility clustering). The observation that large shocks (in absolute value) tend to be followed by other important shocks has notably been established by <span class="citation">Mandelbrot (<a href="references.html#ref-Mandelbrot_1963" role="doc-biblioref">1963</a>)</span>. Such a situation is illustrated by Figure <a href="ARCHGARCH.html#fig:GARCHsmireturns">7.1</a>.</p>
+<p>Many financial and macroeconomic variables are hit by shocks whose variance is not constant through time, i.e. by <em>heteroskedatic</em> shocks. Often, the conditional variance of shocks features a persistent behavior (volatility clustering). The observation that large shocks (in absolute value) tend to be followed by other important shocks has notably been established by <span class="citation">Mandelbrot (<a href="references.html#ref-Mandelbrot_1963">1963</a>)</span>. Such a situation is illustrated by Figure <a href="ARCHGARCH.html#fig:GARCHsmireturns">7.1</a>.</p>
 <p>Autoregressive Conditional Heteroskedasticity (ARCH) and its generalized version (GARCH) constitute useful tools to model such time series.</p>
 <div class="figure" style="text-align: left-aligned">
 <span style="display:block;" id="fig:GARCHsmireturns"></span>
@@ -98,7 +98,7 @@
 Figure 7.1: Upper plot: SMI index (daily Close prices); lower plot: daily log returns.
 </p>
 </div>
-<p>In order to test whether a times series of shocks <span class="math inline">\(\{u_1,\dots,u_T\}\)</span> features persistent conditional heteroskedasticity, a simple test has been designed by <span class="citation">Engle (<a href="references.html#ref-Engle_1982" role="doc-biblioref">1982</a>)</span>. This test consists in regressing <span class="math inline">\(u_t^2\)</span> on it last <span class="math inline">\(m\)</span> lags (i.e., on <span class="math inline">\(u_{t-1}^2,\dots,u_{t-m}^2\)</span>) by OLS.Under the null hypothesis that <span class="math inline">\(u_t\)</span> is i.i.d., we have:
+<p>In order to test whether a times series of shocks <span class="math inline">\(\{u_1,\dots,u_T\}\)</span> features persistent conditional heteroskedasticity, a simple test has been designed by <span class="citation">Engle (<a href="references.html#ref-Engle_1982">1982</a>)</span>. This test consists in regressing <span class="math inline">\(u_t^2\)</span> on it last <span class="math inline">\(m\)</span> lags (i.e., on <span class="math inline">\(u_{t-1}^2,\dots,u_{t-m}^2\)</span>) by OLS.Under the null hypothesis that <span class="math inline">\(u_t\)</span> is i.i.d., we have:
 <span class="math display">\[
 T \times R^2 \overset{d}{\rightarrow} \chi^2(m),
 \]</span>
@@ -144,7 +144,7 @@ In this case:
 \end{equation}\]</span></p>
 <p>For Eq. <a href="ARCHGARCH.html#eq:ut2">(7.2)</a> to make sense, it has to be the case that
 <span class="math display">\[
-\zeta + \alpha_1 u_{t-1}^2 + \dots + \alpha_m u_{t-m}^2 + w_t \le 0
+\zeta + \alpha_1 u_{t-1}^2 + \dots + \alpha_m u_{t-m}^2 + w_t \ge 0
 \]</span>
 for all realisations of <span class="math inline">\(\{u_t\}\)</span>. This is the case if <span class="math inline">\(w_t &gt; -\zeta\)</span>, with <span class="math inline">\(\zeta&gt;0\)</span>, and if <span class="math inline">\(\alpha_i \ge 0\)</span> for <span class="math inline">\(i \in \{1,\dots,m\}\)</span>. Assuming this is the case, <span class="math inline">\(u_t^2\)</span> is covariance-stationary if the roots of:
 <span class="math display">\[
@@ -334,14 +334,15 @@ Data: SMI daily returns.</caption>
 </table></div>
 <div class="figure" style="text-align: left-aligned">
 <span style="display:block;" id="fig:estimGARCH3X"></span>
-<img src="TimeSeries_files/figure-html/estimGARCH3X-1.png" alt="Estimated conditional standard deviations ($\sqrt{h_t}$) of SMI daily returns: ARCH(2) [black line] and GARCH(11) [dotted red line] specifications." width="672"><p class="caption">
-Figure 7.3: Estimated conditional standard deviations (<span class="math inline">\(\sqrt{h_t}\)</span>) of SMI daily returns: ARCH(2) [black line] and GARCH(11) [dotted red line] specifications.
+<img src="TimeSeries_files/figure-html/estimGARCH3X-1.png" alt="Estimated conditional standard deviations ($\sqrt{h_t}$) of SMI daily returns: ARCH(2) [black line] and GARCH(1,1) [dotted red line] specifications." width="672"><p class="caption">
+Figure 7.3: Estimated conditional standard deviations (<span class="math inline">\(\sqrt{h_t}\)</span>) of SMI daily returns: ARCH(2) [black line] and GARCH(1,1) [dotted red line] specifications.
 </p>
 </div>
-<div id="arch-in-mean" class="section level3" number="7.3.1">
-<h3>
-<span class="header-section-number">7.3.1</span> ARCH-in-mean<a class="anchor" aria-label="anchor" href="#arch-in-mean"><i class="fas fa-link"></i></a>
-</h3>
+</div>
+<div id="arch-in-mean" class="section level2" number="7.4">
+<h2>
+<span class="header-section-number">7.4</span> ARCH-in-mean<a class="anchor" aria-label="anchor" href="#arch-in-mean"><i class="fas fa-link"></i></a>
+</h2>
 <p>Another extension of the ARCH model is the <strong>ARCH-in-Mean</strong>, or ARCH-M model. That model is close to that specified by Eqs. <a href="ARCHGARCH.html#eq:linearreg">(7.1)</a>, <a href="ARCHGARCH.html#eq:uhv">(7.4)</a> and <a href="ARCHGARCH.html#eq:hARCH">(7.5)</a>, but it also allows for a potential effect of <span class="math inline">\(h_t\)</span> on <span class="math inline">\(\mathbb{E}_{t-1}(y_{t})\)</span>:
 <span class="math display">\[\begin{eqnarray*}
 y_t &amp;=&amp; c + \phi_1 y_{t-1} + \dots + \phi_p y_{t-p} + {\color{blue}\delta h_t}+ u_t \\
@@ -350,7 +351,6 @@ h_t &amp;=&amp; \zeta + \alpha_1 u_{t-1}^2 + \dots + \alpha_m u_{t-m}^2,
 \end{eqnarray*}\]</span>
 where <span class="math inline">\(v_t\)</span> is a zero-mean unit-variance i.i.d. sequence.</p>
 
-</div>
 </div>
 </div>
 
@@ -368,9 +368,8 @@ where <span class="math inline">\(v_t\)</span> is a zero-mean unit-variance i.i.
 <li><a class="nav-link" href="#maximum-likelihood-estimation-of-an-arch-process"><span class="header-section-number">7.2.2</span> Maximum Likelihood Estimation of an ARCH process</a></li>
 </ul>
 </li>
-<li>
-<a class="nav-link" href="#GARCH"><span class="header-section-number">7.3</span> The GARCH model</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#arch-in-mean"><span class="header-section-number">7.3.1</span> ARCH-in-mean</a></li></ul>
-</li>
+<li><a class="nav-link" href="#GARCH"><span class="header-section-number">7.3</span> The GARCH model</a></li>
+<li><a class="nav-link" href="#arch-in-mean"><span class="header-section-number">7.4</span> ARCH-in-mean</a></li>
 </ul>
 
       <div class="book-extra">
@@ -387,7 +386,7 @@ where <span class="math inline">\(v_t\)</span> is a zero-mean unit-variance i.i.
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Introduction to Time Series</strong>" was written by Jean-Paul Renne. It was last built on 2023-04-25.</p>
+    <p>"<strong>Introduction to Time Series</strong>" was written by Jean-Paul Renne. It was last built on 2023-10-04.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
@@ -400,7 +399,7 @@ where <span class="math inline">\(v_t\)</span> is a zero-mean unit-variance i.i.
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))
         src = src.replace(/^https?:/, '');

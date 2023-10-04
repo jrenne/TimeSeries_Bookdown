@@ -7,7 +7,7 @@
 <title>Chapter 6 Introduction to cointegration | Introduction to Time Series</title>
 <meta name="author" content="Jean-Paul Renne">
 <meta name="description" content="6.1 Intuition Many statistical procedures are well-defined only when the processes of interest are stationary. As a result, especially when one wants to investigate the joint dynamics of different...">
-<meta name="generator" content="bookdown 0.27 with bs4_book()">
+<meta name="generator" content="bookdown 0.34 with bs4_book()">
 <meta property="og:title" content="Chapter 6 Introduction to cointegration | Introduction to Time Series">
 <meta property="og:type" content="book">
 <meta property="og:description" content="6.1 Intuition Many statistical procedures are well-defined only when the processes of interest are stationary. As a result, especially when one wants to investigate the joint dynamics of different...">
@@ -16,7 +16,7 @@
 <meta name="twitter:description" content="6.1 Intuition Many statistical procedures are well-defined only when the processes of interest are stationary. As a result, especially when one wants to investigate the joint dynamics of different...">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
-<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.4.0/transition.js"></script><script src="libs/bs3compat-0.4.0/tabs.js"></script><script src="libs/bs3compat-0.4.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.5.0/transition.js"></script><script src="libs/bs3compat-0.5.0/tabs.js"></script><script src="libs/bs3compat-0.5.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
 <script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
     
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
@@ -166,7 +166,7 @@ where <span class="math inline">\(H(L)\varepsilon_t\)</span> is a stationary pro
 <div class="definition">
 <p><span id="def:cointegration" class="definition"><strong>Definition 6.3  (Cointegration) </strong></span>If <span class="math inline">\(y_t\)</span> is integrated of order <span class="math inline">\(d\)</span>, then its components are said to be cointegrated if there exists a linear combination of the components of <span class="math inline">\(y_t\)</span> that is integrated of an order equal to, or lower than, <span class="math inline">\(d-1\)</span>.</p>
 </div>
-<p>For instance, Eq. <a href="cointeg.html#eq:yxI1">(6.1)</a> implies that <span class="math inline">\([1,-\beta]'\)</span> is a <strong>cointegrating vector</strong> and that <span class="math inline">\([x_t,y_t]'\)</span> is cointegrated.</p>
+<p>For instance, Eq. <a href="cointeg.html#eq:yxI1">(6.1)</a> implies that <span class="math inline">\([1,-\beta]'\)</span> is a <strong>cointegrating vector</strong> and that <span class="math inline">\([y_t,x_t]'\)</span> is cointegrated.</p>
 <p>Consider an <span class="math inline">\(I(1)\)</span> process, <span class="math inline">\(y_t\)</span>, that is such that the Wold representation of <span class="math inline">\(\Delta y_t\)</span> is Eq. <a href="cointeg.html#eq:I1">(6.3)</a>. We have:
 <span class="math display">\[
 y_t = \mu + H(L)\varepsilon_t + y_{t-1} = t \mu + H(L)(\varepsilon_t + \varepsilon_{t-1} + \dots + \varepsilon_1) + y_0.
@@ -179,7 +179,7 @@ where <span class="math inline">\(\xi_t\)</span> is a stationary process.</p>
 <p>Assume that <span class="math inline">\(y_t\)</span> possesses a cointegrating vector <span class="math inline">\(\pi\)</span> such that <span class="math inline">\(\pi' y_t\)</span> is a (univariate) stationary process.</p>
 <p>Necessarily, we must have <span class="math inline">\(\pi' \mu = 0\)</span> and <span class="math inline">\(\pi' H(1)=0\)</span>. Reciprocally, if <span class="math inline">\(\pi' \mu = 0\)</span> and <span class="math inline">\(\pi' H(1)=0\)</span>, then <span class="math inline">\(\pi\)</span> is a cointegrating vector of <span class="math inline">\(y_t\)</span>. This proves the following proposition:</p>
 <div class="proposition">
-<p><span id="prp:NScondCoint" class="proposition"><strong>Proposition 6.2  (Necessary and sufficient conditions of cointegration) </strong></span>If <span class="math inline">\(y_t\)</span> is <span class="math inline">\(I(1)\)</span> and admits the Wold representation Eq. <a href="cointeg.html#eq:I1">(6.3)</a>, with <span class="math inline">\(d=1\)</span>, then <span class="math inline">\(\pi\)</span> is a cointegrating vector iff
+<p><span id="prp:NScondCoint" class="proposition"><strong>Proposition 6.2  (Necessary and sufficient conditions of cointegration) </strong></span>If <span class="math inline">\(y_t\)</span> is <span class="math inline">\(I(1)\)</span> and admits the Wold representation Eq. <a href="cointeg.html#eq:I1">(6.3)</a>, with <span class="math inline">\(d=1\)</span>, then <span class="math inline">\(\pi\)</span> is a cointegrating vector if and only if (iff):
 <span class="math display">\[
 \pi' \mu = 0 \mbox{ (scalar equation) and }\pi' H(1)=0\mbox{ (vectorial equation)}.
 \]</span></p>
@@ -291,10 +291,11 @@ Figure 6.2: Simulation of <span class="math inline">\(y_{1,t}\)</span> (in blue)
 </p>
 </div>
 </div>
-<div id="cointegration-in-practice" class="section level3" number="6.3.1">
-<h3>
-<span class="header-section-number">6.3.1</span> Cointegration in practice<a class="anchor" aria-label="anchor" href="#cointegration-in-practice"><i class="fas fa-link"></i></a>
-</h3>
+</div>
+<div id="cointegration-in-practice" class="section level2" number="6.4">
+<h2>
+<span class="header-section-number">6.4</span> Cointegration in practice<a class="anchor" aria-label="anchor" href="#cointegration-in-practice"><i class="fas fa-link"></i></a>
+</h2>
 <p>Assume that we have a vector of variables <span class="math inline">\(y_t\)</span> and that we want to investigate the joint dynamics of its components. If the <span class="math inline">\(y_{i,t}\)</span>s are <span class="math inline">\(I(1)\)</span>, we may need to use a VECM. Therefore, in the first place, one has to test for the stationarity of <span class="math inline">\(y_t\)</span>’s components (see Section <a href="NonStat.html#NonStat">5</a>).</p>
 <p>If the components of <span class="math inline">\(y_t\)</span> are <span class="math inline">\(I(1)\)</span>, one has to determine the existence of cointegrating vectors. There are two general possibilities to do this:</p>
 <ol style="list-style-type: decimal">
@@ -307,18 +308,18 @@ Figure 6.2: Simulation of <span class="math inline">\(y_{1,t}\)</span> (in blue)
 <li>We have no a priori regarding the cointegration relationship. We have to estimate (and test) the potential cointegration relationship.</li>
 </ol>
 <p>In the first case, we proceed in two steps:
-a. If <span class="math inline">\(\pi^*\)</span> is suspected to be a cointegrating vector, we can then use unit-root or stationarity tests on <span class="math inline">\(z_t={\pi^*}' y_t\)</span> (see Section @ref{NonStat}).
+a. If <span class="math inline">\(\pi^*\)</span> is suspected to be a cointegrating vector, we can then use unit-root or stationarity tests on <span class="math inline">\(z_t={\pi^*}' y_t\)</span> (see Section <a href="NonStat.html#NonStat">5</a>).
 b. Estimate Eq. <a href="cointeg.html#eq:VECM3">(6.7)</a> by OLS.</p>
-<p>In the following, we focus on the second case, when there is at most one cointegration relationship. (In the general case, one can for instance implement the <span class="citation">Johansen (<a href="references.html#ref-Johansen_1991" role="doc-biblioref">1991</a>)</span> approach.)</p>
-<p><span class="citation">Engle and Granger (<a href="references.html#ref-Engle_Granger_1987" role="doc-biblioref">1987</a>)</span> propose a two-step estimation procedure to estimate error-correction models. This method proceeds under the assumption that there is a single cointegration equation, i.e. <span class="math inline">\(A' = [\alpha_1,\dots,\alpha_n]\)</span>. (Recall that <span class="math inline">\(\Phi(1) = BA'\)</span>, see Eq. <a href="cointeg.html#eq:BAvecm">(6.5)</a>.) Without loss of generality, one can set <span class="math inline">\(\alpha_1=1\)</span>. In that case, the cointegration relationship, if it exists, is of the form:
+<p>In the following, we focus on the second case, when there is at most one cointegration relationship. (In the general case, one can for instance implement the <span class="citation">Johansen (<a href="references.html#ref-Johansen_1991">1991</a>)</span> approach.)</p>
+<p><span class="citation">Engle and Granger (<a href="references.html#ref-Engle_Granger_1987">1987</a>)</span> propose a two-step estimation procedure to estimate error-correction models. This method proceeds under the assumption that there is a single cointegration equation, i.e. <span class="math inline">\(A' = [\alpha_1,\dots,\alpha_n]\)</span>. (Recall that <span class="math inline">\(\Phi(1) = BA'\)</span>, see Eq. <a href="cointeg.html#eq:BAvecm">(6.5)</a>.) Without loss of generality, one can set <span class="math inline">\(\alpha_1=1\)</span>. In that case, the cointegration relationship, if it exists, is of the form:
 <span class="math display">\[
 y_{1,t} = - \alpha_2 y_{2,t} - \dots - \alpha_n y_{n,t} + z_t,
 \]</span>
 where <span class="math inline">\(z_t \sim I(0)\)</span>.</p>
 <p>The first step consists in estimating the previous equation by OLS (regression of <span class="math inline">\(y_{1,t}\)</span> on <span class="math inline">\(y_{2,t},\dots,y_{2,t}\)</span>). The second step consists in estimating Eq. <a href="cointeg.html#eq:VECM3">(6.7)</a> also by OLS, after having replaced <span class="math inline">\(z_{t-1}\)</span> by the (lagged) residuals of the first step OLS regression (<span class="math inline">\(\hat{z}_{t-1}\)</span>). Because of high speed convergence of the first-step regression (the convergence is in <span class="math inline">\(1/T\)</span>, see Eq. <a href="cointeg.html#eq:bTsuperconv">(6.2)</a>), the asymptotic properties of the second-step estimates are the standard ones. That is, one can use the standard t-statistic to assess the statistical significativity of the parameters.</p>
-<p>It remains to explain how to test for the existence of a cointegration relationship. This amounts to testing whether <span class="math inline">\(z_t\)</span> is stationary. Note however that we do not observe the “true” <span class="math inline">\(z_t\)</span>, but only OLS-based estimates <span class="math inline">\(\hat{z}_t\)</span>. Therefore, the critical values of the usual unit-root tests are not the same. The appropriate critical values are given by <span class="citation">P. C. B. Phillips and Ouliaris (<a href="references.html#ref-Phillips_Ouliaris_1990" role="doc-biblioref">1990</a>)</span>.</p>
+<p>It remains to explain how to test for the existence of a cointegration relationship. This amounts to testing whether <span class="math inline">\(z_t\)</span> is stationary. Note however that we do not observe the “true” <span class="math inline">\(z_t\)</span>, but only OLS-based estimates <span class="math inline">\(\hat{z}_t\)</span>. Therefore, the critical values of the usual unit-root tests are not the same. The appropriate critical values are given by <span class="citation">P. C. B. Phillips and Ouliaris (<a href="references.html#ref-Phillips_Ouliaris_1990">1990</a>)</span>.</p>
 <div class="example">
-<p><span id="exm:VECMUS" class="example"><strong>Example 6.3  (VECM for US inflation and nominal interest rate) </strong></span>The data are as in Example <a href="NonStat.html#exm:NonStatExample">5.1</a>. In the first step, we compute <span class="math inline">\(z_t\)</span> and use <span class="citation">P. C. B. Phillips and Ouliaris (<a href="references.html#ref-Phillips_Ouliaris_1990" role="doc-biblioref">1990</a>)</span>’s test to see whether the two variables are cointegrated:</p>
+<p><span id="exm:VECMUS" class="example"><strong>Example 6.3  (VECM for US inflation and nominal interest rate) </strong></span>The data are as in Example <a href="NonStat.html#exm:NonStatExample">5.1</a>. In the first step, we compute <span class="math inline">\(z_t\)</span> and use <span class="citation">P. C. B. Phillips and Ouliaris (<a href="references.html#ref-Phillips_Ouliaris_1990">1990</a>)</span>’s test to see whether the two variables are cointegrated:</p>
 <div class="sourceCode" id="cb55"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">AEC</span><span class="op">)</span>;<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">tseries</span><span class="op">)</span></span>
 <span><span class="cn">T</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="va">US3var</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span></span>
@@ -411,7 +412,6 @@ where <span class="math inline">\(z_t \sim I(0)\)</span>.</p>
 
 </div>
 </div>
-</div>
   <div class="chapter-nav">
 <div class="prev"><a href="NonStat.html"><span class="header-section-number">5</span> Non-stationary processes</a></div>
 <div class="next"><a href="ARCHGARCH.html"><span class="header-section-number">7</span> ARCH and GARCH models</a></div>
@@ -421,9 +421,8 @@ where <span class="math inline">\(z_t \sim I(0)\)</span>.</p>
 <li><a class="nav-link" href="#cointeg"><span class="header-section-number">6</span> Introduction to cointegration</a></li>
 <li><a class="nav-link" href="#intuition"><span class="header-section-number">6.1</span> Intuition</a></li>
 <li><a class="nav-link" href="#the-bivariate-case"><span class="header-section-number">6.2</span> The bivariate case</a></li>
-<li>
-<a class="nav-link" href="#multivariate-case-and-vecm"><span class="header-section-number">6.3</span> Multivariate case and VECM</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#cointegration-in-practice"><span class="header-section-number">6.3.1</span> Cointegration in practice</a></li></ul>
-</li>
+<li><a class="nav-link" href="#multivariate-case-and-vecm"><span class="header-section-number">6.3</span> Multivariate case and VECM</a></li>
+<li><a class="nav-link" href="#cointegration-in-practice"><span class="header-section-number">6.4</span> Cointegration in practice</a></li>
 </ul>
 
       <div class="book-extra">
@@ -440,7 +439,7 @@ where <span class="math inline">\(z_t \sim I(0)\)</span>.</p>
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Introduction to Time Series</strong>" was written by Jean-Paul Renne. It was last built on 2023-04-25.</p>
+    <p>"<strong>Introduction to Time Series</strong>" was written by Jean-Paul Renne. It was last built on 2023-10-04.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
@@ -453,7 +452,7 @@ where <span class="math inline">\(z_t \sim I(0)\)</span>.</p>
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))
         src = src.replace(/^https?:/, '');

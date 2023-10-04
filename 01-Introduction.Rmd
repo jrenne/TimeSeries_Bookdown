@@ -59,6 +59,8 @@ Indeed, it can be shown that the $\varepsilon_t$'s are not correlated through ti
 :::
 
 
+In the following, to simplify the exposition, we will essentially consider **strong white noises**. A strong white noise is a particular case of white noise where the $\varepsilon_{t}$'s are serially independent. Using the law of iterated expectation, it can be shown that a strong white noise is a martingale difference sequence. Indeed, when the $\varepsilon_{t}$'s are serially independent, we have that $\mathbb{E}(\varepsilon_{t}|\varepsilon_{t-1},\varepsilon_{t-2},\dots)=\mathbb{E}(\varepsilon_{t})=0$.
+
 
 Let us now introduce the lag operator. The lag operator, denoted by $L$, is defined on the time series space and is defined by:
 \begin{equation}

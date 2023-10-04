@@ -6,16 +6,19 @@
   12pt,
 ]{book}
 \usepackage{amsmath,amssymb}
-\usepackage{lmodern}
 \usepackage{iftex}
 \ifPDFTeX
   \usepackage[T1]{fontenc}
   \usepackage[utf8]{inputenc}
   \usepackage{textcomp} % provide euro and other symbols
 \else % if luatex or xetex
-  \usepackage{unicode-math}
+  \usepackage{unicode-math} % this also loads fontspec
   \defaultfontfeatures{Scale=MatchLowercase}
   \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
 \fi
 % Use upquote if available, for straight quotes in verbatim environments
 \IfFileExists{upquote.sty}{\usepackage{upquote}}{}
@@ -45,13 +48,13 @@
 \newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
 \newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
 \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
 \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
 \newcommand{\BuiltInTok}[1]{#1}
 \newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
 \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
 \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
 \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
 \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
 \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
@@ -59,7 +62,7 @@
 \newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
 \newcommand{\ExtensionTok}[1]{#1}
 \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
-\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
 \newcommand{\ImportTok}[1]{#1}
 \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
 \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
@@ -68,7 +71,7 @@
 \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
 \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
 \newcommand{\RegionMarkerTok}[1]{#1}
-\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
 \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
 \newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
 \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
@@ -122,7 +125,7 @@
 \bibliographystyle{apalike}
 \IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
-\urlstyle{same} % disable monospaced font for URLs
+\urlstyle{same}
 \hypersetup{
   pdftitle={Introduction to Time Series},
   pdfauthor={Jean-Paul Renne},
@@ -131,7 +134,7 @@
 
 \title{Introduction to Time Series}
 \author{Jean-Paul Renne}
-\date{2023-04-25}
+\date{2023-10-04}
 
 \usepackage{amsthm}
 \newtheorem{theorem}{Theorem}[chapter]
@@ -282,6 +285,8 @@ where \(z_t \sim i.i.d.\mathcal{N}(0,1)\).
 
 Indeed, it can be shown that the \(\varepsilon_t\)'s are not correlated through time, we have \(\mathbb{E}_{t-1}(\varepsilon_t)=z_{t-1}z_{t-2} \ne 0\).
 \end{example}
+
+In the following, to simplify the exposition, we will essentially consider \textbf{strong white noises}. A strong white noise is a particular case of white noise where the \(\varepsilon_{t}\)'s are serially independent. Using the law of iterated expectation, it can be shown that a strong white noise is a martingale difference sequence. Indeed, when the \(\varepsilon_{t}\)'s are serially independent, we have that \(\mathbb{E}(\varepsilon_{t}|\varepsilon_{t-1},\varepsilon_{t-2},\dots)=\mathbb{E}(\varepsilon_{t})=0\).
 
 Let us now introduce the lag operator. The lag operator, denoted by \(L\), is defined on the time series space and is defined by:
 \begin{equation}
@@ -1708,18 +1713,19 @@ with \((i) \in\{AIC,HQ,BIC\}\) and where \(\hat{\boldsymbol\theta}_T(k)\) denote
 
 \begin{longtable}[]{@{}lll@{}}
 \caption{(\#tabcriteria) This table shows \(\phi\) functions used by the different criteria.}\tabularnewline
-\toprule()
+\toprule\noalign{}
 Criterion & & \(\phi^{(i)}(T)\) \\
-\midrule()
+\midrule\noalign{}
 \endfirsthead
-\toprule()
+\toprule\noalign{}
 Criterion & & \(\phi^{(i)}(T)\) \\
-\midrule()
+\midrule\noalign{}
 \endhead
+\bottomrule\noalign{}
+\endlastfoot
 Akaike & AIC & \(2\) \\
 Hannan-Quinn & HQ & \(2\log(\log(T))\) \\
 Schwarz & BIC & \(\log(T)\) \\
-\bottomrule()
 \end{longtable}
 
 The lag suggested by criterion \((i)\) is then given by:
@@ -3115,7 +3121,7 @@ This situation is illustrated by Figure \ref{fig:nonStat2}. We simulate two inde
 \end{figure}
 
 \hypertarget{nonstationarity-tests}{%
-\subsection{Nonstationarity tests}\label{nonstationarity-tests}}
+\section{Nonstationarity tests}\label{nonstationarity-tests}}
 
 Hence, employing (OLS) regressions with non-stationary variables may be misleading. It is therefore important, before employing these techniques (OLS), to check that the variables are stationary. To do so, specific tests are used. These tests are called stationarity and non-stationarity (or unit-root) tests. In the context of a stationarity test, the null hypothesis that \(y_t\) is stationary or trend-stationary (i.e.~equal to the sum of a linear trend and a stationary component). In the context of a non-stationarity (or unit root) tests, the null hypothesis that \(y_t\) is not (trend) stationary.
 
@@ -3267,7 +3273,8 @@ If \(|\phi|<1\), the OLS estimate \(\phi^{OLS}_T\) is not consistent if the \(\v
 
 As the ADF test, this test is \textbf{one-sided left-tailed} (reject the null if the test statistics are sufficiently negative). The critical values are obtained by simulation; they can for instance be found \href{http://www.econ.uiuc.edu/~econ508/DFtable.pdf}{here}.
 
-\textbf{Stationarity test: KPSS}
+\hypertarget{stationarity-test-kpss}{%
+\section{Stationarity test: KPSS}\label{stationarity-test-kpss}}
 
 The test proposed by \citet{KWIATKOWSKI1992159} is a stationarity test, i.e., under the null hypothesis, the process is stationary. The underlying specificaiton is the following:
 \[
@@ -3436,7 +3443,7 @@ where \(H(L)\varepsilon_t\) is a stationary process (but \((1-L)^{d-1}y_t\) is n
 \protect\hypertarget{def:cointegration}{}\label{def:cointegration}If \(y_t\) is integrated of order \(d\), then its components are said to be cointegrated if there exists a linear combination of the components of \(y_t\) that is integrated of an order equal to, or lower than, \(d-1\).
 \end{definition}
 
-For instance, Eq. \eqref{eq:yxI1} implies that \([1,-\beta]'\) is a \textbf{cointegrating vector} and that \([x_t,y_t]'\) is cointegrated.
+For instance, Eq. \eqref{eq:yxI1} implies that \([1,-\beta]'\) is a \textbf{cointegrating vector} and that \([y_t,x_t]'\) is cointegrated.
 
 Consider an \(I(1)\) process, \(y_t\), that is such that the Wold representation of \(\Delta y_t\) is Eq. \eqref{eq:I1}. We have:
 \[
@@ -3454,7 +3461,7 @@ Assume that \(y_t\) possesses a cointegrating vector \(\pi\) such that \(\pi' y_
 Necessarily, we must have \(\pi' \mu = 0\) and \(\pi' H(1)=0\). Reciprocally, if \(\pi' \mu = 0\) and \(\pi' H(1)=0\), then \(\pi\) is a cointegrating vector of \(y_t\). This proves the following proposition:
 
 \begin{proposition}[Necessary and sufficient conditions of cointegration]
-\protect\hypertarget{prp:NScondCoint}{}\label{prp:NScondCoint}If \(y_t\) is \(I(1)\) and admits the Wold representation Eq. \eqref{eq:I1}, with \(d=1\), then \(\pi\) is a cointegrating vector iff
+\protect\hypertarget{prp:NScondCoint}{}\label{prp:NScondCoint}If \(y_t\) is \(I(1)\) and admits the Wold representation Eq. \eqref{eq:I1}, with \(d=1\), then \(\pi\) is a cointegrating vector if and only if (iff):
 \[
 \pi' \mu = 0 \mbox{ (scalar equation) and }\pi' H(1)=0\mbox{ (vectorial equation)}.
 \]
@@ -3574,7 +3581,7 @@ When \(y_{1,t}\) is substantially above \(y_{2,t}\), \(z_t\) is large, the influ
 \end{example}
 
 \hypertarget{cointegration-in-practice}{%
-\subsection{Cointegration in practice}\label{cointegration-in-practice}}
+\section{Cointegration in practice}\label{cointegration-in-practice}}
 
 Assume that we have a vector of variables \(y_t\) and that we want to investigate the joint dynamics of its components. If the \(y_{i,t}\)s are \(I(1)\), we may need to use a VECM. Therefore, in the first place, one has to test for the stationarity of \(y_t\)'s components (see Section \ref{NonStat}).
 
@@ -3598,7 +3605,7 @@ If the components of \(y_t\) are \(I(1)\), one has to determine the existence of
 \end{enumerate}
 
 In the first case, we proceed in two steps:
-a. If \(\pi^*\) is suspected to be a cointegrating vector, we can then use unit-root or stationarity tests on \(z_t={\pi^*}' y_t\) (see Section @ref\{NonStat\}).
+a. If \(\pi^*\) is suspected to be a cointegrating vector, we can then use unit-root or stationarity tests on \(z_t={\pi^*}' y_t\) (see Section \ref{NonStat}).
 b. Estimate Eq. \eqref{eq:VECM3} by OLS.
 
 In the following, we focus on the second case, when there is at most one cointegration relationship. (In the general case, one can for instance implement the \citet{Johansen_1991} approach.)
@@ -3753,7 +3760,7 @@ In this case:
 
 For Eq. \eqref{eq:ut2} to make sense, it has to be the case that
 \[
-\zeta + \alpha_1 u_{t-1}^2 + \dots + \alpha_m u_{t-m}^2 + w_t \le 0
+\zeta + \alpha_1 u_{t-1}^2 + \dots + \alpha_m u_{t-m}^2 + w_t \ge 0
 \]
 for all realisations of \(\{u_t\}\). This is the case if \(w_t > -\zeta\), with \(\zeta>0\), and if \(\alpha_i \ge 0\) for \(i \in \{1,\dots,m\}\). Assuming this is the case, \(u_t^2\) is covariance-stationary if the roots of:
 \[
@@ -3941,11 +3948,11 @@ delta1 & 0.8299 & 0.0152 & 54.5175\\
 \end{table}
 
 \begin{figure}
-\includegraphics{TimeSeries_files/figure-latex/estimGARCH3X-1} \caption{Estimated conditional standard deviations ($\sqrt{h_t}$) of SMI daily returns: ARCH(2) [black line] and GARCH(11) [dotted red line] specifications.}\label{fig:estimGARCH3X}
+\includegraphics{TimeSeries_files/figure-latex/estimGARCH3X-1} \caption{Estimated conditional standard deviations ($\sqrt{h_t}$) of SMI daily returns: ARCH(2) [black line] and GARCH(1,1) [dotted red line] specifications.}\label{fig:estimGARCH3X}
 \end{figure}
 
 \hypertarget{arch-in-mean}{%
-\subsection{ARCH-in-mean}\label{arch-in-mean}}
+\section{ARCH-in-mean}\label{arch-in-mean}}
 
 Another extension of the ARCH model is the \textbf{ARCH-in-Mean}, or ARCH-M model. That model is close to that specified by Eqs. \eqref{eq:linearreg}, \eqref{eq:uhv} and \eqref{eq:hARCH}, but it also allows for a potential effect of \(h_t\) on \(\mathbb{E}_{t-1}(y_{t})\):
 \begin{eqnarray*}
@@ -4119,7 +4126,7 @@ If \(M \in \mathbb{R}^{m \times n}\), then its Moore-Penrose pseudo inverse (exi
 \end{definition}
 
 \begin{proposition}[Properties of the Moore-Penrose inverse]
-\protect\hypertarget{prp:MoorPenrose}{}\label{prp:MoorPenrose}
+\protect\hypertarget{prp:MoorPenrose}{}\label{prp:MoorPenrose}\leavevmode
 
 \begin{itemize}
 \tightlist
@@ -4320,7 +4327,7 @@ We have \(\mathbb{E}(Z)=\nu\). (See Table \ref{tab:Chi2} for quantiles.)
 \end{definition}
 
 \begin{definition}[Cauchy distribution]
-\protect\hypertarget{def:Cauchy}{}\label{def:Cauchy}
+\protect\hypertarget{def:Cauchy}{}\label{def:Cauchy}\leavevmode
 
 The probability distribution function of the Cauchy distribution defined by a location parameter \(\mu\) and a scale parameter \(\gamma\) is:
 \[

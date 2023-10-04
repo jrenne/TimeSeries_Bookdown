@@ -232,6 +232,7 @@ issues-when-working-with-nonstationary-time-series
 the-bias-of-autoregressive-coefficient-towards-zero
 spurious-regressions
 nonstationarity-tests
+stationarity-test-kpss
 cointeg
 intuition
 the-bivariate-case

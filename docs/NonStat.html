@@ -7,7 +7,7 @@
 <title>Chapter 5 Non-stationary processes | Introduction to Time Series</title>
 <meta name="author" content="Jean-Paul Renne">
 <meta name="description" content="In time series analysis, nonstationarity has several crucial implications. Indeed, various time-series regression procedures are not reliable anymore when processes are nonstationary. There are...">
-<meta name="generator" content="bookdown 0.27 with bs4_book()">
+<meta name="generator" content="bookdown 0.34 with bs4_book()">
 <meta property="og:title" content="Chapter 5 Non-stationary processes | Introduction to Time Series">
 <meta property="og:type" content="book">
 <meta property="og:description" content="In time series analysis, nonstationarity has several crucial implications. Indeed, various time-series regression procedures are not reliable anymore when processes are nonstationary. There are...">
@@ -16,7 +16,7 @@
 <meta name="twitter:description" content="In time series analysis, nonstationarity has several crucial implications. Indeed, various time-series regression procedures are not reliable anymore when processes are nonstationary. There are...">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
-<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.4.0/transition.js"></script><script src="libs/bs3compat-0.4.0/tabs.js"></script><script src="libs/bs3compat-0.4.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.5.0/transition.js"></script><script src="libs/bs3compat-0.5.0/tabs.js"></script><script src="libs/bs3compat-0.5.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
 <script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
     
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
@@ -122,7 +122,7 @@ Since the previous equation needs to be satisfied for any <span class="math inli
 <h3>
 <span class="header-section-number">5.1.1</span> The bias of autoregressive coefficient towards zero<a class="anchor" aria-label="anchor" href="#the-bias-of-autoregressive-coefficient-towards-zero"><i class="fas fa-link"></i></a>
 </h3>
-<p>Consider a non-stationary <span class="math inline">\(y_t\)</span> process (e.g., <span class="math inline">\(y_t\)</span> follows a random walk). The estimate of <span class="math inline">\(\phi\)</span> in the (OLS) regression <span class="math inline">\(y_t = c + \phi y_{t-1} + \varepsilon_t\)</span> is then biased toward zero. In particular, we have the approximation <span class="math inline">\(\mathbb{E}(\phi)=1-5.3/T\)</span>, where <span class="math inline">\(T\)</span> is the sample size (see, e.g., <span class="citation">Abadir (<a href="references.html#ref-Abadir_1993" role="doc-biblioref">1993</a>)</span>). The 5th percentile of the distribution of <span class="math inline">\(\phi\)</span> is approximately <span class="math inline">\(1 - 14.1/T\)</span>, e.g., 0.824 for <span class="math inline">\(T=80\)</span>. This notably poses problems for forecasts. Indeed, while we have <span class="math inline">\(\mathbb{E}_t(y_{t+h})=y_t\)</span> if <span class="math inline">\(y_t\)</span> follows a random walk, someone who would fit an AR(1) process and would obtain for instance <span class="math inline">\(\hat\phi=0.824\)</span> would obtain that <span class="math inline">\(\mathbb{E}_t(y_{t+10})=0.144y_t\)</span>.</p>
+<p>Consider a non-stationary <span class="math inline">\(y_t\)</span> process (e.g., <span class="math inline">\(y_t\)</span> follows a random walk). The estimate of <span class="math inline">\(\phi\)</span> in the (OLS) regression <span class="math inline">\(y_t = c + \phi y_{t-1} + \varepsilon_t\)</span> is then biased toward zero. In particular, we have the approximation <span class="math inline">\(\mathbb{E}(\phi)=1-5.3/T\)</span>, where <span class="math inline">\(T\)</span> is the sample size (see, e.g., <span class="citation">Abadir (<a href="references.html#ref-Abadir_1993">1993</a>)</span>). The 5th percentile of the distribution of <span class="math inline">\(\phi\)</span> is approximately <span class="math inline">\(1 - 14.1/T\)</span>, e.g., 0.824 for <span class="math inline">\(T=80\)</span>. This notably poses problems for forecasts. Indeed, while we have <span class="math inline">\(\mathbb{E}_t(y_{t+h})=y_t\)</span> if <span class="math inline">\(y_t\)</span> follows a random walk, someone who would fit an AR(1) process and would obtain for instance <span class="math inline">\(\hat\phi=0.824\)</span> would obtain that <span class="math inline">\(\mathbb{E}_t(y_{t+10})=0.144y_t\)</span>.</p>
 <p>This is illustrated by Figure <a href="NonStat.html#fig:nonStat1">5.1</a>. This figure shows, in black, the distributions of <span class="math inline">\(\hat\phi\)</span>, obtained by OLS in the context of the linear model <span class="math inline">\(y_t = c + \phi y_{t-1} + \varepsilon_t\)</span>. These distributions are obtained by simulations. We consider two sample sizes (<span class="math inline">\(T=50\)</span>, left plot, and <span class="math inline">\(T=200\)</span>, right plot). The vertical red bars indicate the means of the distributions, the vertical blue bar gives the approximated mean given by <span class="math inline">\(1-5.3/T\)</span>.</p>
 <div class="figure" style="text-align: left-aligned">
 <span style="display:block;" id="fig:nonStat1"></span>
@@ -144,16 +144,17 @@ Figure 5.2: The densities of based on 1000 simulations of samples of length <spa
 </p>
 </div>
 </div>
-<div id="nonstationarity-tests" class="section level3" number="5.1.3">
-<h3>
-<span class="header-section-number">5.1.3</span> Nonstationarity tests<a class="anchor" aria-label="anchor" href="#nonstationarity-tests"><i class="fas fa-link"></i></a>
-</h3>
+</div>
+<div id="nonstationarity-tests" class="section level2" number="5.2">
+<h2>
+<span class="header-section-number">5.2</span> Nonstationarity tests<a class="anchor" aria-label="anchor" href="#nonstationarity-tests"><i class="fas fa-link"></i></a>
+</h2>
 <p>Hence, employing (OLS) regressions with non-stationary variables may be misleading. It is therefore important, before employing these techniques (OLS), to check that the variables are stationary. To do so, specific tests are used. These tests are called stationarity and non-stationarity (or unit-root) tests. In the context of a stationarity test, the null hypothesis that <span class="math inline">\(y_t\)</span> is stationary or trend-stationary (i.e. equal to the sum of a linear trend and a stationary component). In the context of a non-stationarity (or unit root) tests, the null hypothesis that <span class="math inline">\(y_t\)</span> is not (trend) stationary.</p>
 <p>To illustrate, consider the AR(1) case:
 <span class="math display" id="eq:AR1">\[\begin{equation}
 y_t = \phi y_{t-1} + \varepsilon_t, \quad \varepsilon_t \sim \mathcal{N}(0,1).\tag{5.2}
 \end{equation}\]</span></p>
-<p>If <span class="math inline">\(y_t\)</span> is stationary (i.e. if <span class="math inline">\(|\phi|&lt;1\)</span>, Prop. <a href="Univariate.html#prp:statioAR1">2.3</a>), it can be shown (<span class="citation">Hamilton (<a href="references.html#ref-Hamilton_1994" role="doc-biblioref">1994</a>)</span>, p.216) that:
+<p>If <span class="math inline">\(y_t\)</span> is stationary (i.e. if <span class="math inline">\(|\phi|&lt;1\)</span>, Prop. <a href="Univariate.html#prp:statioAR1">2.3</a>), it can be shown (<span class="citation">Hamilton (<a href="references.html#ref-Hamilton_1994">1994</a>)</span>, p.216) that:
 <span class="math display">\[
 \sqrt{T}(\phi^{OLS}-\phi) \overset{d}{\rightarrow}  \mathcal{N}(0,1-\phi^2).
 \]</span>
@@ -178,7 +179,7 @@ T^{-1} \sum_{t=1}^{T} y_{t-1}\varepsilon_{t} &amp;\overset{d}{\rightarrow}&amp; 
 where <span class="math inline">\(W(r)\)</span> denotes a standard Brownian motion (Wiener process) defined on the unit interval.</p>
 </div>
 <div class="proof">
-<p><span id="unlabeled-div-18" class="proof"><em>Proof</em>. </span>See <span class="citation">P. C. B. Phillips (<a href="references.html#ref-Phillips_1987" role="doc-biblioref">1987</a>)</span> or <span class="citation">Hamilton (<a href="references.html#ref-Hamilton_1994" role="doc-biblioref">1994</a>)</span> (Subsection 17.4).</p>
+<p><span id="unlabeled-div-18" class="proof"><em>Proof</em>. </span>See <span class="citation">P. C. B. Phillips (<a href="references.html#ref-Phillips_1987">1987</a>)</span> or <span class="citation">Hamilton (<a href="references.html#ref-Hamilton_1994">1994</a>)</span> (Subsection 17.4).</p>
 </div>
 <p>Theorem <a href="NonStat.html#thm:cvgceunitroot">5.1</a> notably implies that, if <span class="math inline">\(\phi=1\)</span>, then:
 <span class="math display" id="eq:tstat">\[\begin{eqnarray}
@@ -204,7 +205,7 @@ y_t = c + \delta t + \phi y_{t-1} + \varepsilon_t.
 </ul>
 <p>So far, we focused on AR(1) processes. But many time series have a more complicated dynamic structure.</p>
 <p><strong>Dickey-Fuller (DF) test</strong></p>
-<p>The specification underlying the <span class="citation">Dickey and Fuller (<a href="references.html#ref-DF1979" role="doc-biblioref">1979</a>)</span> test is:
+<p>The specification underlying the <span class="citation">Dickey and Fuller (<a href="references.html#ref-DF1979">1979</a>)</span> test is:
 <span class="math display" id="eq:adf11">\[\begin{equation}
 y_t = \boldsymbol\beta'D_t + \phi y_{t-1} + \sum_{i=1}^{p}\psi_i \Delta y_{t-i} + \varepsilon_t,\tag{5.5}
 \end{equation}\]</span>
@@ -225,17 +226,17 @@ with <span class="math inline">\(\pi = \phi - 1\)</span>. Under the null hypothe
 \mbox{ADF $t$ statistic: } &amp;&amp; ADF_t = t_{\pi=0} = \frac{\pi^{OLS}}{\sigma^{OLS}_{\pi}}
 \end{eqnarray*}\]</span></p>
 <p>Under the null hypothesis (<span class="math inline">\(\phi=1\)</span>) and if the regression is as in Eq. <a href="NonStat.html#eq:AR1">(5.2)</a> the limiting distributions of the statistics are, respectively, as in Eq. <a href="NonStat.html#eq:biasstat">(5.3)</a> and Eq. <a href="NonStat.html#eq:tstat">(5.4)</a>.</p>
-<p>The selection of <span class="math inline">\(p\)</span> can rely on information criteria (see Def. <a href="Univariate.html#def:infocriteria">2.11</a>). Alternatively, <span class="citation">Schwert (<a href="references.html#ref-Schwert_1989" role="doc-biblioref">1989</a>)</span> proposes to use:
+<p>The selection of <span class="math inline">\(p\)</span> can rely on information criteria (see Def. <a href="Univariate.html#def:infocriteria">2.11</a>). Alternatively, <span class="citation">Schwert (<a href="references.html#ref-Schwert_1989">1989</a>)</span> proposes to use:
 <span class="math display">\[
 p=\left[12 \times \left( \frac{T}{100} \right)^{1/4}\right].
 \]</span></p>
 <p>Importantly, this test is <strong>one-sided left-tailed</strong> test: one rejects the null if the test statistics are sufficiently negative; we are therefore interested in the first quantiles of the limit distribution.</p>
 <p><strong>Phillips-Perron (PP) test</strong></p>
-<p>The regression underyling the <span class="citation">P. Phillips and Perron (<a href="references.html#ref-Phillips_Perron_1988" role="doc-biblioref">1988</a>)</span> test is as follows:
+<p>The regression underyling the <span class="citation">P. Phillips and Perron (<a href="references.html#ref-Phillips_Perron_1988">1988</a>)</span> test is as follows:
 <span class="math display">\[
 \Delta y_t = \boldsymbol\beta' D_t + \pi y_{t-1} + \varepsilon_t.
 \]</span>
-The issue of serial correlation (and heteroskedasticity) in the residual is handled by adjusting the test statistics <span class="math inline">\(t_{\pi=0}\)</span> and <span class="math inline">\(T\pi\)</span>:<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;See &lt;span class="citation"&gt;Hamilton (&lt;a href="references.html#ref-Hamilton_1994" role="doc-biblioref"&gt;1994&lt;/a&gt;)&lt;/span&gt;, Table 17.2 p.514.&lt;/p&gt;'><sup>11</sup></a></p>
+The issue of serial correlation (and heteroskedasticity) in the residual is handled by adjusting the test statistics <span class="math inline">\(t_{\pi=0}\)</span> and <span class="math inline">\(T\pi\)</span>:<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;See &lt;span class="citation"&gt;Hamilton (&lt;a href="references.html#ref-Hamilton_1994"&gt;1994&lt;/a&gt;)&lt;/span&gt;, Table 17.2 p.514.&lt;/p&gt;'><sup>11</sup></a></p>
 <p><span class="math display">\[\begin{eqnarray*}
 \mbox{PP $t$ stat.: } &amp;&amp; Z_t = \sqrt{\frac{\hat\gamma_{0,T}}{\hat\lambda_T^2}} t_{\pi=0,T} - \frac{\hat\lambda_T^2-\hat\gamma_{0,T}}{2\hat\lambda_T}\left(\frac{T\sigma^{OLS}_{\pi,T}}{s_T}\right)\\
 \mbox{PP bias stat.: } &amp;&amp; Z_\pi = T\pi^{OLS}_T - \frac{1}{2}(\hat\lambda^2-\hat\gamma_{0,T}^2)\left(\frac{T \sigma^{OLS}_{\pi,T}}{s^2_T}\right)^2
@@ -250,12 +251,12 @@ s_T^2 &amp;=&amp; \frac{1}{T-k} \Sigma_{t=1}^{T} \hat{\varepsilon}^2_t \quad \mb
 \end{eqnarray*}\]</span></p>
 <p>When the underlying regression is: <span class="math inline">\(y_t = \alpha + \phi y_{t-1} + \varepsilon_t\)</span>, and under the null that <span class="math inline">\(\alpha=0\)</span> and <span class="math inline">\(\phi=1\)</span>, we have that:</p>
 <ul>
-<li>the limiting distribution of <span class="math inline">\(Z_\pi\)</span> is that of (see, e.g., <span class="citation">Hamilton (<a href="references.html#ref-Hamilton_1994" role="doc-biblioref">1994</a>)</span> 17.6.8):
+<li>the limiting distribution of <span class="math inline">\(Z_\pi\)</span> is that of (see, e.g., <span class="citation">Hamilton (<a href="references.html#ref-Hamilton_1994">1994</a>)</span> 17.6.8):
 <span class="math display">\[
 \frac{\frac{1}{2}\{W(1)^2 - 1\} - W(1)\int_0^1 W(r)dr}{\int_0^1 W(r)^2dr-\left[\int_0^1 W(r)dr\right]^2};
 \]</span>
 </li>
-<li>the limiting distribution of <span class="math inline">\(Z_t\)</span> is that of (see, e.g., <span class="citation">Hamilton (<a href="references.html#ref-Hamilton_1994" role="doc-biblioref">1994</a>)</span> 17.6.12):
+<li>the limiting distribution of <span class="math inline">\(Z_t\)</span> is that of (see, e.g., <span class="citation">Hamilton (<a href="references.html#ref-Hamilton_1994">1994</a>)</span> 17.6.12):
 <span class="math display">\[
 \frac{\frac{1}{2}\{W(1)^2 - 1\} - W(1)\int_0^1 W(r)dr}{\left(\int_0^1 W(r)^2dr-\left[\int_0^1 W(r)dr\right]^2\right)^2}.
 \]</span>
@@ -263,8 +264,12 @@ s_T^2 &amp;=&amp; \frac{1}{T-k} \Sigma_{t=1}^{T} \hat{\varepsilon}^2_t \quad \mb
 </ul>
 <p>If <span class="math inline">\(|\phi|&lt;1\)</span>, the OLS estimate <span class="math inline">\(\phi^{OLS}_T\)</span> is not consistent if the <span class="math inline">\(\varepsilon_t\)</span>s are serially correlated (the true residuals and the regressors are correlated). When <span class="math inline">\(\phi=1\)</span>, the rate of convergence of <span class="math inline">\(\phi^{OLS}_T\)</span> is <span class="math inline">\(T\)</span> (<em>super-consistency</em>), which ensures that <span class="math inline">\(\phi^{OLS}_T \overset{p}{\rightarrow} 1\)</span> even if the <span class="math inline">\(\varepsilon_t\)</span>s are serially correlated.</p>
 <p>As the ADF test, this test is <strong>one-sided left-tailed</strong> (reject the null if the test statistics are sufficiently negative). The critical values are obtained by simulation; they can for instance be found <a href="http://www.econ.uiuc.edu/~econ508/DFtable.pdf">here</a>.</p>
-<p><strong>Stationarity test: KPSS</strong></p>
-<p>The test proposed by <span class="citation">Kwiatkowski et al. (<a href="references.html#ref-KWIATKOWSKI1992159" role="doc-biblioref">1992</a>)</span> is a stationarity test, i.e., under the null hypothesis, the process is stationary. The underlying specificaiton is the following:
+</div>
+<div id="stationarity-test-kpss" class="section level2" number="5.3">
+<h2>
+<span class="header-section-number">5.3</span> Stationarity test: KPSS<a class="anchor" aria-label="anchor" href="#stationarity-test-kpss"><i class="fas fa-link"></i></a>
+</h2>
+<p>The test proposed by <span class="citation">Kwiatkowski et al. (<a href="references.html#ref-KWIATKOWSKI1992159">1992</a>)</span> is a stationarity test, i.e., under the null hypothesis, the process is stationary. The underlying specificaiton is the following:
 <span class="math display">\[
 y_t = \boldsymbol\beta' D_t + \mu_t + \varepsilon_t,
 \]</span>
@@ -314,7 +319,6 @@ Figure 5.3: US Inflation (in black) and short-term nominal rates (in red).
 
 </div>
 </div>
-</div>
 
   <div class="chapter-nav">
 <div class="prev"><a href="forecasting.html"><span class="header-section-number">4</span> Forecasting</a></div>
@@ -327,9 +331,10 @@ Figure 5.3: US Inflation (in black) and short-term nominal rates (in red).
 <a class="nav-link" href="#issues-when-working-with-nonstationary-time-series"><span class="header-section-number">5.1</span> Issues when working with nonstationary time series</a><ul class="nav navbar-nav">
 <li><a class="nav-link" href="#the-bias-of-autoregressive-coefficient-towards-zero"><span class="header-section-number">5.1.1</span> The bias of autoregressive coefficient towards zero</a></li>
 <li><a class="nav-link" href="#spurious-regressions"><span class="header-section-number">5.1.2</span> Spurious regressions</a></li>
-<li><a class="nav-link" href="#nonstationarity-tests"><span class="header-section-number">5.1.3</span> Nonstationarity tests</a></li>
 </ul>
 </li>
+<li><a class="nav-link" href="#nonstationarity-tests"><span class="header-section-number">5.2</span> Nonstationarity tests</a></li>
+<li><a class="nav-link" href="#stationarity-test-kpss"><span class="header-section-number">5.3</span> Stationarity test: KPSS</a></li>
 </ul>
 
       <div class="book-extra">
@@ -346,7 +351,7 @@ Figure 5.3: US Inflation (in black) and short-term nominal rates (in red).
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Introduction to Time Series</strong>" was written by Jean-Paul Renne. It was last built on 2023-04-25.</p>
+    <p>"<strong>Introduction to Time Series</strong>" was written by Jean-Paul Renne. It was last built on 2023-10-04.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
@@ -359,7 +364,7 @@ Figure 5.3: US Inflation (in black) and short-term nominal rates (in red).
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))
         src = src.replace(/^https?:/, '');

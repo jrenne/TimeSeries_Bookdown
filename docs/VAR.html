@@ -7,7 +7,7 @@
 <title>Chapter 3 Multivariate models | Introduction to Time Series</title>
 <meta name="author" content="Jean-Paul Renne">
 <meta name="description" content="This section presents Vector Auto-Regressive Moving-Average (SVARMA) models. These models are widely used in macroeconomic analysis. While simple and easy to estimate, they make it possible to...">
-<meta name="generator" content="bookdown 0.27 with bs4_book()">
+<meta name="generator" content="bookdown 0.34 with bs4_book()">
 <meta property="og:title" content="Chapter 3 Multivariate models | Introduction to Time Series">
 <meta property="og:type" content="book">
 <meta property="og:description" content="This section presents Vector Auto-Regressive Moving-Average (SVARMA) models. These models are widely used in macroeconomic analysis. While simple and easy to estimate, they make it possible to...">
@@ -16,7 +16,7 @@
 <meta name="twitter:description" content="This section presents Vector Auto-Regressive Moving-Average (SVARMA) models. These models are widely used in macroeconomic analysis. While simple and easy to estimate, they make it possible to...">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
-<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.4.0/transition.js"></script><script src="libs/bs3compat-0.4.0/tabs.js"></script><script src="libs/bs3compat-0.4.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.5.0/transition.js"></script><script src="libs/bs3compat-0.5.0/tabs.js"></script><script src="libs/bs3compat-0.5.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
 <script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
     
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
@@ -86,8 +86,8 @@
 <h1>
 <span class="header-section-number">3</span> Multivariate models<a class="anchor" aria-label="anchor" href="#VAR"><i class="fas fa-link"></i></a>
 </h1>
-<p>This section presents Vector Auto-Regressive Moving-Average (SVARMA) models. These models are widely used in macroeconomic analysis. While simple and easy to estimate, they make it possible to conveniently capture the dynamics of complex multivariate systems. VAR popularity is notably due to <span class="citation">Sims (<a href="references.html#ref-Sims_1980" role="doc-biblioref">1980</a>)</span>’s influential work. A comprehensive survey is proposed by <span class="citation">J. H. Stock and Watson (<a href="references.html#ref-Stock_Watson_2016" role="doc-biblioref">2016</a>)</span>.</p>
-<p>In economics, VAR models are often employed in order to identify <em>structural</em> shocks, that are independent primitive exogenous forces that drive economic variables (<span class="citation">Ramey (<a href="references.html#ref-Ramey_2016_NBER" role="doc-biblioref">2016</a>)</span>). They are often given a specific economic meaning (e.g., demand and supply shocks). Once structural shocks have been identified, researchers use the resulting Structural VAR model to produce Impulse Response Functions that describe the dynamic reactions of endogenous variables to the shocks.</p>
+<p>This section presents Vector Auto-Regressive Moving-Average (SVARMA) models. These models are widely used in macroeconomic analysis. While simple and easy to estimate, they make it possible to conveniently capture the dynamics of complex multivariate systems. VAR popularity is notably due to <span class="citation">Sims (<a href="references.html#ref-Sims_1980">1980</a>)</span>’s influential work. A comprehensive survey is proposed by <span class="citation">J. H. Stock and Watson (<a href="references.html#ref-Stock_Watson_2016">2016</a>)</span>.</p>
+<p>In economics, VAR models are often employed in order to identify <em>structural</em> shocks, that are independent primitive exogenous forces that drive economic variables (<span class="citation">Ramey (<a href="references.html#ref-Ramey_2016_NBER">2016</a>)</span>). They are often given a specific economic meaning (e.g., demand and supply shocks). Once structural shocks have been identified, researchers use the resulting Structural VAR model to produce Impulse Response Functions that describe the dynamic reactions of endogenous variables to the shocks.</p>
 <p>Working with these models (VAR and VARMA models) often involves two steps: in a first step, the <strong>reduced-form</strong> version of the model is estimated; in a second step, <strong>structural shocks</strong> are identified and IRFs are produced.</p>
 <div id="definition-of-vars-and-svarma-models" class="section level2" number="3.1">
 <h2>
@@ -147,7 +147,7 @@ With these notations, we get <span class="math inline">\(\mathbb{E}(y_{i,t+h}|\e
 <p>Hence, estimating IRFs amounts to estimating the <span class="math inline">\(\Psi_{h}\)</span>’s. In general, there exist three main approaches for that:</p>
 <ul>
 <li>Calibrate and solve a (purely structural) Dynamic Stochastic General Equilibrium (DSGE) model at the first order (linearization). The solution takes the form of Eq. <a href="VAR.html#eq:InfMA">(3.4)</a>.</li>
-<li>Directly estimate the <span class="math inline">\(\Psi_{h}\)</span> based on <em>projection approaches</em> à la <span class="citation">Jordà (<a href="references.html#ref-Jorda_2005" role="doc-biblioref">2005</a>)</span> (see <a href="https://jrenne.github.io/IdentifStructShocks/Projections.html">this web-page</a>).</li>
+<li>Directly estimate the <span class="math inline">\(\Psi_{h}\)</span> based on <em>projection approaches</em> à la <span class="citation">Jordà (<a href="references.html#ref-Jorda_2005">2005</a>)</span> (see <a href="https://jrenne.github.io/IdentifStructShocks/Projections.html">this web-page</a>).</li>
 <li>Approximate the infinite MA representation by estimating a parsimonious type of model, e.g. <strong>VAR(MA) models</strong> (see Section <a href="VAR.html#estimVAR">3.4</a>). Once a (Structural) VARMA representation is obtained, Eq. <a href="VAR.html#eq:InfMA">(3.4)</a> is easily deduced using the following proposition:</li>
 </ul>
 <div class="proposition">
@@ -302,7 +302,7 @@ where <span class="math inline">\(\psi_{k,i}\)</span> denotes the <span class="m
 <span class="math display">\[
 y_{i,t} = \phi_i y_{t-1} + \varepsilon_{i,t},
 \]</span>
-where <span class="math inline">\(\phi_i\)</span> is the <span class="math inline">\(i^{th}\)</span> row of <span class="math inline">\(\Phi_1\)</span>, and where <span class="math inline">\(\varepsilon_{i,t}\)</span> is a linear combination of <span class="math inline">\(\eta_t\)</span> and <span class="math inline">\(\eta_{t-1}\)</span>. Since <span class="math inline">\(y_{t-1}\)</span> (the regressor) is correlated to <span class="math inline">\(\eta_{t-1}\)</span>, it is also correlated to <span class="math inline">\(\varepsilon_{i,t}\)</span>. The OLS regression of <span class="math inline">\(y_{i,t}\)</span> on <span class="math inline">\(y_{t-1}\)</span> yields a biased estimator of <span class="math inline">\(\phi_i\)</span> (see Figure <a href="VAR.html#fig:simulARMAbiased">3.2</a>). Hence, SVARMA models cannot be consistently estimated by simple OLS regressions (contrary to VAR models, as we will see in the next section); instrumental-variable approaches can be employed to estimate SVARMA models (using past values of <span class="math inline">\(y_t\)</span> as instruments, see, e.g., <span class="citation">Gouriéroux, Monfort, and Renne (<a href="references.html#ref-Gourieroux_Monfort_Renne_2020" role="doc-biblioref">2020</a>)</span>).</p>
+where <span class="math inline">\(\phi_i\)</span> is the <span class="math inline">\(i^{th}\)</span> row of <span class="math inline">\(\Phi_1\)</span>, and where <span class="math inline">\(\varepsilon_{i,t}\)</span> is a linear combination of <span class="math inline">\(\eta_t\)</span> and <span class="math inline">\(\eta_{t-1}\)</span>. Since <span class="math inline">\(y_{t-1}\)</span> (the regressor) is correlated to <span class="math inline">\(\eta_{t-1}\)</span>, it is also correlated to <span class="math inline">\(\varepsilon_{i,t}\)</span>. The OLS regression of <span class="math inline">\(y_{i,t}\)</span> on <span class="math inline">\(y_{t-1}\)</span> yields a biased estimator of <span class="math inline">\(\phi_i\)</span> (see Figure <a href="VAR.html#fig:simulARMAbiased">3.2</a>). Hence, SVARMA models cannot be consistently estimated by simple OLS regressions (contrary to VAR models, as we will see in the next section); instrumental-variable approaches can be employed to estimate SVARMA models (using past values of <span class="math inline">\(y_t\)</span> as instruments, see, e.g., <span class="citation">Gouriéroux, Monfort, and Renne (<a href="references.html#ref-Gourieroux_Monfort_Renne_2020">2020</a>)</span>).</p>
 <div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">N</span> <span class="op">&lt;-</span> <span class="fl">1000</span> <span class="co"># number of replications</span></span>
 <span><span class="cn">T</span> <span class="op">&lt;-</span> <span class="fl">100</span> <span class="co"># sample length</span></span>
@@ -346,7 +346,7 @@ with <span class="math inline">\(\Phi(L) = \Phi_1 + \Phi_2 L + \dots + \Phi_p L^
 <span class="math display">\[
 y_{t}\mid y_{t-1},y_{t-2},\ldots,y_{-p+1}\sim \mathcal{N}(c+\Phi_{1}y_{t-1}+\ldots\Phi_{p}y_{t-p},\Omega).
 \]</span></p>
-<p>Using <span class="citation">Hamilton (<a href="references.html#ref-Hamilton_1994" role="doc-biblioref">1994</a>)</span>’s notations, denote with <span class="math inline">\(\Pi\)</span> the matrix <span class="math inline">\(\left[\begin{array}{ccccc} c &amp; \Phi_{1} &amp; \Phi_{2} &amp; \ldots &amp; \Phi_{p}\end{array}\right]'\)</span> and with <span class="math inline">\(x_{t}\)</span> the vector <span class="math inline">\(\left[\begin{array}{ccccc} 1 &amp; y'_{t-1} &amp; y'_{t-2} &amp; \ldots &amp; y'_{t-p}\end{array}\right]'\)</span>, we have:
+<p>Using <span class="citation">Hamilton (<a href="references.html#ref-Hamilton_1994">1994</a>)</span>’s notations, denote with <span class="math inline">\(\Pi\)</span> the matrix <span class="math inline">\(\left[\begin{array}{ccccc} c &amp; \Phi_{1} &amp; \Phi_{2} &amp; \ldots &amp; \Phi_{p}\end{array}\right]'\)</span> and with <span class="math inline">\(x_{t}\)</span> the vector <span class="math inline">\(\left[\begin{array}{ccccc} 1 &amp; y'_{t-1} &amp; y'_{t-2} &amp; \ldots &amp; y'_{t-p}\end{array}\right]'\)</span>, we have:
 <span class="math display" id="eq:PIVAR">\[\begin{equation}
 y_{t}= \Pi'x_{t} + \varepsilon_{t}. \tag{3.9}
 \end{equation}\]</span>
@@ -421,7 +421,7 @@ vec(\hat\Omega - \Omega)
 where the component of <span class="math inline">\(\Sigma_{22}\)</span> corresponding to the covariance between <span class="math inline">\(\hat\sigma_{i,j}\)</span> and <span class="math inline">\(\hat\sigma_{k,l}\)</span> (for <span class="math inline">\(i,j,l,m \in \{1,\dots,n\}^4\)</span>) is equal to <span class="math inline">\(\sigma_{i,l}\sigma_{j,m}+\sigma_{i,m}\sigma_{j,l}\)</span>.</p>
 </div>
 <div class="proof">
-<p><span id="unlabeled-div-15" class="proof"><em>Proof</em>. </span>See <span class="citation">Hamilton (<a href="references.html#ref-Hamilton_1994" role="doc-biblioref">1994</a>)</span>, Appendix of Chapter 11.</p>
+<p><span id="unlabeled-div-15" class="proof"><em>Proof</em>. </span>See <span class="citation">Hamilton (<a href="references.html#ref-Hamilton_1994">1994</a>)</span>, Appendix of Chapter 11.</p>
 </div>
 <p>In practice, to use the previous proposition (for instance to implement Monte-Carlo simulations, see Section <a href="append.html#MonteCarlo">8.5.1</a>), <span class="math inline">\(\Omega\)</span> is replaced with <span class="math inline">\(\hat{\Omega}\)</span>, <span class="math inline">\(\mathbf{Q}\)</span> is replaced with <span class="math inline">\(\hat{\mathbf{Q}} = \frac{1}{T}\sum_{t=p}^T x_t x_t'\)</span> and <span class="math inline">\(\Sigma\)</span> with the matrix whose components are of the form <span class="math inline">\(\hat\sigma_{i,l}\hat\sigma_{j,m}+\hat\sigma_{i,m}\hat\sigma_{j,l}\)</span>, where the <span class="math inline">\(\hat\sigma_{i,l}\)</span>’s are the components of <span class="math inline">\(\hat\Omega\)</span>.</p>
 <p>The simplicity of the VAR framework and the tractability of its MLE open the way to convenient econometric testing. Let’s illustrate this with the likelihood ratio test.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;We implement a likelihood ratio test when we want to test whether a restricted version of a wider model is acceptable. For that, we maximize the restricted and unrestricted log-likelihood functions. Assume the respective maximum values are &lt;span class="math inline"&gt;\(\log \mathcal{L}_0\)&lt;/span&gt; (for the restricted model, called Model 0) and &lt;span class="math inline"&gt;\(\log \mathcal{L}_1\)&lt;/span&gt; (unrestricted model, Model 1). Under the null hypothesis (the restricted model is the true one), we have &lt;span class="math inline"&gt;\(2(\log \mathcal{L}_1 - \log \mathcal{L}_0) \sim \chi^2(r)\)&lt;/span&gt;, where &lt;span class="math inline"&gt;\(r\)&lt;/span&gt; is the number of restrictions imposed on Model 0. (Note that we necessarily have &lt;span class="math inline"&gt;\(\log \mathcal{L}_0 &amp;lt; \log \mathcal{L}_1\)&lt;/span&gt;.)&lt;/p&gt;'><sup>5</sup></a> The maximum value achieved by the MLE is
@@ -550,7 +550,7 @@ Using, e.g., a likelihood ratio test, one can easily test for block exogeneity o
 <h3>
 <span class="header-section-number">3.5.2</span> Granger Causality<a class="anchor" aria-label="anchor" href="#granger-causality"><i class="fas fa-link"></i></a>
 </h3>
-<p><span class="citation">Granger (<a href="references.html#ref-Granger_1969" role="doc-biblioref">1969</a>)</span> developed a method to explore <strong>causal relationships</strong> among variables. The approach consists in determining whether the past values of <span class="math inline">\(y_{1,t}\)</span> can help explain the current <span class="math inline">\(y_{2,t}\)</span> (beyond the information already included in the past values of <span class="math inline">\(y_{2,t}\)</span>).</p>
+<p><span class="citation">Granger (<a href="references.html#ref-Granger_1969">1969</a>)</span> developed a method to explore <strong>causal relationships</strong> among variables. The approach consists in determining whether the past values of <span class="math inline">\(y_{1,t}\)</span> can help explain the current <span class="math inline">\(y_{2,t}\)</span> (beyond the information already included in the past values of <span class="math inline">\(y_{2,t}\)</span>).</p>
 <p>Formally, let us denote three information sets:
 <span class="math display">\[\begin{eqnarray*}
 \mathcal{I}_{1,t} &amp; = &amp; \left\{ y_{1,t},y_{1,t-1},\ldots\right\} \\
@@ -650,16 +650,16 @@ b_{11}^2+b_{12}^2 &amp; \color{red}{b_{11}b_{21}+b_{12}b_{22}} \\
 <ul>
 <li>It is easy to implement: the appropriate entries of <span class="math inline">\(B\)</span> are set to 0.</li>
 <li>A particular (popular) case is that of the <strong>Cholesky, or recursive approach</strong>.</li>
-<li>Examples include <span class="citation">Bernanke (<a href="references.html#ref-BERNANKE198649" role="doc-biblioref">1986</a>)</span>, <span class="citation">Sims (<a href="references.html#ref-Sims_1986" role="doc-biblioref">1986</a>)</span>, <span class="citation">Galí (<a href="references.html#ref-Gali_1992" role="doc-biblioref">1992</a>)</span>, <span class="citation">Ruibio-Ramírez, Waggoner, and Zha (<a href="references.html#ref-RubioRamirez_et_al_2010" role="doc-biblioref">2010</a>)</span>.</li>
+<li>Examples include <span class="citation">Bernanke (<a href="references.html#ref-BERNANKE198649">1986</a>)</span>, <span class="citation">Sims (<a href="references.html#ref-Sims_1986">1986</a>)</span>, <span class="citation">Galí (<a href="references.html#ref-Gali_1992">1992</a>)</span>, <span class="citation">Ruibio-Ramírez, Waggoner, and Zha (<a href="references.html#ref-RubioRamirez_et_al_2010">2010</a>)</span>.</li>
 </ul>
 <ol start="2" style="list-style-type: decimal">
 <li>A <strong>long-run restriction (LRR)</strong> prevents a structural shock from having a cumulative impact on one of the endogenous variables.</li>
 </ol>
 <ul>
 <li>Additional computations are required to implement this. One needs to compute the cumulative effect of one of the structural shocks <span class="math inline">\(u_{t}\)</span> on one of the endogenous variable.</li>
-<li>Examples include <span class="citation">Blanchard and Quah (<a href="references.html#ref-Blanchard_Quah_1989" role="doc-biblioref">1989</a>)</span>, <span class="citation">Faust and Leeper (<a href="references.html#ref-Faust_Leeper_1997" role="doc-biblioref">1997</a>)</span>, <span class="citation">Galí (<a href="references.html#ref-Gali_1999" role="doc-biblioref">1999</a>)</span>, <span class="citation">Erceg, Guerrieri, and Gust (<a href="references.html#ref-Erceg_et_al_2005" role="doc-biblioref">2005</a>)</span>, <span class="citation">Christiano, Eichenbaum, and Vigfusson (<a href="references.html#ref-NBERc11177" role="doc-biblioref">2007</a>)</span>.</li>
+<li>Examples include <span class="citation">Blanchard and Quah (<a href="references.html#ref-Blanchard_Quah_1989">1989</a>)</span>, <span class="citation">Faust and Leeper (<a href="references.html#ref-Faust_Leeper_1997">1997</a>)</span>, <span class="citation">Galí (<a href="references.html#ref-Gali_1999">1999</a>)</span>, <span class="citation">Erceg, Guerrieri, and Gust (<a href="references.html#ref-Erceg_et_al_2005">2005</a>)</span>, <span class="citation">Christiano, Eichenbaum, and Vigfusson (<a href="references.html#ref-NBERc11177">2007</a>)</span>.</li>
 </ul>
-<p>The two approaches can be combined (see, e.g., <span class="citation">Gerlach and Smets (<a href="references.html#ref-Gerlach_Smets_1995" role="doc-biblioref">1995</a>)</span>).</p>
+<p>The two approaches can be combined (see, e.g., <span class="citation">Gerlach and Smets (<a href="references.html#ref-Gerlach_Smets_1995">1995</a>)</span>).</p>
 </div>
 <div id="a-stylized-example-motivating-short-run-restrictions" class="section level3" number="3.6.2">
 <h3>
@@ -739,8 +739,8 @@ i_{t-1} +
 <span class="math display">\[
 \Omega_\varepsilon = BB'.
 \]</span></p>
-<p>For instance, <span class="citation">Dedola and Lippi (<a href="references.html#ref-DEDOLA20051543" role="doc-biblioref">2005</a>)</span> estimate 5 structural VAR models for the US, the UK, Germany, France and Italy to analyse the monetary-policy transmission mechanisms. They estimate SVAR(5) models over the period 1975-1997. The shock-identification scheme is based on Cholesky decompositions, the ordering of the endogenous variables being: the industrial production, the consumer price index, a commodity price index, the short-term rate, monetary aggregate and the effective exchange rate (except for the US). This ordering implies that monetary policy reacts to the shocks affecting the first three variables but that the latter react to monetary policy shocks with a one-period lag only.</p>
-<p>The Cholesky approach can be employed when one is interested in one specific structural shock. This is the case, e.g., of <span class="citation">Christiano, Eichenbaum, and Evans (<a href="references.html#ref-Christiano_Eichenbaum_Evans_1996" role="doc-biblioref">1996</a>)</span>. Their identification is based on the following relationship between <span class="math inline">\(\varepsilon_t\)</span> and <span class="math inline">\(\eta_t\)</span>:
+<p>For instance, <span class="citation">Dedola and Lippi (<a href="references.html#ref-DEDOLA20051543">2005</a>)</span> estimate 5 structural VAR models for the US, the UK, Germany, France and Italy to analyse the monetary-policy transmission mechanisms. They estimate SVAR(5) models over the period 1975-1997. The shock-identification scheme is based on Cholesky decompositions, the ordering of the endogenous variables being: the industrial production, the consumer price index, a commodity price index, the short-term rate, monetary aggregate and the effective exchange rate (except for the US). This ordering implies that monetary policy reacts to the shocks affecting the first three variables but that the latter react to monetary policy shocks with a one-period lag only.</p>
+<p>The Cholesky approach can be employed when one is interested in one specific structural shock. This is the case, e.g., of <span class="citation">Christiano, Eichenbaum, and Evans (<a href="references.html#ref-Christiano_Eichenbaum_Evans_1996">1996</a>)</span>. Their identification is based on the following relationship between <span class="math inline">\(\varepsilon_t\)</span> and <span class="math inline">\(\eta_t\)</span>:
 <span class="math display">\[
 \left[\begin{array}{c}
 \boldsymbol\varepsilon_{S,t}\\
@@ -849,7 +849,7 @@ that is the first column of the <span class="math inline">\(n \times n\)</span> 
 \Theta_{ij}=0,
 \]</span>
 where <span class="math inline">\(\Theta_{ij}\)</span> is the element <span class="math inline">\((i,j)\)</span> of <span class="math inline">\(\Theta\)</span>.</p>
-<p><span class="citation">Blanchard and Quah (<a href="references.html#ref-Blanchard_Quah_1989" role="doc-biblioref">1989</a>)</span> have implemented such long-run restrictions in a small-scale VAR. Two variables are considered: GDP and unemployment. Consequently, the VAR is affected by two types of shocks. Specifically, authors want to identify <strong>supply shocks</strong> (that can have a permanent effect on output) and <strong>demand shocks</strong> (that cannot have a permanent effect on output).<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;The motivation of the authors regarding their long-run restrictions can be obtained from a traditional Keynesian view of fluctuations. The authors propose a variant of a model from &lt;span class=&quot;citation&quot;&gt;Fischer (&lt;a href=&quot;references.html#ref-Fischer_1977&quot; role=&quot;doc-biblioref&quot;&gt;1977&lt;/a&gt;)&lt;/span&gt;.
+<p><span class="citation">Blanchard and Quah (<a href="references.html#ref-Blanchard_Quah_1989">1989</a>)</span> have implemented such long-run restrictions in a small-scale VAR. Two variables are considered: GDP and unemployment. Consequently, the VAR is affected by two types of shocks. Specifically, authors want to identify <strong>supply shocks</strong> (that can have a permanent effect on output) and <strong>demand shocks</strong> (that cannot have a permanent effect on output).<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;The motivation of the authors regarding their long-run restrictions can be obtained from a traditional Keynesian view of fluctuations. The authors propose a variant of a model from &lt;span class=&quot;citation&quot;&gt;Fischer (&lt;a href=&quot;references.html#ref-Fischer_1977&quot;&gt;1977&lt;/a&gt;)&lt;/span&gt;.
 <!-- \begin{eqnarray} -->
 <!-- Y_{t} & = & M_{t}-P_{t}+a.\theta_{t}(\#eq:demand)\\ -->
 <!-- Y_{t} & = & N_{t}+\theta_{t}(\#eq:prodfunct)\\ -->
@@ -867,7 +867,7 @@ where <span class="math inline">\(\Theta_{ij}\)</span> is the element <span clas
 <!-- u_{t} & = & -\varepsilon_{t}^{d}-a\varepsilon_{t}^{s} -->
 <!-- \end{eqnarray*} -->
 <!-- Then, it appears that the demand shocks have no long-run cumulative impact on $\Delta Y_{t}$, the GDP growth, i.e. no long-term impact on output $Y_t$. The vector of endogenous variables is $y_t = [\Delta Y_{t} \quad u_{t}]'$ where $\Delta Y_{t}$ denotes the GDP growth. -->&lt;/p&gt;"><sup>7</sup></a></p>
-<p><span class="citation">Blanchard and Quah (<a href="references.html#ref-Blanchard_Quah_1989" role="doc-biblioref">1989</a>)</span>’s dataset is quarterly, spanning the period from 1950:2 to 1987:4. Their VAR features 8 lags. Here are the data they use:</p>
+<p><span class="citation">Blanchard and Quah (<a href="references.html#ref-Blanchard_Quah_1989">1989</a>)</span>’s dataset is quarterly, spanning the period from 1950:2 to 1987:4. Their VAR features 8 lags. Here are the data they use:</p>
 <div class="sourceCode" id="cb38"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">AEC</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">BQ</span><span class="op">)</span></span>
@@ -970,7 +970,7 @@ Figure 3.4: IRF of GDP and unemployment to demand and supply shocks.
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Introduction to Time Series</strong>" was written by Jean-Paul Renne. It was last built on 2023-04-25.</p>
+    <p>"<strong>Introduction to Time Series</strong>" was written by Jean-Paul Renne. It was last built on 2023-10-04.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
@@ -983,7 +983,7 @@ Figure 3.4: IRF of GDP and unemployment to demand and supply shocks.
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))
         src = src.replace(/^https?:/, '');
