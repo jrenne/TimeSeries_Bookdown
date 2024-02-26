@@ -22,15 +22,15 @@ css: "my-style.css"
 
 <!-- # Before starting {#intro .unlisted .unnumbered} -->
 
-Time series constitute a prevalent data type in several disciplines, notably macroeconomics and finance. The modeling of time series is crucial for many purposes, including forecasting, understanding macroeconomic mechanisms, and risk assessment. This course proposes an introduction to time series analysis. It has been developed by [Jean-Paul Renne](https://sites.google.com/site/jeanpaulrenne/home).
+Time series constitute a prevalent data type in several disciplines, notably macroeconomics and finance. The modeling of time series is crucial for many purposes, including forecasting, understanding macroeconomic mechanisms, and risk assessment. This course proposes an introduction to time series analysis. It has been developed by [Jean-Paul Renne](https://sites.google.com/site/jeanpaulrenne/home) and [Alain Monfort](https://faculty.crest.fr/amonfort/).
 
-Codes associated with this course are part of the `AEC` package, which is available on GitHub. To load a  package from GitHub, you need to use function `install_github` from the `devtools` package:
+Codes associated with this course are part of the `TSModels` package, which is available on GitHub. To load a  package from GitHub, you need to use function `install_github` from the `devtools` package:
 
 ```{r installAEC, eval=FALSE}
 install.packages("devtools") # in case you do not have that one.
 library(devtools)
-install_github("jrenne/AEC")
-library(AEC)
+install_github("jrenne/TSModels")
+library(TSModels)
 ```
 
 **Useful (R) links:**

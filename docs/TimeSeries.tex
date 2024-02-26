@@ -134,7 +134,7 @@
 
 \title{Introduction to Time Series}
 \author{Jean-Paul Renne}
-\date{2023-10-04}
+\date{2024-02-26}
 
 \usepackage{amsthm}
 \newtheorem{theorem}{Theorem}[chapter]
@@ -165,16 +165,16 @@
 \hypertarget{intro}{%
 \chapter*{Introduction to Time Series}\label{intro}}
 
-Time series constitute a prevalent data type in several disciplines, notably macroeconomics and finance. The modeling of time series is crucial for many purposes, including forecasting, understanding macroeconomic mechanisms, and risk assessment. This course proposes an introduction to time series analysis. It has been developed by \href{https://sites.google.com/site/jeanpaulrenne/home}{Jean-Paul Renne}.
+Time series constitute a prevalent data type in several disciplines, notably macroeconomics and finance. The modeling of time series is crucial for many purposes, including forecasting, understanding macroeconomic mechanisms, and risk assessment. This course proposes an introduction to time series analysis. It has been developed by \href{https://sites.google.com/site/jeanpaulrenne/home}{Jean-Paul Renne} and \href{https://faculty.crest.fr/amonfort/}{Alain Monfort}.
 
-Codes associated with this course are part of the \texttt{AEC} package, which is available on GitHub. To load a package from GitHub, you need to use function \texttt{install\_github} from the \texttt{devtools} package:
+Codes associated with this course are part of the \texttt{TSModels} package, which is available on GitHub. To load a package from GitHub, you need to use function \texttt{install\_github} from the \texttt{devtools} package:
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \FunctionTok{install.packages}\NormalTok{(}\StringTok{"devtools"}\NormalTok{) }\CommentTok{\# in case you do not have that one.}
 \FunctionTok{library}\NormalTok{(devtools)}
-\FunctionTok{install\_github}\NormalTok{(}\StringTok{"jrenne/AEC"}\NormalTok{)}
-\FunctionTok{library}\NormalTok{(AEC)}
+\FunctionTok{install\_github}\NormalTok{(}\StringTok{"jrenne/TSModels"}\NormalTok{)}
+\FunctionTok{library}\NormalTok{(TSModels)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -251,7 +251,7 @@ The Autoregressive conditional heteroskedasticity process---studied in Section \
 \[
 \varepsilon_{t} = \sigma_t \times z_{t},
 \]
-where \(z_t \sim i.i.d.\,\mathcal{N}(0,1)\) and \(\sigma_t^2 = w + \alpha \varepsilon_{t-1}^2\).
+where \(z_t \sim i.i.d.\,\mathcal{N}(0,1)\) and \(\sigma_t^2 = w + \alpha \varepsilon_{t-1}^2\) (with \(w>0\) and \(0 \leq \alpha <1\)).
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -286,7 +286,7 @@ where \(z_t \sim i.i.d.\mathcal{N}(0,1)\).
 Indeed, it can be shown that the \(\varepsilon_t\)'s are not correlated through time, we have \(\mathbb{E}_{t-1}(\varepsilon_t)=z_{t-1}z_{t-2} \ne 0\).
 \end{example}
 
-In the following, to simplify the exposition, we will essentially consider \textbf{strong white noises}. A strong white noise is a particular case of white noise where the \(\varepsilon_{t}\)'s are serially independent. Using the law of iterated expectation, it can be shown that a strong white noise is a martingale difference sequence. Indeed, when the \(\varepsilon_{t}\)'s are serially independent, we have that \(\mathbb{E}(\varepsilon_{t}|\varepsilon_{t-1},\varepsilon_{t-2},\dots)=\mathbb{E}(\varepsilon_{t})=0\).
+In the following, to simplify the exposition, we will essentially consider \textbf{strong white noises}. A strong white noise is a particular case of white noise where the \(\varepsilon_{t}\)'s are serially independent. Using the law of iterated expectation, it can be shown that a strong white noise is a martingale difference sequence. Indeed, when the \(\varepsilon_{t}\)'s are serially independent, we have that \(\mathbb{E}(\varepsilon_{t}|\varepsilon_{t-1},\varepsilon_{t-2},\dots)=\mathbb{E}(\varepsilon_{t})=0\), as \(f_{\mathcal{E}_t}(\varepsilon_t|\varepsilon_{t-1},\varepsilon_{t-2},\dots)=f_{\mathcal{E}_t}(\varepsilon_t)\).
 
 Let us now introduce the lag operator. The lag operator, denoted by \(L\), is defined on the time series space and is defined by:
 \begin{equation}
@@ -356,7 +356,7 @@ The following process is covariance stationary but not strictly stationary:
 \[
 y_t = \mathbb{I}_{\{t<1000\}}\varepsilon_{1,t}+\mathbb{I}_{\{t\ge1000\}}\varepsilon_{2,t},
 \]
-where \(\varepsilon_{1,t} \sim \mathcal{N}(0,1)\) and \(\varepsilon_{2,t} \sim \sqrt{\frac{\nu - 2}{\nu}} t(\nu)\) and \(\nu = 4\). A simulated path is displayed in Figure \ref{fig:NONNstat2}.
+where \(\varepsilon_{1,t} \sim \mathcal{N}(0,1)\) and \(\varepsilon_{2,t} \sim \sqrt{\frac{\nu - 2}{\nu}} t(\nu)\) and \(\nu = 4\). Indeed, \(\mathbb{E}[y_t]=\mathbb{I}_{\{t<1000\}}\times \underbrace{\mathbb{E}[\varepsilon_{1,t}]}_{=0}+\mathbb{I}_{\{t\ge1000\}} \times \underbrace{\mathbb{E}[\varepsilon_{2,t}]}_{=0}=0\), \(\mathbb{V}ar(y_t)=\mathbb{I}_{\{t<1000\}}\times \underbrace{\mathbb{V}ar(\varepsilon_{1,t})}_{=1}+\mathbb{I}_{\{t\ge1000\}} \times \underbrace{\mathbb{V}ar(\varepsilon_{1,t})}_{=\left(\sqrt{\frac{\nu - 2}{\nu}}\right)^2 \times \frac{\nu}{\nu - 2}=1}=1\) and for \(\forall j \geq 1\), \(\gamma_{j,t}=\gamma_j=0\) as the \(\varepsilon_t\)'s are serially uncorrelated. A simulated path is displayed in Figure \ref{fig:NONNstat2}.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -430,7 +430,7 @@ This subsection shows that the Central Limit Theorem (CLT, see Theorem \ref{thm:
 \end{theorem}
 
 \begin{proof}
-By Proposition \ref{prp:absMs}, Eq. \eqref{eq:TCL2} implies Eq. \eqref{eq:TCL20}. For Eq. \eqref{eq:TCL2}, see Appendix \ref{AppendixProof}. For Eq. \eqref{eq:TCL4ts}, see \citet{Anderson_1971}, p.~429.
+The absolute value of the series of the autocovariances is finite as it is lower than the sum of the absolute values of the autocovariances which is finite by the absolute summability assumption. As a result, there exists a finite \(M \in \mathbb{R}\) such that \(\sum_{j=-\infty}^{+\infty} \gamma_j=M\) and Eq. \eqref{eq:TCL2} implies Eq. \eqref{eq:TCL20}. For Eq. \eqref{eq:TCL2}, see Appendix \ref{AppendixProof}. For Eq. \eqref{eq:TCL4ts}, see \citet{Anderson_1971}, p.~429.
 \end{proof}
 
 \begin{definition}[Long-run variance]

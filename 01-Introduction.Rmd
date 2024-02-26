@@ -1,3 +1,8 @@
+---
+output:
+  html_document: default
+  pdf_document: default
+---
 # Basics {#Intro}
 
 ## Shocks and lag operator
@@ -30,7 +35,7 @@ The Autoregressive conditional heteroskedasticity process---studied in Section \
 $$
 \varepsilon_{t} = \sigma_t \times z_{t},
 $$
-where $z_t \sim i.i.d.\,\mathcal{N}(0,1)$ and $\sigma_t^2 = w + \alpha \varepsilon_{t-1}^2$.
+where $z_t \sim i.i.d.\,\mathcal{N}(0,1)$ and $\sigma_t^2 = w + \alpha \varepsilon_{t-1}^2$ (with $w>0$ and $0 \leq \alpha <1$).
 
 ```{r simulGARCHointro, fig.cap="Simulation of $\\varepsilon_t$, where $\\varepsilon_{t} = \\sigma_t \\times z_{t}$, with $z_t \\sim i.i.d.\\,\\mathcal{N}(0,1)$.", fig.asp = .6, out.width = "95%", fig.align = 'left-aligned'}
 T <- 500
@@ -59,7 +64,7 @@ Indeed, it can be shown that the $\varepsilon_t$'s are not correlated through ti
 :::
 
 
-In the following, to simplify the exposition, we will essentially consider **strong white noises**. A strong white noise is a particular case of white noise where the $\varepsilon_{t}$'s are serially independent. Using the law of iterated expectation, it can be shown that a strong white noise is a martingale difference sequence. Indeed, when the $\varepsilon_{t}$'s are serially independent, we have that $\mathbb{E}(\varepsilon_{t}|\varepsilon_{t-1},\varepsilon_{t-2},\dots)=\mathbb{E}(\varepsilon_{t})=0$.
+In the following, to simplify the exposition, we will essentially consider **strong white noises**. A strong white noise is a particular case of white noise where the $\varepsilon_{t}$'s are serially independent. Using the law of iterated expectation, it can be shown that a strong white noise is a martingale difference sequence. Indeed, when the $\varepsilon_{t}$'s are serially independent, we have that $\mathbb{E}(\varepsilon_{t}|\varepsilon_{t-1},\varepsilon_{t-2},\dots)=\mathbb{E}(\varepsilon_{t})=0$, as $f_{\mathcal{E}_t}(\varepsilon_t|\varepsilon_{t-1},\varepsilon_{t-2},\dots)=f_{\mathcal{E}_t}(\varepsilon_t)$.
 
 
 Let us now introduce the lag operator. The lag operator, denoted by $L$, is defined on the time series space and is defined by:
@@ -126,7 +131,7 @@ The following process is  covariance stationary but not strictly stationary:
 $$
 y_t = \mathbb{I}_{\{t<1000\}}\varepsilon_{1,t}+\mathbb{I}_{\{t\ge1000\}}\varepsilon_{2,t},
 $$
-where $\varepsilon_{1,t} \sim \mathcal{N}(0,1)$ and $\varepsilon_{2,t} \sim \sqrt{\frac{\nu - 2}{\nu}} t(\nu)$ and $\nu = 4$. A simulated path is displayed in Figure \@ref(fig:NONNstat2).
+where $\varepsilon_{1,t} \sim \mathcal{N}(0,1)$ and $\varepsilon_{2,t} \sim \sqrt{\frac{\nu - 2}{\nu}} t(\nu)$ and $\nu = 4$. Indeed, $\mathbb{E}[y_t]=\mathbb{I}_{\{t<1000\}}\times \underbrace{\mathbb{E}[\varepsilon_{1,t}]}_{=0}+\mathbb{I}_{\{t\ge1000\}} \times \underbrace{\mathbb{E}[\varepsilon_{2,t}]}_{=0}=0$, $\mathbb{V}ar(y_t)=\mathbb{I}_{\{t<1000\}}\times \underbrace{\mathbb{V}ar(\varepsilon_{1,t})}_{=1}+\mathbb{I}_{\{t\ge1000\}} \times \underbrace{\mathbb{V}ar(\varepsilon_{1,t})}_{=\left(\sqrt{\frac{\nu - 2}{\nu}}\right)^2 \times \frac{\nu}{\nu - 2}=1}=1$ and for $\forall j \geq 1$, $\gamma_{j,t}=\gamma_j=0$ as the $\varepsilon_t$'s are serially uncorrelated. A simulated path is displayed in Figure \@ref(fig:NONNstat2).
 
 ```{r NONNstat2, fig.cap="Example of a process that is covariance stationary but not strictly stationary. The red lines delineate the 99\\% confidence interval of the standard normal distribution ($\\pm 2.58$).", fig.asp = .6, out.width = "95%", fig.align = 'left-aligned'}
 T <- 2000
@@ -207,7 +212,7 @@ If process $y_t$ is covariance stationary and if the series of autocovariances i
 :::
 
 :::{.proof}
-By Proposition \@ref(prp:absMs), Eq. \@ref(eq:TCL2) implies Eq. \@ref(eq:TCL20). For Eq. \@ref(eq:TCL2), see Appendix \@ref(AppendixProof). For Eq. \@ref(eq:TCL4ts), see @Anderson_1971, p. 429.
+The absolute value of the series of the autocovariances is finite as it is lower than the sum of the absolute values of the autocovariances which is finite by the absolute summability assumption. As a result, there exists a finite $M \in \mathbb{R}$ such that $\sum_{j=-\infty}^{+\infty} \gamma_j=M$ and Eq. \@ref(eq:TCL2) implies Eq. \@ref(eq:TCL20). For Eq. \@ref(eq:TCL2), see Appendix \@ref(AppendixProof). For Eq. \@ref(eq:TCL4ts), see @Anderson_1971, p. 429.
 :::
 
 :::{.definition #LRV name="Long-run variance"}

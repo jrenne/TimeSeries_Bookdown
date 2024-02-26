@@ -115,7 +115,7 @@
 <span class="math display">\[
 \varepsilon_{t} = \sigma_t \times z_{t},
 \]</span>
-where <span class="math inline">\(z_t \sim i.i.d.\,\mathcal{N}(0,1)\)</span> and <span class="math inline">\(\sigma_t^2 = w + \alpha \varepsilon_{t-1}^2\)</span>.</p>
+where <span class="math inline">\(z_t \sim i.i.d.\,\mathcal{N}(0,1)\)</span> and <span class="math inline">\(\sigma_t^2 = w + \alpha \varepsilon_{t-1}^2\)</span> (with <span class="math inline">\(w&gt;0\)</span> and <span class="math inline">\(0 \leq \alpha &lt;1\)</span>).</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="cn">T</span> <span class="op">&lt;-</span> <span class="fl">500</span></span>
 <span><span class="va">w</span> <span class="op">&lt;-</span> <span class="fl">1</span>; <span class="va">alpha</span> <span class="op">&lt;-</span> <span class="fl">.98</span></span>
@@ -144,7 +144,7 @@ Figure 1.1: Simulation of <span class="math inline">\(\varepsilon_t\)</span>, wh
 where <span class="math inline">\(z_t \sim i.i.d.\mathcal{N}(0,1)\)</span>.</p>
 <p>Indeed, it can be shown that the <span class="math inline">\(\varepsilon_t\)</span>’s are not correlated through time, we have <span class="math inline">\(\mathbb{E}_{t-1}(\varepsilon_t)=z_{t-1}z_{t-2} \ne 0\)</span>.</p>
 </div>
-<p>In the following, to simplify the exposition, we will essentially consider <strong>strong white noises</strong>. A strong white noise is a particular case of white noise where the <span class="math inline">\(\varepsilon_{t}\)</span>’s are serially independent. Using the law of iterated expectation, it can be shown that a strong white noise is a martingale difference sequence. Indeed, when the <span class="math inline">\(\varepsilon_{t}\)</span>’s are serially independent, we have that <span class="math inline">\(\mathbb{E}(\varepsilon_{t}|\varepsilon_{t-1},\varepsilon_{t-2},\dots)=\mathbb{E}(\varepsilon_{t})=0\)</span>.</p>
+<p>In the following, to simplify the exposition, we will essentially consider <strong>strong white noises</strong>. A strong white noise is a particular case of white noise where the <span class="math inline">\(\varepsilon_{t}\)</span>’s are serially independent. Using the law of iterated expectation, it can be shown that a strong white noise is a martingale difference sequence. Indeed, when the <span class="math inline">\(\varepsilon_{t}\)</span>’s are serially independent, we have that <span class="math inline">\(\mathbb{E}(\varepsilon_{t}|\varepsilon_{t-1},\varepsilon_{t-2},\dots)=\mathbb{E}(\varepsilon_{t})=0\)</span>, as <span class="math inline">\(f_{\mathcal{E}_t}(\varepsilon_t|\varepsilon_{t-1},\varepsilon_{t-2},\dots)=f_{\mathcal{E}_t}(\varepsilon_t)\)</span>.</p>
 <p>Let us now introduce the lag operator. The lag operator, denoted by <span class="math inline">\(L\)</span>, is defined on the time series space and is defined by:
 <span class="math display" id="eq:lagOp">\[\begin{equation}
 L: \{y_t\}_{t=-\infty}^{+\infty} \rightarrow \{w_t\}_{t=-\infty}^{+\infty} \quad \mbox{with} \quad w_t = y_{t-1}.\tag{1.1}
@@ -203,7 +203,7 @@ Figure 1.2: Example of a process that is not covariance stationary. it follows: 
 <span class="math display">\[
 y_t = \mathbb{I}_{\{t&lt;1000\}}\varepsilon_{1,t}+\mathbb{I}_{\{t\ge1000\}}\varepsilon_{2,t},
 \]</span>
-where <span class="math inline">\(\varepsilon_{1,t} \sim \mathcal{N}(0,1)\)</span> and <span class="math inline">\(\varepsilon_{2,t} \sim \sqrt{\frac{\nu - 2}{\nu}} t(\nu)\)</span> and <span class="math inline">\(\nu = 4\)</span>. A simulated path is displayed in Figure <a href="Intro.html#fig:NONNstat2">1.3</a>.</p>
+where <span class="math inline">\(\varepsilon_{1,t} \sim \mathcal{N}(0,1)\)</span> and <span class="math inline">\(\varepsilon_{2,t} \sim \sqrt{\frac{\nu - 2}{\nu}} t(\nu)\)</span> and <span class="math inline">\(\nu = 4\)</span>. Indeed, <span class="math inline">\(\mathbb{E}[y_t]=\mathbb{I}_{\{t&lt;1000\}}\times \underbrace{\mathbb{E}[\varepsilon_{1,t}]}_{=0}+\mathbb{I}_{\{t\ge1000\}} \times \underbrace{\mathbb{E}[\varepsilon_{2,t}]}_{=0}=0\)</span>, <span class="math inline">\(\mathbb{V}ar(y_t)=\mathbb{I}_{\{t&lt;1000\}}\times \underbrace{\mathbb{V}ar(\varepsilon_{1,t})}_{=1}+\mathbb{I}_{\{t\ge1000\}} \times \underbrace{\mathbb{V}ar(\varepsilon_{1,t})}_{=\left(\sqrt{\frac{\nu - 2}{\nu}}\right)^2 \times \frac{\nu}{\nu - 2}=1}=1\)</span> and for <span class="math inline">\(\forall j \geq 1\)</span>, <span class="math inline">\(\gamma_{j,t}=\gamma_j=0\)</span> as the <span class="math inline">\(\varepsilon_t\)</span>’s are serially uncorrelated. A simulated path is displayed in Figure <a href="Intro.html#fig:NONNstat2">1.3</a>.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="cn">T</span> <span class="op">&lt;-</span> <span class="fl">2000</span></span>
 <span><span class="va">y</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="cn">T</span><span class="op">)</span></span>
@@ -268,7 +268,7 @@ Figure 1.5: For order <span class="math inline">\(j\)</span>, the slope of the b
 <p>[Mean square (m.s.) and distribution (d.) convergences: see Definitions <a href="append.html#def:cvgceDistri">8.16</a> and <a href="append.html#def:convergenceLr">8.14</a>.]</p>
 </div>
 <div class="proof">
-<p><span id="unlabeled-div-2" class="proof"><em>Proof</em>. </span>By Proposition <a href="append.html#prp:absMs">8.8</a>, Eq. <a href="Intro.html#eq:TCL2">(1.3)</a> implies Eq. <a href="Intro.html#eq:TCL20">(1.2)</a>. For Eq. <a href="Intro.html#eq:TCL2">(1.3)</a>, see Appendix <a href="append.html#AppendixProof">8.4</a>. For Eq. <a href="Intro.html#eq:TCL4ts">(1.4)</a>, see <span class="citation">Anderson (<a href="references.html#ref-Anderson_1971">1971</a>)</span>, p. 429.</p>
+<p><span id="unlabeled-div-2" class="proof"><em>Proof</em>. </span>The absolute value of the series of the autocovariances is finite as it is lower than the sum of the absolute values of the autocovariances which is finite by the absolute summability assumption. As a result, there exists a finite <span class="math inline">\(M \in \mathbb{R}\)</span> such that <span class="math inline">\(\sum_{j=-\infty}^{+\infty} \gamma_j=M\)</span> and Eq. <a href="Intro.html#eq:TCL2">(1.3)</a> implies Eq. <a href="Intro.html#eq:TCL20">(1.2)</a>. For Eq. <a href="Intro.html#eq:TCL2">(1.3)</a>, see Appendix <a href="append.html#AppendixProof">8.4</a>. For Eq. <a href="Intro.html#eq:TCL4ts">(1.4)</a>, see <span class="citation">Anderson (<a href="references.html#ref-Anderson_1971">1971</a>)</span>, p. 429.</p>
 </div>
 <div class="definition">
 <p><span id="def:LRV" class="definition"><strong>Definition 1.7  (Long-run variance) </strong></span>Under the assumptions of Theorem <a href="Intro.html#thm:CLTcovstat">1.1</a>, the limit appearing in Eq. <a href="Intro.html#eq:TCL2">(1.3)</a> exists and is called <strong>long-run variance</strong>. It is denoted by <span class="math inline">\(S\)</span>, i.e.:
@@ -323,7 +323,7 @@ Figure 1.6: The three samples have been simulated using the following data gener
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Introduction to Time Series</strong>" was written by Jean-Paul Renne. It was last built on 2023-10-04.</p>
+    <p>"<strong>Introduction to Time Series</strong>" was written by Jean-Paul Renne. It was last built on 2024-02-26.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
