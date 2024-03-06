@@ -227,7 +227,7 @@ Therefore, the conditional variance
 <span class="math display">\[
 \mathbb{V}ar_t(y_{t+k}) = \sigma^2(1 + \phi^2 + \phi^4 + \dots + \phi^{2(k-1)})
 \]</span>
-(where <span class="math inline">\(\sigma^2\)</span> is the variance of <span class="math inline">\(\varepsilon_t\)</span>) does not converge when <span class="math inline">\(k\)</span> gets infinitely large. This implies that <span class="math inline">\(\mathbb{V}ar(y_{t})\)</span> does not exist.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;Indeed, by the law of total variance &lt;span class="math inline"&gt;\(\mathbb{V}ar(y_{t})=\mathbb{V}ar(\mathbb{E}_{t-k}(y_{t}))+\mathbb{E}(\mathbb{V}ar_{t-k}(y_{t}))&amp;gt;\)&lt;/span&gt;. Since we have &lt;span class="math inline"&gt;\(\mathbb{V}ar(\mathbb{E}_{t-k}(y_{t})) \ge 0\)&lt;/span&gt; and &lt;span class="math inline"&gt;\(\mathbb{E}(\mathbb{V}ar_{t-k}(y_{t}))=\mathbb{V}ar_{t-k}(y_{t})\)&lt;/span&gt; that goes to &lt;span class="math inline"&gt;\(+\infty\)&lt;/span&gt; (by what precedes), it comes that &lt;span class="math inline"&gt;\(\mathbb{V}ar(y_{t})\)&lt;/span&gt; is not finite.&lt;/p&gt;'><sup>2</sup></a> By contrast, if <span class="math inline">\(|\phi| &lt; 1\)</span>, we have:
+(where <span class="math inline">\(\sigma^2\)</span> is the variance of <span class="math inline">\(\varepsilon_t\)</span>) does not converge when <span class="math inline">\(k\)</span> gets infinitely large. This implies that <span class="math inline">\(\mathbb{V}ar(y_{t})\)</span> does not exist.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;Indeed, by the law of total variance &lt;span class="math inline"&gt;\(\mathbb{V}ar(y_{t})=\mathbb{V}ar(\mathbb{E}_{t-k}(y_{t}))+\mathbb{E}(\mathbb{V}ar_{t-k}(y_{t}))&amp;gt;\)&lt;/span&gt;. Since we have &lt;span class="math inline"&gt;\(\mathbb{V}ar(\mathbb{E}_{t-k}(y_{t})) \ge 0\)&lt;/span&gt; and &lt;span class="math inline"&gt;\(\mathbb{E}(\mathbb{V}ar_{t-k}(y_{t}))=\mathbb{V}ar_{t-k}(y_{t})\)&lt;/span&gt; that goes to &lt;span class="math inline"&gt;\(+\infty\)&lt;/span&gt; (by what precedes), it comes that &lt;span class="math inline"&gt;\(\mathbb{V}ar(y_{t})\)&lt;/span&gt; is not finite.&lt;/p&gt;'><sup>3</sup></a> By contrast, if <span class="math inline">\(|\phi| &lt; 1\)</span>, we have:
 <span class="math display">\[
 y_t = c + \varepsilon_t + \phi  ( c + \varepsilon_{t-1})+ \phi^2  ( c + \varepsilon_{t-2})+ \dots + \phi^k  ( c + \varepsilon_{t-k}) + \dots
 \]</span>
@@ -342,6 +342,9 @@ y_{t-p+1}
 \lambda^p - \phi_1 \lambda^{p-1} - \dots - \phi_{p-1}\lambda - \phi_p = 0.\tag{2.5}
 \end{equation}\]</span></p>
 </div>
+<div class="proof">
+<p><span id="unlabeled-div-6" class="proof"><em>Proof</em>. </span>See Appendix 1.A in Hamilton (1994)</p>
+</div>
 <div class="proposition">
 <p><span id="prp:stability" class="proposition"><strong>Proposition 2.5  (Covariance-stationarity of an AR(p) process) </strong></span>These four statements are equivalent:</p>
 <ol style="list-style-type: lower-roman">
@@ -360,7 +363,7 @@ y_{t-p+1}
 </ol>
 </div>
 <div class="proof">
-<p><span id="unlabeled-div-6" class="proof"><em>Proof</em>. </span>We consider the case where the eigenvalues of <span class="math inline">\(F\)</span> are distinct.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;The Jordan matrix decomposition can be used in the general case.&lt;/p&gt;"><sup>3</sup></a> When the eigenvalues of <span class="math inline">\(F\)</span> are distinct, <span class="math inline">\(F\)</span> admits the following spectral decomposition: <span class="math inline">\(F = PDP^{-1}\)</span>, where <span class="math inline">\(D\)</span> is diagonal. Using the notations introduced in Eq. <a href="Univariate.html#eq:F">(2.4)</a>, we have:
+<p><span id="unlabeled-div-7" class="proof"><em>Proof</em>. </span>We consider the case where the eigenvalues of <span class="math inline">\(F\)</span> are distinct.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;The Jordan matrix decomposition can be used in the general case.&lt;/p&gt;"><sup>4</sup></a> When the eigenvalues of <span class="math inline">\(F\)</span> are distinct, <span class="math inline">\(F\)</span> admits the following spectral decomposition: <span class="math inline">\(F = PDP^{-1}\)</span>, where <span class="math inline">\(D\)</span> is diagonal. Using the notations introduced in Eq. <a href="Univariate.html#eq:F">(2.4)</a>, we have:
 <span class="math display">\[
 \mathbf{y}_{t} = \mathbf{c} + F \mathbf{y}_{t-1} + \boldsymbol\xi_{t}.
 \]</span>
@@ -369,7 +372,7 @@ Let’s introduce <span class="math inline">\(\mathbf{d} = P^{-1}\mathbf{c}\)</s
 \mathbf{z}_{t} = \mathbf{d} + D \mathbf{z}_{t-1} + \boldsymbol\eta_{t}.
 \]</span>
 Because <span class="math inline">\(D\)</span> is diagonal, the different component of <span class="math inline">\(\mathbf{z}_t\)</span>, denoted by <span class="math inline">\(z_{i,t}\)</span>, follow AR(1) processes. The (scalar) autoregressive parameters of these AR(1) processes are the diagonal entries of <span class="math inline">\(D\)</span>—which also are the eigenvalues of <span class="math inline">\(F\)</span>—that we denote by <span class="math inline">\(\lambda_i\)</span>.</p>
-<p>Process <span class="math inline">\(y_t\)</span> is covariance-stationary iff <span class="math inline">\(\mathbf{y}_{t}\)</span> also is covariance-stationary, which is the case iff all <span class="math inline">\(z_{i,t}\)</span>, <span class="math inline">\(i \in \{1,\dots,p\}\)</span>, are covariance-stationary. By Prop. <a href="Univariate.html#prp:statioAR1">2.3</a>, process <span class="math inline">\(z_{i,t}\)</span> is covariance-stationary iff <span class="math inline">\(|\lambda_i|&lt;1\)</span>. This proves that (i) is equivalent to (ii). Prop. <a href="Univariate.html#prp:Feigen">2.4</a> further proves that (ii) is equivalent to (iv). Finally, it is easily seen that (iii) is equivalent to (iv) (as long as <span class="math inline">\(\phi_p \ne 0\)</span>).</p>
+<p>Process <span class="math inline">\(y_t\)</span> is covariance-stationary iff <span class="math inline">\(\mathbf{y}_{t}\)</span> also is covariance-stationary, which is the case iff all <span class="math inline">\(z_{i,t}\)</span>, <span class="math inline">\(i \in \{1,\dots,p\}\)</span>, are covariance-stationary. By Prop. <a href="Univariate.html#prp:statioAR1">2.3</a>, process <span class="math inline">\(z_{i,t}\)</span> is covariance-stationary iff <span class="math inline">\(|\lambda_i|&lt;1\)</span>. This proves that (i) is equivalent to (ii). Prop. <a href="Univariate.html#prp:Feigen">2.4</a> further proves that (ii) is equivalent to (iv). Finally, it is easily seen that (iii) is equivalent to (iv) (as long as <span class="math inline">\(\phi_p \ne 0\)</span><a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;If &lt;span class="math inline"&gt;\(\phi_p \ne 0\)&lt;/span&gt; and &lt;span class="math inline"&gt;\(\lambda\)&lt;/span&gt; solves Eq. &lt;a href="Univariate.html#eq:inside"&gt;(2.7)&lt;/a&gt; with &lt;span class="math inline"&gt;\(|\lambda|&amp;lt;1\)&lt;/span&gt;, then &lt;span class="math inline"&gt;\(\lambda \ne 0\)&lt;/span&gt;. If we define &lt;span class="math inline"&gt;\(z=\frac{1}{\lambda}\)&lt;/span&gt;, then &lt;span class="math inline"&gt;\(z\)&lt;/span&gt; solves Eq. &lt;a href="Univariate.html#eq:outside"&gt;(2.6)&lt;/a&gt; and &lt;span class="math inline"&gt;\(|z|&amp;gt;1\)&lt;/span&gt;; Conversely, if &lt;span class="math inline"&gt;\(\phi_p \ne 0\)&lt;/span&gt; and &lt;span class="math inline"&gt;\(z\)&lt;/span&gt; solves Eq. &lt;a href="Univariate.html#eq:outside"&gt;(2.6)&lt;/a&gt; with &lt;span class="math inline"&gt;\(|z|&amp;gt;1\)&lt;/span&gt;, then &lt;span class="math inline"&gt;\(z \ne 0\)&lt;/span&gt; .If we define &lt;span class="math inline"&gt;\(\lambda=\frac{1}{z}\)&lt;/span&gt;, then &lt;span class="math inline"&gt;\(\lambda\)&lt;/span&gt; solves Eq. &lt;a href="Univariate.html#eq:inside"&gt;(2.7)&lt;/a&gt; and &lt;span class="math inline"&gt;\(|\lambda|&amp;lt;1\)&lt;/span&gt;&lt;/p&gt;'><sup>5</sup></a>).</p>
 </div>
 <!-- Note that we have: -->
 <!-- \begin{equation} -->
@@ -458,7 +461,7 @@ where <span class="math inline">\(\sigma^2\)</span> is the variance of <span cla
 0
 \end{array}\right],
 \]</span></p>
-<p>which is easily solved by inversing matrix <span class="math inline">\(Id - H\)</span>.</p>
+<p>which is easily solved by inverting matrix <span class="math inline">\(Id - H\)</span>.</p>
 </div>
 <div id="ar-ma-processes" class="section level2" number="2.3">
 <h2>
@@ -483,7 +486,7 @@ lie strictly outside the unit circle or, equivalently, iff those of
 lie strictly within the unit circle.</p>
 </div>
 <div class="proof">
-<p><span id="unlabeled-div-7" class="proof"><em>Proof</em>. </span>The proof of Prop. <a href="Univariate.html#prp:stability">2.5</a> can be adapted to the present case.</p>
+<p><span id="unlabeled-div-8" class="proof"><em>Proof</em>. </span>The proof of Prop. <a href="Univariate.html#prp:stability">2.5</a> can be adapted to the present case. The MA part of the ARMA process is not problematic for this process to be covariance-stationary. Only the AR part matters and needs to be checked (i.e. check if all the eigenvalues of the underlying <span class="math inline">\(F\)</span> matrix are stictly lower than <span class="math inline">\(1\)</span> in absolute value) to make sure that this process is stationary.</p>
 </div>
 <p>We can write:
 <span class="math display">\[
@@ -505,7 +508,7 @@ where
 <span class="header-section-number">2.4</span> PACF approach to identify AR/MA processes<a class="anchor" aria-label="anchor" href="#PACFapproach"><i class="fas fa-link"></i></a>
 </h2>
 <p>We have seen that the <span class="math inline">\(k^{th}\)</span>-order auto-correlation of an MA(q) process is null if <span class="math inline">\(k&gt;q\)</span>. This is exploited, in practice, to determine the order of an MA process. Moreover, since this is not the case for an AR process, this can be used to distinguish an AR from an MA process.</p>
-<p>There exists an equivalent condition that satisfied by AR processes, and that can be used to determine whether a process can be modeled as such a process. This condition relates to partial auto-correlations:</p>
+<p>There exists an equivalent condition that is satisfied by AR processes, and that can be used to determine whether a time series process can be modeled as an AR process. This condition relates to partial auto-correlations:</p>
 <!-- :::{.definition #partialC name="Partial correlation"} -->
 <!-- The partial correlation between $X$ and $Y$, given $Z$, is the correlation between: -->
 <!-- a. the residuals of the linear regression of $X$ on $Z$ and -->
@@ -516,11 +519,11 @@ where
 </div>
 <p>If <span class="math inline">\(h&gt;p\)</span>, the regression of <span class="math inline">\(y_{t+h}\)</span> on <span class="math inline">\(y_{t+h-1},\dots,y_{t+1}\)</span> is:
 <span class="math display">\[
-y_{t+h} = c + \phi_1 y_{t+h-1}+\dots+ \phi_p  y_{t+h-p} + \varepsilon_{t+h}.
+y_{t+h} = c + \phi_1 y_{t+h-1}+\dots+ \phi_p  y_{t+h-p} +\underbrace{0 \times y_{t+h-p-1}+\dots+0 \times y_{t+1}}_{=0}+ \varepsilon_{t+h}.
 \]</span>
 The residuals of the latter regressions (<span class="math inline">\(\varepsilon_{t+h}\)</span>) are uncorrelated to <span class="math inline">\(y_t\)</span>. Then the partial autocorrelation is zero for <span class="math inline">\(h&gt;p\)</span>.</p>
 <p>Besides, it can be shown that <span class="math inline">\(\phi_{p,p}=\phi_p\)</span>. Hence <span class="math inline">\(\phi_{p,p}=\phi_p\)</span> but <span class="math inline">\(\phi_{h,h}=0\)</span> for <span class="math inline">\(h&gt;p\)</span>. This can be used to determine the order of an AR process. By contrast (importantly) if <span class="math inline">\(y_t\)</span> follows an MA(q) process, then <span class="math inline">\(\phi_{k,k}\)</span> asymptotically approaches zero instead of cutting off abruptly.</p>
-<p>As illustrated below, the functions <code>acf</code> and <code>pacf</code> of R allow to conveniently implement the (P)ACF approach. (In these lines of codes, note also the use of function <code>sim.arma</code> to simulate ARMA processes.)</p>
+<p>As illustrated below, the functions <code>acf</code> and <code>pacf</code> of R allow us to conveniently implement the (P)ACF approach. (In these lines of codes, note also the use of function <code>sim.arma</code> to simulate ARMA processes.)</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">AEC</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mfrow<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">3</span>,<span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
@@ -562,7 +565,7 @@ where</p>
 </ul>
 </div>
 <div class="proof">
-<p><span id="unlabeled-div-8" class="proof"><em>Proof</em>. </span>See <span class="citation">Anderson (<a href="references.html#ref-Anderson_1971">1971</a>)</span>. Partial proof in <a href="http://faculty.wcas.northwestern.edu/~lchrist/finc520/wold.pdf">L. Christiano</a>’s lecture notes.</p>
+<p><span id="unlabeled-div-9" class="proof"><em>Proof</em>. </span>See <span class="citation">Anderson (<a href="references.html#ref-Anderson_1971">1971</a>)</span>. Partial proof in <a href="http://faculty.wcas.northwestern.edu/~lchrist/finc520/wold.pdf">L. Christiano</a>’s lecture notes.</p>
 </div>
 <p>For an ARMA process, the Wold representation is given by Eq. <a href="Univariate.html#eq:ARMAwold">(2.11)</a>. As detailed in Prop. <a href="Univariate.html#prp:computPsi">2.7</a>, it can be computed by recursively replacing the lagged <span class="math inline">\(y_t\)</span>’s in Eq. <a href="Univariate.html#eq:ARMApq">(2.10)</a>. In this case, the deterministic component (<span class="math inline">\(\kappa\)</span>) is null.</p>
 </div>
@@ -612,7 +615,7 @@ where <span class="math inline">\(\theta_h = 0\)</span> for <span class="math in
 </ol>
 </div>
 <div class="proof">
-<p><span id="unlabeled-div-9" class="proof"><em>Proof</em>. </span>This is obtained by applying the operator <span class="math inline">\(\frac{\partial}{\partial \varepsilon_{t}}\)</span> on both sides of Eq. <a href="Univariate.html#eq:ARMApq">(2.10)</a>:
+<p><span id="unlabeled-div-10" class="proof"><em>Proof</em>. </span>This is obtained by applying the operator <span class="math inline">\(\frac{\partial}{\partial \varepsilon_{t}}\)</span> on both sides of Eq. <a href="Univariate.html#eq:ARMApq">(2.10)</a>:
 <span class="math display">\[
 y_{t+h} = c + \phi_1 y_{t+h-1} + \dots + \phi_p y_{t+h-p} + \varepsilon_{t+h} + \theta_1 \varepsilon_{t+h-1} + \dots + \theta_q \varepsilon_{t+h-q}.
 \]</span></p>
@@ -957,7 +960,7 @@ Figure 2.7: The blue line corresponds to monetary-policy shocks identified by me
 <code class="sourceCode R"><span><span class="co"># Compute IRF:</span></span>
 <span><span class="va">irf</span> <span class="op">&lt;-</span> <span class="fu">sim.arma</span><span class="op">(</span><span class="fl">0</span>,<span class="va">x</span><span class="op">$</span><span class="va">phi</span>,<span class="va">x</span><span class="op">$</span><span class="va">beta</span>,<span class="va">x</span><span class="op">$</span><span class="va">sigma</span>,T<span class="op">=</span><span class="fl">60</span>,y.0<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">x</span><span class="op">$</span><span class="va">phi</span><span class="op">)</span><span class="op">)</span>,</span>
 <span>                nb.sim<span class="op">=</span><span class="fl">1</span>,make.IRF<span class="op">=</span><span class="fl">1</span>,X<span class="op">=</span><span class="cn">NaN</span>,beta<span class="op">=</span><span class="cn">NaN</span><span class="op">)</span></span></code></pre></div>
-<p>Figure <a href="Univariate.html#fig:Ramey3">2.8</a> displays the resulting IRF, with a 95% confidence band. The code used to produce the confidence bands (i.e., to compute the standard deviation of the dynamic multipliers for the different horizons) is based on the Delta method (see Appendix <a href="append.html#Delta">8.5.2</a>).<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;This method consists in approximating &lt;span class=&quot;math inline&quot;&gt;\(\mathbb{V}(ar)(f(\theta))\)&lt;/span&gt; with &lt;span class=&quot;math inline&quot;&gt;\(\frac{\partial f(\theta)}{\partial \theta}' \mathbb{V}ar(\theta)\frac{\partial f(\theta)}{\partial \theta}\)&lt;/span&gt;.&lt;/p&gt;"><sup>4</sup></a></p>
+<p>Figure <a href="Univariate.html#fig:Ramey3">2.8</a> displays the resulting IRF, with a 95% confidence band. The code used to produce the confidence bands (i.e., to compute the standard deviation of the dynamic multipliers for the different horizons) is based on the Delta method (see Appendix <a href="append.html#Delta">8.5.2</a>).<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;This method consists in approximating &lt;span class=&quot;math inline&quot;&gt;\(\mathbb{V}(ar)(f(\theta))\)&lt;/span&gt; with &lt;span class=&quot;math inline&quot;&gt;\(\frac{\partial f(\theta)}{\partial \theta}' \mathbb{V}ar(\theta)\frac{\partial f(\theta)}{\partial \theta}\)&lt;/span&gt;.&lt;/p&gt;"><sup>6</sup></a></p>
 <div class="figure" style="text-align: left-aligned">
 <span style="display:block;" id="fig:Ramey3"></span>
 <img src="TimeSeries_files/figure-html/Ramey3-1.png" alt="Response of industrial-production growth to monetary-policy shocks. Dashed lines correpsond to the $\pm$  2-standard-deviation bands." width="95%"><p class="caption">
@@ -1111,7 +1114,7 @@ where <span class="math inline">\(\mathbf{Q} = \mbox{plim }\frac{1}{T}\sum_{t=p}
 \end{equation}\]</span></p>
 </div>
 <div class="proof">
-<p><span id="unlabeled-div-10" class="proof"><em>Proof</em>. </span>Rearranging Eq. <a href="Univariate.html#eq:olsar1">(2.19)</a>, we have:
+<p><span id="unlabeled-div-11" class="proof"><em>Proof</em>. </span>Rearranging Eq. <a href="Univariate.html#eq:olsar1">(2.19)</a>, we have:
 <span class="math display">\[
 \sqrt{T}(\mathbf{b}-\boldsymbol{\beta}) =  (X'X/T)^{-1}\sqrt{T}(X'\boldsymbol\varepsilon/T).
 \]</span>
@@ -1279,7 +1282,7 @@ with <span class="math inline">\((i) \in\{AIC,HQ,BIC\}\)</span> and where <span 
 This is notably the case of the HQ and the BIC criteria.</p>
 </div>
 <div class="proof">
-<p><span id="unlabeled-div-11" class="proof"><em>Proof</em>. </span>The true number of lags is denoted by <span class="math inline">\(k_0\)</span>. We will show that <span class="math inline">\(\lim_{T \rightarrow \infty} \mathbb{P}(\hat{k}_T \ne k_0)=0\)</span>.</p>
+<p><span id="unlabeled-div-12" class="proof"><em>Proof</em>. </span>The true number of lags is denoted by <span class="math inline">\(k_0\)</span>. We will show that <span class="math inline">\(\lim_{T \rightarrow \infty} \mathbb{P}(\hat{k}_T \ne k_0)=0\)</span>.</p>
 <ul>
 <li>Case <span class="math inline">\(k &lt; k_0\)</span>: The model with <span class="math inline">\(k\)</span> parameter is misspecified, therefore:
 <span class="math display">\[
@@ -1369,7 +1372,7 @@ Hence <span class="math inline">\(\hat{k}^{(i)} \approx \underset{k}{\mbox{argmi
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Introduction to Time Series</strong>" was written by Jean-Paul Renne. It was last built on 2024-02-26.</p>
+    <p>"<strong>Introduction to Time Series</strong>" was written by Jean-Paul Renne. It was last built on 2024-03-06.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

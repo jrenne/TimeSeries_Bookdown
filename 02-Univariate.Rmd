@@ -1,3 +1,8 @@
+---
+output:
+  pdf_document: default
+  html_document: default
+---
 # Univariate processes {#Univariate}
 
 ## Moving Average (MA) processes
@@ -289,6 +294,9 @@ The eigenvalues of $F$ (defined by Eq. \@ref(eq:F)) are the solutions of:
 \end{equation}
 :::
 
+:::{.proof}
+See Appendix 1.A in Hamilton (1994)
+:::
 
 :::{.proposition #stability name="Covariance-stationarity of an AR(p) process"}
 These four statements are equivalent:
@@ -315,7 +323,7 @@ $$
 $$
 Because $D$ is diagonal, the different component of $\bv{z}_t$, denoted by $z_{i,t}$, follow AR(1) processes. The (scalar) autoregressive parameters of these AR(1) processes are the diagonal entries of $D$---which also are the eigenvalues of $F$---that we denote by $\lambda_i$.
 
-Process $y_t$ is covariance-stationary iff $\bv{y}_{t}$ also is covariance-stationary, which is the case iff all $z_{i,t}$, $i \in \{1,\dots,p\}$, are covariance-stationary. By Prop. \@ref(prp:statioAR1), process $z_{i,t}$ is covariance-stationary iff $|\lambda_i|<1$. This proves that (i) is equivalent to (ii). Prop. \@ref(prp:Feigen) further proves that (ii) is equivalent to (iv). Finally, it is easily seen that (iii) is equivalent to (iv) (as long as $\phi_p \ne 0$).
+Process $y_t$ is covariance-stationary iff $\bv{y}_{t}$ also is covariance-stationary, which is the case iff all $z_{i,t}$, $i \in \{1,\dots,p\}$, are covariance-stationary. By Prop. \@ref(prp:statioAR1), process $z_{i,t}$ is covariance-stationary iff $|\lambda_i|<1$. This proves that (i) is equivalent to (ii). Prop. \@ref(prp:Feigen) further proves that (ii) is equivalent to (iv). Finally, it is easily seen that (iii) is equivalent to (iv) (as long as $\phi_p \ne 0$^[If $\phi_p \ne 0$ and $\lambda$ solves Eq. \@ref(eq:inside) with $|\lambda|<1$, then $\lambda \ne 0$. If we define $z=\frac{1}{\lambda}$, then $z$ solves Eq. \@ref(eq:outside) and $|z|>1$; Conversely, if $\phi_p \ne 0$ and $z$ solves Eq. \@ref(eq:outside) with $|z|>1$, then $z \ne 0$ .If we define $\lambda=\frac{1}{z}$, then $\lambda$ solves Eq. \@ref(eq:inside) and $|\lambda|<1$]).
 :::
 
 
@@ -410,7 +418,7 @@ $$
 \end{array}\right],
 $$
 
-which is easily solved by inversing matrix $Id - H$.
+which is easily solved by inverting matrix $Id - H$.
 
 ## AR-MA processes
 
@@ -438,7 +446,7 @@ lie strictly within the unit circle.
 
 
 :::{.proof}
-The proof of Prop. \@ref(prp:stability) can be adapted to the present case.
+The proof of Prop. \@ref(prp:stability) can be adapted to the present case. The MA part of the ARMA process is not problematic for this process to be covariance-stationary. Only the AR part matters and needs to be checked (i.e. check if all the eigenvalues of the underlying $F$ matrix are stictly lower than $1$ in absolute value) to make sure that this process is stationary.
 :::
 
 We can write:
@@ -464,7 +472,7 @@ Importantly, note that the stationarity of the process depends only on the AR sp
 
 We have seen that the $k^{th}$-order auto-correlation of an MA(q) process is null if $k>q$. This is exploited, in practice, to determine the order of an MA process. Moreover, since this is not the case for an AR process, this can be used to distinguish an AR from an MA process.
 
-There exists an equivalent condition that satisfied by AR processes, and that can be used to determine whether a process can be modeled as such a process. This condition relates to partial auto-correlations:
+There exists an equivalent condition that is satisfied by AR processes, and that can be used to determine whether a time series process can be modeled as an AR process. This condition relates to partial auto-correlations:
 
 <!-- :::{.definition #partialC name="Partial correlation"} -->
 <!-- The partial correlation between $X$ and $Y$, given $Z$, is the correlation between: -->
@@ -480,13 +488,13 @@ The partial auto-correlation ($\phi_{h,h}$) of process $\{y_t\}$ is defined as t
 
 If $h>p$, the regression of $y_{t+h}$ on $y_{t+h-1},\dots,y_{t+1}$ is:
 $$
-y_{t+h} = c + \phi_1 y_{t+h-1}+\dots+ \phi_p  y_{t+h-p} + \varepsilon_{t+h}.
+y_{t+h} = c + \phi_1 y_{t+h-1}+\dots+ \phi_p  y_{t+h-p} +\underbrace{0 \times y_{t+h-p-1}+\dots+0 \times y_{t+1}}_{=0}+ \varepsilon_{t+h}.
 $$
 The residuals of the latter regressions ($\varepsilon_{t+h}$) are uncorrelated to $y_t$. Then the partial autocorrelation is zero for $h>p$.
 
 Besides, it can be shown that $\phi_{p,p}=\phi_p$. Hence  $\phi_{p,p}=\phi_p$ but  $\phi_{h,h}=0$ for $h>p$. This can be used to determine the order of an AR process. By contrast (importantly) if $y_t$ follows an MA(q) process, then $\phi_{k,k}$ asymptotically approaches zero instead of cutting off abruptly.
 
-As illustrated below, the functions `acf` and `pacf` of R allow to conveniently implement the (P)ACF approach. (In these lines of codes, note also the use of function `sim.arma` to simulate ARMA processes.)
+As illustrated below, the functions `acf` and `pacf` of R allow us to conveniently implement the (P)ACF approach. (In these lines of codes, note also the use of function `sim.arma` to simulate ARMA processes.)
 
 ```{r pacf, echo=TRUE, fig.cap="ACF/PACF analysis of two processes (MA process on the left, AR on the right). The correlations are computed on samples of length 1000.", fig.asp = .6, out.width = "100%", fig.align = 'left-aligned'}
 library(AEC)

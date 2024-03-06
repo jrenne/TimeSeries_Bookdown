@@ -203,7 +203,7 @@ Figure 1.2: Example of a process that is not covariance stationary. it follows: 
 <span class="math display">\[
 y_t = \mathbb{I}_{\{t&lt;1000\}}\varepsilon_{1,t}+\mathbb{I}_{\{t\ge1000\}}\varepsilon_{2,t},
 \]</span>
-where <span class="math inline">\(\varepsilon_{1,t} \sim \mathcal{N}(0,1)\)</span> and <span class="math inline">\(\varepsilon_{2,t} \sim \sqrt{\frac{\nu - 2}{\nu}} t(\nu)\)</span> and <span class="math inline">\(\nu = 4\)</span>. Indeed, <span class="math inline">\(\mathbb{E}[y_t]=\mathbb{I}_{\{t&lt;1000\}}\times \underbrace{\mathbb{E}[\varepsilon_{1,t}]}_{=0}+\mathbb{I}_{\{t\ge1000\}} \times \underbrace{\mathbb{E}[\varepsilon_{2,t}]}_{=0}=0\)</span>, <span class="math inline">\(\mathbb{V}ar(y_t)=\mathbb{I}_{\{t&lt;1000\}}\times \underbrace{\mathbb{V}ar(\varepsilon_{1,t})}_{=1}+\mathbb{I}_{\{t\ge1000\}} \times \underbrace{\mathbb{V}ar(\varepsilon_{1,t})}_{=\left(\sqrt{\frac{\nu - 2}{\nu}}\right)^2 \times \frac{\nu}{\nu - 2}=1}=1\)</span> and for <span class="math inline">\(\forall j \geq 1\)</span>, <span class="math inline">\(\gamma_{j,t}=\gamma_j=0\)</span> as the <span class="math inline">\(\varepsilon_t\)</span>’s are serially uncorrelated. A simulated path is displayed in Figure <a href="Intro.html#fig:NONNstat2">1.3</a>.</p>
+where <span class="math inline">\(\varepsilon_{1,t} \sim \mathcal{N}(0,1)\)</span> and <span class="math inline">\(\varepsilon_{2,t} \sim \sqrt{\frac{\nu - 2}{\nu}} t(\nu)\)</span> and <span class="math inline">\(\nu = 4\)</span><a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;Indeed, &lt;span class="math inline"&gt;\(\mathbb{E}[y_t]=\mathbb{I}_{\{t&amp;lt;1000\}}\times \underbrace{\mathbb{E}[\varepsilon_{1,t}]}_{=0}+\mathbb{I}_{\{t\ge1000\}} \times \underbrace{\mathbb{E}[\varepsilon_{2,t}]}_{=0}=0\)&lt;/span&gt;, &lt;span class="math inline"&gt;\(\mathbb{V}ar(y_t)=\mathbb{I}_{\{t&amp;lt;1000\}}\times \underbrace{\mathbb{V}ar(\varepsilon_{1,t})}_{=1}+\mathbb{I}_{\{t\ge1000\}} \times \underbrace{\mathbb{V}ar(\varepsilon_{2,t})}_{=\left(\sqrt{\frac{\nu - 2}{\nu}}\right)^2 \times \frac{\nu}{\nu - 2}=1}=1\)&lt;/span&gt; and for &lt;span class="math inline"&gt;\(\forall j \geq 1\)&lt;/span&gt;, &lt;span class="math inline"&gt;\(\gamma_{j,t}=\gamma_j=0\)&lt;/span&gt; as the &lt;span class="math inline"&gt;\(\varepsilon_t\)&lt;/span&gt;’s are serially uncorrelated.&lt;/p&gt;'><sup>1</sup></a>. A simulated path is displayed in Figure <a href="Intro.html#fig:NONNstat2">1.3</a>.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="cn">T</span> <span class="op">&lt;-</span> <span class="fl">2000</span></span>
 <span><span class="va">y</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="cn">T</span><span class="op">)</span></span>
@@ -230,7 +230,7 @@ Figure 1.3: Example of a process that is covariance stationary but not strictly 
 \rho_j = \frac{\gamma_j}{\gamma_0}.
 \]</span></p>
 </div>
-<p>Consider a long historical time series of the Swiss GDP growth, taken from the <span class="citation">Jordà, Schularick, and Taylor (<a href="references.html#ref-JST_2017">2017</a>)</span> dataset.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;Version 6 of the dataset, available on &lt;a href="https://www.macrohistory.net"&gt;this website&lt;/a&gt;.&lt;/p&gt;'><sup>1</sup></a></p>
+<p>Consider a long historical time series of the Swiss GDP growth, taken from the <span class="citation">Jordà, Schularick, and Taylor (<a href="references.html#ref-JST_2017">2017</a>)</span> dataset.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;Version 6 of the dataset, available on &lt;a href="https://www.macrohistory.net"&gt;this website&lt;/a&gt;.&lt;/p&gt;'><sup>2</sup></a></p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">AEC</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">JST</span><span class="op">)</span>;<span class="va">data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/subset.html">subset</a></span><span class="op">(</span><span class="va">JST</span>,<span class="va">iso</span><span class="op">==</span><span class="st">"CHE"</span><span class="op">)</span></span>
@@ -323,7 +323,7 @@ Figure 1.6: The three samples have been simulated using the following data gener
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Introduction to Time Series</strong>" was written by Jean-Paul Renne. It was last built on 2024-02-26.</p>
+    <p>"<strong>Introduction to Time Series</strong>" was written by Jean-Paul Renne. It was last built on 2024-03-06.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

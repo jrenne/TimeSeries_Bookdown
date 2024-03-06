@@ -227,13 +227,13 @@ The pseudo-inverse of the pseudo-inverse is the original matrix.</li>
 <p><span id="prp:rootsidempotent" class="proposition"><strong>Proposition 8.3  (Roots of an idempotent matrix) </strong></span>The eigenvalues of an idempotent matrix are either 1 or 0.</p>
 </div>
 <div class="proof">
-<p><span id="unlabeled-div-20" class="proof"><em>Proof</em>. </span>If <span class="math inline">\(\lambda\)</span> is an eigenvalue of an idempotent matrix <span class="math inline">\(M\)</span> then <span class="math inline">\(\exists x \ne 0\)</span> s.t. <span class="math inline">\(Mx=\lambda x\)</span>. Hence <span class="math inline">\(M^2x=\lambda M x \Rightarrow (1-\lambda)Mx=0\)</span>. Either all element of <span class="math inline">\(Mx\)</span> are zero, in which case <span class="math inline">\(\lambda=0\)</span> or at least one element of <span class="math inline">\(Mx\)</span> is nonzero, in which case <span class="math inline">\(\lambda=1\)</span>.</p>
+<p><span id="unlabeled-div-21" class="proof"><em>Proof</em>. </span>If <span class="math inline">\(\lambda\)</span> is an eigenvalue of an idempotent matrix <span class="math inline">\(M\)</span> then <span class="math inline">\(\exists x \ne 0\)</span> s.t. <span class="math inline">\(Mx=\lambda x\)</span>. Hence <span class="math inline">\(M^2x=\lambda M x \Rightarrow (1-\lambda)Mx=0\)</span>. Either all element of <span class="math inline">\(Mx\)</span> are zero, in which case <span class="math inline">\(\lambda=0\)</span> or at least one element of <span class="math inline">\(Mx\)</span> is nonzero, in which case <span class="math inline">\(\lambda=1\)</span>.</p>
 </div>
 <div class="proposition">
 <p><span id="prp:chi2idempotent" class="proposition"><strong>Proposition 8.4  (Idempotent matrix and chi-square distribution) </strong></span>The rank of a symmetric idempotent matrix is equal to its trace.</p>
 </div>
 <div class="proof">
-<p><span id="unlabeled-div-21" class="proof"><em>Proof</em>. </span>The result follows from Prop. <a href="append.html#prp:rootsidempotent">8.3</a>, combined with the fact that the rank of a symmetric matrix is equal to the number of its nonzero eigenvalues.</p>
+<p><span id="unlabeled-div-22" class="proof"><em>Proof</em>. </span>The result follows from Prop. <a href="append.html#prp:rootsidempotent">8.3</a>, combined with the fact that the rank of a symmetric matrix is equal to the number of its nonzero eigenvalues.</p>
 </div>
 <div class="proposition">
 <p><span id="prp:constrainedLS" class="proposition"><strong>Proposition 8.5  (Constrained least squares) </strong></span>The solution of the following optimisation problem:
@@ -248,7 +248,7 @@ is given by:
 where <span class="math inline">\(\boldsymbol\beta_0=(\mathbf{X}'\mathbf{X})^{-1}\mathbf{X}'\mathbf{y}\)</span>.</p>
 </div>
 <div class="proof">
-<p><span id="unlabeled-div-22" class="proof"><em>Proof</em>. </span>See for instance <a href="http://jackman.stanford.edu/classes/350B/07/ftestforWeb.pdf">Jackman, 2007</a>.</p>
+<p><span id="unlabeled-div-23" class="proof"><em>Proof</em>. </span>See for instance <a href="http://jackman.stanford.edu/classes/350B/07/ftestforWeb.pdf">Jackman, 2007</a>.</p>
 </div>
 <div class="proposition">
 <p><span id="prp:inversepartitioned" class="proposition"><strong>Proposition 8.6  (Inverse of a partitioned matrix) </strong></span>We have:
@@ -288,7 +288,7 @@ We use the notation:
 \]</span></p>
 </div>
 <div class="proof">
-<p><span id="unlabeled-div-23" class="proof"><em>Proof</em>. </span>See Appendix 3.A in Hamilton. Idea: Absolute summability implies that there exist <span class="math inline">\(N\)</span> such that, for <span class="math inline">\(j&gt;N\)</span>, <span class="math inline">\(|\theta_j| &lt; 1\)</span> (deduced from Cauchy criterion, Theorem <a href="append.html#thm:cauchycritstatic">8.2</a> and therefore <span class="math inline">\(\theta_j^2 &lt; |\theta_j|\)</span>.</p>
+<p><span id="unlabeled-div-24" class="proof"><em>Proof</em>. </span>See Appendix 3.A in Hamilton. Idea: Absolute summability implies that there exist <span class="math inline">\(N\)</span> such that, for <span class="math inline">\(j&gt;N\)</span>, <span class="math inline">\(|\theta_j| &lt; 1\)</span> (deduced from Cauchy criterion, Theorem <a href="append.html#thm:cauchycritstatic">8.2</a> and therefore <span class="math inline">\(\theta_j^2 &lt; |\theta_j|\)</span>.</p>
 </div>
 </div>
 <div id="variousResults" class="section level2" number="8.3">
@@ -329,7 +329,7 @@ r_{yz}^\mathbf{X} = \frac{\mathbf{z^*}'\mathbf{y^*}}{\sqrt{(\mathbf{z^*}'\mathbf
 and, if <span class="math inline">\(X \ne =\)</span> and <span class="math inline">\(Y \ne 0\)</span>, the equality holds iff <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> are the same up to an affine transformation.</p>
 </div>
 <div class="proof">
-<p><span id="unlabeled-div-24" class="proof"><em>Proof</em>. </span>If <span class="math inline">\(\mathbb{V}ar(X)=0\)</span>, this is trivial. If this is not the case, then let’s define <span class="math inline">\(Z\)</span> as <span class="math inline">\(Z = Y - \frac{\mathbb{C}ov(X,Y)}{\mathbb{V}ar(X)}X\)</span>. It is easily seen that <span class="math inline">\(\mathbb{C}ov(X,Z)=0\)</span>. Then, the variance of <span class="math inline">\(Y=Z+\frac{\mathbb{C}ov(X,Y)}{\mathbb{V}ar(X)}X\)</span> is equal to the sum of the variance of <span class="math inline">\(Z\)</span> and of the variance of <span class="math inline">\(\frac{\mathbb{C}ov(X,Y)}{\mathbb{V}ar(X)}X\)</span>, that is:
+<p><span id="unlabeled-div-25" class="proof"><em>Proof</em>. </span>If <span class="math inline">\(\mathbb{V}ar(X)=0\)</span>, this is trivial. If this is not the case, then let’s define <span class="math inline">\(Z\)</span> as <span class="math inline">\(Z = Y - \frac{\mathbb{C}ov(X,Y)}{\mathbb{V}ar(X)}X\)</span>. It is easily seen that <span class="math inline">\(\mathbb{C}ov(X,Z)=0\)</span>. Then, the variance of <span class="math inline">\(Y=Z+\frac{\mathbb{C}ov(X,Y)}{\mathbb{V}ar(X)}X\)</span> is equal to the sum of the variance of <span class="math inline">\(Z\)</span> and of the variance of <span class="math inline">\(\frac{\mathbb{C}ov(X,Y)}{\mathbb{V}ar(X)}X\)</span>, that is:
 <span class="math display">\[
 \mathbb{V}ar(Y) = \mathbb{V}ar(Z) + \left(\frac{\mathbb{C}ov(X,Y)}{\mathbb{V}ar(X)}\right)^2\mathbb{V}ar(X) \ge \left(\frac{\mathbb{C}ov(X,Y)}{\mathbb{V}ar(X)}\right)^2\mathbb{V}ar(X).
 \]</span>
@@ -392,7 +392,7 @@ X' \Sigma^{-1}X \sim \chi^2(n).
 \]</span></p>
 </div>
 <div class="proof">
-<p><span id="unlabeled-div-25" class="proof"><em>Proof</em>. </span>Because <span class="math inline">\(\Sigma\)</span> is a symmetrical definite positive matrix, it admits the spectral decomposition <span class="math inline">\(PDP'\)</span> where <span class="math inline">\(P\)</span> is an orthogonal matrix (i.e. <span class="math inline">\(PP'=Id\)</span>) and D is a diagonal matrix with non-negative entries. Denoting by <span class="math inline">\(\sqrt{D^{-1}}\)</span> the diagonal matrix whose diagonal entries are the inverse of those of <span class="math inline">\(D\)</span>, it is easily checked that the covariance matrix of <span class="math inline">\(Y:=\sqrt{D^{-1}}P'X\)</span> is <span class="math inline">\(Id\)</span>. Therefore <span class="math inline">\(Y\)</span> is a vector of uncorrelated Gaussian variables. The properties of Gaussian variables imply that the components of <span class="math inline">\(Y\)</span> are then also independent. Hence <span class="math inline">\(Y'Y=\sum_i Y_i^2 \sim \chi^2(n)\)</span>.</p>
+<p><span id="unlabeled-div-26" class="proof"><em>Proof</em>. </span>Because <span class="math inline">\(\Sigma\)</span> is a symmetrical definite positive matrix, it admits the spectral decomposition <span class="math inline">\(PDP'\)</span> where <span class="math inline">\(P\)</span> is an orthogonal matrix (i.e. <span class="math inline">\(PP'=Id\)</span>) and D is a diagonal matrix with non-negative entries. Denoting by <span class="math inline">\(\sqrt{D^{-1}}\)</span> the diagonal matrix whose diagonal entries are the inverse of those of <span class="math inline">\(D\)</span>, it is easily checked that the covariance matrix of <span class="math inline">\(Y:=\sqrt{D^{-1}}P'X\)</span> is <span class="math inline">\(Id\)</span>. Therefore <span class="math inline">\(Y\)</span> is a vector of uncorrelated Gaussian variables. The properties of Gaussian variables imply that the components of <span class="math inline">\(Y\)</span> are then also independent. Hence <span class="math inline">\(Y'Y=\sum_i Y_i^2 \sim \chi^2(n)\)</span>.</p>
 <p>It remains to note that <span class="math inline">\(Y'Y=X'PD^{-1}P'X=X'\mathbb{V}ar(X)^{-1}X\)</span> to conclude.</p>
 </div>
 </div>
@@ -456,7 +456,7 @@ for all <span class="math inline">\(s\)</span> at which <span class="math inline
 <p><span id="thm:LLNappendix" class="theorem"><strong>Theorem 8.4  (Law of large numbers) </strong></span>The sample mean is a consistent estimator of the population mean.</p>
 </div>
 <div class="proof">
-<p><span id="unlabeled-div-26" class="proof"><em>Proof</em>. </span>Let’s denote by <span class="math inline">\(\phi_{X_i}\)</span> the characteristic function of a r.v. <span class="math inline">\(X_i\)</span>. If the mean of <span class="math inline">\(X_i\)</span> is <span class="math inline">\(\mu\)</span> then the Talyor expansion of the characteristic function is:
+<p><span id="unlabeled-div-27" class="proof"><em>Proof</em>. </span>Let’s denote by <span class="math inline">\(\phi_{X_i}\)</span> the characteristic function of a r.v. <span class="math inline">\(X_i\)</span>. If the mean of <span class="math inline">\(X_i\)</span> is <span class="math inline">\(\mu\)</span> then the Talyor expansion of the characteristic function is:
 <span class="math display">\[
 \phi_{X_i}(u) = \mathbb{E}(\exp(iuX)) = 1 + iu\mu + o(u).
 \]</span>
@@ -473,7 +473,7 @@ The facts that (a) <span class="math inline">\(e^{iu\mu}\)</span> is the charact
 \]</span></p>
 </div>
 <div class="proof">
-<p><span id="unlabeled-div-27" class="proof"><em>Proof</em>. </span>Let us introduce the r.v. <span class="math inline">\(Y_n:= \sqrt{n}(\bar{X}_n - \mu)\)</span>. We have <span class="math inline">\(\phi_{Y_n}(u) = \left[ \mathbb{E}\left( \exp(i \frac{1}{\sqrt{n}} u (X_1 - \mu)) \right) \right]^n\)</span>. We have:
+<p><span id="unlabeled-div-28" class="proof"><em>Proof</em>. </span>Let us introduce the r.v. <span class="math inline">\(Y_n:= \sqrt{n}(\bar{X}_n - \mu)\)</span>. We have <span class="math inline">\(\phi_{Y_n}(u) = \left[ \mathbb{E}\left( \exp(i \frac{1}{\sqrt{n}} u (X_1 - \mu)) \right) \right]^n\)</span>. We have:
 <span class="math display">\[\begin{eqnarray*}
 &amp;&amp;\left[ \mathbb{E}\left( \exp\left(i \frac{1}{\sqrt{n}} u (X_1 - \mu)\right) \right) \right]^n\\
 &amp;=&amp; \left[ \mathbb{E}\left( 1 + i \frac{1}{\sqrt{n}} u (X_1 - \mu) - \frac{1}{2n} u^2 (X_1 - \mu)^2 + o(u^2) \right) \right]^n \\
@@ -489,7 +489,7 @@ Therefore <span class="math inline">\(\phi_{Y_n}(u) \underset{n \rightarrow \inf
 </h2>
 <p><strong>Proof of Eq. <a href="Intro.html#eq:TCL2">(1.3)</a></strong></p>
 <div class="proof">
-<p><span id="unlabeled-div-28" class="proof"><em>Proof</em>. </span>We have:
+<p><span id="unlabeled-div-29" class="proof"><em>Proof</em>. </span>We have:
 <span class="math display">\[\begin{eqnarray*}
 &amp;&amp;T\mathbb{E}\left[(\bar{y}_T - \mu)^2\right]\\
 &amp;=&amp; T\mathbb{E}\left[\left(\frac{1}{T}\sum_{t=1}^T(y_t - \mu)\right)^2\right] = \frac{1}{T} \mathbb{E}\left[\sum_{t=1}^T(y_t - \mu)^2+2\sum_{s&lt;t\le T}(y_t - \mu)(y_s - \mu)\right]\\
@@ -533,7 +533,7 @@ Then, if <span class="math inline">\(T&gt;f(q_0)\)</span> and <span class="math 
 </div>
 <p><strong>Proof of Proposition <a href="forecasting.html#prp:smallestMSE">4.1</a></strong></p>
 <div class="proof">
-<p><span id="unlabeled-div-29" class="proof"><em>Proof</em>. </span>We have:
+<p><span id="unlabeled-div-30" class="proof"><em>Proof</em>. </span>We have:
 <span class="math display" id="eq:1">\[\begin{eqnarray}
 \mathbb{E}([y_{t+1} - y^*_{t+1}]^2) &amp;=&amp; \mathbb{E}\left([\color{blue}{\{y_{t+1} - \mathbb{E}(y_{t+1}|x_t)\}} + \color{red}{\{\mathbb{E}(y_{t+1}|x_t)  - y^*_{t+1}\}}]^2\right)\nonumber\\
 &amp;=&amp;  \mathbb{E}\left(\color{blue}{[y_{t+1} - \mathbb{E}(y_{t+1}|x_t)]}^2\right) + \mathbb{E}\left(\color{red}{[\mathbb{E}(y_{t+1}|x_t)  - y^*_{t+1}]}^2\right)\nonumber\\
@@ -555,7 +555,7 @@ This implies that <span class="math inline">\(\mathbb{E}([y_{t+1} - y^*_{t+1}]^2
 </div>
 <p><strong>Proof of Proposition <a href="VAR.html#prp:estimVARGaussian">3.1</a></strong></p>
 <div class="proof">
-<p><span id="unlabeled-div-30" class="proof"><em>Proof</em>. </span>Using Proposition <a href="#prp:multivarG"><strong>??</strong></a>, we obtain that, conditionally on <span class="math inline">\(x_1\)</span>, the log-likelihood is given by
+<p><span id="unlabeled-div-31" class="proof"><em>Proof</em>. </span>Using Proposition <a href="#prp:multivarG"><strong>??</strong></a>, we obtain that, conditionally on <span class="math inline">\(x_1\)</span>, the log-likelihood is given by
 <span class="math display">\[\begin{eqnarray*}
 \log\mathcal{L}(Y_{T};\theta) &amp; = &amp; -(Tn/2)\log(2\pi)+(T/2)\log\left|\Omega^{-1}\right|\\
 &amp;  &amp; -\frac{1}{2}\sum_{t=1}^{T}\left[\left(y_{t}-\Pi'x_{t}\right)'\Omega^{-1}\left(y_{t}-\Pi'x_{t}\right)\right].
@@ -593,7 +593,7 @@ which leads to the result.</p>
 </div>
 <p><strong>Proof of Proposition <a href="VAR.html#prp:OLSVAR">3.2</a></strong></p>
 <div class="proof">
-<p><span id="unlabeled-div-31" class="proof"><em>Proof</em>. </span>Let us drop the <span class="math inline">\(i\)</span> subscript. Rearranging Eq. <a href="Univariate.html#eq:olsar1">(2.19)</a>, we have:
+<p><span id="unlabeled-div-32" class="proof"><em>Proof</em>. </span>Let us drop the <span class="math inline">\(i\)</span> subscript. Rearranging Eq. <a href="Univariate.html#eq:olsar1">(2.19)</a>, we have:
 <span class="math display">\[
 \sqrt{T}(\mathbf{b}-\boldsymbol{\beta}) =  (X'X/T)^{-1}\sqrt{T}(X'\boldsymbol\varepsilon/T).
 \]</span>
@@ -2026,7 +2026,7 @@ with <span class="math inline">\(\hat\varepsilon_{t}^{(k)}=\hat\varepsilon_{s_t^
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Introduction to Time Series</strong>" was written by Jean-Paul Renne. It was last built on 2024-02-26.</p>
+    <p>"<strong>Introduction to Time Series</strong>" was written by Jean-Paul Renne. It was last built on 2024-03-06.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
