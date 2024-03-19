@@ -134,7 +134,7 @@
 
 \title{Introduction to Time Series}
 \author{Jean-Paul Renne}
-\date{2024-03-06}
+\date{2024-03-19}
 
 \usepackage{amsthm}
 \newtheorem{theorem}{Theorem}[chapter]
@@ -947,14 +947,14 @@ The Wold decomposition is an important result in time series analysis:
 
 Any covariance-stationary process admits the following representation:
 \[
-y_t = \mu + \sum_{0}^{+\infty} \theta_i \varepsilon_{t-i} + \kappa_t,
+y_t = \mu + \sum_{0}^{+\infty} \psi_i \varepsilon_{t-i} + \kappa_t,
 \]
 where
 
 \begin{itemize}
 \tightlist
 \item
-  \(\theta_0 = 1\), \(\sum_{i=0}^{\infty} \theta_i^2 < +\infty\) (square summability, see Def. \ref{def:summability}).
+  \(\psi_0 = 1\), \(\sum_{i=0}^{\infty} \psi_i^2 < +\infty\) (square summability, see Def. \ref{def:summability}).
 \item
   \(\{\varepsilon_t\}\) is a white noise (see Def. \ref{def:whitenoise}); \(\varepsilon_t\) is the error made when forecasting \(y_t\) based on a linear combination of lagged \(y_t\)'s (\(\varepsilon_t = y_t - \hat{\mathbb{E}}[y_t|y_{t-1},y_{t-2},\dots]\)).
 \item
@@ -1089,7 +1089,7 @@ Consider the annual Swiss GDP growth from the JST macro-history database. Let us
 \includegraphics[width=1\linewidth]{TimeSeries_files/figure-latex/IRFgdp1-1} \caption{(P)ACF analysis of Swiss GDP growth.}\label{fig:IRFgdp1}
 \end{figure}
 
-The two bottom plots of Figure \ref{fig:IRFgdp1} suggest that either an MA(2) or an AR(1) could be used to model the GDP growth rate series. Figure \ref{fig:IRFgdp2} shows the IRFs based on these two respective specifications.
+The two bottom plots of Figure \ref{fig:IRFgdp1} suggest that either an MA(2)\footnote{Indeed, the sample autocorrelation coefficients, (\(\rho_j\)), are statistically significant for \(j \leq 2\) where \(\rho_2\) is barely significant} or an AR(1)\footnote{Indeed, the sample partial autocorrelation coefficients, \(\rho_{j,j}\), are statistically significant for \(j=1\) only}could be used to model the GDP growth rate series. Figure \ref{fig:IRFgdp2} shows the IRFs based on these two respective specifications.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1122,6 +1122,9 @@ The same kind of algorithm (as in Prop. \ref{prp:computPsi}) can be used to comp
 \hypertarget{ARMAIRF}{%
 \section{ARMA processes with exogenous variables (ARMA-X)}\label{ARMAIRF}}
 
+\hypertarget{ARMAXDef}{%
+\subsection{Definitions (ARMA-X)}\label{ARMAXDef}}
+
 ARMA processes do not allow to investigate the influence of an exogenous variable (say \(x_t\)) on the variable of interest (say \(y_t\)). When \(x_t\) and \(y_t\) have reciprocal influences, the Vector Autoregressive (VAR) model may be used (this tools will be studied later, in Section \ref{VAR}). However, when one suspects that \(x_t\) has an ``exogenous'' influence on \(y_t\), then a simple extension of the ARMA processes may be considered. Loosely speaking, \(x_t\) has an ``exogenous'' influence on \(y_t\) if \(y_t\) does not affect \(x_t\). This extension is referred to as ARMA-X.
 
 To begin with, let us formalize this notion of exogeneity. Consider a white noise sequence \(\{\varepsilon_t\}\) (Def. \ref{def:whitenoise}). This white noise will enter the dynamics of \(y_t\), alongside with \(x_t\); but \(x_t\) will be exogenous to \(\varepsilon_t\). (We will also say that \(x_t\) is exogenous to \(y_t\).)
@@ -1137,14 +1140,17 @@ Hence, if \(\{x_t\}\) is strictly exogenous to \(\varepsilon_t\), then past, pre
 
 In the following, we assume that \(\{x_t\}\) is a covariance stationary process.
 
-\begin{definition}[ARMAX(p,q,r) model]
-\protect\hypertarget{def:ARMAX}{}\label{def:ARMAX}The process \(\{y_t\}\) is an ARMAX(p,q,r) if it follows a difference equation of the form:
+\begin{definition}[ARMA-X(p,q,r) model]
+\protect\hypertarget{def:ARMAX}{}\label{def:ARMAX}The process \(\{y_t\}\) is an ARMA-X(p,q,r) if it follows a difference equation of the form:
 \begin{eqnarray}
 y_t &=& \underbrace{c + \phi_1 y_{t-1} + \dots + \phi_p y_{t-p}}_{\mbox{AR(p) part}} + \underbrace{\beta_0 x_t + \dots + \beta_{r} x_{t-r}}_{\mbox{X(r) part}} + \nonumber \\
 &&\underbrace{\varepsilon_t + \theta_1\varepsilon_{t-1}+\dots +\theta_{q}\varepsilon_{t-q},}_{\mbox{MA(q) part}} \label{eq:DLM}
 \end{eqnarray}
 where \(\{\varepsilon_t\}\) is an i.i.d. white noise sequence and \(\{x_t\}\) is exogenous to \(y_t\).
 \end{definition}
+
+\hypertarget{ARMAXDynamic}{%
+\subsection{Dynamic multipliers in ARMA-X models}\label{ARMAXDynamic}}
 
 What is the effect of a one-unit increase in \(x_t\) on \(y_t\)? To address this question, this notion of ``effect'' has to be formalized. Let us introduce two related sequences of values for \(\{x\}\). Denote the first by \(\{a\}\) and the second by \(\{\tilde{a}^t\}\). Further, we posit \(a_s = \tilde{a}_s^t\) for all \(s \ne t\), and \(\tilde{a}_t^t = a_t+1\).
 
@@ -1168,7 +1174,7 @@ and using the exogeneity assumption, we obtain:
 \]
 This can be applied recursively to give \(\dfrac{\partial y_{t+h}}{\partial x_t}\) for any \(h \ge 0\):
 
-\begin{proposition}[Dynamic multipliers in ARMAX models]
+\begin{proposition}[Dynamic multipliers in ARMA-X models]
 \protect\hypertarget{prp:computPsiARMAX}{}\label{prp:computPsiARMAX}
 
 One can recursively compute the dynamic multipliers \(\frac{\partial y_{t+h}}{\partial x_t}\) as follows:
@@ -1195,7 +1201,7 @@ It has to be stressed that the definition of the dynamic multipliers (Eq. \eqref
 \begin{example}[Influence of the number of freezing days on the price of orange juice]
 \protect\hypertarget{exm:OrangeJuice}{}\label{exm:OrangeJuice}
 
-This example is based on data used in \citet{Stock_Watson_2003} (Chapter 16). The objective is to study the influence of the number of freezing days on the price of orange juice. Let us first estimate a ARMAX(0,0,12) model:
+This example is based on data used in \citet{Stock_Watson_2003} (Chapter 16). The objective is to study the influence of the number of freezing days on the price of orange juice. Let us first estimate a ARMA-X(0,0,3) model:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1267,7 +1273,7 @@ This example is based on data used in \citet{Stock_Watson_2003} (Chapter 16). Th
 ## Note:         *p<0.1; **p<0.05; ***p<0.01
 \end{verbatim}
 
-Let us now use function \texttt{estim.armax}, from package \texttt{AEC}to fit an ARMA-X(2,0,1) model:
+Let us now use function \texttt{estim.armax}, from package \texttt{AEC}to fit an ARMA-X(3,0,1) model:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1353,7 +1359,7 @@ In this example, we make use of monetary shocks identified through high-frequenc
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\# Estimate ARMAX:}
+\CommentTok{\# Estimate ARMA{-}X:}
 \NormalTok{p }\OtherTok{\textless{}{-}} \DecValTok{1}\NormalTok{; q }\OtherTok{\textless{}{-}} \DecValTok{0}
 \NormalTok{x }\OtherTok{\textless{}{-}} \FunctionTok{estim.armax}\NormalTok{(Ramey}\SpecialCharTok{$}\NormalTok{growth[indic.good.dates],p,q,}
                  \AttributeTok{X=}\NormalTok{Matrix.of.Exog[indic.good.dates,])}
@@ -1398,10 +1404,26 @@ Figure \ref{fig:Ramey3} displays the resulting IRF, with a 95\% confidence band.
 \hypertarget{estimARMA}{%
 \section{Maximum Likelihood Estimation (MLE) of ARMA processes}\label{estimARMA}}
 
+\hypertarget{Generalities}{%
+\subsection{Generalities}\label{Generalities}}
+
 Consider the general case (of any time series); assume we observe a sample \(\mathbf{y}=[y_1,\dots,y_T]'\). In order to implement ML techniques, we need to evaluate the joint p.d.f. (or ``likelihood'') of \(\mathbf{y}\), i.e., \(\mathcal{L}(\boldsymbol\theta;\mathbf{y})\), where \(\boldsymbol\theta\) is a vector of parameters that characterizes the dynamics of \(y_t\). The Maximum Likelihood (ML) estimate of \(\boldsymbol\theta\) is then given by:
 \[
 \boxed{\boldsymbol\theta_{MLE} = \arg \max_{\boldsymbol\theta} \mathcal{L}(\boldsymbol\theta;\mathbf{y})  = \arg \max_{\boldsymbol\theta} \log \mathcal{L}(\boldsymbol\theta;\mathbf{y}).}
 \]
+It is useful to remember Bayes' formula:
+\[
+\mathbb{P}(X_2=x,X_1=y) = \mathbb{P}(X_2=x|X_1=y)\mathbb{P}(X_1=y).
+\]
+Using it leads to the following decomposition of our likelihood function (by considering that \(X_2=Y_T\) and \(X_1=(Y_{T-1},Y_{T-2},\dots,Y_1)\)):
+\begin{eqnarray*}
+f_{Y_T,\dots,Y_1}(y_T,\dots,y_1;\boldsymbol\theta) &=&f_{\underbrace{Y_T}_{=X_2}|\underbrace{Y_{T-1},\dots,Y_1}_{=X_1}}(y_T,\dots,y_1;\boldsymbol\theta) \times \\
+&& f_{\underbrace{Y_{T-1},\dots,Y_1}_{=X_1}}(y_{T-1},\dots,y_1;\boldsymbol\theta).
+\end{eqnarray*}
+Using the previous expression recursively, one obtains that for any \(1 \leq p \leq T\):
+\begin{equation}
+f_{Y_T,\dots,Y_1}(y_T,\dots,y_1;\boldsymbol\theta) = f_{Y_p,\dots,Y_1}(y_p,\dots,y_1;\boldsymbol\theta) \times \prod_{t=p+1}^{T} f_{Y_t|Y_{t-1},\dots,Y_1}(y_t,\dots,y_1;\boldsymbol\theta).\label{eq:recursMLE}
+\end{equation}
 
 In the time series context, if process \(y_t\) is Markovian, then there exists a useful way to rewrite the likelihood \(\mathcal{L}(\boldsymbol\theta;\mathbf{y})\). Let us first recall the definition of a Markovian process:
 
@@ -1409,19 +1431,11 @@ In the time series context, if process \(y_t\) is Markovian, then there exists a
 \protect\hypertarget{def:Markov}{}\label{def:Markov}Process \(y_t\) is Markovian of order one if \(f_{Y_t|Y_{t-1},Y_{t-2},\dots} = f_{Y_t|Y_{t-1}}\). More generally, it is Markovian of order \(k\) if \(f_{Y_t|Y_{t-1},Y_{t-2},\dots} = f_{Y_t|Y_{t-1},\dots,Y_{t-k}}\).
 \end{definition}
 
-Now, remember Bayes' formula:
-\[
-\mathbb{P}(X_2=x,X_1=y) = \mathbb{P}(X_2=x|X_1=y)\mathbb{P}(X_1=y).
-\]
-Using it leads to the following decomposition of our likelihood function:
-\begin{eqnarray*}
-f_{Y_T,\dots,Y_1}(y_T,\dots,y_1;\boldsymbol\theta) &=&f_{Y_T|Y_{T-1},\dots,Y_1}(y_T,\dots,y_1;\boldsymbol\theta) \times \\
-&& f_{Y_{T-1},\dots,Y_1}(y_{T-1},\dots,y_1;\boldsymbol\theta).
-\end{eqnarray*}
-Using the previous expression recursively, one obtains:
-\begin{equation}
-f_{Y_T,\dots,Y_1}(y_T,\dots,y_1;\boldsymbol\theta) = f_{Y_1}(y_1;\boldsymbol\theta) \prod_{t=2}^{T} f_{Y_t|Y_{t-1},\dots,Y_1}(y_t,\dots,y_1;\boldsymbol\theta).\label{eq:recursMLE}
-\end{equation}
+\hypertarget{estimAR}{%
+\subsection{Maximum Likelihood Estimation of AR processes}\label{estimAR}}
+
+\hypertarget{estimAR1}{%
+\subsubsection{Maximum Likelihood Estimation of an AR(1) process}\label{estimAR1}}
 
 Let us start with the Gaussian AR(1) process (which is Markovian of order one):
 \[
@@ -1436,7 +1450,11 @@ and
 f_{Y_t|Y_{t-1}}(y_t,y_{t-1};\boldsymbol\theta) = \frac{1}{\sqrt{2\pi}\sigma}\exp\left(-\frac{(y_t - c - \phi_1 y_{t-1})^2}{2\sigma^2}\right).
 \]
 
-These expressions can be plugged into Eq. \eqref{eq:recursMLE}. But what about \(f_{Y_1}(y_1;\boldsymbol\theta)\)? There exist two possibilities:
+These expressions can be plugged into Eq. \eqref{eq:recursMLE} that ultimately takes the follwing form with \(p=1\)
+\[
+f_{Y_T,\dots,Y_1}(y_T,\dots,y_1;\boldsymbol\theta) = f_{Y_1}(y_1;\boldsymbol\theta) \times \prod_{t=2}^{T} f_{Y_t|Y_{t-1}}(y_t,y_{t-1};\boldsymbol\theta)
+\]
+But what about \(f_{Y_1}(y_1;\boldsymbol\theta)\)? There exist two possibilities:
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -1459,7 +1477,7 @@ For a Gaussian AR(1) process, we have:
   \end{eqnarray}
   The Maximum Likelihood Estimator of \(\boldsymbol\theta= [c,\phi_1,\sigma^2]\) is obtained by numerical optimization.
 \item
-  \textbf{Case 2}: The (conditional) log-likelihood is:
+  \textbf{Case 2}: The (conditional) log-likelihood (denoted with a \(*\)) is:
   \begin{eqnarray}
   \log \mathcal{L}^*(\boldsymbol\theta;\mathbf{y})  &=& - \frac{T-1}{2} \log(2\pi) - (T-1)\log(\sigma)\nonumber\\
   && - \sum_{t=2}^T \left[\frac{(y_t - c - \phi_1 y_{t-1})^2}{2\sigma^2} \right].\label{eq:Lstar}
@@ -1484,16 +1502,19 @@ X = \left[\begin{array}{cc}
 Eq. \eqref{eq:Lstar} then rewrites:
 \begin{eqnarray}
 \log \mathcal{L}^*(\boldsymbol\theta;\mathbf{y})  &=& - \frac{T-1}{2} \log(2\pi) - (T-1)\log(\sigma) \nonumber \\
-&& - \frac{1}{2\sigma^2} (Y-X[c,\phi_1]')'(Y-X[c,\phi_1]'),
+&& - \frac{1}{2\sigma^2} \underbrace{(Y-X[c,\phi_1]')'(Y-X[c,\phi_1]')}_{=\displaystyle \sum_{t=2}^T (y_t-c-\phi_1 y_{t-1})^2},
 \end{eqnarray}
-which is maximised for:
+which is maximised for\footnote{Indeed, \((Y-X[c,\phi_1]')'(Y-X[c,\phi_1]')=Y'Y-[c,\phi_1]X'Y-Y'X[c,\phi_1]'+[c,\phi_1]X'X[c,\phi_1]'\). If we use the notation \(\beta=[c,\phi_1]'\), then \((Y-X[c,\phi_1]')'(Y-X[c,\phi_1]')=Y'Y-\beta'X'Y-Y'X\beta+\beta'X'X\beta\) whose derivative with respect to \(\beta\) corresponds to \(-2X'Y+2X'X\beta\). If \(\hat{\beta}\) maximizes the log-likelihood, then \(X'X\hat{\beta}=X'Y \Leftrightarrow \hat{\beta}=[\hat{c},\hat{\phi}_1]'=(X'X)^{-1}X'Y\)}:
 \begin{eqnarray}
 [\hat{c},\hat\phi_1]' &=& (X'X)^{-1}X'Y \label{eq:AROLSmean} \\
 \hat{\sigma^2} &=& \frac{1}{T-1} \sum_{t=2}^T (y_t - \hat{c} - \hat{\phi_1}y_{t-1})^2 \nonumber \\
 &=& \frac{1}{T-1} Y'(I - X(X'X)^{-1}X')Y. \label{eq:AROLSsigma}
 \end{eqnarray}
 
-Let us turn to the case of an AR(p) process. We have:
+\hypertarget{estimARp}{%
+\subsubsection{Maximum Likelihood Estimation of an AR(p) process}\label{estimARp}}
+
+Let us turn to the case of an AR(p) process which is Markovian of order \(p\). We have:
 \begin{eqnarray*}
 \log \mathcal{L}(\boldsymbol\theta;\mathbf{y}) &=& \log f_{Y_p,\dots,Y_1}(y_p,\dots,y_1;\boldsymbol\theta) +\\
 && \underbrace{\sum_{t=p+1}^{T} \log f_{Y_t|Y_{t-1},\dots,Y_{t-p}}(y_t,\dots,y_{t-p};\boldsymbol\theta)}_{\log \mathcal{L}^*(\boldsymbol\theta;\mathbf{y})}.
@@ -1508,7 +1529,7 @@ where \(f_{Y_p,\dots,Y_{1}}(y_p,\dots,y_{1};\boldsymbol\theta)\) is the marginal
 \gamma_{p-1} & \gamma_{p-2} & \dots & \gamma_{0} \\
 \end{array}\right],
 \end{eqnarray*}
-where the \(\gamma_i\)'s are computed using the Yule-Walker equations (Eq. \eqref{eq:gammas}). Note that they depend, in a non-linear way, on the model parameters. Hence, the maximization of the exact log-likelihood necessitates numerical oprimization procedures. By contrast, the maximization of the conditional log-likelihood \(\log \mathcal{L}^*(\boldsymbol\theta;\mathbf{y})\) only requires OLS, using Eqs. \eqref{eq:AROLSmean} and \eqref{eq:AROLSsigma}, with:
+where the \(\gamma_i\)'s are computed using the Yule-Walker equations (Eq. \eqref{eq:gammas}). Note that they depend, in a non-linear way, on the model parameters. Hence, the maximization of the exact log-likelihood necessitates numerical optimization procedures. By contrast, the maximization of the conditional log-likelihood \(\log \mathcal{L}^*(\boldsymbol\theta;\mathbf{y})\) only requires OLS, using Eqs. \eqref{eq:AROLSmean} and \eqref{eq:AROLSsigma}, with:
 \[
 Y = \left[\begin{array}{c}
 y_{p+1}\\
@@ -1524,17 +1545,17 @@ X = \left[\begin{array}{cccc}
 
 Again, for stationary processes, conditional and exact MLE have the same asymptotic (large-sample) distribution. In small samples, the OLS formula is however biased. Indeed, consider the regression (where \(y_t\) follows an AR(p) process):
 \begin{equation}
-y_t = \boldsymbol\beta'\mathbf{x}_t + \varepsilon_t,\label{eq:OLSregARp}
+y_t = \mathbf{x}_t \boldsymbol\beta+ \varepsilon_t,\label{eq:OLSregARp}
 \end{equation}
-with \(\mathbf{x}_t = [1,y_{t-1},\dots,y_{t-p}]'\) and \(\boldsymbol\beta = [c,\phi_1,\dots,\phi_p]'\).
+with \(\mathbf{x}_t = [1,y_{t-1},\dots,y_{t-p}]\) of dimensions \(1\times (p+1)\) and \(\boldsymbol\beta = [c,\phi_1,\dots,\phi_p]'\) of dimensions \((p+1)\times 1\).
 
 The bias results from the fact that \(\mathbf{x}_t\) correlates to the \(\varepsilon_s\)'s for \(s<t\). To be sure:
 \begin{equation}
 \mathbf{b} = \boldsymbol{\beta} + (X'X)^{-1}X'\boldsymbol\varepsilon,\label{eq:olsar1}
 \end{equation}
-and because of the specific form of \(X\), we have non-zero correlation between \(\mathbf{x}_t\) and \(\varepsilon_s\) for \(s<t\), therefore \(\mathbb{E}[(X'X)^{-1}X'\boldsymbol\varepsilon] \ne 0\). Again, asymptotically, the previous expectation goes to zero, and we have:
+and because of the specific form of \(X\), we have non-zero correlation\footnote{The Gauss-Markov theorem's strict exogeneity assumption is therefore not satisfied.} between \(\mathbf{x}_t\) and \(\varepsilon_s\) for \(s<t\), therefore \(\mathbb{E}[(X'X)^{-1}X'\boldsymbol\varepsilon] \ne 0\). Again, asymptotically, the previous expectation goes to zero, and we have:
 
-\begin{proposition}[Large-sample porperties of the OLS estimator of AR(p) models]
+\begin{proposition}[Large-sample properties of the OLS estimator of AR(p) models]
 \protect\hypertarget{prp:cgceOLSARp}{}\label{prp:cgceOLSARp}Assume \(\{y_t\}\) follows the AR(p) process:
 \[
 y_t = c + \phi_1 y_{t-1} + \dots + \phi_p y_{t-p} + \varepsilon_t
@@ -1563,7 +1584,7 @@ Rearranging Eq. \eqref{eq:olsar1}, we have:
 \[
 \sqrt{T}(\mathbf{b}-\boldsymbol{\beta}) =  (X'X/T)^{-1}\sqrt{T}(X'\boldsymbol\varepsilon/T).
 \]
-Let us consider the autocovariances of \(\mathbf{v}_t = \mathbf{x}_t \varepsilon_t\), denoted by \(\gamma^v_j\). Using the fact that \(\mathbf{x}_t\) is a linear combination of past \(\varepsilon_t\)'s and that \(\varepsilon_t\) is a white noise, we get that \(\mathbb{E}(\varepsilon_t\mathbf{x}_t)=0\). Therefore
+Let us consider the autocovariances of \(\mathbf{v}_t = \mathbf{x}_t \varepsilon_t\), denoted by \(\gamma^v_j\). Using the fact that \(\mathbf{x}_t\) is a linear combination of past \(\varepsilon_t\)'s and that \(\varepsilon_t\) is a white noise, we get that \(\mathbb{E}(\varepsilon_t\mathbf{x}_t)=\mathbb{E}(\mathbb{E}_{t-1}(\varepsilon_t\mathbf{x}_t))=\mathbb{E}(\underbrace{\mathbb{E}_{t-1}(\varepsilon_t|\mathbf{x}_t)}_{=0}\mathbf{x}_t)=0\). Therefore
 \[
 \gamma^v_j = \mathbb{E}(\varepsilon_t\varepsilon_{t-j}\mathbf{x}_t\mathbf{x}_{t-j}').
 \]
@@ -1599,13 +1620,19 @@ These two cases (exact or conditional log-likelihoods) can be implemented when a
 
 The two sets of estimated coefficients appear to be very close to each other.
 
+\hypertarget{estimMA}{%
+\subsection{Maximum Likelihood Estimation of MA processes}\label{estimMA}}
+
+\hypertarget{estimMA1}{%
+\subsubsection{Maximum Likelihood Estimation of an MA(1) process}\label{estimMA1}}
+
 Let us now turn to Moving-Average processes. Start with the MA(1):
 \[
 y_t = \mu + \varepsilon_t + \theta_1 \varepsilon_{t-1},\quad \varepsilon_t \sim i.i.d.\mathcal{N}(0,\sigma^2).
 \]
 The \(\varepsilon_t\)'s are easily computed recursively, starting with \(\varepsilon_t = y_t - \mu - \theta_1 \varepsilon_{t-1}\). We obtain:
 \[
-\varepsilon_t = y_t - \theta_1 y_{t-1} + \theta_1^2 y_{t-2}^2 + \dots + (-1)^{t-1} \theta_1^{t-1} y_{1} + (-1)^t\theta_1^{t}\varepsilon_{0}.
+\varepsilon_t = y_t-\mu - \theta_1 (y_{t-1}-\mu) + \theta_1^2 (y_{t-2}-\mu) + \dots + (-1)^{t-1} \theta_1^{t-1} (y_{1}-\mu) + (-1)^t\theta_1^{t}\varepsilon_{0}.
 \]
 Assume that one wants to recover the sequence of \(\{\varepsilon_t\}\)'s based on observed values of \(y_t\) (from date 1 to date \(t\)). One can use the previous expression, but what value should be used for \(\varepsilon_0\)? If one does not use the true value of \(\varepsilon_0\) but 0 (say), one does not obtain \(\varepsilon_t\), but only an estimate of it (\(\hat\varepsilon_t\), say), with:
 \[
@@ -1625,6 +1652,9 @@ Loosely speaking, if \(|\theta_1|<1\) and if \(T\) is sufficiently large:
 \]
 
 Note that \(\hat{\mathcal{L}}^*(\boldsymbol\theta;\mathbf{y})\) is a complicated nonlinear function of \(\mu\) and \(\theta\). Its maximization therefore has to be based on numerical optimization procedures.
+
+\hypertarget{estimMAq}{%
+\subsubsection{Maximum Likelihood Estimation of MA(q) processes}\label{estimMAq}}
 
 Let us not consider the case of a Gaussian MA(\(q\)) process:
 \begin{equation}
@@ -1667,6 +1697,9 @@ where the \(\gamma_j\)'s are given by Eq. \eqref{eq:autocovMA}. The p.d.f. of \(
 (2\pi)^{-T/2}|\boldsymbol\Omega|^{-1/2}\exp\left( -\frac{1}{2} (\mathbf{y}-\boldsymbol\mu)' \boldsymbol\Omega^{-1} (\mathbf{y}-\boldsymbol\mu)\right).
 \]
 For large samples, the computation of this likelihood however becomes numerically demanding.
+
+\hypertarget{estimARMApq}{%
+\subsection{Maximum Likelihood Estimation of an ARMA(p,q) process}\label{estimARMApq}}
 
 Finally, let us consider the MLE of an ARMA(\(p\),\(q\)) processes:
 \[

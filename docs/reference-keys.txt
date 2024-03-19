@@ -63,8 +63,8 @@ fig:freez4
 exm:Ramey1
 fig:Ramey1fig
 fig:Ramey3
-def:Markov
 eq:recursMLE
+def:Markov
 eq:Lstar
 eq:AROLSmean
 eq:AROLSsigma
@@ -211,7 +211,17 @@ PACFapproach
 wold-decomposition
 IRFARMA
 ARMAIRF
+ARMAXDef
+ARMAXDynamic
 estimARMA
+Generalities
+estimAR
+estimAR1
+estimARp
+estimMA
+estimMA1
+estimMAq
+estimARMApq
 specification-choice
 VAR
 definition-of-vars-and-svarma-models

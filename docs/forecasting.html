@@ -86,7 +86,7 @@
 <h1>
 <span class="header-section-number">4</span> Forecasting<a class="anchor" aria-label="anchor" href="#forecasting"><i class="fas fa-link"></i></a>
 </h1>
-<p>Forecasting has always been an important part of the time series field (<span class="citation">De Gooijer and Hyndman (<a href="references.html#ref-DEGOOIJER2006443">2006</a>)</span>). Macroeconomic forecasts are done in many places: Public Administration (notably Treasuries), Central Banks, International Institutions (e.g. IMF, OECD), banks, big firms. These institutions are interested in the <strong>point estimates</strong> (<span class="math inline">\(\sim\)</span> most likely value) of the variable of interest. They also sometimes need to measure the <strong>uncertainty</strong> (<span class="math inline">\(\sim\)</span> dispersion of likely outcomes) associated to the point estimates.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;In its inflation report, the Bank of England displays charts showing the conditional distribution of future inflation, called fan charts. This fan charts show the uncertainty associated with future inflation. See &lt;a href="https://www.bankofengland.co.uk/quarterly-bulletin/1998/q1/the-inflation-report-projections-understanding-the-fan-chart"&gt;this page&lt;/a&gt;.&lt;/p&gt;'><sup>10</sup></a></p>
+<p>Forecasting has always been an important part of the time series field (<span class="citation">De Gooijer and Hyndman (<a href="references.html#ref-DEGOOIJER2006443">2006</a>)</span>). Macroeconomic forecasts are done in many places: Public Administration (notably Treasuries), Central Banks, International Institutions (e.g. IMF, OECD), banks, big firms. These institutions are interested in the <strong>point estimates</strong> (<span class="math inline">\(\sim\)</span> most likely value) of the variable of interest. They also sometimes need to measure the <strong>uncertainty</strong> (<span class="math inline">\(\sim\)</span> dispersion of likely outcomes) associated to the point estimates.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;In its inflation report, the Bank of England displays charts showing the conditional distribution of future inflation, called fan charts. This fan charts show the uncertainty associated with future inflation. See &lt;a href="https://www.bankofengland.co.uk/quarterly-bulletin/1998/q1/the-inflation-report-projections-understanding-the-fan-chart"&gt;this page&lt;/a&gt;.&lt;/p&gt;'><sup>14</sup></a></p>
 <p>Forecasts produced by professional forecasters are available on these web pages:</p>
 <ul>
 <li>
@@ -146,7 +146,7 @@ If <span class="math inline">\(\{x_t,y_t\}\)</span> is covariance-stationary and
 y_t = \mu + \varepsilon_t + \theta_1 \varepsilon_{t-1} + \dots + \theta_q \varepsilon_{t-q},
 \]</span>
 where <span class="math inline">\(\{\varepsilon_t\}\)</span> is a white noise sequence (Def. <a href="Intro.html#def:whitenoise">1.1</a>).</p>
-<p>We have:<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;The present reasoning relies on the assumption that the &lt;span class="math inline"&gt;\(\varepsilon_t\)&lt;/span&gt;’s are observed. But this is generally not the case in practice, where the &lt;span class="math inline"&gt;\(\varepsilon_t\)&lt;/span&gt;’s generally have to be estimated.&lt;/p&gt;'><sup>11</sup></a>
+<p>We have:<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;The present reasoning relies on the assumption that the &lt;span class="math inline"&gt;\(\varepsilon_t\)&lt;/span&gt;’s are observed. But this is generally not the case in practice, where the &lt;span class="math inline"&gt;\(\varepsilon_t\)&lt;/span&gt;’s generally have to be estimated.&lt;/p&gt;'><sup>15</sup></a>
 <span class="math display">\[\begin{eqnarray*}
 &amp;&amp;\mathbb{E}(y_{t+h}|\varepsilon_{t},\varepsilon_{t-1},\dots) =\\
 &amp;&amp;\left\{
@@ -284,7 +284,7 @@ where the <span class="math inline">\(\gamma_j\)</span>s are the autocovariances
 <span class="math display">\[
 DM_T := \sqrt{T}\frac{\bar{d}_T}{\sqrt{\hat{\sigma}^2}} \overset{d}{\rightarrow}  \mathcal{N}(0,1).
 \]</span>
-<span class="math inline">\(DM_T\)</span> is the test statistics. For a test of size <span class="math inline">\(\alpha\)</span>, the critical region is:<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;This &lt;a href="https://jrenne.shinyapps.io/tests/"&gt;ShinyApp application&lt;/a&gt; illustrates the notion of statistical test (illustrating the p-value and the cirtical region, in particular).&lt;/p&gt;'><sup>12</sup></a>
+<span class="math inline">\(DM_T\)</span> is the test statistics. For a test of size <span class="math inline">\(\alpha\)</span>, the critical region is:<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;This &lt;a href="https://jrenne.shinyapps.io/tests/"&gt;ShinyApp application&lt;/a&gt; illustrates the notion of statistical test (illustrating the p-value and the cirtical region, in particular).&lt;/p&gt;'><sup>16</sup></a>
 <span class="math display">\[
 ]-\infty,-\Phi^{-1}(1-\alpha/2)] \cup [\Phi^{-1}(1-\alpha/2),+\infty[,
 \]</span>
@@ -365,7 +365,7 @@ where <span class="math inline">\(\Phi\)</span> is the c.d.f. of the standard no
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Introduction to Time Series</strong>" was written by Jean-Paul Renne. It was last built on 2024-03-06.</p>
+    <p>"<strong>Introduction to Time Series</strong>" was written by Jean-Paul Renne. It was last built on 2024-03-19.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

@@ -553,12 +553,12 @@ Figure 2.2: ACF/PACF analysis of two processes (MA process on the left, AR on th
 <div class="theorem">
 <p><span id="thm:Wold" class="theorem"><strong>Theorem 2.2  (Wold decomposition) </strong></span>Any covariance-stationary process admits the following representation:
 <span class="math display">\[
-y_t = \mu + \sum_{0}^{+\infty} \theta_i \varepsilon_{t-i} + \kappa_t,
+y_t = \mu + \sum_{0}^{+\infty} \psi_i \varepsilon_{t-i} + \kappa_t,
 \]</span>
 where</p>
 <ul>
 <li>
-<span class="math inline">\(\theta_0 = 1\)</span>, <span class="math inline">\(\sum_{i=0}^{\infty} \theta_i^2 &lt; +\infty\)</span> (square summability, see Def. <a href="Univariate.html#def:summability">2.3</a>).</li>
+<span class="math inline">\(\psi_0 = 1\)</span>, <span class="math inline">\(\sum_{i=0}^{\infty} \psi_i^2 &lt; +\infty\)</span> (square summability, see Def. <a href="Univariate.html#def:summability">2.3</a>).</li>
 <li>
 <span class="math inline">\(\{\varepsilon_t\}\)</span> is a white noise (see Def. <a href="Intro.html#def:whitenoise">1.1</a>); <span class="math inline">\(\varepsilon_t\)</span> is the error made when forecasting <span class="math inline">\(y_t\)</span> based on a linear combination of lagged <span class="math inline">\(y_t\)</span>’s (<span class="math inline">\(\varepsilon_t = y_t - \hat{\mathbb{E}}[y_t|y_{t-1},y_{t-2},\dots]\)</span>).</li>
 <li>For any <span class="math inline">\(j \ge 1\)</span>, <span class="math inline">\(\kappa_t\)</span> is not correlated with <span class="math inline">\(\varepsilon_{t-j}\)</span>; but <span class="math inline">\(\kappa_t\)</span> can be perfectly forecasted based on a linear combination of lagged <span class="math inline">\(y_t\)</span>’s (i.e. <span class="math inline">\(\kappa_t = \hat{\mathbb{E}}(\kappa_t|y_{t-1},y_{t-2},\dots)\)</span>). <span class="math inline">\(\kappa_t\)</span> is called the <strong>deterministic component</strong> of <span class="math inline">\(y_t\)</span>.</li>
@@ -668,7 +668,7 @@ Figure 2.3: IRFs associated with the three processes. Process 1 (MA(2)): <span c
 Figure 2.4: (P)ACF analysis of Swiss GDP growth.
 </p>
 </div>
-<p>The two bottom plots of Figure <a href="Univariate.html#fig:IRFgdp1">2.4</a> suggest that either an MA(2) or an AR(1) could be used to model the GDP growth rate series. Figure <a href="Univariate.html#fig:IRFgdp2">2.5</a> shows the IRFs based on these two respective specifications.</p>
+<p>The two bottom plots of Figure <a href="Univariate.html#fig:IRFgdp1">2.4</a> suggest that either an MA(2)<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;Indeed, the sample autocorrelation coefficients, (&lt;span class="math inline"&gt;\(\rho_j\)&lt;/span&gt;), are statistically significant for &lt;span class="math inline"&gt;\(j \leq 2\)&lt;/span&gt; where &lt;span class="math inline"&gt;\(\rho_2\)&lt;/span&gt; is barely significant&lt;/p&gt;'><sup>6</sup></a> or an AR(1)<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;Indeed, the sample partial autocorrelation coefficients, &lt;span class="math inline"&gt;\(\rho_{j,j}\)&lt;/span&gt;, are statistically significant for &lt;span class="math inline"&gt;\(j=1\)&lt;/span&gt; only&lt;/p&gt;'><sup>7</sup></a>could be used to model the GDP growth rate series. Figure <a href="Univariate.html#fig:IRFgdp2">2.5</a> shows the IRFs based on these two respective specifications.</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Fit an AR process:</span></span>
 <span><span class="va">res</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/arima.html">arima</a></span><span class="op">(</span><span class="va">growth</span>,order<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">0</span>,<span class="fl">0</span><span class="op">)</span><span class="op">)</span></span>
@@ -706,6 +706,10 @@ Figure 2.5: Dynamic response of Swiss annual growth to a shock on the innovation
 <!-- \end{eqnarray} -->
 <!-- where $\{\varepsilon_t\}$ is an i.i.d. white noise sequence and $\{x_t\}$ is an exogenous variable. -->
 <!-- This algorithm was presented in Prop. \@ref(prop:computPsiARMAX). -->
+<div id="ARMAXDef" class="section level3" number="2.7.1">
+<h3>
+<span class="header-section-number">2.7.1</span> Definitions (ARMA-X)<a class="anchor" aria-label="anchor" href="#ARMAXDef"><i class="fas fa-link"></i></a>
+</h3>
 <p>ARMA processes do not allow to investigate the influence of an exogenous variable (say <span class="math inline">\(x_t\)</span>) on the variable of interest (say <span class="math inline">\(y_t\)</span>). When <span class="math inline">\(x_t\)</span> and <span class="math inline">\(y_t\)</span> have reciprocal influences, the Vector Autoregressive (VAR) model may be used (this tools will be studied later, in Section <a href="VAR.html#VAR">3</a>). However, when one suspects that <span class="math inline">\(x_t\)</span> has an “exogenous” influence on <span class="math inline">\(y_t\)</span>, then a simple extension of the ARMA processes may be considered. Loosely speaking, <span class="math inline">\(x_t\)</span> has an “exogenous” influence on <span class="math inline">\(y_t\)</span> if <span class="math inline">\(y_t\)</span> does not affect <span class="math inline">\(x_t\)</span>. This extension is referred to as ARMA-X.</p>
 <p>To begin with, let us formalize this notion of exogeneity. Consider a white noise sequence <span class="math inline">\(\{\varepsilon_t\}\)</span> (Def. <a href="Intro.html#def:whitenoise">1.1</a>). This white noise will enter the dynamics of <span class="math inline">\(y_t\)</span>, alongside with <span class="math inline">\(x_t\)</span>; but <span class="math inline">\(x_t\)</span> will be exogenous to <span class="math inline">\(\varepsilon_t\)</span>. (We will also say that <span class="math inline">\(x_t\)</span> is exogenous to <span class="math inline">\(y_t\)</span>.)</p>
 <div class="definition">
@@ -730,14 +734,19 @@ Figure 2.5: Dynamic response of Swiss annual growth to a shock on the innovation
 <p>Hence, if <span class="math inline">\(\{x_t\}\)</span> is strictly exogenous to <span class="math inline">\(\varepsilon_t\)</span>, then past, present and future values of <span class="math inline">\(x_t\)</span> do not allow to predict the <span class="math inline">\(\varepsilon_t\)</span>’s.</p>
 <p>In the following, we assume that <span class="math inline">\(\{x_t\}\)</span> is a covariance stationary process.</p>
 <div class="definition">
-<p><span id="def:ARMAX" class="definition"><strong>Definition 2.9  (ARMAX(p,q,r) model) </strong></span>The process <span class="math inline">\(\{y_t\}\)</span> is an ARMAX(p,q,r) if it follows a difference equation of the form:
+<p><span id="def:ARMAX" class="definition"><strong>Definition 2.9  (ARMA-X(p,q,r) model) </strong></span>The process <span class="math inline">\(\{y_t\}\)</span> is an ARMA-X(p,q,r) if it follows a difference equation of the form:
 <span class="math display" id="eq:DLM">\[\begin{eqnarray}
 y_t &amp;=&amp; \underbrace{c + \phi_1 y_{t-1} + \dots + \phi_p y_{t-p}}_{\mbox{AR(p) part}} + \underbrace{\beta_0 x_t + \dots + \beta_{r} x_{t-r}}_{\mbox{X(r) part}} + \nonumber \\
 &amp;&amp;\underbrace{\varepsilon_t + \theta_1\varepsilon_{t-1}+\dots +\theta_{q}\varepsilon_{t-q},}_{\mbox{MA(q) part}} \tag{2.12}
 \end{eqnarray}\]</span>
 where <span class="math inline">\(\{\varepsilon_t\}\)</span> is an i.i.d. white noise sequence and <span class="math inline">\(\{x_t\}\)</span> is exogenous to <span class="math inline">\(y_t\)</span>.</p>
 </div>
-<!-- The Autoregressive Distributed Lag (ADL) Model ADL(p,r) is an ARMAX(p,0,r) model (see @Stock_Watson_2003, Chapter 16). -->
+<!-- The Autoregressive Distributed Lag (ADL) Model ADL(p,r) is an ARMA-X(p,0,r) model (see @Stock_Watson_2003, Chapter 16). -->
+</div>
+<div id="ARMAXDynamic" class="section level3" number="2.7.2">
+<h3>
+<span class="header-section-number">2.7.2</span> Dynamic multipliers in ARMA-X models<a class="anchor" aria-label="anchor" href="#ARMAXDynamic"><i class="fas fa-link"></i></a>
+</h3>
 <p>What is the effect of a one-unit increase in <span class="math inline">\(x_t\)</span> on <span class="math inline">\(y_t\)</span>? To address this question, this notion of “effect” has to be formalized. Let us introduce two related sequences of values for <span class="math inline">\(\{x\}\)</span>. Denote the first by <span class="math inline">\(\{a\}\)</span> and the second by <span class="math inline">\(\{\tilde{a}^t\}\)</span>. Further, we posit <span class="math inline">\(a_s = \tilde{a}_s^t\)</span> for all <span class="math inline">\(s \ne t\)</span>, and <span class="math inline">\(\tilde{a}_t^t = a_t+1\)</span>.</p>
 <p>With these notations, we define <span class="math inline">\(\frac{\partial y_{t+h}}{\partial x_t}\)</span> as follows:
 <span class="math display" id="eq:dynmultX">\[\begin{equation}
@@ -763,7 +772,7 @@ and using the exogeneity assumption, we obtain:
 \]</span>
 This can be applied recursively to give <span class="math inline">\(\dfrac{\partial y_{t+h}}{\partial x_t}\)</span> for any <span class="math inline">\(h \ge 0\)</span>:</p>
 <div class="proposition">
-<p><span id="prp:computPsiARMAX" class="proposition"><strong>Proposition 2.8  (Dynamic multipliers in ARMAX models) </strong></span>One can recursively compute the dynamic multipliers <span class="math inline">\(\frac{\partial y_{t+h}}{\partial x_t}\)</span> as follows:</p>
+<p><span id="prp:computPsiARMAX" class="proposition"><strong>Proposition 2.8  (Dynamic multipliers in ARMA-X models) </strong></span>One can recursively compute the dynamic multipliers <span class="math inline">\(\frac{\partial y_{t+h}}{\partial x_t}\)</span> as follows:</p>
 <ol style="list-style-type: lower-roman">
 <li>Initialization: <span class="math inline">\(\dfrac{\partial y_{t+h}}{\partial x_t}=0\)</span> for <span class="math inline">\(h&lt;0\)</span>.</li>
 <li>For <span class="math inline">\(h \ge 0\)</span> and assuming that the first <span class="math inline">\(h-1\)</span> multipliers have been computed, we have:
@@ -776,7 +785,7 @@ where we use the notation <span class="math inline">\(\beta_h=0\)</span> if <spa
 <p>Remark that the resulting dynamic multipliers are the same as those obtained for an ARMA(p,r) model where the <span class="math inline">\(\theta_i\)</span>’s are replaced with <span class="math inline">\(\beta_i\)</span>’s (see Proposition <a href="Univariate.html#prp:computPsi">2.7</a> in Section <a href="Univariate.html#ARMAIRF">2.7</a>).</p>
 <p>It has to be stressed that the definition of the dynamic multipliers (Eq. <a href="Univariate.html#eq:dynmultX">(2.13)</a>) does not reflect a potential persistency of the shock occuring on date <span class="math inline">\(t\)</span> in process <span class="math inline">\(\{x\}\)</span> itself. Going in this direction would necessitate to model the joint dynamics of <span class="math inline">\(x_t\)</span> (for instance using a VAR model, see Section <a href="VAR.html#VAR">3</a>).</p>
 <div class="example">
-<p><span id="exm:OrangeJuice" class="example"><strong>Example 2.1  (Influence of the number of freezing days on the price of orange juice) </strong></span>This example is based on data used in <span class="citation">J. Stock and Watson (<a href="references.html#ref-Stock_Watson_2003">2003</a>)</span> (Chapter 16). The objective is to study the influence of the number of freezing days on the price of orange juice. Let us first estimate a ARMAX(0,0,12) model:</p>
+<p><span id="exm:OrangeJuice" class="example"><strong>Example 2.1  (Influence of the number of freezing days on the price of orange juice) </strong></span>This example is based on data used in <span class="citation">J. Stock and Watson (<a href="references.html#ref-Stock_Watson_2003">2003</a>)</span> (Chapter 16). The objective is to study the influence of the number of freezing days on the price of orange juice. Let us first estimate a ARMA-X(0,0,3) model:</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">AEC</span><span class="op">)</span>;<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">AER</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="st">"FrozenJuice"</span><span class="op">)</span></span>
@@ -835,7 +844,7 @@ where we use the notation <span class="math inline">\(\beta_h=0\)</span> if <spa
 ## Observations      609            609     
 ## =========================================
 ## Note:         *p&lt;0.1; **p&lt;0.05; ***p&lt;0.01</code></pre>
-<p>Let us now use function <code>estim.armax</code>, from package <code>AEC</code>to fit an ARMA-X(2,0,1) model:</p>
+<p>Let us now use function <code>estim.armax</code>, from package <code>AEC</code>to fit an ARMA-X(3,0,1) model:</p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">nb.lags.exog</span> <span class="op">&lt;-</span> <span class="fl">1</span> <span class="co"># number of lags of exog. variable</span></span>
 <span><span class="va">FDD</span> <span class="op">&lt;-</span> <span class="va">FJ</span><span class="op">$</span><span class="va">fdd</span><span class="op">[</span><span class="op">(</span><span class="va">nb.lags.exog</span><span class="op">+</span><span class="fl">1</span><span class="op">)</span><span class="op">:</span><span class="cn">T</span><span class="op">]</span></span>
@@ -936,7 +945,7 @@ Figure 2.7: The blue line corresponds to monetary-policy shocks identified by me
 </p>
 </div>
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># Estimate ARMAX:</span></span>
+<code class="sourceCode R"><span><span class="co"># Estimate ARMA-X:</span></span>
 <span><span class="va">p</span> <span class="op">&lt;-</span> <span class="fl">1</span>; <span class="va">q</span> <span class="op">&lt;-</span> <span class="fl">0</span></span>
 <span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu">estim.armax</span><span class="op">(</span><span class="va">Ramey</span><span class="op">$</span><span class="va">growth</span><span class="op">[</span><span class="va">indic.good.dates</span><span class="op">]</span>,<span class="va">p</span>,<span class="va">q</span>,</span>
 <span>                 X<span class="op">=</span><span class="va">Matrix.of.Exog</span><span class="op">[</span><span class="va">indic.good.dates</span>,<span class="op">]</span><span class="op">)</span></span></code></pre></div>
@@ -960,7 +969,7 @@ Figure 2.7: The blue line corresponds to monetary-policy shocks identified by me
 <code class="sourceCode R"><span><span class="co"># Compute IRF:</span></span>
 <span><span class="va">irf</span> <span class="op">&lt;-</span> <span class="fu">sim.arma</span><span class="op">(</span><span class="fl">0</span>,<span class="va">x</span><span class="op">$</span><span class="va">phi</span>,<span class="va">x</span><span class="op">$</span><span class="va">beta</span>,<span class="va">x</span><span class="op">$</span><span class="va">sigma</span>,T<span class="op">=</span><span class="fl">60</span>,y.0<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">x</span><span class="op">$</span><span class="va">phi</span><span class="op">)</span><span class="op">)</span>,</span>
 <span>                nb.sim<span class="op">=</span><span class="fl">1</span>,make.IRF<span class="op">=</span><span class="fl">1</span>,X<span class="op">=</span><span class="cn">NaN</span>,beta<span class="op">=</span><span class="cn">NaN</span><span class="op">)</span></span></code></pre></div>
-<p>Figure <a href="Univariate.html#fig:Ramey3">2.8</a> displays the resulting IRF, with a 95% confidence band. The code used to produce the confidence bands (i.e., to compute the standard deviation of the dynamic multipliers for the different horizons) is based on the Delta method (see Appendix <a href="append.html#Delta">8.5.2</a>).<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;This method consists in approximating &lt;span class=&quot;math inline&quot;&gt;\(\mathbb{V}(ar)(f(\theta))\)&lt;/span&gt; with &lt;span class=&quot;math inline&quot;&gt;\(\frac{\partial f(\theta)}{\partial \theta}' \mathbb{V}ar(\theta)\frac{\partial f(\theta)}{\partial \theta}\)&lt;/span&gt;.&lt;/p&gt;"><sup>6</sup></a></p>
+<p>Figure <a href="Univariate.html#fig:Ramey3">2.8</a> displays the resulting IRF, with a 95% confidence band. The code used to produce the confidence bands (i.e., to compute the standard deviation of the dynamic multipliers for the different horizons) is based on the Delta method (see Appendix <a href="append.html#Delta">8.5.2</a>).<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;This method consists in approximating &lt;span class=&quot;math inline&quot;&gt;\(\mathbb{V}(ar)(f(\theta))\)&lt;/span&gt; with &lt;span class=&quot;math inline&quot;&gt;\(\frac{\partial f(\theta)}{\partial \theta}' \mathbb{V}ar(\theta)\frac{\partial f(\theta)}{\partial \theta}\)&lt;/span&gt;.&lt;/p&gt;"><sup>8</sup></a></p>
 <div class="figure" style="text-align: left-aligned">
 <span style="display:block;" id="fig:Ramey3"></span>
 <img src="TimeSeries_files/figure-html/Ramey3-1.png" alt="Response of industrial-production growth to monetary-policy shocks. Dashed lines correpsond to the $\pm$  2-standard-deviation bands." width="95%"><p class="caption">
@@ -969,31 +978,45 @@ Figure 2.8: Response of industrial-production growth to monetary-policy shocks. 
 </div>
 </div>
 </div>
+</div>
 <div id="estimARMA" class="section level2" number="2.8">
 <h2>
 <span class="header-section-number">2.8</span> Maximum Likelihood Estimation (MLE) of ARMA processes<a class="anchor" aria-label="anchor" href="#estimARMA"><i class="fas fa-link"></i></a>
 </h2>
+<div id="Generalities" class="section level3" number="2.8.1">
+<h3>
+<span class="header-section-number">2.8.1</span> Generalities<a class="anchor" aria-label="anchor" href="#Generalities"><i class="fas fa-link"></i></a>
+</h3>
 <p>Consider the general case (of any time series); assume we observe a sample <span class="math inline">\(\mathbf{y}=[y_1,\dots,y_T]'\)</span>. In order to implement ML techniques, we need to evaluate the joint p.d.f. (or “likelihood”) of <span class="math inline">\(\mathbf{y}\)</span>, i.e., <span class="math inline">\(\mathcal{L}(\boldsymbol\theta;\mathbf{y})\)</span>, where <span class="math inline">\(\boldsymbol\theta\)</span> is a vector of parameters that characterizes the dynamics of <span class="math inline">\(y_t\)</span>. The Maximum Likelihood (ML) estimate of <span class="math inline">\(\boldsymbol\theta\)</span> is then given by:
 <span class="math display">\[
 \boxed{\boldsymbol\theta_{MLE} = \arg \max_{\boldsymbol\theta} \mathcal{L}(\boldsymbol\theta;\mathbf{y})  = \arg \max_{\boldsymbol\theta} \log \mathcal{L}(\boldsymbol\theta;\mathbf{y}).}
-\]</span></p>
+\]</span>
+It is useful to remember Bayes’ formula:
+<span class="math display">\[
+\mathbb{P}(X_2=x,X_1=y) = \mathbb{P}(X_2=x|X_1=y)\mathbb{P}(X_1=y).
+\]</span>
+Using it leads to the following decomposition of our likelihood function (by considering that <span class="math inline">\(X_2=Y_T\)</span> and <span class="math inline">\(X_1=(Y_{T-1},Y_{T-2},\dots,Y_1)\)</span>):
+<span class="math display">\[\begin{eqnarray*}
+f_{Y_T,\dots,Y_1}(y_T,\dots,y_1;\boldsymbol\theta) &amp;=&amp;f_{\underbrace{Y_T}_{=X_2}|\underbrace{Y_{T-1},\dots,Y_1}_{=X_1}}(y_T,\dots,y_1;\boldsymbol\theta) \times \\
+&amp;&amp; f_{\underbrace{Y_{T-1},\dots,Y_1}_{=X_1}}(y_{T-1},\dots,y_1;\boldsymbol\theta).
+\end{eqnarray*}\]</span>
+Using the previous expression recursively, one obtains that for any <span class="math inline">\(1 \leq p \leq T\)</span>:
+<span class="math display" id="eq:recursMLE">\[\begin{equation}
+f_{Y_T,\dots,Y_1}(y_T,\dots,y_1;\boldsymbol\theta) = f_{Y_p,\dots,Y_1}(y_p,\dots,y_1;\boldsymbol\theta) \times \prod_{t=p+1}^{T} f_{Y_t|Y_{t-1},\dots,Y_1}(y_t,\dots,y_1;\boldsymbol\theta).\tag{2.14}
+\end{equation}\]</span></p>
 <p>In the time series context, if process <span class="math inline">\(y_t\)</span> is Markovian, then there exists a useful way to rewrite the likelihood <span class="math inline">\(\mathcal{L}(\boldsymbol\theta;\mathbf{y})\)</span>. Let us first recall the definition of a Markovian process:</p>
 <div class="definition">
 <p><span id="def:Markov" class="definition"><strong>Definition 2.10  (Markovian process) </strong></span>Process <span class="math inline">\(y_t\)</span> is Markovian of order one if <span class="math inline">\(f_{Y_t|Y_{t-1},Y_{t-2},\dots} = f_{Y_t|Y_{t-1}}\)</span>. More generally, it is Markovian of order <span class="math inline">\(k\)</span> if <span class="math inline">\(f_{Y_t|Y_{t-1},Y_{t-2},\dots} = f_{Y_t|Y_{t-1},\dots,Y_{t-k}}\)</span>.</p>
 </div>
-<p>Now, remember Bayes’ formula:
-<span class="math display">\[
-\mathbb{P}(X_2=x,X_1=y) = \mathbb{P}(X_2=x|X_1=y)\mathbb{P}(X_1=y).
-\]</span>
-Using it leads to the following decomposition of our likelihood function:
-<span class="math display">\[\begin{eqnarray*}
-f_{Y_T,\dots,Y_1}(y_T,\dots,y_1;\boldsymbol\theta) &amp;=&amp;f_{Y_T|Y_{T-1},\dots,Y_1}(y_T,\dots,y_1;\boldsymbol\theta) \times \\
-&amp;&amp; f_{Y_{T-1},\dots,Y_1}(y_{T-1},\dots,y_1;\boldsymbol\theta).
-\end{eqnarray*}\]</span>
-Using the previous expression recursively, one obtains:
-<span class="math display" id="eq:recursMLE">\[\begin{equation}
-f_{Y_T,\dots,Y_1}(y_T,\dots,y_1;\boldsymbol\theta) = f_{Y_1}(y_1;\boldsymbol\theta) \prod_{t=2}^{T} f_{Y_t|Y_{t-1},\dots,Y_1}(y_t,\dots,y_1;\boldsymbol\theta).\tag{2.14}
-\end{equation}\]</span></p>
+</div>
+<div id="estimAR" class="section level3" number="2.8.2">
+<h3>
+<span class="header-section-number">2.8.2</span> Maximum Likelihood Estimation of AR processes<a class="anchor" aria-label="anchor" href="#estimAR"><i class="fas fa-link"></i></a>
+</h3>
+<div id="estimAR1" class="section level4" number="2.8.2.1">
+<h4>
+<span class="header-section-number">2.8.2.1</span> Maximum Likelihood Estimation of an AR(1) process<a class="anchor" aria-label="anchor" href="#estimAR1"><i class="fas fa-link"></i></a>
+</h4>
 <p>Let us start with the Gaussian AR(1) process (which is Markovian of order one):
 <span class="math display">\[
 y_t = c + \phi_1 y_{t-1} + \varepsilon_t, \quad \varepsilon_t \sim\,i.i.d.\, \mathcal{N}(0,\sigma^2).
@@ -1006,7 +1029,11 @@ and
 <span class="math display">\[
 f_{Y_t|Y_{t-1}}(y_t,y_{t-1};\boldsymbol\theta) = \frac{1}{\sqrt{2\pi}\sigma}\exp\left(-\frac{(y_t - c - \phi_1 y_{t-1})^2}{2\sigma^2}\right).
 \]</span></p>
-<p>These expressions can be plugged into Eq. <a href="Univariate.html#eq:recursMLE">(2.14)</a>. But what about <span class="math inline">\(f_{Y_1}(y_1;\boldsymbol\theta)\)</span>? There exist two possibilities:</p>
+<p>These expressions can be plugged into Eq. <a href="Univariate.html#eq:recursMLE">(2.14)</a> that ultimately takes the follwing form with <span class="math inline">\(p=1\)</span>
+<span class="math display">\[
+f_{Y_T,\dots,Y_1}(y_T,\dots,y_1;\boldsymbol\theta) = f_{Y_1}(y_1;\boldsymbol\theta) \times \prod_{t=2}^{T} f_{Y_t|Y_{t-1}}(y_t,y_{t-1};\boldsymbol\theta)
+\]</span>
+But what about <span class="math inline">\(f_{Y_1}(y_1;\boldsymbol\theta)\)</span>? There exist two possibilities:</p>
 <ol style="list-style-type: decimal">
 <li>
 <strong>Case 1</strong>: We use the marginal distribution: <span class="math inline">\(y_1 \sim \mathcal{N}\left(\dfrac{c}{1-\phi_1},\dfrac{\sigma^2}{1-\phi_1^2}\right)\)</span>.</li>
@@ -1021,7 +1048,7 @@ f_{Y_t|Y_{t-1}}(y_t,y_{t-1};\boldsymbol\theta) = \frac{1}{\sqrt{2\pi}\sigma}\exp
 &amp;&amp; - \frac{(y_1 - c/(1-\phi_1))^2}{2\sigma^2/(1-\phi_1^2)} - \sum_{t=2}^T \left[\frac{(y_t - c - \phi_1 y_{t-1})^2}{2\sigma^2} \right].
 \end{eqnarray}\]</span>
 The Maximum Likelihood Estimator of <span class="math inline">\(\boldsymbol\theta= [c,\phi_1,\sigma^2]\)</span> is obtained by numerical optimization.</p></li>
-<li><p><strong>Case 2</strong>: The (conditional) log-likelihood is:
+<li><p><strong>Case 2</strong>: The (conditional) log-likelihood (denoted with a <span class="math inline">\(*\)</span>) is:
 <span class="math display" id="eq:Lstar">\[\begin{eqnarray}
 \log \mathcal{L}^*(\boldsymbol\theta;\mathbf{y})  &amp;=&amp; - \frac{T-1}{2} \log(2\pi) - (T-1)\log(\sigma)\nonumber\\
 &amp;&amp; - \sum_{t=2}^T \left[\frac{(y_t - c - \phi_1 y_{t-1})^2}{2\sigma^2} \right].\tag{2.15}
@@ -1044,15 +1071,20 @@ X = \left[\begin{array}{cc}
 Eq. <a href="Univariate.html#eq:Lstar">(2.15)</a> then rewrites:
 <span class="math display">\[\begin{eqnarray}
 \log \mathcal{L}^*(\boldsymbol\theta;\mathbf{y})  &amp;=&amp; - \frac{T-1}{2} \log(2\pi) - (T-1)\log(\sigma) \nonumber \\
-&amp;&amp; - \frac{1}{2\sigma^2} (Y-X[c,\phi_1]')'(Y-X[c,\phi_1]'),
+&amp;&amp; - \frac{1}{2\sigma^2} \underbrace{(Y-X[c,\phi_1]')'(Y-X[c,\phi_1]')}_{=\displaystyle \sum_{t=2}^T (y_t-c-\phi_1 y_{t-1})^2},
 \end{eqnarray}\]</span>
-which is maximised for:
+which is maximised for<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Indeed, &lt;span class=&quot;math inline&quot;&gt;\((Y-X[c,\phi_1]')'(Y-X[c,\phi_1]')=Y'Y-[c,\phi_1]X'Y-Y'X[c,\phi_1]'+[c,\phi_1]X'X[c,\phi_1]'\)&lt;/span&gt;. If we use the notation &lt;span class=&quot;math inline&quot;&gt;\(\beta=[c,\phi_1]'\)&lt;/span&gt;, then &lt;span class=&quot;math inline&quot;&gt;\((Y-X[c,\phi_1]')'(Y-X[c,\phi_1]')=Y'Y-\beta'X'Y-Y'X\beta+\beta'X'X\beta\)&lt;/span&gt; whose derivative with respect to &lt;span class=&quot;math inline&quot;&gt;\(\beta\)&lt;/span&gt; corresponds to &lt;span class=&quot;math inline&quot;&gt;\(-2X'Y+2X'X\beta\)&lt;/span&gt;. If &lt;span class=&quot;math inline&quot;&gt;\(\hat{\beta}\)&lt;/span&gt; maximizes the log-likelihood, then &lt;span class=&quot;math inline&quot;&gt;\(X'X\hat{\beta}=X'Y \Leftrightarrow \hat{\beta}=[\hat{c},\hat{\phi}_1]'=(X'X)^{-1}X'Y\)&lt;/span&gt;&lt;/p&gt;"><sup>9</sup></a>:
 <span class="math display" id="eq:AROLSsigma">\[\begin{eqnarray}
 [\hat{c},\hat\phi_1]' &amp;=&amp; (X'X)^{-1}X'Y \tag{2.16} \\
 \hat{\sigma^2} &amp;=&amp; \frac{1}{T-1} \sum_{t=2}^T (y_t - \hat{c} - \hat{\phi_1}y_{t-1})^2 \nonumber \\
 &amp;=&amp; \frac{1}{T-1} Y'(I - X(X'X)^{-1}X')Y. \tag{2.17}
 \end{eqnarray}\]</span></p>
-<p>Let us turn to the case of an AR(p) process. We have:
+</div>
+<div id="estimARp" class="section level4" number="2.8.2.2">
+<h4>
+<span class="header-section-number">2.8.2.2</span> Maximum Likelihood Estimation of an AR(p) process<a class="anchor" aria-label="anchor" href="#estimARp"><i class="fas fa-link"></i></a>
+</h4>
+<p>Let us turn to the case of an AR(p) process which is Markovian of order <span class="math inline">\(p\)</span>. We have:
 <span class="math display">\[\begin{eqnarray*}
 \log \mathcal{L}(\boldsymbol\theta;\mathbf{y}) &amp;=&amp; \log f_{Y_p,\dots,Y_1}(y_p,\dots,y_1;\boldsymbol\theta) +\\
 &amp;&amp; \underbrace{\sum_{t=p+1}^{T} \log f_{Y_t|Y_{t-1},\dots,Y_{t-p}}(y_t,\dots,y_{t-p};\boldsymbol\theta)}_{\log \mathcal{L}^*(\boldsymbol\theta;\mathbf{y})}.
@@ -1067,7 +1099,7 @@ where <span class="math inline">\(f_{Y_p,\dots,Y_{1}}(y_p,\dots,y_{1};\boldsymbo
 \gamma_{p-1} &amp; \gamma_{p-2} &amp; \dots &amp; \gamma_{0} \\
 \end{array}\right],
 \end{eqnarray*}\]</span>
-where the <span class="math inline">\(\gamma_i\)</span>’s are computed using the Yule-Walker equations (Eq. <a href="Univariate.html#eq:gammas">(2.9)</a>). Note that they depend, in a non-linear way, on the model parameters. Hence, the maximization of the exact log-likelihood necessitates numerical oprimization procedures. By contrast, the maximization of the conditional log-likelihood <span class="math inline">\(\log \mathcal{L}^*(\boldsymbol\theta;\mathbf{y})\)</span> only requires OLS, using Eqs. <a href="Univariate.html#eq:AROLSmean">(2.16)</a> and <a href="Univariate.html#eq:AROLSsigma">(2.17)</a>, with:
+where the <span class="math inline">\(\gamma_i\)</span>’s are computed using the Yule-Walker equations (Eq. <a href="Univariate.html#eq:gammas">(2.9)</a>). Note that they depend, in a non-linear way, on the model parameters. Hence, the maximization of the exact log-likelihood necessitates numerical optimization procedures. By contrast, the maximization of the conditional log-likelihood <span class="math inline">\(\log \mathcal{L}^*(\boldsymbol\theta;\mathbf{y})\)</span> only requires OLS, using Eqs. <a href="Univariate.html#eq:AROLSmean">(2.16)</a> and <a href="Univariate.html#eq:AROLSsigma">(2.17)</a>, with:
 <span class="math display">\[
 Y = \left[\begin{array}{c}
 y_{p+1}\\
@@ -1082,16 +1114,16 @@ X = \left[\begin{array}{cccc}
 \]</span></p>
 <p>Again, for stationary processes, conditional and exact MLE have the same asymptotic (large-sample) distribution. In small samples, the OLS formula is however biased. Indeed, consider the regression (where <span class="math inline">\(y_t\)</span> follows an AR(p) process):
 <span class="math display" id="eq:OLSregARp">\[\begin{equation}
-y_t = \boldsymbol\beta'\mathbf{x}_t + \varepsilon_t,\tag{2.18}
+y_t = \mathbf{x}_t \boldsymbol\beta+ \varepsilon_t,\tag{2.18}
 \end{equation}\]</span>
-with <span class="math inline">\(\mathbf{x}_t = [1,y_{t-1},\dots,y_{t-p}]'\)</span> and <span class="math inline">\(\boldsymbol\beta = [c,\phi_1,\dots,\phi_p]'\)</span>.</p>
+with <span class="math inline">\(\mathbf{x}_t = [1,y_{t-1},\dots,y_{t-p}]\)</span> of dimensions <span class="math inline">\(1\times (p+1)\)</span> and <span class="math inline">\(\boldsymbol\beta = [c,\phi_1,\dots,\phi_p]'\)</span> of dimensions <span class="math inline">\((p+1)\times 1\)</span>.</p>
 <p>The bias results from the fact that <span class="math inline">\(\mathbf{x}_t\)</span> correlates to the <span class="math inline">\(\varepsilon_s\)</span>’s for <span class="math inline">\(s&lt;t\)</span>. To be sure:
 <span class="math display" id="eq:olsar1">\[\begin{equation}
 \mathbf{b} = \boldsymbol{\beta} + (X'X)^{-1}X'\boldsymbol\varepsilon,\tag{2.19}
 \end{equation}\]</span>
-and because of the specific form of <span class="math inline">\(X\)</span>, we have non-zero correlation between <span class="math inline">\(\mathbf{x}_t\)</span> and <span class="math inline">\(\varepsilon_s\)</span> for <span class="math inline">\(s&lt;t\)</span>, therefore <span class="math inline">\(\mathbb{E}[(X'X)^{-1}X'\boldsymbol\varepsilon] \ne 0\)</span>. Again, asymptotically, the previous expectation goes to zero, and we have:</p>
+and because of the specific form of <span class="math inline">\(X\)</span>, we have non-zero correlation<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;The Gauss-Markov theorem’s strict exogeneity assumption is therefore not satisfied.&lt;/p&gt;"><sup>10</sup></a> between <span class="math inline">\(\mathbf{x}_t\)</span> and <span class="math inline">\(\varepsilon_s\)</span> for <span class="math inline">\(s&lt;t\)</span>, therefore <span class="math inline">\(\mathbb{E}[(X'X)^{-1}X'\boldsymbol\varepsilon] \ne 0\)</span>. Again, asymptotically, the previous expectation goes to zero, and we have:</p>
 <div class="proposition">
-<p><span id="prp:cgceOLSARp" class="proposition"><strong>Proposition 2.9  (Large-sample porperties of the OLS estimator of AR(p) models) </strong></span>Assume <span class="math inline">\(\{y_t\}\)</span> follows the AR(p) process:
+<p><span id="prp:cgceOLSARp" class="proposition"><strong>Proposition 2.9  (Large-sample properties of the OLS estimator of AR(p) models) </strong></span>Assume <span class="math inline">\(\{y_t\}\)</span> follows the AR(p) process:
 <span class="math display">\[
 y_t = c + \phi_1 y_{t-1} + \dots + \phi_p y_{t-p} + \varepsilon_t
 \]</span>
@@ -1118,7 +1150,7 @@ where <span class="math inline">\(\mathbf{Q} = \mbox{plim }\frac{1}{T}\sum_{t=p}
 <span class="math display">\[
 \sqrt{T}(\mathbf{b}-\boldsymbol{\beta}) =  (X'X/T)^{-1}\sqrt{T}(X'\boldsymbol\varepsilon/T).
 \]</span>
-Let us consider the autocovariances of <span class="math inline">\(\mathbf{v}_t = \mathbf{x}_t \varepsilon_t\)</span>, denoted by <span class="math inline">\(\gamma^v_j\)</span>. Using the fact that <span class="math inline">\(\mathbf{x}_t\)</span> is a linear combination of past <span class="math inline">\(\varepsilon_t\)</span>’s and that <span class="math inline">\(\varepsilon_t\)</span> is a white noise, we get that <span class="math inline">\(\mathbb{E}(\varepsilon_t\mathbf{x}_t)=0\)</span>. Therefore
+Let us consider the autocovariances of <span class="math inline">\(\mathbf{v}_t = \mathbf{x}_t \varepsilon_t\)</span>, denoted by <span class="math inline">\(\gamma^v_j\)</span>. Using the fact that <span class="math inline">\(\mathbf{x}_t\)</span> is a linear combination of past <span class="math inline">\(\varepsilon_t\)</span>’s and that <span class="math inline">\(\varepsilon_t\)</span> is a white noise, we get that <span class="math inline">\(\mathbb{E}(\varepsilon_t\mathbf{x}_t)=\mathbb{E}(\mathbb{E}_{t-1}(\varepsilon_t\mathbf{x}_t))=\mathbb{E}(\underbrace{\mathbb{E}_{t-1}(\varepsilon_t|\mathbf{x}_t)}_{=0}\mathbf{x}_t)=0\)</span>. Therefore
 <span class="math display">\[
 \gamma^v_j = \mathbb{E}(\varepsilon_t\varepsilon_{t-j}\mathbf{x}_t\mathbf{x}_{t-j}').
 \]</span>
@@ -1144,13 +1176,23 @@ The convergence in distribution of <span class="math inline">\(\sqrt{T}(X'\bolds
 ## [1,] 1.191267 -0.08934705 -0.1781163 -0.9226007
 ## [2,] 1.192003 -0.08811150 -0.1787662 -1.0341696</code></pre>
 <p>The two sets of estimated coefficients appear to be very close to each other.</p>
+</div>
+</div>
+<div id="estimMA" class="section level3" number="2.8.3">
+<h3>
+<span class="header-section-number">2.8.3</span> Maximum Likelihood Estimation of MA processes<a class="anchor" aria-label="anchor" href="#estimMA"><i class="fas fa-link"></i></a>
+</h3>
+<div id="estimMA1" class="section level4" number="2.8.3.1">
+<h4>
+<span class="header-section-number">2.8.3.1</span> Maximum Likelihood Estimation of an MA(1) process<a class="anchor" aria-label="anchor" href="#estimMA1"><i class="fas fa-link"></i></a>
+</h4>
 <p>Let us now turn to Moving-Average processes. Start with the MA(1):
 <span class="math display">\[
 y_t = \mu + \varepsilon_t + \theta_1 \varepsilon_{t-1},\quad \varepsilon_t \sim i.i.d.\mathcal{N}(0,\sigma^2).
 \]</span>
 The <span class="math inline">\(\varepsilon_t\)</span>’s are easily computed recursively, starting with <span class="math inline">\(\varepsilon_t = y_t - \mu - \theta_1 \varepsilon_{t-1}\)</span>. We obtain:
 <span class="math display">\[
-\varepsilon_t = y_t - \theta_1 y_{t-1} + \theta_1^2 y_{t-2}^2 + \dots + (-1)^{t-1} \theta_1^{t-1} y_{1} + (-1)^t\theta_1^{t}\varepsilon_{0}.
+\varepsilon_t = y_t-\mu - \theta_1 (y_{t-1}-\mu) + \theta_1^2 (y_{t-2}-\mu) + \dots + (-1)^{t-1} \theta_1^{t-1} (y_{1}-\mu) + (-1)^t\theta_1^{t}\varepsilon_{0}.
 \]</span>
 Assume that one wants to recover the sequence of <span class="math inline">\(\{\varepsilon_t\}\)</span>’s based on observed values of <span class="math inline">\(y_t\)</span> (from date 1 to date <span class="math inline">\(t\)</span>). One can use the previous expression, but what value should be used for <span class="math inline">\(\varepsilon_0\)</span>? If one does not use the true value of <span class="math inline">\(\varepsilon_0\)</span> but 0 (say), one does not obtain <span class="math inline">\(\varepsilon_t\)</span>, but only an estimate of it (<span class="math inline">\(\hat\varepsilon_t\)</span>, say), with:
 <span class="math display">\[
@@ -1169,6 +1211,11 @@ Loosely speaking, if <span class="math inline">\(|\theta_1|&lt;1\)</span> and if
 \mbox{approximate conditional MLE $\approx$ exact MLE.}
 \]</span></p>
 <p>Note that <span class="math inline">\(\hat{\mathcal{L}}^*(\boldsymbol\theta;\mathbf{y})\)</span> is a complicated nonlinear function of <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\theta\)</span>. Its maximization therefore has to be based on numerical optimization procedures.</p>
+</div>
+<div id="estimMAq" class="section level4" number="2.8.3.2">
+<h4>
+<span class="header-section-number">2.8.3.2</span> Maximum Likelihood Estimation of MA(q) processes<a class="anchor" aria-label="anchor" href="#estimMAq"><i class="fas fa-link"></i></a>
+</h4>
 <p>Let us not consider the case of a Gaussian MA(<span class="math inline">\(q\)</span>) process:
 <span class="math display" id="eq:estimMAq">\[\begin{equation}
 y_t = \mu + \varepsilon_t + \theta_1 \varepsilon_{t-1} + \dots + \theta_q \varepsilon_{t-q} , \quad \varepsilon_t \sim i.i.d.\mathcal{N}(0,\sigma^2). \tag{2.22}
@@ -1207,6 +1254,12 @@ where the <span class="math inline">\(\gamma_j\)</span>’s are given by Eq. <a 
 (2\pi)^{-T/2}|\boldsymbol\Omega|^{-1/2}\exp\left( -\frac{1}{2} (\mathbf{y}-\boldsymbol\mu)' \boldsymbol\Omega^{-1} (\mathbf{y}-\boldsymbol\mu)\right).
 \]</span>
 For large samples, the computation of this likelihood however becomes numerically demanding.</p>
+</div>
+</div>
+<div id="estimARMApq" class="section level3" number="2.8.4">
+<h3>
+<span class="header-section-number">2.8.4</span> Maximum Likelihood Estimation of an ARMA(p,q) process<a class="anchor" aria-label="anchor" href="#estimARMApq"><i class="fas fa-link"></i></a>
+</h3>
 <p>Finally, let us consider the MLE of an ARMA(<span class="math inline">\(p\)</span>,<span class="math inline">\(q\)</span>) processes:
 <span class="math display">\[
 y_t = c + \phi_1 y_{t-1} + \dots + \phi_p y_{t-p} + \varepsilon_t + \theta_1 \varepsilon_{t-1} +
@@ -1223,6 +1276,7 @@ given some initial conditions, for instance:</p>
 <li>
 <span class="math inline">\(\hat\varepsilon_p=\dots=\hat\varepsilon_{p-q+1}=0\)</span> and actual values of the <span class="math inline">\(y_{i}\)</span>’s for <span class="math inline">\(i \in [1,p]\)</span>. In that case, the first <span class="math inline">\(p\)</span> observations of <span class="math inline">\(y_t\)</span> will not be used. Recursions in Eq. <a href="Univariate.html#eq:recvareps">(2.26)</a> then start for <span class="math inline">\(t=p+1\)</span>.</li>
 </ol>
+</div>
 </div>
 <div id="specification-choice" class="section level2" number="2.9">
 <h2>
@@ -1353,8 +1407,20 @@ Hence <span class="math inline">\(\hat{k}^{(i)} \approx \underset{k}{\mbox{argmi
 <li><a class="nav-link" href="#PACFapproach"><span class="header-section-number">2.4</span> PACF approach to identify AR/MA processes</a></li>
 <li><a class="nav-link" href="#wold-decomposition"><span class="header-section-number">2.5</span> Wold decomposition</a></li>
 <li><a class="nav-link" href="#IRFARMA"><span class="header-section-number">2.6</span> Impulse Response Functions (IRFs) in ARMA models</a></li>
-<li><a class="nav-link" href="#ARMAIRF"><span class="header-section-number">2.7</span> ARMA processes with exogenous variables (ARMA-X)</a></li>
-<li><a class="nav-link" href="#estimARMA"><span class="header-section-number">2.8</span> Maximum Likelihood Estimation (MLE) of ARMA processes</a></li>
+<li>
+<a class="nav-link" href="#ARMAIRF"><span class="header-section-number">2.7</span> ARMA processes with exogenous variables (ARMA-X)</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#ARMAXDef"><span class="header-section-number">2.7.1</span> Definitions (ARMA-X)</a></li>
+<li><a class="nav-link" href="#ARMAXDynamic"><span class="header-section-number">2.7.2</span> Dynamic multipliers in ARMA-X models</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#estimARMA"><span class="header-section-number">2.8</span> Maximum Likelihood Estimation (MLE) of ARMA processes</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#Generalities"><span class="header-section-number">2.8.1</span> Generalities</a></li>
+<li><a class="nav-link" href="#estimAR"><span class="header-section-number">2.8.2</span> Maximum Likelihood Estimation of AR processes</a></li>
+<li><a class="nav-link" href="#estimMA"><span class="header-section-number">2.8.3</span> Maximum Likelihood Estimation of MA processes</a></li>
+<li><a class="nav-link" href="#estimARMApq"><span class="header-section-number">2.8.4</span> Maximum Likelihood Estimation of an ARMA(p,q) process</a></li>
+</ul>
+</li>
 <li><a class="nav-link" href="#specification-choice"><span class="header-section-number">2.9</span> Specification choice</a></li>
 </ul>
 
@@ -1372,7 +1438,7 @@ Hence <span class="math inline">\(\hat{k}^{(i)} \approx \underset{k}{\mbox{argmi
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Introduction to Time Series</strong>" was written by Jean-Paul Renne. It was last built on 2024-03-06.</p>
+    <p>"<strong>Introduction to Time Series</strong>" was written by Jean-Paul Renne. It was last built on 2024-03-19.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
