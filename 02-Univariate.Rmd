@@ -883,7 +883,7 @@ T <- dim(Ramey)[1]
 # Construct growth series:
 Ramey$growth <- Ramey$LIP - c(rep(NaN,12),Ramey$LIP[1:(length(Ramey$LIP)-12)])
 # Prepare matrix of exogenous variables:
-vec.lags <- c(9,12,18)
+vec.lags <- c(6:12)
 Matrix.of.Exog <- NULL
 shocks <- Ramey$ED2_TC
 for(i in 1:length(vec.lags)){Matrix.of.Exog <-
