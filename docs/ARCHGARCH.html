@@ -104,7 +104,7 @@ T \times R^2 \overset{d}{\rightarrow} \chi^2(m),
 \]</span>
 where <span class="math inline">\(R^2\)</span> is the centered <span class="math inline">\(R^2\)</span> of the OLS regression.</p>
 <p>Let us employ this test on the return series plotted in the lower panel of Figure <a href="ARCHGARCH.html#fig:GARCHsmireturns">7.1</a>:</p>
-<div class="sourceCode" id="cb58"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb60"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">AEC</span><span class="op">)</span>;<span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">smi</span><span class="op">)</span></span>
 <span><span class="va">smi</span> <span class="op">&lt;-</span> <span class="va">smi</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/stats/complete.cases.html">complete.cases</a></span><span class="op">(</span><span class="va">smi</span><span class="op">)</span>,<span class="op">]</span> <span class="co"># remove NaNs</span></span>
 <span><span class="cn">T</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="va">smi</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span></span>
@@ -206,7 +206,7 @@ where <span class="math inline">\(\theta\)</span>, the vector of unknown paramet
 <code>r</code> is the number of lags in the GARCH specification (see Subsection <a href="ARCHGARCH.html#GARCH">7.3</a> below).</li>
 </ul>
 <p>Function <code>compute.garch</code> returns a list, one entry of each is the log-likelihood associated with a parameterization <span class="math inline">\([\zeta,\boldsymbol\alpha']'\)</span>, the second being the resulting sequence of <span class="math inline">\(h_t\)</span>’s (see Eq. <a href="ARCHGARCH.html#eq:hARCH">(7.5)</a>). Let us create a function that returns only the log-likelihood:</p>
-<div class="sourceCode" id="cb59"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb61"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">loglik</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">theta</span>,<span class="va">x</span>,<span class="va">m</span>,<span class="va">r</span><span class="op">)</span><span class="op">{</span></span>
 <span>  <span class="co"># first parameter of theta: zeta</span></span>
 <span>  <span class="co"># next: alpha's (ARCH)</span></span>
@@ -215,7 +215,7 @@ where <span class="math inline">\(\theta\)</span>, the vector of unknown paramet
 <span>  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">Garch</span><span class="op">$</span><span class="va">logf</span><span class="op">)</span></span>
 <span><span class="op">}</span></span></code></pre></div>
 <p>Now, let us maximize the log-likelihood:</p>
-<div class="sourceCode" id="cb60"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb62"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">m</span> <span class="op">&lt;-</span> <span class="fl">2</span></span>
 <span><span class="va">r</span> <span class="op">&lt;-</span> <span class="fl">0</span> <span class="co"># for ARCH models, r=0</span></span>
 <span><span class="va">smi</span> <span class="op">&lt;-</span> <span class="va">smi</span><span class="op">[</span><span class="fl">4000</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="va">smi</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>,<span class="op">]</span> <span class="co"># reduce sample</span></span>
@@ -386,7 +386,7 @@ where <span class="math inline">\(v_t\)</span> is a zero-mean unit-variance i.i.
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Introduction to Time Series</strong>" was written by Jean-Paul Renne. It was last built on 2024-03-19.</p>
+    <p>"<strong>Introduction to Time Series</strong>" was written by Jean-Paul Renne. It was last built on 2024-09-24.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

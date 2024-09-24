@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2024.3.13)  19 MAR 2024 14:54
+This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2024.4.17)  24 SEP 2024 19:23
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -899,16 +899,13 @@ File: TimeSeries_files/figure-latex/Ramey1fig-1.pdf Graphic file (type pdf)
 [37]
 File: TimeSeries_files/figure-latex/Ramey3-1.pdf Graphic file (type pdf)
 <use TimeSeries_files/figure-latex/Ramey3-1.pdf>
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
 [38] [39]
-Underfull \hbox (badness 3009) in paragraph at lines 1431--1432
+Underfull \hbox (badness 3009) in paragraph at lines 1435--1436
 [][]\TU/lmr/bx/n/12 Definition 2.10 \TU/lmr/m/n/12 (Markovian process)\TU/lmr/bx/n/12 . []\TU/lmr/m/n/12 Process $[][]$ is Markovian of order one if
  []
 
 [40] [41] [42] [43] [44] [45] [46]
-Overfull \hbox (18.64905pt too wide) in paragraph at lines 1802--1804
+Overfull \hbox (18.64905pt too wide) in paragraph at lines 1806--1808
 \TU/lmr/m/n/12 If $[][] [][][][] [] []$, we have: $[][] [] [] [] [][][][][] []
  []
 
@@ -937,10 +934,10 @@ Chapter 4.
 
 ] [72] [73]
 
-LaTeX Warning: Reference `prp:chgeR2' on page 74 undefined on input line 2976.
+LaTeX Warning: Reference `prp:chgeR2' on page 74 undefined on input line 2989.
 
 
-LaTeX Warning: Reference `prp:chgeInR2' on page 74 undefined on input line 2976.
+LaTeX Warning: Reference `prp:chgeInR2' on page 74 undefined on input line 2989.
 
 [74] [75] [76] [77] [78
 
@@ -968,7 +965,7 @@ File: TimeSeries_files/figure-latex/VECMexmpl-1.pdf Graphic file (type pdf)
 ]
 Chapter 7.
 
-Underfull \hbox (badness 3826) in paragraph at lines 3742--3743
+Underfull \hbox (badness 3826) in paragraph at lines 3755--3756
 []\TU/lmr/m/n/12 Autoregressive Conditional Heteroskedasticity (ARCH) and its generalized version
  []
 
@@ -978,7 +975,7 @@ File: TimeSeries_files/figure-latex/GARCHsmireturns-1.pdf Graphic file (type pdf
 File: TimeSeries_files/figure-latex/estimGARCH3-1.pdf Graphic file (type pdf)
 <use TimeSeries_files/figure-latex/estimGARCH3-1.pdf>
 [105]
-Underfull \hbox (badness 2744) in paragraph at lines 3935--3937
+Underfull \hbox (badness 2744) in paragraph at lines 3948--3950
 \TU/lmr/m/n/12 This generalised autoregressive conditional heteroskedasticity model is denoted by
  []
 
@@ -996,29 +993,29 @@ File: TimeSeries_files/figure-latex/Cauchy-1.pdf Graphic file (type pdf)
 <use TimeSeries_files/figure-latex/Cauchy-1.pdf>
 [116] [117]
 
-LaTeX Warning: Reference `def:characteristic' on page 118 undefined on input line 4465.
+LaTeX Warning: Reference `def:characteristic' on page 118 undefined on input line 4478.
 
 
-Overfull \hbox (31.16512pt too wide) in paragraph at lines 4480--4481
+Overfull \hbox (31.16512pt too wide) in paragraph at lines 4493--4494
 []\TU/lmr/m/n/12 Let us introduce the r.v. $[][] [][] [][][] [] [][]$. We have $[][][][][] [] [][]$.
  []
 
 [118] [119]
 
-LaTeX Warning: Reference `prp:multivarG' on page 120 undefined on input line 4568.
+LaTeX Warning: Reference `prp:multivarG' on page 120 undefined on input line 4581.
 
 [120] [121]
-Overfull \hbox (58.59424pt too wide) in paragraph at lines 4617--4619
+Overfull \hbox (58.59424pt too wide) in paragraph at lines 4630--4632
 \TU/lmr/m/n/12 If $[] [] []$, we have $[][][][][][][][][][][] [] [][][][][][][][][][][][][][][][] [][][] [][][][] []$ $[][][][][][][][][][][][][][][][] [][][] [][][][] []
  []
 
 [122] [123] [124]
-Overfull \hbox (7.90913pt too wide) in paragraph at lines 4757--4822
+Overfull \hbox (7.90913pt too wide) in paragraph at lines 4770--4835
  [][] 
  []
 
 
-Overfull \hbox (58.83714pt too wide) in paragraph at lines 4934--4987
+Overfull \hbox (58.83714pt too wide) in paragraph at lines 4947--5000
  [][] 
  []
 
