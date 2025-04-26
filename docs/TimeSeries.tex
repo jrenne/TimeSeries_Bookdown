@@ -134,7 +134,7 @@
 
 \title{Introduction to Time Series}
 \author{Jean-Paul Renne}
-\date{2025-02-19}
+\date{2025-04-26}
 
 \usepackage{amsthm}
 \newtheorem{theorem}{Theorem}[chapter]
@@ -2522,13 +2522,13 @@ Vector \(\eta_t\) is assumed to be a vector of structural shocks, mutually and s
 System \eqref{eq:systemI} could be rewritten as follows:
 \begin{equation}
 \left[\begin{array}{c}
-d_t\\
+g_t\\
 \pi_t\\
 i_t
 \end{array}\right]
 = \Phi(L)
 \left[\begin{array}{c}
-d_{t-1}\\
+g_{t-1}\\
 \pi_{t-1}\\
 i_{t-1} +
 \end{array}\right] +\underbrace{\underbrace{
@@ -2986,7 +2986,7 @@ Two methods to determine relevant specifications:
 
 \textbf{Assessing the performances of a forecasting model}
 
-Once one has fitted a model on a given dataset (of length \(T\), say), one compute MSE (mean square errors) to evaluate the performance of the model. But this MSE is the \textbf{in-sample} one. It is easy to reduce in-sample MSE. Typically, if the model is estimated by OLS, adding covariates mechanically reduces the MSE (see Props. \ref{prp:chgeR2} and \ref{prp:chgeInR2}). That is, even if additional data are irrelevant, the \(R^2\) of the regression increases. Adding irrelevant variables increases the (in-sample) \(R^2\) but is bound to increase the \textbf{out-of-sample} MSE.
+Once one has fitted a model on a given dataset (of length \(T\), say), one compute MSE (mean square errors) to evaluate the performance of the model. But this MSE is the \textbf{in-sample} one. It is easy to reduce in-sample MSE. Typically, if the model is estimated by OLS, adding covariates mechanically reduces the MSE. That is, even if additional data are irrelevant, the \(R^2\) of the regression increases. Adding irrelevant variables increases the (in-sample) \(R^2\) but is bound to increase the \textbf{out-of-sample} MSE.
 
 Therefore, it is important to analyse \textbf{out-of-sample} performances of the forecasting model:
 
@@ -3091,7 +3091,7 @@ Assume now that we want to compare the AR(1) process to a VAR model (see Def. \r
 \NormalTok{  estim.model}\FloatTok{.3} \OtherTok{\textless{}{-}} \FunctionTok{VAR}\NormalTok{(y\_var[}\DecValTok{2}\SpecialCharTok{:}\NormalTok{T.star,],}\AttributeTok{p=}\DecValTok{1}\NormalTok{)}
 \NormalTok{  e3 }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(e3,y[T.star}\SpecialCharTok{+}\NormalTok{h] }\SpecialCharTok{{-}} \FunctionTok{predict}\NormalTok{(estim.model}\FloatTok{.3}\NormalTok{,}\AttributeTok{n.ahead=}\NormalTok{h)}\SpecialCharTok{$}\NormalTok{fcst}\SpecialCharTok{$}\NormalTok{y[h,}\DecValTok{1}\NormalTok{])}
 \NormalTok{\}}
-\NormalTok{res.DM }\OtherTok{\textless{}{-}} \FunctionTok{dm.test}\NormalTok{(e1,e2,}\AttributeTok{h =}\NormalTok{ h,}\AttributeTok{alternative =} \StringTok{"greater"}\NormalTok{)}
+\NormalTok{res.DM }\OtherTok{\textless{}{-}} \FunctionTok{dm.test}\NormalTok{(e1,e3,}\AttributeTok{h =}\NormalTok{ h,}\AttributeTok{alternative =} \StringTok{"greater"}\NormalTok{)}
 \NormalTok{res.DM}
 \end{Highlighting}
 \end{Shaded}
@@ -3100,9 +3100,9 @@ Assume now that we want to compare the AR(1) process to a VAR model (see Def. \r
 ## 
 ##  Diebold-Mariano Test
 ## 
-## data:  e1e2
-## DM = -0.82989, Forecast horizon = 2, Loss function power = 2, p-value =
-## 0.7946
+## data:  e1e3
+## DM = -0.11555, Forecast horizon = 2, Loss function power = 2, p-value =
+## 0.5458
 ## alternative hypothesis: greater
 \end{verbatim}
 

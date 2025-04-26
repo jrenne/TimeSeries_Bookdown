@@ -247,7 +247,7 @@ b. Box-Jenkins approach.
 
 **Assessing the performances of a forecasting model**
 
-Once one has fitted a model on a given dataset (of length $T$, say), one compute MSE (mean square errors) to evaluate the performance of the model. But this MSE is the **in-sample** one. It is easy to reduce in-sample MSE. Typically, if the model is estimated by OLS, adding covariates mechanically reduces the MSE (see Props. \@ref(prp:chgeR2) and \@ref(prp:chgeInR2)). That is, even if additional data are irrelevant, the $R^2$ of the regression increases. Adding irrelevant variables increases the (in-sample) $R^2$ but is bound to increase the **out-of-sample** MSE.
+Once one has fitted a model on a given dataset (of length $T$, say), one compute MSE (mean square errors) to evaluate the performance of the model. But this MSE is the **in-sample** one. It is easy to reduce in-sample MSE. Typically, if the model is estimated by OLS, adding covariates mechanically reduces the MSE. That is, even if additional data are irrelevant, the $R^2$ of the regression increases. Adding irrelevant variables increases the (in-sample) $R^2$ but is bound to increase the **out-of-sample** MSE.
 
 Therefore, it is important to analyse **out-of-sample** performances of the forecasting model:
 
@@ -321,7 +321,7 @@ for(T.star in first.date:(T-h)){
   estim.model.3 <- VAR(y_var[2:T.star,],p=1)
   e3 <- c(e3,y[T.star+h] - predict(estim.model.3,n.ahead=h)$fcst$y[h,1])
 }
-res.DM <- dm.test(e1,e2,h = h,alternative = "greater")
+res.DM <- dm.test(e1,e3,h = h,alternative = "greater")
 res.DM
 ```
 Again, we do not find that the alternative model (here the VAR(1) model) is better than the AR(1) model to forecast GDP growth.
