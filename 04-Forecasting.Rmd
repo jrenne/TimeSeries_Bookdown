@@ -292,7 +292,7 @@ We use a long historical time series of the Swiss GDP growth taken from the @JST
 We want to forecast this GDP growth. We envision two specifications : an AR(1) specification (the one advocated by the AIC criteria, see Example \@ref(exm:SwissGrowthAIC)), and an ARMA(2,2) specification. We are interested in 2-year-ahead forecasts (i.e., $h=2$ since the data are yearly).
 
 ```{r fcstARMA, warning=FALSE, fig.cap="XXX.", fig.asp = .6, out.width = "95%", fig.align = 'left-aligned'}
-library(AEC)
+library(IdSS)
 library(forecast)
 data <- subset(JST,iso=="CHE")
 T <- dim(data)[1]
@@ -326,7 +326,6 @@ res.DM
 ```
 Again, we do not find that the alternative model (here the VAR(1) model) is better than the AR(1) model to forecast GDP growth.
 :::
-
 
 
 

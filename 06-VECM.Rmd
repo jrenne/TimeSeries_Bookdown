@@ -7,7 +7,7 @@ Many statistical procedures are well-defined only when the processes of interest
 For instance, the left plot of Figure \@ref(fig:CointegEx) suggests that the trends of $x_t$ and $y_t$ are positively correlated. However, the right plot shows that, for low values of $h$, the correlation between $x_t - x_{t-h}$ and $y_t - y_{t-h}$ is negative. This is notably the case for $h=1$, which means that the first differences of the two variables (i.e., $\Delta x_t$ and $\Delta y_t$) are negatively correlated. Hence, focusing on the first differences would lead the researcher to think that the relationship between $x_t$ and $y_t$ is a negative one (while it is only the case when one focuses on the high-frequency comovements between the two variables).
 
 ```{r CointegEx, warning=FALSE,echo=FALSE, fig.align = 'left-aligned', out.width = "95%", fig.cap = "Situation where the conditional and uncondional correlation between $x_t$ and $y_t$ do not have the same sign."}
-library(AEC)
+library(IdSS)
 T <- 10000
 T4chart <- 700
 w    <- sim.arma(c=.1,phi=1,theta=1,sigma=.8,T=T,y.0=0)
@@ -296,7 +296,7 @@ It remains to explain how to test for the existence of a cointegration relations
 The data are as in Example \@ref(exm:NonStatExample). In the first step, we compute $z_t$ and use @Phillips_Ouliaris_1990's test to see whether the two variables are cointegrated:
 
 ```{r EngleGrangerUS1,message=FALSE,warning=FALSE}
-library(AEC);library(tseries)
+library(IdSS);library(tseries)
 T <- dim(US3var)[1]
 infl <- US3var$infl
 i    <- US3var$r
@@ -335,5 +335,4 @@ knitr::kable(table_N01, caption = "Results of the second-stage OLS regressions (
 
 Imporantly, one of the parameters associated with $z_{t-1}$ (parameters that are called speeds of adjustement) is significant and with the expected signs: if the short term nominal interest rate $i_t$ is high then $z_t$ becomes positive (since, up to an intercept, $z_t = i_t - \beta \pi_t$, where $\beta$ comes from the first-step regression), but since $B_{1,1}$ is negative (it is equal to `r round(eq1$coefficients[2],3)`), a positive $z_t$ will generate a negative correction (i.e., $B_{1,1}z_t$) for $i_{t+1}$ on date $t+1$, thereby "correcting" the high level of $i_t$.
 :::
-
 

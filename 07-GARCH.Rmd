@@ -7,7 +7,7 @@ Many financial and macroeconomic variables are hit by shocks whose variance is n
 Autoregressive Conditional Heteroskedasticity (ARCH) and its generalized version (GARCH) constitute useful tools to model such time series.
 
 ```{r GARCHsmireturns, echo=FALSE, fig.cap="Upper plot: SMI index (daily Close prices); lower plot: daily log returns.", fig.asp = .6, out.width = "100%", fig.align = 'left-aligned'}
-library(AEC);data(smi)
+library(IdSS);data(smi)
 par(plt=c(0.1,0.95,0.2,0.75))
 smi <- smi[complete.cases(smi),] # remove NaNs
 T <- dim(smi)[1]
@@ -26,7 +26,7 @@ where $R^2$ is the centered $R^2$ of the OLS regression.
 Let us employ this test on the return series plotted in the lower panel of Figure \@ref(fig:GARCHsmireturns):
 
 ```{r tesHeterosk}
-library(AEC);data(smi)
+library(IdSS);data(smi)
 smi <- smi[complete.cases(smi),] # remove NaNs
 T <- dim(smi)[1]
 smi$r <- 100*c(NaN,log(smi$Close[2:T]/smi$Close[1:(T-1)]))
@@ -123,7 +123,7 @@ where $\theta$, the vector of unknown parameters, is $[\boldsymbol\beta',\zeta,\
 
 Note that one can also use non-Gaussian distributions for $v_t$. (For that, one has to replace the normal distribution in Eq. \@ref(eq:densityN).)
 
-Let us fit an ARCH(2) model on the SMI return data (lower plot of Figure \@ref(fig:GARCHsmireturns)). For this, we make use of function `compute.garch` of package `AEC`. This function takes four arguments:
+Let us fit an ARCH(2) model on the SMI return data (lower plot of Figure \@ref(fig:GARCHsmireturns)). For this, we make use of function `compute.garch` of package `IdSS`. This function takes four arguments:
 
 * vector `theta` contains the model parameterization: first, $\zeta$, then the $\alpha_i$'s, then for GARCH models (see Subsection \@ref(GARCH) below), the $\delta_i$'s.
 * vector `x` contains the observations of the process.
@@ -249,7 +249,6 @@ u_t &=& \sqrt{h_t} v_t \\
 h_t &=& \zeta + \alpha_1 u_{t-1}^2 + \dots + \alpha_m u_{t-m}^2,
 \end{eqnarray*}
 where $v_t$ is a zero-mean unit-variance i.i.d. sequence.
-
 
 
 

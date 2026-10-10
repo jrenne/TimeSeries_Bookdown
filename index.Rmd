@@ -24,13 +24,13 @@ css: "my-style.css"
 
 Time series constitute a prevalent data type in several disciplines, notably macroeconomics and finance. The modeling of time series is crucial for many purposes, including forecasting, understanding macroeconomic mechanisms, and risk assessment. This course proposes an introduction to time series analysis. It has been developed by [Jean-Paul Renne](https://www.jprenne.com) and [Alain Monfort](https://faculty.crest.fr/amonfort/).
 
-Codes associated with this course are part of the `AEC` package, which is available on GitHub. To load a  package from GitHub, you need to use function `install_github` from the `devtools` package:
+Codes associated with this course are part of the `IdSS` package, which is available on GitHub. To load a package from GitHub, you need to use function `install_github` from the `devtools` package:
 
-```{r installAEC, eval=FALSE}
+```{r installIdSS, eval=FALSE}
 install.packages("devtools") # in case you do not have that one.
 library(devtools)
-install_github("jrenne/AEC")
-library(AEC)
+install_github("jrenne/IdSS")
+library(IdSS)
 ```
 
 **Useful (R) links:**
@@ -49,7 +49,7 @@ library(AEC)
 
 <!-- <!-- To specify the corresponding covariance matrix vcov. to be used, there are three possibilities: 1. It is pre-computed and supplied in argument vcov.. 2. A function for extracting the covariance matrix from x is supplied, e.g., sandwich, vcovHC, vcovCL, or vcovHAC from package sandwich.  -->
 <!-- ```{r shp2,warning=FALSE,message=FALSE} -->
-<!-- library(AEC) -->
+<!-- library(IdSS) -->
 <!-- library(sandwich) -->
 <!-- shp$income <- shp$i19ptotn/1000 -->
 <!-- shp$female <- 1*(shp$sex19==2) -->
@@ -66,7 +66,6 @@ library(AEC)
 <!-- XXXX HC0, HC1... Davidson MacKinnon 2004 Section 5.5 XXXX -->
 
 <!-- **p.d.f. version**: [here](https://www.dropbox.com/s/td4bqpbzfuvwsev/ApplEcts.pdf?dl=0). -->
-
 
 
 

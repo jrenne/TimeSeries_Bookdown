@@ -42,7 +42,7 @@ Consider a non-stationary $y_t$ process (e.g., $y_t$ follows a random walk). The
 This is illustrated by Figure \@ref(fig:nonStat1). This figure shows, in black, the  distributions of $\hat\phi$, obtained by OLS in the context of the linear model $y_t = c + \phi y_{t-1} + \varepsilon_t$. These distributions are obtained by simulations. We consider two sample sizes ($T=50$, left plot, and $T=200$, right plot). The vertical red bars indicate the means of the distributions, the vertical blue bar gives the approximated mean given by $1-5.3/T$.
 
 ```{r nonStat1, echo=FALSE, fig.align = 'left-aligned', out.width = "95%", fig.cap = "The densities of based on 1000 simulations of samples of length $T$, they are approximated by the kernel approach."}
-library(AEC)
+library(IdSS)
 y.0 <- c(0)
 c <- 0
 nb.sim <- 1000

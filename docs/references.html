@@ -1,216 +1,414 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="" xml:lang="">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>References | Introduction to Time Series</title>
-<meta name="author" content="Jean-Paul Renne">
-<meta name="description" content="Abadir, Karim M. 1993. “OLS Bias in a Nonstationary Autoregression.” Econometric Theory 9 (1): 81–93. http://www.jstor.org/stable/3532005.  Anderson, T. W. 1971. The Statistical Analysis of Time...">
-<meta name="generator" content="bookdown 0.34 with bs4_book()">
-<meta property="og:title" content="References | Introduction to Time Series">
-<meta property="og:type" content="book">
-<meta property="og:description" content="Abadir, Karim M. 1993. “OLS Bias in a Nonstationary Autoregression.” Econometric Theory 9 (1): 81–93. http://www.jstor.org/stable/3532005.  Anderson, T. W. 1971. The Statistical Analysis of Time...">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="References | Introduction to Time Series">
-<meta name="twitter:description" content="Abadir, Karim M. 1993. “OLS Bias in a Nonstationary Autoregression.” Econometric Theory 9 (1): 81–93. http://www.jstor.org/stable/3532005.  Anderson, T. W. 1971. The Statistical Analysis of Time...">
-<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
-<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.5.0/transition.js"></script><script src="libs/bs3compat-0.5.0/tabs.js"></script><script src="libs/bs3compat-0.5.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
-<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
-    
-    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
-  </style>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>References | Introduction to Time Series</title>
+  <meta name="description" content="This course XXX." />
+  <meta name="generator" content="bookdown 0.43 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="References | Introduction to Time Series" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="This course XXX." />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="References | Introduction to Time Series" />
+  
+  <meta name="twitter:description" content="This course XXX." />
+  
+
+<meta name="author" content="Jean-Paul Renne" />
+
+
+<meta name="date" content="2026-10-10" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="append.html"/>
+
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
 <style type="text/css">
-    /* Used with Pandoc 2.11+ new --citeproc when CSL is used */
-    div.csl-bib-body { }
-    div.csl-entry {
-      clear: both;
-        }
-    .hanging div.csl-entry {
-      margin-left:2em;
-      text-indent:-2em;
-    }
-    div.csl-left-margin {
-      min-width:2em;
-      float:left;
-    }
-    div.csl-right-inline {
-      margin-left:2em;
-      padding-left:1em;
-    }
-    div.csl-indent {
-      margin-left: 2em;
-    }
-  </style>
-<link rel="stylesheet" href="my-style.css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
 </head>
-<body data-spy="scroll" data-target="#toc">
 
-<div class="container-fluid">
-<div class="row">
-  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+<body>
 
-    <div class="d-flex align-items-start justify-content-between">
-      <h1>
-        <a href="index.html" title="">Introduction to Time Series</a>
-      </h1>
-      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
-    </div>
 
-    <div id="main-nav" class="collapse-lg">
-      <form role="search">
-        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
-</form>
 
-      <nav aria-label="Table of contents"><h2>Table of contents</h2>
-        <ul class="book-toc list-unstyled">
-<li><a class="" href="index.html">Introduction to Time Series</a></li>
-<li><a class="" href="Intro.html"><span class="header-section-number">1</span> Basics</a></li>
-<li><a class="" href="Univariate.html"><span class="header-section-number">2</span> Univariate processes</a></li>
-<li><a class="" href="VAR.html"><span class="header-section-number">3</span> Multivariate models</a></li>
-<li><a class="" href="forecasting.html"><span class="header-section-number">4</span> Forecasting</a></li>
-<li><a class="" href="NonStat.html"><span class="header-section-number">5</span> Non-stationary processes</a></li>
-<li><a class="" href="cointeg.html"><span class="header-section-number">6</span> Introduction to cointegration</a></li>
-<li><a class="" href="ARCHGARCH.html"><span class="header-section-number">7</span> ARCH and GARCH models</a></li>
-<li><a class="" href="append.html"><span class="header-section-number">8</span> Appendix</a></li>
-<li><a class="active" href="references.html">References</a></li>
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Time Series</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="Intro.html"><a href="Intro.html"><i class="fa fa-check"></i><b>1</b> Basics</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="Intro.html"><a href="Intro.html#shocks-and-lag-operator"><i class="fa fa-check"></i><b>1.1</b> Shocks and lag operator</a></li>
+<li class="chapter" data-level="1.2" data-path="Intro.html"><a href="Intro.html#conditional-and-unconditional-moments"><i class="fa fa-check"></i><b>1.2</b> Conditional and unconditional moments</a></li>
+<li class="chapter" data-level="1.3" data-path="Intro.html"><a href="Intro.html#central-limit-theorem-clt-for-persistent-processes"><i class="fa fa-check"></i><b>1.3</b> Central Limit Theorem (CLT) for persistent processes</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="Univariate.html"><a href="Univariate.html"><i class="fa fa-check"></i><b>2</b> Univariate processes</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="Univariate.html"><a href="Univariate.html#moving-average-ma-processes"><i class="fa fa-check"></i><b>2.1</b> Moving Average (MA) processes</a></li>
+<li class="chapter" data-level="2.2" data-path="Univariate.html"><a href="Univariate.html#ARsection"><i class="fa fa-check"></i><b>2.2</b> Auto-Regressive (AR) processes</a></li>
+<li class="chapter" data-level="2.3" data-path="Univariate.html"><a href="Univariate.html#ar-ma-processes"><i class="fa fa-check"></i><b>2.3</b> AR-MA processes</a></li>
+<li class="chapter" data-level="2.4" data-path="Univariate.html"><a href="Univariate.html#PACFapproach"><i class="fa fa-check"></i><b>2.4</b> PACF approach to identify AR/MA processes</a></li>
+<li class="chapter" data-level="2.5" data-path="Univariate.html"><a href="Univariate.html#wold-decomposition"><i class="fa fa-check"></i><b>2.5</b> Wold decomposition</a></li>
+<li class="chapter" data-level="2.6" data-path="Univariate.html"><a href="Univariate.html#IRFARMA"><i class="fa fa-check"></i><b>2.6</b> Impulse Response Functions (IRFs) in ARMA models</a></li>
+<li class="chapter" data-level="2.7" data-path="Univariate.html"><a href="Univariate.html#ARMAIRF"><i class="fa fa-check"></i><b>2.7</b> ARMA processes with exogenous variables (ARMA-X)</a>
+<ul>
+<li class="chapter" data-level="2.7.1" data-path="Univariate.html"><a href="Univariate.html#ARMAXDef"><i class="fa fa-check"></i><b>2.7.1</b> Definitions (ARMA-X)</a></li>
+<li class="chapter" data-level="2.7.2" data-path="Univariate.html"><a href="Univariate.html#ARMAXDynamic"><i class="fa fa-check"></i><b>2.7.2</b> Dynamic multipliers in ARMA-X models</a></li>
+</ul></li>
+<li class="chapter" data-level="2.8" data-path="Univariate.html"><a href="Univariate.html#estimARMA"><i class="fa fa-check"></i><b>2.8</b> Maximum Likelihood Estimation (MLE) of ARMA processes</a>
+<ul>
+<li class="chapter" data-level="2.8.1" data-path="Univariate.html"><a href="Univariate.html#Generalities"><i class="fa fa-check"></i><b>2.8.1</b> Generalities</a></li>
+<li class="chapter" data-level="2.8.2" data-path="Univariate.html"><a href="Univariate.html#estimAR"><i class="fa fa-check"></i><b>2.8.2</b> Maximum Likelihood Estimation of AR processes</a></li>
+<li class="chapter" data-level="2.8.3" data-path="Univariate.html"><a href="Univariate.html#estimMA"><i class="fa fa-check"></i><b>2.8.3</b> Maximum Likelihood Estimation of MA processes</a></li>
+<li class="chapter" data-level="2.8.4" data-path="Univariate.html"><a href="Univariate.html#estimARMApq"><i class="fa fa-check"></i><b>2.8.4</b> Maximum Likelihood Estimation of an ARMA(p,q) process</a></li>
+</ul></li>
+<li class="chapter" data-level="2.9" data-path="Univariate.html"><a href="Univariate.html#specification-choice"><i class="fa fa-check"></i><b>2.9</b> Specification choice</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="VAR.html"><a href="VAR.html"><i class="fa fa-check"></i><b>3</b> Multivariate models</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="VAR.html"><a href="VAR.html#definition-of-vars-and-svarma-models"><i class="fa fa-check"></i><b>3.1</b> Definition of VARs (and SVARMA) models</a></li>
+<li class="chapter" data-level="3.2" data-path="VAR.html"><a href="VAR.html#IRFSVARMA"><i class="fa fa-check"></i><b>3.2</b> IRFs in SVARMA</a></li>
+<li class="chapter" data-level="3.3" data-path="VAR.html"><a href="VAR.html#covariance-stationary-varma-models"><i class="fa fa-check"></i><b>3.3</b> Covariance-stationary VARMA models</a></li>
+<li class="chapter" data-level="3.4" data-path="VAR.html"><a href="VAR.html#estimVAR"><i class="fa fa-check"></i><b>3.4</b> VAR estimation</a></li>
+<li class="chapter" data-level="3.5" data-path="VAR.html"><a href="VAR.html#BlockGranger"><i class="fa fa-check"></i><b>3.5</b> Block exogeneity and Granger causality</a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="VAR.html"><a href="VAR.html#block-exogeneity"><i class="fa fa-check"></i><b>3.5.1</b> Block exogeneity</a></li>
+<li class="chapter" data-level="3.5.2" data-path="VAR.html"><a href="VAR.html#granger-causality"><i class="fa fa-check"></i><b>3.5.2</b> Granger Causality</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="VAR.html"><a href="VAR.html#identifStruct"><i class="fa fa-check"></i><b>3.6</b> Standard identification techniques</a>
+<ul>
+<li class="chapter" data-level="3.6.1" data-path="VAR.html"><a href="VAR.html#IdentifPbm"><i class="fa fa-check"></i><b>3.6.1</b> The identification problem</a></li>
+<li class="chapter" data-level="3.6.2" data-path="VAR.html"><a href="VAR.html#a-stylized-example-motivating-short-run-restrictions"><i class="fa fa-check"></i><b>3.6.2</b> A stylized example motivating short-run restrictions</a></li>
+<li class="chapter" data-level="3.6.3" data-path="VAR.html"><a href="VAR.html#cholesky-a-specific-short-run-restriction-situation"><i class="fa fa-check"></i><b>3.6.3</b> Cholesky: a specific short-run-restriction situation</a></li>
+<li class="chapter" data-level="3.6.4" data-path="VAR.html"><a href="VAR.html#long-run-restrictions"><i class="fa fa-check"></i><b>3.6.4</b> Long-run restrictions</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="forecasting.html"><a href="forecasting.html"><i class="fa fa-check"></i><b>4</b> Forecasting</a></li>
+<li class="chapter" data-level="5" data-path="NonStat.html"><a href="NonStat.html"><i class="fa fa-check"></i><b>5</b> Non-stationary processes</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="NonStat.html"><a href="NonStat.html#issues-when-working-with-nonstationary-time-series"><i class="fa fa-check"></i><b>5.1</b> Issues when working with nonstationary time series</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="NonStat.html"><a href="NonStat.html#the-bias-of-autoregressive-coefficient-towards-zero"><i class="fa fa-check"></i><b>5.1.1</b> The bias of autoregressive coefficient towards zero</a></li>
+<li class="chapter" data-level="5.1.2" data-path="NonStat.html"><a href="NonStat.html#spurious-regressions"><i class="fa fa-check"></i><b>5.1.2</b> Spurious regressions</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="NonStat.html"><a href="NonStat.html#nonstationarity-tests"><i class="fa fa-check"></i><b>5.2</b> Nonstationarity tests</a></li>
+<li class="chapter" data-level="5.3" data-path="NonStat.html"><a href="NonStat.html#stationarity-test-kpss"><i class="fa fa-check"></i><b>5.3</b> Stationarity test: KPSS</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="cointeg.html"><a href="cointeg.html"><i class="fa fa-check"></i><b>6</b> Introduction to cointegration</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="cointeg.html"><a href="cointeg.html#intuition"><i class="fa fa-check"></i><b>6.1</b> Intuition</a></li>
+<li class="chapter" data-level="6.2" data-path="cointeg.html"><a href="cointeg.html#the-bivariate-case"><i class="fa fa-check"></i><b>6.2</b> The bivariate case</a></li>
+<li class="chapter" data-level="6.3" data-path="cointeg.html"><a href="cointeg.html#multivariate-case-and-vecm"><i class="fa fa-check"></i><b>6.3</b> Multivariate case and VECM</a></li>
+<li class="chapter" data-level="6.4" data-path="cointeg.html"><a href="cointeg.html#cointegration-in-practice"><i class="fa fa-check"></i><b>6.4</b> Cointegration in practice</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="ARCHGARCH.html"><a href="ARCHGARCH.html"><i class="fa fa-check"></i><b>7</b> ARCH and GARCH models</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="ARCHGARCH.html"><a href="ARCHGARCH.html#conditional-heteroskedasticity"><i class="fa fa-check"></i><b>7.1</b> Conditional heteroskedasticity</a></li>
+<li class="chapter" data-level="7.2" data-path="ARCHGARCH.html"><a href="ARCHGARCH.html#ARCH"><i class="fa fa-check"></i><b>7.2</b> The ARCH model</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="ARCHGARCH.html"><a href="ARCHGARCH.html#the-two-arch-specifications"><i class="fa fa-check"></i><b>7.2.1</b> The two ARCH specifications</a></li>
+<li class="chapter" data-level="7.2.2" data-path="ARCHGARCH.html"><a href="ARCHGARCH.html#maximum-likelihood-estimation-of-an-arch-process"><i class="fa fa-check"></i><b>7.2.2</b> Maximum Likelihood Estimation of an ARCH process</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="ARCHGARCH.html"><a href="ARCHGARCH.html#GARCH"><i class="fa fa-check"></i><b>7.3</b> The GARCH model</a></li>
+<li class="chapter" data-level="7.4" data-path="ARCHGARCH.html"><a href="ARCHGARCH.html#arch-in-mean"><i class="fa fa-check"></i><b>7.4</b> ARCH-in-mean</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="append.html"><a href="append.html"><i class="fa fa-check"></i><b>8</b> Appendix</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="append.html"><a href="append.html#PCAapp"><i class="fa fa-check"></i><b>8.1</b> Principal component analysis (PCA)</a></li>
+<li class="chapter" data-level="8.2" data-path="append.html"><a href="append.html#LinAlgebra"><i class="fa fa-check"></i><b>8.2</b> Linear algebra: definitions and results</a></li>
+<li class="chapter" data-level="8.3" data-path="append.html"><a href="append.html#variousResults"><i class="fa fa-check"></i><b>8.3</b> Statistical analysis: definitions and results</a>
+<ul>
+<li class="chapter" data-level="8.3.1" data-path="append.html"><a href="append.html#moments-and-statistics"><i class="fa fa-check"></i><b>8.3.1</b> Moments and statistics</a></li>
+<li class="chapter" data-level="8.3.2" data-path="append.html"><a href="append.html#standard-distributions"><i class="fa fa-check"></i><b>8.3.2</b> Standard distributions</a></li>
+<li class="chapter" data-level="8.3.3" data-path="append.html"><a href="append.html#StochConvergences"><i class="fa fa-check"></i><b>8.3.3</b> Stochastic convergences</a></li>
+<li class="chapter" data-level="8.3.4" data-path="append.html"><a href="append.html#multivariate-gaussian-distribution"><i class="fa fa-check"></i><b>8.3.4</b> Multivariate Gaussian distribution</a></li>
+<li class="chapter" data-level="8.3.5" data-path="append.html"><a href="append.html#CLTappend"><i class="fa fa-check"></i><b>8.3.5</b> Central limit theorem</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="append.html"><a href="append.html#AppendixProof"><i class="fa fa-check"></i><b>8.4</b> Proofs</a></li>
+<li class="chapter" data-level="8.5" data-path="append.html"><a href="append.html#Inference"><i class="fa fa-check"></i><b>8.5</b> Inference</a>
+<ul>
+<li class="chapter" data-level="8.5.1" data-path="append.html"><a href="append.html#MonteCarlo"><i class="fa fa-check"></i><b>8.5.1</b> Monte Carlo method</a></li>
+<li class="chapter" data-level="8.5.2" data-path="append.html"><a href="append.html#Delta"><i class="fa fa-check"></i><b>8.5.2</b> Delta method</a></li>
+<li class="chapter" data-level="8.5.3" data-path="append.html"><a href="append.html#Bootstrap"><i class="fa fa-check"></i><b>8.5.3</b> Bootstrap</a></li>
+</ul></li>
+<li class="chapter" data-level="8.6" data-path="append.html"><a href="append.html#statistical-tables"><i class="fa fa-check"></i><b>8.6</b> Statistical Tables</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
 </ul>
 
-        <div class="book-extra">
-          
-        </div>
       </nav>
-</div>
-  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="references" class="section level1 unnumbered">
-<h1>References<a class="anchor" aria-label="anchor" href="#references"><i class="fas fa-link"></i></a>
-</h1>
+    </div>
 
-<div id="refs" class="references csl-bib-body hanging-indent">
-<div id="ref-Abadir_1993" class="csl-entry">
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Introduction to Time Series</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="references" class="section level1 unnumbered hasAnchor">
+<h1>References<a href="references.html#references" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+
+<div id="refs" class="references csl-bib-body hanging-indent" entry-spacing="0">
+<div class="csl-entry">
 Abadir, Karim M. 1993. <span>“OLS Bias in a Nonstationary Autoregression.”</span> <em>Econometric Theory</em> 9 (1): 81–93. <a href="http://www.jstor.org/stable/3532005">http://www.jstor.org/stable/3532005</a>.
 </div>
-<div id="ref-Anderson_1971" class="csl-entry">
+<div class="csl-entry">
 Anderson, T. W. 1971. <em>The Statistical Analysis of Time Series</em>. Wiley. <a href="https://onlinelibrary.wiley.com/doi/book/10.1002/9781118186428">https://onlinelibrary.wiley.com/doi/book/10.1002/9781118186428</a>.
 </div>
-<div id="ref-BERNANKE198649" class="csl-entry">
+<div class="csl-entry">
 Bernanke, Ben S. 1986. <span>“Alternative Explanations of the Money-Income Correlation.”</span> <em>Carnegie-Rochester Conference Series on Public Policy</em> 25: 49–99. https://doi.org/<a href="https://doi.org/10.1016/0167-2231(86)90037-0">https://doi.org/10.1016/0167-2231(86)90037-0</a>.
 </div>
-<div id="ref-Blanchard_Quah_1989" class="csl-entry">
+<div class="csl-entry">
 Blanchard, Olivier Jean, and Danny Quah. 1989. <span>“<span class="nocase">The Dynamic Effects of Aggregate Demand and Supply Disturbances</span>.”</span> <em>American Economic Review</em> 79 (4): 655–73. <a href="https://ideas.repec.org/a/aea/aecrev/v79y1989i4p655-73.html">https://ideas.repec.org/a/aea/aecrev/v79y1989i4p655-73.html</a>.
 </div>
-<div id="ref-boxjen76" class="csl-entry">
+<div class="csl-entry">
 Box, George.E. P., and Gwilym M. Jenkins. 1976. <em>Time Series Analysis: Forecasting and Control</em>. Holden-Day.
 </div>
-<div id="ref-Christiano_Eichenbaum_Evans_1996" class="csl-entry">
+<div class="csl-entry">
 Christiano, Lawrence J., Martin Eichenbaum, and Charles Evans. 1996. <span>“The Effects of Monetary Policy Shocks: Evidence from the Flow of Funds.”</span> <em>The Review of Economics and Statistics</em> 78 (1): 16–34. <a href="http://www.jstor.org/stable/2109845">http://www.jstor.org/stable/2109845</a>.
 </div>
-<div id="ref-NBERc11177" class="csl-entry">
+<div class="csl-entry">
 Christiano, Lawrence J., Martin Eichenbaum, and Robert Vigfusson. 2007. <span>“Assessing Structural VARs.”</span> Book. In <em>NBER Macroeconomics Annual 2006, Volume 21</em>, by Daron Acemoglu, Kenneth Rogoff, and Michael Woodford, 1–106. National Bureau of Economic Research; MIT Press. <a href="http://www.nber.org/chapters/c11177">http://www.nber.org/chapters/c11177</a>.
 </div>
-<div id="ref-DEGOOIJER2006443" class="csl-entry">
+<div class="csl-entry">
 De Gooijer, Jan G., and Rob J. Hyndman. 2006. <span>“25 Years of Time Series Forecasting.”</span> <em>International Journal of Forecasting</em> 22 (3): 443–73. https://doi.org/<a href="https://doi.org/10.1016/j.ijforecast.2006.01.001">https://doi.org/10.1016/j.ijforecast.2006.01.001</a>.
 </div>
-<div id="ref-DEDOLA20051543" class="csl-entry">
+<div class="csl-entry">
 Dedola, Luca, and Francesco Lippi. 2005. <span>“The Monetary Transmission Mechanism: Evidence from the Industries of Five OECD Countries.”</span> <em>European Economic Review</em> 49 (6): 1543–69. <a href="https://www.sciencedirect.com/science/article/pii/S0014292103001569">https://www.sciencedirect.com/science/article/pii/S0014292103001569</a>.
 </div>
-<div id="ref-DF1979" class="csl-entry">
+<div class="csl-entry">
 Dickey, David A., and Wayne A. Fuller. 1979. <span>“Distribution of the Estimators for Autoregressive Time Series with a Unit Root.”</span> <em>Journal of the American Statistical Association</em> 74 (366a): 427–31. <a href="https://doi.org/10.1080/01621459.1979.10482531">https://doi.org/10.1080/01621459.1979.10482531</a>.
 </div>
-<div id="ref-Diebold_Mariano_1995" class="csl-entry">
+<div class="csl-entry">
 Diebold, Francis, and Roberto Mariano. 1995. <span>“Comparing Predictive Accuracy.”</span> <em>Journal of Business &amp; Economic Statistics</em> 13 (3): 253–63. <a href="https://EconPapers.repec.org/RePEc:bes:jnlbes:v:13:y:1995:i:3:p:253-63">https://EconPapers.repec.org/RePEc:bes:jnlbes:v:13:y:1995:i:3:p:253-63</a>.
 </div>
-<div id="ref-Engle_1982" class="csl-entry">
+<div class="csl-entry">
 Engle, Robert F. 1982. <span>“Autoregressive Conditional Heteroscedasticity with Estimates of the Variance of United Kingdom Inflation.”</span> <em>Econometrica</em> 50 (4): 987–1007. <a href="http://www.jstor.org/stable/1912773">http://www.jstor.org/stable/1912773</a>.
 </div>
-<div id="ref-Engle_Granger_1987" class="csl-entry">
+<div class="csl-entry">
 Engle, Robert F., and C. W. J. Granger. 1987. <span>“Co-Integration and Error Correction: Representation, Estimation, and Testing.”</span> <em>Econometrica</em> 55 (2): 251–76. <a href="http://www.jstor.org/stable/1913236">http://www.jstor.org/stable/1913236</a>.
 </div>
-<div id="ref-Erceg_et_al_2005" class="csl-entry">
+<div class="csl-entry">
 Erceg, Christopher J., Luca Guerrieri, and Christopher Gust. 2005. <span>“<span>Can Long-Run Restrictions Identify Technology Shocks?</span>”</span> <em>Journal of the European Economic Association</em> 3 (6): 1237–78. <a href="https://doi.org/10.1162/154247605775012860">https://doi.org/10.1162/154247605775012860</a>.
 </div>
-<div id="ref-Faust_Leeper_1997" class="csl-entry">
+<div class="csl-entry">
 Faust, Jon, and Eric M. Leeper. 1997. <span>“When Do Long-Run Identifying Restrictions Give Reliable Results?”</span> <em>Journal of Business &amp; Economic Statistics</em> 15 (3): 345–53. <a href="https://www.tandfonline.com/doi/abs/10.1080/07350015.1997.10524712">https://www.tandfonline.com/doi/abs/10.1080/07350015.1997.10524712</a>.
 </div>
-<div id="ref-Fischer_1977" class="csl-entry">
+<div class="csl-entry">
 Fischer, Stanley. 1977. <span>“Long-Term Contracts, Rational Expectations, and the Optimal Money Supply Rule.”</span> <em>Journal of Political Economy</em> 85 (1): 191–205. <a href="https://EconPapers.repec.org/RePEc:ucp:jpolec:v:85:y:1977:i:1:p:191-205">https://EconPapers.repec.org/RePEc:ucp:jpolec:v:85:y:1977:i:1:p:191-205</a>.
 </div>
-<div id="ref-Gali_1992" class="csl-entry">
+<div class="csl-entry">
 Galí, Jordi. 1992. <span>“How Well Does the IS-LM Model Fit Postwar u.s. Data?”</span> <em>The Quarterly Journal of Economics</em> 107 (2): 709–38. <a href="http://www.jstor.org/stable/2118487">http://www.jstor.org/stable/2118487</a>.
 </div>
-<div id="ref-Gali_1999" class="csl-entry">
+<div class="csl-entry">
 ———. 1999. <span>“Technology, Employment, and the Business Cycle: Do Technology Shocks Explain Aggregate Fluctuations?”</span> <em>American Economic Review</em> 89 (1): 249–71. <a href="https://doi.org/10.1257/aer.89.1.249">https://doi.org/10.1257/aer.89.1.249</a>.
 </div>
-<div id="ref-Gerlach_Smets_1995" class="csl-entry">
+<div class="csl-entry">
 Gerlach, Stefan, and Frank Smets. 1995. <span>“<span class="nocase">The Monetary Transmission Mechanism: Evidence from the G-7 Countries</span>.”</span> CEPR Discussion Papers 1219. C.E.P.R. Discussion Papers. <a href="https://ideas.repec.org/p/cpr/ceprdp/1219.html">https://ideas.repec.org/p/cpr/ceprdp/1219.html</a>.
 </div>
-<div id="ref-Gertler_Karadi_2015" class="csl-entry">
+<div class="csl-entry">
 Gertler, Mark, and Peter Karadi. 2015. <span>“<span class="nocase">Monetary Policy Surprises, Credit Costs, and Economic Activity</span>.”</span> <em>American Economic Journal: Macroeconomics</em> 7 (1): 44–76. <a href="https://ideas.repec.org/a/aea/aejmac/v7y2015i1p44-76.html">https://ideas.repec.org/a/aea/aejmac/v7y2015i1p44-76.html</a>.
 </div>
-<div id="ref-Gourieroux_Monfort_Renne_2017" class="csl-entry">
+<div class="csl-entry">
 Gouriéroux, Christian, Alain Monfort, and Jean-Paul Renne. 2017. <span>“Statistical Inference for Independent Component Analysis: Application to Structural VAR Models.”</span> <em>Journal of Econometrics</em> 196 (1): 111–26. https://doi.org/<a href="https://doi.org/10.1016/j.jeconom.2016.09.007">https://doi.org/10.1016/j.jeconom.2016.09.007</a>.
 </div>
-<div id="ref-Gourieroux_Monfort_Renne_2020" class="csl-entry">
+<div class="csl-entry">
 ———. 2020. <span>“<span class="nocase">Identification and Estimation in Non-Fundamental Structural VARMA Models</span>.”</span> <em>Review of Economic Studies</em> 87 (4): 1915–53. <a href="https://ideas.repec.org/a/oup/restud/v87y2020i4p1915-1953..html">https://ideas.repec.org/a/oup/restud/v87y2020i4p1915-1953..html</a>.
 </div>
-<div id="ref-Granger_1969" class="csl-entry">
+<div class="csl-entry">
 Granger, C. W. J. 1969. <span>“Investigating Causal Relations by Econometric Models and Cross-Spectral Methods.”</span> <em>Econometrica</em> 37 (3): 424–38. <a href="http://www.jstor.org/stable/1912791">http://www.jstor.org/stable/1912791</a>.
 </div>
-<div id="ref-Hamilton_1994" class="csl-entry">
+<div class="csl-entry">
 Hamilton, James Douglas. 1994. <em>Time Series Analysis</em>. Princeton University Press. <a href="https://www.worldcat.org/title/time-series-analysis/oclc/1194970663&amp;referer=brief_results">https://www.worldcat.org/title/time-series-analysis/oclc/1194970663&amp;referer=brief_results</a>.
 </div>
-<div id="ref-Johansen_1991" class="csl-entry">
+<div class="csl-entry">
 Johansen, Søren. 1991. <span>“Estimation and Hypothesis Testing of Cointegration Vectors in Gaussian Vector Autoregressive Models.”</span> <em>Econometrica</em> 59 (6): 1551–80. <a href="http://www.jstor.org/stable/2938278">http://www.jstor.org/stable/2938278</a>.
 </div>
-<div id="ref-Jorda_2005" class="csl-entry">
+<div class="csl-entry">
 Jordà, Òscar. 2005. <span>“<span class="nocase">Estimation and Inference of Impulse Responses by Local Projections</span>.”</span> <em>American Economic Review</em> 95 (1): 161–82. <a href="https://ideas.repec.org/a/aea/aecrev/v95y2005i1p161-182.html">https://ideas.repec.org/a/aea/aecrev/v95y2005i1p161-182.html</a>.
 </div>
-<div id="ref-JST_2017" class="csl-entry">
+<div class="csl-entry">
 Jordà, Òscar, Moritz Schularick, and Alan M. Taylor. 2017. <span>“<span class="nocase">Macrofinancial History and the New Business Cycle Facts</span>.”</span> <em>NBER Macroeconomics Annual</em> 31 (1): 213–63. <a href="https://ideas.repec.org/a/ucp/macann/doi10.1086-690241.html">https://ideas.repec.org/a/ucp/macann/doi10.1086-690241.html</a>.
 </div>
-<div id="ref-KWIATKOWSKI1992159" class="csl-entry">
+<div class="csl-entry">
 Kwiatkowski, Denis, Peter C. B. Phillips, Peter Schmidt, and Yongcheol Shin. 1992. <span>“Testing the Null Hypothesis of Stationarity Against the Alternative of a Unit Root: How Sure Are We That Economic Time Series Have a Unit Root?”</span> <em>Journal of Econometrics</em> 54 (1): 159–78. <a href="https://www.sciencedirect.com/science/article/pii/030440769290104Y">https://www.sciencedirect.com/science/article/pii/030440769290104Y</a>.
 </div>
-<div id="ref-Litterman_Scheinkman_1991" class="csl-entry">
+<div class="csl-entry">
 Litterman, Robert, and Jose Scheinkman. 1991. <span>“<span>Common Factors Affecting Bond Returns</span>.”</span> <em>Journal of Fixed Income</em>, no. 1: 54–61. <a href="https://www.math.nyu.edu/~avellane/Litterman1991.pdf">https://www.math.nyu.edu/~avellane/Litterman1991.pdf</a>.
 </div>
-<div id="ref-Lutkepohl_1990" class="csl-entry">
+<div class="csl-entry">
 Lütkepohl, Helmut. 1990. <span>“Asymptotic Distributions of Impulse Response Functions and Forecast Error Variance Decompositions of Vector Autoregressive Models.”</span> <em>The Review of Economics and Statistics</em> 72 (1): 116–25. <a href="https://EconPapers.repec.org/RePEc:tpr:restat:v:72:y:1990:i:1:p:116-25">https://EconPapers.repec.org/RePEc:tpr:restat:v:72:y:1990:i:1:p:116-25</a>.
 </div>
-<div id="ref-Mandelbrot_1963" class="csl-entry">
+<div class="csl-entry">
 Mandelbrot, Benoit. 1963. <span>“The Variation of Certain Speculative Prices.”</span> <em>The Journal of Business</em> 36. <a href="https://EconPapers.repec.org/RePEc:ucp:jnlbus:v:36:y:1963:p:394">https://EconPapers.repec.org/RePEc:ucp:jnlbus:v:36:y:1963:p:394</a>.
 </div>
-<div id="ref-Newey_West_1987" class="csl-entry">
+<div class="csl-entry">
 Newey, Whitney K., and Kenneth D. West. 1987. <span>“A Simple, Positive Semi-Definite, Heteroskedasticity and Autocorrelation Consistent Covariance Matrix.”</span> <em>Econometrica</em> 55 (3): 703–8. <a href="http://www.jstor.org/stable/1913610">http://www.jstor.org/stable/1913610</a>.
 </div>
-<div id="ref-Phillips_1987" class="csl-entry">
+<div class="csl-entry">
 Phillips, P. C. B. 1987. <span>“Time Series Regression with a Unit Root.”</span> <em>Econometrica</em> 55 (2): 277–301. <a href="http://www.jstor.org/stable/1913237">http://www.jstor.org/stable/1913237</a>.
 </div>
-<div id="ref-Phillips_Ouliaris_1990" class="csl-entry">
+<div class="csl-entry">
 Phillips, P. C. B., and S. Ouliaris. 1990. <span>“Asymptotic Properties of Residual Based Tests for Cointegration.”</span> <em>Econometrica</em> 58 (1): 165–93. <a href="http://www.jstor.org/stable/2938339">http://www.jstor.org/stable/2938339</a>.
 </div>
-<div id="ref-Phillips_Perron_1988" class="csl-entry">
+<div class="csl-entry">
 Phillips, Peter, and Pierre Perron. 1988. <span>“<span class="nocase">Testing for a unit root in time series regression</span>.”</span> <em>Biometrika</em> 75 (2): 335–46. <a href="https://doi.org/10.1093/biomet/75.2.335">https://doi.org/10.1093/biomet/75.2.335</a>.
 </div>
-<div id="ref-Ramey_2016_NBER" class="csl-entry">
+<div class="csl-entry">
 Ramey, Valerie A. 2016. <span>“<span class="nocase">Macroeconomic Shocks and Their Propagation</span>.”</span> NBER Working Papers 21978. National Bureau of Economic Research, Inc. <a href="https://ideas.repec.org/p/nbr/nberwo/21978.html">https://ideas.repec.org/p/nbr/nberwo/21978.html</a>.
 </div>
-<div id="ref-RubioRamirez_et_al_2010" class="csl-entry">
+<div class="csl-entry">
 Ruibio-Ramírez, Juan F., Daniel F. Waggoner, and Tao Zha. 2010. <span>“Structural Vector Autoregressions: Theory of Identification and Algorithms for Inference.”</span> <em>The Review of Economic Studies</em> 77 (2): 665–96. <a href="http://www.jstor.org/stable/40587642">http://www.jstor.org/stable/40587642</a>.
 </div>
-<div id="ref-Schwert_1989" class="csl-entry">
+<div class="csl-entry">
 Schwert, G. William. 1989. <span>“<span class="nocase">Tests for Unit Roots: A Monte Carlo Investigation</span>.”</span> <em>Journal of Business &amp; Economic Statistics</em> 7 (2): 147–59. <a href="http://www.jstor.org/stable/1391432">http://www.jstor.org/stable/1391432</a>.
 </div>
-<div id="ref-Sims_1980" class="csl-entry">
+<div class="csl-entry">
 Sims, Christopher A. 1980. <span>“Macroeconomics and Reality.”</span> <em>Econometrica</em> 48 (1): 1–48. <a href="http://www.jstor.org/stable/1912017">http://www.jstor.org/stable/1912017</a>.
 </div>
-<div id="ref-Sims_1986" class="csl-entry">
+<div class="csl-entry">
 ———. 1986. <span>“<span class="nocase">Are forecasting models usable for policy analysis?</span>”</span> <em>Quarterly Review</em> 10 (Win): 2–16. <a href="https://ideas.repec.org/a/fip/fedmqr/y1986iwinp2-16nv.10no.1.html">https://ideas.repec.org/a/fip/fedmqr/y1986iwinp2-16nv.10no.1.html</a>.
 </div>
-<div id="ref-Stock_Watson_2016" class="csl-entry">
+<div class="csl-entry">
 Stock, J. H., and M. W. Watson. 2016. <span>“<span class="nocase">Dynamic Factor Models, Factor-Augmented Vector Autoregressions, and Structural Vector Autoregressions in Macroeconomics</span>.”</span> In <em><span class="nocase">Handbook of Macroeconomics</span></em>, edited by J. B. Taylor and Harald Uhlig, 2:415–525. Handbook of Macroeconomics. Elsevier. <a href="https://doi.org/10.1016/bs.hesmac.2016.04">https://doi.org/10.1016/bs.hesmac.2016.04</a>.
 </div>
-<div id="ref-Stock_Watson_2003" class="csl-entry">
+<div class="csl-entry">
 Stock, James, and Mark W. Watson. 2003. <em>Introduction to Econometrics</em>. New York: Prentice Hall; Prentice Hall.
 </div>
 </div>
@@ -257,36 +455,68 @@ Stock, James, and Mark W. Watson. 2003. <em>Introduction to Econometrics</em>. N
 
 
 
-  <div class="chapter-nav">
-<div class="prev"><a href="append.html"><span class="header-section-number">8</span> Appendix</a></div>
-<div class="empty"></div>
-</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
-    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
-      <ul class="nav navbar-nav"><li><a class="nav-link" href="#references">References</a></li></ul>
+            </section>
 
-      <div class="book-extra">
-        <ul class="list-unstyled">
-          
-        </ul>
-</div>
-    </nav>
-</div>
+          </div>
+        </div>
+      </div>
+<a href="append.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 
-</div>
-</div> <!-- .container -->
-
-<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
-
-  <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Introduction to Time Series</strong>" was written by Jean-Paul Renne. It was last built on 2025-04-26.</p>
+    </div>
   </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": "https://github.com/rstudio/bookdown-demo/edit/master/09-References.Rmd",
+    "text": "Edit"
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": ["TimeSeries.pdf", "TimeSeries.epub"],
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection"
+  }
+});
+});
+</script>
 
-  <div class="col-12 col-md-6 mt-3">
-    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
-  </div>
-
-</div></div>
-</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
@@ -298,22 +528,7 @@ Stock, James, and Mark W. Watson. 2003. <em>Introduction to Econometrics</em>. N
     script.src = src;
     document.getElementsByTagName("head")[0].appendChild(script);
   })();
-</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
-for (let popover of popovers) {
-  const div = document.createElement('div');
-  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
-  div.innerHTML = popover.getAttribute('data-content');
-
-  var has_math = div.querySelector("span.math");
-  if (has_math) {
-    document.body.appendChild(div);
-    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
-    MathJax.Hub.Queue(function() {
-      popover.setAttribute('data-content', div.innerHTML);
-      document.body.removeChild(div);
-    })
-  }
-}
 </script>
 </body>
+
 </html>

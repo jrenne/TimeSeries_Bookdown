@@ -121,11 +121,11 @@ y_{t-1} +
 \end{array}\right]}_{B}\eta_{t-1}.(\#eq:VARMA111)
 \end{eqnarray}
 
-We can use function `simul.VARMA` of package `AEC` to produce IRFs (using `indic.IRF=1` in the list of arguments):
+We can use function `simul.VARMA` of package `IdSS` to produce IRFs (using `indic.IRF=1` in the list of arguments):
 
 
 ```{r simVAR, fig.align = 'left-aligned', out.width = "95%", fig.cap = "Impulse response functions (SVARMA(1,1) specified above).",message=FALSE}
-library(AEC)
+library(IdSS)
 distri <- list(type=c("gaussian","gaussian"),df=c(4,4))
 n <- length(distri$type) # dimension of y_t
 nb.sim <- 30
@@ -402,7 +402,7 @@ BIC & = & cst + \log\left|\hat{\Omega}\right|+\frac{\log T}{T}N,
 where $N=p \times n^{2}$.
 
 ```{r varselect,message=FALSE}
-library(vars);library(AEC)
+library(vars);library(IdSS)
 data <- US3var[,c("y.gdp.gap","infl")]
 VARselect(data,lag.max = 6)
 estimated.var <- VAR(data,p=3)
@@ -692,7 +692,7 @@ An equivalent approach consists in computing the Cholesky decomposition of $BB'$
 
 
 ```{r CEE, fig.align = 'left-aligned', out.width = "95%", fig.cap = "Response to a monetary-policy shock. Identification approach of Christiano, Eichenbaum and Evans (1996). Confidence intervals are obtained by boostrapping the estimated VAR model (see inference section).",warning=FALSE,message=FALSE}
-library(AEC);library(vars)
+library(IdSS);library(vars)
 data("USmonthly")
 # Select sample period:
 First.date <- "1965-01-01";Last.date <- "1995-06-01"
@@ -805,7 +805,7 @@ where $\Theta_{ij}$ is the element $(i,j)$ of $\Theta$.
 @Blanchard_Quah_1989's dataset is quarterly, spanning the period from 1950:2 to 1987:4. Their VAR features 8 lags. Here are the data they use:
 
 ```{r BQ1}
-library(AEC)
+library(IdSS)
 data(BQ)
 par(mfrow=c(1,2))
 plot(BQ$Date,BQ$Dgdp,type="l",main="GDP quarterly growth rate",
@@ -859,7 +859,6 @@ Y <- simul.VAR(c=matrix(0,2,1),Phi,B.hat,nb.sim,y0.star=rep(0,2*8),
 plot(cumsum(Y[,1]),type="l",lwd=2,xlab="",ylab="",main="Supply shock on GDP")
 plot(Y[,2],type="l",lwd=2,xlab="",ylab="",main="Supply shock on UNEMP")
 ```
-
 
 
 

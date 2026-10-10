@@ -1,184 +1,376 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="" xml:lang="">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Chapter 8 Appendix | Introduction to Time Series</title>
-<meta name="author" content="Jean-Paul Renne">
-<meta name="description" content="8.1 Principal component analysis (PCA) Principal component analysis (PCA) is a classical and easy-to-use statistical method to reduce the dimension of large datasets containing variables that are...">
-<meta name="generator" content="bookdown 0.34 with bs4_book()">
-<meta property="og:title" content="Chapter 8 Appendix | Introduction to Time Series">
-<meta property="og:type" content="book">
-<meta property="og:description" content="8.1 Principal component analysis (PCA) Principal component analysis (PCA) is a classical and easy-to-use statistical method to reduce the dimension of large datasets containing variables that are...">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Chapter 8 Appendix | Introduction to Time Series">
-<meta name="twitter:description" content="8.1 Principal component analysis (PCA) Principal component analysis (PCA) is a classical and easy-to-use statistical method to reduce the dimension of large datasets containing variables that are...">
-<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
-<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.5.0/transition.js"></script><script src="libs/bs3compat-0.5.0/tabs.js"></script><script src="libs/bs3compat-0.5.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
-<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
-    
-    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
-  </style>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 8 Appendix | Introduction to Time Series</title>
+  <meta name="description" content="This course XXX." />
+  <meta name="generator" content="bookdown 0.43 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 8 Appendix | Introduction to Time Series" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="This course XXX." />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 8 Appendix | Introduction to Time Series" />
+  
+  <meta name="twitter:description" content="This course XXX." />
+  
+
+<meta name="author" content="Jean-Paul Renne" />
+
+
+<meta name="date" content="2026-10-10" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="ARCHGARCH.html"/>
+<link rel="next" href="references.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
 <style type="text/css">
-    /* Used with Pandoc 2.11+ new --citeproc when CSL is used */
-    div.csl-bib-body { }
-    div.csl-entry {
-      clear: both;
-        }
-    .hanging div.csl-entry {
-      margin-left:2em;
-      text-indent:-2em;
-    }
-    div.csl-left-margin {
-      min-width:2em;
-      float:left;
-    }
-    div.csl-right-inline {
-      margin-left:2em;
-      padding-left:1em;
-    }
-    div.csl-indent {
-      margin-left: 2em;
-    }
-  </style>
-<link rel="stylesheet" href="my-style.css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
 </head>
-<body data-spy="scroll" data-target="#toc">
 
-<div class="container-fluid">
-<div class="row">
-  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+<body>
 
-    <div class="d-flex align-items-start justify-content-between">
-      <h1>
-        <a href="index.html" title="">Introduction to Time Series</a>
-      </h1>
-      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
-    </div>
 
-    <div id="main-nav" class="collapse-lg">
-      <form role="search">
-        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
-</form>
 
-      <nav aria-label="Table of contents"><h2>Table of contents</h2>
-        <ul class="book-toc list-unstyled">
-<li><a class="" href="index.html">Introduction to Time Series</a></li>
-<li><a class="" href="Intro.html"><span class="header-section-number">1</span> Basics</a></li>
-<li><a class="" href="Univariate.html"><span class="header-section-number">2</span> Univariate processes</a></li>
-<li><a class="" href="VAR.html"><span class="header-section-number">3</span> Multivariate models</a></li>
-<li><a class="" href="forecasting.html"><span class="header-section-number">4</span> Forecasting</a></li>
-<li><a class="" href="NonStat.html"><span class="header-section-number">5</span> Non-stationary processes</a></li>
-<li><a class="" href="cointeg.html"><span class="header-section-number">6</span> Introduction to cointegration</a></li>
-<li><a class="" href="ARCHGARCH.html"><span class="header-section-number">7</span> ARCH and GARCH models</a></li>
-<li><a class="active" href="append.html"><span class="header-section-number">8</span> Appendix</a></li>
-<li><a class="" href="references.html">References</a></li>
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Time Series</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="Intro.html"><a href="Intro.html"><i class="fa fa-check"></i><b>1</b> Basics</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="Intro.html"><a href="Intro.html#shocks-and-lag-operator"><i class="fa fa-check"></i><b>1.1</b> Shocks and lag operator</a></li>
+<li class="chapter" data-level="1.2" data-path="Intro.html"><a href="Intro.html#conditional-and-unconditional-moments"><i class="fa fa-check"></i><b>1.2</b> Conditional and unconditional moments</a></li>
+<li class="chapter" data-level="1.3" data-path="Intro.html"><a href="Intro.html#central-limit-theorem-clt-for-persistent-processes"><i class="fa fa-check"></i><b>1.3</b> Central Limit Theorem (CLT) for persistent processes</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="Univariate.html"><a href="Univariate.html"><i class="fa fa-check"></i><b>2</b> Univariate processes</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="Univariate.html"><a href="Univariate.html#moving-average-ma-processes"><i class="fa fa-check"></i><b>2.1</b> Moving Average (MA) processes</a></li>
+<li class="chapter" data-level="2.2" data-path="Univariate.html"><a href="Univariate.html#ARsection"><i class="fa fa-check"></i><b>2.2</b> Auto-Regressive (AR) processes</a></li>
+<li class="chapter" data-level="2.3" data-path="Univariate.html"><a href="Univariate.html#ar-ma-processes"><i class="fa fa-check"></i><b>2.3</b> AR-MA processes</a></li>
+<li class="chapter" data-level="2.4" data-path="Univariate.html"><a href="Univariate.html#PACFapproach"><i class="fa fa-check"></i><b>2.4</b> PACF approach to identify AR/MA processes</a></li>
+<li class="chapter" data-level="2.5" data-path="Univariate.html"><a href="Univariate.html#wold-decomposition"><i class="fa fa-check"></i><b>2.5</b> Wold decomposition</a></li>
+<li class="chapter" data-level="2.6" data-path="Univariate.html"><a href="Univariate.html#IRFARMA"><i class="fa fa-check"></i><b>2.6</b> Impulse Response Functions (IRFs) in ARMA models</a></li>
+<li class="chapter" data-level="2.7" data-path="Univariate.html"><a href="Univariate.html#ARMAIRF"><i class="fa fa-check"></i><b>2.7</b> ARMA processes with exogenous variables (ARMA-X)</a>
+<ul>
+<li class="chapter" data-level="2.7.1" data-path="Univariate.html"><a href="Univariate.html#ARMAXDef"><i class="fa fa-check"></i><b>2.7.1</b> Definitions (ARMA-X)</a></li>
+<li class="chapter" data-level="2.7.2" data-path="Univariate.html"><a href="Univariate.html#ARMAXDynamic"><i class="fa fa-check"></i><b>2.7.2</b> Dynamic multipliers in ARMA-X models</a></li>
+</ul></li>
+<li class="chapter" data-level="2.8" data-path="Univariate.html"><a href="Univariate.html#estimARMA"><i class="fa fa-check"></i><b>2.8</b> Maximum Likelihood Estimation (MLE) of ARMA processes</a>
+<ul>
+<li class="chapter" data-level="2.8.1" data-path="Univariate.html"><a href="Univariate.html#Generalities"><i class="fa fa-check"></i><b>2.8.1</b> Generalities</a></li>
+<li class="chapter" data-level="2.8.2" data-path="Univariate.html"><a href="Univariate.html#estimAR"><i class="fa fa-check"></i><b>2.8.2</b> Maximum Likelihood Estimation of AR processes</a></li>
+<li class="chapter" data-level="2.8.3" data-path="Univariate.html"><a href="Univariate.html#estimMA"><i class="fa fa-check"></i><b>2.8.3</b> Maximum Likelihood Estimation of MA processes</a></li>
+<li class="chapter" data-level="2.8.4" data-path="Univariate.html"><a href="Univariate.html#estimARMApq"><i class="fa fa-check"></i><b>2.8.4</b> Maximum Likelihood Estimation of an ARMA(p,q) process</a></li>
+</ul></li>
+<li class="chapter" data-level="2.9" data-path="Univariate.html"><a href="Univariate.html#specification-choice"><i class="fa fa-check"></i><b>2.9</b> Specification choice</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="VAR.html"><a href="VAR.html"><i class="fa fa-check"></i><b>3</b> Multivariate models</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="VAR.html"><a href="VAR.html#definition-of-vars-and-svarma-models"><i class="fa fa-check"></i><b>3.1</b> Definition of VARs (and SVARMA) models</a></li>
+<li class="chapter" data-level="3.2" data-path="VAR.html"><a href="VAR.html#IRFSVARMA"><i class="fa fa-check"></i><b>3.2</b> IRFs in SVARMA</a></li>
+<li class="chapter" data-level="3.3" data-path="VAR.html"><a href="VAR.html#covariance-stationary-varma-models"><i class="fa fa-check"></i><b>3.3</b> Covariance-stationary VARMA models</a></li>
+<li class="chapter" data-level="3.4" data-path="VAR.html"><a href="VAR.html#estimVAR"><i class="fa fa-check"></i><b>3.4</b> VAR estimation</a></li>
+<li class="chapter" data-level="3.5" data-path="VAR.html"><a href="VAR.html#BlockGranger"><i class="fa fa-check"></i><b>3.5</b> Block exogeneity and Granger causality</a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="VAR.html"><a href="VAR.html#block-exogeneity"><i class="fa fa-check"></i><b>3.5.1</b> Block exogeneity</a></li>
+<li class="chapter" data-level="3.5.2" data-path="VAR.html"><a href="VAR.html#granger-causality"><i class="fa fa-check"></i><b>3.5.2</b> Granger Causality</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="VAR.html"><a href="VAR.html#identifStruct"><i class="fa fa-check"></i><b>3.6</b> Standard identification techniques</a>
+<ul>
+<li class="chapter" data-level="3.6.1" data-path="VAR.html"><a href="VAR.html#IdentifPbm"><i class="fa fa-check"></i><b>3.6.1</b> The identification problem</a></li>
+<li class="chapter" data-level="3.6.2" data-path="VAR.html"><a href="VAR.html#a-stylized-example-motivating-short-run-restrictions"><i class="fa fa-check"></i><b>3.6.2</b> A stylized example motivating short-run restrictions</a></li>
+<li class="chapter" data-level="3.6.3" data-path="VAR.html"><a href="VAR.html#cholesky-a-specific-short-run-restriction-situation"><i class="fa fa-check"></i><b>3.6.3</b> Cholesky: a specific short-run-restriction situation</a></li>
+<li class="chapter" data-level="3.6.4" data-path="VAR.html"><a href="VAR.html#long-run-restrictions"><i class="fa fa-check"></i><b>3.6.4</b> Long-run restrictions</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="forecasting.html"><a href="forecasting.html"><i class="fa fa-check"></i><b>4</b> Forecasting</a></li>
+<li class="chapter" data-level="5" data-path="NonStat.html"><a href="NonStat.html"><i class="fa fa-check"></i><b>5</b> Non-stationary processes</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="NonStat.html"><a href="NonStat.html#issues-when-working-with-nonstationary-time-series"><i class="fa fa-check"></i><b>5.1</b> Issues when working with nonstationary time series</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="NonStat.html"><a href="NonStat.html#the-bias-of-autoregressive-coefficient-towards-zero"><i class="fa fa-check"></i><b>5.1.1</b> The bias of autoregressive coefficient towards zero</a></li>
+<li class="chapter" data-level="5.1.2" data-path="NonStat.html"><a href="NonStat.html#spurious-regressions"><i class="fa fa-check"></i><b>5.1.2</b> Spurious regressions</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="NonStat.html"><a href="NonStat.html#nonstationarity-tests"><i class="fa fa-check"></i><b>5.2</b> Nonstationarity tests</a></li>
+<li class="chapter" data-level="5.3" data-path="NonStat.html"><a href="NonStat.html#stationarity-test-kpss"><i class="fa fa-check"></i><b>5.3</b> Stationarity test: KPSS</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="cointeg.html"><a href="cointeg.html"><i class="fa fa-check"></i><b>6</b> Introduction to cointegration</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="cointeg.html"><a href="cointeg.html#intuition"><i class="fa fa-check"></i><b>6.1</b> Intuition</a></li>
+<li class="chapter" data-level="6.2" data-path="cointeg.html"><a href="cointeg.html#the-bivariate-case"><i class="fa fa-check"></i><b>6.2</b> The bivariate case</a></li>
+<li class="chapter" data-level="6.3" data-path="cointeg.html"><a href="cointeg.html#multivariate-case-and-vecm"><i class="fa fa-check"></i><b>6.3</b> Multivariate case and VECM</a></li>
+<li class="chapter" data-level="6.4" data-path="cointeg.html"><a href="cointeg.html#cointegration-in-practice"><i class="fa fa-check"></i><b>6.4</b> Cointegration in practice</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="ARCHGARCH.html"><a href="ARCHGARCH.html"><i class="fa fa-check"></i><b>7</b> ARCH and GARCH models</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="ARCHGARCH.html"><a href="ARCHGARCH.html#conditional-heteroskedasticity"><i class="fa fa-check"></i><b>7.1</b> Conditional heteroskedasticity</a></li>
+<li class="chapter" data-level="7.2" data-path="ARCHGARCH.html"><a href="ARCHGARCH.html#ARCH"><i class="fa fa-check"></i><b>7.2</b> The ARCH model</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="ARCHGARCH.html"><a href="ARCHGARCH.html#the-two-arch-specifications"><i class="fa fa-check"></i><b>7.2.1</b> The two ARCH specifications</a></li>
+<li class="chapter" data-level="7.2.2" data-path="ARCHGARCH.html"><a href="ARCHGARCH.html#maximum-likelihood-estimation-of-an-arch-process"><i class="fa fa-check"></i><b>7.2.2</b> Maximum Likelihood Estimation of an ARCH process</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="ARCHGARCH.html"><a href="ARCHGARCH.html#GARCH"><i class="fa fa-check"></i><b>7.3</b> The GARCH model</a></li>
+<li class="chapter" data-level="7.4" data-path="ARCHGARCH.html"><a href="ARCHGARCH.html#arch-in-mean"><i class="fa fa-check"></i><b>7.4</b> ARCH-in-mean</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="append.html"><a href="append.html"><i class="fa fa-check"></i><b>8</b> Appendix</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="append.html"><a href="append.html#PCAapp"><i class="fa fa-check"></i><b>8.1</b> Principal component analysis (PCA)</a></li>
+<li class="chapter" data-level="8.2" data-path="append.html"><a href="append.html#LinAlgebra"><i class="fa fa-check"></i><b>8.2</b> Linear algebra: definitions and results</a></li>
+<li class="chapter" data-level="8.3" data-path="append.html"><a href="append.html#variousResults"><i class="fa fa-check"></i><b>8.3</b> Statistical analysis: definitions and results</a>
+<ul>
+<li class="chapter" data-level="8.3.1" data-path="append.html"><a href="append.html#moments-and-statistics"><i class="fa fa-check"></i><b>8.3.1</b> Moments and statistics</a></li>
+<li class="chapter" data-level="8.3.2" data-path="append.html"><a href="append.html#standard-distributions"><i class="fa fa-check"></i><b>8.3.2</b> Standard distributions</a></li>
+<li class="chapter" data-level="8.3.3" data-path="append.html"><a href="append.html#StochConvergences"><i class="fa fa-check"></i><b>8.3.3</b> Stochastic convergences</a></li>
+<li class="chapter" data-level="8.3.4" data-path="append.html"><a href="append.html#multivariate-gaussian-distribution"><i class="fa fa-check"></i><b>8.3.4</b> Multivariate Gaussian distribution</a></li>
+<li class="chapter" data-level="8.3.5" data-path="append.html"><a href="append.html#CLTappend"><i class="fa fa-check"></i><b>8.3.5</b> Central limit theorem</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="append.html"><a href="append.html#AppendixProof"><i class="fa fa-check"></i><b>8.4</b> Proofs</a></li>
+<li class="chapter" data-level="8.5" data-path="append.html"><a href="append.html#Inference"><i class="fa fa-check"></i><b>8.5</b> Inference</a>
+<ul>
+<li class="chapter" data-level="8.5.1" data-path="append.html"><a href="append.html#MonteCarlo"><i class="fa fa-check"></i><b>8.5.1</b> Monte Carlo method</a></li>
+<li class="chapter" data-level="8.5.2" data-path="append.html"><a href="append.html#Delta"><i class="fa fa-check"></i><b>8.5.2</b> Delta method</a></li>
+<li class="chapter" data-level="8.5.3" data-path="append.html"><a href="append.html#Bootstrap"><i class="fa fa-check"></i><b>8.5.3</b> Bootstrap</a></li>
+</ul></li>
+<li class="chapter" data-level="8.6" data-path="append.html"><a href="append.html#statistical-tables"><i class="fa fa-check"></i><b>8.6</b> Statistical Tables</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
 </ul>
 
-        <div class="book-extra">
-          
-        </div>
       </nav>
-</div>
-  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="append" class="section level1" number="8">
-<h1>
-<span class="header-section-number">8</span> Appendix<a class="anchor" aria-label="anchor" href="#append"><i class="fas fa-link"></i></a>
-</h1>
-<div id="PCAapp" class="section level2" number="8.1">
-<h2>
-<span class="header-section-number">8.1</span> Principal component analysis (PCA)<a class="anchor" aria-label="anchor" href="#PCAapp"><i class="fas fa-link"></i></a>
-</h2>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Introduction to Time Series</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="append" class="section level1 hasAnchor" number="8">
+<h1><span class="header-section-number">Chapter 8</span> Appendix<a href="append.html#append" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="PCAapp" class="section level2 hasAnchor" number="8.1">
+<h2><span class="header-section-number">8.1</span> Principal component analysis (PCA)<a href="append.html#PCAapp" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><strong>Principal component analysis (PCA)</strong> is a classical and easy-to-use statistical method to reduce the dimension of large datasets containing variables that are linearly driven by a relatively small number of factors. This approach is widely used in data analysis and image compression.</p>
 <p>Suppose that we have <span class="math inline">\(T\)</span> observations of a <span class="math inline">\(n\)</span>-dimensional random vector <span class="math inline">\(x\)</span>, denoted by <span class="math inline">\(x_{1},x_{2},\ldots,x_{T}\)</span>. We suppose that each component of <span class="math inline">\(x\)</span> is of mean zero.</p>
-<p>Let denote with <span class="math inline">\(X\)</span> the matrix given by <span class="math inline">\(\left[\begin{array}{cccc} x_{1} &amp; x_{2} &amp; \ldots &amp; x_{T}\end{array}\right]'\)</span>. Denote the <span class="math inline">\(j^{th}\)</span> column of <span class="math inline">\(X\)</span> by <span class="math inline">\(X_{j}\)</span>.</p>
+<p>Let denote with <span class="math inline">\(X\)</span> the matrix given by <span class="math inline">\(\left[\begin{array}{cccc}
+x_{1} &amp; x_{2} &amp; \ldots &amp; x_{T}\end{array}\right]&#39;\)</span>. Denote the <span class="math inline">\(j^{th}\)</span> column of <span class="math inline">\(X\)</span> by <span class="math inline">\(X_{j}\)</span>.</p>
 <p>We want to find the linear combination of the <span class="math inline">\(x_{i}\)</span>’s (<span class="math inline">\(x.u\)</span>), with <span class="math inline">\(\left\Vert u\right\Vert =1\)</span>, with “maximum variance.” That is, we want to solve:
 <span class="math display" id="eq:PCA11">\[\begin{equation}
 \begin{array}{clll}
-\underset{u}{\arg\max} &amp; u'X'Xu. \\
+\underset{u}{\arg\max} &amp; u&#39;X&#39;Xu. \\
 \mbox{s.t. } &amp; \left\Vert u \right\Vert =1
 \end{array}\tag{8.1}
 \end{equation}\]</span></p>
-<p>Since <span class="math inline">\(X'X\)</span> is a positive definite matrix, it admits the following decomposition:
+<p>Since <span class="math inline">\(X&#39;X\)</span> is a positive definite matrix, it admits the following decomposition:
 <span class="math display">\[\begin{eqnarray*}
-X'X &amp; = &amp; PDP'\\
+X&#39;X &amp; = &amp; PDP&#39;\\
 &amp; = &amp; P\left[\begin{array}{ccc}
 \lambda_{1}\\
 &amp; \ddots\\
 &amp;  &amp; \lambda_{n}
-\end{array}\right]P',
+\end{array}\right]P&#39;,
 \end{eqnarray*}\]</span>
-where <span class="math inline">\(P\)</span> is an orthogonal matrix whose columns are the eigenvectors of <span class="math inline">\(X'X\)</span>.</p>
-<p>We can order the eigenvalues such that <span class="math inline">\(\lambda_{1}\geq\ldots\geq\lambda_{n}\)</span>. (Since <span class="math inline">\(X'X\)</span> is positive definite, all these eigenvalues are positive.)</p>
-<p>Since <span class="math inline">\(P\)</span> is orthogonal, we have <span class="math inline">\(u'X'Xu=u'PDP'u=y'Dy\)</span> where <span class="math inline">\(\left\Vert y\right\Vert =1\)</span>. Therefore, we have <span class="math inline">\(y_{i}^{2}\leq 1\)</span> for any <span class="math inline">\(i\leq n\)</span>.</p>
+where <span class="math inline">\(P\)</span> is an orthogonal matrix whose columns are the eigenvectors of <span class="math inline">\(X&#39;X\)</span>.</p>
+<p>We can order the eigenvalues such that <span class="math inline">\(\lambda_{1}\geq\ldots\geq\lambda_{n}\)</span>. (Since <span class="math inline">\(X&#39;X\)</span> is positive definite, all these eigenvalues are positive.)</p>
+<p>Since <span class="math inline">\(P\)</span> is orthogonal, we have <span class="math inline">\(u&#39;X&#39;Xu=u&#39;PDP&#39;u=y&#39;Dy\)</span> where <span class="math inline">\(\left\Vert y\right\Vert =1\)</span>. Therefore, we have <span class="math inline">\(y_{i}^{2}\leq 1\)</span> for any <span class="math inline">\(i\leq n\)</span>.</p>
 <p>As a consequence:
 <span class="math display">\[
-y'Dy=\sum_{i=1}^{n}y_{i}^{2}\lambda_{i}\leq\lambda_{1}\sum_{i=1}^{n}y_{i}^{2}=\lambda_{1}.
+y&#39;Dy=\sum_{i=1}^{n}y_{i}^{2}\lambda_{i}\leq\lambda_{1}\sum_{i=1}^{n}y_{i}^{2}=\lambda_{1}.
 \]</span></p>
-<p>It is easily seen that the maximum is reached for <span class="math inline">\(y=\left[1,0,\cdots,0\right]'\)</span>. Therefore, the maximum of the optimization program (Eq. <a href="append.html#eq:PCA11">(8.1)</a>) is obtained for <span class="math inline">\(u=P\left[1,0,\cdots,0\right]'\)</span>. That is, <span class="math inline">\(u\)</span> is the eigenvector of <span class="math inline">\(X'X\)</span> that is associated with its larger eigenvalue (first column of <span class="math inline">\(P\)</span>).</p>
+<p>It is easily seen that the maximum is reached for <span class="math inline">\(y=\left[1,0,\cdots,0\right]&#39;\)</span>. Therefore, the maximum of the optimization program (Eq. <a href="append.html#eq:PCA11">(8.1)</a>) is obtained for <span class="math inline">\(u=P\left[1,0,\cdots,0\right]&#39;\)</span>. That is, <span class="math inline">\(u\)</span> is the eigenvector of <span class="math inline">\(X&#39;X\)</span> that is associated with its larger eigenvalue (first column of <span class="math inline">\(P\)</span>).</p>
 <p>Let us denote with <span class="math inline">\(F\)</span> the vector that is given by the matrix product <span class="math inline">\(XP\)</span>. The columns of <span class="math inline">\(F\)</span>, denoted by <span class="math inline">\(F_{j}\)</span>, are called <strong>factors</strong>. We have:
 <span class="math display">\[
-F'F=P'X'XP=D.
+F&#39;F=P&#39;X&#39;XP=D.
 \]</span>
 Therefore, in particular, the <span class="math inline">\(F_{j}\)</span>’s are orthogonal.</p>
-<p>Since <span class="math inline">\(X=FP'\)</span>, the <span class="math inline">\(X_{j}\)</span>’s are linear combinations of the factors. Let us then denote with <span class="math inline">\(\hat{X}_{i,j}\)</span> the part of <span class="math inline">\(X_{i}\)</span> that is explained by factor <span class="math inline">\(F_{j}\)</span>, we have:
+<p>Since <span class="math inline">\(X=FP&#39;\)</span>, the <span class="math inline">\(X_{j}\)</span>’s are linear combinations of the factors. Let us then denote with <span class="math inline">\(\hat{X}_{i,j}\)</span> the part of <span class="math inline">\(X_{i}\)</span> that is explained by factor <span class="math inline">\(F_{j}\)</span>, we have:
 <span class="math display">\[\begin{eqnarray*}
 \hat{X}_{i,j} &amp; = &amp; p_{ij}F_{j}\\
 X_{i} &amp; = &amp; \sum_{j}\hat{X}_{i,j}=\sum_{j}p_{ij}F_{j}.
 \end{eqnarray*}\]</span></p>
 <p>Consider the share of variance that is explained—through the <span class="math inline">\(n\)</span> variables (<span class="math inline">\(X_{1},\ldots,X_{n}\)</span>)—by the first factor <span class="math inline">\(F_{1}\)</span>:
 <span class="math display">\[\begin{eqnarray*}
-\frac{\sum_{i}\hat{X}'_{i,1}\hat{X}_{i,1}}{\sum_{i}X_{i}'X_{i}} &amp; = &amp; \frac{\sum_{i}p_{i1}F'_{1}F_{1}p_{i1}}{tr(X'X)} = \frac{\sum_{i}p_{i1}^{2}\lambda_{1}}{tr(X'X)} = \frac{\lambda_{1}}{\sum_{i}\lambda_{i}}.
+\frac{\sum_{i}\hat{X}&#39;_{i,1}\hat{X}_{i,1}}{\sum_{i}X_{i}&#39;X_{i}} &amp; = &amp; \frac{\sum_{i}p_{i1}F&#39;_{1}F_{1}p_{i1}}{tr(X&#39;X)} = \frac{\sum_{i}p_{i1}^{2}\lambda_{1}}{tr(X&#39;X)} = \frac{\lambda_{1}}{\sum_{i}\lambda_{i}}.
 \end{eqnarray*}\]</span></p>
 <p>Intuitively, if the first eigenvalue is large, it means that the first factor captures a large share of the fluctutaions of the <span class="math inline">\(n\)</span> <span class="math inline">\(X_{i}\)</span>’s.</p>
 <p>By the same token, it is easily seen that the fraction of the variance of the <span class="math inline">\(n\)</span> variables that is explained by factor <span class="math inline">\(j\)</span> is given by:
 <span class="math display">\[\begin{eqnarray*}
-\frac{\sum_{i}\hat{X}'_{i,j}\hat{X}_{i,j}}{\sum_{i}X_{i}'X_{i}} &amp; = &amp; \frac{\lambda_{j}}{\sum_{i}\lambda_{i}}.
+\frac{\sum_{i}\hat{X}&#39;_{i,j}\hat{X}_{i,j}}{\sum_{i}X_{i}&#39;X_{i}} &amp; = &amp; \frac{\lambda_{j}}{\sum_{i}\lambda_{i}}.
 \end{eqnarray*}\]</span></p>
-<p>Let us illustrate PCA on the term structure of yields. The term strucutre of yields (or yield curve) is know to be driven by only a small number of factors (e.g., <span class="citation">Litterman and Scheinkman (<a href="references.html#ref-Litterman_Scheinkman_1991">1991</a>)</span>). One can typically employ PCA to recover such factors. The data used in the example below are taken from the <a href="https://fred.stlouisfed.org">Fred database</a> (tickers: “DGS6MO”,“DGS1”, …). The second plot shows the factor loardings, that indicate that the first factor is a level factor (loadings = black line), the second factor is a slope factor (loadings = blue line), the third factor is a curvature factor (loadings = red line).</p>
+<p>Let us illustrate PCA on the term structure of yields. The term strucutre of yields (or yield curve) is know to be driven by only a small number of factors (e.g., <span class="citation">Litterman and Scheinkman (<a href="#ref-Litterman_Scheinkman_1991">1991</a>)</span>). One can typically employ PCA to recover such factors. The data used in the example below are taken from the <a href="https://fred.stlouisfed.org">Fred database</a> (tickers: “DGS6MO”,“DGS1”, …). The second plot shows the factor loardings, that indicate that the first factor is a level factor (loadings = black line), the second factor is a slope factor (loadings = blue line), the third factor is a curvature factor (loadings = red line).</p>
 <p>To run a PCA, one simply has to apply function <code>prcomp</code> to a matrix of data:</p>
-<div class="sourceCode" id="cb64"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">AEC</span><span class="op">)</span></span>
-<span><span class="va">USyields</span> <span class="op">&lt;-</span> <span class="va">USyields</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/stats/complete.cases.html">complete.cases</a></span><span class="op">(</span><span class="va">USyields</span><span class="op">)</span>,<span class="op">]</span></span>
-<span><span class="va">yds</span> <span class="op">&lt;-</span> <span class="va">USyields</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Y1"</span>,<span class="st">"Y2"</span>,<span class="st">"Y3"</span>,<span class="st">"Y5"</span>,<span class="st">"Y7"</span>,<span class="st">"Y10"</span>,<span class="st">"Y20"</span>,<span class="st">"Y30"</span><span class="op">)</span><span class="op">]</span></span>
-<span><span class="va">PCA.yds</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/prcomp.html">prcomp</a></span><span class="op">(</span><span class="va">yds</span>,center<span class="op">=</span><span class="cn">TRUE</span>,scale. <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="append.html#cb59-1" tabindex="-1"></a><span class="fu">library</span>(IdSS)</span>
+<span id="cb59-2"><a href="append.html#cb59-2" tabindex="-1"></a>USyields <span class="ot">&lt;-</span> USyields[<span class="fu">complete.cases</span>(USyields),]</span>
+<span id="cb59-3"><a href="append.html#cb59-3" tabindex="-1"></a>yds <span class="ot">&lt;-</span> USyields[<span class="fu">c</span>(<span class="st">&quot;Y1&quot;</span>,<span class="st">&quot;Y2&quot;</span>,<span class="st">&quot;Y3&quot;</span>,<span class="st">&quot;Y5&quot;</span>,<span class="st">&quot;Y7&quot;</span>,<span class="st">&quot;Y10&quot;</span>,<span class="st">&quot;Y20&quot;</span>,<span class="st">&quot;Y30&quot;</span>)]</span>
+<span id="cb59-4"><a href="append.html#cb59-4" tabindex="-1"></a>PCA.yds <span class="ot">&lt;-</span> <span class="fu">prcomp</span>(yds,<span class="at">center=</span><span class="cn">TRUE</span>,<span class="at">scale. =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <p>Let us know visualize some results. The first plot of Figure <a href="append.html#fig:USydsPCA1">8.1</a> shows the share of total variance explained by the different principal components (PCs). The second plot shows the factor loadings. The two bottom plots show how yields (in black) are fitted by linear combinations of the first two PCs only.</p>
-<div class="sourceCode" id="cb65"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mfrow<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>plt<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">.1</span>,<span class="fl">.95</span>,<span class="fl">.2</span>,<span class="fl">.8</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/graphics/barplot.html">barplot</a></span><span class="op">(</span><span class="va">PCA.yds</span><span class="op">$</span><span class="va">sdev</span><span class="op">^</span><span class="fl">2</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">PCA.yds</span><span class="op">$</span><span class="va">sdev</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span>,</span>
-<span>        main<span class="op">=</span><span class="st">"Share of variance expl. by PC's"</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/graphics/axis.html">axis</a></span><span class="op">(</span><span class="fl">1</span>, at<span class="op">=</span><span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="va">yds</span><span class="op">)</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span>, labels<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="va">PCA.yds</span><span class="op">$</span><span class="va">x</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="va">nb.PC</span> <span class="op">&lt;-</span> <span class="fl">2</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/plot.html">plot</a></span><span class="op">(</span><span class="op">-</span><span class="va">PCA.yds</span><span class="op">$</span><span class="va">rotation</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span>,type<span class="op">=</span><span class="st">"l"</span>,lwd<span class="op">=</span><span class="fl">2</span>,ylim<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">1</span>,<span class="fl">1</span><span class="op">)</span>,</span>
-<span>     main<span class="op">=</span><span class="st">"Factor loadings (1st 3 PCs)"</span>,xaxt<span class="op">=</span><span class="st">"n"</span>,xlab<span class="op">=</span><span class="st">""</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/graphics/axis.html">axis</a></span><span class="op">(</span><span class="fl">1</span>, at<span class="op">=</span><span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="va">yds</span><span class="op">)</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span>, labels<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="va">yds</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/graphics/lines.html">lines</a></span><span class="op">(</span><span class="va">PCA.yds</span><span class="op">$</span><span class="va">rotation</span><span class="op">[</span>,<span class="fl">2</span><span class="op">]</span>,type<span class="op">=</span><span class="st">"l"</span>,lwd<span class="op">=</span><span class="fl">2</span>,col<span class="op">=</span><span class="st">"blue"</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/graphics/lines.html">lines</a></span><span class="op">(</span><span class="va">PCA.yds</span><span class="op">$</span><span class="va">rotation</span><span class="op">[</span>,<span class="fl">3</span><span class="op">]</span>,type<span class="op">=</span><span class="st">"l"</span>,lwd<span class="op">=</span><span class="fl">2</span>,col<span class="op">=</span><span class="st">"red"</span><span class="op">)</span></span>
-<span><span class="va">Y1.hat</span> <span class="op">&lt;-</span> <span class="va">PCA.yds</span><span class="op">$</span><span class="va">x</span><span class="op">[</span>,<span class="fl">1</span><span class="op">:</span><span class="va">nb.PC</span><span class="op">]</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html">%*%</a></span> <span class="va">PCA.yds</span><span class="op">$</span><span class="va">rotation</span><span class="op">[</span><span class="st">"Y1"</span>,<span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">]</span></span>
-<span><span class="va">Y1.hat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">USyields</span><span class="op">$</span><span class="va">Y1</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">USyields</span><span class="op">$</span><span class="va">Y1</span><span class="op">)</span> <span class="op">*</span> <span class="va">Y1.hat</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/plot.html">plot</a></span><span class="op">(</span><span class="va">USyields</span><span class="op">$</span><span class="va">date</span>,<span class="va">USyields</span><span class="op">$</span><span class="va">Y1</span>,type<span class="op">=</span><span class="st">"l"</span>,lwd<span class="op">=</span><span class="fl">2</span>,</span>
-<span>     main<span class="op">=</span><span class="st">"Fit of 1-year yields (2 PCs)"</span>,</span>
-<span>     ylab<span class="op">=</span><span class="st">"Obs (black) / Fitted by 2PCs (dashed blue)"</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/graphics/lines.html">lines</a></span><span class="op">(</span><span class="va">USyields</span><span class="op">$</span><span class="va">date</span>,<span class="va">Y1.hat</span>,col<span class="op">=</span><span class="st">"blue"</span>,lty<span class="op">=</span><span class="fl">2</span>,lwd<span class="op">=</span><span class="fl">2</span><span class="op">)</span></span>
-<span><span class="va">Y10.hat</span> <span class="op">&lt;-</span> <span class="va">PCA.yds</span><span class="op">$</span><span class="va">x</span><span class="op">[</span>,<span class="fl">1</span><span class="op">:</span><span class="va">nb.PC</span><span class="op">]</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html">%*%</a></span> <span class="va">PCA.yds</span><span class="op">$</span><span class="va">rotation</span><span class="op">[</span><span class="st">"Y10"</span>,<span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">]</span></span>
-<span><span class="va">Y10.hat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">USyields</span><span class="op">$</span><span class="va">Y10</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">USyields</span><span class="op">$</span><span class="va">Y10</span><span class="op">)</span> <span class="op">*</span> <span class="va">Y10.hat</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/plot.html">plot</a></span><span class="op">(</span><span class="va">USyields</span><span class="op">$</span><span class="va">date</span>,<span class="va">USyields</span><span class="op">$</span><span class="va">Y10</span>,type<span class="op">=</span><span class="st">"l"</span>,lwd<span class="op">=</span><span class="fl">2</span>,</span>
-<span>     main<span class="op">=</span><span class="st">"Fit of 10-year yields (2 PCs)"</span>,</span>
-<span>     ylab<span class="op">=</span><span class="st">"Obs (black) / Fitted by 2PCs (dashed blue)"</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/graphics/lines.html">lines</a></span><span class="op">(</span><span class="va">USyields</span><span class="op">$</span><span class="va">date</span>,<span class="va">Y10.hat</span>,col<span class="op">=</span><span class="st">"blue"</span>,lty<span class="op">=</span><span class="fl">2</span>,lwd<span class="op">=</span><span class="fl">2</span><span class="op">)</span></span></code></pre></div>
-<div class="figure" style="text-align: left-aligned">
-<span style="display:block;" id="fig:USydsPCA1"></span>
-<img src="TimeSeries_files/figure-html/USydsPCA1-1.png" alt="Some PCA results. The dataset contains 8 time series of U.S. interest rates of different maturities." width="672"><p class="caption">
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="append.html#cb60-1" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</span>
+<span id="cb60-2"><a href="append.html#cb60-2" tabindex="-1"></a><span class="fu">par</span>(<span class="at">plt=</span><span class="fu">c</span>(.<span class="dv">1</span>,.<span class="dv">95</span>,.<span class="dv">2</span>,.<span class="dv">8</span>))</span>
+<span id="cb60-3"><a href="append.html#cb60-3" tabindex="-1"></a><span class="fu">barplot</span>(PCA.yds<span class="sc">$</span>sdev<span class="sc">^</span><span class="dv">2</span><span class="sc">/</span><span class="fu">sum</span>(PCA.yds<span class="sc">$</span>sdev<span class="sc">^</span><span class="dv">2</span>),</span>
+<span id="cb60-4"><a href="append.html#cb60-4" tabindex="-1"></a>        <span class="at">main=</span><span class="st">&quot;Share of variance expl. by PC&#39;s&quot;</span>)</span>
+<span id="cb60-5"><a href="append.html#cb60-5" tabindex="-1"></a><span class="fu">axis</span>(<span class="dv">1</span>, <span class="at">at=</span><span class="dv">1</span><span class="sc">:</span><span class="fu">dim</span>(yds)[<span class="dv">2</span>], <span class="at">labels=</span><span class="fu">colnames</span>(PCA.yds<span class="sc">$</span>x))</span>
+<span id="cb60-6"><a href="append.html#cb60-6" tabindex="-1"></a>nb.PC <span class="ot">&lt;-</span> <span class="dv">2</span></span>
+<span id="cb60-7"><a href="append.html#cb60-7" tabindex="-1"></a><span class="fu">plot</span>(<span class="sc">-</span>PCA.yds<span class="sc">$</span>rotation[,<span class="dv">1</span>],<span class="at">type=</span><span class="st">&quot;l&quot;</span>,<span class="at">lwd=</span><span class="dv">2</span>,<span class="at">ylim=</span><span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>,<span class="dv">1</span>),</span>
+<span id="cb60-8"><a href="append.html#cb60-8" tabindex="-1"></a>     <span class="at">main=</span><span class="st">&quot;Factor loadings (1st 3 PCs)&quot;</span>,<span class="at">xaxt=</span><span class="st">&quot;n&quot;</span>,<span class="at">xlab=</span><span class="st">&quot;&quot;</span>)</span>
+<span id="cb60-9"><a href="append.html#cb60-9" tabindex="-1"></a><span class="fu">axis</span>(<span class="dv">1</span>, <span class="at">at=</span><span class="dv">1</span><span class="sc">:</span><span class="fu">dim</span>(yds)[<span class="dv">2</span>], <span class="at">labels=</span><span class="fu">colnames</span>(yds))</span>
+<span id="cb60-10"><a href="append.html#cb60-10" tabindex="-1"></a><span class="fu">lines</span>(PCA.yds<span class="sc">$</span>rotation[,<span class="dv">2</span>],<span class="at">type=</span><span class="st">&quot;l&quot;</span>,<span class="at">lwd=</span><span class="dv">2</span>,<span class="at">col=</span><span class="st">&quot;blue&quot;</span>)</span>
+<span id="cb60-11"><a href="append.html#cb60-11" tabindex="-1"></a><span class="fu">lines</span>(PCA.yds<span class="sc">$</span>rotation[,<span class="dv">3</span>],<span class="at">type=</span><span class="st">&quot;l&quot;</span>,<span class="at">lwd=</span><span class="dv">2</span>,<span class="at">col=</span><span class="st">&quot;red&quot;</span>)</span>
+<span id="cb60-12"><a href="append.html#cb60-12" tabindex="-1"></a>Y1.hat <span class="ot">&lt;-</span> PCA.yds<span class="sc">$</span>x[,<span class="dv">1</span><span class="sc">:</span>nb.PC] <span class="sc">%*%</span> PCA.yds<span class="sc">$</span>rotation[<span class="st">&quot;Y1&quot;</span>,<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>]</span>
+<span id="cb60-13"><a href="append.html#cb60-13" tabindex="-1"></a>Y1.hat <span class="ot">&lt;-</span> <span class="fu">mean</span>(USyields<span class="sc">$</span>Y1) <span class="sc">+</span> <span class="fu">sd</span>(USyields<span class="sc">$</span>Y1) <span class="sc">*</span> Y1.hat</span>
+<span id="cb60-14"><a href="append.html#cb60-14" tabindex="-1"></a><span class="fu">plot</span>(USyields<span class="sc">$</span>date,USyields<span class="sc">$</span>Y1,<span class="at">type=</span><span class="st">&quot;l&quot;</span>,<span class="at">lwd=</span><span class="dv">2</span>,</span>
+<span id="cb60-15"><a href="append.html#cb60-15" tabindex="-1"></a>     <span class="at">main=</span><span class="st">&quot;Fit of 1-year yields (2 PCs)&quot;</span>,</span>
+<span id="cb60-16"><a href="append.html#cb60-16" tabindex="-1"></a>     <span class="at">ylab=</span><span class="st">&quot;Obs (black) / Fitted by 2PCs (dashed blue)&quot;</span>)</span>
+<span id="cb60-17"><a href="append.html#cb60-17" tabindex="-1"></a><span class="fu">lines</span>(USyields<span class="sc">$</span>date,Y1.hat,<span class="at">col=</span><span class="st">&quot;blue&quot;</span>,<span class="at">lty=</span><span class="dv">2</span>,<span class="at">lwd=</span><span class="dv">2</span>)</span>
+<span id="cb60-18"><a href="append.html#cb60-18" tabindex="-1"></a>Y10.hat <span class="ot">&lt;-</span> PCA.yds<span class="sc">$</span>x[,<span class="dv">1</span><span class="sc">:</span>nb.PC] <span class="sc">%*%</span> PCA.yds<span class="sc">$</span>rotation[<span class="st">&quot;Y10&quot;</span>,<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>]</span>
+<span id="cb60-19"><a href="append.html#cb60-19" tabindex="-1"></a>Y10.hat <span class="ot">&lt;-</span> <span class="fu">mean</span>(USyields<span class="sc">$</span>Y10) <span class="sc">+</span> <span class="fu">sd</span>(USyields<span class="sc">$</span>Y10) <span class="sc">*</span> Y10.hat</span>
+<span id="cb60-20"><a href="append.html#cb60-20" tabindex="-1"></a><span class="fu">plot</span>(USyields<span class="sc">$</span>date,USyields<span class="sc">$</span>Y10,<span class="at">type=</span><span class="st">&quot;l&quot;</span>,<span class="at">lwd=</span><span class="dv">2</span>,</span>
+<span id="cb60-21"><a href="append.html#cb60-21" tabindex="-1"></a>     <span class="at">main=</span><span class="st">&quot;Fit of 10-year yields (2 PCs)&quot;</span>,</span>
+<span id="cb60-22"><a href="append.html#cb60-22" tabindex="-1"></a>     <span class="at">ylab=</span><span class="st">&quot;Obs (black) / Fitted by 2PCs (dashed blue)&quot;</span>)</span>
+<span id="cb60-23"><a href="append.html#cb60-23" tabindex="-1"></a><span class="fu">lines</span>(USyields<span class="sc">$</span>date,Y10.hat,<span class="at">col=</span><span class="st">&quot;blue&quot;</span>,<span class="at">lty=</span><span class="dv">2</span>,<span class="at">lwd=</span><span class="dv">2</span>)</span></code></pre></div>
+<div class="figure" style="text-align: left-aligned"><span style="display:block;" id="fig:USydsPCA1"></span>
+<img src="TimeSeries_files/figure-html/USydsPCA1-1.png" alt="Some PCA results. The dataset contains 8 time series of U.S. interest rates of different maturities." width="672" />
+<p class="caption">
 Figure 8.1: Some PCA results. The dataset contains 8 time series of U.S. interest rates of different maturities.
 </p>
 </div>
 </div>
-<div id="LinAlgebra" class="section level2" number="8.2">
-<h2>
-<span class="header-section-number">8.2</span> Linear algebra: definitions and results<a class="anchor" aria-label="anchor" href="#LinAlgebra"><i class="fas fa-link"></i></a>
-</h2>
+<div id="LinAlgebra" class="section level2 hasAnchor" number="8.2">
+<h2><span class="header-section-number">8.2</span> Linear algebra: definitions and results<a href="append.html#LinAlgebra" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <div class="definition">
 <p><span id="def:determinant" class="definition"><strong>Definition 8.1  (Eigenvalues) </strong></span>The eigenvalues of of a matrix <span class="math inline">\(M\)</span> are the numbers <span class="math inline">\(\lambda\)</span> for which:
 <span class="math display">\[
@@ -189,25 +381,21 @@ where <span class="math inline">\(| \bullet |\)</span> is the determinant operat
 <div class="proposition">
 <p><span id="prp:determinant" class="proposition"><strong>Proposition 8.1  (Properties of the determinant) </strong></span>We have:</p>
 <ul>
-<li>
-<span class="math inline">\(|MN|=|M|\times|N|\)</span>.</li>
-<li>
-<span class="math inline">\(|M^{-1}|=|M|^{-1}\)</span>.</li>
+<li><span class="math inline">\(|MN|=|M|\times|N|\)</span>.</li>
+<li><span class="math inline">\(|M^{-1}|=|M|^{-1}\)</span>.</li>
 <li>If <span class="math inline">\(M\)</span> admits the diagonal representation <span class="math inline">\(M=TDT^{-1}\)</span>, where <span class="math inline">\(D\)</span> is a diagonal matrix whose diagonal entries are <span class="math inline">\(\{\lambda_i\}_{i=1,\dots,n}\)</span>, then:
 <span class="math display">\[
 |M - \lambda I |=\prod_{i=1}^n (\lambda_i - \lambda).
-\]</span>
-</li>
+\]</span></li>
 </ul>
 </div>
 <div class="definition">
-<p><span id="def:MoorPenrose" class="definition"><strong>Definition 8.2  (Moore-Penrose inverse) </strong></span>If <span class="math inline">\(M \in \mathbb{R}^{m \times n}\)</span>, then its Moore-Penrose pseudo inverse (exists and) is the unique matrix <span class="math inline">\(M^* \in \mathbb{R}^{n \times m}\)</span> that satisfies:</p>
+<p><span id="def:MoorPenrose" class="definition"><strong>Definition 8.2  (Moore-Penrose inverse) </strong></span>If <span class="math inline">\(M \in \mathbb{R}^{m \times n}\)</span>, then its Moore-Penrose pseudo inverse (exists and) is the unique matrix <span class="math inline">\(M^*  \in \mathbb{R}^{n \times m}\)</span> that satisfies:</p>
 <ol style="list-style-type: lower-roman">
 <li><span class="math inline">\(M M^* M = M\)</span></li>
 <li><span class="math inline">\(M^* M M^* = M^*\)</span></li>
-<li>
-<span class="math inline">\((M M^*)'=M M^*\)</span>
-.iv <span class="math inline">\((M^* M)'=M^* M\)</span>.</li>
+<li><span class="math inline">\((M M^*)&#39;=M M^*\)</span>
+.iv <span class="math inline">\((M^* M)&#39;=M^* M\)</span>.</li>
 </ol>
 </div>
 <div class="proposition">
@@ -221,7 +409,7 @@ The pseudo-inverse of the pseudo-inverse is the original matrix.</li>
 </div>
 <div class="definition">
 <p><span id="def:idempotent" class="definition"><strong>Definition 8.3  (Idempotent matrix) </strong></span>Matrix <span class="math inline">\(M\)</span> is idempotent if <span class="math inline">\(M^2=M\)</span>.</p>
-<p>If <span class="math inline">\(M\)</span> is a symmetric idempotent matrix, then <span class="math inline">\(M'M=M\)</span>.</p>
+<p>If <span class="math inline">\(M\)</span> is a symmetric idempotent matrix, then <span class="math inline">\(M&#39;M=M\)</span>.</p>
 </div>
 <div class="proposition">
 <p><span id="prp:rootsidempotent" class="proposition"><strong>Proposition 8.3  (Roots of an idempotent matrix) </strong></span>The eigenvalues of an idempotent matrix are either 1 or 0.</p>
@@ -243,9 +431,9 @@ The pseudo-inverse of the pseudo-inverse is the original matrix.</li>
 \end{eqnarray*}\]</span>
 is given by:
 <span class="math display">\[
-\boxed{\boldsymbol\beta^r = \boldsymbol\beta_0 - (\mathbf{X}'\mathbf{X})^{-1} \mathbf{R}'\{\mathbf{R}(\mathbf{X}'\mathbf{X})^{-1}\mathbf{R}'\}^{-1}(\mathbf{R}\boldsymbol\beta_0 - \mathbf{q}),}
+\boxed{\boldsymbol\beta^r = \boldsymbol\beta_0 - (\mathbf{X}&#39;\mathbf{X})^{-1} \mathbf{R}&#39;\{\mathbf{R}(\mathbf{X}&#39;\mathbf{X})^{-1}\mathbf{R}&#39;\}^{-1}(\mathbf{R}\boldsymbol\beta_0 - \mathbf{q}),}
 \]</span>
-where <span class="math inline">\(\boldsymbol\beta_0=(\mathbf{X}'\mathbf{X})^{-1}\mathbf{X}'\mathbf{y}\)</span>.</p>
+where <span class="math inline">\(\boldsymbol\beta_0=(\mathbf{X}&#39;\mathbf{X})^{-1}\mathbf{X}&#39;\mathbf{y}\)</span>.</p>
 </div>
 <div class="proof">
 <p><span id="unlabeled-div-23" class="proof"><em>Proof</em>. </span>See for instance <a href="http://jackman.stanford.edu/classes/350B/07/ftestforWeb.pdf">Jackman, 2007</a>.</p>
@@ -271,14 +459,14 @@ where <span class="math inline">\(\boldsymbol\beta_0=(\mathbf{X}'\mathbf{X})^{-1
 \]</span>
 We use the notation:
 <span class="math display">\[
-\frac{\partial f}{\partial \mathbf{b}'}(\mathbf{b}) = \left(\frac{\partial f}{\partial \mathbf{b}}(\mathbf{b})\right)'.
+\frac{\partial f}{\partial \mathbf{b}&#39;}(\mathbf{b}) = \left(\frac{\partial f}{\partial \mathbf{b}}(\mathbf{b})\right)&#39;.
 \]</span></p>
 </div>
 <div class="proposition">
 <p><span id="prp:partial" class="proposition"><strong>Proposition 8.7  </strong></span>We have:</p>
 <ul>
-<li>If <span class="math inline">\(f(\mathbf{b}) = A' \mathbf{b}\)</span> where <span class="math inline">\(A\)</span> is a <span class="math inline">\(K \times 1\)</span> vector then <span class="math inline">\(\frac{\partial f}{\partial \mathbf{b}}(\mathbf{b}) = A\)</span>.</li>
-<li>If <span class="math inline">\(f(\mathbf{b}) = \mathbf{b}'A\mathbf{b}\)</span> where <span class="math inline">\(A\)</span> is a <span class="math inline">\(K \times K\)</span> matrix, then <span class="math inline">\(\frac{\partial f}{\partial \mathbf{b}}(\mathbf{b}) = 2A\mathbf{b}\)</span>.</li>
+<li>If <span class="math inline">\(f(\mathbf{b}) = A&#39; \mathbf{b}\)</span> where <span class="math inline">\(A\)</span> is a <span class="math inline">\(K \times 1\)</span> vector then <span class="math inline">\(\frac{\partial f}{\partial \mathbf{b}}(\mathbf{b}) = A\)</span>.</li>
+<li>If <span class="math inline">\(f(\mathbf{b}) = \mathbf{b}&#39;A\mathbf{b}\)</span> where <span class="math inline">\(A\)</span> is a <span class="math inline">\(K \times K\)</span> matrix, then <span class="math inline">\(\frac{\partial f}{\partial \mathbf{b}}(\mathbf{b}) = 2A\mathbf{b}\)</span>.</li>
 </ul>
 </div>
 <div class="proposition">
@@ -291,19 +479,15 @@ We use the notation:
 <p><span id="unlabeled-div-24" class="proof"><em>Proof</em>. </span>See Appendix 3.A in Hamilton. Idea: Absolute summability implies that there exist <span class="math inline">\(N\)</span> such that, for <span class="math inline">\(j&gt;N\)</span>, <span class="math inline">\(|\theta_j| &lt; 1\)</span> (deduced from Cauchy criterion, Theorem <a href="append.html#thm:cauchycritstatic">8.2</a> and therefore <span class="math inline">\(\theta_j^2 &lt; |\theta_j|\)</span>.</p>
 </div>
 </div>
-<div id="variousResults" class="section level2" number="8.3">
-<h2>
-<span class="header-section-number">8.3</span> Statistical analysis: definitions and results<a class="anchor" aria-label="anchor" href="#variousResults"><i class="fas fa-link"></i></a>
-</h2>
-<div id="moments-and-statistics" class="section level3" number="8.3.1">
-<h3>
-<span class="header-section-number">8.3.1</span> Moments and statistics<a class="anchor" aria-label="anchor" href="#moments-and-statistics"><i class="fas fa-link"></i></a>
-</h3>
+<div id="variousResults" class="section level2 hasAnchor" number="8.3">
+<h2><span class="header-section-number">8.3</span> Statistical analysis: definitions and results<a href="append.html#variousResults" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="moments-and-statistics" class="section level3 hasAnchor" number="8.3.1">
+<h3><span class="header-section-number">8.3.1</span> Moments and statistics<a href="append.html#moments-and-statistics" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <div class="definition">
 <p><span id="def:partialcorrel" class="definition"><strong>Definition 8.5  (Partial correlation) </strong></span>The <strong>partial correlation</strong> between <span class="math inline">\(y\)</span> and <span class="math inline">\(z\)</span>, controlling for some variables <span class="math inline">\(\mathbf{X}\)</span> is the sample correlation between <span class="math inline">\(y^*\)</span> and <span class="math inline">\(z^*\)</span>, where the latter two variables are the residuals in regressions of <span class="math inline">\(y\)</span> on <span class="math inline">\(\mathbf{X}\)</span> and of <span class="math inline">\(z\)</span> on <span class="math inline">\(\mathbf{X}\)</span>, respectively.</p>
 <p>This correlation is denoted by <span class="math inline">\(r_{yz}^\mathbf{X}\)</span>. By definition, we have:
 <span class="math display" id="eq:pc">\[\begin{equation}
-r_{yz}^\mathbf{X} = \frac{\mathbf{z^*}'\mathbf{y^*}}{\sqrt{(\mathbf{z^*}'\mathbf{z^*})(\mathbf{y^*}'\mathbf{y^*})}}.\tag{8.2}
+r_{yz}^\mathbf{X} = \frac{\mathbf{z^*}&#39;\mathbf{y^*}}{\sqrt{(\mathbf{z^*}&#39;\mathbf{z^*})(\mathbf{y^*}&#39;\mathbf{y^*})}}.\tag{8.2}
 \end{equation}\]</span></p>
 </div>
 <div class="definition">
@@ -312,13 +496,11 @@ r_{yz}^\mathbf{X} = \frac{\mathbf{z^*}'\mathbf{y^*}}{\sqrt{(\mathbf{z^*}'\mathbf
 <li>The skewness of <span class="math inline">\(Y\)</span> is given by:
 <span class="math display">\[
 \frac{\mathbb{E}[(Y-\mu)^3]}{\{\mathbb{E}[(Y-\mu)^2]\}^{3/2}}.
-\]</span>
-</li>
+\]</span></li>
 <li>The kurtosis of <span class="math inline">\(Y\)</span> is given by:
 <span class="math display">\[
 \frac{\mathbb{E}[(Y-\mu)^4]}{\{\mathbb{E}[(Y-\mu)^2]\}^{2}}.
-\]</span>
-</li>
+\]</span></li>
 </ul>
 </div>
 <div class="theorem">
@@ -349,10 +531,8 @@ The equality holds iff <span class="math inline">\(\mathbb{V}ar(Z)=0\)</span>, i
 </div>
 <p>It should be noted that ergodicity and stationarity are different properties. Typically if the process <span class="math inline">\(\{x_t\}\)</span> is such that, <span class="math inline">\(\forall t\)</span>, <span class="math inline">\(x_t \equiv y\)</span>, where <span class="math inline">\(y \sim\,\mathcal{N}(0,1)\)</span> (say), then <span class="math inline">\(\{x_t\}\)</span> is stationary but not ergodic.</p>
 </div>
-<div id="standard-distributions" class="section level3" number="8.3.2">
-<h3>
-<span class="header-section-number">8.3.2</span> Standard distributions<a class="anchor" aria-label="anchor" href="#standard-distributions"><i class="fas fa-link"></i></a>
-</h3>
+<div id="standard-distributions" class="section level3 hasAnchor" number="8.3.2">
+<h3><span class="header-section-number">8.3.2</span> Standard distributions<a href="append.html#standard-distributions" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <div class="definition">
 <p><span id="def:fstatistics" class="definition"><strong>Definition 8.9  (F distribution) </strong></span>Consider <span class="math inline">\(n=n_1+n_2\)</span> i.i.d. <span class="math inline">\(\mathcal{N}(0,1)\)</span> r.v. <span class="math inline">\(X_i\)</span>. If the r.v. <span class="math inline">\(F\)</span> is defined by:
 <span class="math display">\[
@@ -378,9 +558,9 @@ The probability distribution function of the Cauchy distribution defined by a lo
 f(x) = \frac{1}{\pi \gamma \left(1 + \left[\frac{x-\mu}{\gamma}\right]^2\right)}.
 \]</span>
 The mean and variance of this distribution are undefined.
-<div class="figure" style="text-align: left-aligned">
-<span style="display:block;" id="fig:Cauchy"></span>
-<img src="TimeSeries_files/figure-html/Cauchy-1.png" alt="Pdf of the Cauchy distribution ($\mu=0$, $\gamma=1$)." width="95%"><p class="caption">
+<div class="figure" style="text-align: left-aligned"><span style="display:block;" id="fig:Cauchy"></span>
+<img src="TimeSeries_files/figure-html/Cauchy-1.png" alt="Pdf of the Cauchy distribution ($\mu=0$, $\gamma=1$)." width="95%" />
+<p class="caption">
 Figure 8.2: Pdf of the Cauchy distribution (<span class="math inline">\(\mu=0\)</span>, <span class="math inline">\(\gamma=1\)</span>).
 </p>
 </div>
@@ -388,18 +568,16 @@ Figure 8.2: Pdf of the Cauchy distribution (<span class="math inline">\(\mu=0\)<
 <div class="proposition">
 <p><span id="prp:waldtypeproduct" class="proposition"><strong>Proposition 8.9  (Inner product of a multivariate Gaussian variable) </strong></span>Let <span class="math inline">\(X\)</span> be a <span class="math inline">\(n\)</span>-dimensional multivariate Gaussian variable: <span class="math inline">\(X \sim \mathcal{N}(0,\Sigma)\)</span>. We have:
 <span class="math display">\[
-X' \Sigma^{-1}X \sim \chi^2(n).
+X&#39; \Sigma^{-1}X \sim \chi^2(n).
 \]</span></p>
 </div>
 <div class="proof">
-<p><span id="unlabeled-div-26" class="proof"><em>Proof</em>. </span>Because <span class="math inline">\(\Sigma\)</span> is a symmetrical definite positive matrix, it admits the spectral decomposition <span class="math inline">\(PDP'\)</span> where <span class="math inline">\(P\)</span> is an orthogonal matrix (i.e. <span class="math inline">\(PP'=Id\)</span>) and D is a diagonal matrix with non-negative entries. Denoting by <span class="math inline">\(\sqrt{D^{-1}}\)</span> the diagonal matrix whose diagonal entries are the inverse of those of <span class="math inline">\(D\)</span>, it is easily checked that the covariance matrix of <span class="math inline">\(Y:=\sqrt{D^{-1}}P'X\)</span> is <span class="math inline">\(Id\)</span>. Therefore <span class="math inline">\(Y\)</span> is a vector of uncorrelated Gaussian variables. The properties of Gaussian variables imply that the components of <span class="math inline">\(Y\)</span> are then also independent. Hence <span class="math inline">\(Y'Y=\sum_i Y_i^2 \sim \chi^2(n)\)</span>.</p>
-<p>It remains to note that <span class="math inline">\(Y'Y=X'PD^{-1}P'X=X'\mathbb{V}ar(X)^{-1}X\)</span> to conclude.</p>
+<p><span id="unlabeled-div-26" class="proof"><em>Proof</em>. </span>Because <span class="math inline">\(\Sigma\)</span> is a symmetrical definite positive matrix, it admits the spectral decomposition <span class="math inline">\(PDP&#39;\)</span> where <span class="math inline">\(P\)</span> is an orthogonal matrix (i.e. <span class="math inline">\(PP&#39;=Id\)</span>) and D is a diagonal matrix with non-negative entries. Denoting by <span class="math inline">\(\sqrt{D^{-1}}\)</span> the diagonal matrix whose diagonal entries are the inverse of those of <span class="math inline">\(D\)</span>, it is easily checked that the covariance matrix of <span class="math inline">\(Y:=\sqrt{D^{-1}}P&#39;X\)</span> is <span class="math inline">\(Id\)</span>. Therefore <span class="math inline">\(Y\)</span> is a vector of uncorrelated Gaussian variables. The properties of Gaussian variables imply that the components of <span class="math inline">\(Y\)</span> are then also independent. Hence <span class="math inline">\(Y&#39;Y=\sum_i Y_i^2 \sim \chi^2(n)\)</span>.</p>
+<p>It remains to note that <span class="math inline">\(Y&#39;Y=X&#39;PD^{-1}P&#39;X=X&#39;\mathbb{V}ar(X)^{-1}X\)</span> to conclude.</p>
 </div>
 </div>
-<div id="StochConvergences" class="section level3" number="8.3.3">
-<h3>
-<span class="header-section-number">8.3.3</span> Stochastic convergences<a class="anchor" aria-label="anchor" href="#StochConvergences"><i class="fas fa-link"></i></a>
-</h3>
+<div id="StochConvergences" class="section level3 hasAnchor" number="8.3.3">
+<h3><span class="header-section-number">8.3.3</span> Stochastic convergences<a href="append.html#StochConvergences" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <div class="definition">
 <p><span id="def:convergenceproba" class="definition"><strong>Definition 8.13  (Convergence in probability) </strong></span>The random variable sequence <span class="math inline">\(x_n\)</span> converges in probability to a constant <span class="math inline">\(c\)</span> if <span class="math inline">\(\forall \varepsilon\)</span>, <span class="math inline">\(\lim_{n \rightarrow \infty} \mathbb{P}(|x_n - c|&gt;\varepsilon) = 0\)</span>.</p>
 <p>It is denoted as: <span class="math inline">\(\mbox{plim } x_n = c\)</span>.</p>
@@ -437,21 +615,17 @@ for all <span class="math inline">\(s\)</span> at which <span class="math inline
 \]</span></p>
 </div>
 </div>
-<div id="multivariate-gaussian-distribution" class="section level3" number="8.3.4">
-<h3>
-<span class="header-section-number">8.3.4</span> Multivariate Gaussian distribution<a class="anchor" aria-label="anchor" href="#multivariate-gaussian-distribution"><i class="fas fa-link"></i></a>
-</h3>
+<div id="multivariate-gaussian-distribution" class="section level3 hasAnchor" number="8.3.4">
+<h3><span class="header-section-number">8.3.4</span> Multivariate Gaussian distribution<a href="append.html#multivariate-gaussian-distribution" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <div class="proposition">
 <p><span id="prp:pdfMultivarGaussian" class="proposition"><strong>Proposition 8.10  (p.d.f. of a multivariate Gaussian variable) </strong></span>If <span class="math inline">\(Y \sim \mathcal{N}(\mu,\Omega)\)</span> and if <span class="math inline">\(Y\)</span> is a <span class="math inline">\(n\)</span>-dimensional vector, then the density function of <span class="math inline">\(Y\)</span> is:
 <span class="math display">\[
-\frac{1}{(2 \pi)^{n/2}|\Omega|^{1/2}}\exp\left[-\frac{1}{2}\left(Y-\mu\right)'\Omega^{-1}\left(Y-\mu\right)\right].
+\frac{1}{(2 \pi)^{n/2}|\Omega|^{1/2}}\exp\left[-\frac{1}{2}\left(Y-\mu\right)&#39;\Omega^{-1}\left(Y-\mu\right)\right].
 \]</span></p>
 </div>
 </div>
-<div id="CLTappend" class="section level3" number="8.3.5">
-<h3>
-<span class="header-section-number">8.3.5</span> Central limit theorem<a class="anchor" aria-label="anchor" href="#CLTappend"><i class="fas fa-link"></i></a>
-</h3>
+<div id="CLTappend" class="section level3 hasAnchor" number="8.3.5">
+<h3><span class="header-section-number">8.3.5</span> Central limit theorem<a href="append.html#CLTappend" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <div class="theorem">
 <p><span id="thm:LLNappendix" class="theorem"><strong>Theorem 8.4  (Law of large numbers) </strong></span>The sample mean is a consistent estimator of the population mean.</p>
 </div>
@@ -483,10 +657,8 @@ Therefore <span class="math inline">\(\phi_{Y_n}(u) \underset{n \rightarrow \inf
 </div>
 </div>
 </div>
-<div id="AppendixProof" class="section level2" number="8.4">
-<h2>
-<span class="header-section-number">8.4</span> Proofs<a class="anchor" aria-label="anchor" href="#AppendixProof"><i class="fas fa-link"></i></a>
-</h2>
+<div id="AppendixProof" class="section level2 hasAnchor" number="8.4">
+<h2><span class="header-section-number">8.4</span> Proofs<a href="append.html#AppendixProof" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><strong>Proof of Eq. <a href="Intro.html#eq:TCL2">(1.3)</a></strong></p>
 <div class="proof">
 <p><span id="unlabeled-div-29" class="proof"><em>Proof</em>. </span>We have:
@@ -558,36 +730,36 @@ This implies that <span class="math inline">\(\mathbb{E}([y_{t+1} - y^*_{t+1}]^2
 <p><span id="unlabeled-div-31" class="proof"><em>Proof</em>. </span>Using Proposition <a href="#prp:multivarG"><strong>??</strong></a>, we obtain that, conditionally on <span class="math inline">\(x_1\)</span>, the log-likelihood is given by
 <span class="math display">\[\begin{eqnarray*}
 \log\mathcal{L}(Y_{T};\theta) &amp; = &amp; -(Tn/2)\log(2\pi)+(T/2)\log\left|\Omega^{-1}\right|\\
-&amp;  &amp; -\frac{1}{2}\sum_{t=1}^{T}\left[\left(y_{t}-\Pi'x_{t}\right)'\Omega^{-1}\left(y_{t}-\Pi'x_{t}\right)\right].
+&amp;  &amp; -\frac{1}{2}\sum_{t=1}^{T}\left[\left(y_{t}-\Pi&#39;x_{t}\right)&#39;\Omega^{-1}\left(y_{t}-\Pi&#39;x_{t}\right)\right].
 \end{eqnarray*}\]</span>
 Let’s rewrite the last term of the log-likelihood:
 <span class="math display">\[\begin{eqnarray*}
-\sum_{t=1}^{T}\left[\left(y_{t}-\Pi'x_{t}\right)'\Omega^{-1}\left(y_{t}-\Pi'x_{t}\right)\right] &amp; =\\
-\sum_{t=1}^{T}\left[\left(y_{t}-\hat{\Pi}'x_{t}+\hat{\Pi}'x_{t}-\Pi'x_{t}\right)'\Omega^{-1}\left(y_{t}-\hat{\Pi}'x_{t}+\hat{\Pi}'x_{t}-\Pi'x_{t}\right)\right] &amp; =\\
-\sum_{t=1}^{T}\left[\left(\hat{\varepsilon}_{t}+(\hat{\Pi}-\Pi)'x_{t}\right)'\Omega^{-1}\left(\hat{\varepsilon}_{t}+(\hat{\Pi}-\Pi)'x_{t}\right)\right],
+\sum_{t=1}^{T}\left[\left(y_{t}-\Pi&#39;x_{t}\right)&#39;\Omega^{-1}\left(y_{t}-\Pi&#39;x_{t}\right)\right] &amp; =\\
+\sum_{t=1}^{T}\left[\left(y_{t}-\hat{\Pi}&#39;x_{t}+\hat{\Pi}&#39;x_{t}-\Pi&#39;x_{t}\right)&#39;\Omega^{-1}\left(y_{t}-\hat{\Pi}&#39;x_{t}+\hat{\Pi}&#39;x_{t}-\Pi&#39;x_{t}\right)\right] &amp; =\\
+\sum_{t=1}^{T}\left[\left(\hat{\varepsilon}_{t}+(\hat{\Pi}-\Pi)&#39;x_{t}\right)&#39;\Omega^{-1}\left(\hat{\varepsilon}_{t}+(\hat{\Pi}-\Pi)&#39;x_{t}\right)\right],
 \end{eqnarray*}\]</span>
 where the <span class="math inline">\(j^{th}\)</span> element of the <span class="math inline">\((n\times1)\)</span> vector <span class="math inline">\(\hat{\varepsilon}_{t}\)</span> is the sample residual, for observation <span class="math inline">\(t\)</span>, from an OLS regression of <span class="math inline">\(y_{j,t}\)</span> on <span class="math inline">\(x_{t}\)</span>. Expanding the previous equation, we get:
 <span class="math display">\[\begin{eqnarray*}
-&amp;&amp;\sum_{t=1}^{T}\left[\left(y_{t}-\Pi'x_{t}\right)'\Omega^{-1}\left(y_{t}-\Pi'x_{t}\right)\right]  = \sum_{t=1}^{T}\hat{\varepsilon}_{t}'\Omega^{-1}\hat{\varepsilon}_{t}\\
-&amp;&amp;+2\sum_{t=1}^{T}\hat{\varepsilon}_{t}'\Omega^{-1}(\hat{\Pi}-\Pi)'x_{t}+\sum_{t=1}^{T}x'_{t}(\hat{\Pi}-\Pi)\Omega^{-1}(\hat{\Pi}-\Pi)'x_{t}.
+&amp;&amp;\sum_{t=1}^{T}\left[\left(y_{t}-\Pi&#39;x_{t}\right)&#39;\Omega^{-1}\left(y_{t}-\Pi&#39;x_{t}\right)\right]  = \sum_{t=1}^{T}\hat{\varepsilon}_{t}&#39;\Omega^{-1}\hat{\varepsilon}_{t}\\
+&amp;&amp;+2\sum_{t=1}^{T}\hat{\varepsilon}_{t}&#39;\Omega^{-1}(\hat{\Pi}-\Pi)&#39;x_{t}+\sum_{t=1}^{T}x&#39;_{t}(\hat{\Pi}-\Pi)\Omega^{-1}(\hat{\Pi}-\Pi)&#39;x_{t}.
 \end{eqnarray*}\]</span>
 Let’s apply the trace operator on the second term (that is a scalar):
 <span class="math display">\[\begin{eqnarray*}
-\sum_{t=1}^{T}\hat{\varepsilon}_{t}'\Omega^{-1}(\hat{\Pi}-\Pi)'x_{t} &amp; = &amp; Tr\left(\sum_{t=1}^{T}\hat{\varepsilon}_{t}'\Omega^{-1}(\hat{\Pi}-\Pi)'x_{t}\right)\\
-=  Tr\left(\sum_{t=1}^{T}\Omega^{-1}(\hat{\Pi}-\Pi)'x_{t}\hat{\varepsilon}_{t}'\right) &amp; = &amp; Tr\left(\Omega^{-1}(\hat{\Pi}-\Pi)'\sum_{t=1}^{T}x_{t}\hat{\varepsilon}_{t}'\right).
+\sum_{t=1}^{T}\hat{\varepsilon}_{t}&#39;\Omega^{-1}(\hat{\Pi}-\Pi)&#39;x_{t} &amp; = &amp; Tr\left(\sum_{t=1}^{T}\hat{\varepsilon}_{t}&#39;\Omega^{-1}(\hat{\Pi}-\Pi)&#39;x_{t}\right)\\
+=  Tr\left(\sum_{t=1}^{T}\Omega^{-1}(\hat{\Pi}-\Pi)&#39;x_{t}\hat{\varepsilon}_{t}&#39;\right) &amp; = &amp; Tr\left(\Omega^{-1}(\hat{\Pi}-\Pi)&#39;\sum_{t=1}^{T}x_{t}\hat{\varepsilon}_{t}&#39;\right).
 \end{eqnarray*}\]</span>
-Given that, by construction (property of OLS estimates), the sample residuals are orthogonal to the explanatory variables, this term is zero. Introducing <span class="math inline">\(\tilde{x}_{t}=(\hat{\Pi}-\Pi)'x_{t}\)</span>, we have
+Given that, by construction (property of OLS estimates), the sample residuals are orthogonal to the explanatory variables, this term is zero. Introducing <span class="math inline">\(\tilde{x}_{t}=(\hat{\Pi}-\Pi)&#39;x_{t}\)</span>, we have
 <span class="math display">\[\begin{eqnarray*}
-\sum_{t=1}^{T}\left[\left(y_{t}-\Pi'x_{t}\right)'\Omega^{-1}\left(y_{t}-\Pi'x_{t}\right)\right] =\sum_{t=1}^{T}\hat{\varepsilon}_{t}'\Omega^{-1}\hat{\varepsilon}_{t}+\sum_{t=1}^{T}\tilde{x}'_{t}\Omega^{-1}\tilde{x}_{t}.
+\sum_{t=1}^{T}\left[\left(y_{t}-\Pi&#39;x_{t}\right)&#39;\Omega^{-1}\left(y_{t}-\Pi&#39;x_{t}\right)\right] =\sum_{t=1}^{T}\hat{\varepsilon}_{t}&#39;\Omega^{-1}\hat{\varepsilon}_{t}+\sum_{t=1}^{T}\tilde{x}&#39;_{t}\Omega^{-1}\tilde{x}_{t}.
 \end{eqnarray*}\]</span>
 Since <span class="math inline">\(\Omega\)</span> is a positive definite matrix, <span class="math inline">\(\Omega^{-1}\)</span> is as well. Consequently, the smallest value that the last term can take is obtained for <span class="math inline">\(\tilde{x}_{t}=0\)</span>, i.e. when <span class="math inline">\(\Pi=\hat{\Pi}.\)</span></p>
 <p>The MLE of <span class="math inline">\(\Omega\)</span> is the matrix <span class="math inline">\(\hat{\Omega}\)</span> that maximizes <span class="math inline">\(\Omega\overset{\ell}{\rightarrow}L(Y_{T};\hat{\Pi},\Omega)\)</span>. We have:
 <span class="math display">\[\begin{eqnarray*}
-\log\mathcal{L}(Y_{T};\hat{\Pi},\Omega) &amp; = &amp; -(Tn/2)\log(2\pi)+(T/2)\log\left|\Omega^{-1}\right| -\frac{1}{2}\sum_{t=1}^{T}\left[\hat{\varepsilon}_{t}'\Omega^{-1}\hat{\varepsilon}_{t}\right].
+\log\mathcal{L}(Y_{T};\hat{\Pi},\Omega) &amp; = &amp; -(Tn/2)\log(2\pi)+(T/2)\log\left|\Omega^{-1}\right| -\frac{1}{2}\sum_{t=1}^{T}\left[\hat{\varepsilon}_{t}&#39;\Omega^{-1}\hat{\varepsilon}_{t}\right].
 \end{eqnarray*}\]</span></p>
 <p>Matrix <span class="math inline">\(\hat{\Omega}\)</span> is a symmetric positive definite. It is easily checked that the (unrestricted) matrix that maximizes the latter expression is symmetric positive definite matrix. Indeed:
 <span class="math display">\[
-\frac{\partial \log\mathcal{L}(Y_{T};\hat{\Pi},\Omega)}{\partial\Omega}=\frac{T}{2}\Omega'-\frac{1}{2}\sum_{t=1}^{T}\hat{\varepsilon}_{t}\hat{\varepsilon}'_{t}\Rightarrow\hat{\Omega}'=\frac{1}{T}\sum_{t=1}^{T}\hat{\varepsilon}_{t}\hat{\varepsilon}'_{t},
+\frac{\partial \log\mathcal{L}(Y_{T};\hat{\Pi},\Omega)}{\partial\Omega}=\frac{T}{2}\Omega&#39;-\frac{1}{2}\sum_{t=1}^{T}\hat{\varepsilon}_{t}\hat{\varepsilon}&#39;_{t}\Rightarrow\hat{\Omega}&#39;=\frac{1}{T}\sum_{t=1}^{T}\hat{\varepsilon}_{t}\hat{\varepsilon}&#39;_{t},
 \]</span>
 which leads to the result.</p>
 </div>
@@ -595,27 +767,23 @@ which leads to the result.</p>
 <div class="proof">
 <p><span id="unlabeled-div-32" class="proof"><em>Proof</em>. </span>Let us drop the <span class="math inline">\(i\)</span> subscript. Rearranging Eq. <a href="Univariate.html#eq:olsar1">(2.19)</a>, we have:
 <span class="math display">\[
-\sqrt{T}(\mathbf{b}-\boldsymbol{\beta}) =  (X'X/T)^{-1}\sqrt{T}(X'\boldsymbol\varepsilon/T).
+\sqrt{T}(\mathbf{b}-\boldsymbol{\beta}) =  (X&#39;X/T)^{-1}\sqrt{T}(X&#39;\boldsymbol\varepsilon/T).
 \]</span>
 Let us consider the autocovariances of <span class="math inline">\(\mathbf{v}_t = x_t \varepsilon_t\)</span>, denoted by <span class="math inline">\(\gamma^v_j\)</span>. Using the fact that <span class="math inline">\(x_t\)</span> is a linear combination of past <span class="math inline">\(\varepsilon_t\)</span>s and that <span class="math inline">\(\varepsilon_t\)</span> is a white noise, we get that <span class="math inline">\(\mathbb{E}(\varepsilon_t x_t)=0\)</span>. Therefore
 <span class="math display">\[
-\gamma^v_j = \mathbb{E}(\varepsilon_t\varepsilon_{t-j}x_tx_{t-j}').
+\gamma^v_j = \mathbb{E}(\varepsilon_t\varepsilon_{t-j}x_tx_{t-j}&#39;).
 \]</span>
-If <span class="math inline">\(j&gt;0\)</span>, we have <span class="math inline">\(\mathbb{E}(\varepsilon_t\varepsilon_{t-j}x_tx_{t-j}')=\mathbb{E}(\mathbb{E}[\varepsilon_t\varepsilon_{t-j}x_tx_{t-j}'|\varepsilon_{t-j},x_t,x_{t-j}])=\)</span> <span class="math inline">\(\mathbb{E}(\varepsilon_{t-j}x_tx_{t-j}'\mathbb{E}[\varepsilon_t|\varepsilon_{t-j},x_t,x_{t-j}])=0\)</span>. Note that we have <span class="math inline">\(\mathbb{E}[\varepsilon_t|\varepsilon_{t-j},x_t,x_{t-j}]=0\)</span> because <span class="math inline">\(\{\varepsilon_t\}\)</span> is an i.i.d. white noise sequence. If <span class="math inline">\(j=0\)</span>, we have:
+If <span class="math inline">\(j&gt;0\)</span>, we have <span class="math inline">\(\mathbb{E}(\varepsilon_t\varepsilon_{t-j}x_tx_{t-j}&#39;)=\mathbb{E}(\mathbb{E}[\varepsilon_t\varepsilon_{t-j}x_tx_{t-j}&#39;|\varepsilon_{t-j},x_t,x_{t-j}])=\)</span> <span class="math inline">\(\mathbb{E}(\varepsilon_{t-j}x_tx_{t-j}&#39;\mathbb{E}[\varepsilon_t|\varepsilon_{t-j},x_t,x_{t-j}])=0\)</span>. Note that we have <span class="math inline">\(\mathbb{E}[\varepsilon_t|\varepsilon_{t-j},x_t,x_{t-j}]=0\)</span> because <span class="math inline">\(\{\varepsilon_t\}\)</span> is an i.i.d. white noise sequence. If <span class="math inline">\(j=0\)</span>, we have:
 <span class="math display">\[
-\gamma^v_0 = \mathbb{E}(\varepsilon_t^2x_tx_{t}')= \mathbb{E}(\varepsilon_t^2) \mathbb{E}(x_tx_{t}')=\sigma^2\mathbf{Q}.
+\gamma^v_0 = \mathbb{E}(\varepsilon_t^2x_tx_{t}&#39;)= \mathbb{E}(\varepsilon_t^2) \mathbb{E}(x_tx_{t}&#39;)=\sigma^2\mathbf{Q}.
 \]</span>
-The convergence in distribution of <span class="math inline">\(\sqrt{T}(X'\boldsymbol\varepsilon/T)=\sqrt{T}\frac{1}{T}\sum_{t=1}^Tv_t\)</span> results from the Central Limit Theorem for covariance-stationary processes, using the <span class="math inline">\(\gamma_j^v\)</span> computed above.</p>
+The convergence in distribution of <span class="math inline">\(\sqrt{T}(X&#39;\boldsymbol\varepsilon/T)=\sqrt{T}\frac{1}{T}\sum_{t=1}^Tv_t\)</span> results from the Central Limit Theorem for covariance-stationary processes, using the <span class="math inline">\(\gamma_j^v\)</span> computed above.</p>
 </div>
 </div>
-<div id="Inference" class="section level2" number="8.5">
-<h2>
-<span class="header-section-number">8.5</span> Inference<a class="anchor" aria-label="anchor" href="#Inference"><i class="fas fa-link"></i></a>
-</h2>
-<div id="MonteCarlo" class="section level3" number="8.5.1">
-<h3>
-<span class="header-section-number">8.5.1</span> Monte Carlo method<a class="anchor" aria-label="anchor" href="#MonteCarlo"><i class="fas fa-link"></i></a>
-</h3>
+<div id="Inference" class="section level2 hasAnchor" number="8.5">
+<h2><span class="header-section-number">8.5</span> Inference<a href="append.html#Inference" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="MonteCarlo" class="section level3 hasAnchor" number="8.5.1">
+<h3><span class="header-section-number">8.5.1</span> Monte Carlo method<a href="append.html#MonteCarlo" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>We use Monte Carlo when we need to approximate the distribution of a variable whose distribution is unknown but which is a function of another variable whose distribution is known. For instance, suppose we know the distribution of a random variable <span class="math inline">\(X\)</span>, which takes values in <span class="math inline">\(\mathbb{R}\)</span>, with density function <span class="math inline">\(p\)</span>. Assume we want to compute the mean of <span class="math inline">\(\varphi(X)\)</span>. We have:
 <span class="math display">\[
 \mathbb{E}(\varphi(X))=\int_{-\infty}^{+\infty}\varphi(x)p(x)dx
@@ -629,56 +797,52 @@ where <span class="math inline">\(\{X^{(i)}\}_{i=1,...,N}\)</span> are <span cla
 <p>To summarize, here are the steps one can implement to derive confidence intervals for the IRFs using the Monte-Carlo approach: For each iteration <span class="math inline">\(k\)</span>,</p>
 <ol style="list-style-type: decimal">
 <li>Draw <span class="math inline">\(\{\widehat{\Phi}_j^{(k)}\}_{j=1,...,p}\)</span> and <span class="math inline">\(\widehat{\Omega}^{(k)}\)</span> from their asymptotic distribution (using Proposition <a href="VAR.html#prp:OLSVAR2">3.3</a>).</li>
-<li>Compute the matrix <span class="math inline">\(B^{(k)}\)</span> so that <span class="math inline">\(\widehat{\Omega}^{(k)}=B^{(k)}B^{(k)'}\)</span>, according to your identification strategy.</li>
+<li>Compute the matrix <span class="math inline">\(B^{(k)}\)</span> so that <span class="math inline">\(\widehat{\Omega}^{(k)}=B^{(k)}B^{(k)&#39;}\)</span>, according to your identification strategy.</li>
 <li>Compute the associated IRFs <span class="math inline">\(\{\widehat{\Psi}_j\}^{(k)}\)</span>.</li>
 </ol>
 <p>Perform <span class="math inline">\(N\)</span> replications and report the median impulse response (and its confidence intervals).</p>
 </div>
-<div id="Delta" class="section level3" number="8.5.2">
-<h3>
-<span class="header-section-number">8.5.2</span> Delta method<a class="anchor" aria-label="anchor" href="#Delta"><i class="fas fa-link"></i></a>
-</h3>
+<div id="Delta" class="section level3 hasAnchor" number="8.5.2">
+<h3><span class="header-section-number">8.5.2</span> Delta method<a href="append.html#Delta" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Suppose <span class="math inline">\(\beta\)</span> is a vector of parameters and <span class="math inline">\(\beta\)</span> is an estimator such that
 <span class="math display">\[
 \sqrt{T}(\hat\beta-\beta)\overset{d}{\rightarrow}\mathcal{N}(0,\Sigma_\beta),
 \]</span>
 where <span class="math inline">\(d\)</span> denotes convergence in distribution, <span class="math inline">\(N(0,\Sigma_\beta)\)</span> denotes the multivariate normal distribution with mean vector 0 and covariance matrix <span class="math inline">\(\Sigma_\beta\)</span> and <span class="math inline">\(T\)</span> is the sample size used for estimation.</p>
-<p>Let <span class="math inline">\(g(\beta) = (g_l(\beta),..., g_m(\beta))'\)</span> be a continuously differentiable function with values in <span class="math inline">\(\mathbb{R}^m\)</span>, and assume that <span class="math inline">\(\partial g_i/\partial \beta' = (\partial g_i/\partial \beta_j)\)</span> is nonzero at <span class="math inline">\(\beta\)</span> for <span class="math inline">\(i = 1,\dots, m\)</span>. Then
+<p>Let <span class="math inline">\(g(\beta) = (g_l(\beta),..., g_m(\beta))&#39;\)</span> be a continuously differentiable function with values in <span class="math inline">\(\mathbb{R}^m\)</span>, and assume that <span class="math inline">\(\partial g_i/\partial
+\beta&#39; = (\partial g_i/\partial \beta_j)\)</span> is nonzero at <span class="math inline">\(\beta\)</span> for <span class="math inline">\(i = 1,\dots, m\)</span>. Then
 <span class="math display">\[
-\sqrt{T}(g(\hat\beta)-g(\beta))\overset{d}{\rightarrow}\mathcal{N}\left(0,\frac{\partial g}{\partial \beta'}\Sigma_\beta\frac{\partial g'}{\partial \beta}\right).
+\sqrt{T}(g(\hat\beta)-g(\beta))\overset{d}{\rightarrow}\mathcal{N}\left(0,\frac{\partial g}{\partial \beta&#39;}\Sigma_\beta\frac{\partial g&#39;}{\partial \beta}\right).
 \]</span>
-Using this property, <span class="citation">Lütkepohl (<a href="references.html#ref-Lutkepohl_1990">1990</a>)</span> provides the asymptotic distributions of the <span class="math inline">\(\Psi_j\)</span>’s. The following lines of code can be used to get approximate confidence intervals for IRFs.</p>
-<div class="sourceCode" id="cb66"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">irf.function</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">THETA</span><span class="op">)</span><span class="op">{</span></span>
-<span>  <span class="va">c</span> <span class="op">&lt;-</span> <span class="va">THETA</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span></span>
-<span>  <span class="va">phi</span> <span class="op">&lt;-</span> <span class="va">THETA</span><span class="op">[</span><span class="fl">2</span><span class="op">:</span><span class="op">(</span><span class="va">p</span><span class="op">+</span><span class="fl">1</span><span class="op">)</span><span class="op">]</span></span>
-<span>  <span class="kw">if</span><span class="op">(</span><span class="va">q</span><span class="op">&gt;</span><span class="fl">0</span><span class="op">)</span><span class="op">{</span></span>
-<span>    <span class="va">theta</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="va">THETA</span><span class="op">[</span><span class="op">(</span><span class="fl">1</span><span class="op">+</span><span class="va">p</span><span class="op">+</span><span class="fl">1</span><span class="op">)</span><span class="op">:</span><span class="op">(</span><span class="fl">1</span><span class="op">+</span><span class="va">p</span><span class="op">+</span><span class="va">q</span><span class="op">)</span><span class="op">]</span><span class="op">)</span></span>
-<span>  <span class="op">}</span><span class="kw">else</span><span class="op">{</span><span class="va">theta</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">}</span></span>
-<span>  <span class="va">sigma</span> <span class="op">&lt;-</span> <span class="va">THETA</span><span class="op">[</span><span class="fl">1</span><span class="op">+</span><span class="va">p</span><span class="op">+</span><span class="va">q</span><span class="op">+</span><span class="fl">1</span><span class="op">]</span></span>
-<span>  <span class="va">r</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="va">Matrix.of.Exog</span><span class="op">)</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span> <span class="op">-</span> <span class="fl">1</span></span>
-<span>  <span class="va">beta</span> <span class="op">&lt;-</span> <span class="va">THETA</span><span class="op">[</span><span class="op">(</span><span class="fl">1</span><span class="op">+</span><span class="va">p</span><span class="op">+</span><span class="va">q</span><span class="op">+</span><span class="fl">1</span><span class="op">+</span><span class="fl">1</span><span class="op">)</span><span class="op">:</span><span class="op">(</span><span class="fl">1</span><span class="op">+</span><span class="va">p</span><span class="op">+</span><span class="va">q</span><span class="op">+</span><span class="fl">1</span><span class="op">+</span><span class="op">(</span><span class="va">r</span><span class="op">+</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span><span class="op">]</span></span>
-<span>  </span>
-<span>  <span class="va">irf</span> <span class="op">&lt;-</span> <span class="fu">sim.arma</span><span class="op">(</span><span class="fl">0</span>,<span class="va">phi</span>,<span class="va">beta</span>,sigma<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">Ramey</span><span class="op">$</span><span class="va">ED3_TC</span>,na.rm<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span>,T<span class="op">=</span><span class="fl">60</span>,</span>
-<span>                  y.0<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">x</span><span class="op">$</span><span class="va">phi</span><span class="op">)</span><span class="op">)</span>,nb.sim<span class="op">=</span><span class="fl">1</span>,make.IRF<span class="op">=</span><span class="fl">1</span>,</span>
-<span>                  X<span class="op">=</span><span class="cn">NaN</span>,beta<span class="op">=</span><span class="cn">NaN</span><span class="op">)</span></span>
-<span>  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">irf</span><span class="op">)</span><span class="op">}</span></span>
-<span><span class="va">IRF.0</span> <span class="op">&lt;-</span> <span class="fl">100</span><span class="op">*</span><span class="fu">irf.function</span><span class="op">(</span><span class="va">x</span><span class="op">$</span><span class="va">THETA</span><span class="op">)</span></span>
-<span><span class="va">eps</span> <span class="op">&lt;-</span> <span class="fl">.00000001</span></span>
-<span><span class="va">d.IRF</span> <span class="op">&lt;-</span> <span class="cn">NULL</span></span>
-<span><span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">x</span><span class="op">$</span><span class="va">THETA</span><span class="op">)</span><span class="op">)</span><span class="op">{</span></span>
-<span>  <span class="va">THETA.i</span> <span class="op">&lt;-</span> <span class="va">x</span><span class="op">$</span><span class="va">THETA</span></span>
-<span>  <span class="va">THETA.i</span><span class="op">[</span><span class="va">i</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">THETA.i</span><span class="op">[</span><span class="va">i</span><span class="op">]</span> <span class="op">+</span> <span class="va">eps</span></span>
-<span>  <span class="va">IRF.i</span> <span class="op">&lt;-</span> <span class="fl">100</span><span class="op">*</span><span class="fu">irf.function</span><span class="op">(</span><span class="va">THETA.i</span><span class="op">)</span></span>
-<span>  <span class="va">d.IRF</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span><span class="va">d.IRF</span>,</span>
-<span>                 <span class="op">(</span><span class="va">IRF.i</span> <span class="op">-</span> <span class="va">IRF.0</span><span class="op">)</span><span class="op">/</span><span class="va">eps</span><span class="op">)</span><span class="op">}</span></span>
-<span><span class="va">mat.var.cov.IRF</span> <span class="op">&lt;-</span> <span class="va">d.IRF</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html">%*%</a></span> <span class="va">x</span><span class="op">$</span><span class="va">I</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html">%*%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/t.html">t</a></span><span class="op">(</span><span class="va">d.IRF</span><span class="op">)</span></span></code></pre></div>
+Using this property, <span class="citation">Lütkepohl (<a href="#ref-Lutkepohl_1990">1990</a>)</span> provides the asymptotic distributions of the <span class="math inline">\(\Psi_j\)</span>’s. The following lines of code can be used to get approximate confidence intervals for IRFs.</p>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="append.html#cb61-1" tabindex="-1"></a>irf.function <span class="ot">&lt;-</span> <span class="cf">function</span>(THETA){</span>
+<span id="cb61-2"><a href="append.html#cb61-2" tabindex="-1"></a>  c <span class="ot">&lt;-</span> THETA[<span class="dv">1</span>]</span>
+<span id="cb61-3"><a href="append.html#cb61-3" tabindex="-1"></a>  phi <span class="ot">&lt;-</span> THETA[<span class="dv">2</span><span class="sc">:</span>(p<span class="sc">+</span><span class="dv">1</span>)]</span>
+<span id="cb61-4"><a href="append.html#cb61-4" tabindex="-1"></a>  <span class="cf">if</span>(q<span class="sc">&gt;</span><span class="dv">0</span>){</span>
+<span id="cb61-5"><a href="append.html#cb61-5" tabindex="-1"></a>    theta <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>,THETA[(<span class="dv">1</span><span class="sc">+</span>p<span class="sc">+</span><span class="dv">1</span>)<span class="sc">:</span>(<span class="dv">1</span><span class="sc">+</span>p<span class="sc">+</span>q)])</span>
+<span id="cb61-6"><a href="append.html#cb61-6" tabindex="-1"></a>  }<span class="cf">else</span>{theta <span class="ot">&lt;-</span> <span class="dv">1</span>}</span>
+<span id="cb61-7"><a href="append.html#cb61-7" tabindex="-1"></a>  sigma <span class="ot">&lt;-</span> THETA[<span class="dv">1</span><span class="sc">+</span>p<span class="sc">+</span>q<span class="sc">+</span><span class="dv">1</span>]</span>
+<span id="cb61-8"><a href="append.html#cb61-8" tabindex="-1"></a>  r <span class="ot">&lt;-</span> <span class="fu">dim</span>(Matrix.of.Exog)[<span class="dv">2</span>] <span class="sc">-</span> <span class="dv">1</span></span>
+<span id="cb61-9"><a href="append.html#cb61-9" tabindex="-1"></a>  beta <span class="ot">&lt;-</span> THETA[(<span class="dv">1</span><span class="sc">+</span>p<span class="sc">+</span>q<span class="sc">+</span><span class="dv">1</span><span class="sc">+</span><span class="dv">1</span>)<span class="sc">:</span>(<span class="dv">1</span><span class="sc">+</span>p<span class="sc">+</span>q<span class="sc">+</span><span class="dv">1</span><span class="sc">+</span>(r<span class="sc">+</span><span class="dv">1</span>))]</span>
+<span id="cb61-10"><a href="append.html#cb61-10" tabindex="-1"></a>  </span>
+<span id="cb61-11"><a href="append.html#cb61-11" tabindex="-1"></a>  irf <span class="ot">&lt;-</span> <span class="fu">sim.arma</span>(<span class="dv">0</span>,phi,beta,<span class="at">sigma=</span><span class="fu">sd</span>(Ramey<span class="sc">$</span>ED3_TC,<span class="at">na.rm=</span><span class="cn">TRUE</span>),<span class="at">T=</span><span class="dv">60</span>,</span>
+<span id="cb61-12"><a href="append.html#cb61-12" tabindex="-1"></a>                  <span class="at">y.0=</span><span class="fu">rep</span>(<span class="dv">0</span>,<span class="fu">length</span>(x<span class="sc">$</span>phi)),<span class="at">nb.sim=</span><span class="dv">1</span>,<span class="at">make.IRF=</span><span class="dv">1</span>,</span>
+<span id="cb61-13"><a href="append.html#cb61-13" tabindex="-1"></a>                  <span class="at">X=</span><span class="cn">NaN</span>,<span class="at">beta=</span><span class="cn">NaN</span>)</span>
+<span id="cb61-14"><a href="append.html#cb61-14" tabindex="-1"></a>  <span class="fu">return</span>(irf)}</span>
+<span id="cb61-15"><a href="append.html#cb61-15" tabindex="-1"></a>IRF<span class="fl">.0</span> <span class="ot">&lt;-</span> <span class="dv">100</span><span class="sc">*</span><span class="fu">irf.function</span>(x<span class="sc">$</span>THETA)</span>
+<span id="cb61-16"><a href="append.html#cb61-16" tabindex="-1"></a>eps <span class="ot">&lt;-</span> .<span class="dv">00000001</span></span>
+<span id="cb61-17"><a href="append.html#cb61-17" tabindex="-1"></a>d.IRF <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb61-18"><a href="append.html#cb61-18" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(x<span class="sc">$</span>THETA)){</span>
+<span id="cb61-19"><a href="append.html#cb61-19" tabindex="-1"></a>  THETA.i <span class="ot">&lt;-</span> x<span class="sc">$</span>THETA</span>
+<span id="cb61-20"><a href="append.html#cb61-20" tabindex="-1"></a>  THETA.i[i] <span class="ot">&lt;-</span> THETA.i[i] <span class="sc">+</span> eps</span>
+<span id="cb61-21"><a href="append.html#cb61-21" tabindex="-1"></a>  IRF.i <span class="ot">&lt;-</span> <span class="dv">100</span><span class="sc">*</span><span class="fu">irf.function</span>(THETA.i)</span>
+<span id="cb61-22"><a href="append.html#cb61-22" tabindex="-1"></a>  d.IRF <span class="ot">&lt;-</span> <span class="fu">cbind</span>(d.IRF,</span>
+<span id="cb61-23"><a href="append.html#cb61-23" tabindex="-1"></a>                 (IRF.i <span class="sc">-</span> IRF<span class="fl">.0</span>)<span class="sc">/</span>eps)}</span>
+<span id="cb61-24"><a href="append.html#cb61-24" tabindex="-1"></a>mat.var.cov.IRF <span class="ot">&lt;-</span> d.IRF <span class="sc">%*%</span> x<span class="sc">$</span>I <span class="sc">%*%</span> <span class="fu">t</span>(d.IRF)</span></code></pre></div>
 <p>A limit of the last two approaches (Monte Carlo and the Delta method) is that they rely on asymptotic results. Boostrapping approaches are more robust in small-sample situations.</p>
 </div>
-<div id="Bootstrap" class="section level3" number="8.5.3">
-<h3>
-<span class="header-section-number">8.5.3</span> Bootstrap<a class="anchor" aria-label="anchor" href="#Bootstrap"><i class="fas fa-link"></i></a>
-</h3>
+<div id="Bootstrap" class="section level3 hasAnchor" number="8.5.3">
+<h3><span class="header-section-number">8.5.3</span> Bootstrap<a href="append.html#Bootstrap" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>IRFs’ confidence intervals are intervals where 90% (or 95%, 75%, …) of the IRFs would lie, if we were to repeat the estimation a large number of times in similar conditions (<span class="math inline">\(T\)</span> observations). We obviously cannot do this, because we have only one sample: <span class="math inline">\(\{y_t\}_{t=1,..,T}\)</span>. But we can try to <em>construct</em> such samples.</p>
 <p>Bootstrapping consists in:</p>
 <ul>
@@ -686,7 +850,7 @@ Using this property, <span class="citation">Lütkepohl (<a href="references.html
 VAR coefficients and</li>
 </ul>
 <ol style="list-style-type: lower-alpha">
-<li>a sample of residuals from the distribution <span class="math inline">\(N(0,BB')\)</span> (<strong>parametric approach</strong>), or</li>
+<li>a sample of residuals from the distribution <span class="math inline">\(N(0,BB&#39;)\)</span> (<strong>parametric approach</strong>), or</li>
 <li>a sample of residuals drawn randomly from the set of the actual estimated residuals <span class="math inline">\(\{\hat\varepsilon_t\}_{t=1,..,T}\)</span>. (<strong>non-parametric approach</strong>).</li>
 </ol>
 <ul>
@@ -704,27 +868,25 @@ with <span class="math inline">\(\hat\varepsilon_{t}^{(k)}=\hat\varepsilon_{s_t^
 <p>Perform <span class="math inline">\(N\)</span> replications and report the median impulse response (and its confidence intervals).</p>
 </div>
 </div>
-<div id="statistical-tables" class="section level2" number="8.6">
-<h2>
-<span class="header-section-number">8.6</span> Statistical Tables<a class="anchor" aria-label="anchor" href="#statistical-tables"><i class="fas fa-link"></i></a>
-</h2>
-<div class="inline-table"><table style="width:100%;" class="table table-sm">
-<caption>
-<span id="tab:Normal">Table 8.1: </span>Quantiles of the <span class="math inline">\(\mathcal{N}(0,1)\)</span> distribution. If <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> are respectively the row and column number; then the corresponding cell gives <span class="math inline">\(\mathbb{P}(0&lt;X\le a+b)\)</span>, where <span class="math inline">\(X \sim \mathcal{N}(0,1)\)</span>.</caption>
+<div id="statistical-tables" class="section level2 hasAnchor" number="8.6">
+<h2><span class="header-section-number">8.6</span> Statistical Tables<a href="append.html#statistical-tables" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<table style="width:100%;">
+<caption><span id="tab:Normal">Table 8.1: </span>Quantiles of the <span class="math inline">\(\mathcal{N}(0,1)\)</span> distribution. If <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> are respectively the row and column number; then the corresponding cell gives <span class="math inline">\(\mathbb{P}(0&lt;X\le a+b)\)</span>, where <span class="math inline">\(X \sim \mathcal{N}(0,1)\)</span>.</caption>
 <colgroup>
-<col width="5%">
-<col width="9%">
-<col width="9%">
-<col width="9%">
-<col width="9%">
-<col width="9%">
-<col width="9%">
-<col width="9%">
-<col width="9%">
-<col width="9%">
-<col width="9%">
+<col width="5%" />
+<col width="9%" />
+<col width="9%" />
+<col width="9%" />
+<col width="9%" />
+<col width="9%" />
+<col width="9%" />
+<col width="9%" />
+<col width="9%" />
+<col width="9%" />
+<col width="9%" />
 </colgroup>
-<thead><tr class="header">
+<thead>
+<tr class="header">
 <th align="left"></th>
 <th align="right">0</th>
 <th align="right">0.01</th>
@@ -736,7 +898,8 @@ with <span class="math inline">\(\hat\varepsilon_{t}^{(k)}=\hat\varepsilon_{s_t^
 <th align="right">0.07</th>
 <th align="right">0.08</th>
 <th align="right">0.09</th>
-</tr></thead>
+</tr>
+</thead>
 <tbody>
 <tr class="odd">
 <td align="left">0</td>
@@ -1129,11 +1292,11 @@ with <span class="math inline">\(\hat\varepsilon_{t}^{(k)}=\hat\varepsilon_{s_t^
 <td align="right">0.9986</td>
 </tr>
 </tbody>
-</table></div>
-<div class="inline-table"><table class="table table-sm">
-<caption>
-<span id="tab:Student">Table 8.2: </span>Quantiles of the Student-<span class="math inline">\(t\)</span> distribution. The rows correspond to different degrees of freedom (<span class="math inline">\(\nu\)</span>, say); the columns correspond to different probabilities (<span class="math inline">\(z\)</span>, say). The cell gives <span class="math inline">\(q\)</span> that is s.t. <span class="math inline">\(\mathbb{P}(-q&lt;X&lt;q)=z\)</span>, with <span class="math inline">\(X \sim t(\nu)\)</span>.</caption>
-<thead><tr class="header">
+</table>
+<table>
+<caption><span id="tab:Student">Table 8.2: </span>Quantiles of the Student-<span class="math inline">\(t\)</span> distribution. The rows correspond to different degrees of freedom (<span class="math inline">\(\nu\)</span>, say); the columns correspond to different probabilities (<span class="math inline">\(z\)</span>, say). The cell gives <span class="math inline">\(q\)</span> that is s.t. <span class="math inline">\(\mathbb{P}(-q&lt;X&lt;q)=z\)</span>, with <span class="math inline">\(X \sim t(\nu)\)</span>.</caption>
+<thead>
+<tr class="header">
 <th align="left"></th>
 <th align="right">0.05</th>
 <th align="right">0.1</th>
@@ -1143,7 +1306,8 @@ with <span class="math inline">\(\hat\varepsilon_{t}^{(k)}=\hat\varepsilon_{s_t^
 <th align="right">0.975</th>
 <th align="right">0.99</th>
 <th align="right">0.999</th>
-</tr></thead>
+</tr>
+</thead>
 <tbody>
 <tr class="odd">
 <td align="left">1</td>
@@ -1377,22 +1541,22 @@ with <span class="math inline">\(\hat\varepsilon_{t}^{(k)}=\hat\varepsilon_{s_t^
 <td align="right">3.310</td>
 </tr>
 </tbody>
-</table></div>
-<div class="inline-table"><table class="table table-sm">
-<caption>
-<span id="tab:Chi2">Table 8.3: </span>Quantiles of the <span class="math inline">\(\chi^2\)</span> distribution. The rows correspond to different degrees of freedom; the columns correspond to different probabilities.</caption>
+</table>
+<table>
+<caption><span id="tab:Chi2">Table 8.3: </span>Quantiles of the <span class="math inline">\(\chi^2\)</span> distribution. The rows correspond to different degrees of freedom; the columns correspond to different probabilities.</caption>
 <colgroup>
-<col width="5%">
-<col width="11%">
-<col width="11%">
-<col width="11%">
-<col width="11%">
-<col width="11%">
-<col width="11%">
-<col width="11%">
-<col width="11%">
+<col width="5%" />
+<col width="11%" />
+<col width="11%" />
+<col width="11%" />
+<col width="11%" />
+<col width="11%" />
+<col width="11%" />
+<col width="11%" />
+<col width="11%" />
 </colgroup>
-<thead><tr class="header">
+<thead>
+<tr class="header">
 <th align="left"></th>
 <th align="right">0.05</th>
 <th align="right">0.1</th>
@@ -1402,7 +1566,8 @@ with <span class="math inline">\(\hat\varepsilon_{t}^{(k)}=\hat\varepsilon_{s_t^
 <th align="right">0.975</th>
 <th align="right">0.99</th>
 <th align="right">0.999</th>
-</tr></thead>
+</tr>
+</thead>
 <tbody>
 <tr class="odd">
 <td align="left">1</td>
@@ -1636,24 +1801,24 @@ with <span class="math inline">\(\hat\varepsilon_{t}^{(k)}=\hat\varepsilon_{s_t^
 <td align="right">603.446</td>
 </tr>
 </tbody>
-</table></div>
-<div class="inline-table"><table style="width:100%;" class="table table-sm">
-<caption>
-<span id="tab:Fstat">Table 8.4: </span>Quantiles of the <span class="math inline">\(\mathcal{F}\)</span> distribution. The columns and rows correspond to different degrees of freedom (resp. <span class="math inline">\(n_1\)</span> and <span class="math inline">\(n_2\)</span>). The different panels correspond to different probabilities (<span class="math inline">\(\alpha\)</span>) The corresponding cell gives <span class="math inline">\(z\)</span> that is s.t. <span class="math inline">\(\mathbb{P}(X \le z)=\alpha\)</span>, with <span class="math inline">\(X \sim \mathcal{F}(n_1,n_2)\)</span>.</caption>
+</table>
+<table style="width:100%;">
+<caption><span id="tab:Fstat">Table 8.4: </span>Quantiles of the <span class="math inline">\(\mathcal{F}\)</span> distribution. The columns and rows correspond to different degrees of freedom (resp. <span class="math inline">\(n_1\)</span> and <span class="math inline">\(n_2\)</span>). The different panels correspond to different probabilities (<span class="math inline">\(\alpha\)</span>) The corresponding cell gives <span class="math inline">\(z\)</span> that is s.t. <span class="math inline">\(\mathbb{P}(X \le z)=\alpha\)</span>, with <span class="math inline">\(X \sim \mathcal{F}(n_1,n_2)\)</span>.</caption>
 <colgroup>
-<col width="15%">
-<col width="8%">
-<col width="8%">
-<col width="8%">
-<col width="8%">
-<col width="8%">
-<col width="8%">
-<col width="8%">
-<col width="8%">
-<col width="8%">
-<col width="8%">
+<col width="15%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
 </colgroup>
-<thead><tr class="header">
+<thead>
+<tr class="header">
 <th align="left"></th>
 <th align="right">1</th>
 <th align="right">2</th>
@@ -1665,7 +1830,8 @@ with <span class="math inline">\(\hat\varepsilon_{t}^{(k)}=\hat\varepsilon_{s_t^
 <th align="right">8</th>
 <th align="right">9</th>
 <th align="right">10</th>
-</tr></thead>
+</tr>
+</thead>
 <tbody>
 <tr class="odd">
 <td align="left">alpha = 0.9</td>
@@ -1980,61 +2146,81 @@ with <span class="math inline">\(\hat\varepsilon_{t}^{(k)}=\hat\varepsilon_{s_t^
 <td align="right">2.356</td>
 </tr>
 </tbody>
-</table></div>
-</div>
-</div>
-  <div class="chapter-nav">
-<div class="prev"><a href="ARCHGARCH.html"><span class="header-section-number">7</span> ARCH and GARCH models</a></div>
-<div class="next"><a href="references.html">References</a></div>
-</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
-    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
-      <ul class="nav navbar-nav">
-<li><a class="nav-link" href="#append"><span class="header-section-number">8</span> Appendix</a></li>
-<li><a class="nav-link" href="#PCAapp"><span class="header-section-number">8.1</span> Principal component analysis (PCA)</a></li>
-<li><a class="nav-link" href="#LinAlgebra"><span class="header-section-number">8.2</span> Linear algebra: definitions and results</a></li>
-<li>
-<a class="nav-link" href="#variousResults"><span class="header-section-number">8.3</span> Statistical analysis: definitions and results</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#moments-and-statistics"><span class="header-section-number">8.3.1</span> Moments and statistics</a></li>
-<li><a class="nav-link" href="#standard-distributions"><span class="header-section-number">8.3.2</span> Standard distributions</a></li>
-<li><a class="nav-link" href="#StochConvergences"><span class="header-section-number">8.3.3</span> Stochastic convergences</a></li>
-<li><a class="nav-link" href="#multivariate-gaussian-distribution"><span class="header-section-number">8.3.4</span> Multivariate Gaussian distribution</a></li>
-<li><a class="nav-link" href="#CLTappend"><span class="header-section-number">8.3.5</span> Central limit theorem</a></li>
-</ul>
-</li>
-<li><a class="nav-link" href="#AppendixProof"><span class="header-section-number">8.4</span> Proofs</a></li>
-<li>
-<a class="nav-link" href="#Inference"><span class="header-section-number">8.5</span> Inference</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#MonteCarlo"><span class="header-section-number">8.5.1</span> Monte Carlo method</a></li>
-<li><a class="nav-link" href="#Delta"><span class="header-section-number">8.5.2</span> Delta method</a></li>
-<li><a class="nav-link" href="#Bootstrap"><span class="header-section-number">8.5.3</span> Bootstrap</a></li>
-</ul>
-</li>
-<li><a class="nav-link" href="#statistical-tables"><span class="header-section-number">8.6</span> Statistical Tables</a></li>
-</ul>
-
-      <div class="book-extra">
-        <ul class="list-unstyled">
-          
-        </ul>
-</div>
-    </nav>
-</div>
+</table>
 
 </div>
-</div> <!-- .container -->
+</div>
+<h3>References<a href="references.html#references" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="refs" class="references csl-bib-body hanging-indent" entry-spacing="0">
+<div id="ref-Litterman_Scheinkman_1991" class="csl-entry">
+Litterman, Robert, and Jose Scheinkman. 1991. <span>“<span>Common Factors Affecting Bond Returns</span>.”</span> <em>Journal of Fixed Income</em>, no. 1: 54–61. <a href="https://www.math.nyu.edu/~avellane/Litterman1991.pdf">https://www.math.nyu.edu/~avellane/Litterman1991.pdf</a>.
+</div>
+<div id="ref-Lutkepohl_1990" class="csl-entry">
+Lütkepohl, Helmut. 1990. <span>“Asymptotic Distributions of Impulse Response Functions and Forecast Error Variance Decompositions of Vector Autoregressive Models.”</span> <em>The Review of Economics and Statistics</em> 72 (1): 116–25. <a href="https://EconPapers.repec.org/RePEc:tpr:restat:v:72:y:1990:i:1:p:116-25">https://EconPapers.repec.org/RePEc:tpr:restat:v:72:y:1990:i:1:p:116-25</a>.
+</div>
+</div>
+            </section>
 
-<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
-
-  <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Introduction to Time Series</strong>" was written by Jean-Paul Renne. It was last built on 2025-04-26.</p>
+          </div>
+        </div>
+      </div>
+<a href="ARCHGARCH.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="references.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
   </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": "https://github.com/rstudio/bookdown-demo/edit/master/08-Appendix.Rmd",
+    "text": "Edit"
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": ["TimeSeries.pdf", "TimeSeries.epub"],
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection"
+  }
+});
+});
+</script>
 
-  <div class="col-12 col-md-6 mt-3">
-    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
-  </div>
-
-</div></div>
-</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
@@ -2046,22 +2232,7 @@ with <span class="math inline">\(\hat\varepsilon_{t}^{(k)}=\hat\varepsilon_{s_t^
     script.src = src;
     document.getElementsByTagName("head")[0].appendChild(script);
   })();
-</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
-for (let popover of popovers) {
-  const div = document.createElement('div');
-  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
-  div.innerHTML = popover.getAttribute('data-content');
-
-  var has_math = div.querySelector("span.math");
-  if (has_math) {
-    document.body.appendChild(div);
-    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
-    MathJax.Hub.Queue(function() {
-      popover.setAttribute('data-content', div.innerHTML);
-      document.body.removeChild(div);
-    })
-  }
-}
 </script>
 </body>
+
 </html>

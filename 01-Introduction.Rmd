@@ -166,7 +166,7 @@ Consider a long historical time series of the Swiss GDP growth, taken from the @
 [^FootnoteJST]: Version 6 of the dataset, available on [this website](https://www.macrohistory.net).
 
 ```{r autocov, fig.cap="Annual growth rate of Swiss GDP, based on the Jorda-Schularick-Taylor Macrohistory Database.", fig.asp = .6, out.width = "95%", fig.align = 'left-aligned'}
-library(AEC)
+library(IdSS)
 data(JST);data <- subset(JST,iso=="CHE")
 par(plt=c(.1,.95,.1,.95))
 T <- dim(data)[1]
@@ -261,5 +261,4 @@ for(rho in all.rho){
   abline(h=mean(X),col="red",lty=2)
 }
 ```
-
 

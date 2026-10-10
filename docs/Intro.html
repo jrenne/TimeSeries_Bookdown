@@ -1,104 +1,297 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="" xml:lang="">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Chapter 1 Basics | Introduction to Time Series</title>
-<meta name="author" content="Jean-Paul Renne">
-<meta name="description" content="1.1 Shocks and lag operator A time series is an infinite sequence of random variables indexed by time: \(\{y_t\}_{t=-\infty}^{+\infty}=\{\dots, y_{-2},y_{-1},y_{0},y_{1},\dots,y_t,\dots\}\), \(y_i...">
-<meta name="generator" content="bookdown 0.34 with bs4_book()">
-<meta property="og:title" content="Chapter 1 Basics | Introduction to Time Series">
-<meta property="og:type" content="book">
-<meta property="og:description" content="1.1 Shocks and lag operator A time series is an infinite sequence of random variables indexed by time: \(\{y_t\}_{t=-\infty}^{+\infty}=\{\dots, y_{-2},y_{-1},y_{0},y_{1},\dots,y_t,\dots\}\), \(y_i...">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Chapter 1 Basics | Introduction to Time Series">
-<meta name="twitter:description" content="1.1 Shocks and lag operator A time series is an infinite sequence of random variables indexed by time: \(\{y_t\}_{t=-\infty}^{+\infty}=\{\dots, y_{-2},y_{-1},y_{0},y_{1},\dots,y_t,\dots\}\), \(y_i...">
-<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
-<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.5.0/transition.js"></script><script src="libs/bs3compat-0.5.0/tabs.js"></script><script src="libs/bs3compat-0.5.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
-<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
-    
-    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
-  </style>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 1 Basics | Introduction to Time Series</title>
+  <meta name="description" content="This course XXX." />
+  <meta name="generator" content="bookdown 0.43 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 1 Basics | Introduction to Time Series" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="This course XXX." />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 1 Basics | Introduction to Time Series" />
+  
+  <meta name="twitter:description" content="This course XXX." />
+  
+
+<meta name="author" content="Jean-Paul Renne" />
+
+
+<meta name="date" content="2026-10-10" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="index.html"/>
+<link rel="next" href="Univariate.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
 <style type="text/css">
-    /* Used with Pandoc 2.11+ new --citeproc when CSL is used */
-    div.csl-bib-body { }
-    div.csl-entry {
-      clear: both;
-        }
-    .hanging div.csl-entry {
-      margin-left:2em;
-      text-indent:-2em;
-    }
-    div.csl-left-margin {
-      min-width:2em;
-      float:left;
-    }
-    div.csl-right-inline {
-      margin-left:2em;
-      padding-left:1em;
-    }
-    div.csl-indent {
-      margin-left: 2em;
-    }
-  </style>
-<link rel="stylesheet" href="my-style.css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
 </head>
-<body data-spy="scroll" data-target="#toc">
 
-<div class="container-fluid">
-<div class="row">
-  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+<body>
 
-    <div class="d-flex align-items-start justify-content-between">
-      <h1>
-        <a href="index.html" title="">Introduction to Time Series</a>
-      </h1>
-      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
-    </div>
 
-    <div id="main-nav" class="collapse-lg">
-      <form role="search">
-        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
-</form>
 
-      <nav aria-label="Table of contents"><h2>Table of contents</h2>
-        <ul class="book-toc list-unstyled">
-<li><a class="" href="index.html">Introduction to Time Series</a></li>
-<li><a class="active" href="Intro.html"><span class="header-section-number">1</span> Basics</a></li>
-<li><a class="" href="Univariate.html"><span class="header-section-number">2</span> Univariate processes</a></li>
-<li><a class="" href="VAR.html"><span class="header-section-number">3</span> Multivariate models</a></li>
-<li><a class="" href="forecasting.html"><span class="header-section-number">4</span> Forecasting</a></li>
-<li><a class="" href="NonStat.html"><span class="header-section-number">5</span> Non-stationary processes</a></li>
-<li><a class="" href="cointeg.html"><span class="header-section-number">6</span> Introduction to cointegration</a></li>
-<li><a class="" href="ARCHGARCH.html"><span class="header-section-number">7</span> ARCH and GARCH models</a></li>
-<li><a class="" href="append.html"><span class="header-section-number">8</span> Appendix</a></li>
-<li><a class="" href="references.html">References</a></li>
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Time Series</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="Intro.html"><a href="Intro.html"><i class="fa fa-check"></i><b>1</b> Basics</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="Intro.html"><a href="Intro.html#shocks-and-lag-operator"><i class="fa fa-check"></i><b>1.1</b> Shocks and lag operator</a></li>
+<li class="chapter" data-level="1.2" data-path="Intro.html"><a href="Intro.html#conditional-and-unconditional-moments"><i class="fa fa-check"></i><b>1.2</b> Conditional and unconditional moments</a></li>
+<li class="chapter" data-level="1.3" data-path="Intro.html"><a href="Intro.html#central-limit-theorem-clt-for-persistent-processes"><i class="fa fa-check"></i><b>1.3</b> Central Limit Theorem (CLT) for persistent processes</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="Univariate.html"><a href="Univariate.html"><i class="fa fa-check"></i><b>2</b> Univariate processes</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="Univariate.html"><a href="Univariate.html#moving-average-ma-processes"><i class="fa fa-check"></i><b>2.1</b> Moving Average (MA) processes</a></li>
+<li class="chapter" data-level="2.2" data-path="Univariate.html"><a href="Univariate.html#ARsection"><i class="fa fa-check"></i><b>2.2</b> Auto-Regressive (AR) processes</a></li>
+<li class="chapter" data-level="2.3" data-path="Univariate.html"><a href="Univariate.html#ar-ma-processes"><i class="fa fa-check"></i><b>2.3</b> AR-MA processes</a></li>
+<li class="chapter" data-level="2.4" data-path="Univariate.html"><a href="Univariate.html#PACFapproach"><i class="fa fa-check"></i><b>2.4</b> PACF approach to identify AR/MA processes</a></li>
+<li class="chapter" data-level="2.5" data-path="Univariate.html"><a href="Univariate.html#wold-decomposition"><i class="fa fa-check"></i><b>2.5</b> Wold decomposition</a></li>
+<li class="chapter" data-level="2.6" data-path="Univariate.html"><a href="Univariate.html#IRFARMA"><i class="fa fa-check"></i><b>2.6</b> Impulse Response Functions (IRFs) in ARMA models</a></li>
+<li class="chapter" data-level="2.7" data-path="Univariate.html"><a href="Univariate.html#ARMAIRF"><i class="fa fa-check"></i><b>2.7</b> ARMA processes with exogenous variables (ARMA-X)</a>
+<ul>
+<li class="chapter" data-level="2.7.1" data-path="Univariate.html"><a href="Univariate.html#ARMAXDef"><i class="fa fa-check"></i><b>2.7.1</b> Definitions (ARMA-X)</a></li>
+<li class="chapter" data-level="2.7.2" data-path="Univariate.html"><a href="Univariate.html#ARMAXDynamic"><i class="fa fa-check"></i><b>2.7.2</b> Dynamic multipliers in ARMA-X models</a></li>
+</ul></li>
+<li class="chapter" data-level="2.8" data-path="Univariate.html"><a href="Univariate.html#estimARMA"><i class="fa fa-check"></i><b>2.8</b> Maximum Likelihood Estimation (MLE) of ARMA processes</a>
+<ul>
+<li class="chapter" data-level="2.8.1" data-path="Univariate.html"><a href="Univariate.html#Generalities"><i class="fa fa-check"></i><b>2.8.1</b> Generalities</a></li>
+<li class="chapter" data-level="2.8.2" data-path="Univariate.html"><a href="Univariate.html#estimAR"><i class="fa fa-check"></i><b>2.8.2</b> Maximum Likelihood Estimation of AR processes</a></li>
+<li class="chapter" data-level="2.8.3" data-path="Univariate.html"><a href="Univariate.html#estimMA"><i class="fa fa-check"></i><b>2.8.3</b> Maximum Likelihood Estimation of MA processes</a></li>
+<li class="chapter" data-level="2.8.4" data-path="Univariate.html"><a href="Univariate.html#estimARMApq"><i class="fa fa-check"></i><b>2.8.4</b> Maximum Likelihood Estimation of an ARMA(p,q) process</a></li>
+</ul></li>
+<li class="chapter" data-level="2.9" data-path="Univariate.html"><a href="Univariate.html#specification-choice"><i class="fa fa-check"></i><b>2.9</b> Specification choice</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="VAR.html"><a href="VAR.html"><i class="fa fa-check"></i><b>3</b> Multivariate models</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="VAR.html"><a href="VAR.html#definition-of-vars-and-svarma-models"><i class="fa fa-check"></i><b>3.1</b> Definition of VARs (and SVARMA) models</a></li>
+<li class="chapter" data-level="3.2" data-path="VAR.html"><a href="VAR.html#IRFSVARMA"><i class="fa fa-check"></i><b>3.2</b> IRFs in SVARMA</a></li>
+<li class="chapter" data-level="3.3" data-path="VAR.html"><a href="VAR.html#covariance-stationary-varma-models"><i class="fa fa-check"></i><b>3.3</b> Covariance-stationary VARMA models</a></li>
+<li class="chapter" data-level="3.4" data-path="VAR.html"><a href="VAR.html#estimVAR"><i class="fa fa-check"></i><b>3.4</b> VAR estimation</a></li>
+<li class="chapter" data-level="3.5" data-path="VAR.html"><a href="VAR.html#BlockGranger"><i class="fa fa-check"></i><b>3.5</b> Block exogeneity and Granger causality</a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="VAR.html"><a href="VAR.html#block-exogeneity"><i class="fa fa-check"></i><b>3.5.1</b> Block exogeneity</a></li>
+<li class="chapter" data-level="3.5.2" data-path="VAR.html"><a href="VAR.html#granger-causality"><i class="fa fa-check"></i><b>3.5.2</b> Granger Causality</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="VAR.html"><a href="VAR.html#identifStruct"><i class="fa fa-check"></i><b>3.6</b> Standard identification techniques</a>
+<ul>
+<li class="chapter" data-level="3.6.1" data-path="VAR.html"><a href="VAR.html#IdentifPbm"><i class="fa fa-check"></i><b>3.6.1</b> The identification problem</a></li>
+<li class="chapter" data-level="3.6.2" data-path="VAR.html"><a href="VAR.html#a-stylized-example-motivating-short-run-restrictions"><i class="fa fa-check"></i><b>3.6.2</b> A stylized example motivating short-run restrictions</a></li>
+<li class="chapter" data-level="3.6.3" data-path="VAR.html"><a href="VAR.html#cholesky-a-specific-short-run-restriction-situation"><i class="fa fa-check"></i><b>3.6.3</b> Cholesky: a specific short-run-restriction situation</a></li>
+<li class="chapter" data-level="3.6.4" data-path="VAR.html"><a href="VAR.html#long-run-restrictions"><i class="fa fa-check"></i><b>3.6.4</b> Long-run restrictions</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="forecasting.html"><a href="forecasting.html"><i class="fa fa-check"></i><b>4</b> Forecasting</a></li>
+<li class="chapter" data-level="5" data-path="NonStat.html"><a href="NonStat.html"><i class="fa fa-check"></i><b>5</b> Non-stationary processes</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="NonStat.html"><a href="NonStat.html#issues-when-working-with-nonstationary-time-series"><i class="fa fa-check"></i><b>5.1</b> Issues when working with nonstationary time series</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="NonStat.html"><a href="NonStat.html#the-bias-of-autoregressive-coefficient-towards-zero"><i class="fa fa-check"></i><b>5.1.1</b> The bias of autoregressive coefficient towards zero</a></li>
+<li class="chapter" data-level="5.1.2" data-path="NonStat.html"><a href="NonStat.html#spurious-regressions"><i class="fa fa-check"></i><b>5.1.2</b> Spurious regressions</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="NonStat.html"><a href="NonStat.html#nonstationarity-tests"><i class="fa fa-check"></i><b>5.2</b> Nonstationarity tests</a></li>
+<li class="chapter" data-level="5.3" data-path="NonStat.html"><a href="NonStat.html#stationarity-test-kpss"><i class="fa fa-check"></i><b>5.3</b> Stationarity test: KPSS</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="cointeg.html"><a href="cointeg.html"><i class="fa fa-check"></i><b>6</b> Introduction to cointegration</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="cointeg.html"><a href="cointeg.html#intuition"><i class="fa fa-check"></i><b>6.1</b> Intuition</a></li>
+<li class="chapter" data-level="6.2" data-path="cointeg.html"><a href="cointeg.html#the-bivariate-case"><i class="fa fa-check"></i><b>6.2</b> The bivariate case</a></li>
+<li class="chapter" data-level="6.3" data-path="cointeg.html"><a href="cointeg.html#multivariate-case-and-vecm"><i class="fa fa-check"></i><b>6.3</b> Multivariate case and VECM</a></li>
+<li class="chapter" data-level="6.4" data-path="cointeg.html"><a href="cointeg.html#cointegration-in-practice"><i class="fa fa-check"></i><b>6.4</b> Cointegration in practice</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="ARCHGARCH.html"><a href="ARCHGARCH.html"><i class="fa fa-check"></i><b>7</b> ARCH and GARCH models</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="ARCHGARCH.html"><a href="ARCHGARCH.html#conditional-heteroskedasticity"><i class="fa fa-check"></i><b>7.1</b> Conditional heteroskedasticity</a></li>
+<li class="chapter" data-level="7.2" data-path="ARCHGARCH.html"><a href="ARCHGARCH.html#ARCH"><i class="fa fa-check"></i><b>7.2</b> The ARCH model</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="ARCHGARCH.html"><a href="ARCHGARCH.html#the-two-arch-specifications"><i class="fa fa-check"></i><b>7.2.1</b> The two ARCH specifications</a></li>
+<li class="chapter" data-level="7.2.2" data-path="ARCHGARCH.html"><a href="ARCHGARCH.html#maximum-likelihood-estimation-of-an-arch-process"><i class="fa fa-check"></i><b>7.2.2</b> Maximum Likelihood Estimation of an ARCH process</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="ARCHGARCH.html"><a href="ARCHGARCH.html#GARCH"><i class="fa fa-check"></i><b>7.3</b> The GARCH model</a></li>
+<li class="chapter" data-level="7.4" data-path="ARCHGARCH.html"><a href="ARCHGARCH.html#arch-in-mean"><i class="fa fa-check"></i><b>7.4</b> ARCH-in-mean</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="append.html"><a href="append.html"><i class="fa fa-check"></i><b>8</b> Appendix</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="append.html"><a href="append.html#PCAapp"><i class="fa fa-check"></i><b>8.1</b> Principal component analysis (PCA)</a></li>
+<li class="chapter" data-level="8.2" data-path="append.html"><a href="append.html#LinAlgebra"><i class="fa fa-check"></i><b>8.2</b> Linear algebra: definitions and results</a></li>
+<li class="chapter" data-level="8.3" data-path="append.html"><a href="append.html#variousResults"><i class="fa fa-check"></i><b>8.3</b> Statistical analysis: definitions and results</a>
+<ul>
+<li class="chapter" data-level="8.3.1" data-path="append.html"><a href="append.html#moments-and-statistics"><i class="fa fa-check"></i><b>8.3.1</b> Moments and statistics</a></li>
+<li class="chapter" data-level="8.3.2" data-path="append.html"><a href="append.html#standard-distributions"><i class="fa fa-check"></i><b>8.3.2</b> Standard distributions</a></li>
+<li class="chapter" data-level="8.3.3" data-path="append.html"><a href="append.html#StochConvergences"><i class="fa fa-check"></i><b>8.3.3</b> Stochastic convergences</a></li>
+<li class="chapter" data-level="8.3.4" data-path="append.html"><a href="append.html#multivariate-gaussian-distribution"><i class="fa fa-check"></i><b>8.3.4</b> Multivariate Gaussian distribution</a></li>
+<li class="chapter" data-level="8.3.5" data-path="append.html"><a href="append.html#CLTappend"><i class="fa fa-check"></i><b>8.3.5</b> Central limit theorem</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="append.html"><a href="append.html#AppendixProof"><i class="fa fa-check"></i><b>8.4</b> Proofs</a></li>
+<li class="chapter" data-level="8.5" data-path="append.html"><a href="append.html#Inference"><i class="fa fa-check"></i><b>8.5</b> Inference</a>
+<ul>
+<li class="chapter" data-level="8.5.1" data-path="append.html"><a href="append.html#MonteCarlo"><i class="fa fa-check"></i><b>8.5.1</b> Monte Carlo method</a></li>
+<li class="chapter" data-level="8.5.2" data-path="append.html"><a href="append.html#Delta"><i class="fa fa-check"></i><b>8.5.2</b> Delta method</a></li>
+<li class="chapter" data-level="8.5.3" data-path="append.html"><a href="append.html#Bootstrap"><i class="fa fa-check"></i><b>8.5.3</b> Bootstrap</a></li>
+</ul></li>
+<li class="chapter" data-level="8.6" data-path="append.html"><a href="append.html#statistical-tables"><i class="fa fa-check"></i><b>8.6</b> Statistical Tables</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
 </ul>
 
-        <div class="book-extra">
-          
-        </div>
       </nav>
-</div>
-  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="Intro" class="section level1" number="1">
-<h1>
-<span class="header-section-number">1</span> Basics<a class="anchor" aria-label="anchor" href="#Intro"><i class="fas fa-link"></i></a>
-</h1>
-<div id="shocks-and-lag-operator" class="section level2" number="1.1">
-<h2>
-<span class="header-section-number">1.1</span> Shocks and lag operator<a class="anchor" aria-label="anchor" href="#shocks-and-lag-operator"><i class="fas fa-link"></i></a>
-</h2>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Introduction to Time Series</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="Intro" class="section level1 hasAnchor" number="1">
+<h1><span class="header-section-number">Chapter 1</span> Basics<a href="Intro.html#Intro" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="shocks-and-lag-operator" class="section level2 hasAnchor" number="1.1">
+<h2><span class="header-section-number">1.1</span> Shocks and lag operator<a href="Intro.html#shocks-and-lag-operator" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>A time series is an infinite sequence of random variables indexed by time: <span class="math inline">\(\{y_t\}_{t=-\infty}^{+\infty}=\{\dots, y_{-2},y_{-1},y_{0},y_{1},\dots,y_t,\dots\}\)</span>, <span class="math inline">\(y_i \in \mathbb{R}^k\)</span>. In practice, we only observe samples, typically: <span class="math inline">\(\{y_{1},\dots,y_T\}\)</span>.</p>
 <p>Standard time series models are built using <strong>shocks</strong> that we will often denote by <span class="math inline">\(\varepsilon_t\)</span>. Typically, <span class="math inline">\(\mathbb{E}(\varepsilon_t)=0\)</span>. In many models, the shocks are supposed to be i.i.d., but there exist other (less restrictive) notions of shocks. In particular, the definition of many processes is based on white noises:</p>
 <div class="definition">
 <p><span id="def:whitenoise" class="definition"><strong>Definition 1.1  (White noise) </strong></span>The process <span class="math inline">\(\{\varepsilon_t\}_{t \in] -\infty,+\infty[}\)</span> is a white noise if, for all <span class="math inline">\(t\)</span>:</p>
 <ol style="list-style-type: lower-alpha">
-<li>
-<span class="math inline">\(\mathbb{E}(\varepsilon_t)=0\)</span>,</li>
-<li>
-<span class="math inline">\(\mathbb{E}(\varepsilon_t^2)=\sigma^2&lt;\infty\)</span>,</li>
+<li><span class="math inline">\(\mathbb{E}(\varepsilon_t)=0\)</span>,</li>
+<li><span class="math inline">\(\mathbb{E}(\varepsilon_t^2)=\sigma^2&lt;\infty\)</span>,</li>
 <li>for all <span class="math inline">\(s\ne t\)</span>, <span class="math inline">\(\mathbb{E}(\varepsilon_t \varepsilon_s)=0\)</span>.</li>
 </ol>
 </div>
@@ -116,22 +309,21 @@
 \varepsilon_{t} = \sigma_t \times z_{t},
 \]</span>
 where <span class="math inline">\(z_t \sim i.i.d.\,\mathcal{N}(0,1)\)</span> and <span class="math inline">\(\sigma_t^2 = w + \alpha \varepsilon_{t-1}^2\)</span> (with <span class="math inline">\(w&gt;0\)</span> and <span class="math inline">\(0 \leq \alpha &lt;1\)</span>).</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="cn">T</span> <span class="op">&lt;-</span> <span class="fl">500</span></span>
-<span><span class="va">w</span> <span class="op">&lt;-</span> <span class="fl">1</span>; <span class="va">alpha</span> <span class="op">&lt;-</span> <span class="fl">.98</span></span>
-<span><span class="va">all_epsilon</span> <span class="op">&lt;-</span> <span class="cn">NULL</span>; <span class="va">epsilon_1</span> <span class="op">&lt;-</span> <span class="fl">0</span></span>
-<span><span class="kw">for</span><span class="op">(</span><span class="va">t</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="cn">T</span><span class="op">)</span><span class="op">{</span></span>
-<span>  <span class="va">sigma</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="va">w</span> <span class="op">+</span> <span class="va">alpha</span> <span class="op">*</span> <span class="va">epsilon_1</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span></span>
-<span>  <span class="va">epsilon</span> <span class="op">&lt;-</span> <span class="va">sigma</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span></span>
-<span>  <span class="va">all_epsilon</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">all_epsilon</span>,<span class="va">epsilon</span><span class="op">)</span></span>
-<span>  <span class="va">epsilon_1</span> <span class="op">&lt;-</span> <span class="va">epsilon</span></span>
-<span><span class="op">}</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>plt<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">.15</span>,<span class="fl">.95</span>,<span class="fl">.1</span>,<span class="fl">.95</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">all_epsilon</span>,type<span class="op">=</span><span class="st">"l"</span>,lwd<span class="op">=</span><span class="fl">2</span>,</span>
-<span>     ylab<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/expression.html">expression</a></span><span class="op">(</span><span class="va">epsilon</span><span class="op">[</span><span class="va">t</span><span class="op">]</span><span class="op">)</span>,xlab<span class="op">=</span><span class="st">""</span><span class="op">)</span></span></code></pre></div>
-<div class="figure" style="text-align: left-aligned">
-<span style="display:block;" id="fig:simulGARCHointro"></span>
-<img src="TimeSeries_files/figure-html/simulGARCHointro-1.png" alt="Simulation of $\varepsilon_t$, where $\varepsilon_{t} = \sigma_t \times z_{t}$, with $z_t \sim i.i.d.\,\mathcal{N}(0,1)$." width="95%"><p class="caption">
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="Intro.html#cb2-1" tabindex="-1"></a>T <span class="ot">&lt;-</span> <span class="dv">500</span></span>
+<span id="cb2-2"><a href="Intro.html#cb2-2" tabindex="-1"></a>w <span class="ot">&lt;-</span> <span class="dv">1</span>; alpha <span class="ot">&lt;-</span> .<span class="dv">98</span></span>
+<span id="cb2-3"><a href="Intro.html#cb2-3" tabindex="-1"></a>all_epsilon <span class="ot">&lt;-</span> <span class="cn">NULL</span>; epsilon_1 <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb2-4"><a href="Intro.html#cb2-4" tabindex="-1"></a><span class="cf">for</span>(t <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>T){</span>
+<span id="cb2-5"><a href="Intro.html#cb2-5" tabindex="-1"></a>  sigma <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(w <span class="sc">+</span> alpha <span class="sc">*</span> epsilon_1<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb2-6"><a href="Intro.html#cb2-6" tabindex="-1"></a>  epsilon <span class="ot">&lt;-</span> sigma <span class="sc">*</span> <span class="fu">rnorm</span>(<span class="dv">1</span>)</span>
+<span id="cb2-7"><a href="Intro.html#cb2-7" tabindex="-1"></a>  all_epsilon <span class="ot">&lt;-</span> <span class="fu">c</span>(all_epsilon,epsilon)</span>
+<span id="cb2-8"><a href="Intro.html#cb2-8" tabindex="-1"></a>  epsilon_1 <span class="ot">&lt;-</span> epsilon</span>
+<span id="cb2-9"><a href="Intro.html#cb2-9" tabindex="-1"></a>}</span>
+<span id="cb2-10"><a href="Intro.html#cb2-10" tabindex="-1"></a><span class="fu">par</span>(<span class="at">plt=</span><span class="fu">c</span>(.<span class="dv">15</span>,.<span class="dv">95</span>,.<span class="dv">1</span>,.<span class="dv">95</span>))</span>
+<span id="cb2-11"><a href="Intro.html#cb2-11" tabindex="-1"></a><span class="fu">plot</span>(all_epsilon,<span class="at">type=</span><span class="st">&quot;l&quot;</span>,<span class="at">lwd=</span><span class="dv">2</span>,</span>
+<span id="cb2-12"><a href="Intro.html#cb2-12" tabindex="-1"></a>     <span class="at">ylab=</span><span class="fu">expression</span>(epsilon[t]),<span class="at">xlab=</span><span class="st">&quot;&quot;</span>)</span></code></pre></div>
+<div class="figure" style="text-align: left-aligned"><span style="display:block;" id="fig:simulGARCHointro"></span>
+<img src="TimeSeries_files/figure-html/simulGARCHointro-1.png" alt="Simulation of $\varepsilon_t$, where $\varepsilon_{t} = \sigma_t \times z_{t}$, with $z_t \sim i.i.d.\,\mathcal{N}(0,1)$." width="95%" />
+<p class="caption">
 Figure 1.1: Simulation of <span class="math inline">\(\varepsilon_t\)</span>, where <span class="math inline">\(\varepsilon_{t} = \sigma_t \times z_{t}\)</span>, with <span class="math inline">\(z_t \sim i.i.d.\,\mathcal{N}(0,1)\)</span>.
 </p>
 </div>
@@ -155,10 +347,8 @@ L: \{y_t\}_{t=-\infty}^{+\infty} \rightarrow \{w_t\}_{t=-\infty}^{+\infty} \quad
 (1-\phi L) y_t = \mu + \varepsilon_t.
 \]</span></p>
 </div>
-<div id="conditional-and-unconditional-moments" class="section level2" number="1.2">
-<h2>
-<span class="header-section-number">1.2</span> Conditional and unconditional moments<a class="anchor" aria-label="anchor" href="#conditional-and-unconditional-moments"><i class="fas fa-link"></i></a>
-</h2>
+<div id="conditional-and-unconditional-moments" class="section level2 hasAnchor" number="1.2">
+<h2><span class="header-section-number">1.2</span> Conditional and unconditional moments<a href="Intro.html#conditional-and-unconditional-moments" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>If it exists, the <strong>unconditional (or marginal) mean</strong> of the random variable <span class="math inline">\(y_t\)</span> is given by:
 <span class="math display">\[
 \mu_t := \mathbb{E}(y_t) = \int_{-\infty}^{\infty} y_t f_{Y_t}(y_t) dy_t,
@@ -185,14 +375,13 @@ where <span class="math inline">\(f_{Y_t,Y_{t-1},\dots,Y_{t-j}}(y_t,y_{t-1},\dot
 \]</span></p>
 </div>
 <p>Figure <a href="Intro.html#fig:NONNstat1">1.2</a> displays the simulation of a process that is not covariance stationary. This process follows <span class="math inline">\(y_t = 0.1t + \varepsilon_t\)</span>, where <span class="math inline">\(\varepsilon_t \sim\,i.i.d.\,\mathcal{N}(0,1)\)</span>. Indeed, for such a process, we have: <span class="math inline">\(\mathbb{E}(y_t)=0.1t\)</span>, which depends on <span class="math inline">\(t\)</span>.</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="cn">T</span> <span class="op">&lt;-</span> <span class="fl">200</span></span>
-<span><span class="va">y</span> <span class="op">&lt;-</span> <span class="fl">0.1</span><span class="op">*</span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="cn">T</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="cn">T</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>plt<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">.1</span>,<span class="fl">.95</span>,<span class="fl">.1</span>,<span class="fl">.95</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">y</span>,xlab<span class="op">=</span><span class="st">""</span>,ylab<span class="op">=</span><span class="st">""</span>,lwd<span class="op">=</span><span class="fl">2</span>,type<span class="op">=</span><span class="st">"l"</span><span class="op">)</span></span></code></pre></div>
-<div class="figure" style="text-align: left-aligned">
-<span style="display:block;" id="fig:NONNstat1"></span>
-<img src="TimeSeries_files/figure-html/NONNstat1-1.png" alt="Example of a process that is not covariance stationary. it follows: $y_t = 0.1t + \varepsilon_t$, where $\varepsilon_t \sim \mathcal{N}(0,1)$." width="95%"><p class="caption">
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="Intro.html#cb3-1" tabindex="-1"></a>T <span class="ot">&lt;-</span> <span class="dv">200</span></span>
+<span id="cb3-2"><a href="Intro.html#cb3-2" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fl">0.1</span><span class="sc">*</span>(<span class="dv">1</span><span class="sc">:</span>T) <span class="sc">+</span> <span class="fu">rnorm</span>(T)</span>
+<span id="cb3-3"><a href="Intro.html#cb3-3" tabindex="-1"></a><span class="fu">par</span>(<span class="at">plt=</span><span class="fu">c</span>(.<span class="dv">1</span>,.<span class="dv">95</span>,.<span class="dv">1</span>,.<span class="dv">95</span>))</span>
+<span id="cb3-4"><a href="Intro.html#cb3-4" tabindex="-1"></a><span class="fu">plot</span>(y,<span class="at">xlab=</span><span class="st">&quot;&quot;</span>,<span class="at">ylab=</span><span class="st">&quot;&quot;</span>,<span class="at">lwd=</span><span class="dv">2</span>,<span class="at">type=</span><span class="st">&quot;l&quot;</span>)</span></code></pre></div>
+<div class="figure" style="text-align: left-aligned"><span style="display:block;" id="fig:NONNstat1"></span>
+<img src="TimeSeries_files/figure-html/NONNstat1-1.png" alt="Example of a process that is not covariance stationary. it follows: $y_t = 0.1t + \varepsilon_t$, where $\varepsilon_t \sim \mathcal{N}(0,1)$." width="95%" />
+<p class="caption">
 Figure 1.2: Example of a process that is not covariance stationary. it follows: <span class="math inline">\(y_t = 0.1t + \varepsilon_t\)</span>, where <span class="math inline">\(\varepsilon_t \sim \mathcal{N}(0,1)\)</span>.
 </p>
 </div>
@@ -203,18 +392,17 @@ Figure 1.2: Example of a process that is not covariance stationary. it follows: 
 <span class="math display">\[
 y_t = \mathbb{I}_{\{t&lt;1000\}}\varepsilon_{1,t}+\mathbb{I}_{\{t\ge1000\}}\varepsilon_{2,t},
 \]</span>
-where <span class="math inline">\(\varepsilon_{1,t} \sim \mathcal{N}(0,1)\)</span> and <span class="math inline">\(\varepsilon_{2,t} \sim \sqrt{\frac{\nu - 2}{\nu}} t(\nu)\)</span> and <span class="math inline">\(\nu = 4\)</span><a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;Indeed, &lt;span class="math inline"&gt;\(\mathbb{E}[y_t]=\mathbb{I}_{\{t&amp;lt;1000\}}\times \underbrace{\mathbb{E}[\varepsilon_{1,t}]}_{=0}+\mathbb{I}_{\{t\ge1000\}} \times \underbrace{\mathbb{E}[\varepsilon_{2,t}]}_{=0}=0\)&lt;/span&gt;, &lt;span class="math inline"&gt;\(\mathbb{V}ar(y_t)=\mathbb{I}_{\{t&amp;lt;1000\}}\times \underbrace{\mathbb{V}ar(\varepsilon_{1,t})}_{=1}+\mathbb{I}_{\{t\ge1000\}} \times \underbrace{\mathbb{V}ar(\varepsilon_{2,t})}_{=\left(\sqrt{\frac{\nu - 2}{\nu}}\right)^2 \times \frac{\nu}{\nu - 2}=1}=1\)&lt;/span&gt; and for &lt;span class="math inline"&gt;\(\forall j \geq 1\)&lt;/span&gt;, &lt;span class="math inline"&gt;\(\gamma_{j,t}=\gamma_j=0\)&lt;/span&gt; as the &lt;span class="math inline"&gt;\(\varepsilon_t\)&lt;/span&gt;’s are serially uncorrelated.&lt;/p&gt;'><sup>1</sup></a>. A simulated path is displayed in Figure <a href="Intro.html#fig:NONNstat2">1.3</a>.</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="cn">T</span> <span class="op">&lt;-</span> <span class="fl">2000</span></span>
-<span><span class="va">y</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="cn">T</span><span class="op">)</span></span>
-<span><span class="va">y</span><span class="op">[</span><span class="op">(</span><span class="cn">T</span><span class="op">/</span><span class="fl">2</span><span class="op">)</span><span class="op">:</span><span class="cn">T</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/TDist.html">rt</a></span><span class="op">(</span>n <span class="op">=</span> <span class="cn">T</span><span class="op">/</span><span class="fl">2</span> <span class="op">+</span> <span class="fl">1</span>,df<span class="op">=</span><span class="fl">4</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>plt<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">.1</span>,<span class="fl">.95</span>,<span class="fl">.15</span>,<span class="fl">.95</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">y</span>,xlab<span class="op">=</span><span class="st">""</span>,ylab<span class="op">=</span><span class="st">""</span>,type<span class="op">=</span><span class="st">"l"</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/graphics/abline.html">abline</a></span><span class="op">(</span>h<span class="op">=</span><span class="op">-</span><span class="fl">2.58</span>,col<span class="op">=</span><span class="st">"red"</span>,lty<span class="op">=</span><span class="fl">3</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/graphics/abline.html">abline</a></span><span class="op">(</span>h<span class="op">=</span><span class="fl">2.58</span>,col<span class="op">=</span><span class="st">"red"</span>,lty<span class="op">=</span><span class="fl">3</span><span class="op">)</span></span></code></pre></div>
-<div class="figure" style="text-align: left-aligned">
-<span style="display:block;" id="fig:NONNstat2"></span>
-<img src="TimeSeries_files/figure-html/NONNstat2-1.png" alt="Example of a process that is covariance stationary but not strictly stationary. The red lines delineate the 99\% confidence interval of the standard normal distribution ($\pm 2.58$)." width="95%"><p class="caption">
+where <span class="math inline">\(\varepsilon_{1,t} \sim \mathcal{N}(0,1)\)</span> and <span class="math inline">\(\varepsilon_{2,t} \sim \sqrt{\frac{\nu - 2}{\nu}} t(\nu)\)</span> and <span class="math inline">\(\nu = 4\)</span><a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>. A simulated path is displayed in Figure <a href="Intro.html#fig:NONNstat2">1.3</a>.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="Intro.html#cb4-1" tabindex="-1"></a>T <span class="ot">&lt;-</span> <span class="dv">2000</span></span>
+<span id="cb4-2"><a href="Intro.html#cb4-2" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(T)</span>
+<span id="cb4-3"><a href="Intro.html#cb4-3" tabindex="-1"></a>y[(T<span class="sc">/</span><span class="dv">2</span>)<span class="sc">:</span>T] <span class="ot">&lt;-</span> <span class="fu">rt</span>(<span class="at">n =</span> T<span class="sc">/</span><span class="dv">2</span> <span class="sc">+</span> <span class="dv">1</span>,<span class="at">df=</span><span class="dv">4</span>)</span>
+<span id="cb4-4"><a href="Intro.html#cb4-4" tabindex="-1"></a><span class="fu">par</span>(<span class="at">plt=</span><span class="fu">c</span>(.<span class="dv">1</span>,.<span class="dv">95</span>,.<span class="dv">15</span>,.<span class="dv">95</span>))</span>
+<span id="cb4-5"><a href="Intro.html#cb4-5" tabindex="-1"></a><span class="fu">plot</span>(y,<span class="at">xlab=</span><span class="st">&quot;&quot;</span>,<span class="at">ylab=</span><span class="st">&quot;&quot;</span>,<span class="at">type=</span><span class="st">&quot;l&quot;</span>)</span>
+<span id="cb4-6"><a href="Intro.html#cb4-6" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h=</span><span class="sc">-</span><span class="fl">2.58</span>,<span class="at">col=</span><span class="st">&quot;red&quot;</span>,<span class="at">lty=</span><span class="dv">3</span>)</span>
+<span id="cb4-7"><a href="Intro.html#cb4-7" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h=</span><span class="fl">2.58</span>,<span class="at">col=</span><span class="st">&quot;red&quot;</span>,<span class="at">lty=</span><span class="dv">3</span>)</span></code></pre></div>
+<div class="figure" style="text-align: left-aligned"><span style="display:block;" id="fig:NONNstat2"></span>
+<img src="TimeSeries_files/figure-html/NONNstat2-1.png" alt="Example of a process that is covariance stationary but not strictly stationary. The red lines delineate the 99\% confidence interval of the standard normal distribution ($\pm 2.58$)." width="95%" />
+<p class="caption">
 Figure 1.3: Example of a process that is covariance stationary but not strictly stationary. The red lines delineate the 99% confidence interval of the standard normal distribution (<span class="math inline">\(\pm 2.58\)</span>).
 </p>
 </div>
@@ -230,37 +418,34 @@ Figure 1.3: Example of a process that is covariance stationary but not strictly 
 \rho_j = \frac{\gamma_j}{\gamma_0}.
 \]</span></p>
 </div>
-<p>Consider a long historical time series of the Swiss GDP growth, taken from the <span class="citation">Jordà, Schularick, and Taylor (<a href="references.html#ref-JST_2017">2017</a>)</span> dataset.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;Version 6 of the dataset, available on &lt;a href="https://www.macrohistory.net"&gt;this website&lt;/a&gt;.&lt;/p&gt;'><sup>2</sup></a></p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">AEC</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">JST</span><span class="op">)</span>;<span class="va">data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/subset.html">subset</a></span><span class="op">(</span><span class="va">JST</span>,<span class="va">iso</span><span class="op">==</span><span class="st">"CHE"</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>plt<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">.1</span>,<span class="fl">.95</span>,<span class="fl">.1</span>,<span class="fl">.95</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="cn">T</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="va">data</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span></span>
-<span><span class="va">data</span><span class="op">$</span><span class="va">growth</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="cn">NaN</span>,<span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="va">data</span><span class="op">$</span><span class="va">gdp</span><span class="op">[</span><span class="fl">2</span><span class="op">:</span><span class="cn">T</span><span class="op">]</span><span class="op">/</span><span class="va">data</span><span class="op">$</span><span class="va">gdp</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="op">(</span><span class="cn">T</span><span class="op">-</span><span class="fl">1</span><span class="op">)</span><span class="op">]</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">data</span><span class="op">$</span><span class="va">year</span>,<span class="va">data</span><span class="op">$</span><span class="va">growth</span>,type<span class="op">=</span><span class="st">"l"</span>,xlab<span class="op">=</span><span class="st">""</span>,ylab<span class="op">=</span><span class="st">""</span>,lwd<span class="op">=</span><span class="fl">2</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/graphics/abline.html">abline</a></span><span class="op">(</span>h<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">data</span><span class="op">$</span><span class="va">growth</span>,na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,col<span class="op">=</span><span class="st">"blue"</span>,lty<span class="op">=</span><span class="fl">2</span>,xlab<span class="op">=</span><span class="st">""</span>,ylab<span class="op">=</span><span class="st">""</span><span class="op">)</span></span></code></pre></div>
-<div class="figure" style="text-align: left-aligned">
-<span style="display:block;" id="fig:autocov"></span>
-<img src="TimeSeries_files/figure-html/autocov-1.png" alt="Annual growth rate of Swiss GDP, based on the Jorda-Schularick-Taylor Macrohistory Database." width="95%"><p class="caption">
+<p>Consider a long historical time series of the Swiss GDP growth, taken from the <span class="citation">Jordà, Schularick, and Taylor (<a href="#ref-JST_2017">2017</a>)</span> dataset.<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a></p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="Intro.html#cb5-1" tabindex="-1"></a><span class="fu">library</span>(IdSS)</span>
+<span id="cb5-2"><a href="Intro.html#cb5-2" tabindex="-1"></a><span class="fu">data</span>(JST);data <span class="ot">&lt;-</span> <span class="fu">subset</span>(JST,iso<span class="sc">==</span><span class="st">&quot;CHE&quot;</span>)</span>
+<span id="cb5-3"><a href="Intro.html#cb5-3" tabindex="-1"></a><span class="fu">par</span>(<span class="at">plt=</span><span class="fu">c</span>(.<span class="dv">1</span>,.<span class="dv">95</span>,.<span class="dv">1</span>,.<span class="dv">95</span>))</span>
+<span id="cb5-4"><a href="Intro.html#cb5-4" tabindex="-1"></a>T <span class="ot">&lt;-</span> <span class="fu">dim</span>(data)[<span class="dv">1</span>]</span>
+<span id="cb5-5"><a href="Intro.html#cb5-5" tabindex="-1"></a>data<span class="sc">$</span>growth <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="cn">NaN</span>,<span class="fu">log</span>(data<span class="sc">$</span>gdp[<span class="dv">2</span><span class="sc">:</span>T]<span class="sc">/</span>data<span class="sc">$</span>gdp[<span class="dv">1</span><span class="sc">:</span>(T<span class="dv">-1</span>)]))</span>
+<span id="cb5-6"><a href="Intro.html#cb5-6" tabindex="-1"></a><span class="fu">plot</span>(data<span class="sc">$</span>year,data<span class="sc">$</span>growth,<span class="at">type=</span><span class="st">&quot;l&quot;</span>,<span class="at">xlab=</span><span class="st">&quot;&quot;</span>,<span class="at">ylab=</span><span class="st">&quot;&quot;</span>,<span class="at">lwd=</span><span class="dv">2</span>)</span>
+<span id="cb5-7"><a href="Intro.html#cb5-7" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h=</span><span class="fu">mean</span>(data<span class="sc">$</span>growth,<span class="at">na.rm =</span> <span class="cn">TRUE</span>),<span class="at">col=</span><span class="st">&quot;blue&quot;</span>,<span class="at">lty=</span><span class="dv">2</span>,<span class="at">xlab=</span><span class="st">&quot;&quot;</span>,<span class="at">ylab=</span><span class="st">&quot;&quot;</span>)</span></code></pre></div>
+<div class="figure" style="text-align: left-aligned"><span style="display:block;" id="fig:autocov"></span>
+<img src="TimeSeries_files/figure-html/autocov-1.png" alt="Annual growth rate of Swiss GDP, based on the Jorda-Schularick-Taylor Macrohistory Database." width="95%" />
+<p class="caption">
 Figure 1.4: Annual growth rate of Swiss GDP, based on the Jorda-Schularick-Taylor Macrohistory Database.
 </p>
 </div>
 <p>Figure <a href="Intro.html#fig:autocov2">1.5</a> shows two scatter plots. In the first one, the coordinates of each point are of the form <span class="math inline">\((y_{t-1},y_t)\)</span>. Hence, the slope of the OLS regression line (in blue) is <span class="math inline">\(\widehat{\mathbb{C}ov}(y_t,y_{t-1})/\widehat{\mathbb{V}ar}(y_{t-1})\)</span> (where the hats indicate that these moments are the sample ones). Assuming that the process is covariance stationary, the slope therefore is an estimate of the auto-correlation of order one. By the same logic, the slope of the blue line in the second plot is an estimate of the auto-correlation of order three.</p>
-<div class="figure" style="text-align: left-aligned">
-<span style="display:block;" id="fig:autocov2"></span>
-<img src="TimeSeries_files/figure-html/autocov2-1.png" alt="For order $j$, the slope of the blue line is, approximately, $\hat{\gamma}_j/\widehat{\mathbb{V}ar}(y_t)$, where hats indicate sample moments." width="95%"><p class="caption">
+<div class="figure" style="text-align: left-aligned"><span style="display:block;" id="fig:autocov2"></span>
+<img src="TimeSeries_files/figure-html/autocov2-1.png" alt="For order $j$, the slope of the blue line is, approximately, $\hat{\gamma}_j/\widehat{\mathbb{V}ar}(y_t)$, where hats indicate sample moments." width="95%" />
+<p class="caption">
 Figure 1.5: For order <span class="math inline">\(j\)</span>, the slope of the blue line is, approximately, <span class="math inline">\(\hat{\gamma}_j/\widehat{\mathbb{V}ar}(y_t)\)</span>, where hats indicate sample moments.
 </p>
 </div>
 </div>
-<div id="central-limit-theorem-clt-for-persistent-processes" class="section level2" number="1.3">
-<h2>
-<span class="header-section-number">1.3</span> Central Limit Theorem (CLT) for persistent processes<a class="anchor" aria-label="anchor" href="#central-limit-theorem-clt-for-persistent-processes"><i class="fas fa-link"></i></a>
-</h2>
+<div id="central-limit-theorem-clt-for-persistent-processes" class="section level2 hasAnchor" number="1.3">
+<h2><span class="header-section-number">1.3</span> Central Limit Theorem (CLT) for persistent processes<a href="Intro.html#central-limit-theorem-clt-for-persistent-processes" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>This subsection shows that the Central Limit Theorem (CLT, see Theorem <a href="append.html#thm:LindbergLevyCLT">8.5</a>) can be extended to cases where the observations are auto-correlated.</p>
 <div class="theorem">
 <p><span id="thm:CLTcovstat" class="theorem"><strong>Theorem 1.1  (Central Limit Theorem for covariance-stationary processes) </strong></span>If process <span class="math inline">\(y_t\)</span> is covariance stationary and if the series of autocovariances is absolutely summable (<span class="math inline">\(\sum_{j=-\infty}^{+\infty} |\gamma_j| &lt;\infty\)</span>), then:
-<span class="math display" id="eq:TCL4ts">\[\begin{eqnarray}
+<span class="math display" id="eq:TCL4ts" id="eq:TCL2" id="eq:TCL20">\[\begin{eqnarray}
 \bar{y}_T \overset{m.s.}{\rightarrow} \mu &amp;=&amp; \mathbb{E}(y_t) \tag{1.2}\\
 \mbox{lim}_{T \rightarrow +\infty} T \mathbb{E}\left[(\bar{y}_T - \mu)^2\right] &amp;=&amp; \sum_{j=-\infty}^{+\infty} \gamma_j \tag{1.3}\\
 \sqrt{T}(\bar{y}_T - \mu) &amp;\overset{d}{\rightarrow}&amp; \mathcal{N}\left(0,\sum_{j=-\infty}^{+\infty} \gamma_j \right) \tag{1.4}.
@@ -268,7 +453,7 @@ Figure 1.5: For order <span class="math inline">\(j\)</span>, the slope of the b
 <p>[Mean square (m.s.) and distribution (d.) convergences: see Definitions <a href="append.html#def:cvgceDistri">8.16</a> and <a href="append.html#def:convergenceLr">8.14</a>.]</p>
 </div>
 <div class="proof">
-<p><span id="unlabeled-div-2" class="proof"><em>Proof</em>. </span>The absolute value of the series of the autocovariances is finite as it is lower than the sum of the absolute values of the autocovariances which is finite by the absolute summability assumption. As a result, there exists a finite <span class="math inline">\(M \in \mathbb{R}\)</span> such that <span class="math inline">\(\sum_{j=-\infty}^{+\infty} \gamma_j=M\)</span> and Eq. <a href="Intro.html#eq:TCL2">(1.3)</a> implies Eq. <a href="Intro.html#eq:TCL20">(1.2)</a>. For Eq. <a href="Intro.html#eq:TCL2">(1.3)</a>, see Appendix <a href="append.html#AppendixProof">8.4</a>. For Eq. <a href="Intro.html#eq:TCL4ts">(1.4)</a>, see <span class="citation">Anderson (<a href="references.html#ref-Anderson_1971">1971</a>)</span>, p. 429.</p>
+<p><span id="unlabeled-div-2" class="proof"><em>Proof</em>. </span>The absolute value of the series of the autocovariances is finite as it is lower than the sum of the absolute values of the autocovariances which is finite by the absolute summability assumption. As a result, there exists a finite <span class="math inline">\(M \in \mathbb{R}\)</span> such that <span class="math inline">\(\sum_{j=-\infty}^{+\infty} \gamma_j=M\)</span> and Eq. <a href="Intro.html#eq:TCL2">(1.3)</a> implies Eq. <a href="Intro.html#eq:TCL20">(1.2)</a>. For Eq. <a href="Intro.html#eq:TCL2">(1.3)</a>, see Appendix <a href="append.html#AppendixProof">8.4</a>. For Eq. <a href="Intro.html#eq:TCL4ts">(1.4)</a>, see <span class="citation">Anderson (<a href="#ref-Anderson_1971">1971</a>)</span>, p. 429.</p>
 </div>
 <div class="definition">
 <p><span id="def:LRV" class="definition"><strong>Definition 1.7  (Long-run variance) </strong></span>Under the assumptions of Theorem <a href="Intro.html#thm:CLTcovstat">1.1</a>, the limit appearing in Eq. <a href="Intro.html#eq:TCL2">(1.3)</a> exists and is called <strong>long-run variance</strong>. It is denoted by <span class="math inline">\(S\)</span>, i.e.:
@@ -281,57 +466,102 @@ S = \Sigma_{j=-\infty}^{+\infty} \gamma_j  = \mbox{lim}_{T \rightarrow +\infty} 
 \hat\gamma_0 + 2 \sum_{\nu=1}^{q} \hat\gamma_\nu, \tag{1.5}
 \end{equation}\]</span>
 where <span class="math inline">\(\hat\gamma_\nu = \frac{1}{T}\sum_{\nu+1}^{T} (y_t - \bar{y})(y_{t-\nu} - \bar{y})\)</span>.</p>
-<p>However, for small samples, Eq. <a href="Intro.html#eq:covSmplMean">(1.5)</a> does not necessarily result in a positive definite matrix. <span class="citation">Newey and West (<a href="references.html#ref-Newey_West_1987">1987</a>)</span> have proposed an estimator that does not have this defect. Their estimator is given by:
+<p>However, for small samples, Eq. <a href="Intro.html#eq:covSmplMean">(1.5)</a> does not necessarily result in a positive definite matrix. <span class="citation">Newey and West (<a href="#ref-Newey_West_1987">1987</a>)</span> have proposed an estimator that does not have this defect. Their estimator is given by:
 <span class="math display" id="eq:NWest">\[\begin{equation}
 S^{NW}=\hat\gamma_0 + 2 \sum_{\nu=1}^{q}\left(1-\frac{\nu}{q+1}\right) \hat\gamma_\nu.\tag{1.6}
 \end{equation}\]</span></p>
 <p>Loosely speaking, Theorem <a href="Intro.html#thm:CLTcovstat">1.1</a> says that, for a given sample size, the higher the “persistency” of a process, the lower the accuracy of the sample mean as an estimate of the population mean. To illustrate, consider three processes that feature the same marginal variance (equal to one, say), but different autocorrelations: 0%, 70%, and 99.9%. Figure <a href="Intro.html#fig:TVTCL">1.6</a> displays simulated paths of such three processes. It indeed appears that, the larger the autocorrelation of the process, the further the sample mean (dashed red line) from the population mean (red solid line).</p>
 <p>The same type of simulations can be performed using <a href="https://jrenne.shinyapps.io/MacroEc/">this web interface</a> (use panel “AR(1)”).</p>
-<div class="figure" style="text-align: left-aligned">
-<span style="display:block;" id="fig:TVTCL"></span>
-<img src="TimeSeries_files/figure-html/TVTCL-1.png" alt="The three samples have been simulated using the following data generating process: $x_t = \mu + \rho (x_{t-1}-\mu) + \sqrt{1-\rho^2}\varepsilon_t$, where $\varepsilon_t \sim \mathcal{N}(0,1)$. Case A: $\rho = 0$;  Case B: $\rho = 0.7$;  Case C: $\rho = 0.999$. In the three cases, $\mathbb{E}(x_t)=\mu=2$ and $\mathbb{V}ar(x_t)=1$. The dashed (respectively solid) red line indicate the sample (resp. unconditional) mean." width="100%"><p class="caption">
+<div class="figure" style="text-align: left-aligned"><span style="display:block;" id="fig:TVTCL"></span>
+<img src="TimeSeries_files/figure-html/TVTCL-1.png" alt="The three samples have been simulated using the following data generating process: $x_t = \mu + \rho (x_{t-1}-\mu) + \sqrt{1-\rho^2}\varepsilon_t$, where $\varepsilon_t \sim \mathcal{N}(0,1)$. Case A: $\rho = 0$;  Case B: $\rho = 0.7$;  Case C: $\rho = 0.999$. In the three cases, $\mathbb{E}(x_t)=\mu=2$ and $\mathbb{V}ar(x_t)=1$. The dashed (respectively solid) red line indicate the sample (resp. unconditional) mean." width="100%" />
+<p class="caption">
 Figure 1.6: The three samples have been simulated using the following data generating process: <span class="math inline">\(x_t = \mu + \rho (x_{t-1}-\mu) + \sqrt{1-\rho^2}\varepsilon_t\)</span>, where <span class="math inline">\(\varepsilon_t \sim \mathcal{N}(0,1)\)</span>. Case A: <span class="math inline">\(\rho = 0\)</span>; Case B: <span class="math inline">\(\rho = 0.7\)</span>; Case C: <span class="math inline">\(\rho = 0.999\)</span>. In the three cases, <span class="math inline">\(\mathbb{E}(x_t)=\mu=2\)</span> and <span class="math inline">\(\mathbb{V}ar(x_t)=1\)</span>. The dashed (respectively solid) red line indicate the sample (resp. unconditional) mean.
 </p>
 </div>
 
 </div>
 </div>
-
-  <div class="chapter-nav">
-<div class="prev"><a href="index.html">Introduction to Time Series</a></div>
-<div class="next"><a href="Univariate.html"><span class="header-section-number">2</span> Univariate processes</a></div>
-</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
-    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
-      <ul class="nav navbar-nav">
-<li><a class="nav-link" href="#Intro"><span class="header-section-number">1</span> Basics</a></li>
-<li><a class="nav-link" href="#shocks-and-lag-operator"><span class="header-section-number">1.1</span> Shocks and lag operator</a></li>
-<li><a class="nav-link" href="#conditional-and-unconditional-moments"><span class="header-section-number">1.2</span> Conditional and unconditional moments</a></li>
-<li><a class="nav-link" href="#central-limit-theorem-clt-for-persistent-processes"><span class="header-section-number">1.3</span> Central Limit Theorem (CLT) for persistent processes</a></li>
-</ul>
-
-      <div class="book-extra">
-        <ul class="list-unstyled">
-          
-        </ul>
+<h3>References<a href="references.html#references" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="refs" class="references csl-bib-body hanging-indent" entry-spacing="0">
+<div id="ref-Anderson_1971" class="csl-entry">
+Anderson, T. W. 1971. <em>The Statistical Analysis of Time Series</em>. Wiley. <a href="https://onlinelibrary.wiley.com/doi/book/10.1002/9781118186428">https://onlinelibrary.wiley.com/doi/book/10.1002/9781118186428</a>.
 </div>
-    </nav>
+<div id="ref-JST_2017" class="csl-entry">
+Jordà, Òscar, Moritz Schularick, and Alan M. Taylor. 2017. <span>“<span class="nocase">Macrofinancial History and the New Business Cycle Facts</span>.”</span> <em>NBER Macroeconomics Annual</em> 31 (1): 213–63. <a href="https://ideas.repec.org/a/ucp/macann/doi10.1086-690241.html">https://ideas.repec.org/a/ucp/macann/doi10.1086-690241.html</a>.
 </div>
-
+<div id="ref-Newey_West_1987" class="csl-entry">
+Newey, Whitney K., and Kenneth D. West. 1987. <span>“A Simple, Positive Semi-Definite, Heteroskedasticity and Autocorrelation Consistent Covariance Matrix.”</span> <em>Econometrica</em> 55 (3): 703–8. <a href="http://www.jstor.org/stable/1913610">http://www.jstor.org/stable/1913610</a>.
 </div>
-</div> <!-- .container -->
+</div>
+<div class="footnotes">
+<hr />
+<ol start="1">
+<li id="fn1"><p>Indeed, <span class="math inline">\(\mathbb{E}[y_t]=\mathbb{I}_{\{t&lt;1000\}}\times \underbrace{\mathbb{E}[\varepsilon_{1,t}]}_{=0}+\mathbb{I}_{\{t\ge1000\}} \times \underbrace{\mathbb{E}[\varepsilon_{2,t}]}_{=0}=0\)</span>, <span class="math inline">\(\mathbb{V}ar(y_t)=\mathbb{I}_{\{t&lt;1000\}}\times \underbrace{\mathbb{V}ar(\varepsilon_{1,t})}_{=1}+\mathbb{I}_{\{t\ge1000\}} \times \underbrace{\mathbb{V}ar(\varepsilon_{2,t})}_{=\left(\sqrt{\frac{\nu - 2}{\nu}}\right)^2 \times \frac{\nu}{\nu - 2}=1}=1\)</span> and for <span class="math inline">\(\forall j \geq 1\)</span>, <span class="math inline">\(\gamma_{j,t}=\gamma_j=0\)</span> as the <span class="math inline">\(\varepsilon_t\)</span>’s are serially uncorrelated.<a href="Intro.html#fnref1" class="footnote-back">↩︎</a></p></li>
+<li id="fn2"><p>Version 6 of the dataset, available on <a href="https://www.macrohistory.net">this website</a>.<a href="Intro.html#fnref2" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+            </section>
 
-<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
-
-  <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Introduction to Time Series</strong>" was written by Jean-Paul Renne. It was last built on 2025-04-26.</p>
+          </div>
+        </div>
+      </div>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="Univariate.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
   </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": "https://github.com/rstudio/bookdown-demo/edit/master/01-Introduction.Rmd",
+    "text": "Edit"
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": ["TimeSeries.pdf", "TimeSeries.epub"],
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection"
+  }
+});
+});
+</script>
 
-  <div class="col-12 col-md-6 mt-3">
-    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
-  </div>
-
-</div></div>
-</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
@@ -343,22 +573,7 @@ Figure 1.6: The three samples have been simulated using the following data gener
     script.src = src;
     document.getElementsByTagName("head")[0].appendChild(script);
   })();
-</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
-for (let popover of popovers) {
-  const div = document.createElement('div');
-  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
-  div.innerHTML = popover.getAttribute('data-content');
-
-  var has_math = div.querySelector("span.math");
-  if (has_math) {
-    document.body.appendChild(div);
-    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
-    MathJax.Hub.Queue(function() {
-      popover.setAttribute('data-content', div.innerHTML);
-      document.body.removeChild(div);
-    })
-  }
-}
 </script>
 </body>
+
 </html>

@@ -1,91 +1,288 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="" xml:lang="">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Chapter 5 Non-stationary processes | Introduction to Time Series</title>
-<meta name="author" content="Jean-Paul Renne">
-<meta name="description" content="In time series analysis, nonstationarity has several crucial implications. Indeed, various time-series regression procedures are not reliable anymore when processes are nonstationary. There are...">
-<meta name="generator" content="bookdown 0.34 with bs4_book()">
-<meta property="og:title" content="Chapter 5 Non-stationary processes | Introduction to Time Series">
-<meta property="og:type" content="book">
-<meta property="og:description" content="In time series analysis, nonstationarity has several crucial implications. Indeed, various time-series regression procedures are not reliable anymore when processes are nonstationary. There are...">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Chapter 5 Non-stationary processes | Introduction to Time Series">
-<meta name="twitter:description" content="In time series analysis, nonstationarity has several crucial implications. Indeed, various time-series regression procedures are not reliable anymore when processes are nonstationary. There are...">
-<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
-<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.5.0/transition.js"></script><script src="libs/bs3compat-0.5.0/tabs.js"></script><script src="libs/bs3compat-0.5.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
-<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
-    
-    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
-  </style>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 5 Non-stationary processes | Introduction to Time Series</title>
+  <meta name="description" content="This course XXX." />
+  <meta name="generator" content="bookdown 0.43 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 5 Non-stationary processes | Introduction to Time Series" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="This course XXX." />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 5 Non-stationary processes | Introduction to Time Series" />
+  
+  <meta name="twitter:description" content="This course XXX." />
+  
+
+<meta name="author" content="Jean-Paul Renne" />
+
+
+<meta name="date" content="2026-10-10" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="forecasting.html"/>
+<link rel="next" href="cointeg.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
 <style type="text/css">
-    /* Used with Pandoc 2.11+ new --citeproc when CSL is used */
-    div.csl-bib-body { }
-    div.csl-entry {
-      clear: both;
-        }
-    .hanging div.csl-entry {
-      margin-left:2em;
-      text-indent:-2em;
-    }
-    div.csl-left-margin {
-      min-width:2em;
-      float:left;
-    }
-    div.csl-right-inline {
-      margin-left:2em;
-      padding-left:1em;
-    }
-    div.csl-indent {
-      margin-left: 2em;
-    }
-  </style>
-<link rel="stylesheet" href="my-style.css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
 </head>
-<body data-spy="scroll" data-target="#toc">
 
-<div class="container-fluid">
-<div class="row">
-  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+<body>
 
-    <div class="d-flex align-items-start justify-content-between">
-      <h1>
-        <a href="index.html" title="">Introduction to Time Series</a>
-      </h1>
-      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
-    </div>
 
-    <div id="main-nav" class="collapse-lg">
-      <form role="search">
-        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
-</form>
 
-      <nav aria-label="Table of contents"><h2>Table of contents</h2>
-        <ul class="book-toc list-unstyled">
-<li><a class="" href="index.html">Introduction to Time Series</a></li>
-<li><a class="" href="Intro.html"><span class="header-section-number">1</span> Basics</a></li>
-<li><a class="" href="Univariate.html"><span class="header-section-number">2</span> Univariate processes</a></li>
-<li><a class="" href="VAR.html"><span class="header-section-number">3</span> Multivariate models</a></li>
-<li><a class="" href="forecasting.html"><span class="header-section-number">4</span> Forecasting</a></li>
-<li><a class="active" href="NonStat.html"><span class="header-section-number">5</span> Non-stationary processes</a></li>
-<li><a class="" href="cointeg.html"><span class="header-section-number">6</span> Introduction to cointegration</a></li>
-<li><a class="" href="ARCHGARCH.html"><span class="header-section-number">7</span> ARCH and GARCH models</a></li>
-<li><a class="" href="append.html"><span class="header-section-number">8</span> Appendix</a></li>
-<li><a class="" href="references.html">References</a></li>
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Time Series</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="Intro.html"><a href="Intro.html"><i class="fa fa-check"></i><b>1</b> Basics</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="Intro.html"><a href="Intro.html#shocks-and-lag-operator"><i class="fa fa-check"></i><b>1.1</b> Shocks and lag operator</a></li>
+<li class="chapter" data-level="1.2" data-path="Intro.html"><a href="Intro.html#conditional-and-unconditional-moments"><i class="fa fa-check"></i><b>1.2</b> Conditional and unconditional moments</a></li>
+<li class="chapter" data-level="1.3" data-path="Intro.html"><a href="Intro.html#central-limit-theorem-clt-for-persistent-processes"><i class="fa fa-check"></i><b>1.3</b> Central Limit Theorem (CLT) for persistent processes</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="Univariate.html"><a href="Univariate.html"><i class="fa fa-check"></i><b>2</b> Univariate processes</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="Univariate.html"><a href="Univariate.html#moving-average-ma-processes"><i class="fa fa-check"></i><b>2.1</b> Moving Average (MA) processes</a></li>
+<li class="chapter" data-level="2.2" data-path="Univariate.html"><a href="Univariate.html#ARsection"><i class="fa fa-check"></i><b>2.2</b> Auto-Regressive (AR) processes</a></li>
+<li class="chapter" data-level="2.3" data-path="Univariate.html"><a href="Univariate.html#ar-ma-processes"><i class="fa fa-check"></i><b>2.3</b> AR-MA processes</a></li>
+<li class="chapter" data-level="2.4" data-path="Univariate.html"><a href="Univariate.html#PACFapproach"><i class="fa fa-check"></i><b>2.4</b> PACF approach to identify AR/MA processes</a></li>
+<li class="chapter" data-level="2.5" data-path="Univariate.html"><a href="Univariate.html#wold-decomposition"><i class="fa fa-check"></i><b>2.5</b> Wold decomposition</a></li>
+<li class="chapter" data-level="2.6" data-path="Univariate.html"><a href="Univariate.html#IRFARMA"><i class="fa fa-check"></i><b>2.6</b> Impulse Response Functions (IRFs) in ARMA models</a></li>
+<li class="chapter" data-level="2.7" data-path="Univariate.html"><a href="Univariate.html#ARMAIRF"><i class="fa fa-check"></i><b>2.7</b> ARMA processes with exogenous variables (ARMA-X)</a>
+<ul>
+<li class="chapter" data-level="2.7.1" data-path="Univariate.html"><a href="Univariate.html#ARMAXDef"><i class="fa fa-check"></i><b>2.7.1</b> Definitions (ARMA-X)</a></li>
+<li class="chapter" data-level="2.7.2" data-path="Univariate.html"><a href="Univariate.html#ARMAXDynamic"><i class="fa fa-check"></i><b>2.7.2</b> Dynamic multipliers in ARMA-X models</a></li>
+</ul></li>
+<li class="chapter" data-level="2.8" data-path="Univariate.html"><a href="Univariate.html#estimARMA"><i class="fa fa-check"></i><b>2.8</b> Maximum Likelihood Estimation (MLE) of ARMA processes</a>
+<ul>
+<li class="chapter" data-level="2.8.1" data-path="Univariate.html"><a href="Univariate.html#Generalities"><i class="fa fa-check"></i><b>2.8.1</b> Generalities</a></li>
+<li class="chapter" data-level="2.8.2" data-path="Univariate.html"><a href="Univariate.html#estimAR"><i class="fa fa-check"></i><b>2.8.2</b> Maximum Likelihood Estimation of AR processes</a></li>
+<li class="chapter" data-level="2.8.3" data-path="Univariate.html"><a href="Univariate.html#estimMA"><i class="fa fa-check"></i><b>2.8.3</b> Maximum Likelihood Estimation of MA processes</a></li>
+<li class="chapter" data-level="2.8.4" data-path="Univariate.html"><a href="Univariate.html#estimARMApq"><i class="fa fa-check"></i><b>2.8.4</b> Maximum Likelihood Estimation of an ARMA(p,q) process</a></li>
+</ul></li>
+<li class="chapter" data-level="2.9" data-path="Univariate.html"><a href="Univariate.html#specification-choice"><i class="fa fa-check"></i><b>2.9</b> Specification choice</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="VAR.html"><a href="VAR.html"><i class="fa fa-check"></i><b>3</b> Multivariate models</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="VAR.html"><a href="VAR.html#definition-of-vars-and-svarma-models"><i class="fa fa-check"></i><b>3.1</b> Definition of VARs (and SVARMA) models</a></li>
+<li class="chapter" data-level="3.2" data-path="VAR.html"><a href="VAR.html#IRFSVARMA"><i class="fa fa-check"></i><b>3.2</b> IRFs in SVARMA</a></li>
+<li class="chapter" data-level="3.3" data-path="VAR.html"><a href="VAR.html#covariance-stationary-varma-models"><i class="fa fa-check"></i><b>3.3</b> Covariance-stationary VARMA models</a></li>
+<li class="chapter" data-level="3.4" data-path="VAR.html"><a href="VAR.html#estimVAR"><i class="fa fa-check"></i><b>3.4</b> VAR estimation</a></li>
+<li class="chapter" data-level="3.5" data-path="VAR.html"><a href="VAR.html#BlockGranger"><i class="fa fa-check"></i><b>3.5</b> Block exogeneity and Granger causality</a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="VAR.html"><a href="VAR.html#block-exogeneity"><i class="fa fa-check"></i><b>3.5.1</b> Block exogeneity</a></li>
+<li class="chapter" data-level="3.5.2" data-path="VAR.html"><a href="VAR.html#granger-causality"><i class="fa fa-check"></i><b>3.5.2</b> Granger Causality</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="VAR.html"><a href="VAR.html#identifStruct"><i class="fa fa-check"></i><b>3.6</b> Standard identification techniques</a>
+<ul>
+<li class="chapter" data-level="3.6.1" data-path="VAR.html"><a href="VAR.html#IdentifPbm"><i class="fa fa-check"></i><b>3.6.1</b> The identification problem</a></li>
+<li class="chapter" data-level="3.6.2" data-path="VAR.html"><a href="VAR.html#a-stylized-example-motivating-short-run-restrictions"><i class="fa fa-check"></i><b>3.6.2</b> A stylized example motivating short-run restrictions</a></li>
+<li class="chapter" data-level="3.6.3" data-path="VAR.html"><a href="VAR.html#cholesky-a-specific-short-run-restriction-situation"><i class="fa fa-check"></i><b>3.6.3</b> Cholesky: a specific short-run-restriction situation</a></li>
+<li class="chapter" data-level="3.6.4" data-path="VAR.html"><a href="VAR.html#long-run-restrictions"><i class="fa fa-check"></i><b>3.6.4</b> Long-run restrictions</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="forecasting.html"><a href="forecasting.html"><i class="fa fa-check"></i><b>4</b> Forecasting</a></li>
+<li class="chapter" data-level="5" data-path="NonStat.html"><a href="NonStat.html"><i class="fa fa-check"></i><b>5</b> Non-stationary processes</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="NonStat.html"><a href="NonStat.html#issues-when-working-with-nonstationary-time-series"><i class="fa fa-check"></i><b>5.1</b> Issues when working with nonstationary time series</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="NonStat.html"><a href="NonStat.html#the-bias-of-autoregressive-coefficient-towards-zero"><i class="fa fa-check"></i><b>5.1.1</b> The bias of autoregressive coefficient towards zero</a></li>
+<li class="chapter" data-level="5.1.2" data-path="NonStat.html"><a href="NonStat.html#spurious-regressions"><i class="fa fa-check"></i><b>5.1.2</b> Spurious regressions</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="NonStat.html"><a href="NonStat.html#nonstationarity-tests"><i class="fa fa-check"></i><b>5.2</b> Nonstationarity tests</a></li>
+<li class="chapter" data-level="5.3" data-path="NonStat.html"><a href="NonStat.html#stationarity-test-kpss"><i class="fa fa-check"></i><b>5.3</b> Stationarity test: KPSS</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="cointeg.html"><a href="cointeg.html"><i class="fa fa-check"></i><b>6</b> Introduction to cointegration</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="cointeg.html"><a href="cointeg.html#intuition"><i class="fa fa-check"></i><b>6.1</b> Intuition</a></li>
+<li class="chapter" data-level="6.2" data-path="cointeg.html"><a href="cointeg.html#the-bivariate-case"><i class="fa fa-check"></i><b>6.2</b> The bivariate case</a></li>
+<li class="chapter" data-level="6.3" data-path="cointeg.html"><a href="cointeg.html#multivariate-case-and-vecm"><i class="fa fa-check"></i><b>6.3</b> Multivariate case and VECM</a></li>
+<li class="chapter" data-level="6.4" data-path="cointeg.html"><a href="cointeg.html#cointegration-in-practice"><i class="fa fa-check"></i><b>6.4</b> Cointegration in practice</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="ARCHGARCH.html"><a href="ARCHGARCH.html"><i class="fa fa-check"></i><b>7</b> ARCH and GARCH models</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="ARCHGARCH.html"><a href="ARCHGARCH.html#conditional-heteroskedasticity"><i class="fa fa-check"></i><b>7.1</b> Conditional heteroskedasticity</a></li>
+<li class="chapter" data-level="7.2" data-path="ARCHGARCH.html"><a href="ARCHGARCH.html#ARCH"><i class="fa fa-check"></i><b>7.2</b> The ARCH model</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="ARCHGARCH.html"><a href="ARCHGARCH.html#the-two-arch-specifications"><i class="fa fa-check"></i><b>7.2.1</b> The two ARCH specifications</a></li>
+<li class="chapter" data-level="7.2.2" data-path="ARCHGARCH.html"><a href="ARCHGARCH.html#maximum-likelihood-estimation-of-an-arch-process"><i class="fa fa-check"></i><b>7.2.2</b> Maximum Likelihood Estimation of an ARCH process</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="ARCHGARCH.html"><a href="ARCHGARCH.html#GARCH"><i class="fa fa-check"></i><b>7.3</b> The GARCH model</a></li>
+<li class="chapter" data-level="7.4" data-path="ARCHGARCH.html"><a href="ARCHGARCH.html#arch-in-mean"><i class="fa fa-check"></i><b>7.4</b> ARCH-in-mean</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="append.html"><a href="append.html"><i class="fa fa-check"></i><b>8</b> Appendix</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="append.html"><a href="append.html#PCAapp"><i class="fa fa-check"></i><b>8.1</b> Principal component analysis (PCA)</a></li>
+<li class="chapter" data-level="8.2" data-path="append.html"><a href="append.html#LinAlgebra"><i class="fa fa-check"></i><b>8.2</b> Linear algebra: definitions and results</a></li>
+<li class="chapter" data-level="8.3" data-path="append.html"><a href="append.html#variousResults"><i class="fa fa-check"></i><b>8.3</b> Statistical analysis: definitions and results</a>
+<ul>
+<li class="chapter" data-level="8.3.1" data-path="append.html"><a href="append.html#moments-and-statistics"><i class="fa fa-check"></i><b>8.3.1</b> Moments and statistics</a></li>
+<li class="chapter" data-level="8.3.2" data-path="append.html"><a href="append.html#standard-distributions"><i class="fa fa-check"></i><b>8.3.2</b> Standard distributions</a></li>
+<li class="chapter" data-level="8.3.3" data-path="append.html"><a href="append.html#StochConvergences"><i class="fa fa-check"></i><b>8.3.3</b> Stochastic convergences</a></li>
+<li class="chapter" data-level="8.3.4" data-path="append.html"><a href="append.html#multivariate-gaussian-distribution"><i class="fa fa-check"></i><b>8.3.4</b> Multivariate Gaussian distribution</a></li>
+<li class="chapter" data-level="8.3.5" data-path="append.html"><a href="append.html#CLTappend"><i class="fa fa-check"></i><b>8.3.5</b> Central limit theorem</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="append.html"><a href="append.html#AppendixProof"><i class="fa fa-check"></i><b>8.4</b> Proofs</a></li>
+<li class="chapter" data-level="8.5" data-path="append.html"><a href="append.html#Inference"><i class="fa fa-check"></i><b>8.5</b> Inference</a>
+<ul>
+<li class="chapter" data-level="8.5.1" data-path="append.html"><a href="append.html#MonteCarlo"><i class="fa fa-check"></i><b>8.5.1</b> Monte Carlo method</a></li>
+<li class="chapter" data-level="8.5.2" data-path="append.html"><a href="append.html#Delta"><i class="fa fa-check"></i><b>8.5.2</b> Delta method</a></li>
+<li class="chapter" data-level="8.5.3" data-path="append.html"><a href="append.html#Bootstrap"><i class="fa fa-check"></i><b>8.5.3</b> Bootstrap</a></li>
+</ul></li>
+<li class="chapter" data-level="8.6" data-path="append.html"><a href="append.html#statistical-tables"><i class="fa fa-check"></i><b>8.6</b> Statistical Tables</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
 </ul>
 
-        <div class="book-extra">
-          
-        </div>
       </nav>
-</div>
-  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="NonStat" class="section level1" number="5">
-<h1>
-<span class="header-section-number">5</span> Non-stationary processes<a class="anchor" aria-label="anchor" href="#NonStat"><i class="fas fa-link"></i></a>
-</h1>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Introduction to Time Series</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="NonStat" class="section level1 hasAnchor" number="5">
+<h1><span class="header-section-number">Chapter 5</span> Non-stationary processes<a href="NonStat.html#NonStat" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>In time series analysis, nonstationarity has several crucial implications. Indeed, various time-series regression procedures are not reliable anymore when processes are nonstationary.</p>
 <p>There are different reasons why a process can be nonstationary. Two examples are trends and breaks. Generally speaking, a trend is a persistent long-term movement of a variable over time. A linear trend is a simple example of (deterministic) trend. We say that process <span class="math inline">\(y_t\)</span> is stationary around a linear trend if it is given by:
 <span class="math display">\[
@@ -110,51 +307,43 @@ We also have <span class="math inline">\(\mathbb{E}_{t-h}(y_t)=y_{t-h}\)</span> 
 \mathbb{V}ar(y_t) = h\sigma^2 + \mathbb{V}ar(y_{t-h}).
 \]</span>
 Since the previous equation needs to be satisfied for any <span class="math inline">\(h\)</span> (even infintely large ones), and since <span class="math inline">\(\mathbb{V}ar(y_{t-h})&gt;0\)</span>, <span class="math inline">\(\mathbb{V}ar(y_t)\)</span> can not be finite. None of the population moments of a random walk is actually defined.</p>
-<div id="issues-when-working-with-nonstationary-time-series" class="section level2" number="5.1">
-<h2>
-<span class="header-section-number">5.1</span> Issues when working with nonstationary time series<a class="anchor" aria-label="anchor" href="#issues-when-working-with-nonstationary-time-series"><i class="fas fa-link"></i></a>
-</h2>
+<div id="issues-when-working-with-nonstationary-time-series" class="section level2 hasAnchor" number="5.1">
+<h2><span class="header-section-number">5.1</span> Issues when working with nonstationary time series<a href="NonStat.html#issues-when-working-with-nonstationary-time-series" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Let us discuss three issues associated with nonstationary processes:
 1. Bias of autoregressive coefficient towards 0 (context: autoregressions).
 2. Even in large samples, the <span class="math inline">\(t\)</span>-statistics cannot be approximated by the normal distribution (context: OLS regressions).
 3. Spurious regressions: OLS-based regression analysis tends to indicate relationships between <em>independent</em> nonstationary (or unit-root) series.</p>
-<div id="the-bias-of-autoregressive-coefficient-towards-zero" class="section level3" number="5.1.1">
-<h3>
-<span class="header-section-number">5.1.1</span> The bias of autoregressive coefficient towards zero<a class="anchor" aria-label="anchor" href="#the-bias-of-autoregressive-coefficient-towards-zero"><i class="fas fa-link"></i></a>
-</h3>
-<p>Consider a non-stationary <span class="math inline">\(y_t\)</span> process (e.g., <span class="math inline">\(y_t\)</span> follows a random walk). The estimate of <span class="math inline">\(\phi\)</span> in the (OLS) regression <span class="math inline">\(y_t = c + \phi y_{t-1} + \varepsilon_t\)</span> is then biased toward zero. In particular, we have the approximation <span class="math inline">\(\mathbb{E}(\phi)=1-5.3/T\)</span>, where <span class="math inline">\(T\)</span> is the sample size (see, e.g., <span class="citation">Abadir (<a href="references.html#ref-Abadir_1993">1993</a>)</span>). The 5th percentile of the distribution of <span class="math inline">\(\phi\)</span> is approximately <span class="math inline">\(1 - 14.1/T\)</span>, e.g., 0.824 for <span class="math inline">\(T=80\)</span>. This notably poses problems for forecasts. Indeed, while we have <span class="math inline">\(\mathbb{E}_t(y_{t+h})=y_t\)</span> if <span class="math inline">\(y_t\)</span> follows a random walk, someone who would fit an AR(1) process and would obtain for instance <span class="math inline">\(\hat\phi=0.824\)</span> would obtain that <span class="math inline">\(\mathbb{E}_t(y_{t+10})=0.144y_t\)</span>.</p>
+<div id="the-bias-of-autoregressive-coefficient-towards-zero" class="section level3 hasAnchor" number="5.1.1">
+<h3><span class="header-section-number">5.1.1</span> The bias of autoregressive coefficient towards zero<a href="NonStat.html#the-bias-of-autoregressive-coefficient-towards-zero" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Consider a non-stationary <span class="math inline">\(y_t\)</span> process (e.g., <span class="math inline">\(y_t\)</span> follows a random walk). The estimate of <span class="math inline">\(\phi\)</span> in the (OLS) regression <span class="math inline">\(y_t = c + \phi y_{t-1} + \varepsilon_t\)</span> is then biased toward zero. In particular, we have the approximation <span class="math inline">\(\mathbb{E}(\phi)=1-5.3/T\)</span>, where <span class="math inline">\(T\)</span> is the sample size (see, e.g., <span class="citation">Abadir (<a href="#ref-Abadir_1993">1993</a>)</span>). The 5th percentile of the distribution of <span class="math inline">\(\phi\)</span> is approximately <span class="math inline">\(1 - 14.1/T\)</span>, e.g., 0.824 for <span class="math inline">\(T=80\)</span>. This notably poses problems for forecasts. Indeed, while we have <span class="math inline">\(\mathbb{E}_t(y_{t+h})=y_t\)</span> if <span class="math inline">\(y_t\)</span> follows a random walk, someone who would fit an AR(1) process and would obtain for instance <span class="math inline">\(\hat\phi=0.824\)</span> would obtain that <span class="math inline">\(\mathbb{E}_t(y_{t+10})=0.144y_t\)</span>.</p>
 <p>This is illustrated by Figure <a href="NonStat.html#fig:nonStat1">5.1</a>. This figure shows, in black, the distributions of <span class="math inline">\(\hat\phi\)</span>, obtained by OLS in the context of the linear model <span class="math inline">\(y_t = c + \phi y_{t-1} + \varepsilon_t\)</span>. These distributions are obtained by simulations. We consider two sample sizes (<span class="math inline">\(T=50\)</span>, left plot, and <span class="math inline">\(T=200\)</span>, right plot). The vertical red bars indicate the means of the distributions, the vertical blue bar gives the approximated mean given by <span class="math inline">\(1-5.3/T\)</span>.</p>
-<div class="figure" style="text-align: left-aligned">
-<span style="display:block;" id="fig:nonStat1"></span>
-<img src="TimeSeries_files/figure-html/nonstat1-1.png" alt="The densities of based on 1000 simulations of samples of length $T$, they are approximated by the kernel approach." width="95%"><p class="caption">
+<div class="figure" style="text-align: left-aligned"><span style="display:block;" id="fig:nonStat1"></span>
+<img src="TimeSeries_files/figure-html/nonstat1-1.png" alt="The densities of based on 1000 simulations of samples of length $T$, they are approximated by the kernel approach." width="95%" />
+<p class="caption">
 Figure 5.1: The densities of based on 1000 simulations of samples of length <span class="math inline">\(T\)</span>, they are approximated by the kernel approach.
 </p>
 </div>
 </div>
-<div id="spurious-regressions" class="section level3" number="5.1.2">
-<h3>
-<span class="header-section-number">5.1.2</span> Spurious regressions<a class="anchor" aria-label="anchor" href="#spurious-regressions"><i class="fas fa-link"></i></a>
-</h3>
+<div id="spurious-regressions" class="section level3 hasAnchor" number="5.1.2">
+<h3><span class="header-section-number">5.1.2</span> Spurious regressions<a href="NonStat.html#spurious-regressions" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Consider two independent non-stationary (unit roots) variables. If we regress one on the other, and if we use the standard OLS formulas to compute the standard deviation of the regression parameter, it can be shown that we will tend to underestimate this standard deviation. As a result, if we use standard <span class="math inline">\(t\)</span>-statistics to test for the existence of a relationship between the two variables, we will often have false positive, i.e., we will often reject the null hypothesis of no relationship (<span class="math inline">\(H_0\)</span>: regression coefficient = 0). This phenomenon is called <em>spurious regressions</em> (see, e.g., these <a href="https://www.tylervigen.com/spurious-correlations">examples</a>).</p>
 <p>This situation is illustrated by Figure <a href="NonStat.html#fig:nonStat2">5.2</a>. We simulate two independent random walks, <span class="math inline">\(x_t\)</span> and <span class="math inline">\(y_t\)</span>, and we regress <span class="math inline">\(y_t\)</span> on <span class="math inline">\(x_t\)</span> by OLS. (We consider two different sample sizes, <span class="math inline">\(T=50\)</span> and <span class="math inline">\(T=200\)</span>.) The black lines represent the densities of the estimated <span class="math inline">\(\beta\)</span>’s, that are the slope coefficients of the regressions. The blue density represent the asymptotic distribution of <span class="math inline">\(\beta\)</span> based on to the standard OLS formula (normal distribution of mean zero and of variance <span class="math inline">\(\hat\sigma^2/\widehat{\mathbb{V}ar}(x_t)\)</span>). The fact that the latter distribution features a smaller variance than the former implies that using the standard OLS inference is misleading, as this distribution overestimates the accuracy of the estimator.</p>
-<div class="figure" style="text-align: left-aligned">
-<span style="display:block;" id="fig:nonStat2"></span>
-<img src="TimeSeries_files/figure-html/nonstat2-1.png" alt="The densities of based on 1000 simulations of samples of length $T$, they are approximated by the kernel approach." width="95%"><p class="caption">
+<div class="figure" style="text-align: left-aligned"><span style="display:block;" id="fig:nonStat2"></span>
+<img src="TimeSeries_files/figure-html/nonstat2-1.png" alt="The densities of based on 1000 simulations of samples of length $T$, they are approximated by the kernel approach." width="95%" />
+<p class="caption">
 Figure 5.2: The densities of based on 1000 simulations of samples of length <span class="math inline">\(T\)</span>, they are approximated by the kernel approach.
 </p>
 </div>
 </div>
 </div>
-<div id="nonstationarity-tests" class="section level2" number="5.2">
-<h2>
-<span class="header-section-number">5.2</span> Nonstationarity tests<a class="anchor" aria-label="anchor" href="#nonstationarity-tests"><i class="fas fa-link"></i></a>
-</h2>
+<div id="nonstationarity-tests" class="section level2 hasAnchor" number="5.2">
+<h2><span class="header-section-number">5.2</span> Nonstationarity tests<a href="NonStat.html#nonstationarity-tests" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Hence, employing (OLS) regressions with non-stationary variables may be misleading. It is therefore important, before employing these techniques (OLS), to check that the variables are stationary. To do so, specific tests are used. These tests are called stationarity and non-stationarity (or unit-root) tests. In the context of a stationarity test, the null hypothesis that <span class="math inline">\(y_t\)</span> is stationary or trend-stationary (i.e. equal to the sum of a linear trend and a stationary component). In the context of a non-stationarity (or unit root) tests, the null hypothesis that <span class="math inline">\(y_t\)</span> is not (trend) stationary.</p>
 <p>To illustrate, consider the AR(1) case:
 <span class="math display" id="eq:AR1">\[\begin{equation}
 y_t = \phi y_{t-1} + \varepsilon_t, \quad \varepsilon_t \sim \mathcal{N}(0,1).\tag{5.2}
 \end{equation}\]</span></p>
-<p>If <span class="math inline">\(y_t\)</span> is stationary (i.e. if <span class="math inline">\(|\phi|&lt;1\)</span>, Prop. <a href="Univariate.html#prp:statioAR1">2.3</a>), it can be shown (<span class="citation">Hamilton (<a href="references.html#ref-Hamilton_1994">1994</a>)</span>, p.216) that:
+<p>If <span class="math inline">\(y_t\)</span> is stationary (i.e. if <span class="math inline">\(|\phi|&lt;1\)</span>, Prop. <a href="Univariate.html#prp:statioAR1">2.3</a>), it can be shown (<span class="citation">Hamilton (<a href="#ref-Hamilton_1994">1994</a>)</span>, p.216) that:
 <span class="math display">\[
 \sqrt{T}(\phi^{OLS}-\phi) \overset{d}{\rightarrow}  \mathcal{N}(0,1-\phi^2).
 \]</span>
@@ -179,10 +368,10 @@ T^{-1} \sum_{t=1}^{T} y_{t-1}\varepsilon_{t} &amp;\overset{d}{\rightarrow}&amp; 
 where <span class="math inline">\(W(r)\)</span> denotes a standard Brownian motion (Wiener process) defined on the unit interval.</p>
 </div>
 <div class="proof">
-<p><span id="unlabeled-div-19" class="proof"><em>Proof</em>. </span>See <span class="citation">P. C. B. Phillips (<a href="references.html#ref-Phillips_1987">1987</a>)</span> or <span class="citation">Hamilton (<a href="references.html#ref-Hamilton_1994">1994</a>)</span> (Subsection 17.4).</p>
+<p><span id="unlabeled-div-19" class="proof"><em>Proof</em>. </span>See <span class="citation">P. C. B. Phillips (<a href="#ref-Phillips_1987">1987</a>)</span> or <span class="citation">Hamilton (<a href="#ref-Hamilton_1994">1994</a>)</span> (Subsection 17.4).</p>
 </div>
 <p>Theorem <a href="NonStat.html#thm:cvgceunitroot">5.1</a> notably implies that, if <span class="math inline">\(\phi=1\)</span>, then:
-<span class="math display" id="eq:tstat">\[\begin{eqnarray}
+<span class="math display" id="eq:tstat" id="eq:biasstat">\[\begin{eqnarray}
 T(\phi^{OLS}-1) &amp;\overset{d}{\rightarrow}&amp; \frac{\int_{0}^{1}W(r)dW(r)}{\int_{0}^{1}W(r)^2dr} = \frac{\frac{1}{2}(W(1)^2-1)}{\int_{0}^{1}W(r)^2dr}\tag{5.3}\\
 t_{\phi=1} &amp;\overset{d}{\rightarrow}&amp; \frac{\int_{0}^{1}W(r)dW(r)}{\left(\int_{0}^{1}W(r)^2dr\right)^{1/2}}= \frac{\frac{1}{2}(W(1)^2-1)}{\left(\int_{0}^{1}W(r)^2dr\right)^{1/2}}\tag{5.4}
 \end{eqnarray}\]</span></p>
@@ -205,11 +394,11 @@ y_t = c + \delta t + \phi y_{t-1} + \varepsilon_t.
 </ul>
 <p>So far, we focused on AR(1) processes. But many time series have a more complicated dynamic structure.</p>
 <p><strong>Dickey-Fuller (DF) test</strong></p>
-<p>The specification underlying the <span class="citation">Dickey and Fuller (<a href="references.html#ref-DF1979">1979</a>)</span> test is:
+<p>The specification underlying the <span class="citation">Dickey and Fuller (<a href="#ref-DF1979">1979</a>)</span> test is:
 <span class="math display" id="eq:adf11">\[\begin{equation}
-y_t = \boldsymbol\beta'D_t + \phi y_{t-1} + \sum_{i=1}^{p}\psi_i \Delta y_{t-i} + \varepsilon_t,\tag{5.5}
+y_t = \boldsymbol\beta&#39;D_t + \phi y_{t-1} + \sum_{i=1}^{p}\psi_i \Delta y_{t-i} + \varepsilon_t,\tag{5.5}
 \end{equation}\]</span>
-where <span class="math inline">\(D_t\)</span> is a vector of deterministic trends (<span class="math inline">\(D_t = 1\)</span> or <span class="math inline">\(D_t = [1,t]'\)</span>) and <span class="math inline">\(p\)</span> should be such that the estimated <span class="math inline">\(\varepsilon_t\)</span> are serially uncorrelated.</p>
+where <span class="math inline">\(D_t\)</span> is a vector of deterministic trends (<span class="math inline">\(D_t = 1\)</span> or <span class="math inline">\(D_t = [1,t]&#39;\)</span>) and <span class="math inline">\(p\)</span> should be such that the estimated <span class="math inline">\(\varepsilon_t\)</span> are serially uncorrelated.</p>
 <p>The null hypothesis of the DF test is: <span class="math inline">\(\phi=1\)</span>. Test statistics:
 <span class="math display">\[\begin{eqnarray*}
 \mbox{ADF bias statistic: } &amp;&amp; ADF_\pi =T(\phi^{OLS}-1)\\
@@ -218,7 +407,7 @@ where <span class="math inline">\(D_t\)</span> is a vector of deterministic tren
 <p>Under the null hypothesis (<span class="math inline">\(\phi=1\)</span>) and if the regression is as in Eq. <a href="NonStat.html#eq:AR1">(5.2)</a> the limiting distributions of the statistics are, respectively, as in Eq. <a href="NonStat.html#eq:biasstat">(5.3)</a> and Eq. <a href="NonStat.html#eq:tstat">(5.4)</a>.</p>
 <p>Alternative formulation of Eq. <a href="NonStat.html#eq:adf11">(5.5)</a>:
 <span class="math display">\[
-\Delta y_t = \boldsymbol\beta' D_t + \pi y_{t-1} + \sum_{i=1}^{p}\psi_i \Delta y_{t-i} + \varepsilon_t,
+\Delta y_t = \boldsymbol\beta&#39; D_t + \pi y_{t-1} + \sum_{i=1}^{p}\psi_i \Delta y_{t-i} + \varepsilon_t,
 \]</span>
 with <span class="math inline">\(\pi = \phi - 1\)</span>. Under the null hypothesis <span class="math inline">\(\pi = 0\)</span>. In this case:
 <span class="math display">\[\begin{eqnarray*}
@@ -226,17 +415,17 @@ with <span class="math inline">\(\pi = \phi - 1\)</span>. Under the null hypothe
 \mbox{ADF $t$ statistic: } &amp;&amp; ADF_t = t_{\pi=0} = \frac{\pi^{OLS}}{\sigma^{OLS}_{\pi}}
 \end{eqnarray*}\]</span></p>
 <p>Under the null hypothesis (<span class="math inline">\(\phi=1\)</span>) and if the regression is as in Eq. <a href="NonStat.html#eq:AR1">(5.2)</a> the limiting distributions of the statistics are, respectively, as in Eq. <a href="NonStat.html#eq:biasstat">(5.3)</a> and Eq. <a href="NonStat.html#eq:tstat">(5.4)</a>.</p>
-<p>The selection of <span class="math inline">\(p\)</span> can rely on information criteria (see Def. <a href="Univariate.html#def:infocriteria">2.11</a>). Alternatively, <span class="citation">Schwert (<a href="references.html#ref-Schwert_1989">1989</a>)</span> proposes to use:
+<p>The selection of <span class="math inline">\(p\)</span> can rely on information criteria (see Def. <a href="Univariate.html#def:infocriteria">2.11</a>). Alternatively, <span class="citation">Schwert (<a href="#ref-Schwert_1989">1989</a>)</span> proposes to use:
 <span class="math display">\[
 p=\left[12 \times \left( \frac{T}{100} \right)^{1/4}\right].
 \]</span></p>
 <p>Importantly, this test is <strong>one-sided left-tailed</strong> test: one rejects the null if the test statistics are sufficiently negative; we are therefore interested in the first quantiles of the limit distribution.</p>
 <p><strong>Phillips-Perron (PP) test</strong></p>
-<p>The regression underyling the <span class="citation">P. Phillips and Perron (<a href="references.html#ref-Phillips_Perron_1988">1988</a>)</span> test is as follows:
+<p>The regression underyling the <span class="citation">P. Phillips and Perron (<a href="#ref-Phillips_Perron_1988">1988</a>)</span> test is as follows:
 <span class="math display">\[
-\Delta y_t = \boldsymbol\beta' D_t + \pi y_{t-1} + \varepsilon_t.
+\Delta y_t = \boldsymbol\beta&#39; D_t + \pi y_{t-1} + \varepsilon_t.
 \]</span>
-The issue of serial correlation (and heteroskedasticity) in the residual is handled by adjusting the test statistics <span class="math inline">\(t_{\pi=0}\)</span> and <span class="math inline">\(T\pi\)</span>:<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;See &lt;span class="citation"&gt;Hamilton (&lt;a href="references.html#ref-Hamilton_1994"&gt;1994&lt;/a&gt;)&lt;/span&gt;, Table 17.2 p.514.&lt;/p&gt;'><sup>17</sup></a></p>
+The issue of serial correlation (and heteroskedasticity) in the residual is handled by adjusting the test statistics <span class="math inline">\(t_{\pi=0}\)</span> and <span class="math inline">\(T\pi\)</span>:<a href="#fn17" class="footnote-ref" id="fnref17"><sup>17</sup></a></p>
 <p><span class="math display">\[\begin{eqnarray*}
 \mbox{PP $t$ stat.: } &amp;&amp; Z_t = \sqrt{\frac{\hat\gamma_{0,T}}{\hat\lambda_T^2}} t_{\pi=0,T} - \frac{\hat\lambda_T^2-\hat\gamma_{0,T}}{2\hat\lambda_T}\left(\frac{T\sigma^{OLS}_{\pi,T}}{s_T}\right)\\
 \mbox{PP bias stat.: } &amp;&amp; Z_\pi = T\pi^{OLS}_T - \frac{1}{2}(\hat\lambda^2-\hat\gamma_{0,T}^2)\left(\frac{T \sigma^{OLS}_{\pi,T}}{s^2_T}\right)^2
@@ -251,29 +440,25 @@ s_T^2 &amp;=&amp; \frac{1}{T-k} \Sigma_{t=1}^{T} \hat{\varepsilon}^2_t \quad \mb
 \end{eqnarray*}\]</span></p>
 <p>When the underlying regression is: <span class="math inline">\(y_t = \alpha + \phi y_{t-1} + \varepsilon_t\)</span>, and under the null that <span class="math inline">\(\alpha=0\)</span> and <span class="math inline">\(\phi=1\)</span>, we have that:</p>
 <ul>
-<li>the limiting distribution of <span class="math inline">\(Z_\pi\)</span> is that of (see, e.g., <span class="citation">Hamilton (<a href="references.html#ref-Hamilton_1994">1994</a>)</span> 17.6.8):
+<li>the limiting distribution of <span class="math inline">\(Z_\pi\)</span> is that of (see, e.g., <span class="citation">Hamilton (<a href="#ref-Hamilton_1994">1994</a>)</span> 17.6.8):
 <span class="math display">\[
 \frac{\frac{1}{2}\{W(1)^2 - 1\} - W(1)\int_0^1 W(r)dr}{\int_0^1 W(r)^2dr-\left[\int_0^1 W(r)dr\right]^2};
-\]</span>
-</li>
-<li>the limiting distribution of <span class="math inline">\(Z_t\)</span> is that of (see, e.g., <span class="citation">Hamilton (<a href="references.html#ref-Hamilton_1994">1994</a>)</span> 17.6.12):
+\]</span></li>
+<li>the limiting distribution of <span class="math inline">\(Z_t\)</span> is that of (see, e.g., <span class="citation">Hamilton (<a href="#ref-Hamilton_1994">1994</a>)</span> 17.6.12):
 <span class="math display">\[
 \frac{\frac{1}{2}\{W(1)^2 - 1\} - W(1)\int_0^1 W(r)dr}{\left(\int_0^1 W(r)^2dr-\left[\int_0^1 W(r)dr\right]^2\right)^2}.
-\]</span>
-</li>
+\]</span></li>
 </ul>
 <p>If <span class="math inline">\(|\phi|&lt;1\)</span>, the OLS estimate <span class="math inline">\(\phi^{OLS}_T\)</span> is not consistent if the <span class="math inline">\(\varepsilon_t\)</span>s are serially correlated (the true residuals and the regressors are correlated). When <span class="math inline">\(\phi=1\)</span>, the rate of convergence of <span class="math inline">\(\phi^{OLS}_T\)</span> is <span class="math inline">\(T\)</span> (<em>super-consistency</em>), which ensures that <span class="math inline">\(\phi^{OLS}_T \overset{p}{\rightarrow} 1\)</span> even if the <span class="math inline">\(\varepsilon_t\)</span>s are serially correlated.</p>
 <p>As the ADF test, this test is <strong>one-sided left-tailed</strong> (reject the null if the test statistics are sufficiently negative). The critical values are obtained by simulation; they can for instance be found <a href="http://www.econ.uiuc.edu/~econ508/DFtable.pdf">here</a>.</p>
 </div>
-<div id="stationarity-test-kpss" class="section level2" number="5.3">
-<h2>
-<span class="header-section-number">5.3</span> Stationarity test: KPSS<a class="anchor" aria-label="anchor" href="#stationarity-test-kpss"><i class="fas fa-link"></i></a>
-</h2>
-<p>The test proposed by <span class="citation">Kwiatkowski et al. (<a href="references.html#ref-KWIATKOWSKI1992159">1992</a>)</span> is a stationarity test, i.e., under the null hypothesis, the process is stationary. The underlying specificaiton is the following:
+<div id="stationarity-test-kpss" class="section level2 hasAnchor" number="5.3">
+<h2><span class="header-section-number">5.3</span> Stationarity test: KPSS<a href="NonStat.html#stationarity-test-kpss" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The test proposed by <span class="citation">Kwiatkowski et al. (<a href="#ref-KWIATKOWSKI1992159">1992</a>)</span> is a stationarity test, i.e., under the null hypothesis, the process is stationary. The underlying specificaiton is the following:
 <span class="math display">\[
-y_t = \boldsymbol\beta' D_t + \mu_t + \varepsilon_t,
+y_t = \boldsymbol\beta&#39; D_t + \mu_t + \varepsilon_t,
 \]</span>
-with <span class="math inline">\(\mu_t = \mu_{t-1} + \eta_t\)</span>, <span class="math inline">\(\mathbb{V}ar(\eta_t)=\sigma_\eta^2\)</span>, where <span class="math inline">\(D_t = 1\)</span> or <span class="math inline">\(D_t = [1,t]'\)</span> and where <span class="math inline">\(\{\varepsilon_t\}\)</span> is a covariance-stationary sequence.</p>
+with <span class="math inline">\(\mu_t = \mu_{t-1} + \eta_t\)</span>, <span class="math inline">\(\mathbb{V}ar(\eta_t)=\sigma_\eta^2\)</span>, where <span class="math inline">\(D_t = 1\)</span> or <span class="math inline">\(D_t = [1,t]&#39;\)</span> and where <span class="math inline">\(\{\varepsilon_t\}\)</span> is a covariance-stationary sequence.</p>
 <p>The KPSS statistic corresponds to the Lagrange Multiplier test statistic associated with the hypothesis <span class="math inline">\(\sigma_\eta^2=0\)</span>:
 <span class="math display">\[
 \boxed{\xi^{KPSS}_T = \left(\frac{1}{\hat\lambda_T^2 T^2}\sum_{t=1}^T\hat{S}_t^2\right),}
@@ -284,82 +469,129 @@ with <span class="math inline">\(\hat{S}_t=\Sigma_{i=1}^t \hat{\varepsilon}_i\)<
 <li>If <span class="math inline">\(D_t = 1\)</span>:
 <span class="math display">\[
 \xi^{KPSS}_T \overset{d}{\rightarrow} \int_{0}^1 (W(r)-rW(1))dr.
-\]</span>
-</li>
-<li>If <span class="math inline">\(D_t = [1,t]'\)</span>:
+\]</span></li>
+<li>If <span class="math inline">\(D_t = [1,t]&#39;\)</span>:
 <span class="math display">\[
 \xi^{KPSS}_T \overset{d}{\rightarrow} \int_{0}^1 \left\{W(r) + r(2-3r)W(1) + 6r(r^2-1)\int_{0}^{1}W(s)ds\right\}dr.
-\]</span>
-</li>
+\]</span></li>
 </ul>
 <p>This test is a <strong>one-sided right-tailed</strong> test: one rejects the null if <span class="math inline">\(\xi^{KPSS}_T\)</span> is above the <span class="math inline">\((1-\alpha)\)</span> quantile of the limit distribution. The critical values car be found, e.g., <a href="http://www.statisticshowto.com/kpss-test/">here</a>.</p>
 <div class="example">
 <p><span id="exm:NonStatExample" class="example"><strong>Example 5.1  (Stationarity of inflation and interest rates) </strong></span>Let us use quarterly US data and test the stationarity of inflation and the 3-month short-term rate. Let us first plot the data:</p>
-<div class="figure" style="text-align: left-aligned">
-<span style="display:block;" id="fig:figInflr"></span>
-<img src="TimeSeries_files/figure-html/figInflr-1.png" alt="US Inflation (in black) and short-term nominal rates (in red)." width="95%"><p class="caption">
+<div class="figure" style="text-align: left-aligned"><span style="display:block;" id="fig:figInflr"></span>
+<img src="TimeSeries_files/figure-html/figInflr-1.png" alt="US Inflation (in black) and short-term nominal rates (in red)." width="95%" />
+<p class="caption">
 Figure 5.3: US Inflation (in black) and short-term nominal rates (in red).
 </p>
 </div>
 <p>Let us now run the tests. Note that the default alternative hypothesis of function <code>adf.test</code> of package <code>tseries</code> is that the process is trend-stationary. Note that when <code>kpss.test</code> returns a p-value of <code>0.01</code>, it means that the true p-value is lower then that.</p>
-<div class="sourceCode" id="cb53"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">tseries</span><span class="op">)</span></span>
-<span><span class="va">test.adf.infl</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/tseries/man/adf.test.html">adf.test</a></span><span class="op">(</span><span class="va">US3var</span><span class="op">$</span><span class="va">infl</span>,k<span class="op">=</span><span class="fl">4</span><span class="op">)</span></span>
-<span><span class="va">test.adf.r</span>    <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/tseries/man/adf.test.html">adf.test</a></span><span class="op">(</span><span class="va">US3var</span><span class="op">$</span><span class="va">r</span>,k<span class="op">=</span><span class="fl">4</span><span class="op">)</span></span>
-<span><span class="va">test.pp.infl</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/tseries/man/pp.test.html">pp.test</a></span><span class="op">(</span><span class="va">US3var</span><span class="op">$</span><span class="va">infl</span><span class="op">)</span></span>
-<span><span class="va">test.pp.r</span>    <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/tseries/man/pp.test.html">pp.test</a></span><span class="op">(</span><span class="va">US3var</span><span class="op">$</span><span class="va">r</span><span class="op">)</span></span>
-<span><span class="va">test.kpss.infl</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/tseries/man/kpss.test.html">kpss.test</a></span><span class="op">(</span><span class="va">US3var</span><span class="op">$</span><span class="va">infl</span><span class="op">)</span></span>
-<span><span class="va">test.kpss.r</span>    <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/tseries/man/kpss.test.html">kpss.test</a></span><span class="op">(</span><span class="va">US3var</span><span class="op">$</span><span class="va">r</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">test.adf.infl</span><span class="op">$</span><span class="va">p.value</span>,<span class="va">test.pp.infl</span><span class="op">$</span><span class="va">p.value</span>,<span class="va">test.kpss.infl</span><span class="op">$</span><span class="va">p.value</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="NonStat.html#cb48-1" tabindex="-1"></a><span class="fu">library</span>(tseries)</span>
+<span id="cb48-2"><a href="NonStat.html#cb48-2" tabindex="-1"></a>test.adf.infl <span class="ot">&lt;-</span> <span class="fu">adf.test</span>(US3var<span class="sc">$</span>infl,<span class="at">k=</span><span class="dv">4</span>)</span>
+<span id="cb48-3"><a href="NonStat.html#cb48-3" tabindex="-1"></a>test.adf.r    <span class="ot">&lt;-</span> <span class="fu">adf.test</span>(US3var<span class="sc">$</span>r,<span class="at">k=</span><span class="dv">4</span>)</span>
+<span id="cb48-4"><a href="NonStat.html#cb48-4" tabindex="-1"></a>test.pp.infl <span class="ot">&lt;-</span> <span class="fu">pp.test</span>(US3var<span class="sc">$</span>infl)</span>
+<span id="cb48-5"><a href="NonStat.html#cb48-5" tabindex="-1"></a>test.pp.r    <span class="ot">&lt;-</span> <span class="fu">pp.test</span>(US3var<span class="sc">$</span>r)</span>
+<span id="cb48-6"><a href="NonStat.html#cb48-6" tabindex="-1"></a>test.kpss.infl <span class="ot">&lt;-</span> <span class="fu">kpss.test</span>(US3var<span class="sc">$</span>infl)</span>
+<span id="cb48-7"><a href="NonStat.html#cb48-7" tabindex="-1"></a>test.kpss.r    <span class="ot">&lt;-</span> <span class="fu">kpss.test</span>(US3var<span class="sc">$</span>r)</span>
+<span id="cb48-8"><a href="NonStat.html#cb48-8" tabindex="-1"></a><span class="fu">c</span>(test.adf.infl<span class="sc">$</span>p.value,test.pp.infl<span class="sc">$</span>p.value,test.kpss.infl<span class="sc">$</span>p.value)</span></code></pre></div>
 <pre><code>## [1] 0.29230878 0.04978275 0.01000000</code></pre>
-<div class="sourceCode" id="cb55"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">test.adf.r</span><span class="op">$</span><span class="va">p.value</span>,<span class="va">test.pp.r</span><span class="op">$</span><span class="va">p.value</span>,<span class="va">test.kpss.r</span><span class="op">$</span><span class="va">p.value</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="NonStat.html#cb50-1" tabindex="-1"></a><span class="fu">c</span>(test.adf.r<span class="sc">$</span>p.value,test.pp.r<span class="sc">$</span>p.value,test.kpss.r<span class="sc">$</span>p.value)</span></code></pre></div>
 <pre><code>## [1] 0.3837577 0.3614365 0.0100000</code></pre>
 </div>
 
 </div>
 </div>
-
-  <div class="chapter-nav">
-<div class="prev"><a href="forecasting.html"><span class="header-section-number">4</span> Forecasting</a></div>
-<div class="next"><a href="cointeg.html"><span class="header-section-number">6</span> Introduction to cointegration</a></div>
-</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
-    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
-      <ul class="nav navbar-nav">
-<li><a class="nav-link" href="#NonStat"><span class="header-section-number">5</span> Non-stationary processes</a></li>
-<li>
-<a class="nav-link" href="#issues-when-working-with-nonstationary-time-series"><span class="header-section-number">5.1</span> Issues when working with nonstationary time series</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#the-bias-of-autoregressive-coefficient-towards-zero"><span class="header-section-number">5.1.1</span> The bias of autoregressive coefficient towards zero</a></li>
-<li><a class="nav-link" href="#spurious-regressions"><span class="header-section-number">5.1.2</span> Spurious regressions</a></li>
-</ul>
-</li>
-<li><a class="nav-link" href="#nonstationarity-tests"><span class="header-section-number">5.2</span> Nonstationarity tests</a></li>
-<li><a class="nav-link" href="#stationarity-test-kpss"><span class="header-section-number">5.3</span> Stationarity test: KPSS</a></li>
-</ul>
-
-      <div class="book-extra">
-        <ul class="list-unstyled">
-          
-        </ul>
+<h3>References<a href="references.html#references" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="refs" class="references csl-bib-body hanging-indent" entry-spacing="0">
+<div id="ref-Abadir_1993" class="csl-entry">
+Abadir, Karim M. 1993. <span>“OLS Bias in a Nonstationary Autoregression.”</span> <em>Econometric Theory</em> 9 (1): 81–93. <a href="http://www.jstor.org/stable/3532005">http://www.jstor.org/stable/3532005</a>.
 </div>
-    </nav>
+<div id="ref-DF1979" class="csl-entry">
+Dickey, David A., and Wayne A. Fuller. 1979. <span>“Distribution of the Estimators for Autoregressive Time Series with a Unit Root.”</span> <em>Journal of the American Statistical Association</em> 74 (366a): 427–31. <a href="https://doi.org/10.1080/01621459.1979.10482531">https://doi.org/10.1080/01621459.1979.10482531</a>.
 </div>
-
+<div id="ref-Hamilton_1994" class="csl-entry">
+Hamilton, James Douglas. 1994. <em>Time Series Analysis</em>. Princeton University Press. <a href="https://www.worldcat.org/title/time-series-analysis/oclc/1194970663&amp;referer=brief_results">https://www.worldcat.org/title/time-series-analysis/oclc/1194970663&amp;referer=brief_results</a>.
 </div>
-</div> <!-- .container -->
+<div id="ref-KWIATKOWSKI1992159" class="csl-entry">
+Kwiatkowski, Denis, Peter C. B. Phillips, Peter Schmidt, and Yongcheol Shin. 1992. <span>“Testing the Null Hypothesis of Stationarity Against the Alternative of a Unit Root: How Sure Are We That Economic Time Series Have a Unit Root?”</span> <em>Journal of Econometrics</em> 54 (1): 159–78. <a href="https://www.sciencedirect.com/science/article/pii/030440769290104Y">https://www.sciencedirect.com/science/article/pii/030440769290104Y</a>.
+</div>
+<div id="ref-Phillips_1987" class="csl-entry">
+Phillips, P. C. B. 1987. <span>“Time Series Regression with a Unit Root.”</span> <em>Econometrica</em> 55 (2): 277–301. <a href="http://www.jstor.org/stable/1913237">http://www.jstor.org/stable/1913237</a>.
+</div>
+<div id="ref-Phillips_Perron_1988" class="csl-entry">
+Phillips, Peter, and Pierre Perron. 1988. <span>“<span class="nocase">Testing for a unit root in time series regression</span>.”</span> <em>Biometrika</em> 75 (2): 335–46. <a href="https://doi.org/10.1093/biomet/75.2.335">https://doi.org/10.1093/biomet/75.2.335</a>.
+</div>
+<div id="ref-Schwert_1989" class="csl-entry">
+Schwert, G. William. 1989. <span>“<span class="nocase">Tests for Unit Roots: A Monte Carlo Investigation</span>.”</span> <em>Journal of Business &amp; Economic Statistics</em> 7 (2): 147–59. <a href="http://www.jstor.org/stable/1391432">http://www.jstor.org/stable/1391432</a>.
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="17">
+<li id="fn17"><p>See <span class="citation">Hamilton (<a href="#ref-Hamilton_1994">1994</a>)</span>, Table 17.2 p.514.<a href="NonStat.html#fnref17" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+            </section>
 
-<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
-
-  <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Introduction to Time Series</strong>" was written by Jean-Paul Renne. It was last built on 2025-04-26.</p>
+          </div>
+        </div>
+      </div>
+<a href="forecasting.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="cointeg.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
   </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": "https://github.com/rstudio/bookdown-demo/edit/master/05-NonStat.Rmd",
+    "text": "Edit"
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": ["TimeSeries.pdf", "TimeSeries.epub"],
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection"
+  }
+});
+});
+</script>
 
-  <div class="col-12 col-md-6 mt-3">
-    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
-  </div>
-
-</div></div>
-</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
@@ -371,22 +603,7 @@ Figure 5.3: US Inflation (in black) and short-term nominal rates (in red).
     script.src = src;
     document.getElementsByTagName("head")[0].appendChild(script);
   })();
-</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
-for (let popover of popovers) {
-  const div = document.createElement('div');
-  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
-  div.innerHTML = popover.getAttribute('data-content');
-
-  var has_math = div.querySelector("span.math");
-  if (has_math) {
-    document.body.appendChild(div);
-    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
-    MathJax.Hub.Queue(function() {
-      popover.setAttribute('data-content', div.innerHTML);
-      document.body.removeChild(div);
-    })
-  }
-}
 </script>
 </body>
+
 </html>

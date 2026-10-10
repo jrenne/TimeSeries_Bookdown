@@ -78,7 +78,7 @@ Figure \@ref(fig:simMA) displays simulated paths of two MA processes (an MA(1) a
 
 
 ```{r simMA, echo=TRUE, fig.cap="Simulation of MA processes.", fig.asp = .6, out.width = "95%", fig.align = 'left-aligned'}
-library(AEC)
+library(IdSS)
 T <- 100;nb.sim <- 1
 y.0 <- c(0)
 c <- 1;phi <- c(0);sigma <- 1
@@ -497,7 +497,7 @@ Besides, it can be shown that $\phi_{p,p}=\phi_p$. Hence  $\phi_{p,p}=\phi_p$ bu
 As illustrated below, the functions `acf` and `pacf` of R allow us to conveniently implement the (P)ACF approach. (In these lines of codes, note also the use of function `sim.arma` to simulate ARMA processes.)
 
 ```{r pacf, echo=TRUE, fig.cap="ACF/PACF analysis of two processes (MA process on the left, AR on the right). The correlations are computed on samples of length 1000.", fig.asp = .6, out.width = "100%", fig.align = 'left-aligned'}
-library(AEC)
+library(IdSS)
 par(mfrow=c(3,2))
 par(plt=c(.2,.9,.2,.95))
 theta <- c(1,2,1);phi=0
@@ -593,7 +593,7 @@ $$
 
 Note that Proposition \@ref(prp:computPsi) constitutes a simple way to compute the MA($\infty$) representation (or Wold representation) of an ARMA process.
 
-One can use function `sim.arma` of package `AEC` to compute ARMA's IRFs (with the argument `make.IRF = 1`):
+One can use function `sim.arma` of package `IdSS` to compute ARMA's IRFs (with the argument `make.IRF = 1`):
 
 ```{r IRFarma, echo=TRUE, fig.cap="IRFs associated with the three processes. Process 1 (MA(2)): $y_t = \\varepsilon_t + \\varepsilon_{t-1} + \\varepsilon_{t-2}$. Process 2 (ARMA(1,1)): $y_{t}=0.6y_{t-1} + \\varepsilon_t + 0.5\\varepsilon_{t-1}$. Process 3 (ARMA(4,2)): $y_{t}=0.5y_{t-3} + 0.4y_{t-4} + \\varepsilon_t + \\varepsilon_{t-1} + \\varepsilon_{t-2}$.", fig.asp = .6, out.width = "100%", fig.align = 'left-aligned'}
 T <- 21 # number of periods for IRF
@@ -624,7 +624,7 @@ plot(0:(T-1),y.sim[,1],type="l",lwd=2,
 Consider the annual Swiss GDP growth from the JST macro-history database. Let us first determine relevant orders for AR and MA processes using the (P)ACF approach.
 
 ```{r IRFgdp1, echo=TRUE, fig.cap="(P)ACF analysis of Swiss GDP growth.", fig.asp = .6, out.width = "100%", fig.align = 'left-aligned'}
-library(AEC)
+library(IdSS)
 data(JST);data <- subset(JST,iso=="CHE")
 par(plt=c(.1,.95,.1,.95))
 T <- dim(data)[1]
@@ -766,7 +766,7 @@ It has to be stressed that the definition of the dynamic multipliers (Eq. \@ref(
 This example is based on data used in @Stock_Watson_2003 (Chapter 16). The objective is to study the influence of the number of freezing days on the price of orange juice. Let us first estimate a ARMA-X(0,0,3) model:
 
 ```{r freez, warning=FALSE, message=FALSE}
-library(AEC);library(AER)
+library(IdSS);library(AER)
 data("FrozenJuice")
 FJ <- as.data.frame(FrozenJuice)
 date <- time(FrozenJuice)
@@ -803,7 +803,7 @@ stargazer::stargazer(eq, eq, type = "text",
                      se = list(NULL,robust_se),no.space = TRUE)
 ```
 
-Let us now use function `estim.armax`, from package `AEC`to fit an ARMA-X(3,0,1) model:
+Let us now use function `estim.armax`, from package `IdSS` to fit an ARMA-X(3,0,1) model:
 
 ```{r freez3}
 nb.lags.exog <- 1 # number of lags of exog. variable
@@ -878,7 +878,7 @@ In this example, we make use of monetary shocks identified through high-frequenc
 
 
 ```{r Ramey1}
-library(AEC)
+library(IdSS)
 T <- dim(Ramey)[1]
 # Construct growth series:
 Ramey$growth <- Ramey$LIP - c(rep(NaN,12),Ramey$LIP[1:(length(Ramey$LIP)-12)])
@@ -1151,7 +1151,7 @@ The convergence in distribution of $\sqrt{T}(X'\boldsymbol\varepsilon/T)=\sqrt{T
 These two cases (exact or conditional log-likelihoods) can be implemented when asking R to fit an AR process by means of function `arima`. Let us for instance use the output gap of the `US3var` dataset (US quarterly data, covering the period 1959:2 to 2015:1, used in @Gourieroux_Monfort_Renne_2017).
 
 ```{r UseArima}
-library(AEC)
+library(IdSS)
 y <- US3var$y.gdp.gap
 ar3.Case1 <- arima(y,order = c(3,0,0),method="ML")
 ar3.Case2 <- arima(y,order = c(3,0,0),method="CSS")
@@ -1340,7 +1340,7 @@ Hence $\hat{k}^{(i)} \approx \underset{k}{\mbox{argmin}} \quad  \log(SSR/T) + \d
 Consider a long historical time series of the Swiss GDP growth (see Figure \@ref(fig:autocov)), taken from the @JST_2017 dataset. Let us look for the best ARMA specification using the AIC criteria:
 
 ```{r lagSelectARMA, warning=FALSE, message=FALSE}
-library(AEC);data(JST)
+library(IdSS);data(JST)
 data <- subset(JST,iso=="CHE")
 T <- dim(data)[1]
 y <- c(NaN,log(data$gdp[2:T]/data$gdp[1:(T-1)]))
@@ -1357,4 +1357,3 @@ print(c(best.p,best.q))
 
 The best specification therefore is an AR(1) model. That is, although an AR(2) (say) would result in a better fit of the data, the fit improvement is not be large enough to compensate for the additional AIC cost associated with an additional parameter.
 :::
-
