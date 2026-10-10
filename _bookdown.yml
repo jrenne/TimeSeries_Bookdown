@@ -1,5 +1,6 @@
 book_filename: "TimeSeries"
 output_dir: docs
+rmd_files: ["index.Rmd", "01-Introduction.Rmd", "02-Univariate.Rmd", "03-VAR.Rmd", "04-Forecasting.Rmd", "05-NonStat.Rmd", "06-VECM.Rmd", "07-GARCH.Rmd", "08-Appendix.Rmd", "09-References.Rmd"]
 language:
   ui:
     chapter_name: "Chapter "

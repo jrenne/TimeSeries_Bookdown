@@ -73,7 +73,7 @@ Hence, estimating IRFs amounts to estimating the $\Psi_{h}$'s. In general, there
 * Directly estimate the $\Psi_{h}$ based on *projection approaches* à la @Jorda_2005 (see [this web-page](https://jrenne.github.io/IdentifStructShocks/Projections.html)).
 * Approximate the infinite MA representation by estimating a parsimonious type of model, e.g. **VAR(MA) models** (see Section \@ref(estimVAR)). Once a (Structural) VARMA representation is obtained, Eq. \@ref(eq:InfMA) is easily deduced using the following proposition:
 
-:::{.proposition #computPsi name="IRF of an VARMA(p,q) process"}
+:::{.proposition #computPsiVAR name="IRF of a VARMA(p,q) process"}
 If $y_t$ follows the VARMA model described in Def. \@ref(def:SVARMA), then the matrices $\Psi_h$ appearing in Eq. \@ref(eq:InfMA) can be computed recursively as follows:
 
 1. Set $\Psi_{-1}=\dots=\Psi_{-p}=0$.
@@ -317,7 +317,7 @@ See Appendix \@ref(AppendixProof).
 
 As stated by Proposition \@ref(prp:OLSVAR), when the shocks are not Gaussian, then the OLS regressions still provide consistent estimates of the model parameters. However, since $x_t$ correlates to $\varepsilon_s$ for $s<t$, the OLS estimator $\bv{b}_i$ of $\boldsymbol\beta_i$ is biased in small sample. (That is also the case for the ML estimator.) Indeed, denoting by $\boldsymbol\varepsilon_i$ the $T \times 1$ vector of $\varepsilon_{i,t}$'s, and using the notations of $b_i$ and $\beta_i$ introduced in Proposition \@ref(prp:estimVARGaussian), we have:
 \begin{equation}
-\bv{b}_i = \beta_i + (\bv{X}'\bv{X})^{-1}\bv{X}'\boldsymbol\varepsilon_i.(\#eq:olsar1)
+\bv{b}_i = \beta_i + (\bv{X}'\bv{X})^{-1}\bv{X}'\boldsymbol\varepsilon_i.(\#eq:olsvar1)
 \end{equation}
 We have non-zero correlation between $x_t$ and $\varepsilon_{i,s}$ for $s<t$ and, therefore, $\mathbb{E}[(\bv{X}'\bv{X})^{-1}\bv{X}'\boldsymbol\varepsilon_i] \ne 0$.
 
@@ -339,7 +339,7 @@ where $\sigma_i = \mathbb{V}ar(\varepsilon_{i,t})$ and where $\bv{Q} = \mbox{pli
 \vdots &\vdots &\vdots &\dots &\vdots \\
 \mu & \gamma_{p-1} + \mu\mu' & \gamma_{p-2} + \mu\mu' & \dots & \gamma_{0} + \mu\mu'
 \end{array}
-\right].(\#eq:Qols)
+\right].(\#eq:QolsVAR)
 \end{equation}
 :::
 :::{.proof}
@@ -861,4 +861,18 @@ plot(Y[,2],type="l",lwd=2,xlab="",ylab="",main="Supply shock on UNEMP")
 ```
 
 
+## Exercise {#var-exercises}
 
+```{r var-exercise-renderer, include=FALSE}
+source("R/exercises.R")
+```
+
+```{r var-ps3, results='asis'}
+render_exercises("ps3", "ex-var-model")
+```
+
+### Exercise from the 2024 exam
+
+```{r var-exam-2024, results='asis'}
+render_exercises("exam-2024", "ex-exam2024-var-forecast-identification")
+```

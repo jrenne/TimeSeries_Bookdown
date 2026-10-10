@@ -5,19 +5,19 @@
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 4 Forecasting | Introduction to Time Series</title>
-  <meta name="description" content="This course XXX." />
+  <meta name="description" content="An introduction to time-series analysis for macroeconomics and finance, covering univariate and multivariate models, forecasting, non-stationarity, cointegration, and volatility." />
   <meta name="generator" content="bookdown 0.43 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 4 Forecasting | Introduction to Time Series" />
   <meta property="og:type" content="book" />
   
-  <meta property="og:description" content="This course XXX." />
-  <meta name="github-repo" content="rstudio/bookdown-demo" />
+  <meta property="og:description" content="An introduction to time-series analysis for macroeconomics and finance, covering univariate and multivariate models, forecasting, non-stationarity, cointegration, and volatility." />
+  <meta name="github-repo" content="jrenne/TimeSeries_Bookdown" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Chapter 4 Forecasting | Introduction to Time Series" />
   
-  <meta name="twitter:description" content="This course XXX." />
+  <meta name="twitter:description" content="An introduction to time-series analysis for macroeconomics and finance, covering univariate and multivariate models, forecasting, non-stationarity, cointegration, and volatility." />
   
 
 <meta name="author" content="Jean-Paul Renne" />
@@ -49,6 +49,7 @@
 
 
 
+<link href="libs/codefolding-lua-1.1/codefolding-lua.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
@@ -168,6 +169,7 @@ div.csl-indent {
 <li class="chapter" data-level="1.1" data-path="Intro.html"><a href="Intro.html#shocks-and-lag-operator"><i class="fa fa-check"></i><b>1.1</b> Shocks and lag operator</a></li>
 <li class="chapter" data-level="1.2" data-path="Intro.html"><a href="Intro.html#conditional-and-unconditional-moments"><i class="fa fa-check"></i><b>1.2</b> Conditional and unconditional moments</a></li>
 <li class="chapter" data-level="1.3" data-path="Intro.html"><a href="Intro.html#central-limit-theorem-clt-for-persistent-processes"><i class="fa fa-check"></i><b>1.3</b> Central Limit Theorem (CLT) for persistent processes</a></li>
+<li class="chapter" data-level="1.4" data-path="Intro.html"><a href="Intro.html#introduction-exercises"><i class="fa fa-check"></i><b>1.4</b> Exercise from the 2024 exam</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="Univariate.html"><a href="Univariate.html"><i class="fa fa-check"></i><b>2</b> Univariate processes</a>
 <ul>
@@ -190,6 +192,10 @@ div.csl-indent {
 <li class="chapter" data-level="2.8.4" data-path="Univariate.html"><a href="Univariate.html#estimARMApq"><i class="fa fa-check"></i><b>2.8.4</b> Maximum Likelihood Estimation of an ARMA(p,q) process</a></li>
 </ul></li>
 <li class="chapter" data-level="2.9" data-path="Univariate.html"><a href="Univariate.html#specification-choice"><i class="fa fa-check"></i><b>2.9</b> Specification choice</a></li>
+<li class="chapter" data-level="2.10" data-path="Univariate.html"><a href="Univariate.html#univariate-exercises"><i class="fa fa-check"></i><b>2.10</b> Exercises</a>
+<ul>
+<li class="chapter" data-level="2.10.1" data-path="Univariate.html"><a href="Univariate.html#exercises-from-the-2024-exam"><i class="fa fa-check"></i><b>2.10.1</b> Exercises from the 2024 exam</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="VAR.html"><a href="VAR.html"><i class="fa fa-check"></i><b>3</b> Multivariate models</a>
 <ul>
@@ -209,8 +215,18 @@ div.csl-indent {
 <li class="chapter" data-level="3.6.3" data-path="VAR.html"><a href="VAR.html#cholesky-a-specific-short-run-restriction-situation"><i class="fa fa-check"></i><b>3.6.3</b> Cholesky: a specific short-run-restriction situation</a></li>
 <li class="chapter" data-level="3.6.4" data-path="VAR.html"><a href="VAR.html#long-run-restrictions"><i class="fa fa-check"></i><b>3.6.4</b> Long-run restrictions</a></li>
 </ul></li>
+<li class="chapter" data-level="3.7" data-path="VAR.html"><a href="VAR.html#var-exercises"><i class="fa fa-check"></i><b>3.7</b> Exercise</a>
+<ul>
+<li class="chapter" data-level="3.7.1" data-path="VAR.html"><a href="VAR.html#exercise-from-the-2024-exam"><i class="fa fa-check"></i><b>3.7.1</b> Exercise from the 2024 exam</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="forecasting.html"><a href="forecasting.html"><i class="fa fa-check"></i><b>4</b> Forecasting</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="forecasting.html"><a href="forecasting.html"><i class="fa fa-check"></i><b>4</b> Forecasting</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="forecasting.html"><a href="forecasting.html#forecasting-exercises"><i class="fa fa-check"></i><b>4.1</b> Exercise</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="forecasting.html"><a href="forecasting.html#exercise-from-the-2024-exam-1"><i class="fa fa-check"></i><b>4.1.1</b> Exercise from the 2024 exam</a></li>
+</ul></li>
+</ul></li>
 <li class="chapter" data-level="5" data-path="NonStat.html"><a href="NonStat.html"><i class="fa fa-check"></i><b>5</b> Non-stationary processes</a>
 <ul>
 <li class="chapter" data-level="5.1" data-path="NonStat.html"><a href="NonStat.html#issues-when-working-with-nonstationary-time-series"><i class="fa fa-check"></i><b>5.1</b> Issues when working with nonstationary time series</a>
@@ -220,6 +236,7 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="5.2" data-path="NonStat.html"><a href="NonStat.html#nonstationarity-tests"><i class="fa fa-check"></i><b>5.2</b> Nonstationarity tests</a></li>
 <li class="chapter" data-level="5.3" data-path="NonStat.html"><a href="NonStat.html#stationarity-test-kpss"><i class="fa fa-check"></i><b>5.3</b> Stationarity test: KPSS</a></li>
+<li class="chapter" data-level="5.4" data-path="NonStat.html"><a href="NonStat.html#nonstationarity-exercises"><i class="fa fa-check"></i><b>5.4</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="cointeg.html"><a href="cointeg.html"><i class="fa fa-check"></i><b>6</b> Introduction to cointegration</a>
 <ul>
@@ -227,6 +244,7 @@ div.csl-indent {
 <li class="chapter" data-level="6.2" data-path="cointeg.html"><a href="cointeg.html#the-bivariate-case"><i class="fa fa-check"></i><b>6.2</b> The bivariate case</a></li>
 <li class="chapter" data-level="6.3" data-path="cointeg.html"><a href="cointeg.html#multivariate-case-and-vecm"><i class="fa fa-check"></i><b>6.3</b> Multivariate case and VECM</a></li>
 <li class="chapter" data-level="6.4" data-path="cointeg.html"><a href="cointeg.html#cointegration-in-practice"><i class="fa fa-check"></i><b>6.4</b> Cointegration in practice</a></li>
+<li class="chapter" data-level="6.5" data-path="cointeg.html"><a href="cointeg.html#cointegration-exercises"><i class="fa fa-check"></i><b>6.5</b> Exercise</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="ARCHGARCH.html"><a href="ARCHGARCH.html"><i class="fa fa-check"></i><b>7</b> ARCH and GARCH models</a>
 <ul>
@@ -406,7 +424,7 @@ which can be exploited recursively.</p>
 <span class="math display" id="eq:armaForecast">\[\begin{equation}
 y_t = c + \phi_1 y_{t-1} + \dots + \phi_p y_{t-p} + \varepsilon_t + \theta_1 \varepsilon_{t-1} + \dots + \theta_q \varepsilon_{t-q},\tag{4.3}
 \end{equation}\]</span>
-where <span class="math inline">\(\{\varepsilon_t\}\)</span> is a white noise sequence (Def. <a href="Intro.html#def:whitenoise">1.1</a>). We assume that the MA part of the process is invertible (see Eq. <a href="Univariate.html#eq:invertible">(2.23)</a>), which implies that the information contained in <span class="math inline">\(\{y_{t},y_{t-1},y_{t-2},\dots\}\)</span> is identical to that in <span class="math inline">\(\{\varepsilon_{t},\varepsilon_{t-1},\varepsilon_{t-2},\dots\}\)</span>.</p>
+where <span class="math inline">\(\{\varepsilon_t\}\)</span> is a white noise sequence (Def. <a href="Intro.html#def:whitenoise">1.1</a>). We assume that the MA part of the process is invertible (see Eq. <a href="Univariate.html#eq:invertible">(2.24)</a>), which implies that the information contained in <span class="math inline">\(\{y_{t},y_{t-1},y_{t-2},\dots\}\)</span> is identical to that in <span class="math inline">\(\{\varepsilon_{t},\varepsilon_{t-1},\varepsilon_{t-2},\dots\}\)</span>.</p>
 <p>While one could use a recursive algorithm to compute the conditional mean (as in Example <a href="forecasting.html#exm:fcstARp">4.2</a>), it is convenient to employ the Wold decomposition of this process (see Theorem <a href="Univariate.html#thm:Wold">2.2</a> and Prop. <a href="Univariate.html#prp:computPsi">2.7</a> for the computation of the <span class="math inline">\(\psi_i\)</span>’s in the context of ARMA processes):
 <!-- We have: -->
 <!-- \begin{eqnarray*} -->
@@ -528,24 +546,28 @@ where <span class="math inline">\(\Phi\)</span> is the c.d.f. of the standard no
 <div class="example">
 <p><span id="exm:SwissOutOfSample" class="example"><strong>Example 4.4  (Forecasting Swiss GDP growth) </strong></span>We use a long historical time series of the Swiss GDP growth taken from the <span class="citation">Jordà, Schularick, and Taylor (<a href="#ref-JST_2017">2017</a>)</span> dataset (see Figure <a href="Intro.html#fig:autocov">1.4</a>, and Example <a href="Univariate.html#exm:SwissGrowthAIC">2.4</a>).</p>
 <p>We want to forecast this GDP growth. We envision two specifications : an AR(1) specification (the one advocated by the AIC criteria, see Example <a href="Univariate.html#exm:SwissGrowthAIC">2.4</a>), and an ARMA(2,2) specification. We are interested in 2-year-ahead forecasts (i.e., <span class="math inline">\(h=2\)</span> since the data are yearly).</p>
-<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="forecasting.html#cb42-1" tabindex="-1"></a><span class="fu">library</span>(IdSS)</span>
-<span id="cb42-2"><a href="forecasting.html#cb42-2" tabindex="-1"></a><span class="fu">library</span>(forecast)</span></code></pre></div>
+<details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="forecasting.html#cb49-1" tabindex="-1"></a><span class="fu">library</span>(IdSS)</span>
+<span id="cb49-2"><a href="forecasting.html#cb49-2" tabindex="-1"></a><span class="fu">library</span>(forecast)</span></code></pre></div>
+</details>
 <pre><code>## Registered S3 method overwritten by &#39;quantmod&#39;:
 ##   method            from
 ##   as.zoo.data.frame zoo</code></pre>
-<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="forecasting.html#cb44-1" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">subset</span>(JST,iso<span class="sc">==</span><span class="st">&quot;CHE&quot;</span>)</span>
-<span id="cb44-2"><a href="forecasting.html#cb44-2" tabindex="-1"></a>T <span class="ot">&lt;-</span> <span class="fu">dim</span>(data)[<span class="dv">1</span>]</span>
-<span id="cb44-3"><a href="forecasting.html#cb44-3" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="cn">NaN</span>,<span class="fu">log</span>(data<span class="sc">$</span>gdp[<span class="dv">2</span><span class="sc">:</span>T]<span class="sc">/</span>data<span class="sc">$</span>gdp[<span class="dv">1</span><span class="sc">:</span>(T<span class="dv">-1</span>)]))</span>
-<span id="cb44-4"><a href="forecasting.html#cb44-4" tabindex="-1"></a>first.date <span class="ot">&lt;-</span> T<span class="dv">-50</span></span>
-<span id="cb44-5"><a href="forecasting.html#cb44-5" tabindex="-1"></a>e1 <span class="ot">&lt;-</span> <span class="cn">NULL</span>; e2 <span class="ot">&lt;-</span> <span class="cn">NULL</span>;h<span class="ot">&lt;-</span><span class="dv">2</span></span>
-<span id="cb44-6"><a href="forecasting.html#cb44-6" tabindex="-1"></a><span class="cf">for</span>(T.star <span class="cf">in</span> first.date<span class="sc">:</span>(T<span class="sc">-</span>h)){</span>
-<span id="cb44-7"><a href="forecasting.html#cb44-7" tabindex="-1"></a>  estim.model<span class="fl">.1</span> <span class="ot">&lt;-</span> <span class="fu">arima</span>(y[<span class="dv">1</span><span class="sc">:</span>T.star],<span class="at">order=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>))</span>
-<span id="cb44-8"><a href="forecasting.html#cb44-8" tabindex="-1"></a>  estim.model<span class="fl">.2</span> <span class="ot">&lt;-</span> <span class="fu">arima</span>(y[<span class="dv">1</span><span class="sc">:</span>T.star],<span class="at">order=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">0</span>,<span class="dv">2</span>))</span>
-<span id="cb44-9"><a href="forecasting.html#cb44-9" tabindex="-1"></a>  e1 <span class="ot">&lt;-</span> <span class="fu">c</span>(e1,y[T.star<span class="sc">+</span>h] <span class="sc">-</span> <span class="fu">predict</span>(estim.model<span class="fl">.1</span>,<span class="at">n.ahead=</span>h)<span class="sc">$</span>pred[h])</span>
-<span id="cb44-10"><a href="forecasting.html#cb44-10" tabindex="-1"></a>  e2 <span class="ot">&lt;-</span> <span class="fu">c</span>(e2,y[T.star<span class="sc">+</span>h] <span class="sc">-</span> <span class="fu">predict</span>(estim.model<span class="fl">.2</span>,<span class="at">n.ahead=</span>h)<span class="sc">$</span>pred[h])</span>
-<span id="cb44-11"><a href="forecasting.html#cb44-11" tabindex="-1"></a>}</span>
-<span id="cb44-12"><a href="forecasting.html#cb44-12" tabindex="-1"></a>res.DM <span class="ot">&lt;-</span> <span class="fu">dm.test</span>(e1,e2,<span class="at">h =</span> h,<span class="at">alternative =</span> <span class="st">&quot;greater&quot;</span>)</span>
-<span id="cb44-13"><a href="forecasting.html#cb44-13" tabindex="-1"></a>res.DM</span></code></pre></div>
+<details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="forecasting.html#cb51-1" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">subset</span>(JST,iso<span class="sc">==</span><span class="st">&quot;CHE&quot;</span>)</span>
+<span id="cb51-2"><a href="forecasting.html#cb51-2" tabindex="-1"></a>T <span class="ot">&lt;-</span> <span class="fu">dim</span>(data)[<span class="dv">1</span>]</span>
+<span id="cb51-3"><a href="forecasting.html#cb51-3" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="cn">NaN</span>,<span class="fu">log</span>(data<span class="sc">$</span>gdp[<span class="dv">2</span><span class="sc">:</span>T]<span class="sc">/</span>data<span class="sc">$</span>gdp[<span class="dv">1</span><span class="sc">:</span>(T<span class="dv">-1</span>)]))</span>
+<span id="cb51-4"><a href="forecasting.html#cb51-4" tabindex="-1"></a>first.date <span class="ot">&lt;-</span> T<span class="dv">-50</span></span>
+<span id="cb51-5"><a href="forecasting.html#cb51-5" tabindex="-1"></a>e1 <span class="ot">&lt;-</span> <span class="cn">NULL</span>; e2 <span class="ot">&lt;-</span> <span class="cn">NULL</span>;h<span class="ot">&lt;-</span><span class="dv">2</span></span>
+<span id="cb51-6"><a href="forecasting.html#cb51-6" tabindex="-1"></a><span class="cf">for</span>(T.star <span class="cf">in</span> first.date<span class="sc">:</span>(T<span class="sc">-</span>h)){</span>
+<span id="cb51-7"><a href="forecasting.html#cb51-7" tabindex="-1"></a>  estim.model<span class="fl">.1</span> <span class="ot">&lt;-</span> <span class="fu">arima</span>(y[<span class="dv">1</span><span class="sc">:</span>T.star],<span class="at">order=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>))</span>
+<span id="cb51-8"><a href="forecasting.html#cb51-8" tabindex="-1"></a>  estim.model<span class="fl">.2</span> <span class="ot">&lt;-</span> <span class="fu">arima</span>(y[<span class="dv">1</span><span class="sc">:</span>T.star],<span class="at">order=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">0</span>,<span class="dv">2</span>))</span>
+<span id="cb51-9"><a href="forecasting.html#cb51-9" tabindex="-1"></a>  e1 <span class="ot">&lt;-</span> <span class="fu">c</span>(e1,y[T.star<span class="sc">+</span>h] <span class="sc">-</span> <span class="fu">predict</span>(estim.model<span class="fl">.1</span>,<span class="at">n.ahead=</span>h)<span class="sc">$</span>pred[h])</span>
+<span id="cb51-10"><a href="forecasting.html#cb51-10" tabindex="-1"></a>  e2 <span class="ot">&lt;-</span> <span class="fu">c</span>(e2,y[T.star<span class="sc">+</span>h] <span class="sc">-</span> <span class="fu">predict</span>(estim.model<span class="fl">.2</span>,<span class="at">n.ahead=</span>h)<span class="sc">$</span>pred[h])</span>
+<span id="cb51-11"><a href="forecasting.html#cb51-11" tabindex="-1"></a>}</span>
+<span id="cb51-12"><a href="forecasting.html#cb51-12" tabindex="-1"></a>res.DM <span class="ot">&lt;-</span> <span class="fu">dm.test</span>(e1,e2,<span class="at">h =</span> h,<span class="at">alternative =</span> <span class="st">&quot;greater&quot;</span>)</span>
+<span id="cb51-13"><a href="forecasting.html#cb51-13" tabindex="-1"></a>res.DM</span></code></pre></div>
+</details>
 <pre><code>## 
 ##  Diebold-Mariano Test
 ## 
@@ -555,16 +577,18 @@ where <span class="math inline">\(\Phi\)</span> is the c.d.f. of the standard no
 ## alternative hypothesis: greater</code></pre>
 <p>With <code>alternative = "greater"</code> The alternative hypothesis is that method 2 is more accurate than method 1. Since we do not reject the null (the p-value being of 0.795), we are not led to use the more sophisticated model (ARMA(2,2)) and we keep the simple AR(1) model.</p>
 <p>Assume now that we want to compare the AR(1) process to a VAR model (see Def. <a href="VAR.html#def:SVAR">3.1</a>). We consider a bivariate VAR, where GDP growth is complemented with CPI-based inflation rate.</p>
-<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="forecasting.html#cb46-1" tabindex="-1"></a><span class="fu">library</span>(vars)</span>
-<span id="cb46-2"><a href="forecasting.html#cb46-2" tabindex="-1"></a>infl <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="cn">NaN</span>,<span class="fu">log</span>(data<span class="sc">$</span>cpi[<span class="dv">2</span><span class="sc">:</span>T]<span class="sc">/</span>data<span class="sc">$</span>cpi[<span class="dv">1</span><span class="sc">:</span>(T<span class="dv">-1</span>)]))</span>
-<span id="cb46-3"><a href="forecasting.html#cb46-3" tabindex="-1"></a>y_var <span class="ot">&lt;-</span> <span class="fu">cbind</span>(y,infl)</span>
-<span id="cb46-4"><a href="forecasting.html#cb46-4" tabindex="-1"></a>e3 <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
-<span id="cb46-5"><a href="forecasting.html#cb46-5" tabindex="-1"></a><span class="cf">for</span>(T.star <span class="cf">in</span> first.date<span class="sc">:</span>(T<span class="sc">-</span>h)){</span>
-<span id="cb46-6"><a href="forecasting.html#cb46-6" tabindex="-1"></a>  estim.model<span class="fl">.3</span> <span class="ot">&lt;-</span> <span class="fu">VAR</span>(y_var[<span class="dv">2</span><span class="sc">:</span>T.star,],<span class="at">p=</span><span class="dv">1</span>)</span>
-<span id="cb46-7"><a href="forecasting.html#cb46-7" tabindex="-1"></a>  e3 <span class="ot">&lt;-</span> <span class="fu">c</span>(e3,y[T.star<span class="sc">+</span>h] <span class="sc">-</span> <span class="fu">predict</span>(estim.model<span class="fl">.3</span>,<span class="at">n.ahead=</span>h)<span class="sc">$</span>fcst<span class="sc">$</span>y[h,<span class="dv">1</span>])</span>
-<span id="cb46-8"><a href="forecasting.html#cb46-8" tabindex="-1"></a>}</span>
-<span id="cb46-9"><a href="forecasting.html#cb46-9" tabindex="-1"></a>res.DM <span class="ot">&lt;-</span> <span class="fu">dm.test</span>(e1,e3,<span class="at">h =</span> h,<span class="at">alternative =</span> <span class="st">&quot;greater&quot;</span>)</span>
-<span id="cb46-10"><a href="forecasting.html#cb46-10" tabindex="-1"></a>res.DM</span></code></pre></div>
+<details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="forecasting.html#cb53-1" tabindex="-1"></a><span class="fu">library</span>(vars)</span>
+<span id="cb53-2"><a href="forecasting.html#cb53-2" tabindex="-1"></a>infl <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="cn">NaN</span>,<span class="fu">log</span>(data<span class="sc">$</span>cpi[<span class="dv">2</span><span class="sc">:</span>T]<span class="sc">/</span>data<span class="sc">$</span>cpi[<span class="dv">1</span><span class="sc">:</span>(T<span class="dv">-1</span>)]))</span>
+<span id="cb53-3"><a href="forecasting.html#cb53-3" tabindex="-1"></a>y_var <span class="ot">&lt;-</span> <span class="fu">cbind</span>(y,infl)</span>
+<span id="cb53-4"><a href="forecasting.html#cb53-4" tabindex="-1"></a>e3 <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb53-5"><a href="forecasting.html#cb53-5" tabindex="-1"></a><span class="cf">for</span>(T.star <span class="cf">in</span> first.date<span class="sc">:</span>(T<span class="sc">-</span>h)){</span>
+<span id="cb53-6"><a href="forecasting.html#cb53-6" tabindex="-1"></a>  estim.model<span class="fl">.3</span> <span class="ot">&lt;-</span> <span class="fu">VAR</span>(y_var[<span class="dv">2</span><span class="sc">:</span>T.star,],<span class="at">p=</span><span class="dv">1</span>)</span>
+<span id="cb53-7"><a href="forecasting.html#cb53-7" tabindex="-1"></a>  e3 <span class="ot">&lt;-</span> <span class="fu">c</span>(e3,y[T.star<span class="sc">+</span>h] <span class="sc">-</span> <span class="fu">predict</span>(estim.model<span class="fl">.3</span>,<span class="at">n.ahead=</span>h)<span class="sc">$</span>fcst<span class="sc">$</span>y[h,<span class="dv">1</span>])</span>
+<span id="cb53-8"><a href="forecasting.html#cb53-8" tabindex="-1"></a>}</span>
+<span id="cb53-9"><a href="forecasting.html#cb53-9" tabindex="-1"></a>res.DM <span class="ot">&lt;-</span> <span class="fu">dm.test</span>(e1,e3,<span class="at">h =</span> h,<span class="at">alternative =</span> <span class="st">&quot;greater&quot;</span>)</span>
+<span id="cb53-10"><a href="forecasting.html#cb53-10" tabindex="-1"></a>res.DM</span></code></pre></div>
+</details>
 <pre><code>## 
 ##  Diebold-Mariano Test
 ## 
@@ -574,7 +598,101 @@ where <span class="math inline">\(\Phi\)</span> is the c.d.f. of the standard no
 ## alternative hypothesis: greater</code></pre>
 <p>Again, we do not find that the alternative model (here the VAR(1) model) is better than the AR(1) model to forecast GDP growth.</p>
 </div>
+<div id="forecasting-exercises" class="section level2 hasAnchor" number="4.1">
+<h2><span class="header-section-number">4.1</span> Exercise<a href="forecasting.html#forecasting-exercises" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="forecasting.html#cb55-1" tabindex="-1"></a><span class="fu">render_exercises</span>(<span class="st">&quot;ps3&quot;</span>, <span class="st">&quot;ex-forecast-performance&quot;</span>)</span></code></pre></div>
+</details>
+<div class="exercisebox">
+<div class="exercise">
+<p><span id="exr:ex-forecast-performance" class="exercise"><strong>Exercise 4.1  (Forecast comparison and the Diebold–Mariano test) </strong></span><strong>PS3 | Advanced | Forecast evaluation</strong><br />
+Review Section <a href="forecasting.html#forecasting">4</a>.</p>
+<p>Three one-step forecasting models are compared on 200 observations: A, a random walk; B, an AR(1); and C, an ARMA(2,2). The out-of-sample exercise uses 100 rolling estimation windows of length 100.</p>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th align="right">Model A</th>
+<th align="right">Model B</th>
+<th align="right">Model C</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>In-sample RMSE</td>
+<td align="right">1.03</td>
+<td align="right">0.96</td>
+<td align="right">0.94</td>
+</tr>
+<tr class="even">
+<td>Out-of-sample RMSE</td>
+<td align="right">1.11</td>
+<td align="right">1.02</td>
+<td align="right">1.09</td>
+</tr>
+<tr class="odd">
+<td>Mean loss differential <span class="math inline">\(\bar d\)</span> versus A</td>
+<td align="right">—</td>
+<td align="right">-0.191</td>
+<td align="right">-0.044</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\hat\gamma_0\)</span></td>
+<td align="right">—</td>
+<td align="right">0.090</td>
+<td align="right">0.132</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\hat\gamma_1\)</span></td>
+<td align="right">—</td>
+<td align="right">0.061</td>
+<td align="right">0.086</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\hat\gamma_2\)</span></td>
+<td align="right">—</td>
+<td align="right">0.020</td>
+<td align="right">0.047</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\hat\gamma_3\)</span></td>
+<td align="right">—</td>
+<td align="right">0.003</td>
+<td align="right">0.011</td>
+</tr>
+</tbody>
+</table>
+<p>Here <span class="math inline">\(d_t=e_{j,t}^2-e_{A,t}^2\)</span>, for <span class="math inline">\(j=B,C\)</span>.</p>
+<ol style="list-style-type: decimal">
+<li><p>Discuss the in-sample and out-of-sample rankings.</p></li>
+<li><p>Using a Newey–West long-run variance with maximum lag 3 and Bartlett weights, estimate <span class="math inline">\(\operatorname{Var}(\bar d)\)</span>.</p></li>
+<li><p>Test at 5% whether B and C have equal predictive accuracy to A, and interpret the sign of the test statistic.</p></li>
+</ol>
+</div>
+</div>
+<div id="exercise-from-the-2024-exam-1" class="section level3 hasAnchor" number="4.1.1">
+<h3><span class="header-section-number">4.1.1</span> Exercise from the 2024 exam<a href="forecasting.html#exercise-from-the-2024-exam-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="forecasting.html#cb56-1" tabindex="-1"></a><span class="fu">render_exercises</span>(<span class="st">&quot;exam-2024&quot;</span>, <span class="st">&quot;ex-exam2024-ma1-forecasting&quot;</span>)</span></code></pre></div>
+</details>
+<div class="exercisebox">
+<div class="exercise">
+<p><span id="exr:ex-exam2024-ma1-forecasting" class="exercise"><strong>Exercise 4.2  (Inflation forecasts from an MA(1)) </strong></span><strong>EXAM-2024 | Exam | True/false</strong><br />
+Review Section <a href="forecasting.html#forecasting">4</a>.</p>
+<p>Let annual inflation be <span class="math inline">\(\pi_t=0.02+\varepsilon_t+0.4\varepsilon_{t-1}\)</span>, where <span class="math inline">\(\varepsilon_t\overset{i.i.d.}{\sim}\mathcal N(0,\sigma^2)\)</span> and <span class="math inline">\(\sigma=0.01\)</span>.</p>
+<p>State whether each assertion is true or false and justify your answer.</p>
+<ol style="list-style-type: decimal">
+<li>For <span class="math inline">\(h&gt;0\)</span>, <span class="math inline">\(\mathbb E(\pi_{t+h}+\cdots+\pi_{t+1}\mid\varepsilon_t,\varepsilon_{t-1},\ldots)=0.02h+0.4\varepsilon_t\)</span>.</li>
+<li><span class="math inline">\(\operatorname{Var}(\pi_t)=0.01\)</span>.</li>
+<li>Conditional on <span class="math inline">\(\varepsilon_t=0\)</span>, a 95% interval for <span class="math inline">\(\pi_{t+1}\)</span> is <span class="math inline">\([-1.96\sigma,1.96\sigma]\)</span>.</li>
+<li><span class="math inline">\(\pi_t\)</span> is correlated with <span class="math inline">\(\pi_{t-1}\)</span> but uncorrelated with <span class="math inline">\(\pi_{t-2}\)</span>.</li>
+<li><span class="math inline">\(\operatorname{Var}_t(\pi_{t+3})=\operatorname{Var}_t(\pi_{t+2})\)</span>.</li>
+</ol>
+</div>
+</div>
 
+</div>
+</div>
 </div>
 <h3>References<a href="references.html#references" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <div id="refs" class="references csl-bib-body hanging-indent" entry-spacing="0">
@@ -636,7 +754,7 @@ gitbook.start({
     "size": 2
   },
   "edit": {
-    "link": "https://github.com/rstudio/bookdown-demo/edit/master/04-Forecasting.Rmd",
+    "link": "https://github.com/jrenne/TimeSeries_Bookdown/edit/main/04-Forecasting.Rmd",
     "text": "Edit"
   },
   "history": {
@@ -647,7 +765,7 @@ gitbook.start({
     "link": null,
     "text": null
   },
-  "download": ["TimeSeries.pdf", "TimeSeries.epub"],
+  "download": ["TimeSeries.pdf"],
   "search": {
     "engine": "fuse",
     "options": null

@@ -426,7 +426,7 @@ Let's denote by $\phi_{X_i}$ the characteristic function of a r.v. $X_i$. If the
 $$
 \phi_{X_i}(u) = \mathbb{E}(\exp(iuX)) = 1 + iu\mu + o(u).
 $$
-The properties of the characteristic function (see Def. \@ref(def:characteristic)) imply that:
+The properties of characteristic functions imply that:
 $$
 \phi_{\frac{1}{n}(X_1+\dots+X_n)}(u) = \prod_{i=1}^{n} \left(1 + i\frac{u}{n}\mu + o\left(\frac{u}{n}\right) \right) \rightarrow e^{iu\mu}.
 $$
@@ -532,7 +532,7 @@ This implies that $\mathbb{E}([y_{t+1} - y^*_{t+1}]^2)$ is always larger than $\
 **Proof of Proposition \@ref(prp:estimVARGaussian)**
 
 :::{.proof}
-Using Proposition \@ref(prp:multivarG), we obtain that, conditionally on $x_1$, the log-likelihood is given by
+Using Proposition \@ref(prp:pdfMultivarGaussian), we obtain that, conditionally on $x_1$, the log-likelihood is given by
 \begin{eqnarray*}
 \log\mathcal{L}(Y_{T};\theta) & = & -(Tn/2)\log(2\pi)+(T/2)\log\left|\Omega^{-1}\right|\\
 &  & -\frac{1}{2}\sum_{t=1}^{T}\left[\left(y_{t}-\Pi'x_{t}\right)'\Omega^{-1}\left(y_{t}-\Pi'x_{t}\right)\right].
@@ -772,4 +772,3 @@ colnames(table_F) <- 1:max.n1
 rownames(table_F) <- RowNames
 knitr::kable(table_F, caption = "Quantiles of the $\\mathcal{F}$ distribution. The columns and rows correspond to different degrees of freedom (resp. $n_1$ and $n_2$). The different panels correspond to different probabilities ($\\alpha$) The corresponding cell gives $z$ that is s.t. $\\mathbb{P}(X \\le z)=\\alpha$, with $X \\sim \\mathcal{F}(n_1,n_2)$.", digits=3)
 ```
-

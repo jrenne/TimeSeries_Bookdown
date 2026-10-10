@@ -5,19 +5,19 @@
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 3 Multivariate models | Introduction to Time Series</title>
-  <meta name="description" content="This course XXX." />
+  <meta name="description" content="An introduction to time-series analysis for macroeconomics and finance, covering univariate and multivariate models, forecasting, non-stationarity, cointegration, and volatility." />
   <meta name="generator" content="bookdown 0.43 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 3 Multivariate models | Introduction to Time Series" />
   <meta property="og:type" content="book" />
   
-  <meta property="og:description" content="This course XXX." />
-  <meta name="github-repo" content="rstudio/bookdown-demo" />
+  <meta property="og:description" content="An introduction to time-series analysis for macroeconomics and finance, covering univariate and multivariate models, forecasting, non-stationarity, cointegration, and volatility." />
+  <meta name="github-repo" content="jrenne/TimeSeries_Bookdown" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Chapter 3 Multivariate models | Introduction to Time Series" />
   
-  <meta name="twitter:description" content="This course XXX." />
+  <meta name="twitter:description" content="An introduction to time-series analysis for macroeconomics and finance, covering univariate and multivariate models, forecasting, non-stationarity, cointegration, and volatility." />
   
 
 <meta name="author" content="Jean-Paul Renne" />
@@ -49,6 +49,7 @@
 
 
 
+<link href="libs/codefolding-lua-1.1/codefolding-lua.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
@@ -168,6 +169,7 @@ div.csl-indent {
 <li class="chapter" data-level="1.1" data-path="Intro.html"><a href="Intro.html#shocks-and-lag-operator"><i class="fa fa-check"></i><b>1.1</b> Shocks and lag operator</a></li>
 <li class="chapter" data-level="1.2" data-path="Intro.html"><a href="Intro.html#conditional-and-unconditional-moments"><i class="fa fa-check"></i><b>1.2</b> Conditional and unconditional moments</a></li>
 <li class="chapter" data-level="1.3" data-path="Intro.html"><a href="Intro.html#central-limit-theorem-clt-for-persistent-processes"><i class="fa fa-check"></i><b>1.3</b> Central Limit Theorem (CLT) for persistent processes</a></li>
+<li class="chapter" data-level="1.4" data-path="Intro.html"><a href="Intro.html#introduction-exercises"><i class="fa fa-check"></i><b>1.4</b> Exercise from the 2024 exam</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="Univariate.html"><a href="Univariate.html"><i class="fa fa-check"></i><b>2</b> Univariate processes</a>
 <ul>
@@ -190,6 +192,10 @@ div.csl-indent {
 <li class="chapter" data-level="2.8.4" data-path="Univariate.html"><a href="Univariate.html#estimARMApq"><i class="fa fa-check"></i><b>2.8.4</b> Maximum Likelihood Estimation of an ARMA(p,q) process</a></li>
 </ul></li>
 <li class="chapter" data-level="2.9" data-path="Univariate.html"><a href="Univariate.html#specification-choice"><i class="fa fa-check"></i><b>2.9</b> Specification choice</a></li>
+<li class="chapter" data-level="2.10" data-path="Univariate.html"><a href="Univariate.html#univariate-exercises"><i class="fa fa-check"></i><b>2.10</b> Exercises</a>
+<ul>
+<li class="chapter" data-level="2.10.1" data-path="Univariate.html"><a href="Univariate.html#exercises-from-the-2024-exam"><i class="fa fa-check"></i><b>2.10.1</b> Exercises from the 2024 exam</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="VAR.html"><a href="VAR.html"><i class="fa fa-check"></i><b>3</b> Multivariate models</a>
 <ul>
@@ -209,8 +215,18 @@ div.csl-indent {
 <li class="chapter" data-level="3.6.3" data-path="VAR.html"><a href="VAR.html#cholesky-a-specific-short-run-restriction-situation"><i class="fa fa-check"></i><b>3.6.3</b> Cholesky: a specific short-run-restriction situation</a></li>
 <li class="chapter" data-level="3.6.4" data-path="VAR.html"><a href="VAR.html#long-run-restrictions"><i class="fa fa-check"></i><b>3.6.4</b> Long-run restrictions</a></li>
 </ul></li>
+<li class="chapter" data-level="3.7" data-path="VAR.html"><a href="VAR.html#var-exercises"><i class="fa fa-check"></i><b>3.7</b> Exercise</a>
+<ul>
+<li class="chapter" data-level="3.7.1" data-path="VAR.html"><a href="VAR.html#exercise-from-the-2024-exam"><i class="fa fa-check"></i><b>3.7.1</b> Exercise from the 2024 exam</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="forecasting.html"><a href="forecasting.html"><i class="fa fa-check"></i><b>4</b> Forecasting</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="forecasting.html"><a href="forecasting.html"><i class="fa fa-check"></i><b>4</b> Forecasting</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="forecasting.html"><a href="forecasting.html#forecasting-exercises"><i class="fa fa-check"></i><b>4.1</b> Exercise</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="forecasting.html"><a href="forecasting.html#exercise-from-the-2024-exam-1"><i class="fa fa-check"></i><b>4.1.1</b> Exercise from the 2024 exam</a></li>
+</ul></li>
+</ul></li>
 <li class="chapter" data-level="5" data-path="NonStat.html"><a href="NonStat.html"><i class="fa fa-check"></i><b>5</b> Non-stationary processes</a>
 <ul>
 <li class="chapter" data-level="5.1" data-path="NonStat.html"><a href="NonStat.html#issues-when-working-with-nonstationary-time-series"><i class="fa fa-check"></i><b>5.1</b> Issues when working with nonstationary time series</a>
@@ -220,6 +236,7 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="5.2" data-path="NonStat.html"><a href="NonStat.html#nonstationarity-tests"><i class="fa fa-check"></i><b>5.2</b> Nonstationarity tests</a></li>
 <li class="chapter" data-level="5.3" data-path="NonStat.html"><a href="NonStat.html#stationarity-test-kpss"><i class="fa fa-check"></i><b>5.3</b> Stationarity test: KPSS</a></li>
+<li class="chapter" data-level="5.4" data-path="NonStat.html"><a href="NonStat.html#nonstationarity-exercises"><i class="fa fa-check"></i><b>5.4</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="cointeg.html"><a href="cointeg.html"><i class="fa fa-check"></i><b>6</b> Introduction to cointegration</a>
 <ul>
@@ -227,6 +244,7 @@ div.csl-indent {
 <li class="chapter" data-level="6.2" data-path="cointeg.html"><a href="cointeg.html#the-bivariate-case"><i class="fa fa-check"></i><b>6.2</b> The bivariate case</a></li>
 <li class="chapter" data-level="6.3" data-path="cointeg.html"><a href="cointeg.html#multivariate-case-and-vecm"><i class="fa fa-check"></i><b>6.3</b> Multivariate case and VECM</a></li>
 <li class="chapter" data-level="6.4" data-path="cointeg.html"><a href="cointeg.html#cointegration-in-practice"><i class="fa fa-check"></i><b>6.4</b> Cointegration in practice</a></li>
+<li class="chapter" data-level="6.5" data-path="cointeg.html"><a href="cointeg.html#cointegration-exercises"><i class="fa fa-check"></i><b>6.5</b> Exercise</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="ARCHGARCH.html"><a href="ARCHGARCH.html"><i class="fa fa-check"></i><b>7</b> ARCH and GARCH models</a>
 <ul>
@@ -344,7 +362,7 @@ With these notations, we get <span class="math inline">\(\mathbb{E}(y_{i,t+h}|\e
 <li>Approximate the infinite MA representation by estimating a parsimonious type of model, e.g. <strong>VAR(MA) models</strong> (see Section <a href="VAR.html#estimVAR">3.4</a>). Once a (Structural) VARMA representation is obtained, Eq. <a href="VAR.html#eq:InfMA">(3.4)</a> is easily deduced using the following proposition:</li>
 </ul>
 <div class="proposition">
-<p><span id="prp:computPsi" class="proposition"><strong>Proposition 2.7  (IRF of an VARMA(p,q) process) </strong></span>If <span class="math inline">\(y_t\)</span> follows the VARMA model described in Def. <a href="VAR.html#def:SVARMA">3.2</a>, then the matrices <span class="math inline">\(\Psi_h\)</span> appearing in Eq. <a href="VAR.html#eq:InfMA">(3.4)</a> can be computed recursively as follows:</p>
+<p><span id="prp:computPsiVAR" class="proposition"><strong>Proposition 3.1  (IRF of a VARMA(p,q) process) </strong></span>If <span class="math inline">\(y_t\)</span> follows the VARMA model described in Def. <a href="VAR.html#def:SVARMA">3.2</a>, then the matrices <span class="math inline">\(\Psi_h\)</span> appearing in Eq. <a href="VAR.html#eq:InfMA">(3.4)</a> can be computed recursively as follows:</p>
 <ol style="list-style-type: decimal">
 <li>Set <span class="math inline">\(\Psi_{-1}=\dots=\Psi_{-p}=0\)</span>.</li>
 <li>For <span class="math inline">\(h \ge 0\)</span>, (recursively) apply:
@@ -387,38 +405,40 @@ y_{t-1} +
 \end{array}\right]}_{B}\eta_{t-1}.\tag{3.5}
 \end{eqnarray}\]</span></p>
 <p>We can use function <code>simul.VARMA</code> of package <code>IdSS</code> to produce IRFs (using <code>indic.IRF=1</code> in the list of arguments):</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="VAR.html#cb24-1" tabindex="-1"></a><span class="fu">library</span>(IdSS)</span>
-<span id="cb24-2"><a href="VAR.html#cb24-2" tabindex="-1"></a>distri <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">type=</span><span class="fu">c</span>(<span class="st">&quot;gaussian&quot;</span>,<span class="st">&quot;gaussian&quot;</span>),<span class="at">df=</span><span class="fu">c</span>(<span class="dv">4</span>,<span class="dv">4</span>))</span>
-<span id="cb24-3"><a href="VAR.html#cb24-3" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="fu">length</span>(distri<span class="sc">$</span>type) <span class="co"># dimension of y_t</span></span>
-<span id="cb24-4"><a href="VAR.html#cb24-4" tabindex="-1"></a>nb.sim <span class="ot">&lt;-</span> <span class="dv">30</span></span>
-<span id="cb24-5"><a href="VAR.html#cb24-5" tabindex="-1"></a>eps <span class="ot">&lt;-</span> <span class="fu">simul.distri</span>(distri,nb.sim)</span>
-<span id="cb24-6"><a href="VAR.html#cb24-6" tabindex="-1"></a>Phi <span class="ot">&lt;-</span> <span class="fu">array</span>(<span class="cn">NaN</span>,<span class="fu">c</span>(n,n,<span class="dv">1</span>))</span>
-<span id="cb24-7"><a href="VAR.html#cb24-7" tabindex="-1"></a>Phi[,,<span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(.<span class="dv">5</span>,<span class="sc">-</span>.<span class="dv">4</span>,.<span class="dv">3</span>,.<span class="dv">7</span>),<span class="dv">2</span>,<span class="dv">2</span>)</span>
-<span id="cb24-8"><a href="VAR.html#cb24-8" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">dim</span>(Phi)[<span class="dv">3</span>]</span>
-<span id="cb24-9"><a href="VAR.html#cb24-9" tabindex="-1"></a>Theta <span class="ot">&lt;-</span> <span class="fu">array</span>(<span class="cn">NaN</span>,<span class="fu">c</span>(n,n,<span class="dv">1</span>))</span>
-<span id="cb24-10"><a href="VAR.html#cb24-10" tabindex="-1"></a>Theta[,,<span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="sc">-</span><span class="fl">0.4</span>,<span class="dv">1</span>,<span class="dv">0</span>,.<span class="dv">5</span>),<span class="dv">2</span>,<span class="dv">2</span>)</span>
-<span id="cb24-11"><a href="VAR.html#cb24-11" tabindex="-1"></a>q <span class="ot">&lt;-</span> <span class="fu">dim</span>(Theta)[<span class="dv">3</span>]</span>
-<span id="cb24-12"><a href="VAR.html#cb24-12" tabindex="-1"></a>Mu <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">0</span>,n)</span>
-<span id="cb24-13"><a href="VAR.html#cb24-13" tabindex="-1"></a>C <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">1</span>,<span class="sc">-</span><span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">1</span>),<span class="dv">2</span>,<span class="dv">2</span>)</span>
-<span id="cb24-14"><a href="VAR.html#cb24-14" tabindex="-1"></a>Model <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
-<span id="cb24-15"><a href="VAR.html#cb24-15" tabindex="-1"></a>  <span class="at">Mu =</span> Mu,<span class="at">Phi =</span> Phi,<span class="at">Theta =</span> Theta,<span class="at">C =</span> C,<span class="at">distri =</span> distri)</span>
-<span id="cb24-16"><a href="VAR.html#cb24-16" tabindex="-1"></a>Y0 <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">0</span>,n)</span>
-<span id="cb24-17"><a href="VAR.html#cb24-17" tabindex="-1"></a>eta0 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">0</span>)</span>
-<span id="cb24-18"><a href="VAR.html#cb24-18" tabindex="-1"></a>res.sim<span class="fl">.1</span> <span class="ot">&lt;-</span> <span class="fu">simul.VARMA</span>(Model,nb.sim,Y0,eta0,<span class="at">indic.IRF=</span><span class="dv">1</span>)</span>
-<span id="cb24-19"><a href="VAR.html#cb24-19" tabindex="-1"></a>eta0 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>)</span>
-<span id="cb24-20"><a href="VAR.html#cb24-20" tabindex="-1"></a>res.sim<span class="fl">.2</span> <span class="ot">&lt;-</span> <span class="fu">simul.VARMA</span>(Model,nb.sim,Y0,eta0,<span class="at">indic.IRF=</span><span class="dv">1</span>)</span>
-<span id="cb24-21"><a href="VAR.html#cb24-21" tabindex="-1"></a><span class="fu">par</span>(<span class="at">plt=</span><span class="fu">c</span>(.<span class="dv">15</span>,.<span class="dv">95</span>,.<span class="dv">25</span>,.<span class="dv">8</span>))</span>
-<span id="cb24-22"><a href="VAR.html#cb24-22" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</span>
-<span id="cb24-23"><a href="VAR.html#cb24-23" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>){</span>
-<span id="cb24-24"><a href="VAR.html#cb24-24" tabindex="-1"></a>  <span class="cf">if</span>(i <span class="sc">==</span> <span class="dv">1</span>){res.sim <span class="ot">&lt;-</span> res.sim<span class="fl">.1</span></span>
-<span id="cb24-25"><a href="VAR.html#cb24-25" tabindex="-1"></a>  }<span class="cf">else</span>{res.sim <span class="ot">&lt;-</span> res.sim<span class="fl">.2</span>}</span>
-<span id="cb24-26"><a href="VAR.html#cb24-26" tabindex="-1"></a>  <span class="cf">for</span>(j <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>){</span>
-<span id="cb24-27"><a href="VAR.html#cb24-27" tabindex="-1"></a>    <span class="fu">plot</span>(res.sim<span class="sc">$</span>Y[j,],<span class="at">las=</span><span class="dv">1</span>,</span>
-<span id="cb24-28"><a href="VAR.html#cb24-28" tabindex="-1"></a>         <span class="at">type=</span><span class="st">&quot;l&quot;</span>,<span class="at">lwd=</span><span class="dv">3</span>,<span class="at">xlab=</span><span class="st">&quot;&quot;</span>,<span class="at">ylab=</span><span class="st">&quot;&quot;</span>,</span>
-<span id="cb24-29"><a href="VAR.html#cb24-29" tabindex="-1"></a>         <span class="at">main=</span><span class="fu">paste</span>(<span class="st">&quot;Resp. of y&quot;</span>,j,</span>
-<span id="cb24-30"><a href="VAR.html#cb24-30" tabindex="-1"></a>                    <span class="st">&quot; to a 1-unit increase in eta&quot;</span>,i,<span class="at">sep=</span><span class="st">&quot;&quot;</span>))</span>
-<span id="cb24-31"><a href="VAR.html#cb24-31" tabindex="-1"></a>    <span class="fu">abline</span>(<span class="at">h=</span><span class="dv">0</span>,<span class="at">col=</span><span class="st">&quot;grey&quot;</span>,<span class="at">lty=</span><span class="dv">3</span>)</span>
-<span id="cb24-32"><a href="VAR.html#cb24-32" tabindex="-1"></a>  }}</span></code></pre></div>
+<details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="VAR.html#cb29-1" tabindex="-1"></a><span class="fu">library</span>(IdSS)</span>
+<span id="cb29-2"><a href="VAR.html#cb29-2" tabindex="-1"></a>distri <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">type=</span><span class="fu">c</span>(<span class="st">&quot;gaussian&quot;</span>,<span class="st">&quot;gaussian&quot;</span>),<span class="at">df=</span><span class="fu">c</span>(<span class="dv">4</span>,<span class="dv">4</span>))</span>
+<span id="cb29-3"><a href="VAR.html#cb29-3" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="fu">length</span>(distri<span class="sc">$</span>type) <span class="co"># dimension of y_t</span></span>
+<span id="cb29-4"><a href="VAR.html#cb29-4" tabindex="-1"></a>nb.sim <span class="ot">&lt;-</span> <span class="dv">30</span></span>
+<span id="cb29-5"><a href="VAR.html#cb29-5" tabindex="-1"></a>eps <span class="ot">&lt;-</span> <span class="fu">simul.distri</span>(distri,nb.sim)</span>
+<span id="cb29-6"><a href="VAR.html#cb29-6" tabindex="-1"></a>Phi <span class="ot">&lt;-</span> <span class="fu">array</span>(<span class="cn">NaN</span>,<span class="fu">c</span>(n,n,<span class="dv">1</span>))</span>
+<span id="cb29-7"><a href="VAR.html#cb29-7" tabindex="-1"></a>Phi[,,<span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(.<span class="dv">5</span>,<span class="sc">-</span>.<span class="dv">4</span>,.<span class="dv">3</span>,.<span class="dv">7</span>),<span class="dv">2</span>,<span class="dv">2</span>)</span>
+<span id="cb29-8"><a href="VAR.html#cb29-8" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">dim</span>(Phi)[<span class="dv">3</span>]</span>
+<span id="cb29-9"><a href="VAR.html#cb29-9" tabindex="-1"></a>Theta <span class="ot">&lt;-</span> <span class="fu">array</span>(<span class="cn">NaN</span>,<span class="fu">c</span>(n,n,<span class="dv">1</span>))</span>
+<span id="cb29-10"><a href="VAR.html#cb29-10" tabindex="-1"></a>Theta[,,<span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="sc">-</span><span class="fl">0.4</span>,<span class="dv">1</span>,<span class="dv">0</span>,.<span class="dv">5</span>),<span class="dv">2</span>,<span class="dv">2</span>)</span>
+<span id="cb29-11"><a href="VAR.html#cb29-11" tabindex="-1"></a>q <span class="ot">&lt;-</span> <span class="fu">dim</span>(Theta)[<span class="dv">3</span>]</span>
+<span id="cb29-12"><a href="VAR.html#cb29-12" tabindex="-1"></a>Mu <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">0</span>,n)</span>
+<span id="cb29-13"><a href="VAR.html#cb29-13" tabindex="-1"></a>C <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">1</span>,<span class="sc">-</span><span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">1</span>),<span class="dv">2</span>,<span class="dv">2</span>)</span>
+<span id="cb29-14"><a href="VAR.html#cb29-14" tabindex="-1"></a>Model <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb29-15"><a href="VAR.html#cb29-15" tabindex="-1"></a>  <span class="at">Mu =</span> Mu,<span class="at">Phi =</span> Phi,<span class="at">Theta =</span> Theta,<span class="at">C =</span> C,<span class="at">distri =</span> distri)</span>
+<span id="cb29-16"><a href="VAR.html#cb29-16" tabindex="-1"></a>Y0 <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">0</span>,n)</span>
+<span id="cb29-17"><a href="VAR.html#cb29-17" tabindex="-1"></a>eta0 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">0</span>)</span>
+<span id="cb29-18"><a href="VAR.html#cb29-18" tabindex="-1"></a>res.sim<span class="fl">.1</span> <span class="ot">&lt;-</span> <span class="fu">simul.VARMA</span>(Model,nb.sim,Y0,eta0,<span class="at">indic.IRF=</span><span class="dv">1</span>)</span>
+<span id="cb29-19"><a href="VAR.html#cb29-19" tabindex="-1"></a>eta0 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>)</span>
+<span id="cb29-20"><a href="VAR.html#cb29-20" tabindex="-1"></a>res.sim<span class="fl">.2</span> <span class="ot">&lt;-</span> <span class="fu">simul.VARMA</span>(Model,nb.sim,Y0,eta0,<span class="at">indic.IRF=</span><span class="dv">1</span>)</span>
+<span id="cb29-21"><a href="VAR.html#cb29-21" tabindex="-1"></a><span class="fu">par</span>(<span class="at">plt=</span><span class="fu">c</span>(.<span class="dv">15</span>,.<span class="dv">95</span>,.<span class="dv">25</span>,.<span class="dv">8</span>))</span>
+<span id="cb29-22"><a href="VAR.html#cb29-22" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</span>
+<span id="cb29-23"><a href="VAR.html#cb29-23" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>){</span>
+<span id="cb29-24"><a href="VAR.html#cb29-24" tabindex="-1"></a>  <span class="cf">if</span>(i <span class="sc">==</span> <span class="dv">1</span>){res.sim <span class="ot">&lt;-</span> res.sim<span class="fl">.1</span></span>
+<span id="cb29-25"><a href="VAR.html#cb29-25" tabindex="-1"></a>  }<span class="cf">else</span>{res.sim <span class="ot">&lt;-</span> res.sim<span class="fl">.2</span>}</span>
+<span id="cb29-26"><a href="VAR.html#cb29-26" tabindex="-1"></a>  <span class="cf">for</span>(j <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>){</span>
+<span id="cb29-27"><a href="VAR.html#cb29-27" tabindex="-1"></a>    <span class="fu">plot</span>(res.sim<span class="sc">$</span>Y[j,],<span class="at">las=</span><span class="dv">1</span>,</span>
+<span id="cb29-28"><a href="VAR.html#cb29-28" tabindex="-1"></a>         <span class="at">type=</span><span class="st">&quot;l&quot;</span>,<span class="at">lwd=</span><span class="dv">3</span>,<span class="at">xlab=</span><span class="st">&quot;&quot;</span>,<span class="at">ylab=</span><span class="st">&quot;&quot;</span>,</span>
+<span id="cb29-29"><a href="VAR.html#cb29-29" tabindex="-1"></a>         <span class="at">main=</span><span class="fu">paste</span>(<span class="st">&quot;Resp. of y&quot;</span>,j,</span>
+<span id="cb29-30"><a href="VAR.html#cb29-30" tabindex="-1"></a>                    <span class="st">&quot; to a 1-unit increase in eta&quot;</span>,i,<span class="at">sep=</span><span class="st">&quot;&quot;</span>))</span>
+<span id="cb29-31"><a href="VAR.html#cb29-31" tabindex="-1"></a>    <span class="fu">abline</span>(<span class="at">h=</span><span class="dv">0</span>,<span class="at">col=</span><span class="st">&quot;grey&quot;</span>,<span class="at">lty=</span><span class="dv">3</span>)</span>
+<span id="cb29-32"><a href="VAR.html#cb29-32" tabindex="-1"></a>  }}</span></code></pre></div>
+</details>
 <div class="figure" style="text-align: left-aligned"><span style="display:block;" id="fig:simVAR"></span>
 <img src="TimeSeries_files/figure-html/simVAR-1.png" alt="Impulse response functions (SVARMA(1,1) specified above)." width="95%" />
 <p class="caption">
@@ -493,28 +513,30 @@ where <span class="math inline">\(\psi_{k,i}\)</span> denotes the <span class="m
 y_{i,t} = \phi_i y_{t-1} + \varepsilon_{i,t},
 \]</span>
 where <span class="math inline">\(\phi_i\)</span> is the <span class="math inline">\(i^{th}\)</span> row of <span class="math inline">\(\Phi_1\)</span>, and where <span class="math inline">\(\varepsilon_{i,t}\)</span> is a linear combination of <span class="math inline">\(\eta_t\)</span> and <span class="math inline">\(\eta_{t-1}\)</span>. Since <span class="math inline">\(y_{t-1}\)</span> (the regressor) is correlated to <span class="math inline">\(\eta_{t-1}\)</span>, it is also correlated to <span class="math inline">\(\varepsilon_{i,t}\)</span>. The OLS regression of <span class="math inline">\(y_{i,t}\)</span> on <span class="math inline">\(y_{t-1}\)</span> yields a biased estimator of <span class="math inline">\(\phi_i\)</span> (see Figure <a href="VAR.html#fig:simulARMAbiased">3.2</a>). Hence, SVARMA models cannot be consistently estimated by simple OLS regressions (contrary to VAR models, as we will see in the next section); instrumental-variable approaches can be employed to estimate SVARMA models (using past values of <span class="math inline">\(y_t\)</span> as instruments, see, e.g., <span class="citation">Gouriéroux, Monfort, and Renne (<a href="#ref-Gourieroux_Monfort_Renne_2020">2020</a>)</span>).</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="VAR.html#cb25-1" tabindex="-1"></a>N <span class="ot">&lt;-</span> <span class="dv">1000</span> <span class="co"># number of replications</span></span>
-<span id="cb25-2"><a href="VAR.html#cb25-2" tabindex="-1"></a>T <span class="ot">&lt;-</span> <span class="dv">100</span> <span class="co"># sample length</span></span>
-<span id="cb25-3"><a href="VAR.html#cb25-3" tabindex="-1"></a>phi <span class="ot">&lt;-</span> .<span class="dv">8</span> <span class="co"># autoregressive parameter</span></span>
-<span id="cb25-4"><a href="VAR.html#cb25-4" tabindex="-1"></a>sigma <span class="ot">&lt;-</span> <span class="dv">1</span></span>
-<span id="cb25-5"><a href="VAR.html#cb25-5" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span>
-<span id="cb25-6"><a href="VAR.html#cb25-6" tabindex="-1"></a><span class="cf">for</span>(theta <span class="cf">in</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="sc">-</span><span class="fl">0.4</span>)){</span>
-<span id="cb25-7"><a href="VAR.html#cb25-7" tabindex="-1"></a>  all.y <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">0</span>,<span class="dv">1</span>,N)</span>
-<span id="cb25-8"><a href="VAR.html#cb25-8" tabindex="-1"></a>  y     <span class="ot">&lt;-</span> all.y</span>
-<span id="cb25-9"><a href="VAR.html#cb25-9" tabindex="-1"></a>  eta_1 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(N)</span>
-<span id="cb25-10"><a href="VAR.html#cb25-10" tabindex="-1"></a>  <span class="cf">for</span>(t <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>(T<span class="sc">+</span><span class="dv">1</span>)){</span>
-<span id="cb25-11"><a href="VAR.html#cb25-11" tabindex="-1"></a>    eta <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(N)</span>
-<span id="cb25-12"><a href="VAR.html#cb25-12" tabindex="-1"></a>    y <span class="ot">&lt;-</span> phi <span class="sc">*</span> y <span class="sc">+</span> sigma <span class="sc">*</span> eta <span class="sc">+</span> theta <span class="sc">*</span> sigma <span class="sc">*</span> eta_1</span>
-<span id="cb25-13"><a href="VAR.html#cb25-13" tabindex="-1"></a>    all.y <span class="ot">&lt;-</span> <span class="fu">rbind</span>(all.y,y)</span>
-<span id="cb25-14"><a href="VAR.html#cb25-14" tabindex="-1"></a>    eta_1 <span class="ot">&lt;-</span> eta}</span>
-<span id="cb25-15"><a href="VAR.html#cb25-15" tabindex="-1"></a>  all.y_1 <span class="ot">&lt;-</span> all.y[<span class="dv">1</span><span class="sc">:</span>T,]</span>
-<span id="cb25-16"><a href="VAR.html#cb25-16" tabindex="-1"></a>  all.y   <span class="ot">&lt;-</span> all.y[<span class="dv">2</span><span class="sc">:</span>(T<span class="sc">+</span><span class="dv">1</span>),]</span>
-<span id="cb25-17"><a href="VAR.html#cb25-17" tabindex="-1"></a>  XX_1 <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">/</span><span class="fu">apply</span>(all.y_1 <span class="sc">*</span> all.y_1,<span class="dv">2</span>,sum)</span>
-<span id="cb25-18"><a href="VAR.html#cb25-18" tabindex="-1"></a>  XY   <span class="ot">&lt;-</span> <span class="fu">apply</span>(all.y_1 <span class="sc">*</span> all.y,<span class="dv">2</span>,sum)</span>
-<span id="cb25-19"><a href="VAR.html#cb25-19" tabindex="-1"></a>  phi.est.OLS <span class="ot">&lt;-</span> XX_1 <span class="sc">*</span> XY</span>
-<span id="cb25-20"><a href="VAR.html#cb25-20" tabindex="-1"></a>  <span class="fu">plot</span>(<span class="fu">density</span>(phi.est.OLS),<span class="at">xlab=</span><span class="st">&quot;OLS estimate of phi&quot;</span>,<span class="at">ylab=</span><span class="st">&quot;&quot;</span>,</span>
-<span id="cb25-21"><a href="VAR.html#cb25-21" tabindex="-1"></a>       <span class="at">main=</span><span class="fu">paste</span>(<span class="st">&quot;theta = &quot;</span>,theta,<span class="at">sep=</span><span class="st">&quot;&quot;</span>))</span>
-<span id="cb25-22"><a href="VAR.html#cb25-22" tabindex="-1"></a>  <span class="fu">abline</span>(<span class="at">v=</span>phi,<span class="at">col=</span><span class="st">&quot;red&quot;</span>,<span class="at">lwd=</span><span class="dv">2</span>)}</span></code></pre></div>
+<details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="VAR.html#cb30-1" tabindex="-1"></a>N <span class="ot">&lt;-</span> <span class="dv">1000</span> <span class="co"># number of replications</span></span>
+<span id="cb30-2"><a href="VAR.html#cb30-2" tabindex="-1"></a>T <span class="ot">&lt;-</span> <span class="dv">100</span> <span class="co"># sample length</span></span>
+<span id="cb30-3"><a href="VAR.html#cb30-3" tabindex="-1"></a>phi <span class="ot">&lt;-</span> .<span class="dv">8</span> <span class="co"># autoregressive parameter</span></span>
+<span id="cb30-4"><a href="VAR.html#cb30-4" tabindex="-1"></a>sigma <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb30-5"><a href="VAR.html#cb30-5" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span>
+<span id="cb30-6"><a href="VAR.html#cb30-6" tabindex="-1"></a><span class="cf">for</span>(theta <span class="cf">in</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="sc">-</span><span class="fl">0.4</span>)){</span>
+<span id="cb30-7"><a href="VAR.html#cb30-7" tabindex="-1"></a>  all.y <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">0</span>,<span class="dv">1</span>,N)</span>
+<span id="cb30-8"><a href="VAR.html#cb30-8" tabindex="-1"></a>  y     <span class="ot">&lt;-</span> all.y</span>
+<span id="cb30-9"><a href="VAR.html#cb30-9" tabindex="-1"></a>  eta_1 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(N)</span>
+<span id="cb30-10"><a href="VAR.html#cb30-10" tabindex="-1"></a>  <span class="cf">for</span>(t <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>(T<span class="sc">+</span><span class="dv">1</span>)){</span>
+<span id="cb30-11"><a href="VAR.html#cb30-11" tabindex="-1"></a>    eta <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(N)</span>
+<span id="cb30-12"><a href="VAR.html#cb30-12" tabindex="-1"></a>    y <span class="ot">&lt;-</span> phi <span class="sc">*</span> y <span class="sc">+</span> sigma <span class="sc">*</span> eta <span class="sc">+</span> theta <span class="sc">*</span> sigma <span class="sc">*</span> eta_1</span>
+<span id="cb30-13"><a href="VAR.html#cb30-13" tabindex="-1"></a>    all.y <span class="ot">&lt;-</span> <span class="fu">rbind</span>(all.y,y)</span>
+<span id="cb30-14"><a href="VAR.html#cb30-14" tabindex="-1"></a>    eta_1 <span class="ot">&lt;-</span> eta}</span>
+<span id="cb30-15"><a href="VAR.html#cb30-15" tabindex="-1"></a>  all.y_1 <span class="ot">&lt;-</span> all.y[<span class="dv">1</span><span class="sc">:</span>T,]</span>
+<span id="cb30-16"><a href="VAR.html#cb30-16" tabindex="-1"></a>  all.y   <span class="ot">&lt;-</span> all.y[<span class="dv">2</span><span class="sc">:</span>(T<span class="sc">+</span><span class="dv">1</span>),]</span>
+<span id="cb30-17"><a href="VAR.html#cb30-17" tabindex="-1"></a>  XX_1 <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">/</span><span class="fu">apply</span>(all.y_1 <span class="sc">*</span> all.y_1,<span class="dv">2</span>,sum)</span>
+<span id="cb30-18"><a href="VAR.html#cb30-18" tabindex="-1"></a>  XY   <span class="ot">&lt;-</span> <span class="fu">apply</span>(all.y_1 <span class="sc">*</span> all.y,<span class="dv">2</span>,sum)</span>
+<span id="cb30-19"><a href="VAR.html#cb30-19" tabindex="-1"></a>  phi.est.OLS <span class="ot">&lt;-</span> XX_1 <span class="sc">*</span> XY</span>
+<span id="cb30-20"><a href="VAR.html#cb30-20" tabindex="-1"></a>  <span class="fu">plot</span>(<span class="fu">density</span>(phi.est.OLS),<span class="at">xlab=</span><span class="st">&quot;OLS estimate of phi&quot;</span>,<span class="at">ylab=</span><span class="st">&quot;&quot;</span>,</span>
+<span id="cb30-21"><a href="VAR.html#cb30-21" tabindex="-1"></a>       <span class="at">main=</span><span class="fu">paste</span>(<span class="st">&quot;theta = &quot;</span>,theta,<span class="at">sep=</span><span class="st">&quot;&quot;</span>))</span>
+<span id="cb30-22"><a href="VAR.html#cb30-22" tabindex="-1"></a>  <span class="fu">abline</span>(<span class="at">v=</span>phi,<span class="at">col=</span><span class="st">&quot;red&quot;</span>,<span class="at">lwd=</span><span class="dv">2</span>)}</span></code></pre></div>
+</details>
 <div class="figure" style="text-align: left-aligned"><span style="display:block;" id="fig:simulARMAbiased"></span>
 <img src="TimeSeries_files/figure-html/simulARMAbiased-1.png" alt="Illustration of the bias obtained when estimating the auto-regressive parameters of an ARMA process by (standard) OLS." width="95%" />
 <p class="caption">
@@ -542,7 +564,7 @@ y_{t}= \Pi&#39;x_{t} + \varepsilon_{t}. \tag{3.9}
 The previous representation is convenient to discuss the estimation of the VAR model, as parameters are gathered in two matrices only: <span class="math inline">\(\Pi\)</span> and <span class="math inline">\(\Omega\)</span>.</p>
 <p>Let us start with the case where the shocks are Gaussian.</p>
 <div class="proposition">
-<p><span id="prp:estimVARGaussian" class="proposition"><strong>Proposition 3.1  (MLE of a Gaussian VAR) </strong></span>If <span class="math inline">\(y_t\)</span> follows a VAR(p) (see Definition <a href="VAR.html#def:SVAR">3.1</a>), and if <span class="math inline">\(\varepsilon_t \sim \,i.i.d.\,\mathcal{N}(0,\Omega)\)</span>, then the ML estimate of <span class="math inline">\(\Pi\)</span>, denoted by <span class="math inline">\(\hat{\Pi}\)</span> (see Eq. <a href="VAR.html#eq:PIVAR">(3.9)</a>), is given by
+<p><span id="prp:estimVARGaussian" class="proposition"><strong>Proposition 3.2  (MLE of a Gaussian VAR) </strong></span>If <span class="math inline">\(y_t\)</span> follows a VAR(p) (see Definition <a href="VAR.html#def:SVAR">3.1</a>), and if <span class="math inline">\(\varepsilon_t \sim \,i.i.d.\,\mathcal{N}(0,\Omega)\)</span>, then the ML estimate of <span class="math inline">\(\Pi\)</span>, denoted by <span class="math inline">\(\hat{\Pi}\)</span> (see Eq. <a href="VAR.html#eq:PIVAR">(3.9)</a>), is given by
 <span class="math display" id="eq:Pi">\[\begin{equation}
 \hat{\Pi}=\left[\sum_{t=1}^{T}x_{t}x&#39;_{t}\right]^{-1}\left[\sum_{t=1}^{T}y_{t}&#39;x_{t}\right]= (\mathbf{X}&#39;\mathbf{X})^{-1}\mathbf{X}&#39;\mathbf{y},\tag{3.10}
 \end{equation}\]</span>
@@ -561,20 +583,20 @@ y_{i,t} = \beta_i&#39;x_t + \varepsilon_{i,t},\tag{3.11}
 <div class="proof">
 <p><span id="unlabeled-div-14" class="proof"><em>Proof</em>. </span>See Appendix <a href="append.html#AppendixProof">8.4</a>.</p>
 </div>
-<p>As stated by Proposition <a href="VAR.html#prp:OLSVAR">3.2</a>, when the shocks are not Gaussian, then the OLS regressions still provide consistent estimates of the model parameters. However, since <span class="math inline">\(x_t\)</span> correlates to <span class="math inline">\(\varepsilon_s\)</span> for <span class="math inline">\(s&lt;t\)</span>, the OLS estimator <span class="math inline">\(\mathbf{b}_i\)</span> of <span class="math inline">\(\boldsymbol\beta_i\)</span> is biased in small sample. (That is also the case for the ML estimator.) Indeed, denoting by <span class="math inline">\(\boldsymbol\varepsilon_i\)</span> the <span class="math inline">\(T \times 1\)</span> vector of <span class="math inline">\(\varepsilon_{i,t}\)</span>’s, and using the notations of <span class="math inline">\(b_i\)</span> and <span class="math inline">\(\beta_i\)</span> introduced in Proposition <a href="VAR.html#prp:estimVARGaussian">3.1</a>, we have:
-<span class="math display" id="eq:olsar1">\[\begin{equation}
-\mathbf{b}_i = \beta_i + (\mathbf{X}&#39;\mathbf{X})^{-1}\mathbf{X}&#39;\boldsymbol\varepsilon_i.\tag{2.19}
+<p>As stated by Proposition <a href="VAR.html#prp:OLSVAR">3.3</a>, when the shocks are not Gaussian, then the OLS regressions still provide consistent estimates of the model parameters. However, since <span class="math inline">\(x_t\)</span> correlates to <span class="math inline">\(\varepsilon_s\)</span> for <span class="math inline">\(s&lt;t\)</span>, the OLS estimator <span class="math inline">\(\mathbf{b}_i\)</span> of <span class="math inline">\(\boldsymbol\beta_i\)</span> is biased in small sample. (That is also the case for the ML estimator.) Indeed, denoting by <span class="math inline">\(\boldsymbol\varepsilon_i\)</span> the <span class="math inline">\(T \times 1\)</span> vector of <span class="math inline">\(\varepsilon_{i,t}\)</span>’s, and using the notations of <span class="math inline">\(b_i\)</span> and <span class="math inline">\(\beta_i\)</span> introduced in Proposition <a href="VAR.html#prp:estimVARGaussian">3.2</a>, we have:
+<span class="math display" id="eq:olsvar1">\[\begin{equation}
+\mathbf{b}_i = \beta_i + (\mathbf{X}&#39;\mathbf{X})^{-1}\mathbf{X}&#39;\boldsymbol\varepsilon_i.\tag{3.12}
 \end{equation}\]</span>
 We have non-zero correlation between <span class="math inline">\(x_t\)</span> and <span class="math inline">\(\varepsilon_{i,s}\)</span> for <span class="math inline">\(s&lt;t\)</span> and, therefore, <span class="math inline">\(\mathbb{E}[(\mathbf{X}&#39;\mathbf{X})^{-1}\mathbf{X}&#39;\boldsymbol\varepsilon_i] \ne 0\)</span>.</p>
 <p>However, when <span class="math inline">\(y_t\)</span> is covariance stationary, then <span class="math inline">\(\frac{1}{n}\mathbf{X}&#39;\mathbf{X}\)</span> converges to a positive definite matrix <span class="math inline">\(\mathbf{Q}\)</span>, and <span class="math inline">\(\frac{1}{n}X&#39;\boldsymbol\varepsilon_i\)</span> converges to 0. Hence <span class="math inline">\(\mathbf{b}_i \overset{p}{\rightarrow} \beta_i\)</span>. More precisely:</p>
 <div class="proposition">
-<p><span id="prp:OLSVAR" class="proposition"><strong>Proposition 3.2  (Asymptotic distribution of the OLS estimate) </strong></span>If <span class="math inline">\(y_t\)</span> follows a VAR model, as defined in Definition <a href="VAR.html#def:SVAR">3.1</a>, we have:
+<p><span id="prp:OLSVAR" class="proposition"><strong>Proposition 3.3  (Asymptotic distribution of the OLS estimate) </strong></span>If <span class="math inline">\(y_t\)</span> follows a VAR model, as defined in Definition <a href="VAR.html#def:SVAR">3.1</a>, we have:
 <span class="math display">\[
 \sqrt{T}(\mathbf{b}_i-\beta_i) =  \underbrace{\left[\frac{1}{T}\sum_{t=p}^T x_t x_t&#39; \right]^{-1}}_{\overset{p}{\rightarrow} \mathbf{Q}^{-1}}
 \underbrace{\sqrt{T} \left[\frac{1}{T}\sum_{t=1}^T x_t\varepsilon_{i,t} \right]}_{\overset{d}{\rightarrow} \mathcal{N}(0,\sigma_i^2\mathbf{Q})},
 \]</span>
 where <span class="math inline">\(\sigma_i = \mathbb{V}ar(\varepsilon_{i,t})\)</span> and where <span class="math inline">\(\mathbf{Q} = \mbox{plim }\frac{1}{T}\sum_{t=p}^T x_t x_t&#39;\)</span> is given by:
-<span class="math display" id="eq:Qols">\[\begin{equation}
+<span class="math display" id="eq:QolsVAR">\[\begin{equation}
 \mathbf{Q} = \left[
 \begin{array}{ccccc}
 1 &amp; \mu&#39; &amp;\mu&#39; &amp; \dots &amp; \mu&#39; \\
@@ -583,7 +605,7 @@ where <span class="math inline">\(\sigma_i = \mathbb{V}ar(\varepsilon_{i,t})\)</
 \vdots &amp;\vdots &amp;\vdots &amp;\dots &amp;\vdots \\
 \mu &amp; \gamma_{p-1} + \mu\mu&#39; &amp; \gamma_{p-2} + \mu\mu&#39; &amp; \dots &amp; \gamma_{0} + \mu\mu&#39;
 \end{array}
-\right].\tag{2.20}
+\right].\tag{3.13}
 \end{equation}\]</span></p>
 </div>
 <div class="proof">
@@ -591,7 +613,7 @@ where <span class="math inline">\(\sigma_i = \mathbb{V}ar(\varepsilon_{i,t})\)</
 </div>
 <p>The following proposition extends the previous proposition and includes covariances between different <span class="math inline">\(\beta_i\)</span>’s as well as the asymptotic distribution of the ML estimates of <span class="math inline">\(\Omega\)</span>.</p>
 <div class="proposition">
-<p><span id="prp:OLSVAR2" class="proposition"><strong>Proposition 3.3  (Asymptotic distribution of the OLS estimates) </strong></span>If <span class="math inline">\(y_t\)</span> follows a VAR model, as defined in Definition <a href="VAR.html#def:SVAR">3.1</a>, we have:
+<p><span id="prp:OLSVAR2" class="proposition"><strong>Proposition 3.4  (Asymptotic distribution of the OLS estimates) </strong></span>If <span class="math inline">\(y_t\)</span> follows a VAR model, as defined in Definition <a href="VAR.html#def:SVAR">3.1</a>, we have:
 <span class="math display" id="eq:asymptPi">\[\begin{equation}
 \sqrt{T}\left[
 \begin{array}{c}
@@ -605,7 +627,7 @@ vec(\hat\Omega - \Omega)
 \Omega \otimes \mathbf{Q}^{-1} &amp; 0\\
 0 &amp; \Sigma_{22}
 \end{array}
-\right]\right),\tag{3.12}
+\right]\right),\tag{3.14}
 \end{equation}\]</span>
 where the component of <span class="math inline">\(\Sigma_{22}\)</span> corresponding to the covariance between <span class="math inline">\(\hat\sigma_{i,j}\)</span> and <span class="math inline">\(\hat\sigma_{k,l}\)</span> (for <span class="math inline">\(i,j,l,m \in \{1,\dots,n\}^4\)</span>) is equal to <span class="math inline">\(\sigma_{i,l}\sigma_{j,m}+\sigma_{i,m}\sigma_{j,l}\)</span>.</p>
 </div>
@@ -624,22 +646,24 @@ The last term is:
 \end{eqnarray*}\]</span>
 Therefore, the optimized log-likelihood is simply obtained by:
 <span class="math display" id="eq:optimzedLogL">\[\begin{equation}
-\log\mathcal{L}(Y_{T};\hat{\Pi},\hat{\Omega})=-(Tn/2)\log(2\pi)+(T/2)\log\left|\hat{\Omega}^{-1}\right|-Tn/2.\tag{3.13}
+\log\mathcal{L}(Y_{T};\hat{\Pi},\hat{\Omega})=-(Tn/2)\log(2\pi)+(T/2)\log\left|\hat{\Omega}^{-1}\right|-Tn/2.\tag{3.15}
 \end{equation}\]</span></p>
 <p>Assume that we want to test the null hypothesis that a set of variables follows a VAR(<span class="math inline">\(p_{0}\)</span>) against the alternative specification of <span class="math inline">\(p_{1}\)</span> (<span class="math inline">\(&gt;p_{0}\)</span>). Let us denote by <span class="math inline">\(\hat{L}_{0}\)</span> and <span class="math inline">\(\hat{L}_{1}\)</span> the maximum log-likelihoods obtained with <span class="math inline">\(p_{0}\)</span> and <span class="math inline">\(p_{1}\)</span> lags, respectively. Under the null hypothesis (<span class="math inline">\(H_0\)</span>: <span class="math inline">\(p=p_0\)</span>), we have:
 <span class="math display">\[\begin{eqnarray*}
 2\left(\hat{L}_{1}-\hat{L}_{0}\right)&amp;=&amp;T\left(\log\left|\hat{\Omega}_{1}^{-1}\right|-\log\left|\hat{\Omega}_{0}^{-1}\right|\right)  \sim \chi^2(n^{2}(p_{1}-p_{0})).
 \end{eqnarray*}\]</span></p>
 <p>What precedes can be used to help determine the appropriate number of lags to use in the specification. In a VAR, using too many lags consumes numerous degrees of freedom: with <span class="math inline">\(p\)</span> lags, each of the <span class="math inline">\(n\)</span> equations in the VAR contains <span class="math inline">\(n\times p\)</span> coefficients plus the intercept term. Adding lags improve in-sample fit, but is likely to result in over-parameterization and affect the <strong>out-of-sample</strong> prediction performance.</p>
-<p>To select appropriate lag length, <strong>selection criteria</strong> are often used. In the context of VAR models, using Eq. <a href="VAR.html#eq:optimzedLogL">(3.13)</a> (Gaussian case), we have for instance:
+<p>To select appropriate lag length, <strong>selection criteria</strong> are often used. In the context of VAR models, using Eq. <a href="VAR.html#eq:optimzedLogL">(3.15)</a> (Gaussian case), we have for instance:
 <span class="math display">\[\begin{eqnarray*}
 AIC &amp; = &amp; cst + \log\left|\hat{\Omega}\right|+\frac{2}{T}N\\
 BIC &amp; = &amp; cst + \log\left|\hat{\Omega}\right|+\frac{\log T}{T}N,
 \end{eqnarray*}\]</span>
 where <span class="math inline">\(N=p \times n^{2}\)</span>.</p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="VAR.html#cb26-1" tabindex="-1"></a><span class="fu">library</span>(vars);<span class="fu">library</span>(IdSS)</span>
-<span id="cb26-2"><a href="VAR.html#cb26-2" tabindex="-1"></a>data <span class="ot">&lt;-</span> US3var[,<span class="fu">c</span>(<span class="st">&quot;y.gdp.gap&quot;</span>,<span class="st">&quot;infl&quot;</span>)]</span>
-<span id="cb26-3"><a href="VAR.html#cb26-3" tabindex="-1"></a><span class="fu">VARselect</span>(data,<span class="at">lag.max =</span> <span class="dv">6</span>)</span></code></pre></div>
+<details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="VAR.html#cb31-1" tabindex="-1"></a><span class="fu">library</span>(vars);<span class="fu">library</span>(IdSS)</span>
+<span id="cb31-2"><a href="VAR.html#cb31-2" tabindex="-1"></a>data <span class="ot">&lt;-</span> US3var[,<span class="fu">c</span>(<span class="st">&quot;y.gdp.gap&quot;</span>,<span class="st">&quot;infl&quot;</span>)]</span>
+<span id="cb31-3"><a href="VAR.html#cb31-3" tabindex="-1"></a><span class="fu">VARselect</span>(data,<span class="at">lag.max =</span> <span class="dv">6</span>)</span></code></pre></div>
+</details>
 <pre><code>## $selection
 ## AIC(n)  HQ(n)  SC(n) FPE(n) 
 ##      3      3      2      3 
@@ -650,11 +674,13 @@ where <span class="math inline">\(N=p \times n^{2}\)</span>.</p>
 ## HQ(n)  -0.3017869 -0.4208439 -0.4450407 -0.4082080 -0.3761491 -0.32808581
 ## SC(n)  -0.2462608 -0.3283005 -0.3154798 -0.2416298 -0.1725534 -0.08747275
 ## FPE(n)  0.7121914  0.6165990  0.5869659  0.5939325  0.5981364  0.61210908</code></pre>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="VAR.html#cb28-1" tabindex="-1"></a>estimated.var <span class="ot">&lt;-</span> <span class="fu">VAR</span>(data,<span class="at">p=</span><span class="dv">3</span>)</span>
-<span id="cb28-2"><a href="VAR.html#cb28-2" tabindex="-1"></a><span class="co">#print(estimated.var$varresult)</span></span>
-<span id="cb28-3"><a href="VAR.html#cb28-3" tabindex="-1"></a>Phi <span class="ot">&lt;-</span> <span class="fu">Acoef</span>(estimated.var)</span>
-<span id="cb28-4"><a href="VAR.html#cb28-4" tabindex="-1"></a>PHI <span class="ot">&lt;-</span> <span class="fu">make.PHI</span>(Phi) <span class="co"># autoregressive matrix of companion form.</span></span>
-<span id="cb28-5"><a href="VAR.html#cb28-5" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">abs</span>(<span class="fu">eigen</span>(PHI)<span class="sc">$</span>values)) <span class="co"># check stationarity</span></span></code></pre></div>
+<details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="VAR.html#cb33-1" tabindex="-1"></a>estimated.var <span class="ot">&lt;-</span> <span class="fu">VAR</span>(data,<span class="at">p=</span><span class="dv">3</span>)</span>
+<span id="cb33-2"><a href="VAR.html#cb33-2" tabindex="-1"></a><span class="co">#print(estimated.var$varresult)</span></span>
+<span id="cb33-3"><a href="VAR.html#cb33-3" tabindex="-1"></a>Phi <span class="ot">&lt;-</span> <span class="fu">Acoef</span>(estimated.var)</span>
+<span id="cb33-4"><a href="VAR.html#cb33-4" tabindex="-1"></a>PHI <span class="ot">&lt;-</span> <span class="fu">make.PHI</span>(Phi) <span class="co"># autoregressive matrix of companion form.</span></span>
+<span id="cb33-5"><a href="VAR.html#cb33-5" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">abs</span>(<span class="fu">eigen</span>(PHI)<span class="sc">$</span>values)) <span class="co"># check stationarity</span></span></code></pre></div>
+</details>
 <pre><code>## [1] 0.9114892 0.9114892 0.6319554 0.4759403 0.4759403 0.3246995</code></pre>
 </div>
 <div id="BlockGranger" class="section level2 hasAnchor" number="3.5">
@@ -764,7 +790,9 @@ F=\frac{(RSS-USS)/p}{USS/(T-2p-1)},
 \]</span>
 where RSS is the Restricted sum of squared residuals and USS is the Unrestricted sum of squared residuals. Under <span class="math inline">\(H_{0}\)</span>, the <span class="math inline">\(F\)</span>-statistic is distributed as <span class="math inline">\(\mathcal{F}(p,T-2p-1)\)</span> (See Table <a href="append.html#tab:Fstat">8.4</a>).<a href="#fn12" class="footnote-ref" id="fnref12"><sup>12</sup></a></p>
 <p>According to the following lines of code, the output gap Granger-causes inflation, but the reverse is not true:</p>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="VAR.html#cb30-1" tabindex="-1"></a><span class="fu">grangertest</span>(US3var[,<span class="fu">c</span>(<span class="st">&quot;y.gdp.gap&quot;</span>,<span class="st">&quot;infl&quot;</span>)],<span class="at">order=</span><span class="dv">3</span>)</span></code></pre></div>
+<details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="VAR.html#cb35-1" tabindex="-1"></a><span class="fu">grangertest</span>(US3var[,<span class="fu">c</span>(<span class="st">&quot;y.gdp.gap&quot;</span>,<span class="st">&quot;infl&quot;</span>)],<span class="at">order=</span><span class="dv">3</span>)</span></code></pre></div>
+</details>
 <pre><code>## Granger causality test
 ## 
 ## Model 1: infl ~ Lags(infl, 1:3) + Lags(y.gdp.gap, 1:3)
@@ -774,7 +802,9 @@ where RSS is the Restricted sum of squared residuals and USS is the Unrestricted
 ## 2    217 -3 3.9761 0.008745 **
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
-<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="VAR.html#cb32-1" tabindex="-1"></a><span class="fu">grangertest</span>(US3var[,<span class="fu">c</span>(<span class="st">&quot;infl&quot;</span>,<span class="st">&quot;y.gdp.gap&quot;</span>)],<span class="at">order=</span><span class="dv">3</span>)</span></code></pre></div>
+<details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="VAR.html#cb37-1" tabindex="-1"></a><span class="fu">grangertest</span>(US3var[,<span class="fu">c</span>(<span class="st">&quot;infl&quot;</span>,<span class="st">&quot;y.gdp.gap&quot;</span>)],<span class="at">order=</span><span class="dv">3</span>)</span></code></pre></div>
+</details>
 <pre><code>## Granger causality test
 ## 
 ## Model 1: y.gdp.gap ~ Lags(y.gdp.gap, 1:3) + Lags(infl, 1:3)
@@ -845,7 +875,7 @@ g_{t}&amp;=&amp; \bar{g}-\lambda(i_{t-1}-\mathbb{E}_{t-1}\pi_{t})+ \underbrace{{
 \Delta \pi_{t} &amp; = &amp; \beta (g_{t} - \bar{g})+ \underbrace{{\color{blue}\sigma_{\pi} \eta_{\pi,t}}}_{\mbox{cost push shock}} &amp; (\mbox{Phillips curve})\\
 i_{t} &amp; = &amp; \rho i_{t-1} + \left[ \gamma_\pi \mathbb{E}_{t}\pi_{t+1}  + \gamma_g (g_{t} - \bar{g}) \right]\\
 &amp;&amp; \qquad \qquad+\underbrace{{\color{blue}\sigma_{mp} \eta_{mp,t}}}_{\mbox{Mon. Pol. shock}} &amp; (\mbox{Taylor rule}),
-\end{array}\tag{3.14}
+\end{array}\tag{3.16}
 \end{equation}\]</span>
 where:
 <span class="math display" id="eq:covU">\[\begin{equation}
@@ -857,7 +887,7 @@ where:
 \eta_{mp,t}
 \end{array}
 \right]
-\sim i.i.d.\,\mathcal{N}(0,I).\tag{3.15}
+\sim i.i.d.\,\mathcal{N}(0,I).\tag{3.17}
 \end{equation}\]</span></p>
 <p>Vector <span class="math inline">\(\eta_t\)</span> is assumed to be a vector of structural shocks, mutually and serially independent. On date <span class="math inline">\(t\)</span>:</p>
 <ul>
@@ -865,7 +895,7 @@ where:
 <li><span class="math inline">\(\pi_t\)</span> is contemporaneously affected by <span class="math inline">\(\eta_{\pi,t}\)</span> and <span class="math inline">\(\eta_{d,t}\)</span>;</li>
 <li><span class="math inline">\(i_t\)</span> is contemporaneously affected by <span class="math inline">\(\eta_{mp,t}\)</span>, <span class="math inline">\(\eta_{\pi,t}\)</span> and <span class="math inline">\(\eta_{d,t}\)</span>.</li>
 </ul>
-<p>System <a href="VAR.html#eq:systemI">(3.14)</a> could be rewritten as follows:
+<p>System <a href="VAR.html#eq:systemI">(3.16)</a> could be rewritten as follows:
 <span class="math display" id="eq:BBBB">\[\begin{equation}
 \left[\begin{array}{c}
 g_t\\
@@ -884,7 +914,7 @@ i_{t-1} +
 \bullet &amp; \bullet &amp; 0 \\
 \bullet &amp; \bullet &amp; \bullet
 \end{array}
-\right]}_{=B} \eta_t.}_{=\varepsilon_t}\tag{3.16}
+\right]}_{=B} \eta_t.}_{=\varepsilon_t}\tag{3.18}
 \end{equation}\]</span></p>
 <p>This is the <strong>reduced-form</strong> of the model. This representation suggests three additional restrictions on the entries of <span class="math inline">\(B\)</span>; the latter matrix is therefore identified as soon as <span class="math inline">\(\Omega = BB&#39;\)</span> is known (up to the signs of its columns).</p>
 </div>
@@ -928,22 +958,24 @@ B_{FS} &amp; B_{Fr} &amp; B_{FF}
 \]</span>
 where <span class="math inline">\(S\)</span>, <span class="math inline">\(r\)</span> and <span class="math inline">\(F\)</span> respectively correspond to <em>slow-moving variables</em>, the policy variable (short-term rate) and <em>fast-moving variables</em>. While <span class="math inline">\(\eta_{r,t}\)</span> is scalar, <span class="math inline">\(\boldsymbol\eta_{S,t}\)</span> and <span class="math inline">\(\boldsymbol\eta_{F,t}\)</span> may be vectors. The space spanned by <span class="math inline">\(\boldsymbol\varepsilon_{S,t}\)</span> is the same as that spanned by <span class="math inline">\(\boldsymbol\eta_{S,t}\)</span>. As a result, because <span class="math inline">\(\varepsilon_{r,t}\)</span> is a linear combination of <span class="math inline">\(\eta_{r,t}\)</span> and <span class="math inline">\(\boldsymbol\eta_{S,t}\)</span> (which are <span class="math inline">\(\perp\)</span>), it comes that the <span class="math inline">\(B_{rr}\eta_{r,t}\)</span>’s are the (population) residuals in the regression of <span class="math inline">\(\varepsilon_{r,t}\)</span> on <span class="math inline">\(\boldsymbol\varepsilon_{S,t}\)</span>. Because <span class="math inline">\(\mathbb{V}ar(\eta_{r,t})=1\)</span>, <span class="math inline">\(B_{rr}\)</span> is given by the square root of the variance of <span class="math inline">\(B_{rr}\eta_{r,t}\)</span>. <span class="math inline">\(B_{F,r}\)</span> is finally obtained by regressing the components of <span class="math inline">\(\boldsymbol\varepsilon_{F,t}\)</span> on the estimates of <span class="math inline">\(\eta_{r,t}\)</span>.</p>
 <p>An equivalent approach consists in computing the Cholesky decomposition of <span class="math inline">\(BB&#39;\)</span> and the contemporaneous impacts of the monetary policy shock (on the <span class="math inline">\(n\)</span> endogenous variables) are the components of the column of <span class="math inline">\(B\)</span> corresponding to the policy variable.</p>
-<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="VAR.html#cb34-1" tabindex="-1"></a><span class="fu">library</span>(IdSS);<span class="fu">library</span>(vars)</span>
-<span id="cb34-2"><a href="VAR.html#cb34-2" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;USmonthly&quot;</span>)</span>
-<span id="cb34-3"><a href="VAR.html#cb34-3" tabindex="-1"></a><span class="co"># Select sample period:</span></span>
-<span id="cb34-4"><a href="VAR.html#cb34-4" tabindex="-1"></a>First.date <span class="ot">&lt;-</span> <span class="st">&quot;1965-01-01&quot;</span>;Last.date <span class="ot">&lt;-</span> <span class="st">&quot;1995-06-01&quot;</span></span>
-<span id="cb34-5"><a href="VAR.html#cb34-5" tabindex="-1"></a>indic.first <span class="ot">&lt;-</span> <span class="fu">which</span>(USmonthly<span class="sc">$</span>DATES<span class="sc">==</span>First.date)</span>
-<span id="cb34-6"><a href="VAR.html#cb34-6" tabindex="-1"></a>indic.last  <span class="ot">&lt;-</span> <span class="fu">which</span>(USmonthly<span class="sc">$</span>DATES<span class="sc">==</span>Last.date)</span>
-<span id="cb34-7"><a href="VAR.html#cb34-7" tabindex="-1"></a>USmonthly   <span class="ot">&lt;-</span> USmonthly[indic.first<span class="sc">:</span>indic.last,]</span>
-<span id="cb34-8"><a href="VAR.html#cb34-8" tabindex="-1"></a>considered.variables <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;LIP&quot;</span>,<span class="st">&quot;UNEMP&quot;</span>,<span class="st">&quot;LCPI&quot;</span>,<span class="st">&quot;LPCOM&quot;</span>,<span class="st">&quot;FFR&quot;</span>,<span class="st">&quot;NBR&quot;</span>,<span class="st">&quot;TTR&quot;</span>,<span class="st">&quot;M1&quot;</span>)</span>
-<span id="cb34-9"><a href="VAR.html#cb34-9" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(USmonthly[considered.variables])</span>
-<span id="cb34-10"><a href="VAR.html#cb34-10" tabindex="-1"></a>res.svar.ordering <span class="ot">&lt;-</span> <span class="fu">svar.ordering</span>(y,<span class="at">p=</span><span class="dv">3</span>,</span>
-<span id="cb34-11"><a href="VAR.html#cb34-11" tabindex="-1"></a>                                   <span class="at">posit.of.shock =</span> <span class="dv">5</span>,</span>
-<span id="cb34-12"><a href="VAR.html#cb34-12" tabindex="-1"></a>                                   <span class="at">nb.periods.IRF =</span> <span class="dv">20</span>,</span>
-<span id="cb34-13"><a href="VAR.html#cb34-13" tabindex="-1"></a>                                   <span class="at">nb.bootstrap.replications =</span> <span class="dv">100</span>,</span>
-<span id="cb34-14"><a href="VAR.html#cb34-14" tabindex="-1"></a>                                   <span class="at">confidence.interval =</span> <span class="fl">0.90</span>, <span class="co"># expressed in pp.</span></span>
-<span id="cb34-15"><a href="VAR.html#cb34-15" tabindex="-1"></a>                                   <span class="at">indic.plot =</span> <span class="dv">1</span> <span class="co"># Plots are displayed if = 1.</span></span>
-<span id="cb34-16"><a href="VAR.html#cb34-16" tabindex="-1"></a>)</span></code></pre></div>
+<details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="VAR.html#cb39-1" tabindex="-1"></a><span class="fu">library</span>(IdSS);<span class="fu">library</span>(vars)</span>
+<span id="cb39-2"><a href="VAR.html#cb39-2" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;USmonthly&quot;</span>)</span>
+<span id="cb39-3"><a href="VAR.html#cb39-3" tabindex="-1"></a><span class="co"># Select sample period:</span></span>
+<span id="cb39-4"><a href="VAR.html#cb39-4" tabindex="-1"></a>First.date <span class="ot">&lt;-</span> <span class="st">&quot;1965-01-01&quot;</span>;Last.date <span class="ot">&lt;-</span> <span class="st">&quot;1995-06-01&quot;</span></span>
+<span id="cb39-5"><a href="VAR.html#cb39-5" tabindex="-1"></a>indic.first <span class="ot">&lt;-</span> <span class="fu">which</span>(USmonthly<span class="sc">$</span>DATES<span class="sc">==</span>First.date)</span>
+<span id="cb39-6"><a href="VAR.html#cb39-6" tabindex="-1"></a>indic.last  <span class="ot">&lt;-</span> <span class="fu">which</span>(USmonthly<span class="sc">$</span>DATES<span class="sc">==</span>Last.date)</span>
+<span id="cb39-7"><a href="VAR.html#cb39-7" tabindex="-1"></a>USmonthly   <span class="ot">&lt;-</span> USmonthly[indic.first<span class="sc">:</span>indic.last,]</span>
+<span id="cb39-8"><a href="VAR.html#cb39-8" tabindex="-1"></a>considered.variables <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;LIP&quot;</span>,<span class="st">&quot;UNEMP&quot;</span>,<span class="st">&quot;LCPI&quot;</span>,<span class="st">&quot;LPCOM&quot;</span>,<span class="st">&quot;FFR&quot;</span>,<span class="st">&quot;NBR&quot;</span>,<span class="st">&quot;TTR&quot;</span>,<span class="st">&quot;M1&quot;</span>)</span>
+<span id="cb39-9"><a href="VAR.html#cb39-9" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(USmonthly[considered.variables])</span>
+<span id="cb39-10"><a href="VAR.html#cb39-10" tabindex="-1"></a>res.svar.ordering <span class="ot">&lt;-</span> <span class="fu">svar.ordering</span>(y,<span class="at">p=</span><span class="dv">3</span>,</span>
+<span id="cb39-11"><a href="VAR.html#cb39-11" tabindex="-1"></a>                                   <span class="at">posit.of.shock =</span> <span class="dv">5</span>,</span>
+<span id="cb39-12"><a href="VAR.html#cb39-12" tabindex="-1"></a>                                   <span class="at">nb.periods.IRF =</span> <span class="dv">20</span>,</span>
+<span id="cb39-13"><a href="VAR.html#cb39-13" tabindex="-1"></a>                                   <span class="at">nb.bootstrap.replications =</span> <span class="dv">100</span>,</span>
+<span id="cb39-14"><a href="VAR.html#cb39-14" tabindex="-1"></a>                                   <span class="at">confidence.interval =</span> <span class="fl">0.90</span>, <span class="co"># expressed in pp.</span></span>
+<span id="cb39-15"><a href="VAR.html#cb39-15" tabindex="-1"></a>                                   <span class="at">indic.plot =</span> <span class="dv">1</span> <span class="co"># Plots are displayed if = 1.</span></span>
+<span id="cb39-16"><a href="VAR.html#cb39-16" tabindex="-1"></a>)</span></code></pre></div>
+</details>
 <div class="figure" style="text-align: left-aligned"><span style="display:block;" id="fig:CEE"></span>
 <img src="TimeSeries_files/figure-html/CEE-1.png" alt="Response to a monetary-policy shock. Identification approach of Christiano, Eichenbaum and Evans (1996). Confidence intervals are obtained by boostrapping the estimated VAR model (see inference section)." width="95%" />
 <p class="caption">
@@ -980,7 +1012,7 @@ y_{t-1}^{*}+
 \varepsilon_{t}\\
 0\\
 \vdots\\
-0\end{array}\right]}_{\varepsilon_t^*},\tag{3.17}
+0\end{array}\right]}_{\varepsilon_t^*},\tag{3.19}
 \end{equation}\]</span>
 where matrices <span class="math inline">\(\Phi\)</span> and <span class="math inline">\(\Omega^* = \mathbb{V}ar(\varepsilon_t^*)\)</span> are of dimension <span class="math inline">\(np \times np\)</span>; <span class="math inline">\(\Omega^*\)</span> is filled with zeros, except the <span class="math inline">\(n\times n\)</span> upper-left block that is equal to <span class="math inline">\(\Omega = \mathbb{V}ar(\varepsilon_t)\)</span>. (Matrix <span class="math inline">\(\Phi\)</span> had been introduced in Eq. <a href="VAR.html#eq:matrixPHI">(3.8)</a>.)</p>
 <p>Let us then focus on the VAR(1) case:
@@ -998,9 +1030,9 @@ which is the Wold representation of <span class="math inline">\(y_t\)</span>.</p
 Therefore, the cumulative impact of <span class="math inline">\(\gamma\)</span> on <span class="math inline">\(\tilde{y}_t\)</span> will be (for <span class="math inline">\(t \ge s\)</span>):
 <span class="math display" id="eq:cumul">\[\begin{eqnarray}
 (\tilde{y}_t - y_t) +  (\tilde{y}_{t-1} - y_{t-1}) + \dots +  (\tilde{y}_s - y_s) &amp;=&amp; \nonumber \\
-(Id + \Phi + \Phi^2 + \dots + \Phi^{t-s}) B \gamma.&amp;&amp; \tag{3.18}
+(Id + \Phi + \Phi^2 + \dots + \Phi^{t-s}) B \gamma.&amp;&amp; \tag{3.20}
 \end{eqnarray}\]</span></p>
-<p>Consider a shock on <span class="math inline">\(\eta_{1,t}\)</span>, with a magnitude of <span class="math inline">\(1\)</span>. This shock corresponds to <span class="math inline">\(\gamma = [1,0,\dots,0]&#39;\)</span>. Given Eq. <a href="VAR.html#eq:cumul">(3.18)</a>, the long-run cumulative effect of this shock on the endogenous variables is given by:
+<p>Consider a shock on <span class="math inline">\(\eta_{1,t}\)</span>, with a magnitude of <span class="math inline">\(1\)</span>. This shock corresponds to <span class="math inline">\(\gamma = [1,0,\dots,0]&#39;\)</span>. Given Eq. <a href="VAR.html#eq:cumul">(3.20)</a>, the long-run cumulative effect of this shock on the endogenous variables is given by:
 <span class="math display">\[
 \underbrace{(Id+\Phi+\ldots+\Phi^{k}+\ldots)}_{=(Id - \Phi)^{-1}}B\left[\begin{array}{c}
 1\\
@@ -1016,56 +1048,117 @@ that is the first column of the <span class="math inline">\(n \times n\)</span> 
 where <span class="math inline">\(\Theta_{ij}\)</span> is the element <span class="math inline">\((i,j)\)</span> of <span class="math inline">\(\Theta\)</span>.</p>
 <p><span class="citation">Blanchard and Quah (<a href="#ref-Blanchard_Quah_1989">1989</a>)</span> have implemented such long-run restrictions in a small-scale VAR. Two variables are considered: GDP and unemployment. Consequently, the VAR is affected by two types of shocks. Specifically, authors want to identify <strong>supply shocks</strong> (that can have a permanent effect on output) and <strong>demand shocks</strong> (that cannot have a permanent effect on output).<a href="#fn13" class="footnote-ref" id="fnref13"><sup>13</sup></a></p>
 <p><span class="citation">Blanchard and Quah (<a href="#ref-Blanchard_Quah_1989">1989</a>)</span>’s dataset is quarterly, spanning the period from 1950:2 to 1987:4. Their VAR features 8 lags. Here are the data they use:</p>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="VAR.html#cb35-1" tabindex="-1"></a><span class="fu">library</span>(IdSS)</span>
-<span id="cb35-2"><a href="VAR.html#cb35-2" tabindex="-1"></a><span class="fu">data</span>(BQ)</span>
-<span id="cb35-3"><a href="VAR.html#cb35-3" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span>
-<span id="cb35-4"><a href="VAR.html#cb35-4" tabindex="-1"></a><span class="fu">plot</span>(BQ<span class="sc">$</span>Date,BQ<span class="sc">$</span>Dgdp,<span class="at">type=</span><span class="st">&quot;l&quot;</span>,<span class="at">main=</span><span class="st">&quot;GDP quarterly growth rate&quot;</span>,</span>
-<span id="cb35-5"><a href="VAR.html#cb35-5" tabindex="-1"></a>     <span class="at">xlab=</span><span class="st">&quot;&quot;</span>,<span class="at">ylab=</span><span class="st">&quot;&quot;</span>,<span class="at">lwd=</span><span class="dv">2</span>)</span>
-<span id="cb35-6"><a href="VAR.html#cb35-6" tabindex="-1"></a><span class="fu">plot</span>(BQ<span class="sc">$</span>Date,BQ<span class="sc">$</span>unemp,<span class="at">type=</span><span class="st">&quot;l&quot;</span>,<span class="at">ylim=</span><span class="fu">c</span>(<span class="sc">-</span><span class="dv">3</span>,<span class="dv">6</span>),<span class="at">main=</span><span class="st">&quot;Unemployment rate (gap)&quot;</span>,</span>
-<span id="cb35-7"><a href="VAR.html#cb35-7" tabindex="-1"></a>     <span class="at">xlab=</span><span class="st">&quot;&quot;</span>,<span class="at">ylab=</span><span class="st">&quot;&quot;</span>,<span class="at">lwd=</span><span class="dv">2</span>)</span></code></pre></div>
+<details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="VAR.html#cb40-1" tabindex="-1"></a><span class="fu">library</span>(IdSS)</span>
+<span id="cb40-2"><a href="VAR.html#cb40-2" tabindex="-1"></a><span class="fu">data</span>(BQ)</span>
+<span id="cb40-3"><a href="VAR.html#cb40-3" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span>
+<span id="cb40-4"><a href="VAR.html#cb40-4" tabindex="-1"></a><span class="fu">plot</span>(BQ<span class="sc">$</span>Date,BQ<span class="sc">$</span>Dgdp,<span class="at">type=</span><span class="st">&quot;l&quot;</span>,<span class="at">main=</span><span class="st">&quot;GDP quarterly growth rate&quot;</span>,</span>
+<span id="cb40-5"><a href="VAR.html#cb40-5" tabindex="-1"></a>     <span class="at">xlab=</span><span class="st">&quot;&quot;</span>,<span class="at">ylab=</span><span class="st">&quot;&quot;</span>,<span class="at">lwd=</span><span class="dv">2</span>)</span>
+<span id="cb40-6"><a href="VAR.html#cb40-6" tabindex="-1"></a><span class="fu">plot</span>(BQ<span class="sc">$</span>Date,BQ<span class="sc">$</span>unemp,<span class="at">type=</span><span class="st">&quot;l&quot;</span>,<span class="at">ylim=</span><span class="fu">c</span>(<span class="sc">-</span><span class="dv">3</span>,<span class="dv">6</span>),<span class="at">main=</span><span class="st">&quot;Unemployment rate (gap)&quot;</span>,</span>
+<span id="cb40-7"><a href="VAR.html#cb40-7" tabindex="-1"></a>     <span class="at">xlab=</span><span class="st">&quot;&quot;</span>,<span class="at">ylab=</span><span class="st">&quot;&quot;</span>,<span class="at">lwd=</span><span class="dv">2</span>)</span></code></pre></div>
+</details>
 <p><img src="TimeSeries_files/figure-html/BQ1-1.png" width="672" /></p>
 <p>Estimate a reduced-form VAR(8) model:</p>
-<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="VAR.html#cb36-1" tabindex="-1"></a><span class="fu">library</span>(vars)</span>
-<span id="cb36-2"><a href="VAR.html#cb36-2" tabindex="-1"></a>y <span class="ot">&lt;-</span> BQ[,<span class="dv">2</span><span class="sc">:</span><span class="dv">3</span>]</span>
-<span id="cb36-3"><a href="VAR.html#cb36-3" tabindex="-1"></a>est.VAR <span class="ot">&lt;-</span> <span class="fu">VAR</span>(y,<span class="at">p=</span><span class="dv">8</span>)</span>
-<span id="cb36-4"><a href="VAR.html#cb36-4" tabindex="-1"></a>Omega <span class="ot">&lt;-</span> <span class="fu">var</span>(<span class="fu">residuals</span>(est.VAR))</span></code></pre></div>
+<details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="VAR.html#cb41-1" tabindex="-1"></a><span class="fu">library</span>(vars)</span>
+<span id="cb41-2"><a href="VAR.html#cb41-2" tabindex="-1"></a>y <span class="ot">&lt;-</span> BQ[,<span class="dv">2</span><span class="sc">:</span><span class="dv">3</span>]</span>
+<span id="cb41-3"><a href="VAR.html#cb41-3" tabindex="-1"></a>est.VAR <span class="ot">&lt;-</span> <span class="fu">VAR</span>(y,<span class="at">p=</span><span class="dv">8</span>)</span>
+<span id="cb41-4"><a href="VAR.html#cb41-4" tabindex="-1"></a>Omega <span class="ot">&lt;-</span> <span class="fu">var</span>(<span class="fu">residuals</span>(est.VAR))</span></code></pre></div>
+</details>
 <p>Now, let us define a loss function (<code>loss</code>) that is equal to zero if (a) <span class="math inline">\(BB&#39;=\Omega\)</span> and (b) the element (1,1) of <span class="math inline">\(\Theta = (Id - \Phi)^{-1} B\)</span> is equal to zero:</p>
-<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="VAR.html#cb37-1" tabindex="-1"></a><span class="co"># Compute (Id - Phi)^{-1}:</span></span>
-<span id="cb37-2"><a href="VAR.html#cb37-2" tabindex="-1"></a>Phi <span class="ot">&lt;-</span> <span class="fu">Acoef</span>(est.VAR)</span>
-<span id="cb37-3"><a href="VAR.html#cb37-3" tabindex="-1"></a>PHI <span class="ot">&lt;-</span> <span class="fu">make.PHI</span>(Phi)</span>
-<span id="cb37-4"><a href="VAR.html#cb37-4" tabindex="-1"></a>sum.PHI.k <span class="ot">&lt;-</span> <span class="fu">solve</span>(<span class="fu">diag</span>(<span class="fu">dim</span>(PHI)[<span class="dv">1</span>]) <span class="sc">-</span> PHI)[<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>,<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>]</span>
-<span id="cb37-5"><a href="VAR.html#cb37-5" tabindex="-1"></a>loss <span class="ot">&lt;-</span> <span class="cf">function</span>(param){</span>
-<span id="cb37-6"><a href="VAR.html#cb37-6" tabindex="-1"></a>  B <span class="ot">&lt;-</span> <span class="fu">matrix</span>(param,<span class="dv">2</span>,<span class="dv">2</span>)</span>
-<span id="cb37-7"><a href="VAR.html#cb37-7" tabindex="-1"></a>  X <span class="ot">&lt;-</span> Omega <span class="sc">-</span> B <span class="sc">%*%</span> <span class="fu">t</span>(B)</span>
-<span id="cb37-8"><a href="VAR.html#cb37-8" tabindex="-1"></a>  Theta <span class="ot">&lt;-</span> sum.PHI.k[<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>,<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>] <span class="sc">%*%</span> B</span>
-<span id="cb37-9"><a href="VAR.html#cb37-9" tabindex="-1"></a>  loss <span class="ot">&lt;-</span> <span class="dv">10000</span> <span class="sc">*</span> ( X[<span class="dv">1</span>,<span class="dv">1</span>]<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> X[<span class="dv">2</span>,<span class="dv">1</span>]<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> X[<span class="dv">2</span>,<span class="dv">2</span>]<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> Theta[<span class="dv">1</span>,<span class="dv">1</span>]<span class="sc">^</span><span class="dv">2</span> )</span>
-<span id="cb37-10"><a href="VAR.html#cb37-10" tabindex="-1"></a>  <span class="fu">return</span>(loss)</span>
-<span id="cb37-11"><a href="VAR.html#cb37-11" tabindex="-1"></a>}</span>
-<span id="cb37-12"><a href="VAR.html#cb37-12" tabindex="-1"></a>res.opt <span class="ot">&lt;-</span> <span class="fu">optim</span>(<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>),loss,<span class="at">method=</span><span class="st">&quot;BFGS&quot;</span>,<span class="at">hessian=</span><span class="cn">FALSE</span>)</span>
-<span id="cb37-13"><a href="VAR.html#cb37-13" tabindex="-1"></a><span class="fu">print</span>(res.opt<span class="sc">$</span>par)</span></code></pre></div>
+<details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="VAR.html#cb42-1" tabindex="-1"></a><span class="co"># Compute (Id - Phi)^{-1}:</span></span>
+<span id="cb42-2"><a href="VAR.html#cb42-2" tabindex="-1"></a>Phi <span class="ot">&lt;-</span> <span class="fu">Acoef</span>(est.VAR)</span>
+<span id="cb42-3"><a href="VAR.html#cb42-3" tabindex="-1"></a>PHI <span class="ot">&lt;-</span> <span class="fu">make.PHI</span>(Phi)</span>
+<span id="cb42-4"><a href="VAR.html#cb42-4" tabindex="-1"></a>sum.PHI.k <span class="ot">&lt;-</span> <span class="fu">solve</span>(<span class="fu">diag</span>(<span class="fu">dim</span>(PHI)[<span class="dv">1</span>]) <span class="sc">-</span> PHI)[<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>,<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>]</span>
+<span id="cb42-5"><a href="VAR.html#cb42-5" tabindex="-1"></a>loss <span class="ot">&lt;-</span> <span class="cf">function</span>(param){</span>
+<span id="cb42-6"><a href="VAR.html#cb42-6" tabindex="-1"></a>  B <span class="ot">&lt;-</span> <span class="fu">matrix</span>(param,<span class="dv">2</span>,<span class="dv">2</span>)</span>
+<span id="cb42-7"><a href="VAR.html#cb42-7" tabindex="-1"></a>  X <span class="ot">&lt;-</span> Omega <span class="sc">-</span> B <span class="sc">%*%</span> <span class="fu">t</span>(B)</span>
+<span id="cb42-8"><a href="VAR.html#cb42-8" tabindex="-1"></a>  Theta <span class="ot">&lt;-</span> sum.PHI.k[<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>,<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>] <span class="sc">%*%</span> B</span>
+<span id="cb42-9"><a href="VAR.html#cb42-9" tabindex="-1"></a>  loss <span class="ot">&lt;-</span> <span class="dv">10000</span> <span class="sc">*</span> ( X[<span class="dv">1</span>,<span class="dv">1</span>]<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> X[<span class="dv">2</span>,<span class="dv">1</span>]<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> X[<span class="dv">2</span>,<span class="dv">2</span>]<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> Theta[<span class="dv">1</span>,<span class="dv">1</span>]<span class="sc">^</span><span class="dv">2</span> )</span>
+<span id="cb42-10"><a href="VAR.html#cb42-10" tabindex="-1"></a>  <span class="fu">return</span>(loss)</span>
+<span id="cb42-11"><a href="VAR.html#cb42-11" tabindex="-1"></a>}</span>
+<span id="cb42-12"><a href="VAR.html#cb42-12" tabindex="-1"></a>res.opt <span class="ot">&lt;-</span> <span class="fu">optim</span>(<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>),loss,<span class="at">method=</span><span class="st">&quot;BFGS&quot;</span>,<span class="at">hessian=</span><span class="cn">FALSE</span>)</span>
+<span id="cb42-13"><a href="VAR.html#cb42-13" tabindex="-1"></a><span class="fu">print</span>(res.opt<span class="sc">$</span>par)</span></code></pre></div>
+</details>
 <pre><code>## [1]  0.8570358 -0.2396345  0.1541395  0.1921221</code></pre>
 <p>(Note: one can use that type of approach, based on a loss function, to mix short- and long-run restrictions.)</p>
 <p>Figure <a href="VAR.html#fig:BQ4">3.4</a> displays the resulting IRFs. Note that, for GDP, we cumulate the GDP growth IRF, so as to have the response of the GDP in level.</p>
-<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="VAR.html#cb39-1" tabindex="-1"></a>B.hat <span class="ot">&lt;-</span> <span class="fu">matrix</span>(res.opt<span class="sc">$</span>par,<span class="dv">2</span>,<span class="dv">2</span>)</span>
-<span id="cb39-2"><a href="VAR.html#cb39-2" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">cbind</span>(Omega,B.hat <span class="sc">%*%</span> <span class="fu">t</span>(B.hat)))</span></code></pre></div>
+<details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="VAR.html#cb44-1" tabindex="-1"></a>B.hat <span class="ot">&lt;-</span> <span class="fu">matrix</span>(res.opt<span class="sc">$</span>par,<span class="dv">2</span>,<span class="dv">2</span>)</span>
+<span id="cb44-2"><a href="VAR.html#cb44-2" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">cbind</span>(Omega,B.hat <span class="sc">%*%</span> <span class="fu">t</span>(B.hat)))</span></code></pre></div>
+</details>
 <pre><code>##             Dgdp       unemp                       
 ## Dgdp   0.7582704 -0.17576173  0.7582694 -0.17576173
 ## unemp -0.1757617  0.09433658 -0.1757617  0.09433558</code></pre>
-<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="VAR.html#cb41-1" tabindex="-1"></a>nb.sim <span class="ot">&lt;-</span> <span class="dv">40</span></span>
-<span id="cb41-2"><a href="VAR.html#cb41-2" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>));<span class="fu">par</span>(<span class="at">plt=</span><span class="fu">c</span>(.<span class="dv">15</span>,.<span class="dv">95</span>,.<span class="dv">15</span>,.<span class="dv">8</span>))</span>
-<span id="cb41-3"><a href="VAR.html#cb41-3" tabindex="-1"></a>Y <span class="ot">&lt;-</span> <span class="fu">simul.VAR</span>(<span class="at">c=</span><span class="fu">matrix</span>(<span class="dv">0</span>,<span class="dv">2</span>,<span class="dv">1</span>),Phi,B.hat,nb.sim,<span class="at">y0.star=</span><span class="fu">rep</span>(<span class="dv">0</span>,<span class="dv">2</span><span class="sc">*</span><span class="dv">8</span>),</span>
-<span id="cb41-4"><a href="VAR.html#cb41-4" tabindex="-1"></a>               <span class="at">indic.IRF =</span> <span class="dv">1</span>,<span class="at">u.shock =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">0</span>))</span>
-<span id="cb41-5"><a href="VAR.html#cb41-5" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">cumsum</span>(Y[,<span class="dv">1</span>]),<span class="at">type=</span><span class="st">&quot;l&quot;</span>,<span class="at">lwd=</span><span class="dv">2</span>,<span class="at">xlab=</span><span class="st">&quot;&quot;</span>,<span class="at">ylab=</span><span class="st">&quot;&quot;</span>,<span class="at">main=</span><span class="st">&quot;Demand shock on GDP&quot;</span>)</span>
-<span id="cb41-6"><a href="VAR.html#cb41-6" tabindex="-1"></a><span class="fu">plot</span>(Y[,<span class="dv">2</span>],<span class="at">type=</span><span class="st">&quot;l&quot;</span>,<span class="at">lwd=</span><span class="dv">2</span>,<span class="at">xlab=</span><span class="st">&quot;&quot;</span>,<span class="at">ylab=</span><span class="st">&quot;&quot;</span>,<span class="at">main=</span><span class="st">&quot;Demand shock on UNEMP&quot;</span>)</span>
-<span id="cb41-7"><a href="VAR.html#cb41-7" tabindex="-1"></a>Y <span class="ot">&lt;-</span> <span class="fu">simul.VAR</span>(<span class="at">c=</span><span class="fu">matrix</span>(<span class="dv">0</span>,<span class="dv">2</span>,<span class="dv">1</span>),Phi,B.hat,nb.sim,<span class="at">y0.star=</span><span class="fu">rep</span>(<span class="dv">0</span>,<span class="dv">2</span><span class="sc">*</span><span class="dv">8</span>),</span>
-<span id="cb41-8"><a href="VAR.html#cb41-8" tabindex="-1"></a>               <span class="at">indic.IRF =</span> <span class="dv">1</span>,<span class="at">u.shock =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>))</span>
-<span id="cb41-9"><a href="VAR.html#cb41-9" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">cumsum</span>(Y[,<span class="dv">1</span>]),<span class="at">type=</span><span class="st">&quot;l&quot;</span>,<span class="at">lwd=</span><span class="dv">2</span>,<span class="at">xlab=</span><span class="st">&quot;&quot;</span>,<span class="at">ylab=</span><span class="st">&quot;&quot;</span>,<span class="at">main=</span><span class="st">&quot;Supply shock on GDP&quot;</span>)</span>
-<span id="cb41-10"><a href="VAR.html#cb41-10" tabindex="-1"></a><span class="fu">plot</span>(Y[,<span class="dv">2</span>],<span class="at">type=</span><span class="st">&quot;l&quot;</span>,<span class="at">lwd=</span><span class="dv">2</span>,<span class="at">xlab=</span><span class="st">&quot;&quot;</span>,<span class="at">ylab=</span><span class="st">&quot;&quot;</span>,<span class="at">main=</span><span class="st">&quot;Supply shock on UNEMP&quot;</span>)</span></code></pre></div>
+<details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="VAR.html#cb46-1" tabindex="-1"></a>nb.sim <span class="ot">&lt;-</span> <span class="dv">40</span></span>
+<span id="cb46-2"><a href="VAR.html#cb46-2" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>));<span class="fu">par</span>(<span class="at">plt=</span><span class="fu">c</span>(.<span class="dv">15</span>,.<span class="dv">95</span>,.<span class="dv">15</span>,.<span class="dv">8</span>))</span>
+<span id="cb46-3"><a href="VAR.html#cb46-3" tabindex="-1"></a>Y <span class="ot">&lt;-</span> <span class="fu">simul.VAR</span>(<span class="at">c=</span><span class="fu">matrix</span>(<span class="dv">0</span>,<span class="dv">2</span>,<span class="dv">1</span>),Phi,B.hat,nb.sim,<span class="at">y0.star=</span><span class="fu">rep</span>(<span class="dv">0</span>,<span class="dv">2</span><span class="sc">*</span><span class="dv">8</span>),</span>
+<span id="cb46-4"><a href="VAR.html#cb46-4" tabindex="-1"></a>               <span class="at">indic.IRF =</span> <span class="dv">1</span>,<span class="at">u.shock =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">0</span>))</span>
+<span id="cb46-5"><a href="VAR.html#cb46-5" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">cumsum</span>(Y[,<span class="dv">1</span>]),<span class="at">type=</span><span class="st">&quot;l&quot;</span>,<span class="at">lwd=</span><span class="dv">2</span>,<span class="at">xlab=</span><span class="st">&quot;&quot;</span>,<span class="at">ylab=</span><span class="st">&quot;&quot;</span>,<span class="at">main=</span><span class="st">&quot;Demand shock on GDP&quot;</span>)</span>
+<span id="cb46-6"><a href="VAR.html#cb46-6" tabindex="-1"></a><span class="fu">plot</span>(Y[,<span class="dv">2</span>],<span class="at">type=</span><span class="st">&quot;l&quot;</span>,<span class="at">lwd=</span><span class="dv">2</span>,<span class="at">xlab=</span><span class="st">&quot;&quot;</span>,<span class="at">ylab=</span><span class="st">&quot;&quot;</span>,<span class="at">main=</span><span class="st">&quot;Demand shock on UNEMP&quot;</span>)</span>
+<span id="cb46-7"><a href="VAR.html#cb46-7" tabindex="-1"></a>Y <span class="ot">&lt;-</span> <span class="fu">simul.VAR</span>(<span class="at">c=</span><span class="fu">matrix</span>(<span class="dv">0</span>,<span class="dv">2</span>,<span class="dv">1</span>),Phi,B.hat,nb.sim,<span class="at">y0.star=</span><span class="fu">rep</span>(<span class="dv">0</span>,<span class="dv">2</span><span class="sc">*</span><span class="dv">8</span>),</span>
+<span id="cb46-8"><a href="VAR.html#cb46-8" tabindex="-1"></a>               <span class="at">indic.IRF =</span> <span class="dv">1</span>,<span class="at">u.shock =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>))</span>
+<span id="cb46-9"><a href="VAR.html#cb46-9" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">cumsum</span>(Y[,<span class="dv">1</span>]),<span class="at">type=</span><span class="st">&quot;l&quot;</span>,<span class="at">lwd=</span><span class="dv">2</span>,<span class="at">xlab=</span><span class="st">&quot;&quot;</span>,<span class="at">ylab=</span><span class="st">&quot;&quot;</span>,<span class="at">main=</span><span class="st">&quot;Supply shock on GDP&quot;</span>)</span>
+<span id="cb46-10"><a href="VAR.html#cb46-10" tabindex="-1"></a><span class="fu">plot</span>(Y[,<span class="dv">2</span>],<span class="at">type=</span><span class="st">&quot;l&quot;</span>,<span class="at">lwd=</span><span class="dv">2</span>,<span class="at">xlab=</span><span class="st">&quot;&quot;</span>,<span class="at">ylab=</span><span class="st">&quot;&quot;</span>,<span class="at">main=</span><span class="st">&quot;Supply shock on UNEMP&quot;</span>)</span></code></pre></div>
+</details>
 <div class="figure" style="text-align: left-aligned"><span style="display:block;" id="fig:BQ4"></span>
 <img src="TimeSeries_files/figure-html/BQ4-1.png" alt="IRF of GDP and unemployment to demand and supply shocks." width="95%" />
 <p class="caption">
 Figure 3.4: IRF of GDP and unemployment to demand and supply shocks.
 </p>
+</div>
+</div>
+</div>
+<div id="var-exercises" class="section level2 hasAnchor" number="3.7">
+<h2><span class="header-section-number">3.7</span> Exercise<a href="VAR.html#var-exercises" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="VAR.html#cb47-1" tabindex="-1"></a><span class="fu">render_exercises</span>(<span class="st">&quot;ps3&quot;</span>, <span class="st">&quot;ex-var-model&quot;</span>)</span></code></pre></div>
+</details>
+<div class="exercisebox">
+<div class="exercise">
+<p><span id="exr:ex-var-model" class="exercise"><strong>Exercise 3.1  (VAR lag selection, stability, and recursive identification) </strong></span><strong>PS3 | Advanced | Multivariate analysis</strong><br />
+Review Section <a href="VAR.html#estimVAR">3.4</a>.</p>
+<p>A quarterly VAR contains inflation, the output gap, and the short-term interest rate (<span class="math inline">\(T=224\)</span>). The criteria for lags 1–10 attain their minima at lag 6 for AIC, lag 3 for HQ, and lag 2 for BIC.</p>
+<ol style="list-style-type: decimal">
+<li>State the lag choice implied by each criterion.</li>
+<li>If BIC is followed, explain conditional Gaussian maximum-likelihood estimation of the VAR(2).</li>
+<li>Explain how the <span class="math inline">\(6\times6\)</span> companion matrix is formed and how its eigenvalues determine covariance stationarity.</li>
+</ol>
+<p>The fitted coefficient matrices are
+<span class="math display">\[
+\widehat\Phi_1=\begin{bmatrix}.627&amp;.054&amp;.077\\.034&amp;1.255&amp;-.087\\.143&amp;.560&amp;.687\end{bmatrix},\qquad
+\widehat\Phi_2=\begin{bmatrix}.271&amp;.010&amp;-.065\\-.031&amp;-.298&amp;.053\\.027&amp;-.465&amp;.203\end{bmatrix}.
+\]</span></p>
+<p>We seek supply, demand, and monetary-policy shocks. A monetary-policy shock has no contemporaneous effect on activity or inflation, and a demand shock has no contemporaneous effect on activity.</p>
+<ol start="4" style="list-style-type: decimal">
+<li>Are these three zero restrictions sufficient for exact identification under the stated recursive structure?</li>
+<li>Give the ordering of variables and shocks that makes the impact matrix lower triangular, and explain it economically.</li>
+</ol>
+</div>
+</div>
+<div id="exercise-from-the-2024-exam" class="section level3 hasAnchor" number="3.7.1">
+<h3><span class="header-section-number">3.7.1</span> Exercise from the 2024 exam<a href="VAR.html#exercise-from-the-2024-exam" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="VAR.html#cb48-1" tabindex="-1"></a><span class="fu">render_exercises</span>(<span class="st">&quot;exam-2024&quot;</span>, <span class="st">&quot;ex-exam2024-var-forecast-identification&quot;</span>)</span></code></pre></div>
+</details>
+<div class="exercisebox">
+<div class="exercise">
+<p><span id="exr:ex-exam2024-var-forecast-identification" class="exercise"><strong>Exercise 3.2  (VAR forecasts and structural impacts) </strong></span><strong>EXAM-2024 | Exam | True/false</strong><br />
+Review Section <a href="VAR.html#VAR">3</a>.</p>
+<p>Consider the three-variable VAR(3)
+<span class="math display">\[y_t=c+\Phi_1y_{t-1}+\Phi_2y_{t-2}+\Phi_3y_{t-3}+B\eta_t,\]</span>
+where <span class="math inline">\(\eta_t\overset{i.i.d.}{\sim}\mathcal N(0,I_3)\)</span>.</p>
+<p>State whether each assertion is true or false and justify your answer.</p>
+<ol style="list-style-type: decimal">
+<li><span class="math inline">\(\mathbb E_t(y_{t+2})=c+\Phi_1c\)</span>.</li>
+<li><span class="math inline">\(\operatorname{Var}_t(y_{t+1})=BB&#39;\)</span>.</li>
+<li>Knowing <span class="math inline">\(\Omega=BB&#39;\)</span> is sufficient to recover an unrestricted <span class="math inline">\(B\)</span>.</li>
+<li>The contemporaneous impacts of a unit <span class="math inline">\(\eta_{2,t}\)</span> shock on the three variables are <span class="math inline">\(B_{1,2}\)</span>, <span class="math inline">\(B_{2,2}\)</span>, and <span class="math inline">\(B_{3,2}\)</span>.</li>
+<li>If <span class="math inline">\(B\)</span> is lower triangular, an <span class="math inline">\(\eta_{3,t}\)</span> shock has no contemporaneous effect on <span class="math inline">\(y_{1,t}\)</span> or <span class="math inline">\(y_{2,t}\)</span>.</li>
+</ol>
+</div>
 </div>
 
 </div>
@@ -1196,7 +1289,7 @@ gitbook.start({
     "size": 2
   },
   "edit": {
-    "link": "https://github.com/rstudio/bookdown-demo/edit/master/03-VAR.Rmd",
+    "link": "https://github.com/jrenne/TimeSeries_Bookdown/edit/main/03-VAR.Rmd",
     "text": "Edit"
   },
   "history": {
@@ -1207,7 +1300,7 @@ gitbook.start({
     "link": null,
     "text": null
   },
-  "download": ["TimeSeries.pdf", "TimeSeries.epub"],
+  "download": ["TimeSeries.pdf"],
   "search": {
     "engine": "fuse",
     "options": null

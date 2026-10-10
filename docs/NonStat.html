@@ -5,19 +5,19 @@
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 5 Non-stationary processes | Introduction to Time Series</title>
-  <meta name="description" content="This course XXX." />
+  <meta name="description" content="An introduction to time-series analysis for macroeconomics and finance, covering univariate and multivariate models, forecasting, non-stationarity, cointegration, and volatility." />
   <meta name="generator" content="bookdown 0.43 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 5 Non-stationary processes | Introduction to Time Series" />
   <meta property="og:type" content="book" />
   
-  <meta property="og:description" content="This course XXX." />
-  <meta name="github-repo" content="rstudio/bookdown-demo" />
+  <meta property="og:description" content="An introduction to time-series analysis for macroeconomics and finance, covering univariate and multivariate models, forecasting, non-stationarity, cointegration, and volatility." />
+  <meta name="github-repo" content="jrenne/TimeSeries_Bookdown" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Chapter 5 Non-stationary processes | Introduction to Time Series" />
   
-  <meta name="twitter:description" content="This course XXX." />
+  <meta name="twitter:description" content="An introduction to time-series analysis for macroeconomics and finance, covering univariate and multivariate models, forecasting, non-stationarity, cointegration, and volatility." />
   
 
 <meta name="author" content="Jean-Paul Renne" />
@@ -49,6 +49,7 @@
 
 
 
+<link href="libs/codefolding-lua-1.1/codefolding-lua.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
@@ -168,6 +169,7 @@ div.csl-indent {
 <li class="chapter" data-level="1.1" data-path="Intro.html"><a href="Intro.html#shocks-and-lag-operator"><i class="fa fa-check"></i><b>1.1</b> Shocks and lag operator</a></li>
 <li class="chapter" data-level="1.2" data-path="Intro.html"><a href="Intro.html#conditional-and-unconditional-moments"><i class="fa fa-check"></i><b>1.2</b> Conditional and unconditional moments</a></li>
 <li class="chapter" data-level="1.3" data-path="Intro.html"><a href="Intro.html#central-limit-theorem-clt-for-persistent-processes"><i class="fa fa-check"></i><b>1.3</b> Central Limit Theorem (CLT) for persistent processes</a></li>
+<li class="chapter" data-level="1.4" data-path="Intro.html"><a href="Intro.html#introduction-exercises"><i class="fa fa-check"></i><b>1.4</b> Exercise from the 2024 exam</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="Univariate.html"><a href="Univariate.html"><i class="fa fa-check"></i><b>2</b> Univariate processes</a>
 <ul>
@@ -190,6 +192,10 @@ div.csl-indent {
 <li class="chapter" data-level="2.8.4" data-path="Univariate.html"><a href="Univariate.html#estimARMApq"><i class="fa fa-check"></i><b>2.8.4</b> Maximum Likelihood Estimation of an ARMA(p,q) process</a></li>
 </ul></li>
 <li class="chapter" data-level="2.9" data-path="Univariate.html"><a href="Univariate.html#specification-choice"><i class="fa fa-check"></i><b>2.9</b> Specification choice</a></li>
+<li class="chapter" data-level="2.10" data-path="Univariate.html"><a href="Univariate.html#univariate-exercises"><i class="fa fa-check"></i><b>2.10</b> Exercises</a>
+<ul>
+<li class="chapter" data-level="2.10.1" data-path="Univariate.html"><a href="Univariate.html#exercises-from-the-2024-exam"><i class="fa fa-check"></i><b>2.10.1</b> Exercises from the 2024 exam</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="VAR.html"><a href="VAR.html"><i class="fa fa-check"></i><b>3</b> Multivariate models</a>
 <ul>
@@ -209,8 +215,18 @@ div.csl-indent {
 <li class="chapter" data-level="3.6.3" data-path="VAR.html"><a href="VAR.html#cholesky-a-specific-short-run-restriction-situation"><i class="fa fa-check"></i><b>3.6.3</b> Cholesky: a specific short-run-restriction situation</a></li>
 <li class="chapter" data-level="3.6.4" data-path="VAR.html"><a href="VAR.html#long-run-restrictions"><i class="fa fa-check"></i><b>3.6.4</b> Long-run restrictions</a></li>
 </ul></li>
+<li class="chapter" data-level="3.7" data-path="VAR.html"><a href="VAR.html#var-exercises"><i class="fa fa-check"></i><b>3.7</b> Exercise</a>
+<ul>
+<li class="chapter" data-level="3.7.1" data-path="VAR.html"><a href="VAR.html#exercise-from-the-2024-exam"><i class="fa fa-check"></i><b>3.7.1</b> Exercise from the 2024 exam</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="forecasting.html"><a href="forecasting.html"><i class="fa fa-check"></i><b>4</b> Forecasting</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="forecasting.html"><a href="forecasting.html"><i class="fa fa-check"></i><b>4</b> Forecasting</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="forecasting.html"><a href="forecasting.html#forecasting-exercises"><i class="fa fa-check"></i><b>4.1</b> Exercise</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="forecasting.html"><a href="forecasting.html#exercise-from-the-2024-exam-1"><i class="fa fa-check"></i><b>4.1.1</b> Exercise from the 2024 exam</a></li>
+</ul></li>
+</ul></li>
 <li class="chapter" data-level="5" data-path="NonStat.html"><a href="NonStat.html"><i class="fa fa-check"></i><b>5</b> Non-stationary processes</a>
 <ul>
 <li class="chapter" data-level="5.1" data-path="NonStat.html"><a href="NonStat.html#issues-when-working-with-nonstationary-time-series"><i class="fa fa-check"></i><b>5.1</b> Issues when working with nonstationary time series</a>
@@ -220,6 +236,7 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="5.2" data-path="NonStat.html"><a href="NonStat.html#nonstationarity-tests"><i class="fa fa-check"></i><b>5.2</b> Nonstationarity tests</a></li>
 <li class="chapter" data-level="5.3" data-path="NonStat.html"><a href="NonStat.html#stationarity-test-kpss"><i class="fa fa-check"></i><b>5.3</b> Stationarity test: KPSS</a></li>
+<li class="chapter" data-level="5.4" data-path="NonStat.html"><a href="NonStat.html#nonstationarity-exercises"><i class="fa fa-check"></i><b>5.4</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="cointeg.html"><a href="cointeg.html"><i class="fa fa-check"></i><b>6</b> Introduction to cointegration</a>
 <ul>
@@ -227,6 +244,7 @@ div.csl-indent {
 <li class="chapter" data-level="6.2" data-path="cointeg.html"><a href="cointeg.html#the-bivariate-case"><i class="fa fa-check"></i><b>6.2</b> The bivariate case</a></li>
 <li class="chapter" data-level="6.3" data-path="cointeg.html"><a href="cointeg.html#multivariate-case-and-vecm"><i class="fa fa-check"></i><b>6.3</b> Multivariate case and VECM</a></li>
 <li class="chapter" data-level="6.4" data-path="cointeg.html"><a href="cointeg.html#cointegration-in-practice"><i class="fa fa-check"></i><b>6.4</b> Cointegration in practice</a></li>
+<li class="chapter" data-level="6.5" data-path="cointeg.html"><a href="cointeg.html#cointegration-exercises"><i class="fa fa-check"></i><b>6.5</b> Exercise</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="ARCHGARCH.html"><a href="ARCHGARCH.html"><i class="fa fa-check"></i><b>7</b> ARCH and GARCH models</a>
 <ul>
@@ -485,17 +503,107 @@ Figure 5.3: US Inflation (in black) and short-term nominal rates (in red).
 </p>
 </div>
 <p>Let us now run the tests. Note that the default alternative hypothesis of function <code>adf.test</code> of package <code>tseries</code> is that the process is trend-stationary. Note that when <code>kpss.test</code> returns a p-value of <code>0.01</code>, it means that the true p-value is lower then that.</p>
-<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="NonStat.html#cb48-1" tabindex="-1"></a><span class="fu">library</span>(tseries)</span>
-<span id="cb48-2"><a href="NonStat.html#cb48-2" tabindex="-1"></a>test.adf.infl <span class="ot">&lt;-</span> <span class="fu">adf.test</span>(US3var<span class="sc">$</span>infl,<span class="at">k=</span><span class="dv">4</span>)</span>
-<span id="cb48-3"><a href="NonStat.html#cb48-3" tabindex="-1"></a>test.adf.r    <span class="ot">&lt;-</span> <span class="fu">adf.test</span>(US3var<span class="sc">$</span>r,<span class="at">k=</span><span class="dv">4</span>)</span>
-<span id="cb48-4"><a href="NonStat.html#cb48-4" tabindex="-1"></a>test.pp.infl <span class="ot">&lt;-</span> <span class="fu">pp.test</span>(US3var<span class="sc">$</span>infl)</span>
-<span id="cb48-5"><a href="NonStat.html#cb48-5" tabindex="-1"></a>test.pp.r    <span class="ot">&lt;-</span> <span class="fu">pp.test</span>(US3var<span class="sc">$</span>r)</span>
-<span id="cb48-6"><a href="NonStat.html#cb48-6" tabindex="-1"></a>test.kpss.infl <span class="ot">&lt;-</span> <span class="fu">kpss.test</span>(US3var<span class="sc">$</span>infl)</span>
-<span id="cb48-7"><a href="NonStat.html#cb48-7" tabindex="-1"></a>test.kpss.r    <span class="ot">&lt;-</span> <span class="fu">kpss.test</span>(US3var<span class="sc">$</span>r)</span>
-<span id="cb48-8"><a href="NonStat.html#cb48-8" tabindex="-1"></a><span class="fu">c</span>(test.adf.infl<span class="sc">$</span>p.value,test.pp.infl<span class="sc">$</span>p.value,test.kpss.infl<span class="sc">$</span>p.value)</span></code></pre></div>
+<details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="NonStat.html#cb57-1" tabindex="-1"></a><span class="fu">library</span>(tseries)</span>
+<span id="cb57-2"><a href="NonStat.html#cb57-2" tabindex="-1"></a>test.adf.infl <span class="ot">&lt;-</span> <span class="fu">adf.test</span>(US3var<span class="sc">$</span>infl,<span class="at">k=</span><span class="dv">4</span>)</span>
+<span id="cb57-3"><a href="NonStat.html#cb57-3" tabindex="-1"></a>test.adf.r    <span class="ot">&lt;-</span> <span class="fu">adf.test</span>(US3var<span class="sc">$</span>r,<span class="at">k=</span><span class="dv">4</span>)</span>
+<span id="cb57-4"><a href="NonStat.html#cb57-4" tabindex="-1"></a>test.pp.infl <span class="ot">&lt;-</span> <span class="fu">pp.test</span>(US3var<span class="sc">$</span>infl)</span>
+<span id="cb57-5"><a href="NonStat.html#cb57-5" tabindex="-1"></a>test.pp.r    <span class="ot">&lt;-</span> <span class="fu">pp.test</span>(US3var<span class="sc">$</span>r)</span>
+<span id="cb57-6"><a href="NonStat.html#cb57-6" tabindex="-1"></a>test.kpss.infl <span class="ot">&lt;-</span> <span class="fu">kpss.test</span>(US3var<span class="sc">$</span>infl)</span>
+<span id="cb57-7"><a href="NonStat.html#cb57-7" tabindex="-1"></a>test.kpss.r    <span class="ot">&lt;-</span> <span class="fu">kpss.test</span>(US3var<span class="sc">$</span>r)</span>
+<span id="cb57-8"><a href="NonStat.html#cb57-8" tabindex="-1"></a><span class="fu">c</span>(test.adf.infl<span class="sc">$</span>p.value,test.pp.infl<span class="sc">$</span>p.value,test.kpss.infl<span class="sc">$</span>p.value)</span></code></pre></div>
+</details>
 <pre><code>## [1] 0.29230878 0.04978275 0.01000000</code></pre>
-<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="NonStat.html#cb50-1" tabindex="-1"></a><span class="fu">c</span>(test.adf.r<span class="sc">$</span>p.value,test.pp.r<span class="sc">$</span>p.value,test.kpss.r<span class="sc">$</span>p.value)</span></code></pre></div>
+<details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="NonStat.html#cb59-1" tabindex="-1"></a><span class="fu">c</span>(test.adf.r<span class="sc">$</span>p.value,test.pp.r<span class="sc">$</span>p.value,test.kpss.r<span class="sc">$</span>p.value)</span></code></pre></div>
+</details>
 <pre><code>## [1] 0.3837577 0.3614365 0.0100000</code></pre>
+</div>
+</div>
+<div id="nonstationarity-exercises" class="section level2 hasAnchor" number="5.4">
+<h2><span class="header-section-number">5.4</span> Exercises<a href="NonStat.html#nonstationarity-exercises" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="NonStat.html#cb61-1" tabindex="-1"></a><span class="fu">render_exercises</span>(<span class="st">&quot;ps4&quot;</span>, <span class="fu">c</span>(<span class="st">&quot;ex-order-integration&quot;</span>, <span class="st">&quot;ex-integration-true-false&quot;</span>, <span class="st">&quot;ex-unit-root-tests&quot;</span>))</span></code></pre></div>
+</details>
+<div class="exercisebox">
+<div class="exercise">
+<p><span id="exr:ex-order-integration" class="exercise"><strong>Exercise 5.1  (Orders of integration) </strong></span><strong>PS4 | Core | Analytical</strong><br />
+Review Section <a href="NonStat.html#NonStat">5</a>.</p>
+<p>Find the order of integration of each process. Innovations <span class="math inline">\(\varepsilon_t\)</span> and <span class="math inline">\(\eta_t\)</span> are independent white noises.</p>
+<ol style="list-style-type: decimal">
+<li><span class="math inline">\(x_t=\rho x_{t-1}+\varepsilon_t\)</span>, <span class="math inline">\(|\rho|&lt;1\)</span>.</li>
+<li><span class="math inline">\(x_t=x_{t-1}+\varepsilon_t+\theta_1\varepsilon_{t-1}+\cdots+\theta_q\varepsilon_{t-q}\)</span>, assuming the MA polynomial does not cancel the unit root.</li>
+<li><span class="math inline">\(x_t=\mu_t+x_{t-1}+\varepsilon_t\)</span>, with <span class="math inline">\(\mu_t=\mu_{t-1}+\eta_t\)</span>.</li>
+<li><span class="math inline">\(x_t=1.5x_{t-1}-0.5x_{t-2}+\varepsilon_t\)</span>.</li>
+</ol>
+</div>
+</div>
+<div class="exercisebox">
+<div class="exercise">
+<p><span id="exr:ex-integration-true-false" class="exercise"><strong>Exercise 5.2  (True or false: integrated processes) </strong></span><strong>PS4 | Core | Conceptual</strong><br />
+Review Section <a href="NonStat.html#NonStat">5</a>.</p>
+<p>State whether each assertion is true or false and briefly justify your answer. Let <span class="math inline">\(x_t=x_{t-1}+\varepsilon_t\)</span>, where <span class="math inline">\(\varepsilon_t\overset{i.i.d.}{\sim}\mathcal N(0,1)\)</span>, when the assertion refers to “the random walk.”</p>
+<ol style="list-style-type: decimal">
+<li><span class="math inline">\(\operatorname{Var}_t(x_{t+h})\to\infty\)</span> as <span class="math inline">\(h\to\infty\)</span>.</li>
+<li><span class="math inline">\(x_t\)</span> is not covariance stationary, but <span class="math inline">\(\Delta x_t\)</span> is.</li>
+<li>If <span class="math inline">\(\Delta^2x_t\)</span> is <span class="math inline">\(I(0)\)</span> and <span class="math inline">\(\Delta x_t\)</span> is <span class="math inline">\(I(1)\)</span>, then <span class="math inline">\(x_t\)</span> is <span class="math inline">\(I(2)\)</span>.</li>
+<li>The random walk is <span class="math inline">\(I(1)\)</span>.</li>
+<li>The random walk necessarily has unconditional mean zero.</li>
+<li>In a regression of one unrelated <span class="math inline">\(I(1)\)</span> variable on another, usual stationary OLS standard errors give valid confidence intervals.</li>
+<li>The OLS slope in a finite-sample regression of the random walk on its lag and a constant is typically biased downward.</li>
+<li>If <span class="math inline">\(x_t\)</span> is <span class="math inline">\(I(1)\)</span> and <span class="math inline">\(y_t\)</span> is <span class="math inline">\(I(2)\)</span>, then <span class="math inline">\(x_t+y_t\)</span> is generally <span class="math inline">\(I(2)\)</span>.</li>
+<li>If <span class="math inline">\(x_t\)</span> is <span class="math inline">\(I(2)\)</span> and <span class="math inline">\(y_t\)</span> is <span class="math inline">\(I(1)\)</span>, the residual from regressing <span class="math inline">\(x_t\)</span> on <span class="math inline">\(y_t\)</span> is necessarily <span class="math inline">\(I(1)\)</span>.</li>
+</ol>
+</div>
+</div>
+<div class="exercisebox">
+<div class="exercise">
+<p><span id="exr:ex-unit-root-tests" class="exercise"><strong>Exercise 5.3  (Interpreting ADF and Phillips–Perron tests) </strong></span><strong>PS4 | Advanced | Empirical interpretation</strong><br />
+Review Section <a href="NonStat.html#NonStat">5</a>.</p>
+<p>For samples of 100 observations, ADF and Phillips–Perron tests are computed with a constant and no linear trend:</p>
+<table>
+<thead>
+<tr class="header">
+<th>Statistic</th>
+<th align="right"><span class="math inline">\(x_t\)</span></th>
+<th align="right"><span class="math inline">\(y_t\)</span></th>
+<th align="right"><span class="math inline">\(z_t\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(ADF_t\)</span></td>
+<td align="right">0.14</td>
+<td align="right">-3.51</td>
+<td align="right">-2.81</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(Z_t\)</span></td>
+<td align="right">0.34</td>
+<td align="right">-3.82</td>
+<td align="right">-3.01</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(ADF_\rho\)</span></td>
+<td align="right">-0.96</td>
+<td align="right">-18.4</td>
+<td align="right">-15.3</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(Z_\rho\)</span></td>
+<td align="right">-1.12</td>
+<td align="right">-20.2</td>
+<td align="right">-11.2</td>
+</tr>
+</tbody>
+</table>
+<p>At the 5% level for this specification and sample size, use the approximate critical values <span class="math inline">\(-2.89\)</span> for the <span class="math inline">\(t\)</span>-type statistics and <span class="math inline">\(-14.1\)</span> for the normalized-coefficient statistics.</p>
+<ol style="list-style-type: decimal">
+<li>State the conclusion of each of the twelve tests.</li>
+<li>Summarize the evidence for the integration order of each series, noting any disagreement between tests.</li>
+<li>For which pairs is a conventional cointegration analysis potentially meaningful? Explain why equal integration orders are required.</li>
+</ol>
+</div>
 </div>
 
 </div>
@@ -567,7 +675,7 @@ gitbook.start({
     "size": 2
   },
   "edit": {
-    "link": "https://github.com/rstudio/bookdown-demo/edit/master/05-NonStat.Rmd",
+    "link": "https://github.com/jrenne/TimeSeries_Bookdown/edit/main/05-NonStat.Rmd",
     "text": "Edit"
   },
   "history": {
@@ -578,7 +686,7 @@ gitbook.start({
     "link": null,
     "text": null
   },
-  "download": ["TimeSeries.pdf", "TimeSeries.epub"],
+  "download": ["TimeSeries.pdf"],
   "search": {
     "engine": "fuse",
     "options": null

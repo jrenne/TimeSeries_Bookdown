@@ -751,7 +751,7 @@ One can recursively compute the dynamic multipliers $\frac{\partial y_{t+h}}{\pa
 i. Initialization: $\dfrac{\partial y_{t+h}}{\partial x_t}=0$ for $h<0$.
 ii. For $h \ge 0$ and assuming that the first $h-1$ multipliers have been computed, we have:
 \begin{eqnarray}
-\dfrac{\partial y_{t+h}}{\partial x_t} &=& \phi_1 \dfrac{\partial y_{t+h-1}}{\partial x_t} + \dots + \phi_p \dfrac{\partial y_{t+h-p}}{\partial x_t} + \beta_h,(\#eq:dynmultX)
+\dfrac{\partial y_{t+h}}{\partial x_t} &=& \phi_1 \dfrac{\partial y_{t+h-1}}{\partial x_t} + \dots + \phi_p \dfrac{\partial y_{t+h-p}}{\partial x_t} + \beta_h,(\#eq:dynmultXrec)
 \end{eqnarray}
 where we use the notation $\beta_h=0$ if $h>r$.
 :::
@@ -1357,3 +1357,33 @@ print(c(best.p,best.q))
 
 The best specification therefore is an AR(1) model. That is, although an AR(2) (say) would result in a better fit of the data, the fit improvement is not be large enough to compensate for the additional AIC cost associated with an additional parameter.
 :::
+## Exercises {#univariate-exercises}
+
+The following exercises consolidate stationarity, Wold representations, likelihood-based estimation, model identification, and impulse-response analysis. They come from PS1, PS2, and PS3.
+
+```{r univariate-exercise-renderer, include=FALSE}
+source("R/exercises.R")
+```
+
+```{r univariate-ps1, results='asis'}
+render_exercises("ps1")
+```
+
+```{r univariate-ps2, results='asis'}
+render_exercises("ps2")
+```
+
+```{r univariate-ps3, results='asis'}
+render_exercises("ps3", "ex-irf-forecasts")
+```
+
+### Exercises from the 2024 exam
+
+```{r univariate-exam-2024, results='asis'}
+render_exercises("exam-2024", c(
+  "ex-exam2024-shared-ar1",
+  "ex-exam2024-autocovariance-sequence",
+  "ex-exam2024-arma-roots",
+  "ex-exam2024-dynamic-multiplier"
+))
+```

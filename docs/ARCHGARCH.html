@@ -5,19 +5,19 @@
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 7 ARCH and GARCH models | Introduction to Time Series</title>
-  <meta name="description" content="This course XXX." />
+  <meta name="description" content="An introduction to time-series analysis for macroeconomics and finance, covering univariate and multivariate models, forecasting, non-stationarity, cointegration, and volatility." />
   <meta name="generator" content="bookdown 0.43 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 7 ARCH and GARCH models | Introduction to Time Series" />
   <meta property="og:type" content="book" />
   
-  <meta property="og:description" content="This course XXX." />
-  <meta name="github-repo" content="rstudio/bookdown-demo" />
+  <meta property="og:description" content="An introduction to time-series analysis for macroeconomics and finance, covering univariate and multivariate models, forecasting, non-stationarity, cointegration, and volatility." />
+  <meta name="github-repo" content="jrenne/TimeSeries_Bookdown" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Chapter 7 ARCH and GARCH models | Introduction to Time Series" />
   
-  <meta name="twitter:description" content="This course XXX." />
+  <meta name="twitter:description" content="An introduction to time-series analysis for macroeconomics and finance, covering univariate and multivariate models, forecasting, non-stationarity, cointegration, and volatility." />
   
 
 <meta name="author" content="Jean-Paul Renne" />
@@ -49,6 +49,7 @@
 
 
 
+<link href="libs/codefolding-lua-1.1/codefolding-lua.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
@@ -168,6 +169,7 @@ div.csl-indent {
 <li class="chapter" data-level="1.1" data-path="Intro.html"><a href="Intro.html#shocks-and-lag-operator"><i class="fa fa-check"></i><b>1.1</b> Shocks and lag operator</a></li>
 <li class="chapter" data-level="1.2" data-path="Intro.html"><a href="Intro.html#conditional-and-unconditional-moments"><i class="fa fa-check"></i><b>1.2</b> Conditional and unconditional moments</a></li>
 <li class="chapter" data-level="1.3" data-path="Intro.html"><a href="Intro.html#central-limit-theorem-clt-for-persistent-processes"><i class="fa fa-check"></i><b>1.3</b> Central Limit Theorem (CLT) for persistent processes</a></li>
+<li class="chapter" data-level="1.4" data-path="Intro.html"><a href="Intro.html#introduction-exercises"><i class="fa fa-check"></i><b>1.4</b> Exercise from the 2024 exam</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="Univariate.html"><a href="Univariate.html"><i class="fa fa-check"></i><b>2</b> Univariate processes</a>
 <ul>
@@ -190,6 +192,10 @@ div.csl-indent {
 <li class="chapter" data-level="2.8.4" data-path="Univariate.html"><a href="Univariate.html#estimARMApq"><i class="fa fa-check"></i><b>2.8.4</b> Maximum Likelihood Estimation of an ARMA(p,q) process</a></li>
 </ul></li>
 <li class="chapter" data-level="2.9" data-path="Univariate.html"><a href="Univariate.html#specification-choice"><i class="fa fa-check"></i><b>2.9</b> Specification choice</a></li>
+<li class="chapter" data-level="2.10" data-path="Univariate.html"><a href="Univariate.html#univariate-exercises"><i class="fa fa-check"></i><b>2.10</b> Exercises</a>
+<ul>
+<li class="chapter" data-level="2.10.1" data-path="Univariate.html"><a href="Univariate.html#exercises-from-the-2024-exam"><i class="fa fa-check"></i><b>2.10.1</b> Exercises from the 2024 exam</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="VAR.html"><a href="VAR.html"><i class="fa fa-check"></i><b>3</b> Multivariate models</a>
 <ul>
@@ -209,8 +215,18 @@ div.csl-indent {
 <li class="chapter" data-level="3.6.3" data-path="VAR.html"><a href="VAR.html#cholesky-a-specific-short-run-restriction-situation"><i class="fa fa-check"></i><b>3.6.3</b> Cholesky: a specific short-run-restriction situation</a></li>
 <li class="chapter" data-level="3.6.4" data-path="VAR.html"><a href="VAR.html#long-run-restrictions"><i class="fa fa-check"></i><b>3.6.4</b> Long-run restrictions</a></li>
 </ul></li>
+<li class="chapter" data-level="3.7" data-path="VAR.html"><a href="VAR.html#var-exercises"><i class="fa fa-check"></i><b>3.7</b> Exercise</a>
+<ul>
+<li class="chapter" data-level="3.7.1" data-path="VAR.html"><a href="VAR.html#exercise-from-the-2024-exam"><i class="fa fa-check"></i><b>3.7.1</b> Exercise from the 2024 exam</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="forecasting.html"><a href="forecasting.html"><i class="fa fa-check"></i><b>4</b> Forecasting</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="forecasting.html"><a href="forecasting.html"><i class="fa fa-check"></i><b>4</b> Forecasting</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="forecasting.html"><a href="forecasting.html#forecasting-exercises"><i class="fa fa-check"></i><b>4.1</b> Exercise</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="forecasting.html"><a href="forecasting.html#exercise-from-the-2024-exam-1"><i class="fa fa-check"></i><b>4.1.1</b> Exercise from the 2024 exam</a></li>
+</ul></li>
+</ul></li>
 <li class="chapter" data-level="5" data-path="NonStat.html"><a href="NonStat.html"><i class="fa fa-check"></i><b>5</b> Non-stationary processes</a>
 <ul>
 <li class="chapter" data-level="5.1" data-path="NonStat.html"><a href="NonStat.html#issues-when-working-with-nonstationary-time-series"><i class="fa fa-check"></i><b>5.1</b> Issues when working with nonstationary time series</a>
@@ -220,6 +236,7 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="5.2" data-path="NonStat.html"><a href="NonStat.html#nonstationarity-tests"><i class="fa fa-check"></i><b>5.2</b> Nonstationarity tests</a></li>
 <li class="chapter" data-level="5.3" data-path="NonStat.html"><a href="NonStat.html#stationarity-test-kpss"><i class="fa fa-check"></i><b>5.3</b> Stationarity test: KPSS</a></li>
+<li class="chapter" data-level="5.4" data-path="NonStat.html"><a href="NonStat.html#nonstationarity-exercises"><i class="fa fa-check"></i><b>5.4</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="cointeg.html"><a href="cointeg.html"><i class="fa fa-check"></i><b>6</b> Introduction to cointegration</a>
 <ul>
@@ -227,6 +244,7 @@ div.csl-indent {
 <li class="chapter" data-level="6.2" data-path="cointeg.html"><a href="cointeg.html#the-bivariate-case"><i class="fa fa-check"></i><b>6.2</b> The bivariate case</a></li>
 <li class="chapter" data-level="6.3" data-path="cointeg.html"><a href="cointeg.html#multivariate-case-and-vecm"><i class="fa fa-check"></i><b>6.3</b> Multivariate case and VECM</a></li>
 <li class="chapter" data-level="6.4" data-path="cointeg.html"><a href="cointeg.html#cointegration-in-practice"><i class="fa fa-check"></i><b>6.4</b> Cointegration in practice</a></li>
+<li class="chapter" data-level="6.5" data-path="cointeg.html"><a href="cointeg.html#cointegration-exercises"><i class="fa fa-check"></i><b>6.5</b> Exercise</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="ARCHGARCH.html"><a href="ARCHGARCH.html"><i class="fa fa-check"></i><b>7</b> ARCH and GARCH models</a>
 <ul>
@@ -299,16 +317,18 @@ T \times R^2 \overset{d}{\rightarrow} \chi^2(m),
 \]</span>
 where <span class="math inline">\(R^2\)</span> is the centered <span class="math inline">\(R^2\)</span> of the OLS regression.</p>
 <p>Let us employ this test on the return series plotted in the lower panel of Figure <a href="ARCHGARCH.html#fig:GARCHsmireturns">7.1</a>:</p>
-<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="ARCHGARCH.html#cb55-1" tabindex="-1"></a><span class="fu">library</span>(IdSS);<span class="fu">data</span>(smi)</span>
-<span id="cb55-2"><a href="ARCHGARCH.html#cb55-2" tabindex="-1"></a>smi <span class="ot">&lt;-</span> smi[<span class="fu">complete.cases</span>(smi),] <span class="co"># remove NaNs</span></span>
-<span id="cb55-3"><a href="ARCHGARCH.html#cb55-3" tabindex="-1"></a>T <span class="ot">&lt;-</span> <span class="fu">dim</span>(smi)[<span class="dv">1</span>]</span>
-<span id="cb55-4"><a href="ARCHGARCH.html#cb55-4" tabindex="-1"></a>smi<span class="sc">$</span>r <span class="ot">&lt;-</span> <span class="dv">100</span><span class="sc">*</span><span class="fu">c</span>(<span class="cn">NaN</span>,<span class="fu">log</span>(smi<span class="sc">$</span>Close[<span class="dv">2</span><span class="sc">:</span>T]<span class="sc">/</span>smi<span class="sc">$</span>Close[<span class="dv">1</span><span class="sc">:</span>(T<span class="dv">-1</span>)]))</span>
-<span id="cb55-5"><a href="ARCHGARCH.html#cb55-5" tabindex="-1"></a>u <span class="ot">&lt;-</span> smi<span class="sc">$</span>r<span class="sc">^</span><span class="dv">2</span></span>
-<span id="cb55-6"><a href="ARCHGARCH.html#cb55-6" tabindex="-1"></a>u_1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="cn">NaN</span>,smi<span class="sc">$</span>r[<span class="dv">1</span><span class="sc">:</span>(T<span class="dv">-1</span>)]<span class="sc">^</span><span class="dv">2</span>)</span>
-<span id="cb55-7"><a href="ARCHGARCH.html#cb55-7" tabindex="-1"></a>u_2 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="cn">NaN</span>,<span class="cn">NaN</span>,smi<span class="sc">$</span>r[<span class="dv">1</span><span class="sc">:</span>(T<span class="dv">-2</span>)]<span class="sc">^</span><span class="dv">2</span>)</span>
-<span id="cb55-8"><a href="ARCHGARCH.html#cb55-8" tabindex="-1"></a>eq <span class="ot">&lt;-</span> <span class="fu">lm</span>(u<span class="sc">^</span><span class="dv">2</span> <span class="sc">~</span> u_1<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> u_2<span class="sc">^</span><span class="dv">2</span>)</span>
-<span id="cb55-9"><a href="ARCHGARCH.html#cb55-9" tabindex="-1"></a>test.stat <span class="ot">&lt;-</span> <span class="fu">length</span>(u)<span class="sc">*</span><span class="fu">summary</span>(eq)<span class="sc">$</span>r.squared</span>
-<span id="cb55-10"><a href="ARCHGARCH.html#cb55-10" tabindex="-1"></a>pvalue <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">-</span> <span class="fu">pchisq</span>(<span class="at">q =</span> test.stat,<span class="at">df=</span><span class="dv">2</span>)</span></code></pre></div>
+<details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="ARCHGARCH.html#cb66-1" tabindex="-1"></a><span class="fu">library</span>(IdSS);<span class="fu">data</span>(smi)</span>
+<span id="cb66-2"><a href="ARCHGARCH.html#cb66-2" tabindex="-1"></a>smi <span class="ot">&lt;-</span> smi[<span class="fu">complete.cases</span>(smi),] <span class="co"># remove NaNs</span></span>
+<span id="cb66-3"><a href="ARCHGARCH.html#cb66-3" tabindex="-1"></a>T <span class="ot">&lt;-</span> <span class="fu">dim</span>(smi)[<span class="dv">1</span>]</span>
+<span id="cb66-4"><a href="ARCHGARCH.html#cb66-4" tabindex="-1"></a>smi<span class="sc">$</span>r <span class="ot">&lt;-</span> <span class="dv">100</span><span class="sc">*</span><span class="fu">c</span>(<span class="cn">NaN</span>,<span class="fu">log</span>(smi<span class="sc">$</span>Close[<span class="dv">2</span><span class="sc">:</span>T]<span class="sc">/</span>smi<span class="sc">$</span>Close[<span class="dv">1</span><span class="sc">:</span>(T<span class="dv">-1</span>)]))</span>
+<span id="cb66-5"><a href="ARCHGARCH.html#cb66-5" tabindex="-1"></a>u <span class="ot">&lt;-</span> smi<span class="sc">$</span>r<span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb66-6"><a href="ARCHGARCH.html#cb66-6" tabindex="-1"></a>u_1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="cn">NaN</span>,smi<span class="sc">$</span>r[<span class="dv">1</span><span class="sc">:</span>(T<span class="dv">-1</span>)]<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb66-7"><a href="ARCHGARCH.html#cb66-7" tabindex="-1"></a>u_2 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="cn">NaN</span>,<span class="cn">NaN</span>,smi<span class="sc">$</span>r[<span class="dv">1</span><span class="sc">:</span>(T<span class="dv">-2</span>)]<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb66-8"><a href="ARCHGARCH.html#cb66-8" tabindex="-1"></a>eq <span class="ot">&lt;-</span> <span class="fu">lm</span>(u<span class="sc">^</span><span class="dv">2</span> <span class="sc">~</span> u_1<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> u_2<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb66-9"><a href="ARCHGARCH.html#cb66-9" tabindex="-1"></a>test.stat <span class="ot">&lt;-</span> <span class="fu">length</span>(u)<span class="sc">*</span><span class="fu">summary</span>(eq)<span class="sc">$</span>r.squared</span>
+<span id="cb66-10"><a href="ARCHGARCH.html#cb66-10" tabindex="-1"></a>pvalue <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">-</span> <span class="fu">pchisq</span>(<span class="at">q =</span> test.stat,<span class="at">df=</span><span class="dv">2</span>)</span></code></pre></div>
+</details>
 <p>The p-value is extremely close to zero. Hence we strongly reject the null of an i.i.d. SMI return.</p>
 </div>
 <div id="ARCH" class="section level2 hasAnchor" number="7.2">
@@ -392,24 +412,28 @@ where <span class="math inline">\(\theta\)</span>, the vector of unknown paramet
 <li><code>r</code> is the number of lags in the GARCH specification (see Subsection <a href="ARCHGARCH.html#GARCH">7.3</a> below).</li>
 </ul>
 <p>Function <code>compute.garch</code> returns a list, one entry of each is the log-likelihood associated with a parameterization <span class="math inline">\([\zeta,\boldsymbol\alpha&#39;]&#39;\)</span>, the second being the resulting sequence of <span class="math inline">\(h_t\)</span>’s (see Eq. <a href="ARCHGARCH.html#eq:hARCH">(7.5)</a>). Let us create a function that returns only the log-likelihood:</p>
-<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="ARCHGARCH.html#cb56-1" tabindex="-1"></a>loglik <span class="ot">&lt;-</span> <span class="cf">function</span>(theta,x,m,r){</span>
-<span id="cb56-2"><a href="ARCHGARCH.html#cb56-2" tabindex="-1"></a>  <span class="co"># first parameter of theta: zeta</span></span>
-<span id="cb56-3"><a href="ARCHGARCH.html#cb56-3" tabindex="-1"></a>  <span class="co"># next: alpha&#39;s (ARCH)</span></span>
-<span id="cb56-4"><a href="ARCHGARCH.html#cb56-4" tabindex="-1"></a>  <span class="co"># next: delta&#39;s (GARCH)</span></span>
-<span id="cb56-5"><a href="ARCHGARCH.html#cb56-5" tabindex="-1"></a>  Garch <span class="ot">&lt;-</span> <span class="fu">compute.garch</span>(theta,x,m,r)</span>
-<span id="cb56-6"><a href="ARCHGARCH.html#cb56-6" tabindex="-1"></a>  <span class="fu">return</span>(Garch<span class="sc">$</span>logf)</span>
-<span id="cb56-7"><a href="ARCHGARCH.html#cb56-7" tabindex="-1"></a>}</span></code></pre></div>
+<details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="ARCHGARCH.html#cb67-1" tabindex="-1"></a>loglik <span class="ot">&lt;-</span> <span class="cf">function</span>(theta,x,m,r){</span>
+<span id="cb67-2"><a href="ARCHGARCH.html#cb67-2" tabindex="-1"></a>  <span class="co"># first parameter of theta: zeta</span></span>
+<span id="cb67-3"><a href="ARCHGARCH.html#cb67-3" tabindex="-1"></a>  <span class="co"># next: alpha&#39;s (ARCH)</span></span>
+<span id="cb67-4"><a href="ARCHGARCH.html#cb67-4" tabindex="-1"></a>  <span class="co"># next: delta&#39;s (GARCH)</span></span>
+<span id="cb67-5"><a href="ARCHGARCH.html#cb67-5" tabindex="-1"></a>  Garch <span class="ot">&lt;-</span> <span class="fu">compute.garch</span>(theta,x,m,r)</span>
+<span id="cb67-6"><a href="ARCHGARCH.html#cb67-6" tabindex="-1"></a>  <span class="fu">return</span>(Garch<span class="sc">$</span>logf)</span>
+<span id="cb67-7"><a href="ARCHGARCH.html#cb67-7" tabindex="-1"></a>}</span></code></pre></div>
+</details>
 <p>Now, let us maximize the log-likelihood:</p>
-<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="ARCHGARCH.html#cb57-1" tabindex="-1"></a>m <span class="ot">&lt;-</span> <span class="dv">2</span></span>
-<span id="cb57-2"><a href="ARCHGARCH.html#cb57-2" tabindex="-1"></a>r <span class="ot">&lt;-</span> <span class="dv">0</span> <span class="co"># for ARCH models, r=0</span></span>
-<span id="cb57-3"><a href="ARCHGARCH.html#cb57-3" tabindex="-1"></a>smi <span class="ot">&lt;-</span> smi[<span class="dv">4000</span><span class="sc">:</span><span class="fu">dim</span>(smi)[<span class="dv">1</span>],] <span class="co"># reduce sample</span></span>
-<span id="cb57-4"><a href="ARCHGARCH.html#cb57-4" tabindex="-1"></a>par0 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">0.62</span>,<span class="fl">0.2</span>,<span class="fl">0.2</span>)</span>
-<span id="cb57-5"><a href="ARCHGARCH.html#cb57-5" tabindex="-1"></a>res.opt <span class="ot">&lt;-</span> <span class="fu">optim</span>(<span class="at">par=</span>par0,<span class="at">x=</span>smi<span class="sc">$</span>r,<span class="at">m=</span>m,<span class="at">r=</span>r,loglik,</span>
-<span id="cb57-6"><a href="ARCHGARCH.html#cb57-6" tabindex="-1"></a>                 <span class="at">method=</span><span class="st">&quot;BFGS&quot;</span>,<span class="at">hessian=</span><span class="cn">TRUE</span>,</span>
-<span id="cb57-7"><a href="ARCHGARCH.html#cb57-7" tabindex="-1"></a>                 <span class="at">control =</span> <span class="fu">list</span>(<span class="at">trace=</span><span class="cn">TRUE</span>,<span class="at">maxit =</span> <span class="dv">10</span>))</span>
-<span id="cb57-8"><a href="ARCHGARCH.html#cb57-8" tabindex="-1"></a>estim.param <span class="ot">&lt;-</span> res.opt<span class="sc">$</span>par</span>
-<span id="cb57-9"><a href="ARCHGARCH.html#cb57-9" tabindex="-1"></a>std.dev <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fu">diag</span>(<span class="fu">solve</span>(res.opt<span class="sc">$</span>hessian)))</span>
-<span id="cb57-10"><a href="ARCHGARCH.html#cb57-10" tabindex="-1"></a>t.stat <span class="ot">&lt;-</span> estim.param<span class="sc">/</span>std.dev</span></code></pre></div>
+<details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="ARCHGARCH.html#cb68-1" tabindex="-1"></a>m <span class="ot">&lt;-</span> <span class="dv">2</span></span>
+<span id="cb68-2"><a href="ARCHGARCH.html#cb68-2" tabindex="-1"></a>r <span class="ot">&lt;-</span> <span class="dv">0</span> <span class="co"># for ARCH models, r=0</span></span>
+<span id="cb68-3"><a href="ARCHGARCH.html#cb68-3" tabindex="-1"></a>smi <span class="ot">&lt;-</span> smi[<span class="dv">4000</span><span class="sc">:</span><span class="fu">dim</span>(smi)[<span class="dv">1</span>],] <span class="co"># reduce sample</span></span>
+<span id="cb68-4"><a href="ARCHGARCH.html#cb68-4" tabindex="-1"></a>par0 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">0.62</span>,<span class="fl">0.2</span>,<span class="fl">0.2</span>)</span>
+<span id="cb68-5"><a href="ARCHGARCH.html#cb68-5" tabindex="-1"></a>res.opt <span class="ot">&lt;-</span> <span class="fu">optim</span>(<span class="at">par=</span>par0,<span class="at">x=</span>smi<span class="sc">$</span>r,<span class="at">m=</span>m,<span class="at">r=</span>r,loglik,</span>
+<span id="cb68-6"><a href="ARCHGARCH.html#cb68-6" tabindex="-1"></a>                 <span class="at">method=</span><span class="st">&quot;BFGS&quot;</span>,<span class="at">hessian=</span><span class="cn">TRUE</span>,</span>
+<span id="cb68-7"><a href="ARCHGARCH.html#cb68-7" tabindex="-1"></a>                 <span class="at">control =</span> <span class="fu">list</span>(<span class="at">trace=</span><span class="cn">TRUE</span>,<span class="at">maxit =</span> <span class="dv">10</span>))</span>
+<span id="cb68-8"><a href="ARCHGARCH.html#cb68-8" tabindex="-1"></a>estim.param <span class="ot">&lt;-</span> res.opt<span class="sc">$</span>par</span>
+<span id="cb68-9"><a href="ARCHGARCH.html#cb68-9" tabindex="-1"></a>std.dev <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fu">diag</span>(<span class="fu">solve</span>(res.opt<span class="sc">$</span>hessian)))</span>
+<span id="cb68-10"><a href="ARCHGARCH.html#cb68-10" tabindex="-1"></a>t.stat <span class="ot">&lt;-</span> estim.param<span class="sc">/</span>std.dev</span></code></pre></div>
+</details>
 <p>Table <a href="ARCHGARCH.html#tab:estimGARCH2">7.1</a> reports the estimated parameters and their standard deviation. Figure <a href="ARCHGARCH.html#fig:estimGARCH3">7.2</a> displays the resulting 95% confidence intervals (i.e., <span class="math inline">\(\pm 2 \sqrt{h_t}\)</span>).</p>
 <table>
 <caption><span id="tab:estimGARCH2">Table 7.1: </span>ARCH(2), ML estimation results.
@@ -589,7 +613,7 @@ gitbook.start({
     "size": 2
   },
   "edit": {
-    "link": "https://github.com/rstudio/bookdown-demo/edit/master/07-GARCH.Rmd",
+    "link": "https://github.com/jrenne/TimeSeries_Bookdown/edit/main/07-GARCH.Rmd",
     "text": "Edit"
   },
   "history": {
@@ -600,7 +624,7 @@ gitbook.start({
     "link": null,
     "text": null
   },
-  "download": ["TimeSeries.pdf", "TimeSeries.epub"],
+  "download": ["TimeSeries.pdf"],
   "search": {
     "engine": "fuse",
     "options": null

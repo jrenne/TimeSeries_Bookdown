@@ -310,3 +310,12 @@ c(test.adf.r$p.value,test.pp.r$p.value,test.kpss.r$p.value)
 ```
 
 :::
+## Exercises {#nonstationarity-exercises}
+
+```{r nonstationarity-exercise-renderer, include=FALSE}
+source("R/exercises.R")
+```
+
+```{r nonstationarity-ps4, results='asis'}
+render_exercises("ps4", c("ex-order-integration", "ex-integration-true-false", "ex-unit-root-tests"))
+```

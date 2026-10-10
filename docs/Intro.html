@@ -5,19 +5,19 @@
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 1 Basics | Introduction to Time Series</title>
-  <meta name="description" content="This course XXX." />
+  <meta name="description" content="An introduction to time-series analysis for macroeconomics and finance, covering univariate and multivariate models, forecasting, non-stationarity, cointegration, and volatility." />
   <meta name="generator" content="bookdown 0.43 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 1 Basics | Introduction to Time Series" />
   <meta property="og:type" content="book" />
   
-  <meta property="og:description" content="This course XXX." />
-  <meta name="github-repo" content="rstudio/bookdown-demo" />
+  <meta property="og:description" content="An introduction to time-series analysis for macroeconomics and finance, covering univariate and multivariate models, forecasting, non-stationarity, cointegration, and volatility." />
+  <meta name="github-repo" content="jrenne/TimeSeries_Bookdown" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Chapter 1 Basics | Introduction to Time Series" />
   
-  <meta name="twitter:description" content="This course XXX." />
+  <meta name="twitter:description" content="An introduction to time-series analysis for macroeconomics and finance, covering univariate and multivariate models, forecasting, non-stationarity, cointegration, and volatility." />
   
 
 <meta name="author" content="Jean-Paul Renne" />
@@ -49,6 +49,7 @@
 
 
 
+<link href="libs/codefolding-lua-1.1/codefolding-lua.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
@@ -168,6 +169,7 @@ div.csl-indent {
 <li class="chapter" data-level="1.1" data-path="Intro.html"><a href="Intro.html#shocks-and-lag-operator"><i class="fa fa-check"></i><b>1.1</b> Shocks and lag operator</a></li>
 <li class="chapter" data-level="1.2" data-path="Intro.html"><a href="Intro.html#conditional-and-unconditional-moments"><i class="fa fa-check"></i><b>1.2</b> Conditional and unconditional moments</a></li>
 <li class="chapter" data-level="1.3" data-path="Intro.html"><a href="Intro.html#central-limit-theorem-clt-for-persistent-processes"><i class="fa fa-check"></i><b>1.3</b> Central Limit Theorem (CLT) for persistent processes</a></li>
+<li class="chapter" data-level="1.4" data-path="Intro.html"><a href="Intro.html#introduction-exercises"><i class="fa fa-check"></i><b>1.4</b> Exercise from the 2024 exam</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="Univariate.html"><a href="Univariate.html"><i class="fa fa-check"></i><b>2</b> Univariate processes</a>
 <ul>
@@ -190,6 +192,10 @@ div.csl-indent {
 <li class="chapter" data-level="2.8.4" data-path="Univariate.html"><a href="Univariate.html#estimARMApq"><i class="fa fa-check"></i><b>2.8.4</b> Maximum Likelihood Estimation of an ARMA(p,q) process</a></li>
 </ul></li>
 <li class="chapter" data-level="2.9" data-path="Univariate.html"><a href="Univariate.html#specification-choice"><i class="fa fa-check"></i><b>2.9</b> Specification choice</a></li>
+<li class="chapter" data-level="2.10" data-path="Univariate.html"><a href="Univariate.html#univariate-exercises"><i class="fa fa-check"></i><b>2.10</b> Exercises</a>
+<ul>
+<li class="chapter" data-level="2.10.1" data-path="Univariate.html"><a href="Univariate.html#exercises-from-the-2024-exam"><i class="fa fa-check"></i><b>2.10.1</b> Exercises from the 2024 exam</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="VAR.html"><a href="VAR.html"><i class="fa fa-check"></i><b>3</b> Multivariate models</a>
 <ul>
@@ -209,8 +215,18 @@ div.csl-indent {
 <li class="chapter" data-level="3.6.3" data-path="VAR.html"><a href="VAR.html#cholesky-a-specific-short-run-restriction-situation"><i class="fa fa-check"></i><b>3.6.3</b> Cholesky: a specific short-run-restriction situation</a></li>
 <li class="chapter" data-level="3.6.4" data-path="VAR.html"><a href="VAR.html#long-run-restrictions"><i class="fa fa-check"></i><b>3.6.4</b> Long-run restrictions</a></li>
 </ul></li>
+<li class="chapter" data-level="3.7" data-path="VAR.html"><a href="VAR.html#var-exercises"><i class="fa fa-check"></i><b>3.7</b> Exercise</a>
+<ul>
+<li class="chapter" data-level="3.7.1" data-path="VAR.html"><a href="VAR.html#exercise-from-the-2024-exam"><i class="fa fa-check"></i><b>3.7.1</b> Exercise from the 2024 exam</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="forecasting.html"><a href="forecasting.html"><i class="fa fa-check"></i><b>4</b> Forecasting</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="forecasting.html"><a href="forecasting.html"><i class="fa fa-check"></i><b>4</b> Forecasting</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="forecasting.html"><a href="forecasting.html#forecasting-exercises"><i class="fa fa-check"></i><b>4.1</b> Exercise</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="forecasting.html"><a href="forecasting.html#exercise-from-the-2024-exam-1"><i class="fa fa-check"></i><b>4.1.1</b> Exercise from the 2024 exam</a></li>
+</ul></li>
+</ul></li>
 <li class="chapter" data-level="5" data-path="NonStat.html"><a href="NonStat.html"><i class="fa fa-check"></i><b>5</b> Non-stationary processes</a>
 <ul>
 <li class="chapter" data-level="5.1" data-path="NonStat.html"><a href="NonStat.html#issues-when-working-with-nonstationary-time-series"><i class="fa fa-check"></i><b>5.1</b> Issues when working with nonstationary time series</a>
@@ -220,6 +236,7 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="5.2" data-path="NonStat.html"><a href="NonStat.html#nonstationarity-tests"><i class="fa fa-check"></i><b>5.2</b> Nonstationarity tests</a></li>
 <li class="chapter" data-level="5.3" data-path="NonStat.html"><a href="NonStat.html#stationarity-test-kpss"><i class="fa fa-check"></i><b>5.3</b> Stationarity test: KPSS</a></li>
+<li class="chapter" data-level="5.4" data-path="NonStat.html"><a href="NonStat.html#nonstationarity-exercises"><i class="fa fa-check"></i><b>5.4</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="cointeg.html"><a href="cointeg.html"><i class="fa fa-check"></i><b>6</b> Introduction to cointegration</a>
 <ul>
@@ -227,6 +244,7 @@ div.csl-indent {
 <li class="chapter" data-level="6.2" data-path="cointeg.html"><a href="cointeg.html#the-bivariate-case"><i class="fa fa-check"></i><b>6.2</b> The bivariate case</a></li>
 <li class="chapter" data-level="6.3" data-path="cointeg.html"><a href="cointeg.html#multivariate-case-and-vecm"><i class="fa fa-check"></i><b>6.3</b> Multivariate case and VECM</a></li>
 <li class="chapter" data-level="6.4" data-path="cointeg.html"><a href="cointeg.html#cointegration-in-practice"><i class="fa fa-check"></i><b>6.4</b> Cointegration in practice</a></li>
+<li class="chapter" data-level="6.5" data-path="cointeg.html"><a href="cointeg.html#cointegration-exercises"><i class="fa fa-check"></i><b>6.5</b> Exercise</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="ARCHGARCH.html"><a href="ARCHGARCH.html"><i class="fa fa-check"></i><b>7</b> ARCH and GARCH models</a>
 <ul>
@@ -309,6 +327,7 @@ div.csl-indent {
 \varepsilon_{t} = \sigma_t \times z_{t},
 \]</span>
 where <span class="math inline">\(z_t \sim i.i.d.\,\mathcal{N}(0,1)\)</span> and <span class="math inline">\(\sigma_t^2 = w + \alpha \varepsilon_{t-1}^2\)</span> (with <span class="math inline">\(w&gt;0\)</span> and <span class="math inline">\(0 \leq \alpha &lt;1\)</span>).</p>
+<details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="Intro.html#cb2-1" tabindex="-1"></a>T <span class="ot">&lt;-</span> <span class="dv">500</span></span>
 <span id="cb2-2"><a href="Intro.html#cb2-2" tabindex="-1"></a>w <span class="ot">&lt;-</span> <span class="dv">1</span>; alpha <span class="ot">&lt;-</span> .<span class="dv">98</span></span>
 <span id="cb2-3"><a href="Intro.html#cb2-3" tabindex="-1"></a>all_epsilon <span class="ot">&lt;-</span> <span class="cn">NULL</span>; epsilon_1 <span class="ot">&lt;-</span> <span class="dv">0</span></span>
@@ -321,6 +340,7 @@ where <span class="math inline">\(z_t \sim i.i.d.\,\mathcal{N}(0,1)\)</span> and
 <span id="cb2-10"><a href="Intro.html#cb2-10" tabindex="-1"></a><span class="fu">par</span>(<span class="at">plt=</span><span class="fu">c</span>(.<span class="dv">15</span>,.<span class="dv">95</span>,.<span class="dv">1</span>,.<span class="dv">95</span>))</span>
 <span id="cb2-11"><a href="Intro.html#cb2-11" tabindex="-1"></a><span class="fu">plot</span>(all_epsilon,<span class="at">type=</span><span class="st">&quot;l&quot;</span>,<span class="at">lwd=</span><span class="dv">2</span>,</span>
 <span id="cb2-12"><a href="Intro.html#cb2-12" tabindex="-1"></a>     <span class="at">ylab=</span><span class="fu">expression</span>(epsilon[t]),<span class="at">xlab=</span><span class="st">&quot;&quot;</span>)</span></code></pre></div>
+</details>
 <div class="figure" style="text-align: left-aligned"><span style="display:block;" id="fig:simulGARCHointro"></span>
 <img src="TimeSeries_files/figure-html/simulGARCHointro-1.png" alt="Simulation of $\varepsilon_t$, where $\varepsilon_{t} = \sigma_t \times z_{t}$, with $z_t \sim i.i.d.\,\mathcal{N}(0,1)$." width="95%" />
 <p class="caption">
@@ -375,10 +395,12 @@ where <span class="math inline">\(f_{Y_t,Y_{t-1},\dots,Y_{t-j}}(y_t,y_{t-1},\dot
 \]</span></p>
 </div>
 <p>Figure <a href="Intro.html#fig:NONNstat1">1.2</a> displays the simulation of a process that is not covariance stationary. This process follows <span class="math inline">\(y_t = 0.1t + \varepsilon_t\)</span>, where <span class="math inline">\(\varepsilon_t \sim\,i.i.d.\,\mathcal{N}(0,1)\)</span>. Indeed, for such a process, we have: <span class="math inline">\(\mathbb{E}(y_t)=0.1t\)</span>, which depends on <span class="math inline">\(t\)</span>.</p>
+<details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="Intro.html#cb3-1" tabindex="-1"></a>T <span class="ot">&lt;-</span> <span class="dv">200</span></span>
 <span id="cb3-2"><a href="Intro.html#cb3-2" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fl">0.1</span><span class="sc">*</span>(<span class="dv">1</span><span class="sc">:</span>T) <span class="sc">+</span> <span class="fu">rnorm</span>(T)</span>
 <span id="cb3-3"><a href="Intro.html#cb3-3" tabindex="-1"></a><span class="fu">par</span>(<span class="at">plt=</span><span class="fu">c</span>(.<span class="dv">1</span>,.<span class="dv">95</span>,.<span class="dv">1</span>,.<span class="dv">95</span>))</span>
 <span id="cb3-4"><a href="Intro.html#cb3-4" tabindex="-1"></a><span class="fu">plot</span>(y,<span class="at">xlab=</span><span class="st">&quot;&quot;</span>,<span class="at">ylab=</span><span class="st">&quot;&quot;</span>,<span class="at">lwd=</span><span class="dv">2</span>,<span class="at">type=</span><span class="st">&quot;l&quot;</span>)</span></code></pre></div>
+</details>
 <div class="figure" style="text-align: left-aligned"><span style="display:block;" id="fig:NONNstat1"></span>
 <img src="TimeSeries_files/figure-html/NONNstat1-1.png" alt="Example of a process that is not covariance stationary. it follows: $y_t = 0.1t + \varepsilon_t$, where $\varepsilon_t \sim \mathcal{N}(0,1)$." width="95%" />
 <p class="caption">
@@ -393,6 +415,7 @@ Figure 1.2: Example of a process that is not covariance stationary. it follows: 
 y_t = \mathbb{I}_{\{t&lt;1000\}}\varepsilon_{1,t}+\mathbb{I}_{\{t\ge1000\}}\varepsilon_{2,t},
 \]</span>
 where <span class="math inline">\(\varepsilon_{1,t} \sim \mathcal{N}(0,1)\)</span> and <span class="math inline">\(\varepsilon_{2,t} \sim \sqrt{\frac{\nu - 2}{\nu}} t(\nu)\)</span> and <span class="math inline">\(\nu = 4\)</span><a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>. A simulated path is displayed in Figure <a href="Intro.html#fig:NONNstat2">1.3</a>.</p>
+<details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="Intro.html#cb4-1" tabindex="-1"></a>T <span class="ot">&lt;-</span> <span class="dv">2000</span></span>
 <span id="cb4-2"><a href="Intro.html#cb4-2" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(T)</span>
 <span id="cb4-3"><a href="Intro.html#cb4-3" tabindex="-1"></a>y[(T<span class="sc">/</span><span class="dv">2</span>)<span class="sc">:</span>T] <span class="ot">&lt;-</span> <span class="fu">rt</span>(<span class="at">n =</span> T<span class="sc">/</span><span class="dv">2</span> <span class="sc">+</span> <span class="dv">1</span>,<span class="at">df=</span><span class="dv">4</span>)</span>
@@ -400,6 +423,7 @@ where <span class="math inline">\(\varepsilon_{1,t} \sim \mathcal{N}(0,1)\)</spa
 <span id="cb4-5"><a href="Intro.html#cb4-5" tabindex="-1"></a><span class="fu">plot</span>(y,<span class="at">xlab=</span><span class="st">&quot;&quot;</span>,<span class="at">ylab=</span><span class="st">&quot;&quot;</span>,<span class="at">type=</span><span class="st">&quot;l&quot;</span>)</span>
 <span id="cb4-6"><a href="Intro.html#cb4-6" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h=</span><span class="sc">-</span><span class="fl">2.58</span>,<span class="at">col=</span><span class="st">&quot;red&quot;</span>,<span class="at">lty=</span><span class="dv">3</span>)</span>
 <span id="cb4-7"><a href="Intro.html#cb4-7" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h=</span><span class="fl">2.58</span>,<span class="at">col=</span><span class="st">&quot;red&quot;</span>,<span class="at">lty=</span><span class="dv">3</span>)</span></code></pre></div>
+</details>
 <div class="figure" style="text-align: left-aligned"><span style="display:block;" id="fig:NONNstat2"></span>
 <img src="TimeSeries_files/figure-html/NONNstat2-1.png" alt="Example of a process that is covariance stationary but not strictly stationary. The red lines delineate the 99\% confidence interval of the standard normal distribution ($\pm 2.58$)." width="95%" />
 <p class="caption">
@@ -419,6 +443,7 @@ Figure 1.3: Example of a process that is covariance stationary but not strictly 
 \]</span></p>
 </div>
 <p>Consider a long historical time series of the Swiss GDP growth, taken from the <span class="citation">Jordà, Schularick, and Taylor (<a href="#ref-JST_2017">2017</a>)</span> dataset.<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a></p>
+<details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="Intro.html#cb5-1" tabindex="-1"></a><span class="fu">library</span>(IdSS)</span>
 <span id="cb5-2"><a href="Intro.html#cb5-2" tabindex="-1"></a><span class="fu">data</span>(JST);data <span class="ot">&lt;-</span> <span class="fu">subset</span>(JST,iso<span class="sc">==</span><span class="st">&quot;CHE&quot;</span>)</span>
 <span id="cb5-3"><a href="Intro.html#cb5-3" tabindex="-1"></a><span class="fu">par</span>(<span class="at">plt=</span><span class="fu">c</span>(.<span class="dv">1</span>,.<span class="dv">95</span>,.<span class="dv">1</span>,.<span class="dv">95</span>))</span>
@@ -426,6 +451,7 @@ Figure 1.3: Example of a process that is covariance stationary but not strictly 
 <span id="cb5-5"><a href="Intro.html#cb5-5" tabindex="-1"></a>data<span class="sc">$</span>growth <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="cn">NaN</span>,<span class="fu">log</span>(data<span class="sc">$</span>gdp[<span class="dv">2</span><span class="sc">:</span>T]<span class="sc">/</span>data<span class="sc">$</span>gdp[<span class="dv">1</span><span class="sc">:</span>(T<span class="dv">-1</span>)]))</span>
 <span id="cb5-6"><a href="Intro.html#cb5-6" tabindex="-1"></a><span class="fu">plot</span>(data<span class="sc">$</span>year,data<span class="sc">$</span>growth,<span class="at">type=</span><span class="st">&quot;l&quot;</span>,<span class="at">xlab=</span><span class="st">&quot;&quot;</span>,<span class="at">ylab=</span><span class="st">&quot;&quot;</span>,<span class="at">lwd=</span><span class="dv">2</span>)</span>
 <span id="cb5-7"><a href="Intro.html#cb5-7" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h=</span><span class="fu">mean</span>(data<span class="sc">$</span>growth,<span class="at">na.rm =</span> <span class="cn">TRUE</span>),<span class="at">col=</span><span class="st">&quot;blue&quot;</span>,<span class="at">lty=</span><span class="dv">2</span>,<span class="at">xlab=</span><span class="st">&quot;&quot;</span>,<span class="at">ylab=</span><span class="st">&quot;&quot;</span>)</span></code></pre></div>
+</details>
 <div class="figure" style="text-align: left-aligned"><span style="display:block;" id="fig:autocov"></span>
 <img src="TimeSeries_files/figure-html/autocov-1.png" alt="Annual growth rate of Swiss GDP, based on the Jorda-Schularick-Taylor Macrohistory Database." width="95%" />
 <p class="caption">
@@ -477,6 +503,27 @@ S^{NW}=\hat\gamma_0 + 2 \sum_{\nu=1}^{q}\left(1-\frac{\nu}{q+1}\right) \hat\gamm
 <p class="caption">
 Figure 1.6: The three samples have been simulated using the following data generating process: <span class="math inline">\(x_t = \mu + \rho (x_{t-1}-\mu) + \sqrt{1-\rho^2}\varepsilon_t\)</span>, where <span class="math inline">\(\varepsilon_t \sim \mathcal{N}(0,1)\)</span>. Case A: <span class="math inline">\(\rho = 0\)</span>; Case B: <span class="math inline">\(\rho = 0.7\)</span>; Case C: <span class="math inline">\(\rho = 0.999\)</span>. In the three cases, <span class="math inline">\(\mathbb{E}(x_t)=\mu=2\)</span> and <span class="math inline">\(\mathbb{V}ar(x_t)=1\)</span>. The dashed (respectively solid) red line indicate the sample (resp. unconditional) mean.
 </p>
+</div>
+</div>
+<div id="introduction-exercises" class="section level2 hasAnchor" number="1.4">
+<h2><span class="header-section-number">1.4</span> Exercise from the 2024 exam<a href="Intro.html#introduction-exercises" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="Intro.html#cb6-1" tabindex="-1"></a><span class="fu">render_exercises</span>(<span class="st">&quot;exam-2024&quot;</span>, <span class="st">&quot;ex-exam2024-long-run-variance&quot;</span>)</span></code></pre></div>
+</details>
+<div class="exercisebox">
+<div class="exercise">
+<p><span id="exr:ex-exam2024-long-run-variance" class="exercise"><strong>Exercise 1.1  (Autocovariances and the long-run variance) </strong></span><strong>EXAM-2024 | Exam | True/false</strong><br />
+Review Section <a href="Intro.html#Intro">1</a>.</p>
+<p>A covariance-stationary process has <span class="math inline">\(\gamma_0=4\)</span>, <span class="math inline">\(\gamma_1=3\)</span>, <span class="math inline">\(\gamma_2=1\)</span>, and <span class="math inline">\(\sum_{h=3}^{\infty}\gamma_h=2\)</span>. Let <span class="math inline">\(\bar y_T=T^{-1}\sum_{t=1}^T y_t\)</span> and <span class="math inline">\(\mathbb E(y_t)=\mu\)</span>.</p>
+<p>State whether each assertion is true or false and justify your answer.</p>
+<ol style="list-style-type: decimal">
+<li><span class="math inline">\(\operatorname{Var}(y_t+y_{t-1})=14\)</span>.</li>
+<li><span class="math inline">\(\operatorname{Var}(y_{t-1})=\gamma_1\)</span>.</li>
+<li>For large <span class="math inline">\(T\)</span>, <span class="math inline">\(\sqrt T(\bar y_T-\mu)\)</span> is approximately <span class="math inline">\(\mathcal N(0,16)\)</span>.</li>
+<li>For large <span class="math inline">\(T\)</span>, <span class="math inline">\(\operatorname{Var}[\sqrt T(\bar y_T-\mu)]\)</span> is approximately 4.</li>
+<li>If <span class="math inline">\(T=1600\)</span> and <span class="math inline">\(\bar y_T=1\)</span>, then 0.70 lies in an approximate 95% confidence interval for <span class="math inline">\(\mu\)</span>.</li>
+</ol>
+</div>
 </div>
 
 </div>
@@ -537,7 +584,7 @@ gitbook.start({
     "size": 2
   },
   "edit": {
-    "link": "https://github.com/rstudio/bookdown-demo/edit/master/01-Introduction.Rmd",
+    "link": "https://github.com/jrenne/TimeSeries_Bookdown/edit/main/01-Introduction.Rmd",
     "text": "Edit"
   },
   "history": {
@@ -548,7 +595,7 @@ gitbook.start({
     "link": null,
     "text": null
   },
-  "download": ["TimeSeries.pdf", "TimeSeries.epub"],
+  "download": ["TimeSeries.pdf"],
   "search": {
     "engine": "fuse",
     "options": null

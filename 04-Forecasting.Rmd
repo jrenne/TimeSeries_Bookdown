@@ -328,4 +328,18 @@ Again, we do not find that the alternative model (here the VAR(1) model) is bett
 :::
 
 
+## Exercise {#forecasting-exercises}
 
+```{r forecasting-exercise-renderer, include=FALSE}
+source("R/exercises.R")
+```
+
+```{r forecasting-ps3, results='asis'}
+render_exercises("ps3", "ex-forecast-performance")
+```
+
+### Exercise from the 2024 exam
+
+```{r forecasting-exam-2024, results='asis'}
+render_exercises("exam-2024", "ex-exam2024-ma1-forecasting")
+```

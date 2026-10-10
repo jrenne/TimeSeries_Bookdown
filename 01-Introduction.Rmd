@@ -51,6 +51,7 @@ par(plt=c(.15,.95,.1,.95))
 plot(all_epsilon,type="l",lwd=2,
      ylab=expression(epsilon[t]),xlab="")
 ```
+
 :::
 
 :::{.example #whiteNotMDS}
@@ -262,3 +263,12 @@ for(rho in all.rho){
 }
 ```
 
+## Exercise from the 2024 exam {#introduction-exercises}
+
+```{r introduction-exercise-renderer, include=FALSE}
+source("R/exercises.R")
+```
+
+```{r introduction-exam-2024, results='asis'}
+render_exercises("exam-2024", "ex-exam2024-long-run-variance")
+```

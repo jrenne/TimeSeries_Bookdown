@@ -3,7 +3,7 @@
 \PassOptionsToPackage{hyphens}{url}
 %
 \documentclass[
-  12pt,
+  11pt,
 ]{book}
 \usepackage{amsmath,amssymb}
 \usepackage{iftex}
@@ -37,46 +37,6 @@
   \KOMAoptions{parskip=half}}
 \makeatother
 \usepackage{xcolor}
-\usepackage{color}
-\usepackage{fancyvrb}
-\newcommand{\VerbBar}{|}
-\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
-\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
-% Add ',fontsize=\small' for more characters per line
-\usepackage{framed}
-\definecolor{shadecolor}{RGB}{248,248,248}
-\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
-\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
-\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
-\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
-\newcommand{\BuiltInTok}[1]{#1}
-\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
-\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
-\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
-\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
-\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
-\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
-\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
-\newcommand{\ExtensionTok}[1]{#1}
-\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
-\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
-\newcommand{\ImportTok}[1]{#1}
-\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
-\newcommand{\NormalTok}[1]{#1}
-\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
-\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
-\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
-\newcommand{\RegionMarkerTok}[1]{#1}
-\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
-\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
-\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
-\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
-\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
-\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
 \usepackage{longtable,booktabs,array}
 \usepackage{calc} % for calculating minipage widths
 % Correct order of tables after \paragraph or \subparagraph
@@ -89,15 +49,17 @@
 \makesavenoteenv{longtable}
 \usepackage{graphicx}
 \makeatletter
-\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
-\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
-\makeatother
-% Scale images if necessary, so that they will not overflow the page
-% margins by default, and it is still possible to overwrite the defaults
-% using explicit options in \includegraphics[width, height, ...]{}
-\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+\newsavebox\pandoc@box
+\newcommand*\pandocbounded[1]{% scales image to fit in text height/width
+  \sbox\pandoc@box{#1}%
+  \Gscale@div\@tempa{\textheight}{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}%
+  \Gscale@div\@tempb{\linewidth}{\wd\pandoc@box}%
+  \ifdim\@tempb\p@<\@tempa\p@\let\@tempa\@tempb\fi% select the smaller of both
+  \ifdim\@tempa\p@<\p@\scalebox{\@tempa}{\usebox\pandoc@box}%
+  \else\usebox{\pandoc@box}%
+  \fi%
+}
 % Set default figure placement to htbp
-\makeatletter
 \def\fps@figure{htbp}
 \makeatother
 \setlength{\emergencystretch}{3em} % prevent overfull lines
@@ -118,12 +80,73 @@
 
 \usepackage[a4paper, total={6.5in, 9in}]{geometry}
 
-\ifLuaTeX
-  \usepackage{selnolig}  % disable illegal ligatures
-\fi
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{adjustbox}
+\usepackage{caption}
+\captionsetup[table]{font=small,labelfont=bf,skip=6pt}
+\setlength{\LTcapwidth}{\textwidth}
+\usepackage{float}
+\raggedbottom
+\usepackage{needspace}
+\input{pdf-boxes.tex}
+% Modern PDF typography, initially used by the Basic Statistical Results pilot.
+% XeLaTeX: use Arial when installed, otherwise the portable Helvetica-like Heros.
+\usepackage{fontspec}
+\IfFontExistsTF{Arial}{
+  \setmainfont{Arial}
+  \setsansfont{Arial}
+}{
+  \setmainfont{TeX Gyre Heros}
+  \setsansfont{TeX Gyre Heros}
+}
+% Keep the established mathematical fonts and notation unchanged.
+\usepackage{xcolor}
+\definecolor{TextbookInk}{HTML}{233F50}
+\definecolor{TextbookMuted}{HTML}{60717B}
+% Use standard LaTeX heading hooks; no extra heading package is required.
+\makeatletter
+\@ifundefined{chapter}{}{
+  \def\@makechapterhead#1{%
+    \vspace*{12pt}{\parindent\z@\raggedright\normalfont
+    \ifnum\c@secnumdepth>\m@ne
+      \if@mainmatter
+        {\small\bfseries\color{TextbookMuted}\@chapapp\space\thechapter\par}
+        \vskip10pt
+      \fi
+    \fi
+    {\fontsize{27}{32}\selectfont\bfseries\color{TextbookInk}#1\par}
+    \nobreak\vskip28pt}}
+  \def\@makeschapterhead#1{%
+    \vspace*{12pt}{\parindent\z@\raggedright\normalfont
+    \fontsize{27}{32}\selectfont\bfseries\color{TextbookInk}#1\par
+    \nobreak\vskip28pt}}
+}
+\renewcommand\section{\@startsection{section}{1}{\z@}
+  {-3ex plus -1ex minus -.2ex}{1.3ex plus .2ex}
+  {\normalfont\Large\bfseries\color{TextbookInk}}}
+\renewcommand\subsection{\@startsection{subsection}{2}{\z@}
+  {-2.5ex plus -.8ex minus -.2ex}{1ex plus .2ex}
+  {\normalfont\large\bfseries\color{TextbookInk}}}
+\makeatother
+\usepackage{geometry}
+\geometry{reset,a4paper,left=25mm,right=25mm,top=25mm,bottom=25mm,headheight=14pt,headsep=8mm}
+\linespread{1.08}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 1pt minus 1pt}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\color{TextbookMuted}Introduction to Time Series}
+\fancyhead[R]{\small\color{TextbookMuted}\thepage}
+\renewcommand{\headrulewidth}{0pt}
+\fancypagestyle{plain}{\fancyhf{}\fancyfoot[C]{\small\color{TextbookMuted}\thepage}\renewcommand{\headrulewidth}{0pt}}
+\usepackage{caption}
+\captionsetup{font={small,sf},labelfont=bf}
+\raggedbottom
 \usepackage[]{natbib}
 \bibliographystyle{apalike}
-\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\usepackage{bookmark}
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
 \urlstyle{same}
 \hypersetup{
@@ -134,7 +157,7 @@
 
 \title{Introduction to Time Series}
 \author{Jean-Paul Renne}
-\date{2025-04-26}
+\date{2026-10-10}
 
 \usepackage{amsthm}
 \newtheorem{theorem}{Theorem}[chapter]
@@ -162,21 +185,11 @@
 }
 \newcommand{\bv}[1]{\mathbf{#1}}
 
-\hypertarget{intro}{%
-\chapter*{Introduction to Time Series}\label{intro}}
+\chapter*{Introduction to Time Series}\label{intro}
 
 Time series constitute a prevalent data type in several disciplines, notably macroeconomics and finance. The modeling of time series is crucial for many purposes, including forecasting, understanding macroeconomic mechanisms, and risk assessment. This course proposes an introduction to time series analysis. It has been developed by \href{https://www.jprenne.com}{Jean-Paul Renne} and \href{https://faculty.crest.fr/amonfort/}{Alain Monfort}.
 
-Codes associated with this course are part of the \texttt{AEC} package, which is available on GitHub. To load a package from GitHub, you need to use function \texttt{install\_github} from the \texttt{devtools} package:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{install.packages}\NormalTok{(}\StringTok{"devtools"}\NormalTok{) }\CommentTok{\# in case you do not have that one.}
-\FunctionTok{library}\NormalTok{(devtools)}
-\FunctionTok{install\_github}\NormalTok{(}\StringTok{"jrenne/AEC"}\NormalTok{)}
-\FunctionTok{library}\NormalTok{(AEC)}
-\end{Highlighting}
-\end{Shaded}
+Codes associated with this course are part of the \texttt{IdSS} package, which is available on GitHub. To load a package from GitHub, you need to use function \texttt{install\_github} from the \texttt{devtools} package:
 
 \textbf{Useful (R) links:}
 
@@ -205,11 +218,9 @@ Codes associated with this course are part of the \texttt{AEC} package, which is
   \end{itemize}
 \end{itemize}
 
-\hypertarget{Intro}{%
-\chapter{Basics}\label{Intro}}
+\chapter{Basics}\label{Intro}
 
-\hypertarget{shocks-and-lag-operator}{%
-\section{Shocks and lag operator}\label{shocks-and-lag-operator}}
+\section{Shocks and lag operator}\label{shocks-and-lag-operator}
 
 A time series is an infinite sequence of random variables indexed by time: \(\{y_t\}_{t=-\infty}^{+\infty}=\{\dots, y_{-2},y_{-1},y_{0},y_{1},\dots,y_t,\dots\}\), \(y_i \in \mathbb{R}^k\). In practice, we only observe samples, typically: \(\{y_{1},\dots,y_T\}\).
 
@@ -253,23 +264,6 @@ The Autoregressive conditional heteroskedasticity process---studied in Section \
 \]
 where \(z_t \sim i.i.d.\,\mathcal{N}(0,1)\) and \(\sigma_t^2 = w + \alpha \varepsilon_{t-1}^2\) (with \(w>0\) and \(0 \leq \alpha <1\)).
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{T }\OtherTok{\textless{}{-}} \DecValTok{500}
-\NormalTok{w }\OtherTok{\textless{}{-}} \DecValTok{1}\NormalTok{; alpha }\OtherTok{\textless{}{-}}\NormalTok{ .}\DecValTok{98}
-\NormalTok{all\_epsilon }\OtherTok{\textless{}{-}} \ConstantTok{NULL}\NormalTok{; epsilon\_1 }\OtherTok{\textless{}{-}} \DecValTok{0}
-\ControlFlowTok{for}\NormalTok{(t }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\NormalTok{T)\{}
-\NormalTok{  sigma }\OtherTok{\textless{}{-}} \FunctionTok{sqrt}\NormalTok{(w }\SpecialCharTok{+}\NormalTok{ alpha }\SpecialCharTok{*}\NormalTok{ epsilon\_1}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{)}
-\NormalTok{  epsilon }\OtherTok{\textless{}{-}}\NormalTok{ sigma }\SpecialCharTok{*} \FunctionTok{rnorm}\NormalTok{(}\DecValTok{1}\NormalTok{)}
-\NormalTok{  all\_epsilon }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(all\_epsilon,epsilon)}
-\NormalTok{  epsilon\_1 }\OtherTok{\textless{}{-}}\NormalTok{ epsilon}
-\NormalTok{\}}
-\FunctionTok{par}\NormalTok{(}\AttributeTok{plt=}\FunctionTok{c}\NormalTok{(.}\DecValTok{15}\NormalTok{,.}\DecValTok{95}\NormalTok{,.}\DecValTok{1}\NormalTok{,.}\DecValTok{95}\NormalTok{))}
-\FunctionTok{plot}\NormalTok{(all\_epsilon,}\AttributeTok{type=}\StringTok{"l"}\NormalTok{,}\AttributeTok{lwd=}\DecValTok{2}\NormalTok{,}
-     \AttributeTok{ylab=}\FunctionTok{expression}\NormalTok{(epsilon[t]),}\AttributeTok{xlab=}\StringTok{""}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
 \begin{figure}
 \includegraphics[width=0.95\linewidth]{TimeSeries_files/figure-latex/simulGARCHointro-1} \caption{Simulation of $\varepsilon_t$, where $\varepsilon_{t} = \sigma_t \times z_{t}$, with $z_t \sim i.i.d.\,\mathcal{N}(0,1)$.}\label{fig:simulGARCHointro}
 \end{figure}
@@ -300,8 +294,7 @@ Consider a process \(y_t\) whose law of motion is \(y_t = \mu + \phi y_{t-1} + \
 (1-\phi L) y_t = \mu + \varepsilon_t.
 \]
 
-\hypertarget{conditional-and-unconditional-moments}{%
-\section{Conditional and unconditional moments}\label{conditional-and-unconditional-moments}}
+\section{Conditional and unconditional moments}\label{conditional-and-unconditional-moments}
 
 If it exists, the \textbf{unconditional (or marginal) mean} of the random variable \(y_t\) is given by:
 \[
@@ -335,15 +328,6 @@ In particular, note that \(\gamma_{0,t} = \mathbb{V}ar(y_t)\).
 
 Figure \ref{fig:NONNstat1} displays the simulation of a process that is not covariance stationary. This process follows \(y_t = 0.1t + \varepsilon_t\), where \(\varepsilon_t \sim\,i.i.d.\,\mathcal{N}(0,1)\). Indeed, for such a process, we have: \(\mathbb{E}(y_t)=0.1t\), which depends on \(t\).
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{T }\OtherTok{\textless{}{-}} \DecValTok{200}
-\NormalTok{y }\OtherTok{\textless{}{-}} \FloatTok{0.1}\SpecialCharTok{*}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\NormalTok{T) }\SpecialCharTok{+} \FunctionTok{rnorm}\NormalTok{(T)}
-\FunctionTok{par}\NormalTok{(}\AttributeTok{plt=}\FunctionTok{c}\NormalTok{(.}\DecValTok{1}\NormalTok{,.}\DecValTok{95}\NormalTok{,.}\DecValTok{1}\NormalTok{,.}\DecValTok{95}\NormalTok{))}
-\FunctionTok{plot}\NormalTok{(y,}\AttributeTok{xlab=}\StringTok{""}\NormalTok{,}\AttributeTok{ylab=}\StringTok{""}\NormalTok{,}\AttributeTok{lwd=}\DecValTok{2}\NormalTok{,}\AttributeTok{type=}\StringTok{"l"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
 \begin{figure}
 \includegraphics[width=0.95\linewidth]{TimeSeries_files/figure-latex/NONNstat1-1} \caption{Example of a process that is not covariance stationary. it follows: $y_t = 0.1t + \varepsilon_t$, where $\varepsilon_t \sim \mathcal{N}(0,1)$.}\label{fig:NONNstat1}
 \end{figure}
@@ -357,18 +341,6 @@ The following process is covariance stationary but not strictly stationary:
 y_t = \mathbb{I}_{\{t<1000\}}\varepsilon_{1,t}+\mathbb{I}_{\{t\ge1000\}}\varepsilon_{2,t},
 \]
 where \(\varepsilon_{1,t} \sim \mathcal{N}(0,1)\) and \(\varepsilon_{2,t} \sim \sqrt{\frac{\nu - 2}{\nu}} t(\nu)\) and \(\nu = 4\)\footnote{Indeed, \(\mathbb{E}[y_t]=\mathbb{I}_{\{t<1000\}}\times \underbrace{\mathbb{E}[\varepsilon_{1,t}]}_{=0}+\mathbb{I}_{\{t\ge1000\}} \times \underbrace{\mathbb{E}[\varepsilon_{2,t}]}_{=0}=0\), \(\mathbb{V}ar(y_t)=\mathbb{I}_{\{t<1000\}}\times \underbrace{\mathbb{V}ar(\varepsilon_{1,t})}_{=1}+\mathbb{I}_{\{t\ge1000\}} \times \underbrace{\mathbb{V}ar(\varepsilon_{2,t})}_{=\left(\sqrt{\frac{\nu - 2}{\nu}}\right)^2 \times \frac{\nu}{\nu - 2}=1}=1\) and for \(\forall j \geq 1\), \(\gamma_{j,t}=\gamma_j=0\) as the \(\varepsilon_t\)'s are serially uncorrelated.}. A simulated path is displayed in Figure \ref{fig:NONNstat2}.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{T }\OtherTok{\textless{}{-}} \DecValTok{2000}
-\NormalTok{y }\OtherTok{\textless{}{-}} \FunctionTok{rnorm}\NormalTok{(T)}
-\NormalTok{y[(T}\SpecialCharTok{/}\DecValTok{2}\NormalTok{)}\SpecialCharTok{:}\NormalTok{T] }\OtherTok{\textless{}{-}} \FunctionTok{rt}\NormalTok{(}\AttributeTok{n =}\NormalTok{ T}\SpecialCharTok{/}\DecValTok{2} \SpecialCharTok{+} \DecValTok{1}\NormalTok{,}\AttributeTok{df=}\DecValTok{4}\NormalTok{)}
-\FunctionTok{par}\NormalTok{(}\AttributeTok{plt=}\FunctionTok{c}\NormalTok{(.}\DecValTok{1}\NormalTok{,.}\DecValTok{95}\NormalTok{,.}\DecValTok{15}\NormalTok{,.}\DecValTok{95}\NormalTok{))}
-\FunctionTok{plot}\NormalTok{(y,}\AttributeTok{xlab=}\StringTok{""}\NormalTok{,}\AttributeTok{ylab=}\StringTok{""}\NormalTok{,}\AttributeTok{type=}\StringTok{"l"}\NormalTok{)}
-\FunctionTok{abline}\NormalTok{(}\AttributeTok{h=}\SpecialCharTok{{-}}\FloatTok{2.58}\NormalTok{,}\AttributeTok{col=}\StringTok{"red"}\NormalTok{,}\AttributeTok{lty=}\DecValTok{3}\NormalTok{)}
-\FunctionTok{abline}\NormalTok{(}\AttributeTok{h=}\FloatTok{2.58}\NormalTok{,}\AttributeTok{col=}\StringTok{"red"}\NormalTok{,}\AttributeTok{lty=}\DecValTok{3}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
 
 \begin{figure}
 \includegraphics[width=0.95\linewidth]{TimeSeries_files/figure-latex/NONNstat2-1} \caption{Example of a process that is covariance stationary but not strictly stationary. The red lines delineate the 99\% confidence interval of the standard normal distribution ($\pm 2.58$).}\label{fig:NONNstat2}
@@ -391,18 +363,6 @@ Since \(y_t\) is covariance stationary, the covariance between \(y_t\) and \(y_{
 
 Consider a long historical time series of the Swiss GDP growth, taken from the \citet{JST_2017} dataset.\footnote{Version 6 of the dataset, available on \href{https://www.macrohistory.net}{this website}.}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{library}\NormalTok{(AEC)}
-\FunctionTok{data}\NormalTok{(JST);data }\OtherTok{\textless{}{-}} \FunctionTok{subset}\NormalTok{(JST,iso}\SpecialCharTok{==}\StringTok{"CHE"}\NormalTok{)}
-\FunctionTok{par}\NormalTok{(}\AttributeTok{plt=}\FunctionTok{c}\NormalTok{(.}\DecValTok{1}\NormalTok{,.}\DecValTok{95}\NormalTok{,.}\DecValTok{1}\NormalTok{,.}\DecValTok{95}\NormalTok{))}
-\NormalTok{T }\OtherTok{\textless{}{-}} \FunctionTok{dim}\NormalTok{(data)[}\DecValTok{1}\NormalTok{]}
-\NormalTok{data}\SpecialCharTok{$}\NormalTok{growth }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\ConstantTok{NaN}\NormalTok{,}\FunctionTok{log}\NormalTok{(data}\SpecialCharTok{$}\NormalTok{gdp[}\DecValTok{2}\SpecialCharTok{:}\NormalTok{T]}\SpecialCharTok{/}\NormalTok{data}\SpecialCharTok{$}\NormalTok{gdp[}\DecValTok{1}\SpecialCharTok{:}\NormalTok{(T}\DecValTok{{-}1}\NormalTok{)]))}
-\FunctionTok{plot}\NormalTok{(data}\SpecialCharTok{$}\NormalTok{year,data}\SpecialCharTok{$}\NormalTok{growth,}\AttributeTok{type=}\StringTok{"l"}\NormalTok{,}\AttributeTok{xlab=}\StringTok{""}\NormalTok{,}\AttributeTok{ylab=}\StringTok{""}\NormalTok{,}\AttributeTok{lwd=}\DecValTok{2}\NormalTok{)}
-\FunctionTok{abline}\NormalTok{(}\AttributeTok{h=}\FunctionTok{mean}\NormalTok{(data}\SpecialCharTok{$}\NormalTok{growth,}\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{),}\AttributeTok{col=}\StringTok{"blue"}\NormalTok{,}\AttributeTok{lty=}\DecValTok{2}\NormalTok{,}\AttributeTok{xlab=}\StringTok{""}\NormalTok{,}\AttributeTok{ylab=}\StringTok{""}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
 \begin{figure}
 \includegraphics[width=0.95\linewidth]{TimeSeries_files/figure-latex/autocov-1} \caption{Annual growth rate of Swiss GDP, based on the Jorda-Schularick-Taylor Macrohistory Database.}\label{fig:autocov}
 \end{figure}
@@ -413,8 +373,7 @@ Figure \ref{fig:autocov2} shows two scatter plots. In the first one, the coordin
 \includegraphics[width=0.95\linewidth]{TimeSeries_files/figure-latex/autocov2-1} \caption{For order $j$, the slope of the blue line is, approximately, $\hat{\gamma}_j/\widehat{\mathbb{V}ar}(y_t)$, where hats indicate sample moments.}\label{fig:autocov2}
 \end{figure}
 
-\hypertarget{central-limit-theorem-clt-for-persistent-processes}{%
-\section{Central Limit Theorem (CLT) for persistent processes}\label{central-limit-theorem-clt-for-persistent-processes}}
+\section{Central Limit Theorem (CLT) for persistent processes}\label{central-limit-theorem-clt-for-persistent-processes}
 
 This subsection shows that the Central Limit Theorem (CLT, see Theorem \ref{thm:LindbergLevyCLT}) can be extended to cases where the observations are auto-correlated.
 
@@ -459,11 +418,44 @@ The same type of simulations can be performed using \href{https://jrenne.shinyap
 \includegraphics[width=1\linewidth]{TimeSeries_files/figure-latex/TVTCL-1} \caption{The three samples have been simulated using the following data generating process: $x_t = \mu + \rho (x_{t-1}-\mu) + \sqrt{1-\rho^2}\varepsilon_t$, where $\varepsilon_t \sim \mathcal{N}(0,1)$. Case A: $\rho = 0$;  Case B: $\rho = 0.7$;  Case C: $\rho = 0.999$. In the three cases, $\mathbb{E}(x_t)=\mu=2$ and $\mathbb{V}ar(x_t)=1$. The dashed (respectively solid) red line indicate the sample (resp. unconditional) mean.}\label{fig:TVTCL}
 \end{figure}
 
-\hypertarget{Univariate}{%
-\chapter{Univariate processes}\label{Univariate}}
+\section{Exercise from the 2024 exam}\label{introduction-exercises}
 
-\hypertarget{moving-average-ma-processes}{%
-\section{Moving Average (MA) processes}\label{moving-average-ma-processes}}
+\Needspace{24\baselineskip}
+
+\begin{exercisebox}
+
+\begin{exercise}[Autocovariances and the long-run variance]
+\protect\hypertarget{exr:ex-exam2024-long-run-variance}{}\label{exr:ex-exam2024-long-run-variance}
+
+\textbf{EXAM-2024 \textbar{} Exam \textbar{} True/false}\\
+Review Section \ref{Intro}.
+
+A covariance-stationary process has \(\gamma_0=4\), \(\gamma_1=3\), \(\gamma_2=1\), and \(\sum_{h=3}^{\infty}\gamma_h=2\). Let \(\bar y_T=T^{-1}\sum_{t=1}^T y_t\) and \(\mathbb E(y_t)=\mu\).
+
+State whether each assertion is true or false and justify your answer.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \(\operatorname{Var}(y_t+y_{t-1})=14\).
+\item
+  \(\operatorname{Var}(y_{t-1})=\gamma_1\).
+\item
+  For large \(T\), \(\sqrt T(\bar y_T-\mu)\) is approximately \(\mathcal N(0,16)\).
+\item
+  For large \(T\), \(\operatorname{Var}[\sqrt T(\bar y_T-\mu)]\) is approximately 4.
+\item
+  If \(T=1600\) and \(\bar y_T=1\), then 0.70 lies in an approximate 95\% confidence interval for \(\mu\).
+\end{enumerate}
+
+\end{exercise}
+
+\end{exercisebox}
+
+\chapter{Univariate processes}\label{Univariate}
+
+\section{Moving Average (MA) processes}\label{moving-average-ma-processes}
 
 Moving average (MA) processes are important basic processes. The moving-average process of order one (MA(1)) is defined as follows:
 
@@ -534,27 +526,6 @@ Using the fact that \(\mathbb{E}(\varepsilon_t\varepsilon_s)=0\) if \(t \ne s\) 
 
 Figure \ref{fig:simMA} displays simulated paths of two MA processes (an MA(1) and an MA(4)). Such simulations can also be produced by using panel ``ARMA(p,q)'' of \href{https://jrenne.shinyapps.io/MacroEc/}{this web interface}.
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{library}\NormalTok{(AEC)}
-\NormalTok{T }\OtherTok{\textless{}{-}} \DecValTok{100}\NormalTok{;nb.sim }\OtherTok{\textless{}{-}} \DecValTok{1}
-\NormalTok{y}\FloatTok{.0} \OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{)}
-\NormalTok{c }\OtherTok{\textless{}{-}} \DecValTok{1}\NormalTok{;phi }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{);sigma }\OtherTok{\textless{}{-}} \DecValTok{1}
-\NormalTok{theta }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{) }\CommentTok{\# MA(1) specification}
-\NormalTok{y.sim }\OtherTok{\textless{}{-}} \FunctionTok{sim.arma}\NormalTok{(c,phi,theta,sigma,T,y}\FloatTok{.0}\NormalTok{,nb.sim)}
-\FunctionTok{par}\NormalTok{(}\AttributeTok{mfrow=}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{))}
-\FunctionTok{par}\NormalTok{(}\AttributeTok{plt=}\FunctionTok{c}\NormalTok{(.}\DecValTok{2}\NormalTok{,.}\DecValTok{9}\NormalTok{,.}\DecValTok{2}\NormalTok{,.}\DecValTok{85}\NormalTok{))}
-\FunctionTok{plot}\NormalTok{(y.sim[,}\DecValTok{1}\NormalTok{],}\AttributeTok{xlab=}\StringTok{""}\NormalTok{,}\AttributeTok{ylab=}\StringTok{""}\NormalTok{,}\AttributeTok{type=}\StringTok{"l"}\NormalTok{,}\AttributeTok{lwd=}\DecValTok{2}\NormalTok{,}
-     \AttributeTok{main=}\FunctionTok{expression}\NormalTok{(}\FunctionTok{paste}\NormalTok{(theta[}\DecValTok{0}\NormalTok{],}\StringTok{"=1, "}\NormalTok{,theta[}\DecValTok{1}\NormalTok{],}\StringTok{"=1"}\NormalTok{,}\AttributeTok{sep=}\StringTok{""}\NormalTok{)))}
-\FunctionTok{abline}\NormalTok{(}\AttributeTok{h=}\NormalTok{c)}
-\NormalTok{theta }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{) }\CommentTok{\# MA(4) specification}
-\NormalTok{y.sim }\OtherTok{\textless{}{-}} \FunctionTok{sim.arma}\NormalTok{(c,phi,theta,sigma,T,y}\FloatTok{.0}\NormalTok{,nb.sim)}
-\FunctionTok{plot}\NormalTok{(y.sim[,}\DecValTok{1}\NormalTok{],}\AttributeTok{xlab=}\StringTok{""}\NormalTok{,}\AttributeTok{ylab=}\StringTok{""}\NormalTok{,}\AttributeTok{type=}\StringTok{"l"}\NormalTok{,}\AttributeTok{lwd=}\DecValTok{2}\NormalTok{,}
-     \AttributeTok{main=}\FunctionTok{expression}\NormalTok{(}\FunctionTok{paste}\NormalTok{(theta[}\DecValTok{0}\NormalTok{],}\StringTok{"=...="}\NormalTok{,theta[}\DecValTok{4}\NormalTok{],}\StringTok{"=1"}\NormalTok{,}\AttributeTok{sep=}\StringTok{""}\NormalTok{)))}
-\FunctionTok{abline}\NormalTok{(}\AttributeTok{h=}\NormalTok{c)}
-\end{Highlighting}
-\end{Shaded}
-
 \begin{figure}
 \includegraphics[width=0.95\linewidth]{TimeSeries_files/figure-latex/simMA-1} \caption{Simulation of MA processes.}\label{fig:simMA}
 \end{figure}
@@ -608,8 +579,7 @@ If \(\{\theta_{i}\}_{i\in\mathbb{N}}\) is absolutely summable, i.e., if \(\sum_{
 The absolute summability of \(\{\theta_{i}\}\) and the fact that \(\mathbb{E}(\varepsilon^2)<\infty\) imply that the order of integration and summation is interchangeable (see Hamilton, 1994, Footnote p.~52), which proves (i). For (ii), see end of Appendix 3.A in Hamilton (1994).
 \end{proof}
 
-\hypertarget{ARsection}{%
-\section{Auto-Regressive (AR) processes}\label{ARsection}}
+\section{Auto-Regressive (AR) processes}\label{ARsection}
 
 \begin{definition}[First-order AR process (AR(1))]
 \protect\hypertarget{def:AR1}{}\label{def:AR1}Process \(y_t\) is an AR(1) process if its dynamics is defined by the following difference equation:
@@ -777,20 +747,6 @@ w_t &=& 1.4 w_{t-1} -0.7 w_{t-2} + \varepsilon_t\\
 z_t &=& 0.9 z_{t-1} +0.2 z_{t-2} + \varepsilon_t.
 \end{eqnarray*}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{F }\OtherTok{\textless{}{-}} \FunctionTok{matrix}\NormalTok{(}\FunctionTok{c}\NormalTok{(.}\DecValTok{9}\NormalTok{,}\DecValTok{1}\NormalTok{,}\SpecialCharTok{{-}}\NormalTok{.}\DecValTok{2}\NormalTok{,}\DecValTok{0}\NormalTok{),}\DecValTok{2}\NormalTok{,}\DecValTok{2}\NormalTok{)}
-\NormalTok{lambda\_x }\OtherTok{\textless{}{-}} \FunctionTok{eigen}\NormalTok{(F)}\SpecialCharTok{$}\NormalTok{values}
-\NormalTok{F[}\DecValTok{1}\NormalTok{,] }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\FloatTok{1.1}\NormalTok{,}\SpecialCharTok{{-}}\NormalTok{.}\DecValTok{3}\NormalTok{)}
-\NormalTok{lambda\_y }\OtherTok{\textless{}{-}} \FunctionTok{eigen}\NormalTok{(F)}\SpecialCharTok{$}\NormalTok{values}
-\NormalTok{F[}\DecValTok{1}\NormalTok{,] }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\FloatTok{1.4}\NormalTok{,}\SpecialCharTok{{-}}\NormalTok{.}\DecValTok{7}\NormalTok{)}
-\NormalTok{lambda\_w }\OtherTok{\textless{}{-}} \FunctionTok{eigen}\NormalTok{(F)}\SpecialCharTok{$}\NormalTok{values}
-\NormalTok{F[}\DecValTok{1}\NormalTok{,] }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(.}\DecValTok{9}\NormalTok{,.}\DecValTok{2}\NormalTok{)}
-\NormalTok{lambda\_z }\OtherTok{\textless{}{-}} \FunctionTok{eigen}\NormalTok{(F)}\SpecialCharTok{$}\NormalTok{values}
-\FunctionTok{rbind}\NormalTok{(lambda\_x,lambda\_y,lambda\_w,lambda\_z)}
-\end{Highlighting}
-\end{Shaded}
-
 \begin{verbatim}
 ##                         [,1]                  [,2]
 ## lambda_x 0.500000+0.0000000i  0.4000000+0.0000000i
@@ -849,8 +805,7 @@ Using \(\gamma_j = \gamma_{-j}\) (Prop. \ref{prp:gammaMinus}), one can express \
 
 which is easily solved by inverting matrix \(Id - H\).
 
-\hypertarget{ar-ma-processes}{%
-\section{AR-MA processes}\label{ar-ma-processes}}
+\section{AR-MA processes}\label{ar-ma-processes}
 
 \begin{definition}[ARMA(p,q) process]
 \protect\hypertarget{def:ARMApq}{}\label{def:ARMApq}\(\{y_t\}\) is an ARMA(\(p\),\(q\)) process if its dynamics is described by the following equation:
@@ -894,8 +849,7 @@ Eq. \eqref{eq:ARMAwold} is the \textbf{Wold representation} of this ARMA process
 
 Importantly, note that the stationarity of the process depends only on the AR specification (or on the eigenvalues of matrix \(F\), exactly as in Prop. \ref{prp:stability}). When an ARMA process is stationary, the weights in \(\psi(L)\) decay at a geometric rate.
 
-\hypertarget{PACFapproach}{%
-\section{PACF approach to identify AR/MA processes}\label{PACFapproach}}
+\section{PACF approach to identify AR/MA processes}\label{PACFapproach}
 
 We have seen that the \(k^{th}\)-order auto-correlation of an MA(q) process is null if \(k>q\). This is exploited, in practice, to determine the order of an MA process. Moreover, since this is not the case for an AR process, this can be used to distinguish an AR from an MA process.
 
@@ -915,30 +869,11 @@ Besides, it can be shown that \(\phi_{p,p}=\phi_p\). Hence \(\phi_{p,p}=\phi_p\)
 
 As illustrated below, the functions \texttt{acf} and \texttt{pacf} of R allow us to conveniently implement the (P)ACF approach. (In these lines of codes, note also the use of function \texttt{sim.arma} to simulate ARMA processes.)
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{library}\NormalTok{(AEC)}
-\FunctionTok{par}\NormalTok{(}\AttributeTok{mfrow=}\FunctionTok{c}\NormalTok{(}\DecValTok{3}\NormalTok{,}\DecValTok{2}\NormalTok{))}
-\FunctionTok{par}\NormalTok{(}\AttributeTok{plt=}\FunctionTok{c}\NormalTok{(.}\DecValTok{2}\NormalTok{,.}\DecValTok{9}\NormalTok{,.}\DecValTok{2}\NormalTok{,.}\DecValTok{95}\NormalTok{))}
-\NormalTok{theta }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{1}\NormalTok{);phi}\OtherTok{=}\DecValTok{0}
-\NormalTok{y.sim }\OtherTok{\textless{}{-}} \FunctionTok{sim.arma}\NormalTok{(}\AttributeTok{c=}\DecValTok{0}\NormalTok{,phi,theta,}\AttributeTok{sigma=}\DecValTok{1}\NormalTok{,}\AttributeTok{T=}\DecValTok{1000}\NormalTok{,}\AttributeTok{y.0=}\DecValTok{0}\NormalTok{,}\AttributeTok{nb.sim=}\DecValTok{1}\NormalTok{)}
-\FunctionTok{par}\NormalTok{(}\AttributeTok{mfg=}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{));}\FunctionTok{plot}\NormalTok{(y.sim,}\AttributeTok{type=}\StringTok{"l"}\NormalTok{,}\AttributeTok{lwd=}\DecValTok{2}\NormalTok{)}
-\FunctionTok{par}\NormalTok{(}\AttributeTok{mfg=}\FunctionTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{1}\NormalTok{));}\FunctionTok{acf}\NormalTok{(y.sim)}
-\FunctionTok{par}\NormalTok{(}\AttributeTok{mfg=}\FunctionTok{c}\NormalTok{(}\DecValTok{3}\NormalTok{,}\DecValTok{1}\NormalTok{));}\FunctionTok{pacf}\NormalTok{(y.sim)}
-\NormalTok{theta }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{);phi}\OtherTok{=}\FloatTok{0.9}
-\NormalTok{y.sim }\OtherTok{\textless{}{-}} \FunctionTok{sim.arma}\NormalTok{(}\AttributeTok{c=}\DecValTok{0}\NormalTok{,phi,theta,}\AttributeTok{sigma=}\DecValTok{1}\NormalTok{,}\AttributeTok{T=}\DecValTok{1000}\NormalTok{,}\AttributeTok{y.0=}\DecValTok{0}\NormalTok{,}\AttributeTok{nb.sim=}\DecValTok{1}\NormalTok{)}
-\FunctionTok{par}\NormalTok{(}\AttributeTok{mfg=}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{));}\FunctionTok{plot}\NormalTok{(y.sim,}\AttributeTok{type=}\StringTok{"l"}\NormalTok{,}\AttributeTok{lwd=}\DecValTok{2}\NormalTok{)}
-\FunctionTok{par}\NormalTok{(}\AttributeTok{mfg=}\FunctionTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{2}\NormalTok{));}\FunctionTok{acf}\NormalTok{(y.sim)}
-\FunctionTok{par}\NormalTok{(}\AttributeTok{mfg=}\FunctionTok{c}\NormalTok{(}\DecValTok{3}\NormalTok{,}\DecValTok{2}\NormalTok{));}\FunctionTok{pacf}\NormalTok{(y.sim)}
-\end{Highlighting}
-\end{Shaded}
-
 \begin{figure}
 \includegraphics[width=1\linewidth]{TimeSeries_files/figure-latex/pacf-1} \caption{ACF/PACF analysis of two processes (MA process on the left, AR on the right). The correlations are computed on samples of length 1000.}\label{fig:pacf}
 \end{figure}
 
-\hypertarget{wold-decomposition}{%
-\section{Wold decomposition}\label{wold-decomposition}}
+\section{Wold decomposition}\label{wold-decomposition}
 
 The Wold decomposition is an important result in time series analysis:
 
@@ -969,8 +904,7 @@ See \citet{Anderson_1971}. Partial proof in \href{http://faculty.wcas.northweste
 
 For an ARMA process, the Wold representation is given by Eq. \eqref{eq:ARMAwold}. As detailed in Prop. \ref{prp:computPsi}, it can be computed by recursively replacing the lagged \(y_t\)'s in Eq. \eqref{eq:ARMApq}. In this case, the deterministic component (\(\kappa\)) is null.
 
-\hypertarget{IRFARMA}{%
-\section{Impulse Response Functions (IRFs) in ARMA models}\label{IRFARMA}}
+\section{Impulse Response Functions (IRFs) in ARMA models}\label{IRFARMA}
 
 Consider the ARMA(p,q) process defined in Def. \ref{def:ARMApq}. Let us construct a novel (counterfactual) sequence of shocks \(\{\tilde\varepsilon_t^{(s)}\}\):
 \[
@@ -1036,34 +970,7 @@ y_{t+h} = c + \phi_1 y_{t+h-1} + \dots + \phi_p y_{t+h-p} + \varepsilon_{t+h} + 
 
 Note that Proposition \ref{prp:computPsi} constitutes a simple way to compute the MA(\(\infty\)) representation (or Wold representation) of an ARMA process.
 
-One can use function \texttt{sim.arma} of package \texttt{AEC} to compute ARMA's IRFs (with the argument \texttt{make.IRF\ =\ 1}):
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{T }\OtherTok{\textless{}{-}} \DecValTok{21} \CommentTok{\# number of periods for IRF}
-\NormalTok{theta }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{);phi }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{);c }\OtherTok{\textless{}{-}} \DecValTok{0}
-\NormalTok{y.sim }\OtherTok{\textless{}{-}} \FunctionTok{sim.arma}\NormalTok{(c,phi,theta,}\AttributeTok{sigma=}\DecValTok{1}\NormalTok{,T,}\AttributeTok{y.0=}\FunctionTok{rep}\NormalTok{(}\DecValTok{0}\NormalTok{,}\FunctionTok{length}\NormalTok{(phi)),}
-                  \AttributeTok{nb.sim=}\DecValTok{1}\NormalTok{,}\AttributeTok{make.IRF =} \DecValTok{1}\NormalTok{)}
-\FunctionTok{par}\NormalTok{(}\AttributeTok{mfrow=}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{3}\NormalTok{));}\FunctionTok{par}\NormalTok{(}\AttributeTok{plt=}\FunctionTok{c}\NormalTok{(.}\DecValTok{25}\NormalTok{,.}\DecValTok{95}\NormalTok{,.}\DecValTok{2}\NormalTok{,.}\DecValTok{85}\NormalTok{))}
-\FunctionTok{plot}\NormalTok{(}\DecValTok{0}\SpecialCharTok{:}\NormalTok{(T}\DecValTok{{-}1}\NormalTok{),y.sim[,}\DecValTok{1}\NormalTok{],}\AttributeTok{type=}\StringTok{"l"}\NormalTok{,}\AttributeTok{lwd=}\DecValTok{2}\NormalTok{,}
-     \AttributeTok{main=}\StringTok{"(a) Process 1"}\NormalTok{,}\AttributeTok{xlab=}\StringTok{"Time after shock on epsilon"}\NormalTok{,}
-     \AttributeTok{ylab=}\StringTok{"Dynamic multiplier (shock on epsilon at t=0)"}\NormalTok{,}\AttributeTok{col=}\StringTok{"red"}\NormalTok{)}
-
-\NormalTok{theta }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,.}\DecValTok{5}\NormalTok{);phi }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\FloatTok{0.6}\NormalTok{)}
-\NormalTok{y.sim }\OtherTok{\textless{}{-}} \FunctionTok{sim.arma}\NormalTok{(c,phi,theta,}\AttributeTok{sigma=}\DecValTok{1}\NormalTok{,T,}\AttributeTok{y.0=}\FunctionTok{rep}\NormalTok{(}\DecValTok{0}\NormalTok{,}\FunctionTok{length}\NormalTok{(phi)),}
-                  \AttributeTok{nb.sim=}\DecValTok{1}\NormalTok{,}\AttributeTok{make.IRF =} \DecValTok{1}\NormalTok{)}
-\FunctionTok{plot}\NormalTok{(}\DecValTok{0}\SpecialCharTok{:}\NormalTok{(T}\DecValTok{{-}1}\NormalTok{),y.sim[,}\DecValTok{1}\NormalTok{],}\AttributeTok{type=}\StringTok{"l"}\NormalTok{,}\AttributeTok{lwd=}\DecValTok{2}\NormalTok{,}
-     \AttributeTok{main=}\StringTok{"(b) Process 2"}\NormalTok{,}\AttributeTok{xlab=}\StringTok{"Time after shock on epsilon"}\NormalTok{,}
-     \AttributeTok{ylab=}\StringTok{""}\NormalTok{,}\AttributeTok{col=}\StringTok{"red"}\NormalTok{)}
-
-\NormalTok{theta }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{);phi }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,.}\DecValTok{5}\NormalTok{,.}\DecValTok{4}\NormalTok{)}
-\NormalTok{y.sim }\OtherTok{\textless{}{-}} \FunctionTok{sim.arma}\NormalTok{(c,phi,theta,}\AttributeTok{sigma=}\DecValTok{1}\NormalTok{,T,}\AttributeTok{y.0=}\FunctionTok{rep}\NormalTok{(}\DecValTok{0}\NormalTok{,}\FunctionTok{length}\NormalTok{(phi)),}
-                  \AttributeTok{nb.sim=}\DecValTok{1}\NormalTok{,}\AttributeTok{make.IRF =} \DecValTok{1}\NormalTok{)}
-\FunctionTok{plot}\NormalTok{(}\DecValTok{0}\SpecialCharTok{:}\NormalTok{(T}\DecValTok{{-}1}\NormalTok{),y.sim[,}\DecValTok{1}\NormalTok{],}\AttributeTok{type=}\StringTok{"l"}\NormalTok{,}\AttributeTok{lwd=}\DecValTok{2}\NormalTok{,}
-     \AttributeTok{main=}\StringTok{"(c) Process 3"}\NormalTok{,}\AttributeTok{xlab=}\StringTok{"Time after shock on epsilon"}\NormalTok{,}
-     \AttributeTok{ylab=}\StringTok{""}\NormalTok{,}\AttributeTok{col=}\StringTok{"red"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
+One can use function \texttt{sim.arma} of package \texttt{IdSS} to compute ARMA's IRFs (with the argument \texttt{make.IRF\ =\ 1}):
 
 \begin{figure}
 \includegraphics[width=1\linewidth]{TimeSeries_files/figure-latex/IRFarma-1} \caption{IRFs associated with the three processes. Process 1 (MA(2)): $y_t = \varepsilon_t + \varepsilon_{t-1} + \varepsilon_{t-2}$. Process 2 (ARMA(1,1)): $y_{t}=0.6y_{t-1} + \varepsilon_t + 0.5\varepsilon_{t-1}$. Process 3 (ARMA(4,2)): $y_{t}=0.5y_{t-3} + 0.4y_{t-4} + \varepsilon_t + \varepsilon_{t-1} + \varepsilon_{t-2}$.}\label{fig:IRFarma}
@@ -1071,47 +978,11 @@ One can use function \texttt{sim.arma} of package \texttt{AEC} to compute ARMA's
 
 Consider the annual Swiss GDP growth from the JST macro-history database. Let us first determine relevant orders for AR and MA processes using the (P)ACF approach.
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{library}\NormalTok{(AEC)}
-\FunctionTok{data}\NormalTok{(JST);data }\OtherTok{\textless{}{-}} \FunctionTok{subset}\NormalTok{(JST,iso}\SpecialCharTok{==}\StringTok{"CHE"}\NormalTok{)}
-\FunctionTok{par}\NormalTok{(}\AttributeTok{plt=}\FunctionTok{c}\NormalTok{(.}\DecValTok{1}\NormalTok{,.}\DecValTok{95}\NormalTok{,.}\DecValTok{1}\NormalTok{,.}\DecValTok{95}\NormalTok{))}
-\NormalTok{T }\OtherTok{\textless{}{-}} \FunctionTok{dim}\NormalTok{(data)[}\DecValTok{1}\NormalTok{]}
-\NormalTok{growth }\OtherTok{\textless{}{-}} \FunctionTok{log}\NormalTok{(data}\SpecialCharTok{$}\NormalTok{gdp[}\DecValTok{2}\SpecialCharTok{:}\NormalTok{T]}\SpecialCharTok{/}\NormalTok{data}\SpecialCharTok{$}\NormalTok{gdp[}\DecValTok{1}\SpecialCharTok{:}\NormalTok{(T}\DecValTok{{-}1}\NormalTok{)])}
-\FunctionTok{par}\NormalTok{(}\AttributeTok{mfrow=}\FunctionTok{c}\NormalTok{(}\DecValTok{3}\NormalTok{,}\DecValTok{1}\NormalTok{));}\FunctionTok{par}\NormalTok{(}\AttributeTok{plt=}\FunctionTok{c}\NormalTok{(.}\DecValTok{1}\NormalTok{,.}\DecValTok{95}\NormalTok{,.}\DecValTok{15}\NormalTok{,.}\DecValTok{95}\NormalTok{))}
-\FunctionTok{plot}\NormalTok{(data}\SpecialCharTok{$}\NormalTok{year[}\DecValTok{2}\SpecialCharTok{:}\NormalTok{T],growth,}\AttributeTok{type=}\StringTok{"l"}\NormalTok{,}\AttributeTok{xlab=}\StringTok{""}\NormalTok{,}\AttributeTok{ylab=}\StringTok{""}\NormalTok{,}\AttributeTok{lwd=}\DecValTok{2}\NormalTok{)}
-\FunctionTok{abline}\NormalTok{(}\AttributeTok{h=}\DecValTok{0}\NormalTok{,}\AttributeTok{lty=}\DecValTok{2}\NormalTok{)}
-\FunctionTok{acf}\NormalTok{(growth);}\FunctionTok{pacf}\NormalTok{(growth)}
-\end{Highlighting}
-\end{Shaded}
-
 \begin{figure}
 \includegraphics[width=1\linewidth]{TimeSeries_files/figure-latex/IRFgdp1-1} \caption{(P)ACF analysis of Swiss GDP growth.}\label{fig:IRFgdp1}
 \end{figure}
 
 The two bottom plots of Figure \ref{fig:IRFgdp1} suggest that either an MA(2)\footnote{Indeed, the sample autocorrelation coefficients, (\(\rho_j\)), are statistically significant for \(j \leq 2\) where \(\rho_2\) is barely significant} or an AR(1)\footnote{Indeed, the sample partial autocorrelation coefficients, \(\rho_{j,j}\), are statistically significant for \(j=1\) only}could be used to model the GDP growth rate series. Figure \ref{fig:IRFgdp2} shows the IRFs based on these two respective specifications.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# Fit an AR process:}
-\NormalTok{res }\OtherTok{\textless{}{-}} \FunctionTok{arima}\NormalTok{(growth,}\AttributeTok{order=}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{))}
-\NormalTok{phi }\OtherTok{\textless{}{-}}\NormalTok{ res}\SpecialCharTok{$}\NormalTok{coef[}\DecValTok{1}\NormalTok{]}
-\NormalTok{T }\OtherTok{\textless{}{-}} \DecValTok{11}
-\NormalTok{y.sim }\OtherTok{\textless{}{-}} \FunctionTok{sim.arma}\NormalTok{(}\AttributeTok{c=}\DecValTok{0}\NormalTok{,phi,}\AttributeTok{theta=}\DecValTok{1}\NormalTok{,}\AttributeTok{sigma=}\DecValTok{1}\NormalTok{,T,}\AttributeTok{y.0=}\FunctionTok{rep}\NormalTok{(}\DecValTok{0}\NormalTok{,}\FunctionTok{length}\NormalTok{(phi)),}
-                  \AttributeTok{nb.sim=}\DecValTok{1}\NormalTok{,}\AttributeTok{make.IRF =} \DecValTok{1}\NormalTok{)}
-\FunctionTok{par}\NormalTok{(}\AttributeTok{plt=}\FunctionTok{c}\NormalTok{(.}\DecValTok{15}\NormalTok{,.}\DecValTok{95}\NormalTok{,.}\DecValTok{25}\NormalTok{,.}\DecValTok{95}\NormalTok{))}
-\FunctionTok{plot}\NormalTok{(}\DecValTok{0}\SpecialCharTok{:}\NormalTok{(T}\DecValTok{{-}1}\NormalTok{),y.sim[,}\DecValTok{1}\NormalTok{],}\AttributeTok{type=}\StringTok{"l"}\NormalTok{,}\AttributeTok{lwd=}\DecValTok{3}\NormalTok{,}
-     \AttributeTok{xlab=}\StringTok{"Time after shock on epsilon"}\NormalTok{,}
-     \AttributeTok{ylab=}\StringTok{"Dynamic multiplier (shock on epsilon at t=0)"}\NormalTok{,}\AttributeTok{col=}\StringTok{"red"}\NormalTok{)}
-\CommentTok{\# Fit a MA process:}
-\NormalTok{res }\OtherTok{\textless{}{-}} \FunctionTok{arima}\NormalTok{(growth,}\AttributeTok{order=}\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{2}\NormalTok{))}
-\NormalTok{phi }\OtherTok{\textless{}{-}} \DecValTok{0}\NormalTok{;theta }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,res}\SpecialCharTok{$}\NormalTok{coef[}\DecValTok{1}\SpecialCharTok{:}\DecValTok{2}\NormalTok{])}
-\NormalTok{y.sim }\OtherTok{\textless{}{-}} \FunctionTok{sim.arma}\NormalTok{(}\AttributeTok{c=}\DecValTok{0}\NormalTok{,phi,theta,}\AttributeTok{sigma=}\DecValTok{1}\NormalTok{,T,}\AttributeTok{y.0=}\FunctionTok{rep}\NormalTok{(}\DecValTok{0}\NormalTok{,}\FunctionTok{length}\NormalTok{(phi)),}
-                  \AttributeTok{nb.sim=}\DecValTok{1}\NormalTok{,}\AttributeTok{make.IRF =} \DecValTok{1}\NormalTok{)}
-\FunctionTok{lines}\NormalTok{(}\DecValTok{0}\SpecialCharTok{:}\NormalTok{(T}\DecValTok{{-}1}\NormalTok{),y.sim[,}\DecValTok{1}\NormalTok{],}\AttributeTok{lwd=}\DecValTok{3}\NormalTok{,}\AttributeTok{col=}\StringTok{"red"}\NormalTok{,}\AttributeTok{lty=}\DecValTok{2}\NormalTok{)}
-\FunctionTok{abline}\NormalTok{(}\AttributeTok{h=}\DecValTok{0}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
 
 \begin{figure}
 \includegraphics[width=1\linewidth]{TimeSeries_files/figure-latex/IRFgdp2-1} \caption{Dynamic response of Swiss annual growth to a shock on the innovation $\varepsilon_t$ at date $t=0$. The solid line corresponds to an AR(1) specification; the dashed line corresponds to a MA(2) specification.}\label{fig:IRFgdp2}
@@ -1119,11 +990,9 @@ The two bottom plots of Figure \ref{fig:IRFgdp1} suggest that either an MA(2)\fo
 
 The same kind of algorithm (as in Prop. \ref{prp:computPsi}) can be used to compute the impact of an increase in an exogenous variable \(x_t\) within an ARMAX(p,q,r) model (see next section).
 
-\hypertarget{ARMAIRF}{%
-\section{ARMA processes with exogenous variables (ARMA-X)}\label{ARMAIRF}}
+\section{ARMA processes with exogenous variables (ARMA-X)}\label{ARMAIRF}
 
-\hypertarget{ARMAXDef}{%
-\subsection{Definitions (ARMA-X)}\label{ARMAXDef}}
+\subsection{Definitions (ARMA-X)}\label{ARMAXDef}
 
 ARMA processes do not allow to investigate the influence of an exogenous variable (say \(x_t\)) on the variable of interest (say \(y_t\)). When \(x_t\) and \(y_t\) have reciprocal influences, the Vector Autoregressive (VAR) model may be used (this tools will be studied later, in Section \ref{VAR}). However, when one suspects that \(x_t\) has an ``exogenous'' influence on \(y_t\), then a simple extension of the ARMA processes may be considered. Loosely speaking, \(x_t\) has an ``exogenous'' influence on \(y_t\) if \(y_t\) does not affect \(x_t\). This extension is referred to as ARMA-X.
 
@@ -1149,8 +1018,7 @@ y_t &=& \underbrace{c + \phi_1 y_{t-1} + \dots + \phi_p y_{t-p}}_{\mbox{AR(p) pa
 where \(\{\varepsilon_t\}\) is an i.i.d. white noise sequence and \(\{x_t\}\) is exogenous to \(y_t\).
 \end{definition}
 
-\hypertarget{ARMAXDynamic}{%
-\subsection{Dynamic multipliers in ARMA-X models}\label{ARMAXDynamic}}
+\subsection{Dynamic multipliers in ARMA-X models}\label{ARMAXDynamic}
 
 What is the effect of a one-unit increase in \(x_t\) on \(y_t\)? To address this question, this notion of ``effect'' has to be formalized. Let us introduce two related sequences of values for \(\{x\}\). Denote the first by \(\{a\}\) and the second by \(\{\tilde{a}^t\}\). Further, we posit \(a_s = \tilde{a}_s^t\) for all \(s \ne t\), and \(\tilde{a}_t^t = a_t+1\).
 
@@ -1187,7 +1055,7 @@ One can recursively compute the dynamic multipliers \(\frac{\partial y_{t+h}}{\p
 \item
   For \(h \ge 0\) and assuming that the first \(h-1\) multipliers have been computed, we have:
   \begin{eqnarray}
-  \dfrac{\partial y_{t+h}}{\partial x_t} &=& \phi_1 \dfrac{\partial y_{t+h-1}}{\partial x_t} + \dots + \phi_p \dfrac{\partial y_{t+h-p}}{\partial x_t} + \beta_h,\label{eq:dynmultX}
+  \dfrac{\partial y_{t+h}}{\partial x_t} &=& \phi_1 \dfrac{\partial y_{t+h-1}}{\partial x_t} + \dots + \phi_p \dfrac{\partial y_{t+h-p}}{\partial x_t} + \beta_h,\label{eq:dynmultXrec}
   \end{eqnarray}
   where we use the notation \(\beta_h=0\) if \(h>r\).
 \end{enumerate}
@@ -1203,50 +1071,7 @@ It has to be stressed that the definition of the dynamic multipliers (Eq. \eqref
 
 This example is based on data used in \citet{Stock_Watson_2003} (Chapter 16). The objective is to study the influence of the number of freezing days on the price of orange juice. Let us first estimate a ARMA-X(0,0,3) model:
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{library}\NormalTok{(AEC);}\FunctionTok{library}\NormalTok{(AER)}
-\FunctionTok{data}\NormalTok{(}\StringTok{"FrozenJuice"}\NormalTok{)}
-\NormalTok{FJ }\OtherTok{\textless{}{-}} \FunctionTok{as.data.frame}\NormalTok{(FrozenJuice)}
-\NormalTok{date }\OtherTok{\textless{}{-}} \FunctionTok{time}\NormalTok{(FrozenJuice)}
-\NormalTok{price }\OtherTok{\textless{}{-}}\NormalTok{ FJ}\SpecialCharTok{$}\NormalTok{price}\SpecialCharTok{/}\NormalTok{FJ}\SpecialCharTok{$}\NormalTok{ppi}
-\NormalTok{T }\OtherTok{\textless{}{-}} \FunctionTok{length}\NormalTok{(price)}
-\NormalTok{k }\OtherTok{\textless{}{-}} \DecValTok{1}
-\NormalTok{dprice }\OtherTok{\textless{}{-}} \DecValTok{100}\SpecialCharTok{*}\FunctionTok{log}\NormalTok{(price[(k}\SpecialCharTok{+}\DecValTok{1}\NormalTok{)}\SpecialCharTok{:}\NormalTok{T]}\SpecialCharTok{/}\NormalTok{price[}\DecValTok{1}\SpecialCharTok{:}\NormalTok{(T}\SpecialCharTok{{-}}\NormalTok{k)])}
-\NormalTok{fdd }\OtherTok{\textless{}{-}}\NormalTok{ FJ}\SpecialCharTok{$}\NormalTok{fdd[(k}\SpecialCharTok{+}\DecValTok{1}\NormalTok{)}\SpecialCharTok{:}\NormalTok{T]}
-\FunctionTok{par}\NormalTok{(}\AttributeTok{mfrow=}\FunctionTok{c}\NormalTok{(}\DecValTok{3}\NormalTok{,}\DecValTok{1}\NormalTok{))}
-\FunctionTok{par}\NormalTok{(}\AttributeTok{plt=}\FunctionTok{c}\NormalTok{(.}\DecValTok{1}\NormalTok{,.}\DecValTok{95}\NormalTok{,.}\DecValTok{15}\NormalTok{,.}\DecValTok{75}\NormalTok{))}
-\FunctionTok{plot}\NormalTok{(date,price,}\AttributeTok{type=}\StringTok{"l"}\NormalTok{,}\AttributeTok{xlab=}\StringTok{""}\NormalTok{,}\AttributeTok{ylab=}\StringTok{""}\NormalTok{,}
-     \AttributeTok{main=}\StringTok{"(a) Price of orange Juice"}\NormalTok{)}
-\FunctionTok{plot}\NormalTok{(date,}\FunctionTok{c}\NormalTok{(}\ConstantTok{NaN}\NormalTok{,dprice),}\AttributeTok{type=}\StringTok{"l"}\NormalTok{,}\AttributeTok{xlab=}\StringTok{""}\NormalTok{,}\AttributeTok{ylab=}\StringTok{""}\NormalTok{,}
-     \AttributeTok{main=}\StringTok{"(b) Monthly pct Change (y)"}\NormalTok{)}
-\FunctionTok{plot}\NormalTok{(date,FJ}\SpecialCharTok{$}\NormalTok{fdd,}\AttributeTok{type=}\StringTok{"l"}\NormalTok{,}\AttributeTok{xlab=}\StringTok{""}\NormalTok{,}\AttributeTok{ylab=}\StringTok{""}\NormalTok{,}
-     \AttributeTok{main=}\StringTok{"(c) Number of freezing days (x)"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\includegraphics{TimeSeries_files/figure-latex/freez-1.pdf}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{nb.lags }\OtherTok{\textless{}{-}} \DecValTok{3}
-\NormalTok{FDD }\OtherTok{\textless{}{-}}\NormalTok{ FJ}\SpecialCharTok{$}\NormalTok{fdd[(nb.lags}\SpecialCharTok{+}\DecValTok{1}\NormalTok{)}\SpecialCharTok{:}\NormalTok{T]}
-\NormalTok{names.FDD }\OtherTok{\textless{}{-}} \ConstantTok{NULL}
-\ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\NormalTok{nb.lags)\{}
-\NormalTok{  FDD }\OtherTok{\textless{}{-}} \FunctionTok{cbind}\NormalTok{(FDD,FJ}\SpecialCharTok{$}\NormalTok{fdd[(nb.lags}\SpecialCharTok{+}\DecValTok{1}\SpecialCharTok{{-}}\NormalTok{i)}\SpecialCharTok{:}\NormalTok{(T}\SpecialCharTok{{-}}\NormalTok{i)])}
-\NormalTok{  names.FDD }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(names.FDD,}\FunctionTok{paste}\NormalTok{(}\StringTok{" Lag "}\NormalTok{,}\FunctionTok{toString}\NormalTok{(i),}\AttributeTok{sep=}\StringTok{""}\NormalTok{))\}}
-\FunctionTok{colnames}\NormalTok{(FDD) }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{" Lag 0"}\NormalTok{,names.FDD)}
-\NormalTok{dprice }\OtherTok{\textless{}{-}}\NormalTok{ dprice[(}\FunctionTok{length}\NormalTok{(dprice)}\SpecialCharTok{{-}}\FunctionTok{dim}\NormalTok{(FDD)[}\DecValTok{1}\NormalTok{]}\SpecialCharTok{+}\DecValTok{1}\NormalTok{)}\SpecialCharTok{:}\FunctionTok{length}\NormalTok{(dprice)]}
-\NormalTok{eq }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(dprice}\SpecialCharTok{\textasciitilde{}}\NormalTok{FDD)}
-\CommentTok{\# Compute the Newey{-}West std errors:}
-\NormalTok{var.cov.mat }\OtherTok{\textless{}{-}} \FunctionTok{NeweyWest}\NormalTok{(eq,}\AttributeTok{lag =} \DecValTok{7}\NormalTok{, }\AttributeTok{prewhite =} \ConstantTok{FALSE}\NormalTok{)}
-\NormalTok{robust\_se }\OtherTok{\textless{}{-}} \FunctionTok{sqrt}\NormalTok{(}\FunctionTok{diag}\NormalTok{(var.cov.mat))}
-\CommentTok{\# Stargazer output (with and without Robust SE)}
-\NormalTok{stargazer}\SpecialCharTok{::}\FunctionTok{stargazer}\NormalTok{(eq, eq, }\AttributeTok{type =} \StringTok{"text"}\NormalTok{,}
-                     \AttributeTok{column.labels=}\FunctionTok{c}\NormalTok{(}\StringTok{"(no HAC)"}\NormalTok{,}\StringTok{"(HAC)"}\NormalTok{),}\AttributeTok{keep.stat=}\StringTok{"n"}\NormalTok{,}
-                     \AttributeTok{se =} \FunctionTok{list}\NormalTok{(}\ConstantTok{NULL}\NormalTok{,robust\_se),}\AttributeTok{no.space =} \ConstantTok{TRUE}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
+\pandocbounded{\includegraphics[keepaspectratio]{TimeSeries_files/figure-latex/freez-1.pdf}}
 
 \begin{verbatim}
 ## 
@@ -1273,57 +1098,9 @@ This example is based on data used in \citet{Stock_Watson_2003} (Chapter 16). Th
 ## Note:         *p<0.1; **p<0.05; ***p<0.01
 \end{verbatim}
 
-Let us now use function \texttt{estim.armax}, from package \texttt{AEC}to fit an ARMA-X(3,0,1) model:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{nb.lags.exog }\OtherTok{\textless{}{-}} \DecValTok{1} \CommentTok{\# number of lags of exog. variable}
-\NormalTok{FDD }\OtherTok{\textless{}{-}}\NormalTok{ FJ}\SpecialCharTok{$}\NormalTok{fdd[(nb.lags.exog}\SpecialCharTok{+}\DecValTok{1}\NormalTok{)}\SpecialCharTok{:}\NormalTok{T]}
-\ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\NormalTok{nb.lags.exog)\{}
-\NormalTok{  FDD }\OtherTok{\textless{}{-}} \FunctionTok{cbind}\NormalTok{(FDD,FJ}\SpecialCharTok{$}\NormalTok{fdd[(nb.lags.exog}\SpecialCharTok{+}\DecValTok{1}\SpecialCharTok{{-}}\NormalTok{i)}\SpecialCharTok{:}\NormalTok{(T}\SpecialCharTok{{-}}\NormalTok{i)])\}}
-\NormalTok{dprice }\OtherTok{\textless{}{-}} \DecValTok{100}\SpecialCharTok{*}\FunctionTok{log}\NormalTok{(price[(k}\SpecialCharTok{+}\DecValTok{1}\NormalTok{)}\SpecialCharTok{:}\NormalTok{T]}\SpecialCharTok{/}\NormalTok{price[}\DecValTok{1}\SpecialCharTok{:}\NormalTok{(T}\SpecialCharTok{{-}}\NormalTok{k)])}
-\NormalTok{dprice }\OtherTok{\textless{}{-}}\NormalTok{ dprice[(}\FunctionTok{length}\NormalTok{(dprice)}\SpecialCharTok{{-}}\FunctionTok{dim}\NormalTok{(FDD)[}\DecValTok{1}\NormalTok{]}\SpecialCharTok{+}\DecValTok{1}\NormalTok{)}\SpecialCharTok{:}\FunctionTok{length}\NormalTok{(dprice)]}
-\NormalTok{res.armax }\OtherTok{\textless{}{-}} \FunctionTok{estim.armax}\NormalTok{(}\AttributeTok{Y =}\NormalTok{ dprice,}\AttributeTok{p=}\DecValTok{3}\NormalTok{,}\AttributeTok{q=}\DecValTok{0}\NormalTok{,}\AttributeTok{X=}\NormalTok{FDD)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] "=================================================="
-## [1] "  ESTIMATING"
-## [1] "=================================================="
-## [1] "  END OF ESTIMATION"
-## [1] "=================================================="
-## [1] ""
-## [1] "  RESULTS:"
-## [1] "  -----------------------"
-##                 THETA     st.dev   t.ratio
-## c         -0.46556249 0.19554352 -2.380864
-## phi   t-1  0.09788977 0.04025907  2.431496
-## phi   t-2  0.05049849 0.03827488  1.319364
-## phi   t-3  0.07155170 0.03764750  1.900570
-## sigma      4.64917949 0.13300769 34.954215
-## beta  t-0  0.47015552 0.05665344  8.298800
-## beta  t-1  0.10015862 0.05972526  1.676989
-## [1] "=================================================="
-\end{verbatim}
+Let us now use function \texttt{estim.armax}, from package \texttt{IdSS} to fit an ARMA-X(3,0,1) model:
 
 Figure \ref{fig:freez4} shows the IRF associated with each of the two models.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{nb.periods }\OtherTok{\textless{}{-}} \DecValTok{20}
-\NormalTok{IRF1 }\OtherTok{\textless{}{-}} \FunctionTok{sim.arma}\NormalTok{(}\AttributeTok{c=}\DecValTok{0}\NormalTok{,}\AttributeTok{phi=}\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{),}\AttributeTok{theta=}\NormalTok{eq}\SpecialCharTok{$}\NormalTok{coefficients[}\DecValTok{2}\SpecialCharTok{:}\NormalTok{(nb.lags}\SpecialCharTok{+}\DecValTok{1}\NormalTok{)],}\AttributeTok{sigma=}\DecValTok{1}\NormalTok{,}
-                 \AttributeTok{T=}\NormalTok{nb.periods,}\AttributeTok{y.0=}\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{),}\AttributeTok{nb.sim=}\DecValTok{1}\NormalTok{,}\AttributeTok{make.IRF=}\DecValTok{1}\NormalTok{)}
-\NormalTok{IRF2 }\OtherTok{\textless{}{-}} \FunctionTok{sim.arma}\NormalTok{(}\AttributeTok{c=}\DecValTok{0}\NormalTok{,}\AttributeTok{phi=}\NormalTok{res.armax}\SpecialCharTok{$}\NormalTok{phi,}\AttributeTok{theta=}\NormalTok{res.armax}\SpecialCharTok{$}\NormalTok{beta,}\AttributeTok{sigma=}\DecValTok{1}\NormalTok{,}
-                 \AttributeTok{T=}\NormalTok{nb.periods,}\AttributeTok{y.0=}\FunctionTok{rep}\NormalTok{(}\DecValTok{0}\NormalTok{,}\FunctionTok{length}\NormalTok{(res.armax}\SpecialCharTok{$}\NormalTok{phi)),}
-                 \AttributeTok{nb.sim=}\DecValTok{1}\NormalTok{,}\AttributeTok{make.IRF=}\DecValTok{1}\NormalTok{)}
-\FunctionTok{par}\NormalTok{(}\AttributeTok{plt=}\FunctionTok{c}\NormalTok{(.}\DecValTok{15}\NormalTok{,.}\DecValTok{95}\NormalTok{,.}\DecValTok{2}\NormalTok{,.}\DecValTok{95}\NormalTok{))}
-\FunctionTok{plot}\NormalTok{(IRF1,}\AttributeTok{type=}\StringTok{"l"}\NormalTok{,}\AttributeTok{lwd=}\DecValTok{2}\NormalTok{,}\AttributeTok{col=}\StringTok{"red"}\NormalTok{,}\AttributeTok{xlab=}\StringTok{"months after shock"}\NormalTok{,}
-     \AttributeTok{ylab=}\StringTok{"Chge in price (percent)"}\NormalTok{)}
-\FunctionTok{lines}\NormalTok{(IRF2,}\AttributeTok{lwd=}\DecValTok{2}\NormalTok{,}\AttributeTok{col=}\StringTok{"red"}\NormalTok{,}\AttributeTok{lty=}\DecValTok{2}\NormalTok{)}
-\FunctionTok{abline}\NormalTok{(}\AttributeTok{h=}\DecValTok{0}\NormalTok{,}\AttributeTok{col=}\StringTok{"grey"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
 
 \begin{figure}
 \includegraphics[width=0.95\linewidth]{TimeSeries_files/figure-latex/freez4-1} \caption{Response of changes in orange juice price (in percent) to the number of freezing days. The solid (respectively dashed) line corresponds to the ARMAX(0,0,3) (resp. ARMAX(3,0,1)) model. The first model is estimated by OLS (see above), the second by MLE.}\label{fig:freez4}
@@ -1336,66 +1113,9 @@ Figure \ref{fig:freez4} shows the IRF associated with each of the two models.
 
 In this example, we make use of monetary shocks identified through high-frequency data (see \citet{Gertler_Karadi_2015}). This dataset comes from \href{https://econweb.ucsd.edu/~vramey/research.html}{Valerie Ramey's website} (see \citet{Ramey_2016_NBER}).
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{library}\NormalTok{(AEC)}
-\NormalTok{T }\OtherTok{\textless{}{-}} \FunctionTok{dim}\NormalTok{(Ramey)[}\DecValTok{1}\NormalTok{]}
-\CommentTok{\# Construct growth series:}
-\NormalTok{Ramey}\SpecialCharTok{$}\NormalTok{growth }\OtherTok{\textless{}{-}}\NormalTok{ Ramey}\SpecialCharTok{$}\NormalTok{LIP }\SpecialCharTok{{-}} \FunctionTok{c}\NormalTok{(}\FunctionTok{rep}\NormalTok{(}\ConstantTok{NaN}\NormalTok{,}\DecValTok{12}\NormalTok{),Ramey}\SpecialCharTok{$}\NormalTok{LIP[}\DecValTok{1}\SpecialCharTok{:}\NormalTok{(}\FunctionTok{length}\NormalTok{(Ramey}\SpecialCharTok{$}\NormalTok{LIP)}\SpecialCharTok{{-}}\DecValTok{12}\NormalTok{)])}
-\CommentTok{\# Prepare matrix of exogenous variables:}
-\NormalTok{vec.lags }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{6}\SpecialCharTok{:}\DecValTok{12}\NormalTok{)}
-\NormalTok{Matrix.of.Exog }\OtherTok{\textless{}{-}} \ConstantTok{NULL}
-\NormalTok{shocks }\OtherTok{\textless{}{-}}\NormalTok{ Ramey}\SpecialCharTok{$}\NormalTok{ED2\_TC}
-\ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\FunctionTok{length}\NormalTok{(vec.lags))\{Matrix.of.Exog }\OtherTok{\textless{}{-}}
-  \FunctionTok{cbind}\NormalTok{(Matrix.of.Exog,}\FunctionTok{c}\NormalTok{(}\FunctionTok{rep}\NormalTok{(}\ConstantTok{NaN}\NormalTok{,vec.lags[i]),shocks[}\DecValTok{1}\SpecialCharTok{:}\NormalTok{(T}\SpecialCharTok{{-}}\NormalTok{vec.lags[i])]))\}}
-\CommentTok{\# Look for dates where data are available:}
-\NormalTok{indic.good.dates }\OtherTok{\textless{}{-}} \FunctionTok{complete.cases}\NormalTok{(Matrix.of.Exog)}
-\end{Highlighting}
-\end{Shaded}
-
 \begin{figure}
 \includegraphics[width=0.95\linewidth]{TimeSeries_files/figure-latex/Ramey1fig-1} \caption{The blue line corresponds to monetary-policy shocks identified by means of the Gertler and Karadi (2015)'s approach (high-frequency change in Euro-dollar futures). The black slid line is the year-on-year growth rate of industrial production.}\label{fig:Ramey1fig}
 \end{figure}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# Estimate ARMA{-}X:}
-\NormalTok{p }\OtherTok{\textless{}{-}} \DecValTok{1}\NormalTok{; q }\OtherTok{\textless{}{-}} \DecValTok{0}
-\NormalTok{x }\OtherTok{\textless{}{-}} \FunctionTok{estim.armax}\NormalTok{(Ramey}\SpecialCharTok{$}\NormalTok{growth[indic.good.dates],p,q,}
-                 \AttributeTok{X=}\NormalTok{Matrix.of.Exog[indic.good.dates,])}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] "=================================================="
-## [1] "  ESTIMATING"
-## [1] "=================================================="
-## [1] "  END OF ESTIMATION"
-## [1] "=================================================="
-## [1] ""
-## [1] "  RESULTS:"
-## [1] "  -----------------------"
-##                   THETA       st.dev    t.ratio
-## c         -0.0004426199 0.0006125454 -0.7225911
-## phi   t-1  0.9869027266 0.0124309590 79.3907152
-## sigma      0.0086746823 0.0003148378 27.5528652
-## beta  t-0  0.0022530266 0.0095301403  0.2364106
-## beta  t-1  0.0044685654 0.0102448538  0.4361766
-## beta  t-2 -0.0217426832 0.0104694110 -2.0767819
-## beta  t-3 -0.0157007270 0.0104770796 -1.4985786
-## beta  t-4  0.0052932744 0.0104041746  0.5087645
-## beta  t-5 -0.0149181921 0.0102144049 -1.4605053
-## beta  t-6 -0.0161301599 0.0094092914 -1.7142800
-## [1] "=================================================="
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# Compute IRF:}
-\NormalTok{irf }\OtherTok{\textless{}{-}} \FunctionTok{sim.arma}\NormalTok{(}\DecValTok{0}\NormalTok{,x}\SpecialCharTok{$}\NormalTok{phi,x}\SpecialCharTok{$}\NormalTok{beta,x}\SpecialCharTok{$}\NormalTok{sigma,}\AttributeTok{T=}\DecValTok{60}\NormalTok{,}\AttributeTok{y.0=}\FunctionTok{rep}\NormalTok{(}\DecValTok{0}\NormalTok{,}\FunctionTok{length}\NormalTok{(x}\SpecialCharTok{$}\NormalTok{phi)),}
-                \AttributeTok{nb.sim=}\DecValTok{1}\NormalTok{,}\AttributeTok{make.IRF=}\DecValTok{1}\NormalTok{,}\AttributeTok{X=}\ConstantTok{NaN}\NormalTok{,}\AttributeTok{beta=}\ConstantTok{NaN}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
 
 Figure \ref{fig:Ramey3} displays the resulting IRF, with a 95\% confidence band. The code used to produce the confidence bands (i.e., to compute the standard deviation of the dynamic multipliers for the different horizons) is based on the Delta method (see Appendix \ref{Delta}).\footnote{This method consists in approximating \(\mathbb{V}(ar)(f(\theta))\) with \(\frac{\partial f(\theta)}{\partial \theta}' \mathbb{V}ar(\theta)\frac{\partial f(\theta)}{\partial \theta}\).}
 
@@ -1405,11 +1125,9 @@ Figure \ref{fig:Ramey3} displays the resulting IRF, with a 95\% confidence band.
 
 \end{example}
 
-\hypertarget{estimARMA}{%
-\section{Maximum Likelihood Estimation (MLE) of ARMA processes}\label{estimARMA}}
+\section{Maximum Likelihood Estimation (MLE) of ARMA processes}\label{estimARMA}
 
-\hypertarget{Generalities}{%
-\subsection{Generalities}\label{Generalities}}
+\subsection{Generalities}\label{Generalities}
 
 Consider the general case (of any time series); assume we observe a sample \(\mathbf{y}=[y_1,\dots,y_T]'\). In order to implement ML techniques, we need to evaluate the joint p.d.f. (or ``likelihood'') of \(\mathbf{y}\), i.e., \(\mathcal{L}(\boldsymbol\theta;\mathbf{y})\), where \(\boldsymbol\theta\) is a vector of parameters that characterizes the dynamics of \(y_t\). The Maximum Likelihood (ML) estimate of \(\boldsymbol\theta\) is then given by:
 \[
@@ -1435,11 +1153,9 @@ In the time series context, if process \(y_t\) is Markovian, then there exists a
 \protect\hypertarget{def:Markov}{}\label{def:Markov}Process \(y_t\) is Markovian of order one if \(f_{Y_t|Y_{t-1},Y_{t-2},\dots} = f_{Y_t|Y_{t-1}}\). More generally, it is Markovian of order \(k\) if \(f_{Y_t|Y_{t-1},Y_{t-2},\dots} = f_{Y_t|Y_{t-1},\dots,Y_{t-k}}\).
 \end{definition}
 
-\hypertarget{estimAR}{%
-\subsection{Maximum Likelihood Estimation of AR processes}\label{estimAR}}
+\subsection{Maximum Likelihood Estimation of AR processes}\label{estimAR}
 
-\hypertarget{estimAR1}{%
-\subsubsection{Maximum Likelihood Estimation of an AR(1) process}\label{estimAR1}}
+\subsubsection{Maximum Likelihood Estimation of an AR(1) process}\label{estimAR1}
 
 Let us start with the Gaussian AR(1) process (which is Markovian of order one):
 \[
@@ -1515,8 +1231,7 @@ which is maximised for\footnote{Indeed, \((Y-X[c,\phi_1]')'(Y-X[c,\phi_1]')=Y'Y-
 &=& \frac{1}{T-1} Y'(I - X(X'X)^{-1}X')Y. \label{eq:AROLSsigma}
 \end{eqnarray}
 
-\hypertarget{estimARp}{%
-\subsubsection{Maximum Likelihood Estimation of an AR(p) process}\label{estimARp}}
+\subsubsection{Maximum Likelihood Estimation of an AR(p) process}\label{estimARp}
 
 Let us turn to the case of an AR(p) process which is Markovian of order \(p\). We have:
 \begin{eqnarray*}
@@ -1606,16 +1321,6 @@ The convergence in distribution of \(\sqrt{T}(X'\boldsymbol\varepsilon/T)=\sqrt{
 
 These two cases (exact or conditional log-likelihoods) can be implemented when asking R to fit an AR process by means of function \texttt{arima}. Let us for instance use the output gap of the \texttt{US3var} dataset (US quarterly data, covering the period 1959:2 to 2015:1, used in \citet{Gourieroux_Monfort_Renne_2017}).
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{library}\NormalTok{(AEC)}
-\NormalTok{y }\OtherTok{\textless{}{-}}\NormalTok{ US3var}\SpecialCharTok{$}\NormalTok{y.gdp.gap}
-\NormalTok{ar3.Case1 }\OtherTok{\textless{}{-}} \FunctionTok{arima}\NormalTok{(y,}\AttributeTok{order =} \FunctionTok{c}\NormalTok{(}\DecValTok{3}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{),}\AttributeTok{method=}\StringTok{"ML"}\NormalTok{)}
-\NormalTok{ar3.Case2 }\OtherTok{\textless{}{-}} \FunctionTok{arima}\NormalTok{(y,}\AttributeTok{order =} \FunctionTok{c}\NormalTok{(}\DecValTok{3}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{),}\AttributeTok{method=}\StringTok{"CSS"}\NormalTok{)}
-\FunctionTok{rbind}\NormalTok{(ar3.Case1}\SpecialCharTok{$}\NormalTok{coef,ar3.Case2}\SpecialCharTok{$}\NormalTok{coef)}
-\end{Highlighting}
-\end{Shaded}
-
 \begin{verbatim}
 ##           ar1         ar2        ar3  intercept
 ## [1,] 1.191267 -0.08934705 -0.1781163 -0.9226007
@@ -1624,11 +1329,9 @@ These two cases (exact or conditional log-likelihoods) can be implemented when a
 
 The two sets of estimated coefficients appear to be very close to each other.
 
-\hypertarget{estimMA}{%
-\subsection{Maximum Likelihood Estimation of MA processes}\label{estimMA}}
+\subsection{Maximum Likelihood Estimation of MA processes}\label{estimMA}
 
-\hypertarget{estimMA1}{%
-\subsubsection{Maximum Likelihood Estimation of an MA(1) process}\label{estimMA1}}
+\subsubsection{Maximum Likelihood Estimation of an MA(1) process}\label{estimMA1}
 
 Let us now turn to Moving-Average processes. Start with the MA(1):
 \[
@@ -1657,8 +1360,7 @@ Loosely speaking, if \(|\theta_1|<1\) and if \(T\) is sufficiently large:
 
 Note that \(\hat{\mathcal{L}}^*(\boldsymbol\theta;\mathbf{y})\) is a complicated nonlinear function of \(\mu\) and \(\theta\). Its maximization therefore has to be based on numerical optimization procedures.
 
-\hypertarget{estimMAq}{%
-\subsubsection{Maximum Likelihood Estimation of MA(q) processes}\label{estimMAq}}
+\subsubsection{Maximum Likelihood Estimation of MA(q) processes}\label{estimMAq}
 
 Let us not consider the case of a Gaussian MA(\(q\)) process:
 \begin{equation}
@@ -1702,8 +1404,7 @@ where the \(\gamma_j\)'s are given by Eq. \eqref{eq:autocovMA}. The p.d.f. of \(
 \]
 For large samples, the computation of this likelihood however becomes numerically demanding.
 
-\hypertarget{estimARMApq}{%
-\subsection{Maximum Likelihood Estimation of an ARMA(p,q) process}\label{estimARMApq}}
+\subsection{Maximum Likelihood Estimation of an ARMA(p,q) process}\label{estimARMApq}
 
 Finally, let us consider the MLE of an ARMA(\(p\),\(q\)) processes:
 \[
@@ -1725,8 +1426,7 @@ given some initial conditions, for instance:
   \(\hat\varepsilon_p=\dots=\hat\varepsilon_{p-q+1}=0\) and actual values of the \(y_{i}\)'s for \(i \in [1,p]\). In that case, the first \(p\) observations of \(y_t\) will not be used. Recursions in Eq. \eqref{eq:recvareps} then start for \(t=p+1\).
 \end{enumerate}
 
-\hypertarget{specification-choice}{%
-\section{Specification choice}\label{specification-choice}}
+\section{Specification choice}\label{specification-choice}
 
 The previous section explains how to fit a given ARMA specification. But how to choose an appropriate specification? A possibility is to employ the (P)ACF approach (see Figure \ref{fig:pacf}). However, the previous approach leads to either an AR or a MA process (and not an ARMA process). If one wants to consider various ARMA(p,q) specifications, for \(p \in \{1,\dots,P\}\) and \(q \in \{1,\dots,Q\}\), say, then one can resort to \textbf{information criteria}.
 
@@ -1824,29 +1524,11 @@ For a large \(T\), for all consistent estimation scheme, we have:
 \[
 \widehat{\sigma^2} \approx \frac{1}{T}\sum_{t=1}^T \varepsilon_t^2 = SSR/T.
 \]
-Hence \(\hat{k}^{(i)} \approx \underset{k}{\mbox{argmin}} \quad \log(SSR/T) + \dfrac{k\phi^{(i)}(T)}{T}\).
+Hence \(\hat{k}^{(i)} \approx \underset{k}{\mbox{argmin}} \quad  \log(SSR/T) + \dfrac{k\phi^{(i)}(T)}{T}\).
 \end{example}
 
 \begin{example}[Swiss GDP growth]
 \protect\hypertarget{exm:SwissGrowthAIC}{}\label{exm:SwissGrowthAIC}Consider a long historical time series of the Swiss GDP growth (see Figure \ref{fig:autocov}), taken from the \citet{JST_2017} dataset. Let us look for the best ARMA specification using the AIC criteria:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{library}\NormalTok{(AEC);}\FunctionTok{data}\NormalTok{(JST)}
-\NormalTok{data }\OtherTok{\textless{}{-}} \FunctionTok{subset}\NormalTok{(JST,iso}\SpecialCharTok{==}\StringTok{"CHE"}\NormalTok{)}
-\NormalTok{T }\OtherTok{\textless{}{-}} \FunctionTok{dim}\NormalTok{(data)[}\DecValTok{1}\NormalTok{]}
-\NormalTok{y }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\ConstantTok{NaN}\NormalTok{,}\FunctionTok{log}\NormalTok{(data}\SpecialCharTok{$}\NormalTok{gdp[}\DecValTok{2}\SpecialCharTok{:}\NormalTok{T]}\SpecialCharTok{/}\NormalTok{data}\SpecialCharTok{$}\NormalTok{gdp[}\DecValTok{1}\SpecialCharTok{:}\NormalTok{(T}\DecValTok{{-}1}\NormalTok{)]))}
-\CommentTok{\# Use AIC criteria to look for appropriate specif:}
-\NormalTok{max.p }\OtherTok{\textless{}{-}} \DecValTok{3}\NormalTok{;max.q }\OtherTok{\textless{}{-}} \DecValTok{3}\NormalTok{;}
-\NormalTok{all.AIC }\OtherTok{\textless{}{-}} \ConstantTok{NULL}
-\ControlFlowTok{for}\NormalTok{(p }\ControlFlowTok{in} \DecValTok{0}\SpecialCharTok{:}\NormalTok{max.p)\{}
-  \ControlFlowTok{for}\NormalTok{(q }\ControlFlowTok{in} \DecValTok{0}\SpecialCharTok{:}\NormalTok{max.q)\{}
-\NormalTok{    res }\OtherTok{\textless{}{-}} \FunctionTok{arima}\NormalTok{(y,}\AttributeTok{order=}\FunctionTok{c}\NormalTok{(p,}\DecValTok{0}\NormalTok{,q))}
-    \ControlFlowTok{if}\NormalTok{(res}\SpecialCharTok{$}\NormalTok{aic}\SpecialCharTok{\textless{}}\FunctionTok{min}\NormalTok{(all.AIC))\{best.p}\OtherTok{\textless{}{-}}\NormalTok{p;best.q}\OtherTok{\textless{}{-}}\NormalTok{q\}}
-\NormalTok{    all.AIC }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(all.AIC,res}\SpecialCharTok{$}\NormalTok{aic)\}\}}
-\FunctionTok{print}\NormalTok{(}\FunctionTok{c}\NormalTok{(best.p,best.q))}
-\end{Highlighting}
-\end{Shaded}
 
 \begin{verbatim}
 ## [1] 1 0
@@ -1855,8 +1537,441 @@ Hence \(\hat{k}^{(i)} \approx \underset{k}{\mbox{argmin}} \quad \log(SSR/T) + \d
 The best specification therefore is an AR(1) model. That is, although an AR(2) (say) would result in a better fit of the data, the fit improvement is not be large enough to compensate for the additional AIC cost associated with an additional parameter.
 \end{example}
 
-\hypertarget{VAR}{%
-\chapter{Multivariate models}\label{VAR}}
+\section{Exercises}\label{univariate-exercises}
+
+The following exercises consolidate stationarity, Wold representations, likelihood-based estimation, model identification, and impulse-response analysis. They come from PS1, PS2, and PS3.
+
+\Needspace{24\baselineskip}
+
+\begin{exercisebox}
+
+\begin{exercise}[Stationarity of ARMA processes]
+\protect\hypertarget{exr:ex-stationarity}{}\label{exr:ex-stationarity}\textbf{PS1 \textbar{} Core \textbar{} Analytical}\\
+Review Section \ref{ARsection}.
+
+For each process below, determine whether it is covariance stationary. When it is, identify an ARMA representation and justify your answer using the roots of the autoregressive polynomial.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \(y_t=y_{t-1}+\varepsilon_t\).
+\item
+  \(y_t=0.9y_{t-1}+\varepsilon_t+\varepsilon_{t-1}\).
+\item
+  \(y_t=\varepsilon_t+\varepsilon_{t-1}+2\varepsilon_{t-2}\).
+\item
+  \(y_t=0.9y_{t-1}+0.2y_{t-2}+\varepsilon_t\).
+\item
+  \(y_t=0.9y_{t-1}-0.2y_{t-2}+\varepsilon_t\).
+\end{enumerate}
+
+Assume throughout that \(\{\varepsilon_t\}\) is white noise with finite variance.
+\end{exercise}
+
+\end{exercisebox}
+
+\Needspace{24\baselineskip}
+
+\begin{exercisebox}
+
+\begin{exercise}[A stationary transformation]
+\protect\hypertarget{exr:ex-stationarity-transformation}{}\label{exr:ex-stationarity-transformation}
+
+\textbf{PS1 \textbar{} Core \textbar{} Analytical}\\
+Review Section \ref{Univariate}.
+
+Let \(y_t=y_{t-1}+\varepsilon_t\), where \(\{\varepsilon_t\}\) is white noise, and define \(x_t=y_t-y_{t-1}\).
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Is \(y_t\) covariance stationary?
+\item
+  Express \(x_t\) in terms of the innovation and determine whether \(x_t\) is covariance stationary.
+\item
+  State the order of integration of \(y_t\).
+\end{enumerate}
+
+\end{exercise}
+
+\end{exercisebox}
+
+\Needspace{24\baselineskip}
+
+\begin{exercisebox}
+
+\begin{exercise}[Autocovariances of an ARMA(2,1)]
+\protect\hypertarget{exr:ex-arma-autocovariances}{}\label{exr:ex-arma-autocovariances}
+
+\textbf{PS1 \textbar{} Advanced \textbar{} Analytical}\\
+Review Section \ref{Univariate}.
+
+Consider
+\[
+y_t=\phi_1y_{t-1}+\phi_2y_{t-2}+\varepsilon_t+\varepsilon_{t-1},
+\]
+where \(\{\varepsilon_t\}\) is white noise with variance \(\sigma^2\) and the AR polynomial is stable. Let \(\gamma_h=\operatorname{Cov}(y_t,y_{t-h})\).
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Compute \(\operatorname{Cov}(\varepsilon_t,y_t)\) and \(\operatorname{Cov}(\varepsilon_{t-1},y_t)\).
+\item
+  Derive the equations linking \(\gamma_0\), \(\gamma_1\), and \(\gamma_2\).
+\item
+  Show that \(\gamma_h=\phi_1\gamma_{h-1}+\phi_2\gamma_{h-2}\) for \(h\geq2\).
+\item
+  Solve the three-equation system for \(\gamma_0\), \(\gamma_1\), and \(\gamma_2\) (a matrix expression is acceptable).
+\end{enumerate}
+
+\end{exercise}
+
+\end{exercisebox}
+
+\Needspace{24\baselineskip}
+
+\begin{exercisebox}
+
+\begin{exercise}[Wold representations and forecasts]
+\protect\hypertarget{exr:ex-wold-forecast}{}\label{exr:ex-wold-forecast}\textbf{PS1 \textbar{} Advanced \textbar{} Analytical}\\
+Review Section \ref{IRFARMA}.
+
+For each stationary process in Exercise \ref{exr:ex-stationarity}:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Derive the first four Wold coefficients \(\psi_0,\ldots,\psi_3\) in \(y_t-\mu=\sum_{j=0}^{\infty}\psi_j\varepsilon_{t-j}\).
+\item
+  Compute the three-step-ahead conditional forecast \(\mathbb E_t(y_{t+3})\).
+\item
+  Compute the corresponding forecast-error variance.
+\end{enumerate}
+
+Take the innovations to have variance \(\sigma^2\) and state clearly which information set is used.
+\end{exercise}
+
+\end{exercisebox}
+
+\Needspace{24\baselineskip}
+
+\begin{exercisebox}
+
+\begin{exercise}[Reading an ACF and a PACF]
+\protect\hypertarget{exr:ex-acf-pacf}{}\label{exr:ex-acf-pacf}
+
+\textbf{PS1 \textbar{} Core \textbar{} Empirical interpretation}\\
+Review Section \ref{PACFapproach}.
+
+The figure shows a stationary-looking macroeconomic series, together with its sample autocorrelation function (ACF) and partial autocorrelation function (PACF).
+
+\includegraphics[width=1\linewidth,height=\textheight,keepaspectratio]{images/exercises/acf-pacf.png}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  What low-order AR or MA specifications are suggested by these diagnostics?
+\item
+  Can the plots alone establish strict stationarity?
+\item
+  Explain how you would choose between the candidate models in practice.
+\end{enumerate}
+
+\end{exercise}
+
+\end{exercisebox}
+
+\Needspace{24\baselineskip}
+
+\begin{exercisebox}
+
+\begin{exercise}[Maximum likelihood for an exponential duration]
+\protect\hypertarget{exr:ex-exponential-mle}{}\label{exr:ex-exponential-mle}
+
+\textbf{PS2 \textbar{} Core \textbar{} Analytical}\\
+Review Section \ref{Generalities}.
+
+Customer inter-arrival times \(y_1,\ldots,y_T\) are i.i.d. exponential with \textbf{scale} parameter \(\lambda>0\):
+\[f(y;\lambda)=\lambda^{-1}\exp(-y/\lambda),\qquad y\geq0.\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Write the log-likelihood.
+\item
+  Derive the maximum-likelihood estimator of \(\lambda\).
+\item
+  Compute the Fisher information and the estimator's asymptotic standard error.
+\end{enumerate}
+
+\end{exercise}
+
+\end{exercisebox}
+
+\Needspace{24\baselineskip}
+
+\begin{exercisebox}
+
+\begin{exercise}[A periodically centered AR(1)]
+\protect\hypertarget{exr:ex-periodic-process}{}\label{exr:ex-periodic-process}
+
+\textbf{PS2 \textbar{} Advanced \textbar{} Likelihood and testing}\\
+Review Section \ref{estimAR1}.
+
+Consider
+\[
+y_t=\cos(\psi t)+\rho\{y_{t-1}-\cos[\psi(t-1)]\}+\varepsilon_t,
+\qquad \varepsilon_t\overset{i.i.d.}{\sim}\mathcal N(0,\sigma^2),
+\]
+with \(|\rho|<1\).
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Identify the process followed by \(x_t=y_t-\cos(\psi t)\).
+\item
+  Derive the unconditional mean and variance of \(y_t\).
+\item
+  Derive the conditional Gaussian log-likelihood for \(\theta=(\psi,\rho,\sigma^2)'\).
+\item
+  Explain how to estimate \(\theta\) and its asymptotic covariance matrix.
+\item
+  For monthly data, interpret \(\psi=2\pi/12\).
+\item
+  Describe Wald and likelihood-ratio tests of \(H_0:\psi=2\pi/12\) and \(\rho=0.9\). Give the 5\% and 1\% critical values.
+\end{enumerate}
+
+\end{exercise}
+
+\end{exercisebox}
+
+\Needspace{24\baselineskip}
+
+\begin{exercisebox}
+
+\begin{exercise}[Estimating an AR(p) model for Swiss inflation]
+\protect\hypertarget{exr:ex-estimating-arp}{}\label{exr:ex-estimating-arp}
+
+\textbf{PS2 \textbar{} Core \textbar{} Estimation and diagnostics}\\
+Review Section \ref{estimARp}.
+
+The figure shows Swiss year-on-year inflation.
+
+\includegraphics[width=0.95\linewidth,height=\textheight,keepaspectratio]{images/exercises/swiss-inflation.png}
+
+Model \(y_t=c+\phi_1y_{t-1}+\cdots+\phi_py_{t-p}+\varepsilon_t\), with \(\varepsilon_t\overset{i.i.d.}{\sim}\mathcal N(0,\sigma^2)\). Let \(Y=(y_{p+1},\ldots,y_T)'\) and let \(X\) contain an intercept and the \(p\) lags.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Give the conditional maximum-likelihood estimators of \(\beta=(c,\phi_1,\ldots,\phi_p)'\) and \(\sigma^2\).
+\item
+  For \(p=1\), \(\hat c=0.025\) (s.e. 0.019) and \(\hat\phi_1=0.987\) (s.e. 0.006). Is the fitted process stationary? Comment on persistence.
+\item
+  Regressing the AR(1) residual on its lag gives 0.207 (s.e. 0.034). What does this imply about specification?
+\item
+  For \(p=2\), the estimates are \(\hat c=0.033\), \(\hat\phi_1=1.194\), and \(\hat\phi_2=-0.210\). The lagged-residual coefficient is \(-0.027\) (s.e. 0.035). Check stationarity from the companion roots and assess the new specification.
+\end{enumerate}
+
+\end{exercise}
+
+\end{exercisebox}
+
+\Needspace{24\baselineskip}
+
+\begin{exercisebox}
+
+\begin{exercise}[Impulse responses and forecast uncertainty]
+\protect\hypertarget{exr:ex-irf-forecasts}{}\label{exr:ex-irf-forecasts}\textbf{PS3 \textbar{} Core \textbar{} Analytical}\\
+Review Section \ref{IRFARMA}.
+
+Let \(\varepsilon_t\overset{i.i.d.}{\sim}\mathcal N(0,\sigma^2)\) and consider:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \(y_t=\varepsilon_t+0.5\varepsilon_{t-1}+0.2\varepsilon_{t-2}\);
+\item
+  \(y_t=1+0.9y_{t-1}+\varepsilon_t\);
+\item
+  \(y_t=1+0.5y_{t-1}+\varepsilon_t+0.5\varepsilon_{t-1}\).
+\end{enumerate}
+
+For each process:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Compute the impulse responses at horizons 0 through 4.
+\item
+  State the corresponding first five Wold coefficients.
+\item
+  Compute the mean squared error of the four-step-ahead forecast.
+\item
+  Explain how parameter estimation changes forecast uncertainty.
+\end{enumerate}
+
+Finally, consider \(y_t=1+0.5y_{t-1}+x_t+0.5x_{t-1}+\varepsilon_t+0.8\varepsilon_{t-1}\), with \(x_t\) strictly exogenous. Compute the dynamic multipliers of \(x_t\) at horizons 0 through 4.
+\end{exercise}
+
+\end{exercisebox}
+
+\subsection{Exercises from the 2024 exam}\label{exercises-from-the-2024-exam}
+
+\Needspace{24\baselineskip}
+
+\begin{exercisebox}
+
+\begin{exercise}[Two AR(1) processes driven by a common shock]
+\protect\hypertarget{exr:ex-exam2024-shared-ar1}{}\label{exr:ex-exam2024-shared-ar1}
+
+\textbf{EXAM-2024 \textbar{} Exam \textbar{} True/false}\\
+Review Section \ref{ARsection}.
+
+Let \(x_t=\rho_xx_{t-1}+\varepsilon_t\) and \(y_t=\rho_yy_{t-1}+\varepsilon_t\), where \(\varepsilon_t\overset{i.i.d.}{\sim}\mathcal N(0,\sigma^2)\), \(\sigma^2>0\), and \(0<\rho_x<\rho_y<1\). Conditional moments at date \(t\) use the history of both processes.
+
+State whether each assertion is true or false and justify your answer.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  The contemporaneous correlation between \(x_t\) and \(y_t\) is zero.
+\item
+  \(\operatorname{Var}(y_t)=\operatorname{Var}(x_t)\).
+\item
+  \(\mathbb E_t(y_{t+1})=\mathbb E_t(x_{t+1})\).
+\item
+  \(\mathbb E_t(y_{t+h})=\rho_y^hy_t\) for every \(h\ge1\).
+\item
+  \(\operatorname{Cov}_t(x_{t+1},y_{t+1})=\sigma^2\).
+\end{enumerate}
+
+\end{exercise}
+
+\end{exercisebox}
+
+\Needspace{24\baselineskip}
+
+\begin{exercisebox}
+
+\begin{exercise}[Interpreting an autocovariance sequence]
+\protect\hypertarget{exr:ex-exam2024-autocovariance-sequence}{}\label{exr:ex-exam2024-autocovariance-sequence}
+
+\textbf{EXAM-2024 \textbar{} Exam \textbar{} True/false}\\
+Review Section \ref{Univariate}.
+
+A covariance-stationary process has \(\gamma_0=5\), \(\gamma_1=4\), \(\gamma_2=3\), \(\gamma_3=2\), \(\gamma_4=1\), and \(\gamma_h=0\) for \(h>4\).
+
+State whether each assertion is true or false and justify your answer.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  The process can be a nondegenerate AR(4).
+\item
+  It could be \(y_t=\varepsilon_t+\varepsilon_{t-1}+\varepsilon_{t-2}+\varepsilon_{t-3}+\varepsilon_{t-4}\) with \(\operatorname{Var}(\varepsilon_t)=1\).
+\item
+  \(\operatorname{Var}(y_t)=\sum_{h=0}^4\gamma_h\).
+\item
+  \(\operatorname{Corr}(y_{t-1},y_{t-4})=2/5\).
+\item
+  Necessarily, \(\mathbb E(y_t)=\gamma_0\).
+\end{enumerate}
+
+\end{exercise}
+
+\end{exercisebox}
+
+\Needspace{24\baselineskip}
+
+\begin{exercisebox}
+
+\begin{exercise}[ARMA roots and moments]
+\protect\hypertarget{exr:ex-exam2024-arma-roots}{}\label{exr:ex-exam2024-arma-roots}
+
+\textbf{EXAM-2024 \textbar{} Exam \textbar{} True/false}\\
+Review Section \ref{ARsection}.
+
+Let \(\varepsilon_t\overset{i.i.d.}{\sim}\mathcal N(0,\sigma^2)\) and
+\[
+(1-0.5L^2)x_t=0.1+0.5x_{t-1}+\varepsilon_t,
+\]
+\[
+(1+1.1L)(1-0.5L)(1+0.4L)y_t=\varepsilon_t,
+\]
+\[
+z_t+0.8z_{t-1}=(1+L+L^2)\varepsilon_t.
+\]
+
+State whether each assertion is true or false and justify your answer.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \(x_t\) is covariance stationary.
+\item
+  \(y_t\) is covariance stationary.
+\item
+  \(z_t\) is covariance stationary.
+\item
+  \(\gamma_1(z)=-0.8\gamma_0(z)\).
+\item
+  \(\operatorname{Var}(z_t+0.8z_{t-1})=3\sigma^2\).
+\end{enumerate}
+
+\end{exercise}
+
+\end{exercisebox}
+
+\Needspace{24\baselineskip}
+
+\begin{exercisebox}
+
+\begin{exercise}[A one-date exogenous intervention]
+\protect\hypertarget{exr:ex-exam2024-dynamic-multiplier}{}\label{exr:ex-exam2024-dynamic-multiplier}
+
+\textbf{EXAM-2024 \textbar{} Exam \textbar{} True/false}\\
+Review Section \ref{ARMAXDynamic}.
+
+For \(t\ge0\), let
+\[y_t=0.5y_{t-1}+x_t+\varepsilon_t,\qquad \widetilde y_t=0.5\widetilde y_{t-1}+\widetilde x_t+\varepsilon_t,\]
+with \(y_0=\widetilde y_0=0\). The inputs are deterministic, \(\widetilde x_t=x_t\) except at one date \(s>0\), and \(\widetilde x_s=x_s+1\).
+
+State whether each assertion is true or false and justify your answer.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  For \(t<s\), \(\widetilde y_t=y_t\).
+\item
+  For all \(t\ge s\), \(\widetilde y_t=y_t\).
+\item
+  For every \(h\ge0\), \(\widetilde y_{s+h}-y_{s+h}=1\).
+\item
+  If \(x_t\) is constant, \(y_t\) is an AR(1) with an intercept.
+\item
+  \(\operatorname{Var}(y_t)=\operatorname{Var}(\widetilde y_t)\).
+\end{enumerate}
+
+\end{exercise}
+
+\end{exercisebox}
+
+\chapter{Multivariate models}\label{VAR}
 
 This section presents Vector Auto-Regressive Moving-Average (SVARMA) models. These models are widely used in macroeconomic analysis. While simple and easy to estimate, they make it possible to conveniently capture the dynamics of complex multivariate systems. VAR popularity is notably due to \citet{Sims_1980}'s influential work. A comprehensive survey is proposed by \citet{Stock_Watson_2016}.
 
@@ -1864,8 +1979,7 @@ In economics, VAR models are often employed in order to identify \emph{structura
 
 Working with these models (VAR and VARMA models) often involves two steps: in a first step, the \textbf{reduced-form} version of the model is estimated; in a second step, \textbf{structural shocks} are identified and IRFs are produced.
 
-\hypertarget{definition-of-vars-and-svarma-models}{%
-\section{Definition of VARs (and SVARMA) models}\label{definition-of-vars-and-svarma-models}}
+\section{Definition of VARs (and SVARMA) models}\label{definition-of-vars-and-svarma-models}
 
 \begin{definition}[(S)VAR model]
 \protect\hypertarget{def:SVAR}{}\label{def:SVAR}Let \(y_{t}\) denote a \(n \times1\) vector of (endogenous) random variables. Process \(y_{t}\) follows a \(p^{th}\)-order (S)VAR if, for all \(t\), we have
@@ -1895,8 +2009,7 @@ SVARMA:& y_t &=& c + \Phi_1 y_{t-1} + \dots + \Phi_p y_{t-p} + \\
 with \(\varepsilon_t = B_0\eta_t\), and \(B_j = \Theta_j B_0\), for \(j \ge 0\) (with \(\Theta_0 = Id\)), where \(\{\eta_{t}\}\) is a white noise sequence whose components are are mutually and serially independent.
 \end{definition}
 
-\hypertarget{IRFSVARMA}{%
-\section{IRFs in SVARMA}\label{IRFSVARMA}}
+\section{IRFs in SVARMA}\label{IRFSVARMA}
 
 One of the main objectives of macro-econometrics is to derive IRFs, that represent the dynamic effects of structural shocks (components of \(\eta_t\)) though the system of variables \(y_t\).
 
@@ -1924,8 +2037,8 @@ Hence, estimating IRFs amounts to estimating the \(\Psi_{h}\)'s. In general, the
   Approximate the infinite MA representation by estimating a parsimonious type of model, e.g.~\textbf{VAR(MA) models} (see Section \ref{estimVAR}). Once a (Structural) VARMA representation is obtained, Eq. \eqref{eq:InfMA} is easily deduced using the following proposition:
 \end{itemize}
 
-\begin{proposition}[IRF of an VARMA(p,q) process]
-\protect\hypertarget{prp:computPsi}{}\label{prp:computPsi}
+\begin{proposition}[IRF of a VARMA(p,q) process]
+\protect\hypertarget{prp:computPsiVAR}{}\label{prp:computPsiVAR}
 
 If \(y_t\) follows the VARMA model described in Def. \ref{def:SVARMA}, then the matrices \(\Psi_h\) appearing in Eq. \eqref{eq:InfMA} can be computed recursively as follows:
 
@@ -1982,44 +2095,7 @@ y_{t-1} +
 \end{array}\right]}_{B}\eta_{t-1}.\label{eq:VARMA111}
 \end{eqnarray}
 
-We can use function \texttt{simul.VARMA} of package \texttt{AEC} to produce IRFs (using \texttt{indic.IRF=1} in the list of arguments):
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{library}\NormalTok{(AEC)}
-\NormalTok{distri }\OtherTok{\textless{}{-}} \FunctionTok{list}\NormalTok{(}\AttributeTok{type=}\FunctionTok{c}\NormalTok{(}\StringTok{"gaussian"}\NormalTok{,}\StringTok{"gaussian"}\NormalTok{),}\AttributeTok{df=}\FunctionTok{c}\NormalTok{(}\DecValTok{4}\NormalTok{,}\DecValTok{4}\NormalTok{))}
-\NormalTok{n }\OtherTok{\textless{}{-}} \FunctionTok{length}\NormalTok{(distri}\SpecialCharTok{$}\NormalTok{type) }\CommentTok{\# dimension of y\_t}
-\NormalTok{nb.sim }\OtherTok{\textless{}{-}} \DecValTok{30}
-\NormalTok{eps }\OtherTok{\textless{}{-}} \FunctionTok{simul.distri}\NormalTok{(distri,nb.sim)}
-\NormalTok{Phi }\OtherTok{\textless{}{-}} \FunctionTok{array}\NormalTok{(}\ConstantTok{NaN}\NormalTok{,}\FunctionTok{c}\NormalTok{(n,n,}\DecValTok{1}\NormalTok{))}
-\NormalTok{Phi[,,}\DecValTok{1}\NormalTok{] }\OtherTok{\textless{}{-}} \FunctionTok{matrix}\NormalTok{(}\FunctionTok{c}\NormalTok{(.}\DecValTok{5}\NormalTok{,}\SpecialCharTok{{-}}\NormalTok{.}\DecValTok{4}\NormalTok{,.}\DecValTok{3}\NormalTok{,.}\DecValTok{7}\NormalTok{),}\DecValTok{2}\NormalTok{,}\DecValTok{2}\NormalTok{)}
-\NormalTok{p }\OtherTok{\textless{}{-}} \FunctionTok{dim}\NormalTok{(Phi)[}\DecValTok{3}\NormalTok{]}
-\NormalTok{Theta }\OtherTok{\textless{}{-}} \FunctionTok{array}\NormalTok{(}\ConstantTok{NaN}\NormalTok{,}\FunctionTok{c}\NormalTok{(n,n,}\DecValTok{1}\NormalTok{))}
-\NormalTok{Theta[,,}\DecValTok{1}\NormalTok{] }\OtherTok{\textless{}{-}} \FunctionTok{matrix}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\SpecialCharTok{{-}}\FloatTok{0.4}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{0}\NormalTok{,.}\DecValTok{5}\NormalTok{),}\DecValTok{2}\NormalTok{,}\DecValTok{2}\NormalTok{)}
-\NormalTok{q }\OtherTok{\textless{}{-}} \FunctionTok{dim}\NormalTok{(Theta)[}\DecValTok{3}\NormalTok{]}
-\NormalTok{Mu }\OtherTok{\textless{}{-}} \FunctionTok{rep}\NormalTok{(}\DecValTok{0}\NormalTok{,n)}
-\NormalTok{C }\OtherTok{\textless{}{-}} \FunctionTok{matrix}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{1}\NormalTok{),}\DecValTok{2}\NormalTok{,}\DecValTok{2}\NormalTok{)}
-\NormalTok{Model }\OtherTok{\textless{}{-}} \FunctionTok{list}\NormalTok{(}
-  \AttributeTok{Mu =}\NormalTok{ Mu,}\AttributeTok{Phi =}\NormalTok{ Phi,}\AttributeTok{Theta =}\NormalTok{ Theta,}\AttributeTok{C =}\NormalTok{ C,}\AttributeTok{distri =}\NormalTok{ distri)}
-\NormalTok{Y0 }\OtherTok{\textless{}{-}} \FunctionTok{rep}\NormalTok{(}\DecValTok{0}\NormalTok{,n)}
-\NormalTok{eta0 }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{0}\NormalTok{)}
-\NormalTok{res.sim}\FloatTok{.1} \OtherTok{\textless{}{-}} \FunctionTok{simul.VARMA}\NormalTok{(Model,nb.sim,Y0,eta0,}\AttributeTok{indic.IRF=}\DecValTok{1}\NormalTok{)}
-\NormalTok{eta0 }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{)}
-\NormalTok{res.sim}\FloatTok{.2} \OtherTok{\textless{}{-}} \FunctionTok{simul.VARMA}\NormalTok{(Model,nb.sim,Y0,eta0,}\AttributeTok{indic.IRF=}\DecValTok{1}\NormalTok{)}
-\FunctionTok{par}\NormalTok{(}\AttributeTok{plt=}\FunctionTok{c}\NormalTok{(.}\DecValTok{15}\NormalTok{,.}\DecValTok{95}\NormalTok{,.}\DecValTok{25}\NormalTok{,.}\DecValTok{8}\NormalTok{))}
-\FunctionTok{par}\NormalTok{(}\AttributeTok{mfrow=}\FunctionTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{2}\NormalTok{))}
-\ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\DecValTok{2}\NormalTok{)\{}
-  \ControlFlowTok{if}\NormalTok{(i }\SpecialCharTok{==} \DecValTok{1}\NormalTok{)\{res.sim }\OtherTok{\textless{}{-}}\NormalTok{ res.sim}\FloatTok{.1}
-\NormalTok{  \}}\ControlFlowTok{else}\NormalTok{\{res.sim }\OtherTok{\textless{}{-}}\NormalTok{ res.sim}\FloatTok{.2}\NormalTok{\}}
-  \ControlFlowTok{for}\NormalTok{(j }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\DecValTok{2}\NormalTok{)\{}
-    \FunctionTok{plot}\NormalTok{(res.sim}\SpecialCharTok{$}\NormalTok{Y[j,],}\AttributeTok{las=}\DecValTok{1}\NormalTok{,}
-         \AttributeTok{type=}\StringTok{"l"}\NormalTok{,}\AttributeTok{lwd=}\DecValTok{3}\NormalTok{,}\AttributeTok{xlab=}\StringTok{""}\NormalTok{,}\AttributeTok{ylab=}\StringTok{""}\NormalTok{,}
-         \AttributeTok{main=}\FunctionTok{paste}\NormalTok{(}\StringTok{"Resp. of y"}\NormalTok{,j,}
-                    \StringTok{" to a 1{-}unit increase in eta"}\NormalTok{,i,}\AttributeTok{sep=}\StringTok{""}\NormalTok{))}
-    \FunctionTok{abline}\NormalTok{(}\AttributeTok{h=}\DecValTok{0}\NormalTok{,}\AttributeTok{col=}\StringTok{"grey"}\NormalTok{,}\AttributeTok{lty=}\DecValTok{3}\NormalTok{)}
-\NormalTok{  \}\}}
-\end{Highlighting}
-\end{Shaded}
+We can use function \texttt{simul.VARMA} of package \texttt{IdSS} to produce IRFs (using \texttt{indic.IRF=1} in the list of arguments):
 
 \begin{figure}
 \includegraphics[width=0.95\linewidth]{TimeSeries_files/figure-latex/simVAR-1} \caption{Impulse response functions (SVARMA(1,1) specified above).}\label{fig:simVAR}
@@ -2029,8 +2105,7 @@ We can use function \texttt{simul.VARMA} of package \texttt{AEC} to produce IRFs
 
 \href{https://jrenne.shinyapps.io/MacroEc/}{This web interface} allows to explore IRFs in the context of a simple VAR(1) model with \(n=2\). (Select \emph{VAR(1) Simulation} and tick \emph{IRFs}.)
 
-\hypertarget{covariance-stationary-varma-models}{%
-\section{Covariance-stationary VARMA models}\label{covariance-stationary-varma-models}}
+\section{Covariance-stationary VARMA models}\label{covariance-stationary-varma-models}
 
 Let's come back to the infinite MA case (Eq. \eqref{eq:InfMA}):
 \[
@@ -2096,39 +2171,11 @@ y_{i,t} = \phi_i y_{t-1} + \varepsilon_{i,t},
 \]
 where \(\phi_i\) is the \(i^{th}\) row of \(\Phi_1\), and where \(\varepsilon_{i,t}\) is a linear combination of \(\eta_t\) and \(\eta_{t-1}\). Since \(y_{t-1}\) (the regressor) is correlated to \(\eta_{t-1}\), it is also correlated to \(\varepsilon_{i,t}\). The OLS regression of \(y_{i,t}\) on \(y_{t-1}\) yields a biased estimator of \(\phi_i\) (see Figure \ref{fig:simulARMAbiased}). Hence, SVARMA models cannot be consistently estimated by simple OLS regressions (contrary to VAR models, as we will see in the next section); instrumental-variable approaches can be employed to estimate SVARMA models (using past values of \(y_t\) as instruments, see, e.g., \citet{Gourieroux_Monfort_Renne_2020}).
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{N }\OtherTok{\textless{}{-}} \DecValTok{1000} \CommentTok{\# number of replications}
-\NormalTok{T }\OtherTok{\textless{}{-}} \DecValTok{100} \CommentTok{\# sample length}
-\NormalTok{phi }\OtherTok{\textless{}{-}}\NormalTok{ .}\DecValTok{8} \CommentTok{\# autoregressive parameter}
-\NormalTok{sigma }\OtherTok{\textless{}{-}} \DecValTok{1}
-\FunctionTok{par}\NormalTok{(}\AttributeTok{mfrow=}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{))}
-\ControlFlowTok{for}\NormalTok{(theta }\ControlFlowTok{in} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\SpecialCharTok{{-}}\FloatTok{0.4}\NormalTok{))\{}
-\NormalTok{  all.y }\OtherTok{\textless{}{-}} \FunctionTok{matrix}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{,N)}
-\NormalTok{  y     }\OtherTok{\textless{}{-}}\NormalTok{ all.y}
-\NormalTok{  eta\_1 }\OtherTok{\textless{}{-}} \FunctionTok{rnorm}\NormalTok{(N)}
-  \ControlFlowTok{for}\NormalTok{(t }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\NormalTok{(T}\SpecialCharTok{+}\DecValTok{1}\NormalTok{))\{}
-\NormalTok{    eta }\OtherTok{\textless{}{-}} \FunctionTok{rnorm}\NormalTok{(N)}
-\NormalTok{    y }\OtherTok{\textless{}{-}}\NormalTok{ phi }\SpecialCharTok{*}\NormalTok{ y }\SpecialCharTok{+}\NormalTok{ sigma }\SpecialCharTok{*}\NormalTok{ eta }\SpecialCharTok{+}\NormalTok{ theta }\SpecialCharTok{*}\NormalTok{ sigma }\SpecialCharTok{*}\NormalTok{ eta\_1}
-\NormalTok{    all.y }\OtherTok{\textless{}{-}} \FunctionTok{rbind}\NormalTok{(all.y,y)}
-\NormalTok{    eta\_1 }\OtherTok{\textless{}{-}}\NormalTok{ eta\}}
-\NormalTok{  all.y\_1 }\OtherTok{\textless{}{-}}\NormalTok{ all.y[}\DecValTok{1}\SpecialCharTok{:}\NormalTok{T,]}
-\NormalTok{  all.y   }\OtherTok{\textless{}{-}}\NormalTok{ all.y[}\DecValTok{2}\SpecialCharTok{:}\NormalTok{(T}\SpecialCharTok{+}\DecValTok{1}\NormalTok{),]}
-\NormalTok{  XX\_1 }\OtherTok{\textless{}{-}} \DecValTok{1}\SpecialCharTok{/}\FunctionTok{apply}\NormalTok{(all.y\_1 }\SpecialCharTok{*}\NormalTok{ all.y\_1,}\DecValTok{2}\NormalTok{,sum)}
-\NormalTok{  XY   }\OtherTok{\textless{}{-}} \FunctionTok{apply}\NormalTok{(all.y\_1 }\SpecialCharTok{*}\NormalTok{ all.y,}\DecValTok{2}\NormalTok{,sum)}
-\NormalTok{  phi.est.OLS }\OtherTok{\textless{}{-}}\NormalTok{ XX\_1 }\SpecialCharTok{*}\NormalTok{ XY}
-  \FunctionTok{plot}\NormalTok{(}\FunctionTok{density}\NormalTok{(phi.est.OLS),}\AttributeTok{xlab=}\StringTok{"OLS estimate of phi"}\NormalTok{,}\AttributeTok{ylab=}\StringTok{""}\NormalTok{,}
-       \AttributeTok{main=}\FunctionTok{paste}\NormalTok{(}\StringTok{"theta = "}\NormalTok{,theta,}\AttributeTok{sep=}\StringTok{""}\NormalTok{))}
-  \FunctionTok{abline}\NormalTok{(}\AttributeTok{v=}\NormalTok{phi,}\AttributeTok{col=}\StringTok{"red"}\NormalTok{,}\AttributeTok{lwd=}\DecValTok{2}\NormalTok{)\}}
-\end{Highlighting}
-\end{Shaded}
-
 \begin{figure}
 \includegraphics[width=0.95\linewidth]{TimeSeries_files/figure-latex/simulARMAbiased-1} \caption{Illustration of the bias obtained when estimating the auto-regressive parameters of an ARMA process by (standard) OLS.}\label{fig:simulARMAbiased}
 \end{figure}
 
-\hypertarget{estimVAR}{%
-\section{VAR estimation}\label{estimVAR}}
+\section{VAR estimation}\label{estimVAR}
 
 This section discusses the estimation of VAR models. Eq. \eqref{eq:yVAR} can be written:
 \[
@@ -2141,7 +2188,9 @@ Consequently:
 y_{t}\mid y_{t-1},y_{t-2},\ldots,y_{-p+1}\sim \mathcal{N}(c+\Phi_{1}y_{t-1}+\ldots\Phi_{p}y_{t-p},\Omega).
 \]
 
-Using \citet{Hamilton_1994}'s notations, denote with \(\Pi\) the matrix \(\left[\begin{array}{ccccc} c & \Phi_{1} & \Phi_{2} & \ldots & \Phi_{p}\end{array}\right]'\) and with \(x_{t}\) the vector \(\left[\begin{array}{ccccc} 1 & y'_{t-1} & y'_{t-2} & \ldots & y'_{t-p}\end{array}\right]'\), we have:
+Using \citet{Hamilton_1994}'s notations, denote with \(\Pi\) the matrix \(\left[\begin{array}{ccccc}
+c & \Phi_{1} & \Phi_{2} & \ldots & \Phi_{p}\end{array}\right]'\) and with \(x_{t}\) the vector \(\left[\begin{array}{ccccc}
+1 & y'_{t-1} & y'_{t-2} & \ldots & y'_{t-p}\end{array}\right]'\), we have:
 \begin{equation}
 y_{t}= \Pi'x_{t} + \varepsilon_{t}. \label{eq:PIVAR}
 \end{equation}
@@ -2176,7 +2225,7 @@ See Appendix \ref{AppendixProof}.
 
 As stated by Proposition \ref{prp:OLSVAR}, when the shocks are not Gaussian, then the OLS regressions still provide consistent estimates of the model parameters. However, since \(x_t\) correlates to \(\varepsilon_s\) for \(s<t\), the OLS estimator \(\mathbf{b}_i\) of \(\boldsymbol\beta_i\) is biased in small sample. (That is also the case for the ML estimator.) Indeed, denoting by \(\boldsymbol\varepsilon_i\) the \(T \times 1\) vector of \(\varepsilon_{i,t}\)'s, and using the notations of \(b_i\) and \(\beta_i\) introduced in Proposition \ref{prp:estimVARGaussian}, we have:
 \begin{equation}
-\mathbf{b}_i = \beta_i + (\mathbf{X}'\mathbf{X})^{-1}\mathbf{X}'\boldsymbol\varepsilon_i.\label{eq:olsar1}
+\mathbf{b}_i = \beta_i + (\mathbf{X}'\mathbf{X})^{-1}\mathbf{X}'\boldsymbol\varepsilon_i.\label{eq:olsvar1}
 \end{equation}
 We have non-zero correlation between \(x_t\) and \(\varepsilon_{i,s}\) for \(s<t\) and, therefore, \(\mathbb{E}[(\mathbf{X}'\mathbf{X})^{-1}\mathbf{X}'\boldsymbol\varepsilon_i] \ne 0\).
 
@@ -2198,7 +2247,7 @@ where \(\sigma_i = \mathbb{V}ar(\varepsilon_{i,t})\) and where \(\mathbf{Q} = \m
 \vdots &\vdots &\vdots &\dots &\vdots \\
 \mu & \gamma_{p-1} + \mu\mu' & \gamma_{p-2} + \mu\mu' & \dots & \gamma_{0} + \mu\mu'
 \end{array}
-\right].\label{eq:Qols}
+\right].\label{eq:QolsVAR}
 \end{equation}
 \end{proposition}
 
@@ -2262,23 +2311,6 @@ BIC & = & cst + \log\left|\hat{\Omega}\right|+\frac{\log T}{T}N,
 \end{eqnarray*}
 where \(N=p \times n^{2}\).
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{library}\NormalTok{(vars);}\FunctionTok{library}\NormalTok{(AEC)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## Warning: package 'vars' was built under R version 4.3.2
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{data }\OtherTok{\textless{}{-}}\NormalTok{ US3var[,}\FunctionTok{c}\NormalTok{(}\StringTok{"y.gdp.gap"}\NormalTok{,}\StringTok{"infl"}\NormalTok{)]}
-\FunctionTok{VARselect}\NormalTok{(data,}\AttributeTok{lag.max =} \DecValTok{6}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
 \begin{verbatim}
 ## $selection
 ## AIC(n)  HQ(n)  SC(n) FPE(n) 
@@ -2292,25 +2324,13 @@ where \(N=p \times n^{2}\).
 ## FPE(n)  0.7121914  0.6165990  0.5869659  0.5939325  0.5981364  0.61210908
 \end{verbatim}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{estimated.var }\OtherTok{\textless{}{-}} \FunctionTok{VAR}\NormalTok{(data,}\AttributeTok{p=}\DecValTok{3}\NormalTok{)}
-\CommentTok{\#print(estimated.var$varresult)}
-\NormalTok{Phi }\OtherTok{\textless{}{-}} \FunctionTok{Acoef}\NormalTok{(estimated.var)}
-\NormalTok{PHI }\OtherTok{\textless{}{-}} \FunctionTok{make.PHI}\NormalTok{(Phi) }\CommentTok{\# autoregressive matrix of companion form.}
-\FunctionTok{print}\NormalTok{(}\FunctionTok{abs}\NormalTok{(}\FunctionTok{eigen}\NormalTok{(PHI)}\SpecialCharTok{$}\NormalTok{values)) }\CommentTok{\# check stationarity}
-\end{Highlighting}
-\end{Shaded}
-
 \begin{verbatim}
 ## [1] 0.9114892 0.9114892 0.6319554 0.4759403 0.4759403 0.3246995
 \end{verbatim}
 
-\hypertarget{BlockGranger}{%
-\section{Block exogeneity and Granger causality}\label{BlockGranger}}
+\section{Block exogeneity and Granger causality}\label{BlockGranger}
 
-\hypertarget{block-exogeneity}{%
-\subsection{Block exogeneity}\label{block-exogeneity}}
+\subsection{Block exogeneity}\label{block-exogeneity}
 
 Let's decompose \(y_t\) into two subvectors \(y^{(1)}_{t}\) (\(n_1 \times 1\)) and \(y^{(2)}_{t}\) (\(n_2 \times 1\)), with \(y_t' = [{y^{(1)}_{t}}',{y^{(2)}_{t}}']\) (and therefore \(n=n_1 +n_2\)), such that:
 \[
@@ -2334,8 +2354,7 @@ y^{(2)}_{t-1}
 \]
 Using, e.g., a likelihood ratio test, one can easily test for block exogeneity of \(y_t^{(2)}\) (say). The null assumption can be expressed as \(\Phi^{(2,1)}=0\).
 
-\hypertarget{granger-causality}{%
-\subsection{Granger Causality}\label{granger-causality}}
+\subsection{Granger Causality}\label{granger-causality}
 
 \citet{Granger_1969} developed a method to explore \textbf{causal relationships} among variables. The approach consists in determining whether the past values of \(y_{1,t}\) can help explain the current \(y_{2,t}\) (beyond the information already included in the past values of \(y_{2,t}\)).
 
@@ -2374,12 +2393,6 @@ where RSS is the Restricted sum of squared residuals and USS is the Unrestricted
 
 According to the following lines of code, the output gap Granger-causes inflation, but the reverse is not true:
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{grangertest}\NormalTok{(US3var[,}\FunctionTok{c}\NormalTok{(}\StringTok{"y.gdp.gap"}\NormalTok{,}\StringTok{"infl"}\NormalTok{)],}\AttributeTok{order=}\DecValTok{3}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
 \begin{verbatim}
 ## Granger causality test
 ## 
@@ -2392,12 +2405,6 @@ According to the following lines of code, the output gap Granger-causes inflatio
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 \end{verbatim}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{grangertest}\NormalTok{(US3var[,}\FunctionTok{c}\NormalTok{(}\StringTok{"infl"}\NormalTok{,}\StringTok{"y.gdp.gap"}\NormalTok{)],}\AttributeTok{order=}\DecValTok{3}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
 \begin{verbatim}
 ## Granger causality test
 ## 
@@ -2408,11 +2415,9 @@ According to the following lines of code, the output gap Granger-causes inflatio
 ## 2    217 -3 1.5451 0.2038
 \end{verbatim}
 
-\hypertarget{identifStruct}{%
-\section{Standard identification techniques}\label{identifStruct}}
+\section{Standard identification techniques}\label{identifStruct}
 
-\hypertarget{IdentifPbm}{%
-\subsection{The identification problem}\label{IdentifPbm}}
+\subsection{The identification problem}\label{IdentifPbm}
 
 In Section \ref{estimVAR}, we have seen how to estimate \(\mathbb{V}ar(\varepsilon_t) =\Omega\) and the \(\Phi_k\) matrices in the context of a VAR model. But the IRFs are functions of \(B\) and of the \(\Phi_k\)'s, not of \(\Omega\) the \(\Phi_k\)'s (see Section \ref{IRFSVARMA}). We have \(\Omega = BB'\), which provides some restrictions on the components of \(B\), but this is not sufficient to fully identify \(B\). Indeed, seen a system of equations whose unknowns are the \(b_{i,j}\)'s (components of \(B\)), the system \(\Omega = BB'\) contains only \(n(n+1)/2\) linearly independent equations. For instance, for \(n=2\):
 \begin{eqnarray*}
@@ -2482,8 +2487,7 @@ We then have 3 linearly independent equations but 4 unknowns. Therefore, \(B\) i
 
 The two approaches can be combined (see, e.g., \citet{Gerlach_Smets_1995}).
 
-\hypertarget{a-stylized-example-motivating-short-run-restrictions}{%
-\subsection{A stylized example motivating short-run restrictions}\label{a-stylized-example-motivating-short-run-restrictions}}
+\subsection{A stylized example motivating short-run restrictions}\label{a-stylized-example-motivating-short-run-restrictions}
 
 Let us consider a simple example that could motivate short-run restrictions. Consider the following stylized macro model:
 \begin{equation}
@@ -2543,8 +2547,7 @@ i_{t-1} +
 
 This is the \textbf{reduced-form} of the model. This representation suggests three additional restrictions on the entries of \(B\); the latter matrix is therefore identified as soon as \(\Omega = BB'\) is known (up to the signs of its columns).
 
-\hypertarget{cholesky-a-specific-short-run-restriction-situation}{%
-\subsection{Cholesky: a specific short-run-restriction situation}\label{cholesky-a-specific-short-run-restriction-situation}}
+\subsection{Cholesky: a specific short-run-restriction situation}\label{cholesky-a-specific-short-run-restriction-situation}
 
 There are particular cases in which some well-known matrix decomposition of \(\Omega=\mathbb{V}ar(\varepsilon_t)\) can be used to easily estimate some specific SVAR. This is the case for the so-called Cholesky decomposition. Consider the following context:
 
@@ -2600,33 +2603,11 @@ where \(S\), \(r\) and \(F\) respectively correspond to \emph{slow-moving variab
 
 An equivalent approach consists in computing the Cholesky decomposition of \(BB'\) and the contemporaneous impacts of the monetary policy shock (on the \(n\) endogenous variables) are the components of the column of \(B\) corresponding to the policy variable.
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{library}\NormalTok{(AEC);}\FunctionTok{library}\NormalTok{(vars)}
-\FunctionTok{data}\NormalTok{(}\StringTok{"USmonthly"}\NormalTok{)}
-\CommentTok{\# Select sample period:}
-\NormalTok{First.date }\OtherTok{\textless{}{-}} \StringTok{"1965{-}01{-}01"}\NormalTok{;Last.date }\OtherTok{\textless{}{-}} \StringTok{"1995{-}06{-}01"}
-\NormalTok{indic.first }\OtherTok{\textless{}{-}} \FunctionTok{which}\NormalTok{(USmonthly}\SpecialCharTok{$}\NormalTok{DATES}\SpecialCharTok{==}\NormalTok{First.date)}
-\NormalTok{indic.last  }\OtherTok{\textless{}{-}} \FunctionTok{which}\NormalTok{(USmonthly}\SpecialCharTok{$}\NormalTok{DATES}\SpecialCharTok{==}\NormalTok{Last.date)}
-\NormalTok{USmonthly   }\OtherTok{\textless{}{-}}\NormalTok{ USmonthly[indic.first}\SpecialCharTok{:}\NormalTok{indic.last,]}
-\NormalTok{considered.variables }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"LIP"}\NormalTok{,}\StringTok{"UNEMP"}\NormalTok{,}\StringTok{"LCPI"}\NormalTok{,}\StringTok{"LPCOM"}\NormalTok{,}\StringTok{"FFR"}\NormalTok{,}\StringTok{"NBR"}\NormalTok{,}\StringTok{"TTR"}\NormalTok{,}\StringTok{"M1"}\NormalTok{)}
-\NormalTok{y }\OtherTok{\textless{}{-}} \FunctionTok{as.matrix}\NormalTok{(USmonthly[considered.variables])}
-\NormalTok{res.svar.ordering }\OtherTok{\textless{}{-}} \FunctionTok{svar.ordering}\NormalTok{(y,}\AttributeTok{p=}\DecValTok{3}\NormalTok{,}
-                                   \AttributeTok{posit.of.shock =} \DecValTok{5}\NormalTok{,}
-                                   \AttributeTok{nb.periods.IRF =} \DecValTok{20}\NormalTok{,}
-                                   \AttributeTok{nb.bootstrap.replications =} \DecValTok{100}\NormalTok{,}
-                                   \AttributeTok{confidence.interval =} \FloatTok{0.90}\NormalTok{, }\CommentTok{\# expressed in pp.}
-                                   \AttributeTok{indic.plot =} \DecValTok{1} \CommentTok{\# Plots are displayed if = 1.}
-\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
 \begin{figure}
 \includegraphics[width=0.95\linewidth]{TimeSeries_files/figure-latex/CEE-1} \caption{Response to a monetary-policy shock. Identification approach of Christiano, Eichenbaum and Evans (1996). Confidence intervals are obtained by boostrapping the estimated VAR model (see inference section).}\label{fig:CEE}
 \end{figure}
 
-\hypertarget{long-run-restrictions}{%
-\subsection{Long-run restrictions}\label{long-run-restrictions}}
+\subsection{Long-run restrictions}\label{long-run-restrictions}
 
 Let us now turn to \textbf{Long-run restrictions}. Such a restriction concerns the long-run influence of a shock on an endogenous variable. Let us consider for instance a structural shock that is assumed to have no ``long-run influence'' on GDP. How to express this? The long-run change in GDP can be expressed as \(GDP_{t+h} - GDP_t\), with \(h\) large. Note further that:
 \[
@@ -2701,50 +2682,11 @@ where \(\Theta_{ij}\) is the element \((i,j)\) of \(\Theta\).
 
 \citet{Blanchard_Quah_1989}'s dataset is quarterly, spanning the period from 1950:2 to 1987:4. Their VAR features 8 lags. Here are the data they use:
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{library}\NormalTok{(AEC)}
-\FunctionTok{data}\NormalTok{(BQ)}
-\FunctionTok{par}\NormalTok{(}\AttributeTok{mfrow=}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{))}
-\FunctionTok{plot}\NormalTok{(BQ}\SpecialCharTok{$}\NormalTok{Date,BQ}\SpecialCharTok{$}\NormalTok{Dgdp,}\AttributeTok{type=}\StringTok{"l"}\NormalTok{,}\AttributeTok{main=}\StringTok{"GDP quarterly growth rate"}\NormalTok{,}
-     \AttributeTok{xlab=}\StringTok{""}\NormalTok{,}\AttributeTok{ylab=}\StringTok{""}\NormalTok{,}\AttributeTok{lwd=}\DecValTok{2}\NormalTok{)}
-\FunctionTok{plot}\NormalTok{(BQ}\SpecialCharTok{$}\NormalTok{Date,BQ}\SpecialCharTok{$}\NormalTok{unemp,}\AttributeTok{type=}\StringTok{"l"}\NormalTok{,}\AttributeTok{ylim=}\FunctionTok{c}\NormalTok{(}\SpecialCharTok{{-}}\DecValTok{3}\NormalTok{,}\DecValTok{6}\NormalTok{),}\AttributeTok{main=}\StringTok{"Unemployment rate (gap)"}\NormalTok{,}
-     \AttributeTok{xlab=}\StringTok{""}\NormalTok{,}\AttributeTok{ylab=}\StringTok{""}\NormalTok{,}\AttributeTok{lwd=}\DecValTok{2}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\includegraphics{TimeSeries_files/figure-latex/BQ1-1.pdf}
+\pandocbounded{\includegraphics[keepaspectratio]{TimeSeries_files/figure-latex/BQ1-1.pdf}}
 
 Estimate a reduced-form VAR(8) model:
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{library}\NormalTok{(vars)}
-\NormalTok{y }\OtherTok{\textless{}{-}}\NormalTok{ BQ[,}\DecValTok{2}\SpecialCharTok{:}\DecValTok{3}\NormalTok{]}
-\NormalTok{est.VAR }\OtherTok{\textless{}{-}} \FunctionTok{VAR}\NormalTok{(y,}\AttributeTok{p=}\DecValTok{8}\NormalTok{)}
-\NormalTok{Omega }\OtherTok{\textless{}{-}} \FunctionTok{var}\NormalTok{(}\FunctionTok{residuals}\NormalTok{(est.VAR))}
-\end{Highlighting}
-\end{Shaded}
-
 Now, let us define a loss function (\texttt{loss}) that is equal to zero if (a) \(BB'=\Omega\) and (b) the element (1,1) of \(\Theta = (Id - \Phi)^{-1} B\) is equal to zero:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# Compute (Id {-} Phi)\^{}\{{-}1\}:}
-\NormalTok{Phi }\OtherTok{\textless{}{-}} \FunctionTok{Acoef}\NormalTok{(est.VAR)}
-\NormalTok{PHI }\OtherTok{\textless{}{-}} \FunctionTok{make.PHI}\NormalTok{(Phi)}
-\NormalTok{sum.PHI.k }\OtherTok{\textless{}{-}} \FunctionTok{solve}\NormalTok{(}\FunctionTok{diag}\NormalTok{(}\FunctionTok{dim}\NormalTok{(PHI)[}\DecValTok{1}\NormalTok{]) }\SpecialCharTok{{-}}\NormalTok{ PHI)[}\DecValTok{1}\SpecialCharTok{:}\DecValTok{2}\NormalTok{,}\DecValTok{1}\SpecialCharTok{:}\DecValTok{2}\NormalTok{]}
-\NormalTok{loss }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(param)\{}
-\NormalTok{  B }\OtherTok{\textless{}{-}} \FunctionTok{matrix}\NormalTok{(param,}\DecValTok{2}\NormalTok{,}\DecValTok{2}\NormalTok{)}
-\NormalTok{  X }\OtherTok{\textless{}{-}}\NormalTok{ Omega }\SpecialCharTok{{-}}\NormalTok{ B }\SpecialCharTok{\%*\%} \FunctionTok{t}\NormalTok{(B)}
-\NormalTok{  Theta }\OtherTok{\textless{}{-}}\NormalTok{ sum.PHI.k[}\DecValTok{1}\SpecialCharTok{:}\DecValTok{2}\NormalTok{,}\DecValTok{1}\SpecialCharTok{:}\DecValTok{2}\NormalTok{] }\SpecialCharTok{\%*\%}\NormalTok{ B}
-\NormalTok{  loss }\OtherTok{\textless{}{-}} \DecValTok{10000} \SpecialCharTok{*}\NormalTok{ ( X[}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{]}\SpecialCharTok{\^{}}\DecValTok{2} \SpecialCharTok{+}\NormalTok{ X[}\DecValTok{2}\NormalTok{,}\DecValTok{1}\NormalTok{]}\SpecialCharTok{\^{}}\DecValTok{2} \SpecialCharTok{+}\NormalTok{ X[}\DecValTok{2}\NormalTok{,}\DecValTok{2}\NormalTok{]}\SpecialCharTok{\^{}}\DecValTok{2} \SpecialCharTok{+}\NormalTok{ Theta[}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{]}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{ )}
-  \FunctionTok{return}\NormalTok{(loss)}
-\NormalTok{\}}
-\NormalTok{res.opt }\OtherTok{\textless{}{-}} \FunctionTok{optim}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{),loss,}\AttributeTok{method=}\StringTok{"BFGS"}\NormalTok{,}\AttributeTok{hessian=}\ConstantTok{FALSE}\NormalTok{)}
-\FunctionTok{print}\NormalTok{(res.opt}\SpecialCharTok{$}\NormalTok{par)}
-\end{Highlighting}
-\end{Shaded}
 
 \begin{verbatim}
 ## [1]  0.8570358 -0.2396345  0.1541395  0.1921221
@@ -2754,40 +2696,101 @@ Now, let us define a loss function (\texttt{loss}) that is equal to zero if (a) 
 
 Figure \ref{fig:BQ4} displays the resulting IRFs. Note that, for GDP, we cumulate the GDP growth IRF, so as to have the response of the GDP in level.
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{B.hat }\OtherTok{\textless{}{-}} \FunctionTok{matrix}\NormalTok{(res.opt}\SpecialCharTok{$}\NormalTok{par,}\DecValTok{2}\NormalTok{,}\DecValTok{2}\NormalTok{)}
-\FunctionTok{print}\NormalTok{(}\FunctionTok{cbind}\NormalTok{(Omega,B.hat }\SpecialCharTok{\%*\%} \FunctionTok{t}\NormalTok{(B.hat)))}
-\end{Highlighting}
-\end{Shaded}
-
 \begin{verbatim}
 ##             Dgdp       unemp                       
 ## Dgdp   0.7582704 -0.17576173  0.7582694 -0.17576173
 ## unemp -0.1757617  0.09433658 -0.1757617  0.09433558
 \end{verbatim}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{nb.sim }\OtherTok{\textless{}{-}} \DecValTok{40}
-\FunctionTok{par}\NormalTok{(}\AttributeTok{mfrow=}\FunctionTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{2}\NormalTok{));}\FunctionTok{par}\NormalTok{(}\AttributeTok{plt=}\FunctionTok{c}\NormalTok{(.}\DecValTok{15}\NormalTok{,.}\DecValTok{95}\NormalTok{,.}\DecValTok{15}\NormalTok{,.}\DecValTok{8}\NormalTok{))}
-\NormalTok{Y }\OtherTok{\textless{}{-}} \FunctionTok{simul.VAR}\NormalTok{(}\AttributeTok{c=}\FunctionTok{matrix}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{1}\NormalTok{),Phi,B.hat,nb.sim,}\AttributeTok{y0.star=}\FunctionTok{rep}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{2}\SpecialCharTok{*}\DecValTok{8}\NormalTok{),}
-               \AttributeTok{indic.IRF =} \DecValTok{1}\NormalTok{,}\AttributeTok{u.shock =} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{0}\NormalTok{))}
-\FunctionTok{plot}\NormalTok{(}\FunctionTok{cumsum}\NormalTok{(Y[,}\DecValTok{1}\NormalTok{]),}\AttributeTok{type=}\StringTok{"l"}\NormalTok{,}\AttributeTok{lwd=}\DecValTok{2}\NormalTok{,}\AttributeTok{xlab=}\StringTok{""}\NormalTok{,}\AttributeTok{ylab=}\StringTok{""}\NormalTok{,}\AttributeTok{main=}\StringTok{"Demand shock on GDP"}\NormalTok{)}
-\FunctionTok{plot}\NormalTok{(Y[,}\DecValTok{2}\NormalTok{],}\AttributeTok{type=}\StringTok{"l"}\NormalTok{,}\AttributeTok{lwd=}\DecValTok{2}\NormalTok{,}\AttributeTok{xlab=}\StringTok{""}\NormalTok{,}\AttributeTok{ylab=}\StringTok{""}\NormalTok{,}\AttributeTok{main=}\StringTok{"Demand shock on UNEMP"}\NormalTok{)}
-\NormalTok{Y }\OtherTok{\textless{}{-}} \FunctionTok{simul.VAR}\NormalTok{(}\AttributeTok{c=}\FunctionTok{matrix}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{1}\NormalTok{),Phi,B.hat,nb.sim,}\AttributeTok{y0.star=}\FunctionTok{rep}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{2}\SpecialCharTok{*}\DecValTok{8}\NormalTok{),}
-               \AttributeTok{indic.IRF =} \DecValTok{1}\NormalTok{,}\AttributeTok{u.shock =} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{))}
-\FunctionTok{plot}\NormalTok{(}\FunctionTok{cumsum}\NormalTok{(Y[,}\DecValTok{1}\NormalTok{]),}\AttributeTok{type=}\StringTok{"l"}\NormalTok{,}\AttributeTok{lwd=}\DecValTok{2}\NormalTok{,}\AttributeTok{xlab=}\StringTok{""}\NormalTok{,}\AttributeTok{ylab=}\StringTok{""}\NormalTok{,}\AttributeTok{main=}\StringTok{"Supply shock on GDP"}\NormalTok{)}
-\FunctionTok{plot}\NormalTok{(Y[,}\DecValTok{2}\NormalTok{],}\AttributeTok{type=}\StringTok{"l"}\NormalTok{,}\AttributeTok{lwd=}\DecValTok{2}\NormalTok{,}\AttributeTok{xlab=}\StringTok{""}\NormalTok{,}\AttributeTok{ylab=}\StringTok{""}\NormalTok{,}\AttributeTok{main=}\StringTok{"Supply shock on UNEMP"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
 \begin{figure}
 \includegraphics[width=0.95\linewidth]{TimeSeries_files/figure-latex/BQ4-1} \caption{IRF of GDP and unemployment to demand and supply shocks.}\label{fig:BQ4}
 \end{figure}
 
-\hypertarget{forecasting}{%
-\chapter{Forecasting}\label{forecasting}}
+\section{Exercise}\label{var-exercises}
+
+\Needspace{24\baselineskip}
+
+\begin{exercisebox}
+
+\begin{exercise}[VAR lag selection, stability, and recursive identification]
+\protect\hypertarget{exr:ex-var-model}{}\label{exr:ex-var-model}
+
+\textbf{PS3 \textbar{} Advanced \textbar{} Multivariate analysis}\\
+Review Section \ref{estimVAR}.
+
+A quarterly VAR contains inflation, the output gap, and the short-term interest rate (\(T=224\)). The criteria for lags 1--10 attain their minima at lag 6 for AIC, lag 3 for HQ, and lag 2 for BIC.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  State the lag choice implied by each criterion.
+\item
+  If BIC is followed, explain conditional Gaussian maximum-likelihood estimation of the VAR(2).
+\item
+  Explain how the \(6\times6\) companion matrix is formed and how its eigenvalues determine covariance stationarity.
+\end{enumerate}
+
+The fitted coefficient matrices are
+\[
+\widehat\Phi_1=\begin{bmatrix}.627&.054&.077\\.034&1.255&-.087\\.143&.560&.687\end{bmatrix},\qquad
+\widehat\Phi_2=\begin{bmatrix}.271&.010&-.065\\-.031&-.298&.053\\.027&-.465&.203\end{bmatrix}.
+\]
+
+We seek supply, demand, and monetary-policy shocks. A monetary-policy shock has no contemporaneous effect on activity or inflation, and a demand shock has no contemporaneous effect on activity.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{3}
+\tightlist
+\item
+  Are these three zero restrictions sufficient for exact identification under the stated recursive structure?
+\item
+  Give the ordering of variables and shocks that makes the impact matrix lower triangular, and explain it economically.
+\end{enumerate}
+
+\end{exercise}
+
+\end{exercisebox}
+
+\subsection{Exercise from the 2024 exam}\label{exercise-from-the-2024-exam}
+
+\Needspace{24\baselineskip}
+
+\begin{exercisebox}
+
+\begin{exercise}[VAR forecasts and structural impacts]
+\protect\hypertarget{exr:ex-exam2024-var-forecast-identification}{}\label{exr:ex-exam2024-var-forecast-identification}
+
+\textbf{EXAM-2024 \textbar{} Exam \textbar{} True/false}\\
+Review Section \ref{VAR}.
+
+Consider the three-variable VAR(3)
+\[y_t=c+\Phi_1y_{t-1}+\Phi_2y_{t-2}+\Phi_3y_{t-3}+B\eta_t,\]
+where \(\eta_t\overset{i.i.d.}{\sim}\mathcal N(0,I_3)\).
+
+State whether each assertion is true or false and justify your answer.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \(\mathbb E_t(y_{t+2})=c+\Phi_1c\).
+\item
+  \(\operatorname{Var}_t(y_{t+1})=BB'\).
+\item
+  Knowing \(\Omega=BB'\) is sufficient to recover an unrestricted \(B\).
+\item
+  The contemporaneous impacts of a unit \(\eta_{2,t}\) shock on the three variables are \(B_{1,2}\), \(B_{2,2}\), and \(B_{3,2}\).
+\item
+  If \(B\) is lower triangular, an \(\eta_{3,t}\) shock has no contemporaneous effect on \(y_{1,t}\) or \(y_{2,t}\).
+\end{enumerate}
+
+\end{exercise}
+
+\end{exercisebox}
+
+\chapter{Forecasting}\label{forecasting}
 
 Forecasting has always been an important part of the time series field (\citet{DEGOOIJER2006443}). Macroeconomic forecasts are done in many places: Public Administration (notably Treasuries), Central Banks, International Institutions (e.g.~IMF, OECD), banks, big firms. These institutions are interested in the \textbf{point estimates} (\(\sim\) most likely value) of the variable of interest. They also sometimes need to measure the \textbf{uncertainty} (\(\sim\) dispersion of likely outcomes) associated to the point estimates.\footnote{In its inflation report, the Bank of England displays charts showing the conditional distribution of future inflation, called fan charts. This fan charts show the uncertainty associated with future inflation. See \href{https://www.bankofengland.co.uk/quarterly-bulletin/1998/q1/the-inflation-report-projections-understanding-the-fan-chart}{this page}.}
 
@@ -3036,36 +3039,11 @@ where \(\Phi\) is the c.d.f. of the standard normal distribution.
 
 We want to forecast this GDP growth. We envision two specifications : an AR(1) specification (the one advocated by the AIC criteria, see Example \ref{exm:SwissGrowthAIC}), and an ARMA(2,2) specification. We are interested in 2-year-ahead forecasts (i.e., \(h=2\) since the data are yearly).
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{library}\NormalTok{(AEC)}
-\FunctionTok{library}\NormalTok{(forecast)}
-\end{Highlighting}
-\end{Shaded}
-
 \begin{verbatim}
 ## Registered S3 method overwritten by 'quantmod':
 ##   method            from
 ##   as.zoo.data.frame zoo
 \end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{data }\OtherTok{\textless{}{-}} \FunctionTok{subset}\NormalTok{(JST,iso}\SpecialCharTok{==}\StringTok{"CHE"}\NormalTok{)}
-\NormalTok{T }\OtherTok{\textless{}{-}} \FunctionTok{dim}\NormalTok{(data)[}\DecValTok{1}\NormalTok{]}
-\NormalTok{y }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\ConstantTok{NaN}\NormalTok{,}\FunctionTok{log}\NormalTok{(data}\SpecialCharTok{$}\NormalTok{gdp[}\DecValTok{2}\SpecialCharTok{:}\NormalTok{T]}\SpecialCharTok{/}\NormalTok{data}\SpecialCharTok{$}\NormalTok{gdp[}\DecValTok{1}\SpecialCharTok{:}\NormalTok{(T}\DecValTok{{-}1}\NormalTok{)]))}
-\NormalTok{first.date }\OtherTok{\textless{}{-}}\NormalTok{ T}\DecValTok{{-}50}
-\NormalTok{e1 }\OtherTok{\textless{}{-}} \ConstantTok{NULL}\NormalTok{; e2 }\OtherTok{\textless{}{-}} \ConstantTok{NULL}\NormalTok{;h}\OtherTok{\textless{}{-}}\DecValTok{2}
-\ControlFlowTok{for}\NormalTok{(T.star }\ControlFlowTok{in}\NormalTok{ first.date}\SpecialCharTok{:}\NormalTok{(T}\SpecialCharTok{{-}}\NormalTok{h))\{}
-\NormalTok{  estim.model}\FloatTok{.1} \OtherTok{\textless{}{-}} \FunctionTok{arima}\NormalTok{(y[}\DecValTok{1}\SpecialCharTok{:}\NormalTok{T.star],}\AttributeTok{order=}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{))}
-\NormalTok{  estim.model}\FloatTok{.2} \OtherTok{\textless{}{-}} \FunctionTok{arima}\NormalTok{(y[}\DecValTok{1}\SpecialCharTok{:}\NormalTok{T.star],}\AttributeTok{order=}\FunctionTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{2}\NormalTok{))}
-\NormalTok{  e1 }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(e1,y[T.star}\SpecialCharTok{+}\NormalTok{h] }\SpecialCharTok{{-}} \FunctionTok{predict}\NormalTok{(estim.model}\FloatTok{.1}\NormalTok{,}\AttributeTok{n.ahead=}\NormalTok{h)}\SpecialCharTok{$}\NormalTok{pred[h])}
-\NormalTok{  e2 }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(e2,y[T.star}\SpecialCharTok{+}\NormalTok{h] }\SpecialCharTok{{-}} \FunctionTok{predict}\NormalTok{(estim.model}\FloatTok{.2}\NormalTok{,}\AttributeTok{n.ahead=}\NormalTok{h)}\SpecialCharTok{$}\NormalTok{pred[h])}
-\NormalTok{\}}
-\NormalTok{res.DM }\OtherTok{\textless{}{-}} \FunctionTok{dm.test}\NormalTok{(e1,e2,}\AttributeTok{h =}\NormalTok{ h,}\AttributeTok{alternative =} \StringTok{"greater"}\NormalTok{)}
-\NormalTok{res.DM}
-\end{Highlighting}
-\end{Shaded}
 
 \begin{verbatim}
 ## 
@@ -3081,21 +3059,6 @@ With \texttt{alternative\ =\ "greater"} The alternative hypothesis is that metho
 
 Assume now that we want to compare the AR(1) process to a VAR model (see Def. \ref{def:SVAR}). We consider a bivariate VAR, where GDP growth is complemented with CPI-based inflation rate.
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{library}\NormalTok{(vars)}
-\NormalTok{infl }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\ConstantTok{NaN}\NormalTok{,}\FunctionTok{log}\NormalTok{(data}\SpecialCharTok{$}\NormalTok{cpi[}\DecValTok{2}\SpecialCharTok{:}\NormalTok{T]}\SpecialCharTok{/}\NormalTok{data}\SpecialCharTok{$}\NormalTok{cpi[}\DecValTok{1}\SpecialCharTok{:}\NormalTok{(T}\DecValTok{{-}1}\NormalTok{)]))}
-\NormalTok{y\_var }\OtherTok{\textless{}{-}} \FunctionTok{cbind}\NormalTok{(y,infl)}
-\NormalTok{e3 }\OtherTok{\textless{}{-}} \ConstantTok{NULL}
-\ControlFlowTok{for}\NormalTok{(T.star }\ControlFlowTok{in}\NormalTok{ first.date}\SpecialCharTok{:}\NormalTok{(T}\SpecialCharTok{{-}}\NormalTok{h))\{}
-\NormalTok{  estim.model}\FloatTok{.3} \OtherTok{\textless{}{-}} \FunctionTok{VAR}\NormalTok{(y\_var[}\DecValTok{2}\SpecialCharTok{:}\NormalTok{T.star,],}\AttributeTok{p=}\DecValTok{1}\NormalTok{)}
-\NormalTok{  e3 }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(e3,y[T.star}\SpecialCharTok{+}\NormalTok{h] }\SpecialCharTok{{-}} \FunctionTok{predict}\NormalTok{(estim.model}\FloatTok{.3}\NormalTok{,}\AttributeTok{n.ahead=}\NormalTok{h)}\SpecialCharTok{$}\NormalTok{fcst}\SpecialCharTok{$}\NormalTok{y[h,}\DecValTok{1}\NormalTok{])}
-\NormalTok{\}}
-\NormalTok{res.DM }\OtherTok{\textless{}{-}} \FunctionTok{dm.test}\NormalTok{(e1,e3,}\AttributeTok{h =}\NormalTok{ h,}\AttributeTok{alternative =} \StringTok{"greater"}\NormalTok{)}
-\NormalTok{res.DM}
-\end{Highlighting}
-\end{Shaded}
-
 \begin{verbatim}
 ## 
 ##  Diebold-Mariano Test
@@ -3109,8 +3072,88 @@ Assume now that we want to compare the AR(1) process to a VAR model (see Def. \r
 Again, we do not find that the alternative model (here the VAR(1) model) is better than the AR(1) model to forecast GDP growth.
 \end{example}
 
-\hypertarget{NonStat}{%
-\chapter{Non-stationary processes}\label{NonStat}}
+\section{Exercise}\label{forecasting-exercises}
+
+\Needspace{24\baselineskip}
+
+\begin{exercisebox}
+
+\begin{exercise}[Forecast comparison and the Diebold–Mariano test]
+\protect\hypertarget{exr:ex-forecast-performance}{}\label{exr:ex-forecast-performance}
+
+\textbf{PS3 \textbar{} Advanced \textbar{} Forecast evaluation}\\
+Review Section \ref{forecasting}.
+
+Three one-step forecasting models are compared on 200 observations: A, a random walk; B, an AR(1); and C, an ARMA(2,2). The out-of-sample exercise uses 100 rolling estimation windows of length 100.
+
+\begin{longtable}[]{@{}lrrr@{}}
+\toprule\noalign{}
+& Model A & Model B & Model C \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+In-sample RMSE & 1.03 & 0.96 & 0.94 \\
+Out-of-sample RMSE & 1.11 & 1.02 & 1.09 \\
+Mean loss differential \(\bar d\) versus A & --- & -0.191 & -0.044 \\
+\(\hat\gamma_0\) & --- & 0.090 & 0.132 \\
+\(\hat\gamma_1\) & --- & 0.061 & 0.086 \\
+\(\hat\gamma_2\) & --- & 0.020 & 0.047 \\
+\(\hat\gamma_3\) & --- & 0.003 & 0.011 \\
+\end{longtable}
+
+Here \(d_t=e_{j,t}^2-e_{A,t}^2\), for \(j=B,C\).
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Discuss the in-sample and out-of-sample rankings.
+\item
+  Using a Newey--West long-run variance with maximum lag 3 and Bartlett weights, estimate \(\operatorname{Var}(\bar d)\).
+\item
+  Test at 5\% whether B and C have equal predictive accuracy to A, and interpret the sign of the test statistic.
+\end{enumerate}
+
+\end{exercise}
+
+\end{exercisebox}
+
+\subsection{Exercise from the 2024 exam}\label{exercise-from-the-2024-exam-1}
+
+\Needspace{24\baselineskip}
+
+\begin{exercisebox}
+
+\begin{exercise}[Inflation forecasts from an MA(1)]
+\protect\hypertarget{exr:ex-exam2024-ma1-forecasting}{}\label{exr:ex-exam2024-ma1-forecasting}
+
+\textbf{EXAM-2024 \textbar{} Exam \textbar{} True/false}\\
+Review Section \ref{forecasting}.
+
+Let annual inflation be \(\pi_t=0.02+\varepsilon_t+0.4\varepsilon_{t-1}\), where \(\varepsilon_t\overset{i.i.d.}{\sim}\mathcal N(0,\sigma^2)\) and \(\sigma=0.01\).
+
+State whether each assertion is true or false and justify your answer.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  For \(h>0\), \(\mathbb E(\pi_{t+h}+\cdots+\pi_{t+1}\mid\varepsilon_t,\varepsilon_{t-1},\ldots)=0.02h+0.4\varepsilon_t\).
+\item
+  \(\operatorname{Var}(\pi_t)=0.01\).
+\item
+  Conditional on \(\varepsilon_t=0\), a 95\% interval for \(\pi_{t+1}\) is \([-1.96\sigma,1.96\sigma]\).
+\item
+  \(\pi_t\) is correlated with \(\pi_{t-1}\) but uncorrelated with \(\pi_{t-2}\).
+\item
+  \(\operatorname{Var}_t(\pi_{t+3})=\operatorname{Var}_t(\pi_{t+2})\).
+\end{enumerate}
+
+\end{exercise}
+
+\end{exercisebox}
+
+\chapter{Non-stationary processes}\label{NonStat}
 
 In time series analysis, nonstationarity has several crucial implications. Indeed, various time-series regression procedures are not reliable anymore when processes are nonstationary.
 
@@ -3140,16 +3183,14 @@ We also have \(\mathbb{E}_{t-h}(y_t)=y_{t-h}\) and \(\mathbb{V}ar_t(y_{t+h})=\ma
 \]
 Since the previous equation needs to be satisfied for any \(h\) (even infintely large ones), and since \(\mathbb{V}ar(y_{t-h})>0\), \(\mathbb{V}ar(y_t)\) can not be finite. None of the population moments of a random walk is actually defined.
 
-\hypertarget{issues-when-working-with-nonstationary-time-series}{%
-\section{Issues when working with nonstationary time series}\label{issues-when-working-with-nonstationary-time-series}}
+\section{Issues when working with nonstationary time series}\label{issues-when-working-with-nonstationary-time-series}
 
 Let us discuss three issues associated with nonstationary processes:
 1. Bias of autoregressive coefficient towards 0 (context: autoregressions).
 2. Even in large samples, the \(t\)-statistics cannot be approximated by the normal distribution (context: OLS regressions).
 3. Spurious regressions: OLS-based regression analysis tends to indicate relationships between \emph{independent} nonstationary (or unit-root) series.
 
-\hypertarget{the-bias-of-autoregressive-coefficient-towards-zero}{%
-\subsection{The bias of autoregressive coefficient towards zero}\label{the-bias-of-autoregressive-coefficient-towards-zero}}
+\subsection{The bias of autoregressive coefficient towards zero}\label{the-bias-of-autoregressive-coefficient-towards-zero}
 
 Consider a non-stationary \(y_t\) process (e.g., \(y_t\) follows a random walk). The estimate of \(\phi\) in the (OLS) regression \(y_t = c + \phi y_{t-1} + \varepsilon_t\) is then biased toward zero. In particular, we have the approximation \(\mathbb{E}(\phi)=1-5.3/T\), where \(T\) is the sample size (see, e.g., \citet{Abadir_1993}). The 5th percentile of the distribution of \(\phi\) is approximately \(1 - 14.1/T\), e.g., 0.824 for \(T=80\). This notably poses problems for forecasts. Indeed, while we have \(\mathbb{E}_t(y_{t+h})=y_t\) if \(y_t\) follows a random walk, someone who would fit an AR(1) process and would obtain for instance \(\hat\phi=0.824\) would obtain that \(\mathbb{E}_t(y_{t+10})=0.144y_t\).
 
@@ -3159,8 +3200,7 @@ This is illustrated by Figure \ref{fig:nonStat1}. This figure shows, in black, t
 \includegraphics[width=0.95\linewidth]{TimeSeries_files/figure-latex/nonStat1-1} \caption{The densities of based on 1000 simulations of samples of length $T$, they are approximated by the kernel approach.}\label{fig:nonStat1}
 \end{figure}
 
-\hypertarget{spurious-regressions}{%
-\subsection{Spurious regressions}\label{spurious-regressions}}
+\subsection{Spurious regressions}\label{spurious-regressions}
 
 Consider two independent non-stationary (unit roots) variables. If we regress one on the other, and if we use the standard OLS formulas to compute the standard deviation of the regression parameter, it can be shown that we will tend to underestimate this standard deviation. As a result, if we use standard \(t\)-statistics to test for the existence of a relationship between the two variables, we will often have false positive, i.e., we will often reject the null hypothesis of no relationship (\(H_0\): regression coefficient = 0). This phenomenon is called \emph{spurious regressions} (see, e.g., these \href{https://www.tylervigen.com/spurious-correlations}{examples}).
 
@@ -3170,8 +3210,7 @@ This situation is illustrated by Figure \ref{fig:nonStat2}. We simulate two inde
 \includegraphics[width=0.95\linewidth]{TimeSeries_files/figure-latex/nonStat2-1} \caption{The densities of based on 1000 simulations of samples of length $T$, they are approximated by the kernel approach.}\label{fig:nonStat2}
 \end{figure}
 
-\hypertarget{nonstationarity-tests}{%
-\section{Nonstationarity tests}\label{nonstationarity-tests}}
+\section{Nonstationarity tests}\label{nonstationarity-tests}
 
 Hence, employing (OLS) regressions with non-stationary variables may be misleading. It is therefore important, before employing these techniques (OLS), to check that the variables are stationary. To do so, specific tests are used. These tests are called stationarity and non-stationarity (or unit-root) tests. In the context of a stationarity test, the null hypothesis that \(y_t\) is stationary or trend-stationary (i.e.~equal to the sum of a linear trend and a stationary component). In the context of a non-stationarity (or unit root) tests, the null hypothesis that \(y_t\) is not (trend) stationary.
 
@@ -3323,8 +3362,7 @@ If \(|\phi|<1\), the OLS estimate \(\phi^{OLS}_T\) is not consistent if the \(\v
 
 As the ADF test, this test is \textbf{one-sided left-tailed} (reject the null if the test statistics are sufficiently negative). The critical values are obtained by simulation; they can for instance be found \href{http://www.econ.uiuc.edu/~econ508/DFtable.pdf}{here}.
 
-\hypertarget{stationarity-test-kpss}{%
-\section{Stationarity test: KPSS}\label{stationarity-test-kpss}}
+\section{Stationarity test: KPSS}\label{stationarity-test-kpss}
 
 The test proposed by \citet{KWIATKOWSKI1992159} is a stationarity test, i.e., under the null hypothesis, the process is stationary. The underlying specificaiton is the following:
 \[
@@ -3367,28 +3405,9 @@ Let us use quarterly US data and test the stationarity of inflation and the 3-mo
 
 Let us now run the tests. Note that the default alternative hypothesis of function \texttt{adf.test} of package \texttt{tseries} is that the process is trend-stationary. Note that when \texttt{kpss.test} returns a p-value of \texttt{0.01}, it means that the true p-value is lower then that.
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{library}\NormalTok{(tseries)}
-\NormalTok{test.adf.infl }\OtherTok{\textless{}{-}} \FunctionTok{adf.test}\NormalTok{(US3var}\SpecialCharTok{$}\NormalTok{infl,}\AttributeTok{k=}\DecValTok{4}\NormalTok{)}
-\NormalTok{test.adf.r    }\OtherTok{\textless{}{-}} \FunctionTok{adf.test}\NormalTok{(US3var}\SpecialCharTok{$}\NormalTok{r,}\AttributeTok{k=}\DecValTok{4}\NormalTok{)}
-\NormalTok{test.pp.infl }\OtherTok{\textless{}{-}} \FunctionTok{pp.test}\NormalTok{(US3var}\SpecialCharTok{$}\NormalTok{infl)}
-\NormalTok{test.pp.r    }\OtherTok{\textless{}{-}} \FunctionTok{pp.test}\NormalTok{(US3var}\SpecialCharTok{$}\NormalTok{r)}
-\NormalTok{test.kpss.infl }\OtherTok{\textless{}{-}} \FunctionTok{kpss.test}\NormalTok{(US3var}\SpecialCharTok{$}\NormalTok{infl)}
-\NormalTok{test.kpss.r    }\OtherTok{\textless{}{-}} \FunctionTok{kpss.test}\NormalTok{(US3var}\SpecialCharTok{$}\NormalTok{r)}
-\FunctionTok{c}\NormalTok{(test.adf.infl}\SpecialCharTok{$}\NormalTok{p.value,test.pp.infl}\SpecialCharTok{$}\NormalTok{p.value,test.kpss.infl}\SpecialCharTok{$}\NormalTok{p.value)}
-\end{Highlighting}
-\end{Shaded}
-
 \begin{verbatim}
 ## [1] 0.29230878 0.04978275 0.01000000
 \end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{c}\NormalTok{(test.adf.r}\SpecialCharTok{$}\NormalTok{p.value,test.pp.r}\SpecialCharTok{$}\NormalTok{p.value,test.kpss.r}\SpecialCharTok{$}\NormalTok{p.value)}
-\end{Highlighting}
-\end{Shaded}
 
 \begin{verbatim}
 ## [1] 0.3837577 0.3614365 0.0100000
@@ -3396,11 +3415,121 @@ Let us now run the tests. Note that the default alternative hypothesis of functi
 
 \end{example}
 
-\hypertarget{cointeg}{%
-\chapter{Introduction to cointegration}\label{cointeg}}
+\section{Exercises}\label{nonstationarity-exercises}
 
-\hypertarget{intuition}{%
-\section{Intuition}\label{intuition}}
+\Needspace{24\baselineskip}
+
+\begin{exercisebox}
+
+\begin{exercise}[Orders of integration]
+\protect\hypertarget{exr:ex-order-integration}{}\label{exr:ex-order-integration}
+
+\textbf{PS4 \textbar{} Core \textbar{} Analytical}\\
+Review Section \ref{NonStat}.
+
+Find the order of integration of each process. Innovations \(\varepsilon_t\) and \(\eta_t\) are independent white noises.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \(x_t=\rho x_{t-1}+\varepsilon_t\), \(|\rho|<1\).
+\item
+  \(x_t=x_{t-1}+\varepsilon_t+\theta_1\varepsilon_{t-1}+\cdots+\theta_q\varepsilon_{t-q}\), assuming the MA polynomial does not cancel the unit root.
+\item
+  \(x_t=\mu_t+x_{t-1}+\varepsilon_t\), with \(\mu_t=\mu_{t-1}+\eta_t\).
+\item
+  \(x_t=1.5x_{t-1}-0.5x_{t-2}+\varepsilon_t\).
+\end{enumerate}
+
+\end{exercise}
+
+\end{exercisebox}
+
+\Needspace{24\baselineskip}
+
+\begin{exercisebox}
+
+\begin{exercise}[True or false: integrated processes]
+\protect\hypertarget{exr:ex-integration-true-false}{}\label{exr:ex-integration-true-false}
+
+\textbf{PS4 \textbar{} Core \textbar{} Conceptual}\\
+Review Section \ref{NonStat}.
+
+State whether each assertion is true or false and briefly justify your answer. Let \(x_t=x_{t-1}+\varepsilon_t\), where \(\varepsilon_t\overset{i.i.d.}{\sim}\mathcal N(0,1)\), when the assertion refers to ``the random walk.''
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \(\operatorname{Var}_t(x_{t+h})\to\infty\) as \(h\to\infty\).
+\item
+  \(x_t\) is not covariance stationary, but \(\Delta x_t\) is.
+\item
+  If \(\Delta^2x_t\) is \(I(0)\) and \(\Delta x_t\) is \(I(1)\), then \(x_t\) is \(I(2)\).
+\item
+  The random walk is \(I(1)\).
+\item
+  The random walk necessarily has unconditional mean zero.
+\item
+  In a regression of one unrelated \(I(1)\) variable on another, usual stationary OLS standard errors give valid confidence intervals.
+\item
+  The OLS slope in a finite-sample regression of the random walk on its lag and a constant is typically biased downward.
+\item
+  If \(x_t\) is \(I(1)\) and \(y_t\) is \(I(2)\), then \(x_t+y_t\) is generally \(I(2)\).
+\item
+  If \(x_t\) is \(I(2)\) and \(y_t\) is \(I(1)\), the residual from regressing \(x_t\) on \(y_t\) is necessarily \(I(1)\).
+\end{enumerate}
+
+\end{exercise}
+
+\end{exercisebox}
+
+\Needspace{24\baselineskip}
+
+\begin{exercisebox}
+
+\begin{exercise}[Interpreting ADF and Phillips–Perron tests]
+\protect\hypertarget{exr:ex-unit-root-tests}{}\label{exr:ex-unit-root-tests}
+
+\textbf{PS4 \textbar{} Advanced \textbar{} Empirical interpretation}\\
+Review Section \ref{NonStat}.
+
+For samples of 100 observations, ADF and Phillips--Perron tests are computed with a constant and no linear trend:
+
+\begin{longtable}[]{@{}lrrr@{}}
+\toprule\noalign{}
+Statistic & \(x_t\) & \(y_t\) & \(z_t\) \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\(ADF_t\) & 0.14 & -3.51 & -2.81 \\
+\(Z_t\) & 0.34 & -3.82 & -3.01 \\
+\(ADF_\rho\) & -0.96 & -18.4 & -15.3 \\
+\(Z_\rho\) & -1.12 & -20.2 & -11.2 \\
+\end{longtable}
+
+At the 5\% level for this specification and sample size, use the approximate critical values \(-2.89\) for the \(t\)-type statistics and \(-14.1\) for the normalized-coefficient statistics.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  State the conclusion of each of the twelve tests.
+\item
+  Summarize the evidence for the integration order of each series, noting any disagreement between tests.
+\item
+  For which pairs is a conventional cointegration analysis potentially meaningful? Explain why equal integration orders are required.
+\end{enumerate}
+
+\end{exercise}
+
+\end{exercisebox}
+
+\chapter{Introduction to cointegration}\label{cointeg}
+
+\section{Intuition}\label{intuition}
 
 Many statistical procedures are well-defined only when the processes of interest are stationary. As a result, especially when one wants to investigate the joint dynamics of different variables, one often begins by making the data stationary (by, e.g., taking first differences or removing deterministic trends). However, doing so may remove information from the data. Heuristically, removing trends amounts to filtering out the long-run variations of the series. However, it may be the case that the different variables interact in the short run \emph{and} in the long run.
 
@@ -3426,8 +3555,7 @@ For instance:
   If \(y_t\) is stationary then \(y_t\) is \(I(0)\).
 \end{itemize}
 
-\hypertarget{the-bivariate-case}{%
-\section{The bivariate case}\label{the-bivariate-case}}
+\section{The bivariate case}\label{the-bivariate-case}
 
 If we regress an \(I(1)\) variable \(y_t\) on another independent \(I(1)\) variable \(x_t\), the usual (OLS-based) t-tests on regression coefficients often (misleadingly) show statistically significant coefficients (we then speak of spurious regressions, see Section \ref{NonStat}). A solution is to regress \(\Delta y_t\) (that is \(I(0)\)) on \(\Delta x_t\) and then inference will be correct. However, as stated above, the economic interpretation of the regression then changes, as doing so amounts to focusing on the high-frequency movements of the variables.
 
@@ -3476,8 +3604,7 @@ We have:
 where \(\tilde{y}_T(r)=(1/\sqrt{T})y_{[rT]}\). Now \(\tilde{y}_T(r) = r \sqrt{T} \left(\frac{1}{Tr}\sum_{t=1}^{[Tr]} H(L)\varepsilon_t\right)\). By Eq. \eqref{eq:TCL4ts} in Theorem \ref{thm:CLTcovstat}, we have \(\sqrt{r}\sqrt{Tr} \left(\frac{1}{Tr}\sum_{t=1}^{[Tr]} H(L)\varepsilon_t\right) \rightarrow \omega W_r\). Therefore, for large \(T\), \(\frac{1}{T}\sum_{t=1}^{T}\tilde{y}_T(t/T)\) approximates \(\frac{1}{T}\sum_{t=1}^{T} \omega W_{t/T}\), which is a Riemann sum that converges to \(\int_{0}^{1}y_{\infty}(r)dr\).
 \end{proof}
 
-\hypertarget{multivariate-case-and-vecm}{%
-\section{Multivariate case and VECM}\label{multivariate-case-and-vecm}}
+\section{Multivariate case and VECM}\label{multivariate-case-and-vecm}
 
 In the following, we consider an \(n\)-dimensional vector \(y_t\). Moreover, \(\varepsilon_t\) is an \(n\)-dimensional white noise process. The notion of integration (Def. \ref{def:Id}) can also be defined in the multivariate case:
 
@@ -3618,7 +3745,7 @@ For that process, Eq. \eqref{eq:VECM3} writes:
 \]
 where \(z_{t} = y_{1,t}-y_{2,t}\).
 
-The process \(z_t\) is stationary (we have \(z_t = 0.3 z_{t-1} + \varepsilon_{1,t} - \varepsilon_{2,t}\)).
+The process \(z_t\) is stationary (we have \(z_t = 0.3 z_{t-1} + \varepsilon_{1,t} -  \varepsilon_{2,t}\)).
 
 We say that there is a \emph{long-run relationship} between \(y_{1,t}\) and \(y_{2,t}\):
 
@@ -3630,8 +3757,7 @@ When \(y_{1,t}\) is substantially above \(y_{2,t}\), \(z_t\) is large, the influ
 
 \end{example}
 
-\hypertarget{cointegration-in-practice}{%
-\section{Cointegration in practice}\label{cointegration-in-practice}}
+\section{Cointegration in practice}\label{cointegration-in-practice}
 
 Assume that we have a vector of variables \(y_t\) and that we want to investigate the joint dynamics of its components. If the \(y_{i,t}\)s are \(I(1)\), we may need to use a VECM. Therefore, in the first place, one has to test for the stationarity of \(y_t\)'s components (see Section \ref{NonStat}).
 
@@ -3673,18 +3799,6 @@ It remains to explain how to test for the existence of a cointegration relations
 \begin{example}[VECM for US inflation and nominal interest rate]
 \protect\hypertarget{exm:VECMUS}{}\label{exm:VECMUS}The data are as in Example \ref{exm:NonStatExample}. In the first step, we compute \(z_t\) and use \citet{Phillips_Ouliaris_1990}'s test to see whether the two variables are cointegrated:
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{library}\NormalTok{(AEC);}\FunctionTok{library}\NormalTok{(tseries)}
-\NormalTok{T }\OtherTok{\textless{}{-}} \FunctionTok{dim}\NormalTok{(US3var)[}\DecValTok{1}\NormalTok{]}
-\NormalTok{infl }\OtherTok{\textless{}{-}}\NormalTok{ US3var}\SpecialCharTok{$}\NormalTok{infl}
-\NormalTok{i    }\OtherTok{\textless{}{-}}\NormalTok{ US3var}\SpecialCharTok{$}\NormalTok{r}
-\NormalTok{eq }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(i}\SpecialCharTok{\textasciitilde{}}\NormalTok{infl)}
-\NormalTok{z }\OtherTok{\textless{}{-}}\NormalTok{ eq}\SpecialCharTok{$}\NormalTok{residuals}
-\FunctionTok{po.test}\NormalTok{(}\FunctionTok{cbind}\NormalTok{(i,infl))}
-\end{Highlighting}
-\end{Shaded}
-
 \begin{verbatim}
 ## 
 ##  Phillips-Ouliaris Cointegration Test
@@ -3695,26 +3809,6 @@ It remains to explain how to test for the existence of a cointegration relations
 \end{verbatim}
 
 We reject the null hypothesis of unit root in the residuals. That is, the results are in favor of cointegration. Let us then esitmate the VECM model; this amounts to running two OLS regressions:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{infl\_1 }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\ConstantTok{NaN}\NormalTok{,infl[}\DecValTok{1}\SpecialCharTok{:}\NormalTok{(T}\DecValTok{{-}1}\NormalTok{)])}
-\NormalTok{infl\_2 }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\ConstantTok{NaN}\NormalTok{,}\ConstantTok{NaN}\NormalTok{,infl[}\DecValTok{1}\SpecialCharTok{:}\NormalTok{(T}\DecValTok{{-}2}\NormalTok{)])}
-\NormalTok{infl\_3 }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\ConstantTok{NaN}\NormalTok{,}\ConstantTok{NaN}\NormalTok{,}\ConstantTok{NaN}\NormalTok{,infl[}\DecValTok{1}\SpecialCharTok{:}\NormalTok{(T}\DecValTok{{-}3}\NormalTok{)])}
-\NormalTok{i\_1 }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\ConstantTok{NaN}\NormalTok{,i[}\DecValTok{1}\SpecialCharTok{:}\NormalTok{(T}\DecValTok{{-}1}\NormalTok{)])}
-\NormalTok{i\_2 }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\ConstantTok{NaN}\NormalTok{,}\ConstantTok{NaN}\NormalTok{,i[}\DecValTok{1}\SpecialCharTok{:}\NormalTok{(T}\DecValTok{{-}2}\NormalTok{)])}
-\NormalTok{i\_3 }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\ConstantTok{NaN}\NormalTok{,}\ConstantTok{NaN}\NormalTok{,}\ConstantTok{NaN}\NormalTok{,i[}\DecValTok{1}\SpecialCharTok{:}\NormalTok{(T}\DecValTok{{-}3}\NormalTok{)])}
-\NormalTok{z\_1 }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\ConstantTok{NaN}\NormalTok{,z[}\DecValTok{1}\SpecialCharTok{:}\NormalTok{(T}\DecValTok{{-}1}\NormalTok{)])}
-\NormalTok{dinfl   }\OtherTok{\textless{}{-}}\NormalTok{ infl   }\SpecialCharTok{{-}}\NormalTok{ infl\_1}
-\NormalTok{dinfl\_1 }\OtherTok{\textless{}{-}}\NormalTok{ infl\_1 }\SpecialCharTok{{-}}\NormalTok{ infl\_2}
-\NormalTok{dinfl\_2 }\OtherTok{\textless{}{-}}\NormalTok{ infl\_2 }\SpecialCharTok{{-}}\NormalTok{ infl\_3}
-\NormalTok{di   }\OtherTok{\textless{}{-}}\NormalTok{ i   }\SpecialCharTok{{-}}\NormalTok{ i\_1}
-\NormalTok{di\_1 }\OtherTok{\textless{}{-}}\NormalTok{ i\_1 }\SpecialCharTok{{-}}\NormalTok{ i\_2}
-\NormalTok{di\_2 }\OtherTok{\textless{}{-}}\NormalTok{ i\_2 }\SpecialCharTok{{-}}\NormalTok{ i\_3}
-\NormalTok{eq1 }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(di    }\SpecialCharTok{\textasciitilde{}}\NormalTok{ z\_1 }\SpecialCharTok{+}\NormalTok{ dinfl\_1 }\SpecialCharTok{+}\NormalTok{ di\_1 }\SpecialCharTok{+}\NormalTok{ dinfl\_2 }\SpecialCharTok{+}\NormalTok{ di\_2)}
-\NormalTok{eq2 }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(dinfl }\SpecialCharTok{\textasciitilde{}}\NormalTok{ z\_1 }\SpecialCharTok{+}\NormalTok{ dinfl\_1 }\SpecialCharTok{+}\NormalTok{ di\_1 }\SpecialCharTok{+}\NormalTok{ dinfl\_2 }\SpecialCharTok{+}\NormalTok{ di\_2)}
-\end{Highlighting}
-\end{Shaded}
 
 Table \ref{tab:EngleGrangerUS3} reports the estimated coefficients in \texttt{eq1} and \texttt{eq2}, together with their p-values:
 
@@ -3744,11 +3838,44 @@ di\_2 & -0.0393 & 0.5625 & 0.0828 & 0.1626\\
 Imporantly, one of the parameters associated with \(z_{t-1}\) (parameters that are called speeds of adjustement) is significant and with the expected signs: if the short term nominal interest rate \(i_t\) is high then \(z_t\) becomes positive (since, up to an intercept, \(z_t = i_t - \beta \pi_t\), where \(\beta\) comes from the first-step regression), but since \(B_{1,1}\) is negative (it is equal to -0.104), a positive \(z_t\) will generate a negative correction (i.e., \(B_{1,1}z_t\)) for \(i_{t+1}\) on date \(t+1\), thereby ``correcting'' the high level of \(i_t\).
 \end{example}
 
-\hypertarget{ARCHGARCH}{%
-\chapter{ARCH and GARCH models}\label{ARCHGARCH}}
+\section{Exercise}\label{cointegration-exercises}
 
-\hypertarget{conditional-heteroskedasticity}{%
-\section{Conditional heteroskedasticity}\label{conditional-heteroskedasticity}}
+\Needspace{24\baselineskip}
+
+\begin{exercisebox}
+
+\begin{exercise}[A bivariate cointegrated VAR]
+\protect\hypertarget{exr:ex-cointegration}{}\label{exr:ex-cointegration}
+
+\textbf{PS4 \textbar{} Core \textbar{} Analytical}\\
+Review Section \ref{cointeg}.
+
+Consider
+\[Y_t=\begin{bmatrix}.7&-.6\\-.2&.6\end{bmatrix}Y_{t-1}+\varepsilon_t,\]
+where \(\varepsilon_t\) is i.i.d. Gaussian with mean zero and nonsingular covariance matrix. The coefficient matrix has eigenvalues 1 and 0.3.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Express \(\Delta Y_t\) in terms of \(Y_{t-1}\).
+\item
+  Show that \(\Delta Y_t=Bz_{t-1}+\varepsilon_t\), where \(z_t=\gamma'Y_t\), \(\gamma'=(1,2)\), and identify \(B\).
+\item
+  Derive the dynamics and unconditional mean of \(z_t\).
+\item
+  What does this imply about \(Y_t\) and its cointegration rank?
+\item
+  Compute \(\mathbb E(\Delta y_{1,t}\mid z_{t-1}=1)\) and \(\mathbb E(\Delta y_{2,t}\mid z_{t-1}=1)\), and interpret the adjustment.
+\end{enumerate}
+
+\end{exercise}
+
+\end{exercisebox}
+
+\chapter{ARCH and GARCH models}\label{ARCHGARCH}
+
+\section{Conditional heteroskedasticity}\label{conditional-heteroskedasticity}
 
 Many financial and macroeconomic variables are hit by shocks whose variance is not constant through time, i.e.~by \emph{heteroskedatic} shocks. Often, the conditional variance of shocks features a persistent behavior (volatility clustering). The observation that large shocks (in absolute value) tend to be followed by other important shocks has notably been established by \citet{Mandelbrot_1963}. Such a situation is illustrated by Figure \ref{fig:GARCHsmireturns}.
 
@@ -3766,28 +3893,11 @@ where \(R^2\) is the centered \(R^2\) of the OLS regression.
 
 Let us employ this test on the return series plotted in the lower panel of Figure \ref{fig:GARCHsmireturns}:
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{library}\NormalTok{(AEC);}\FunctionTok{data}\NormalTok{(smi)}
-\NormalTok{smi }\OtherTok{\textless{}{-}}\NormalTok{ smi[}\FunctionTok{complete.cases}\NormalTok{(smi),] }\CommentTok{\# remove NaNs}
-\NormalTok{T }\OtherTok{\textless{}{-}} \FunctionTok{dim}\NormalTok{(smi)[}\DecValTok{1}\NormalTok{]}
-\NormalTok{smi}\SpecialCharTok{$}\NormalTok{r }\OtherTok{\textless{}{-}} \DecValTok{100}\SpecialCharTok{*}\FunctionTok{c}\NormalTok{(}\ConstantTok{NaN}\NormalTok{,}\FunctionTok{log}\NormalTok{(smi}\SpecialCharTok{$}\NormalTok{Close[}\DecValTok{2}\SpecialCharTok{:}\NormalTok{T]}\SpecialCharTok{/}\NormalTok{smi}\SpecialCharTok{$}\NormalTok{Close[}\DecValTok{1}\SpecialCharTok{:}\NormalTok{(T}\DecValTok{{-}1}\NormalTok{)]))}
-\NormalTok{u }\OtherTok{\textless{}{-}}\NormalTok{ smi}\SpecialCharTok{$}\NormalTok{r}\SpecialCharTok{\^{}}\DecValTok{2}
-\NormalTok{u\_1 }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\ConstantTok{NaN}\NormalTok{,smi}\SpecialCharTok{$}\NormalTok{r[}\DecValTok{1}\SpecialCharTok{:}\NormalTok{(T}\DecValTok{{-}1}\NormalTok{)]}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{)}
-\NormalTok{u\_2 }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\ConstantTok{NaN}\NormalTok{,}\ConstantTok{NaN}\NormalTok{,smi}\SpecialCharTok{$}\NormalTok{r[}\DecValTok{1}\SpecialCharTok{:}\NormalTok{(T}\DecValTok{{-}2}\NormalTok{)]}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{)}
-\NormalTok{eq }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(u}\SpecialCharTok{\^{}}\DecValTok{2} \SpecialCharTok{\textasciitilde{}}\NormalTok{ u\_1}\SpecialCharTok{\^{}}\DecValTok{2} \SpecialCharTok{+}\NormalTok{ u\_2}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{)}
-\NormalTok{test.stat }\OtherTok{\textless{}{-}} \FunctionTok{length}\NormalTok{(u)}\SpecialCharTok{*}\FunctionTok{summary}\NormalTok{(eq)}\SpecialCharTok{$}\NormalTok{r.squared}
-\NormalTok{pvalue }\OtherTok{\textless{}{-}} \DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{pchisq}\NormalTok{(}\AttributeTok{q =}\NormalTok{ test.stat,}\AttributeTok{df=}\DecValTok{2}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
 The p-value is extremely close to zero. Hence we strongly reject the null of an i.i.d. SMI return.
 
-\hypertarget{ARCH}{%
-\section{The ARCH model}\label{ARCH}}
+\section{The ARCH model}\label{ARCH}
 
-\hypertarget{the-two-arch-specifications}{%
-\subsection{The two ARCH specifications}\label{the-two-arch-specifications}}
+\subsection{The two ARCH specifications}\label{the-two-arch-specifications}
 
 Consider the auto-regressive process following:
 \begin{equation}
@@ -3837,8 +3947,7 @@ h_t = \zeta + \alpha_1 u_{t-1}^2 + \dots + \alpha_m u_{t-m}^2,\label{eq:hARCH}
 \end{equation}
 then Eq. \eqref{eq:condvar} is also true. Since \(u_t^2 = h_t v_t^2\), Eq. \eqref{eq:ut2} holds with \(w_t = h_t (v_t^2-1)\). This alternative representation is convenient because \(v_t\) is not necessarily bounded.
 
-\hypertarget{maximum-likelihood-estimation-of-an-arch-process}{%
-\subsection{Maximum Likelihood Estimation of an ARCH process}\label{maximum-likelihood-estimation-of-an-arch-process}}
+\subsection{Maximum Likelihood Estimation of an ARCH process}\label{maximum-likelihood-estimation-of-an-arch-process}
 
 Assume the complete model is:
 \[
@@ -3868,7 +3977,7 @@ where \(\theta\), the vector of unknown parameters, is \([\boldsymbol\beta',\zet
 
 Note that one can also use non-Gaussian distributions for \(v_t\). (For that, one has to replace the normal distribution in Eq. \eqref{eq:densityN}.)
 
-Let us fit an ARCH(2) model on the SMI return data (lower plot of Figure \ref{fig:GARCHsmireturns}). For this, we make use of function \texttt{compute.garch} of package \texttt{AEC}. This function takes four arguments:
+Let us fit an ARCH(2) model on the SMI return data (lower plot of Figure \ref{fig:GARCHsmireturns}). For this, we make use of function \texttt{compute.garch} of package \texttt{IdSS}. This function takes four arguments:
 
 \begin{itemize}
 \tightlist
@@ -3884,34 +3993,7 @@ Let us fit an ARCH(2) model on the SMI return data (lower plot of Figure \ref{fi
 
 Function \texttt{compute.garch} returns a list, one entry of each is the log-likelihood associated with a parameterization \([\zeta,\boldsymbol\alpha']'\), the second being the resulting sequence of \(h_t\)'s (see Eq. \eqref{eq:hARCH}). Let us create a function that returns only the log-likelihood:
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{loglik }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(theta,x,m,r)\{}
-  \CommentTok{\# first parameter of theta: zeta}
-  \CommentTok{\# next: alpha\textquotesingle{}s (ARCH)}
-  \CommentTok{\# next: delta\textquotesingle{}s (GARCH)}
-\NormalTok{  Garch }\OtherTok{\textless{}{-}} \FunctionTok{compute.garch}\NormalTok{(theta,x,m,r)}
-  \FunctionTok{return}\NormalTok{(Garch}\SpecialCharTok{$}\NormalTok{logf)}
-\NormalTok{\}}
-\end{Highlighting}
-\end{Shaded}
-
 Now, let us maximize the log-likelihood:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{m }\OtherTok{\textless{}{-}} \DecValTok{2}
-\NormalTok{r }\OtherTok{\textless{}{-}} \DecValTok{0} \CommentTok{\# for ARCH models, r=0}
-\NormalTok{smi }\OtherTok{\textless{}{-}}\NormalTok{ smi[}\DecValTok{4000}\SpecialCharTok{:}\FunctionTok{dim}\NormalTok{(smi)[}\DecValTok{1}\NormalTok{],] }\CommentTok{\# reduce sample}
-\NormalTok{par0 }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\FloatTok{0.62}\NormalTok{,}\FloatTok{0.2}\NormalTok{,}\FloatTok{0.2}\NormalTok{)}
-\NormalTok{res.opt }\OtherTok{\textless{}{-}} \FunctionTok{optim}\NormalTok{(}\AttributeTok{par=}\NormalTok{par0,}\AttributeTok{x=}\NormalTok{smi}\SpecialCharTok{$}\NormalTok{r,}\AttributeTok{m=}\NormalTok{m,}\AttributeTok{r=}\NormalTok{r,loglik,}
-                 \AttributeTok{method=}\StringTok{"BFGS"}\NormalTok{,}\AttributeTok{hessian=}\ConstantTok{TRUE}\NormalTok{,}
-                 \AttributeTok{control =} \FunctionTok{list}\NormalTok{(}\AttributeTok{trace=}\ConstantTok{TRUE}\NormalTok{,}\AttributeTok{maxit =} \DecValTok{10}\NormalTok{))}
-\NormalTok{estim.param }\OtherTok{\textless{}{-}}\NormalTok{ res.opt}\SpecialCharTok{$}\NormalTok{par}
-\NormalTok{std.dev }\OtherTok{\textless{}{-}} \FunctionTok{sqrt}\NormalTok{(}\FunctionTok{diag}\NormalTok{(}\FunctionTok{solve}\NormalTok{(res.opt}\SpecialCharTok{$}\NormalTok{hessian)))}
-\NormalTok{t.stat }\OtherTok{\textless{}{-}}\NormalTok{ estim.param}\SpecialCharTok{/}\NormalTok{std.dev}
-\end{Highlighting}
-\end{Shaded}
 
 Table \ref{tab:estimGARCH2} reports the estimated parameters and their standard deviation. Figure \ref{fig:estimGARCH3} displays the resulting 95\% confidence intervals (i.e., \(\pm 2 \sqrt{h_t}\)).
 
@@ -3937,8 +4019,7 @@ alpha2 & 0.2321 & 0.0250 & 9.2838\\
 \includegraphics{TimeSeries_files/figure-latex/estimGARCH3-1} \caption{SMI daily returns (in black) and, in red, 95\% confidence interval based on the ARCH(2) estimated model ($\pm 2 \sqrt{h_t}$).}\label{fig:estimGARCH3}
 \end{figure}
 
-\hypertarget{GARCH}{%
-\section{The GARCH model}\label{GARCH}}
+\section{The GARCH model}\label{GARCH}
 
 One can generalize the model and replace Eq. \eqref{eq:hARCH} with:
 \begin{eqnarray}
@@ -4001,8 +4082,7 @@ delta1 & 0.8299 & 0.0152 & 54.5175\\
 \includegraphics{TimeSeries_files/figure-latex/estimGARCH3X-1} \caption{Estimated conditional standard deviations ($\sqrt{h_t}$) of SMI daily returns: ARCH(2) [black line] and GARCH(1,1) [dotted red line] specifications.}\label{fig:estimGARCH3X}
 \end{figure}
 
-\hypertarget{arch-in-mean}{%
-\section{ARCH-in-mean}\label{arch-in-mean}}
+\section{ARCH-in-mean}\label{arch-in-mean}
 
 Another extension of the ARCH model is the \textbf{ARCH-in-Mean}, or ARCH-M model. That model is close to that specified by Eqs. \eqref{eq:linearreg}, \eqref{eq:uhv} and \eqref{eq:hARCH}, but it also allows for a potential effect of \(h_t\) on \(\mathbb{E}_{t-1}(y_{t})\):
 \begin{eqnarray*}
@@ -4012,17 +4092,16 @@ h_t &=& \zeta + \alpha_1 u_{t-1}^2 + \dots + \alpha_m u_{t-m}^2,
 \end{eqnarray*}
 where \(v_t\) is a zero-mean unit-variance i.i.d. sequence.
 
-\hypertarget{append}{%
-\chapter{Appendix}\label{append}}
+\chapter{Appendix}\label{append}
 
-\hypertarget{PCAapp}{%
-\section{Principal component analysis (PCA)}\label{PCAapp}}
+\section{Principal component analysis (PCA)}\label{PCAapp}
 
 \textbf{Principal component analysis (PCA)} is a classical and easy-to-use statistical method to reduce the dimension of large datasets containing variables that are linearly driven by a relatively small number of factors. This approach is widely used in data analysis and image compression.
 
 Suppose that we have \(T\) observations of a \(n\)-dimensional random vector \(x\), denoted by \(x_{1},x_{2},\ldots,x_{T}\). We suppose that each component of \(x\) is of mean zero.
 
-Let denote with \(X\) the matrix given by \(\left[\begin{array}{cccc} x_{1} & x_{2} & \ldots & x_{T}\end{array}\right]'\). Denote the \(j^{th}\) column of \(X\) by \(X_{j}\).
+Let denote with \(X\) the matrix given by \(\left[\begin{array}{cccc}
+x_{1} & x_{2} & \ldots & x_{T}\end{array}\right]'\). Denote the \(j^{th}\) column of \(X\) by \(X_{j}\).
 
 We want to find the linear combination of the \(x_{i}\)'s (\(x.u\)), with \(\left\Vert u\right\Vert =1\), with ``maximum variance.'' That is, we want to solve:
 \begin{equation}
@@ -4082,51 +4161,13 @@ Let us illustrate PCA on the term structure of yields. The term strucutre of yie
 
 To run a PCA, one simply has to apply function \texttt{prcomp} to a matrix of data:
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{library}\NormalTok{(AEC)}
-\NormalTok{USyields }\OtherTok{\textless{}{-}}\NormalTok{ USyields[}\FunctionTok{complete.cases}\NormalTok{(USyields),]}
-\NormalTok{yds }\OtherTok{\textless{}{-}}\NormalTok{ USyields[}\FunctionTok{c}\NormalTok{(}\StringTok{"Y1"}\NormalTok{,}\StringTok{"Y2"}\NormalTok{,}\StringTok{"Y3"}\NormalTok{,}\StringTok{"Y5"}\NormalTok{,}\StringTok{"Y7"}\NormalTok{,}\StringTok{"Y10"}\NormalTok{,}\StringTok{"Y20"}\NormalTok{,}\StringTok{"Y30"}\NormalTok{)]}
-\NormalTok{PCA.yds }\OtherTok{\textless{}{-}} \FunctionTok{prcomp}\NormalTok{(yds,}\AttributeTok{center=}\ConstantTok{TRUE}\NormalTok{,}\AttributeTok{scale. =} \ConstantTok{TRUE}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
 Let us know visualize some results. The first plot of Figure \ref{fig:USydsPCA1} shows the share of total variance explained by the different principal components (PCs). The second plot shows the factor loadings. The two bottom plots show how yields (in black) are fitted by linear combinations of the first two PCs only.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{par}\NormalTok{(}\AttributeTok{mfrow=}\FunctionTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{2}\NormalTok{))}
-\FunctionTok{par}\NormalTok{(}\AttributeTok{plt=}\FunctionTok{c}\NormalTok{(.}\DecValTok{1}\NormalTok{,.}\DecValTok{95}\NormalTok{,.}\DecValTok{2}\NormalTok{,.}\DecValTok{8}\NormalTok{))}
-\FunctionTok{barplot}\NormalTok{(PCA.yds}\SpecialCharTok{$}\NormalTok{sdev}\SpecialCharTok{\^{}}\DecValTok{2}\SpecialCharTok{/}\FunctionTok{sum}\NormalTok{(PCA.yds}\SpecialCharTok{$}\NormalTok{sdev}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{),}
-        \AttributeTok{main=}\StringTok{"Share of variance expl. by PC\textquotesingle{}s"}\NormalTok{)}
-\FunctionTok{axis}\NormalTok{(}\DecValTok{1}\NormalTok{, }\AttributeTok{at=}\DecValTok{1}\SpecialCharTok{:}\FunctionTok{dim}\NormalTok{(yds)[}\DecValTok{2}\NormalTok{], }\AttributeTok{labels=}\FunctionTok{colnames}\NormalTok{(PCA.yds}\SpecialCharTok{$}\NormalTok{x))}
-\NormalTok{nb.PC }\OtherTok{\textless{}{-}} \DecValTok{2}
-\FunctionTok{plot}\NormalTok{(}\SpecialCharTok{{-}}\NormalTok{PCA.yds}\SpecialCharTok{$}\NormalTok{rotation[,}\DecValTok{1}\NormalTok{],}\AttributeTok{type=}\StringTok{"l"}\NormalTok{,}\AttributeTok{lwd=}\DecValTok{2}\NormalTok{,}\AttributeTok{ylim=}\FunctionTok{c}\NormalTok{(}\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{),}
-     \AttributeTok{main=}\StringTok{"Factor loadings (1st 3 PCs)"}\NormalTok{,}\AttributeTok{xaxt=}\StringTok{"n"}\NormalTok{,}\AttributeTok{xlab=}\StringTok{""}\NormalTok{)}
-\FunctionTok{axis}\NormalTok{(}\DecValTok{1}\NormalTok{, }\AttributeTok{at=}\DecValTok{1}\SpecialCharTok{:}\FunctionTok{dim}\NormalTok{(yds)[}\DecValTok{2}\NormalTok{], }\AttributeTok{labels=}\FunctionTok{colnames}\NormalTok{(yds))}
-\FunctionTok{lines}\NormalTok{(PCA.yds}\SpecialCharTok{$}\NormalTok{rotation[,}\DecValTok{2}\NormalTok{],}\AttributeTok{type=}\StringTok{"l"}\NormalTok{,}\AttributeTok{lwd=}\DecValTok{2}\NormalTok{,}\AttributeTok{col=}\StringTok{"blue"}\NormalTok{)}
-\FunctionTok{lines}\NormalTok{(PCA.yds}\SpecialCharTok{$}\NormalTok{rotation[,}\DecValTok{3}\NormalTok{],}\AttributeTok{type=}\StringTok{"l"}\NormalTok{,}\AttributeTok{lwd=}\DecValTok{2}\NormalTok{,}\AttributeTok{col=}\StringTok{"red"}\NormalTok{)}
-\NormalTok{Y1.hat }\OtherTok{\textless{}{-}}\NormalTok{ PCA.yds}\SpecialCharTok{$}\NormalTok{x[,}\DecValTok{1}\SpecialCharTok{:}\NormalTok{nb.PC] }\SpecialCharTok{\%*\%}\NormalTok{ PCA.yds}\SpecialCharTok{$}\NormalTok{rotation[}\StringTok{"Y1"}\NormalTok{,}\DecValTok{1}\SpecialCharTok{:}\DecValTok{2}\NormalTok{]}
-\NormalTok{Y1.hat }\OtherTok{\textless{}{-}} \FunctionTok{mean}\NormalTok{(USyields}\SpecialCharTok{$}\NormalTok{Y1) }\SpecialCharTok{+} \FunctionTok{sd}\NormalTok{(USyields}\SpecialCharTok{$}\NormalTok{Y1) }\SpecialCharTok{*}\NormalTok{ Y1.hat}
-\FunctionTok{plot}\NormalTok{(USyields}\SpecialCharTok{$}\NormalTok{date,USyields}\SpecialCharTok{$}\NormalTok{Y1,}\AttributeTok{type=}\StringTok{"l"}\NormalTok{,}\AttributeTok{lwd=}\DecValTok{2}\NormalTok{,}
-     \AttributeTok{main=}\StringTok{"Fit of 1{-}year yields (2 PCs)"}\NormalTok{,}
-     \AttributeTok{ylab=}\StringTok{"Obs (black) / Fitted by 2PCs (dashed blue)"}\NormalTok{)}
-\FunctionTok{lines}\NormalTok{(USyields}\SpecialCharTok{$}\NormalTok{date,Y1.hat,}\AttributeTok{col=}\StringTok{"blue"}\NormalTok{,}\AttributeTok{lty=}\DecValTok{2}\NormalTok{,}\AttributeTok{lwd=}\DecValTok{2}\NormalTok{)}
-\NormalTok{Y10.hat }\OtherTok{\textless{}{-}}\NormalTok{ PCA.yds}\SpecialCharTok{$}\NormalTok{x[,}\DecValTok{1}\SpecialCharTok{:}\NormalTok{nb.PC] }\SpecialCharTok{\%*\%}\NormalTok{ PCA.yds}\SpecialCharTok{$}\NormalTok{rotation[}\StringTok{"Y10"}\NormalTok{,}\DecValTok{1}\SpecialCharTok{:}\DecValTok{2}\NormalTok{]}
-\NormalTok{Y10.hat }\OtherTok{\textless{}{-}} \FunctionTok{mean}\NormalTok{(USyields}\SpecialCharTok{$}\NormalTok{Y10) }\SpecialCharTok{+} \FunctionTok{sd}\NormalTok{(USyields}\SpecialCharTok{$}\NormalTok{Y10) }\SpecialCharTok{*}\NormalTok{ Y10.hat}
-\FunctionTok{plot}\NormalTok{(USyields}\SpecialCharTok{$}\NormalTok{date,USyields}\SpecialCharTok{$}\NormalTok{Y10,}\AttributeTok{type=}\StringTok{"l"}\NormalTok{,}\AttributeTok{lwd=}\DecValTok{2}\NormalTok{,}
-     \AttributeTok{main=}\StringTok{"Fit of 10{-}year yields (2 PCs)"}\NormalTok{,}
-     \AttributeTok{ylab=}\StringTok{"Obs (black) / Fitted by 2PCs (dashed blue)"}\NormalTok{)}
-\FunctionTok{lines}\NormalTok{(USyields}\SpecialCharTok{$}\NormalTok{date,Y10.hat,}\AttributeTok{col=}\StringTok{"blue"}\NormalTok{,}\AttributeTok{lty=}\DecValTok{2}\NormalTok{,}\AttributeTok{lwd=}\DecValTok{2}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
 
 \begin{figure}
 \includegraphics{TimeSeries_files/figure-latex/USydsPCA1-1} \caption{Some PCA results. The dataset contains 8 time series of U.S. interest rates of different maturities.}\label{fig:USydsPCA1}
 \end{figure}
 
-\hypertarget{LinAlgebra}{%
-\section{Linear algebra: definitions and results}\label{LinAlgebra}}
+\section{Linear algebra: definitions and results}\label{LinAlgebra}
 
 \begin{definition}[Eigenvalues]
 \protect\hypertarget{def:determinant}{}\label{def:determinant}The eigenvalues of of a matrix \(M\) are the numbers \(\lambda\) for which:
@@ -4159,7 +4200,7 @@ We have:
 \begin{definition}[Moore-Penrose inverse]
 \protect\hypertarget{def:MoorPenrose}{}\label{def:MoorPenrose}
 
-If \(M \in \mathbb{R}^{m \times n}\), then its Moore-Penrose pseudo inverse (exists and) is the unique matrix \(M^* \in \mathbb{R}^{n \times m}\) that satisfies:
+If \(M \in \mathbb{R}^{m \times n}\), then its Moore-Penrose pseudo inverse (exists and) is the unique matrix \(M^*  \in \mathbb{R}^{n \times m}\) that satisfies:
 
 \begin{enumerate}
 \def\labelenumi{\roman{enumi}.}
@@ -4284,11 +4325,9 @@ We have:
 See Appendix 3.A in Hamilton. Idea: Absolute summability implies that there exist \(N\) such that, for \(j>N\), \(|\theta_j| < 1\) (deduced from Cauchy criterion, Theorem \ref{thm:cauchycritstatic} and therefore \(\theta_j^2 < |\theta_j|\).
 \end{proof}
 
-\hypertarget{variousResults}{%
-\section{Statistical analysis: definitions and results}\label{variousResults}}
+\section{Statistical analysis: definitions and results}\label{variousResults}
 
-\hypertarget{moments-and-statistics}{%
-\subsection{Moments and statistics}\label{moments-and-statistics}}
+\subsection{Moments and statistics}\label{moments-and-statistics}
 
 \begin{definition}[Partial correlation]
 \protect\hypertarget{def:partialcorrel}{}\label{def:partialcorrel}The \textbf{partial correlation} between \(y\) and \(z\), controlling for some variables \(\mathbf{X}\) is the sample correlation between \(y^*\) and \(z^*\), where the latter two variables are the residuals in regressions of \(y\) on \(\mathbf{X}\) and of \(z\) on \(\mathbf{X}\), respectively.
@@ -4352,8 +4391,7 @@ The equality holds iff \(\mathbb{V}ar(Z)=0\), i.e.~iff \(Y = \frac{\mathbb{C}ov(
 
 It should be noted that ergodicity and stationarity are different properties. Typically if the process \(\{x_t\}\) is such that, \(\forall t\), \(x_t \equiv y\), where \(y \sim\,\mathcal{N}(0,1)\) (say), then \(\{x_t\}\) is stationary but not ergodic.
 
-\hypertarget{standard-distributions}{%
-\subsection{Standard distributions}\label{standard-distributions}}
+\subsection{Standard distributions}\label{standard-distributions}
 
 \begin{definition}[F distribution]
 \protect\hypertarget{def:fstatistics}{}\label{def:fstatistics}Consider \(n=n_1+n_2\) i.i.d. \(\mathcal{N}(0,1)\) r.v. \(X_i\). If the r.v. \(F\) is defined by:
@@ -4404,8 +4442,7 @@ Because \(\Sigma\) is a symmetrical definite positive matrix, it admits the spec
 It remains to note that \(Y'Y=X'PD^{-1}P'X=X'\mathbb{V}ar(X)^{-1}X\) to conclude.
 \end{proof}
 
-\hypertarget{StochConvergences}{%
-\subsection{Stochastic convergences}\label{StochConvergences}}
+\subsection{Stochastic convergences}\label{StochConvergences}
 
 \begin{definition}[Convergence in probability]
 \protect\hypertarget{def:convergenceproba}{}\label{def:convergenceproba}The random variable sequence \(x_n\) converges in probability to a constant \(c\) if \(\forall \varepsilon\), \(\lim_{n \rightarrow \infty} \mathbb{P}(|x_n - c|>\varepsilon) = 0\).
@@ -4453,8 +4490,7 @@ It is denoted as: \(x_n \overset{d}{\rightarrow} x\).
 \]
 \end{theorem}
 
-\hypertarget{multivariate-gaussian-distribution}{%
-\subsection{Multivariate Gaussian distribution}\label{multivariate-gaussian-distribution}}
+\subsection{Multivariate Gaussian distribution}\label{multivariate-gaussian-distribution}
 
 \begin{proposition}[p.d.f. of a multivariate Gaussian variable]
 \protect\hypertarget{prp:pdfMultivarGaussian}{}\label{prp:pdfMultivarGaussian}If \(Y \sim \mathcal{N}(\mu,\Omega)\) and if \(Y\) is a \(n\)-dimensional vector, then the density function of \(Y\) is:
@@ -4463,8 +4499,7 @@ It is denoted as: \(x_n \overset{d}{\rightarrow} x\).
 \]
 \end{proposition}
 
-\hypertarget{CLTappend}{%
-\subsection{Central limit theorem}\label{CLTappend}}
+\subsection{Central limit theorem}\label{CLTappend}
 
 \begin{theorem}[Law of large numbers]
 \protect\hypertarget{thm:LLNappendix}{}\label{thm:LLNappendix}The sample mean is a consistent estimator of the population mean.
@@ -4475,7 +4510,7 @@ Let's denote by \(\phi_{X_i}\) the characteristic function of a r.v. \(X_i\). If
 \[
 \phi_{X_i}(u) = \mathbb{E}(\exp(iuX)) = 1 + iu\mu + o(u).
 \]
-The properties of the characteristic function (see Def. \ref{def:characteristic}) imply that:
+The properties of characteristic functions imply that:
 \[
 \phi_{\frac{1}{n}(X_1+\dots+X_n)}(u) = \prod_{i=1}^{n} \left(1 + i\frac{u}{n}\mu + o\left(\frac{u}{n}\right) \right) \rightarrow e^{iu\mu}.
 \]
@@ -4499,8 +4534,7 @@ Let us introduce the r.v. \(Y_n:= \sqrt{n}(\bar{X}_n - \mu)\). We have \(\phi_{Y
 Therefore \(\phi_{Y_n}(u) \underset{n \rightarrow \infty}{\rightarrow} \exp \left( - \frac{1}{2}u^2\sigma^2 \right)\), which is the characteristic function of \(\mathcal{N}(0,\sigma^2)\).
 \end{proof}
 
-\hypertarget{AppendixProof}{%
-\section{Proofs}\label{AppendixProof}}
+\section{Proofs}\label{AppendixProof}
 
 \textbf{Proof of Eq. \eqref{eq:TCL2}}
 
@@ -4578,7 +4612,7 @@ This implies that \(\mathbb{E}([y_{t+1} - y^*_{t+1}]^2)\) is always larger than 
 \textbf{Proof of Proposition \ref{prp:estimVARGaussian}}
 
 \begin{proof}
-Using Proposition \ref{prp:multivarG}, we obtain that, conditionally on \(x_1\), the log-likelihood is given by
+Using Proposition \ref{prp:pdfMultivarGaussian}, we obtain that, conditionally on \(x_1\), the log-likelihood is given by
 \begin{eqnarray*}
 \log\mathcal{L}(Y_{T};\theta) & = & -(Tn/2)\log(2\pi)+(T/2)\log\left|\Omega^{-1}\right|\\
 &  & -\frac{1}{2}\sum_{t=1}^{T}\left[\left(y_{t}-\Pi'x_{t}\right)'\Omega^{-1}\left(y_{t}-\Pi'x_{t}\right)\right].
@@ -4635,11 +4669,9 @@ If \(j>0\), we have \(\mathbb{E}(\varepsilon_t\varepsilon_{t-j}x_tx_{t-j}')=\mat
 The convergence in distribution of \(\sqrt{T}(X'\boldsymbol\varepsilon/T)=\sqrt{T}\frac{1}{T}\sum_{t=1}^Tv_t\) results from the Central Limit Theorem for covariance-stationary processes, using the \(\gamma_j^v\) computed above.
 \end{proof}
 
-\hypertarget{Inference}{%
-\section{Inference}\label{Inference}}
+\section{Inference}\label{Inference}
 
-\hypertarget{MonteCarlo}{%
-\subsection{Monte Carlo method}\label{MonteCarlo}}
+\subsection{Monte Carlo method}\label{MonteCarlo}
 
 We use Monte Carlo when we need to approximate the distribution of a variable whose distribution is unknown but which is a function of another variable whose distribution is known. For instance, suppose we know the distribution of a random variable \(X\), which takes values in \(\mathbb{R}\), with density function \(p\). Assume we want to compute the mean of \(\varphi(X)\). We have:
 \[
@@ -4668,8 +4700,7 @@ To summarize, here are the steps one can implement to derive confidence interval
 
 Perform \(N\) replications and report the median impulse response (and its confidence intervals).
 
-\hypertarget{Delta}{%
-\subsection{Delta method}\label{Delta}}
+\subsection{Delta method}\label{Delta}
 
 Suppose \(\beta\) is a vector of parameters and \(\beta\) is an estimator such that
 \[
@@ -4677,45 +4708,16 @@ Suppose \(\beta\) is a vector of parameters and \(\beta\) is an estimator such t
 \]
 where \(d\) denotes convergence in distribution, \(N(0,\Sigma_\beta)\) denotes the multivariate normal distribution with mean vector 0 and covariance matrix \(\Sigma_\beta\) and \(T\) is the sample size used for estimation.
 
-Let \(g(\beta) = (g_l(\beta),..., g_m(\beta))'\) be a continuously differentiable function with values in \(\mathbb{R}^m\), and assume that \(\partial g_i/\partial \beta' = (\partial g_i/\partial \beta_j)\) is nonzero at \(\beta\) for \(i = 1,\dots, m\). Then
+Let \(g(\beta) = (g_l(\beta),..., g_m(\beta))'\) be a continuously differentiable function with values in \(\mathbb{R}^m\), and assume that \(\partial g_i/\partial
+\beta' = (\partial g_i/\partial \beta_j)\) is nonzero at \(\beta\) for \(i = 1,\dots, m\). Then
 \[
 \sqrt{T}(g(\hat\beta)-g(\beta))\overset{d}{\rightarrow}\mathcal{N}\left(0,\frac{\partial g}{\partial \beta'}\Sigma_\beta\frac{\partial g'}{\partial \beta}\right).
 \]
 Using this property, \citet{Lutkepohl_1990} provides the asymptotic distributions of the \(\Psi_j\)'s. The following lines of code can be used to get approximate confidence intervals for IRFs.
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{irf.function }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(THETA)\{}
-\NormalTok{  c }\OtherTok{\textless{}{-}}\NormalTok{ THETA[}\DecValTok{1}\NormalTok{]}
-\NormalTok{  phi }\OtherTok{\textless{}{-}}\NormalTok{ THETA[}\DecValTok{2}\SpecialCharTok{:}\NormalTok{(p}\SpecialCharTok{+}\DecValTok{1}\NormalTok{)]}
-  \ControlFlowTok{if}\NormalTok{(q}\SpecialCharTok{\textgreater{}}\DecValTok{0}\NormalTok{)\{}
-\NormalTok{    theta }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,THETA[(}\DecValTok{1}\SpecialCharTok{+}\NormalTok{p}\SpecialCharTok{+}\DecValTok{1}\NormalTok{)}\SpecialCharTok{:}\NormalTok{(}\DecValTok{1}\SpecialCharTok{+}\NormalTok{p}\SpecialCharTok{+}\NormalTok{q)])}
-\NormalTok{  \}}\ControlFlowTok{else}\NormalTok{\{theta }\OtherTok{\textless{}{-}} \DecValTok{1}\NormalTok{\}}
-\NormalTok{  sigma }\OtherTok{\textless{}{-}}\NormalTok{ THETA[}\DecValTok{1}\SpecialCharTok{+}\NormalTok{p}\SpecialCharTok{+}\NormalTok{q}\SpecialCharTok{+}\DecValTok{1}\NormalTok{]}
-\NormalTok{  r }\OtherTok{\textless{}{-}} \FunctionTok{dim}\NormalTok{(Matrix.of.Exog)[}\DecValTok{2}\NormalTok{] }\SpecialCharTok{{-}} \DecValTok{1}
-\NormalTok{  beta }\OtherTok{\textless{}{-}}\NormalTok{ THETA[(}\DecValTok{1}\SpecialCharTok{+}\NormalTok{p}\SpecialCharTok{+}\NormalTok{q}\SpecialCharTok{+}\DecValTok{1}\SpecialCharTok{+}\DecValTok{1}\NormalTok{)}\SpecialCharTok{:}\NormalTok{(}\DecValTok{1}\SpecialCharTok{+}\NormalTok{p}\SpecialCharTok{+}\NormalTok{q}\SpecialCharTok{+}\DecValTok{1}\SpecialCharTok{+}\NormalTok{(r}\SpecialCharTok{+}\DecValTok{1}\NormalTok{))]}
-  
-\NormalTok{  irf }\OtherTok{\textless{}{-}} \FunctionTok{sim.arma}\NormalTok{(}\DecValTok{0}\NormalTok{,phi,beta,}\AttributeTok{sigma=}\FunctionTok{sd}\NormalTok{(Ramey}\SpecialCharTok{$}\NormalTok{ED3\_TC,}\AttributeTok{na.rm=}\ConstantTok{TRUE}\NormalTok{),}\AttributeTok{T=}\DecValTok{60}\NormalTok{,}
-                  \AttributeTok{y.0=}\FunctionTok{rep}\NormalTok{(}\DecValTok{0}\NormalTok{,}\FunctionTok{length}\NormalTok{(x}\SpecialCharTok{$}\NormalTok{phi)),}\AttributeTok{nb.sim=}\DecValTok{1}\NormalTok{,}\AttributeTok{make.IRF=}\DecValTok{1}\NormalTok{,}
-                  \AttributeTok{X=}\ConstantTok{NaN}\NormalTok{,}\AttributeTok{beta=}\ConstantTok{NaN}\NormalTok{)}
-  \FunctionTok{return}\NormalTok{(irf)\}}
-\NormalTok{IRF}\FloatTok{.0} \OtherTok{\textless{}{-}} \DecValTok{100}\SpecialCharTok{*}\FunctionTok{irf.function}\NormalTok{(x}\SpecialCharTok{$}\NormalTok{THETA)}
-\NormalTok{eps }\OtherTok{\textless{}{-}}\NormalTok{ .}\DecValTok{00000001}
-\NormalTok{d.IRF }\OtherTok{\textless{}{-}} \ConstantTok{NULL}
-\ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\FunctionTok{length}\NormalTok{(x}\SpecialCharTok{$}\NormalTok{THETA))\{}
-\NormalTok{  THETA.i }\OtherTok{\textless{}{-}}\NormalTok{ x}\SpecialCharTok{$}\NormalTok{THETA}
-\NormalTok{  THETA.i[i] }\OtherTok{\textless{}{-}}\NormalTok{ THETA.i[i] }\SpecialCharTok{+}\NormalTok{ eps}
-\NormalTok{  IRF.i }\OtherTok{\textless{}{-}} \DecValTok{100}\SpecialCharTok{*}\FunctionTok{irf.function}\NormalTok{(THETA.i)}
-\NormalTok{  d.IRF }\OtherTok{\textless{}{-}} \FunctionTok{cbind}\NormalTok{(d.IRF,}
-\NormalTok{                 (IRF.i }\SpecialCharTok{{-}}\NormalTok{ IRF}\FloatTok{.0}\NormalTok{)}\SpecialCharTok{/}\NormalTok{eps)\}}
-\NormalTok{mat.var.cov.IRF }\OtherTok{\textless{}{-}}\NormalTok{ d.IRF }\SpecialCharTok{\%*\%}\NormalTok{ x}\SpecialCharTok{$}\NormalTok{I }\SpecialCharTok{\%*\%} \FunctionTok{t}\NormalTok{(d.IRF)}
-\end{Highlighting}
-\end{Shaded}
-
 A limit of the last two approaches (Monte Carlo and the Delta method) is that they rely on asymptotic results. Boostrapping approaches are more robust in small-sample situations.
 
-\hypertarget{Bootstrap}{%
-\subsection{Bootstrap}\label{Bootstrap}}
+\subsection{Bootstrap}\label{Bootstrap}
 
 IRFs' confidence intervals are intervals where 90\% (or 95\%, 75\%, \ldots) of the IRFs would lie, if we were to repeat the estimation a large number of times in similar conditions (\(T\) observations). We obviously cannot do this, because we have only one sample: \(\{y_t\}_{t=1,..,T}\). But we can try to \emph{construct} such samples.
 
@@ -4760,8 +4762,7 @@ Here is the algorithm:
 
 Perform \(N\) replications and report the median impulse response (and its confidence intervals).
 
-\hypertarget{statistical-tables}{%
-\section{Statistical Tables}\label{statistical-tables}}
+\section{Statistical Tables}\label{statistical-tables}
 
 \begin{table}
 

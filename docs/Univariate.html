@@ -5,19 +5,19 @@
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 2 Univariate processes | Introduction to Time Series</title>
-  <meta name="description" content="This course XXX." />
+  <meta name="description" content="An introduction to time-series analysis for macroeconomics and finance, covering univariate and multivariate models, forecasting, non-stationarity, cointegration, and volatility." />
   <meta name="generator" content="bookdown 0.43 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 2 Univariate processes | Introduction to Time Series" />
   <meta property="og:type" content="book" />
   
-  <meta property="og:description" content="This course XXX." />
-  <meta name="github-repo" content="rstudio/bookdown-demo" />
+  <meta property="og:description" content="An introduction to time-series analysis for macroeconomics and finance, covering univariate and multivariate models, forecasting, non-stationarity, cointegration, and volatility." />
+  <meta name="github-repo" content="jrenne/TimeSeries_Bookdown" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Chapter 2 Univariate processes | Introduction to Time Series" />
   
-  <meta name="twitter:description" content="This course XXX." />
+  <meta name="twitter:description" content="An introduction to time-series analysis for macroeconomics and finance, covering univariate and multivariate models, forecasting, non-stationarity, cointegration, and volatility." />
   
 
 <meta name="author" content="Jean-Paul Renne" />
@@ -49,6 +49,7 @@
 
 
 
+<link href="libs/codefolding-lua-1.1/codefolding-lua.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
@@ -168,6 +169,7 @@ div.csl-indent {
 <li class="chapter" data-level="1.1" data-path="Intro.html"><a href="Intro.html#shocks-and-lag-operator"><i class="fa fa-check"></i><b>1.1</b> Shocks and lag operator</a></li>
 <li class="chapter" data-level="1.2" data-path="Intro.html"><a href="Intro.html#conditional-and-unconditional-moments"><i class="fa fa-check"></i><b>1.2</b> Conditional and unconditional moments</a></li>
 <li class="chapter" data-level="1.3" data-path="Intro.html"><a href="Intro.html#central-limit-theorem-clt-for-persistent-processes"><i class="fa fa-check"></i><b>1.3</b> Central Limit Theorem (CLT) for persistent processes</a></li>
+<li class="chapter" data-level="1.4" data-path="Intro.html"><a href="Intro.html#introduction-exercises"><i class="fa fa-check"></i><b>1.4</b> Exercise from the 2024 exam</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="Univariate.html"><a href="Univariate.html"><i class="fa fa-check"></i><b>2</b> Univariate processes</a>
 <ul>
@@ -190,6 +192,10 @@ div.csl-indent {
 <li class="chapter" data-level="2.8.4" data-path="Univariate.html"><a href="Univariate.html#estimARMApq"><i class="fa fa-check"></i><b>2.8.4</b> Maximum Likelihood Estimation of an ARMA(p,q) process</a></li>
 </ul></li>
 <li class="chapter" data-level="2.9" data-path="Univariate.html"><a href="Univariate.html#specification-choice"><i class="fa fa-check"></i><b>2.9</b> Specification choice</a></li>
+<li class="chapter" data-level="2.10" data-path="Univariate.html"><a href="Univariate.html#univariate-exercises"><i class="fa fa-check"></i><b>2.10</b> Exercises</a>
+<ul>
+<li class="chapter" data-level="2.10.1" data-path="Univariate.html"><a href="Univariate.html#exercises-from-the-2024-exam"><i class="fa fa-check"></i><b>2.10.1</b> Exercises from the 2024 exam</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="VAR.html"><a href="VAR.html"><i class="fa fa-check"></i><b>3</b> Multivariate models</a>
 <ul>
@@ -209,8 +215,18 @@ div.csl-indent {
 <li class="chapter" data-level="3.6.3" data-path="VAR.html"><a href="VAR.html#cholesky-a-specific-short-run-restriction-situation"><i class="fa fa-check"></i><b>3.6.3</b> Cholesky: a specific short-run-restriction situation</a></li>
 <li class="chapter" data-level="3.6.4" data-path="VAR.html"><a href="VAR.html#long-run-restrictions"><i class="fa fa-check"></i><b>3.6.4</b> Long-run restrictions</a></li>
 </ul></li>
+<li class="chapter" data-level="3.7" data-path="VAR.html"><a href="VAR.html#var-exercises"><i class="fa fa-check"></i><b>3.7</b> Exercise</a>
+<ul>
+<li class="chapter" data-level="3.7.1" data-path="VAR.html"><a href="VAR.html#exercise-from-the-2024-exam"><i class="fa fa-check"></i><b>3.7.1</b> Exercise from the 2024 exam</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="forecasting.html"><a href="forecasting.html"><i class="fa fa-check"></i><b>4</b> Forecasting</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="forecasting.html"><a href="forecasting.html"><i class="fa fa-check"></i><b>4</b> Forecasting</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="forecasting.html"><a href="forecasting.html#forecasting-exercises"><i class="fa fa-check"></i><b>4.1</b> Exercise</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="forecasting.html"><a href="forecasting.html#exercise-from-the-2024-exam-1"><i class="fa fa-check"></i><b>4.1.1</b> Exercise from the 2024 exam</a></li>
+</ul></li>
+</ul></li>
 <li class="chapter" data-level="5" data-path="NonStat.html"><a href="NonStat.html"><i class="fa fa-check"></i><b>5</b> Non-stationary processes</a>
 <ul>
 <li class="chapter" data-level="5.1" data-path="NonStat.html"><a href="NonStat.html#issues-when-working-with-nonstationary-time-series"><i class="fa fa-check"></i><b>5.1</b> Issues when working with nonstationary time series</a>
@@ -220,6 +236,7 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="5.2" data-path="NonStat.html"><a href="NonStat.html#nonstationarity-tests"><i class="fa fa-check"></i><b>5.2</b> Nonstationarity tests</a></li>
 <li class="chapter" data-level="5.3" data-path="NonStat.html"><a href="NonStat.html#stationarity-test-kpss"><i class="fa fa-check"></i><b>5.3</b> Stationarity test: KPSS</a></li>
+<li class="chapter" data-level="5.4" data-path="NonStat.html"><a href="NonStat.html#nonstationarity-exercises"><i class="fa fa-check"></i><b>5.4</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="cointeg.html"><a href="cointeg.html"><i class="fa fa-check"></i><b>6</b> Introduction to cointegration</a>
 <ul>
@@ -227,6 +244,7 @@ div.csl-indent {
 <li class="chapter" data-level="6.2" data-path="cointeg.html"><a href="cointeg.html#the-bivariate-case"><i class="fa fa-check"></i><b>6.2</b> The bivariate case</a></li>
 <li class="chapter" data-level="6.3" data-path="cointeg.html"><a href="cointeg.html#multivariate-case-and-vecm"><i class="fa fa-check"></i><b>6.3</b> Multivariate case and VECM</a></li>
 <li class="chapter" data-level="6.4" data-path="cointeg.html"><a href="cointeg.html#cointegration-in-practice"><i class="fa fa-check"></i><b>6.4</b> Cointegration in practice</a></li>
+<li class="chapter" data-level="6.5" data-path="cointeg.html"><a href="cointeg.html#cointegration-exercises"><i class="fa fa-check"></i><b>6.5</b> Exercise</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="ARCHGARCH.html"><a href="ARCHGARCH.html"><i class="fa fa-check"></i><b>7</b> ARCH and GARCH models</a>
 <ul>
@@ -317,7 +335,7 @@ where <span class="math inline">\(\{\varepsilon_t\}_{t = -\infty}^{+\infty}\)</s
 <span class="math display">\[
 y_t = \mu + \varepsilon^*_t +\frac{1}{\theta}\varepsilon^*_{t-1},
 \]</span>
-where <span class="math inline">\(\mathbb{V}ar(\varepsilon^*_t)=\theta^2\sigma^2\)</span>. That is, knowing the mean and auto-covariances of an MA(1) process is not sufficient to identify the process, since two different processes possess the same moments. Only one of these two specifications is said to be <em>fundamental</em>, that is the one that satisfies <span class="math inline">\(|\theta_1|&lt;1\)</span> (see Eq. <a href="Univariate.html#eq:invertible">(2.23)</a>).</p>
+where <span class="math inline">\(\mathbb{V}ar(\varepsilon^*_t)=\theta^2\sigma^2\)</span>. That is, knowing the mean and auto-covariances of an MA(1) process is not sufficient to identify the process, since two different processes possess the same moments. Only one of these two specifications is said to be <em>fundamental</em>, that is the one that satisfies <span class="math inline">\(|\theta_1|&lt;1\)</span> (see Eq. <a href="Univariate.html#eq:invertible">(2.24)</a>).</p>
 <div class="definition">
 <p><span id="def:MAq" class="definition"><strong>Definition 2.2  (MA(q) process) </strong></span>A <span class="math inline">\(q^{th}\)</span>-order Moving Average process <span class="math inline">\(\{y_t\}\)</span> is defined through:
 <span class="math display">\[
@@ -342,22 +360,24 @@ where we use the notation <span class="math inline">\(\theta_0=1\)</span>, and <
 Using the fact that <span class="math inline">\(\mathbb{E}(\varepsilon_t\varepsilon_s)=0\)</span> if <span class="math inline">\(t \ne s\)</span> (because <span class="math inline">\(\{\varepsilon_t\}_{t = -\infty}^{+\infty}\)</span> is a white noise process) leads to the result.</p>
 </div>
 <p>Figure <a href="Univariate.html#fig:simMA">2.1</a> displays simulated paths of two MA processes (an MA(1) and an MA(4)). Such simulations can also be produced by using panel “ARMA(p,q)” of <a href="https://jrenne.shinyapps.io/MacroEc/">this web interface</a>.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="Univariate.html#cb6-1" tabindex="-1"></a><span class="fu">library</span>(IdSS)</span>
-<span id="cb6-2"><a href="Univariate.html#cb6-2" tabindex="-1"></a>T <span class="ot">&lt;-</span> <span class="dv">100</span>;nb.sim <span class="ot">&lt;-</span> <span class="dv">1</span></span>
-<span id="cb6-3"><a href="Univariate.html#cb6-3" tabindex="-1"></a>y<span class="fl">.0</span> <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>)</span>
-<span id="cb6-4"><a href="Univariate.html#cb6-4" tabindex="-1"></a>c <span class="ot">&lt;-</span> <span class="dv">1</span>;phi <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>);sigma <span class="ot">&lt;-</span> <span class="dv">1</span></span>
-<span id="cb6-5"><a href="Univariate.html#cb6-5" tabindex="-1"></a>theta <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>) <span class="co"># MA(1) specification</span></span>
-<span id="cb6-6"><a href="Univariate.html#cb6-6" tabindex="-1"></a>y.sim <span class="ot">&lt;-</span> <span class="fu">sim.arma</span>(c,phi,theta,sigma,T,y<span class="fl">.0</span>,nb.sim)</span>
-<span id="cb6-7"><a href="Univariate.html#cb6-7" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span>
-<span id="cb6-8"><a href="Univariate.html#cb6-8" tabindex="-1"></a><span class="fu">par</span>(<span class="at">plt=</span><span class="fu">c</span>(.<span class="dv">2</span>,.<span class="dv">9</span>,.<span class="dv">2</span>,.<span class="dv">85</span>))</span>
-<span id="cb6-9"><a href="Univariate.html#cb6-9" tabindex="-1"></a><span class="fu">plot</span>(y.sim[,<span class="dv">1</span>],<span class="at">xlab=</span><span class="st">&quot;&quot;</span>,<span class="at">ylab=</span><span class="st">&quot;&quot;</span>,<span class="at">type=</span><span class="st">&quot;l&quot;</span>,<span class="at">lwd=</span><span class="dv">2</span>,</span>
-<span id="cb6-10"><a href="Univariate.html#cb6-10" tabindex="-1"></a>     <span class="at">main=</span><span class="fu">expression</span>(<span class="fu">paste</span>(theta[<span class="dv">0</span>],<span class="st">&quot;=1, &quot;</span>,theta[<span class="dv">1</span>],<span class="st">&quot;=1&quot;</span>,<span class="at">sep=</span><span class="st">&quot;&quot;</span>)))</span>
-<span id="cb6-11"><a href="Univariate.html#cb6-11" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h=</span>c)</span>
-<span id="cb6-12"><a href="Univariate.html#cb6-12" tabindex="-1"></a>theta <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>) <span class="co"># MA(4) specification</span></span>
-<span id="cb6-13"><a href="Univariate.html#cb6-13" tabindex="-1"></a>y.sim <span class="ot">&lt;-</span> <span class="fu">sim.arma</span>(c,phi,theta,sigma,T,y<span class="fl">.0</span>,nb.sim)</span>
-<span id="cb6-14"><a href="Univariate.html#cb6-14" tabindex="-1"></a><span class="fu">plot</span>(y.sim[,<span class="dv">1</span>],<span class="at">xlab=</span><span class="st">&quot;&quot;</span>,<span class="at">ylab=</span><span class="st">&quot;&quot;</span>,<span class="at">type=</span><span class="st">&quot;l&quot;</span>,<span class="at">lwd=</span><span class="dv">2</span>,</span>
-<span id="cb6-15"><a href="Univariate.html#cb6-15" tabindex="-1"></a>     <span class="at">main=</span><span class="fu">expression</span>(<span class="fu">paste</span>(theta[<span class="dv">0</span>],<span class="st">&quot;=...=&quot;</span>,theta[<span class="dv">4</span>],<span class="st">&quot;=1&quot;</span>,<span class="at">sep=</span><span class="st">&quot;&quot;</span>)))</span>
-<span id="cb6-16"><a href="Univariate.html#cb6-16" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h=</span>c)</span></code></pre></div>
+<details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="Univariate.html#cb7-1" tabindex="-1"></a><span class="fu">library</span>(IdSS)</span>
+<span id="cb7-2"><a href="Univariate.html#cb7-2" tabindex="-1"></a>T <span class="ot">&lt;-</span> <span class="dv">100</span>;nb.sim <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb7-3"><a href="Univariate.html#cb7-3" tabindex="-1"></a>y<span class="fl">.0</span> <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>)</span>
+<span id="cb7-4"><a href="Univariate.html#cb7-4" tabindex="-1"></a>c <span class="ot">&lt;-</span> <span class="dv">1</span>;phi <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>);sigma <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb7-5"><a href="Univariate.html#cb7-5" tabindex="-1"></a>theta <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>) <span class="co"># MA(1) specification</span></span>
+<span id="cb7-6"><a href="Univariate.html#cb7-6" tabindex="-1"></a>y.sim <span class="ot">&lt;-</span> <span class="fu">sim.arma</span>(c,phi,theta,sigma,T,y<span class="fl">.0</span>,nb.sim)</span>
+<span id="cb7-7"><a href="Univariate.html#cb7-7" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span>
+<span id="cb7-8"><a href="Univariate.html#cb7-8" tabindex="-1"></a><span class="fu">par</span>(<span class="at">plt=</span><span class="fu">c</span>(.<span class="dv">2</span>,.<span class="dv">9</span>,.<span class="dv">2</span>,.<span class="dv">85</span>))</span>
+<span id="cb7-9"><a href="Univariate.html#cb7-9" tabindex="-1"></a><span class="fu">plot</span>(y.sim[,<span class="dv">1</span>],<span class="at">xlab=</span><span class="st">&quot;&quot;</span>,<span class="at">ylab=</span><span class="st">&quot;&quot;</span>,<span class="at">type=</span><span class="st">&quot;l&quot;</span>,<span class="at">lwd=</span><span class="dv">2</span>,</span>
+<span id="cb7-10"><a href="Univariate.html#cb7-10" tabindex="-1"></a>     <span class="at">main=</span><span class="fu">expression</span>(<span class="fu">paste</span>(theta[<span class="dv">0</span>],<span class="st">&quot;=1, &quot;</span>,theta[<span class="dv">1</span>],<span class="st">&quot;=1&quot;</span>,<span class="at">sep=</span><span class="st">&quot;&quot;</span>)))</span>
+<span id="cb7-11"><a href="Univariate.html#cb7-11" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h=</span>c)</span>
+<span id="cb7-12"><a href="Univariate.html#cb7-12" tabindex="-1"></a>theta <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>) <span class="co"># MA(4) specification</span></span>
+<span id="cb7-13"><a href="Univariate.html#cb7-13" tabindex="-1"></a>y.sim <span class="ot">&lt;-</span> <span class="fu">sim.arma</span>(c,phi,theta,sigma,T,y<span class="fl">.0</span>,nb.sim)</span>
+<span id="cb7-14"><a href="Univariate.html#cb7-14" tabindex="-1"></a><span class="fu">plot</span>(y.sim[,<span class="dv">1</span>],<span class="at">xlab=</span><span class="st">&quot;&quot;</span>,<span class="at">ylab=</span><span class="st">&quot;&quot;</span>,<span class="at">type=</span><span class="st">&quot;l&quot;</span>,<span class="at">lwd=</span><span class="dv">2</span>,</span>
+<span id="cb7-15"><a href="Univariate.html#cb7-15" tabindex="-1"></a>     <span class="at">main=</span><span class="fu">expression</span>(<span class="fu">paste</span>(theta[<span class="dv">0</span>],<span class="st">&quot;=...=&quot;</span>,theta[<span class="dv">4</span>],<span class="st">&quot;=1&quot;</span>,<span class="at">sep=</span><span class="st">&quot;&quot;</span>)))</span>
+<span id="cb7-16"><a href="Univariate.html#cb7-16" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h=</span>c)</span></code></pre></div>
+</details>
 <div class="figure" style="text-align: left-aligned"><span style="display:block;" id="fig:simMA"></span>
 <img src="TimeSeries_files/figure-html/simMA-1.png" alt="Simulation of MA processes." width="95%" />
 <p class="caption">
@@ -589,15 +609,17 @@ y_t &amp;=&amp; 1.1 y_{t-1} -0.3 y_{t-2} + \varepsilon_t\\
 w_t &amp;=&amp; 1.4 w_{t-1} -0.7 w_{t-2} + \varepsilon_t\\
 z_t &amp;=&amp; 0.9 z_{t-1} +0.2 z_{t-2} + \varepsilon_t.
 \end{eqnarray*}\]</span></p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="Univariate.html#cb7-1" tabindex="-1"></a>F <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(.<span class="dv">9</span>,<span class="dv">1</span>,<span class="sc">-</span>.<span class="dv">2</span>,<span class="dv">0</span>),<span class="dv">2</span>,<span class="dv">2</span>)</span>
-<span id="cb7-2"><a href="Univariate.html#cb7-2" tabindex="-1"></a>lambda_x <span class="ot">&lt;-</span> <span class="fu">eigen</span>(F)<span class="sc">$</span>values</span>
-<span id="cb7-3"><a href="Univariate.html#cb7-3" tabindex="-1"></a>F[<span class="dv">1</span>,] <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">1.1</span>,<span class="sc">-</span>.<span class="dv">3</span>)</span>
-<span id="cb7-4"><a href="Univariate.html#cb7-4" tabindex="-1"></a>lambda_y <span class="ot">&lt;-</span> <span class="fu">eigen</span>(F)<span class="sc">$</span>values</span>
-<span id="cb7-5"><a href="Univariate.html#cb7-5" tabindex="-1"></a>F[<span class="dv">1</span>,] <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">1.4</span>,<span class="sc">-</span>.<span class="dv">7</span>)</span>
-<span id="cb7-6"><a href="Univariate.html#cb7-6" tabindex="-1"></a>lambda_w <span class="ot">&lt;-</span> <span class="fu">eigen</span>(F)<span class="sc">$</span>values</span>
-<span id="cb7-7"><a href="Univariate.html#cb7-7" tabindex="-1"></a>F[<span class="dv">1</span>,] <span class="ot">&lt;-</span> <span class="fu">c</span>(.<span class="dv">9</span>,.<span class="dv">2</span>)</span>
-<span id="cb7-8"><a href="Univariate.html#cb7-8" tabindex="-1"></a>lambda_z <span class="ot">&lt;-</span> <span class="fu">eigen</span>(F)<span class="sc">$</span>values</span>
-<span id="cb7-9"><a href="Univariate.html#cb7-9" tabindex="-1"></a><span class="fu">rbind</span>(lambda_x,lambda_y,lambda_w,lambda_z)</span></code></pre></div>
+<details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="Univariate.html#cb8-1" tabindex="-1"></a>F <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(.<span class="dv">9</span>,<span class="dv">1</span>,<span class="sc">-</span>.<span class="dv">2</span>,<span class="dv">0</span>),<span class="dv">2</span>,<span class="dv">2</span>)</span>
+<span id="cb8-2"><a href="Univariate.html#cb8-2" tabindex="-1"></a>lambda_x <span class="ot">&lt;-</span> <span class="fu">eigen</span>(F)<span class="sc">$</span>values</span>
+<span id="cb8-3"><a href="Univariate.html#cb8-3" tabindex="-1"></a>F[<span class="dv">1</span>,] <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">1.1</span>,<span class="sc">-</span>.<span class="dv">3</span>)</span>
+<span id="cb8-4"><a href="Univariate.html#cb8-4" tabindex="-1"></a>lambda_y <span class="ot">&lt;-</span> <span class="fu">eigen</span>(F)<span class="sc">$</span>values</span>
+<span id="cb8-5"><a href="Univariate.html#cb8-5" tabindex="-1"></a>F[<span class="dv">1</span>,] <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">1.4</span>,<span class="sc">-</span>.<span class="dv">7</span>)</span>
+<span id="cb8-6"><a href="Univariate.html#cb8-6" tabindex="-1"></a>lambda_w <span class="ot">&lt;-</span> <span class="fu">eigen</span>(F)<span class="sc">$</span>values</span>
+<span id="cb8-7"><a href="Univariate.html#cb8-7" tabindex="-1"></a>F[<span class="dv">1</span>,] <span class="ot">&lt;-</span> <span class="fu">c</span>(.<span class="dv">9</span>,.<span class="dv">2</span>)</span>
+<span id="cb8-8"><a href="Univariate.html#cb8-8" tabindex="-1"></a>lambda_z <span class="ot">&lt;-</span> <span class="fu">eigen</span>(F)<span class="sc">$</span>values</span>
+<span id="cb8-9"><a href="Univariate.html#cb8-9" tabindex="-1"></a><span class="fu">rbind</span>(lambda_x,lambda_y,lambda_w,lambda_z)</span></code></pre></div>
+</details>
 <pre><code>##                         [,1]                  [,2]
 ## lambda_x 0.500000+0.0000000i  0.4000000+0.0000000i
 ## lambda_y 0.600000+0.0000000i  0.5000000+0.0000000i
@@ -707,19 +729,21 @@ y_{t+h} = c + \phi_1 y_{t+h-1}+\dots+ \phi_p  y_{t+h-p} +\underbrace{0 \times y_
 The residuals of the latter regressions (<span class="math inline">\(\varepsilon_{t+h}\)</span>) are uncorrelated to <span class="math inline">\(y_t\)</span>. Then the partial autocorrelation is zero for <span class="math inline">\(h&gt;p\)</span>.</p>
 <p>Besides, it can be shown that <span class="math inline">\(\phi_{p,p}=\phi_p\)</span>. Hence <span class="math inline">\(\phi_{p,p}=\phi_p\)</span> but <span class="math inline">\(\phi_{h,h}=0\)</span> for <span class="math inline">\(h&gt;p\)</span>. This can be used to determine the order of an AR process. By contrast (importantly) if <span class="math inline">\(y_t\)</span> follows an MA(q) process, then <span class="math inline">\(\phi_{k,k}\)</span> asymptotically approaches zero instead of cutting off abruptly.</p>
 <p>As illustrated below, the functions <code>acf</code> and <code>pacf</code> of R allow us to conveniently implement the (P)ACF approach. (In these lines of codes, note also the use of function <code>sim.arma</code> to simulate ARMA processes.)</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="Univariate.html#cb9-1" tabindex="-1"></a><span class="fu">library</span>(IdSS)</span>
-<span id="cb9-2"><a href="Univariate.html#cb9-2" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">2</span>))</span>
-<span id="cb9-3"><a href="Univariate.html#cb9-3" tabindex="-1"></a><span class="fu">par</span>(<span class="at">plt=</span><span class="fu">c</span>(.<span class="dv">2</span>,.<span class="dv">9</span>,.<span class="dv">2</span>,.<span class="dv">95</span>))</span>
-<span id="cb9-4"><a href="Univariate.html#cb9-4" tabindex="-1"></a>theta <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">1</span>);phi<span class="ot">=</span><span class="dv">0</span></span>
-<span id="cb9-5"><a href="Univariate.html#cb9-5" tabindex="-1"></a>y.sim <span class="ot">&lt;-</span> <span class="fu">sim.arma</span>(<span class="at">c=</span><span class="dv">0</span>,phi,theta,<span class="at">sigma=</span><span class="dv">1</span>,<span class="at">T=</span><span class="dv">1000</span>,<span class="at">y.0=</span><span class="dv">0</span>,<span class="at">nb.sim=</span><span class="dv">1</span>)</span>
-<span id="cb9-6"><a href="Univariate.html#cb9-6" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfg=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>));<span class="fu">plot</span>(y.sim,<span class="at">type=</span><span class="st">&quot;l&quot;</span>,<span class="at">lwd=</span><span class="dv">2</span>)</span>
-<span id="cb9-7"><a href="Univariate.html#cb9-7" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfg=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">1</span>));<span class="fu">acf</span>(y.sim)</span>
-<span id="cb9-8"><a href="Univariate.html#cb9-8" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfg=</span><span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">1</span>));<span class="fu">pacf</span>(y.sim)</span>
-<span id="cb9-9"><a href="Univariate.html#cb9-9" tabindex="-1"></a>theta <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>);phi<span class="ot">=</span><span class="fl">0.9</span></span>
-<span id="cb9-10"><a href="Univariate.html#cb9-10" tabindex="-1"></a>y.sim <span class="ot">&lt;-</span> <span class="fu">sim.arma</span>(<span class="at">c=</span><span class="dv">0</span>,phi,theta,<span class="at">sigma=</span><span class="dv">1</span>,<span class="at">T=</span><span class="dv">1000</span>,<span class="at">y.0=</span><span class="dv">0</span>,<span class="at">nb.sim=</span><span class="dv">1</span>)</span>
-<span id="cb9-11"><a href="Univariate.html#cb9-11" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfg=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>));<span class="fu">plot</span>(y.sim,<span class="at">type=</span><span class="st">&quot;l&quot;</span>,<span class="at">lwd=</span><span class="dv">2</span>)</span>
-<span id="cb9-12"><a href="Univariate.html#cb9-12" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfg=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>));<span class="fu">acf</span>(y.sim)</span>
-<span id="cb9-13"><a href="Univariate.html#cb9-13" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfg=</span><span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">2</span>));<span class="fu">pacf</span>(y.sim)</span></code></pre></div>
+<details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="Univariate.html#cb10-1" tabindex="-1"></a><span class="fu">library</span>(IdSS)</span>
+<span id="cb10-2"><a href="Univariate.html#cb10-2" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">2</span>))</span>
+<span id="cb10-3"><a href="Univariate.html#cb10-3" tabindex="-1"></a><span class="fu">par</span>(<span class="at">plt=</span><span class="fu">c</span>(.<span class="dv">2</span>,.<span class="dv">9</span>,.<span class="dv">2</span>,.<span class="dv">95</span>))</span>
+<span id="cb10-4"><a href="Univariate.html#cb10-4" tabindex="-1"></a>theta <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">1</span>);phi<span class="ot">=</span><span class="dv">0</span></span>
+<span id="cb10-5"><a href="Univariate.html#cb10-5" tabindex="-1"></a>y.sim <span class="ot">&lt;-</span> <span class="fu">sim.arma</span>(<span class="at">c=</span><span class="dv">0</span>,phi,theta,<span class="at">sigma=</span><span class="dv">1</span>,<span class="at">T=</span><span class="dv">1000</span>,<span class="at">y.0=</span><span class="dv">0</span>,<span class="at">nb.sim=</span><span class="dv">1</span>)</span>
+<span id="cb10-6"><a href="Univariate.html#cb10-6" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfg=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>));<span class="fu">plot</span>(y.sim,<span class="at">type=</span><span class="st">&quot;l&quot;</span>,<span class="at">lwd=</span><span class="dv">2</span>)</span>
+<span id="cb10-7"><a href="Univariate.html#cb10-7" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfg=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">1</span>));<span class="fu">acf</span>(y.sim)</span>
+<span id="cb10-8"><a href="Univariate.html#cb10-8" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfg=</span><span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">1</span>));<span class="fu">pacf</span>(y.sim)</span>
+<span id="cb10-9"><a href="Univariate.html#cb10-9" tabindex="-1"></a>theta <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>);phi<span class="ot">=</span><span class="fl">0.9</span></span>
+<span id="cb10-10"><a href="Univariate.html#cb10-10" tabindex="-1"></a>y.sim <span class="ot">&lt;-</span> <span class="fu">sim.arma</span>(<span class="at">c=</span><span class="dv">0</span>,phi,theta,<span class="at">sigma=</span><span class="dv">1</span>,<span class="at">T=</span><span class="dv">1000</span>,<span class="at">y.0=</span><span class="dv">0</span>,<span class="at">nb.sim=</span><span class="dv">1</span>)</span>
+<span id="cb10-11"><a href="Univariate.html#cb10-11" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfg=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>));<span class="fu">plot</span>(y.sim,<span class="at">type=</span><span class="st">&quot;l&quot;</span>,<span class="at">lwd=</span><span class="dv">2</span>)</span>
+<span id="cb10-12"><a href="Univariate.html#cb10-12" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfg=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>));<span class="fu">acf</span>(y.sim)</span>
+<span id="cb10-13"><a href="Univariate.html#cb10-13" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfg=</span><span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">2</span>));<span class="fu">pacf</span>(y.sim)</span></code></pre></div>
+</details>
 <div class="figure" style="text-align: left-aligned"><span style="display:block;" id="fig:pacf"></span>
 <img src="TimeSeries_files/figure-html/pacf-1.png" alt="ACF/PACF analysis of two processes (MA process on the left, AR on the right). The correlations are computed on samples of length 1000." width="100%" />
 <p class="caption">
@@ -798,28 +822,30 @@ y_{t+h} = c + \phi_1 y_{t+h-1} + \dots + \phi_p y_{t+h-p} + \varepsilon_{t+h} + 
 </div>
 <p>Note that Proposition <a href="Univariate.html#prp:computPsi">2.7</a> constitutes a simple way to compute the MA(<span class="math inline">\(\infty\)</span>) representation (or Wold representation) of an ARMA process.</p>
 <p>One can use function <code>sim.arma</code> of package <code>IdSS</code> to compute ARMA’s IRFs (with the argument <code>make.IRF = 1</code>):</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="Univariate.html#cb10-1" tabindex="-1"></a>T <span class="ot">&lt;-</span> <span class="dv">21</span> <span class="co"># number of periods for IRF</span></span>
-<span id="cb10-2"><a href="Univariate.html#cb10-2" tabindex="-1"></a>theta <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>);phi <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>);c <span class="ot">&lt;-</span> <span class="dv">0</span></span>
-<span id="cb10-3"><a href="Univariate.html#cb10-3" tabindex="-1"></a>y.sim <span class="ot">&lt;-</span> <span class="fu">sim.arma</span>(c,phi,theta,<span class="at">sigma=</span><span class="dv">1</span>,T,<span class="at">y.0=</span><span class="fu">rep</span>(<span class="dv">0</span>,<span class="fu">length</span>(phi)),</span>
-<span id="cb10-4"><a href="Univariate.html#cb10-4" tabindex="-1"></a>                  <span class="at">nb.sim=</span><span class="dv">1</span>,<span class="at">make.IRF =</span> <span class="dv">1</span>)</span>
-<span id="cb10-5"><a href="Univariate.html#cb10-5" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">3</span>));<span class="fu">par</span>(<span class="at">plt=</span><span class="fu">c</span>(.<span class="dv">25</span>,.<span class="dv">95</span>,.<span class="dv">2</span>,.<span class="dv">85</span>))</span>
-<span id="cb10-6"><a href="Univariate.html#cb10-6" tabindex="-1"></a><span class="fu">plot</span>(<span class="dv">0</span><span class="sc">:</span>(T<span class="dv">-1</span>),y.sim[,<span class="dv">1</span>],<span class="at">type=</span><span class="st">&quot;l&quot;</span>,<span class="at">lwd=</span><span class="dv">2</span>,</span>
-<span id="cb10-7"><a href="Univariate.html#cb10-7" tabindex="-1"></a>     <span class="at">main=</span><span class="st">&quot;(a) Process 1&quot;</span>,<span class="at">xlab=</span><span class="st">&quot;Time after shock on epsilon&quot;</span>,</span>
-<span id="cb10-8"><a href="Univariate.html#cb10-8" tabindex="-1"></a>     <span class="at">ylab=</span><span class="st">&quot;Dynamic multiplier (shock on epsilon at t=0)&quot;</span>,<span class="at">col=</span><span class="st">&quot;red&quot;</span>)</span>
-<span id="cb10-9"><a href="Univariate.html#cb10-9" tabindex="-1"></a></span>
-<span id="cb10-10"><a href="Univariate.html#cb10-10" tabindex="-1"></a>theta <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>,.<span class="dv">5</span>);phi <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">0.6</span>)</span>
-<span id="cb10-11"><a href="Univariate.html#cb10-11" tabindex="-1"></a>y.sim <span class="ot">&lt;-</span> <span class="fu">sim.arma</span>(c,phi,theta,<span class="at">sigma=</span><span class="dv">1</span>,T,<span class="at">y.0=</span><span class="fu">rep</span>(<span class="dv">0</span>,<span class="fu">length</span>(phi)),</span>
-<span id="cb10-12"><a href="Univariate.html#cb10-12" tabindex="-1"></a>                  <span class="at">nb.sim=</span><span class="dv">1</span>,<span class="at">make.IRF =</span> <span class="dv">1</span>)</span>
-<span id="cb10-13"><a href="Univariate.html#cb10-13" tabindex="-1"></a><span class="fu">plot</span>(<span class="dv">0</span><span class="sc">:</span>(T<span class="dv">-1</span>),y.sim[,<span class="dv">1</span>],<span class="at">type=</span><span class="st">&quot;l&quot;</span>,<span class="at">lwd=</span><span class="dv">2</span>,</span>
-<span id="cb10-14"><a href="Univariate.html#cb10-14" tabindex="-1"></a>     <span class="at">main=</span><span class="st">&quot;(b) Process 2&quot;</span>,<span class="at">xlab=</span><span class="st">&quot;Time after shock on epsilon&quot;</span>,</span>
-<span id="cb10-15"><a href="Univariate.html#cb10-15" tabindex="-1"></a>     <span class="at">ylab=</span><span class="st">&quot;&quot;</span>,<span class="at">col=</span><span class="st">&quot;red&quot;</span>)</span>
-<span id="cb10-16"><a href="Univariate.html#cb10-16" tabindex="-1"></a></span>
-<span id="cb10-17"><a href="Univariate.html#cb10-17" tabindex="-1"></a>theta <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>);phi <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>,.<span class="dv">5</span>,.<span class="dv">4</span>)</span>
-<span id="cb10-18"><a href="Univariate.html#cb10-18" tabindex="-1"></a>y.sim <span class="ot">&lt;-</span> <span class="fu">sim.arma</span>(c,phi,theta,<span class="at">sigma=</span><span class="dv">1</span>,T,<span class="at">y.0=</span><span class="fu">rep</span>(<span class="dv">0</span>,<span class="fu">length</span>(phi)),</span>
-<span id="cb10-19"><a href="Univariate.html#cb10-19" tabindex="-1"></a>                  <span class="at">nb.sim=</span><span class="dv">1</span>,<span class="at">make.IRF =</span> <span class="dv">1</span>)</span>
-<span id="cb10-20"><a href="Univariate.html#cb10-20" tabindex="-1"></a><span class="fu">plot</span>(<span class="dv">0</span><span class="sc">:</span>(T<span class="dv">-1</span>),y.sim[,<span class="dv">1</span>],<span class="at">type=</span><span class="st">&quot;l&quot;</span>,<span class="at">lwd=</span><span class="dv">2</span>,</span>
-<span id="cb10-21"><a href="Univariate.html#cb10-21" tabindex="-1"></a>     <span class="at">main=</span><span class="st">&quot;(c) Process 3&quot;</span>,<span class="at">xlab=</span><span class="st">&quot;Time after shock on epsilon&quot;</span>,</span>
-<span id="cb10-22"><a href="Univariate.html#cb10-22" tabindex="-1"></a>     <span class="at">ylab=</span><span class="st">&quot;&quot;</span>,<span class="at">col=</span><span class="st">&quot;red&quot;</span>)</span></code></pre></div>
+<details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="Univariate.html#cb11-1" tabindex="-1"></a>T <span class="ot">&lt;-</span> <span class="dv">21</span> <span class="co"># number of periods for IRF</span></span>
+<span id="cb11-2"><a href="Univariate.html#cb11-2" tabindex="-1"></a>theta <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>);phi <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>);c <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb11-3"><a href="Univariate.html#cb11-3" tabindex="-1"></a>y.sim <span class="ot">&lt;-</span> <span class="fu">sim.arma</span>(c,phi,theta,<span class="at">sigma=</span><span class="dv">1</span>,T,<span class="at">y.0=</span><span class="fu">rep</span>(<span class="dv">0</span>,<span class="fu">length</span>(phi)),</span>
+<span id="cb11-4"><a href="Univariate.html#cb11-4" tabindex="-1"></a>                  <span class="at">nb.sim=</span><span class="dv">1</span>,<span class="at">make.IRF =</span> <span class="dv">1</span>)</span>
+<span id="cb11-5"><a href="Univariate.html#cb11-5" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">3</span>));<span class="fu">par</span>(<span class="at">plt=</span><span class="fu">c</span>(.<span class="dv">25</span>,.<span class="dv">95</span>,.<span class="dv">2</span>,.<span class="dv">85</span>))</span>
+<span id="cb11-6"><a href="Univariate.html#cb11-6" tabindex="-1"></a><span class="fu">plot</span>(<span class="dv">0</span><span class="sc">:</span>(T<span class="dv">-1</span>),y.sim[,<span class="dv">1</span>],<span class="at">type=</span><span class="st">&quot;l&quot;</span>,<span class="at">lwd=</span><span class="dv">2</span>,</span>
+<span id="cb11-7"><a href="Univariate.html#cb11-7" tabindex="-1"></a>     <span class="at">main=</span><span class="st">&quot;(a) Process 1&quot;</span>,<span class="at">xlab=</span><span class="st">&quot;Time after shock on epsilon&quot;</span>,</span>
+<span id="cb11-8"><a href="Univariate.html#cb11-8" tabindex="-1"></a>     <span class="at">ylab=</span><span class="st">&quot;Dynamic multiplier (shock on epsilon at t=0)&quot;</span>,<span class="at">col=</span><span class="st">&quot;red&quot;</span>)</span>
+<span id="cb11-9"><a href="Univariate.html#cb11-9" tabindex="-1"></a></span>
+<span id="cb11-10"><a href="Univariate.html#cb11-10" tabindex="-1"></a>theta <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>,.<span class="dv">5</span>);phi <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">0.6</span>)</span>
+<span id="cb11-11"><a href="Univariate.html#cb11-11" tabindex="-1"></a>y.sim <span class="ot">&lt;-</span> <span class="fu">sim.arma</span>(c,phi,theta,<span class="at">sigma=</span><span class="dv">1</span>,T,<span class="at">y.0=</span><span class="fu">rep</span>(<span class="dv">0</span>,<span class="fu">length</span>(phi)),</span>
+<span id="cb11-12"><a href="Univariate.html#cb11-12" tabindex="-1"></a>                  <span class="at">nb.sim=</span><span class="dv">1</span>,<span class="at">make.IRF =</span> <span class="dv">1</span>)</span>
+<span id="cb11-13"><a href="Univariate.html#cb11-13" tabindex="-1"></a><span class="fu">plot</span>(<span class="dv">0</span><span class="sc">:</span>(T<span class="dv">-1</span>),y.sim[,<span class="dv">1</span>],<span class="at">type=</span><span class="st">&quot;l&quot;</span>,<span class="at">lwd=</span><span class="dv">2</span>,</span>
+<span id="cb11-14"><a href="Univariate.html#cb11-14" tabindex="-1"></a>     <span class="at">main=</span><span class="st">&quot;(b) Process 2&quot;</span>,<span class="at">xlab=</span><span class="st">&quot;Time after shock on epsilon&quot;</span>,</span>
+<span id="cb11-15"><a href="Univariate.html#cb11-15" tabindex="-1"></a>     <span class="at">ylab=</span><span class="st">&quot;&quot;</span>,<span class="at">col=</span><span class="st">&quot;red&quot;</span>)</span>
+<span id="cb11-16"><a href="Univariate.html#cb11-16" tabindex="-1"></a></span>
+<span id="cb11-17"><a href="Univariate.html#cb11-17" tabindex="-1"></a>theta <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>);phi <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>,.<span class="dv">5</span>,.<span class="dv">4</span>)</span>
+<span id="cb11-18"><a href="Univariate.html#cb11-18" tabindex="-1"></a>y.sim <span class="ot">&lt;-</span> <span class="fu">sim.arma</span>(c,phi,theta,<span class="at">sigma=</span><span class="dv">1</span>,T,<span class="at">y.0=</span><span class="fu">rep</span>(<span class="dv">0</span>,<span class="fu">length</span>(phi)),</span>
+<span id="cb11-19"><a href="Univariate.html#cb11-19" tabindex="-1"></a>                  <span class="at">nb.sim=</span><span class="dv">1</span>,<span class="at">make.IRF =</span> <span class="dv">1</span>)</span>
+<span id="cb11-20"><a href="Univariate.html#cb11-20" tabindex="-1"></a><span class="fu">plot</span>(<span class="dv">0</span><span class="sc">:</span>(T<span class="dv">-1</span>),y.sim[,<span class="dv">1</span>],<span class="at">type=</span><span class="st">&quot;l&quot;</span>,<span class="at">lwd=</span><span class="dv">2</span>,</span>
+<span id="cb11-21"><a href="Univariate.html#cb11-21" tabindex="-1"></a>     <span class="at">main=</span><span class="st">&quot;(c) Process 3&quot;</span>,<span class="at">xlab=</span><span class="st">&quot;Time after shock on epsilon&quot;</span>,</span>
+<span id="cb11-22"><a href="Univariate.html#cb11-22" tabindex="-1"></a>     <span class="at">ylab=</span><span class="st">&quot;&quot;</span>,<span class="at">col=</span><span class="st">&quot;red&quot;</span>)</span></code></pre></div>
+</details>
 <div class="figure" style="text-align: left-aligned"><span style="display:block;" id="fig:IRFarma"></span>
 <img src="TimeSeries_files/figure-html/IRFarma-1.png" alt="IRFs associated with the three processes. Process 1 (MA(2)): $y_t = \varepsilon_t + \varepsilon_{t-1} + \varepsilon_{t-2}$. Process 2 (ARMA(1,1)): $y_{t}=0.6y_{t-1} + \varepsilon_t + 0.5\varepsilon_{t-1}$. Process 3 (ARMA(4,2)): $y_{t}=0.5y_{t-3} + 0.4y_{t-4} + \varepsilon_t + \varepsilon_{t-1} + \varepsilon_{t-2}$." width="100%" />
 <p class="caption">
@@ -827,15 +853,17 @@ Figure 2.3: IRFs associated with the three processes. Process 1 (MA(2)): <span c
 </p>
 </div>
 <p>Consider the annual Swiss GDP growth from the JST macro-history database. Let us first determine relevant orders for AR and MA processes using the (P)ACF approach.</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="Univariate.html#cb11-1" tabindex="-1"></a><span class="fu">library</span>(IdSS)</span>
-<span id="cb11-2"><a href="Univariate.html#cb11-2" tabindex="-1"></a><span class="fu">data</span>(JST);data <span class="ot">&lt;-</span> <span class="fu">subset</span>(JST,iso<span class="sc">==</span><span class="st">&quot;CHE&quot;</span>)</span>
-<span id="cb11-3"><a href="Univariate.html#cb11-3" tabindex="-1"></a><span class="fu">par</span>(<span class="at">plt=</span><span class="fu">c</span>(.<span class="dv">1</span>,.<span class="dv">95</span>,.<span class="dv">1</span>,.<span class="dv">95</span>))</span>
-<span id="cb11-4"><a href="Univariate.html#cb11-4" tabindex="-1"></a>T <span class="ot">&lt;-</span> <span class="fu">dim</span>(data)[<span class="dv">1</span>]</span>
-<span id="cb11-5"><a href="Univariate.html#cb11-5" tabindex="-1"></a>growth <span class="ot">&lt;-</span> <span class="fu">log</span>(data<span class="sc">$</span>gdp[<span class="dv">2</span><span class="sc">:</span>T]<span class="sc">/</span>data<span class="sc">$</span>gdp[<span class="dv">1</span><span class="sc">:</span>(T<span class="dv">-1</span>)])</span>
-<span id="cb11-6"><a href="Univariate.html#cb11-6" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">1</span>));<span class="fu">par</span>(<span class="at">plt=</span><span class="fu">c</span>(.<span class="dv">1</span>,.<span class="dv">95</span>,.<span class="dv">15</span>,.<span class="dv">95</span>))</span>
-<span id="cb11-7"><a href="Univariate.html#cb11-7" tabindex="-1"></a><span class="fu">plot</span>(data<span class="sc">$</span>year[<span class="dv">2</span><span class="sc">:</span>T],growth,<span class="at">type=</span><span class="st">&quot;l&quot;</span>,<span class="at">xlab=</span><span class="st">&quot;&quot;</span>,<span class="at">ylab=</span><span class="st">&quot;&quot;</span>,<span class="at">lwd=</span><span class="dv">2</span>)</span>
-<span id="cb11-8"><a href="Univariate.html#cb11-8" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h=</span><span class="dv">0</span>,<span class="at">lty=</span><span class="dv">2</span>)</span>
-<span id="cb11-9"><a href="Univariate.html#cb11-9" tabindex="-1"></a><span class="fu">acf</span>(growth);<span class="fu">pacf</span>(growth)</span></code></pre></div>
+<details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="Univariate.html#cb12-1" tabindex="-1"></a><span class="fu">library</span>(IdSS)</span>
+<span id="cb12-2"><a href="Univariate.html#cb12-2" tabindex="-1"></a><span class="fu">data</span>(JST);data <span class="ot">&lt;-</span> <span class="fu">subset</span>(JST,iso<span class="sc">==</span><span class="st">&quot;CHE&quot;</span>)</span>
+<span id="cb12-3"><a href="Univariate.html#cb12-3" tabindex="-1"></a><span class="fu">par</span>(<span class="at">plt=</span><span class="fu">c</span>(.<span class="dv">1</span>,.<span class="dv">95</span>,.<span class="dv">1</span>,.<span class="dv">95</span>))</span>
+<span id="cb12-4"><a href="Univariate.html#cb12-4" tabindex="-1"></a>T <span class="ot">&lt;-</span> <span class="fu">dim</span>(data)[<span class="dv">1</span>]</span>
+<span id="cb12-5"><a href="Univariate.html#cb12-5" tabindex="-1"></a>growth <span class="ot">&lt;-</span> <span class="fu">log</span>(data<span class="sc">$</span>gdp[<span class="dv">2</span><span class="sc">:</span>T]<span class="sc">/</span>data<span class="sc">$</span>gdp[<span class="dv">1</span><span class="sc">:</span>(T<span class="dv">-1</span>)])</span>
+<span id="cb12-6"><a href="Univariate.html#cb12-6" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">1</span>));<span class="fu">par</span>(<span class="at">plt=</span><span class="fu">c</span>(.<span class="dv">1</span>,.<span class="dv">95</span>,.<span class="dv">15</span>,.<span class="dv">95</span>))</span>
+<span id="cb12-7"><a href="Univariate.html#cb12-7" tabindex="-1"></a><span class="fu">plot</span>(data<span class="sc">$</span>year[<span class="dv">2</span><span class="sc">:</span>T],growth,<span class="at">type=</span><span class="st">&quot;l&quot;</span>,<span class="at">xlab=</span><span class="st">&quot;&quot;</span>,<span class="at">ylab=</span><span class="st">&quot;&quot;</span>,<span class="at">lwd=</span><span class="dv">2</span>)</span>
+<span id="cb12-8"><a href="Univariate.html#cb12-8" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h=</span><span class="dv">0</span>,<span class="at">lty=</span><span class="dv">2</span>)</span>
+<span id="cb12-9"><a href="Univariate.html#cb12-9" tabindex="-1"></a><span class="fu">acf</span>(growth);<span class="fu">pacf</span>(growth)</span></code></pre></div>
+</details>
 <div class="figure" style="text-align: left-aligned"><span style="display:block;" id="fig:IRFgdp1"></span>
 <img src="TimeSeries_files/figure-html/IRFgdp1-1.png" alt="(P)ACF analysis of Swiss GDP growth." width="100%" />
 <p class="caption">
@@ -843,23 +871,25 @@ Figure 2.4: (P)ACF analysis of Swiss GDP growth.
 </p>
 </div>
 <p>The two bottom plots of Figure <a href="Univariate.html#fig:IRFgdp1">2.4</a> suggest that either an MA(2)<a href="#fn6" class="footnote-ref" id="fnref6"><sup>6</sup></a> or an AR(1)<a href="#fn7" class="footnote-ref" id="fnref7"><sup>7</sup></a>could be used to model the GDP growth rate series. Figure <a href="Univariate.html#fig:IRFgdp2">2.5</a> shows the IRFs based on these two respective specifications.</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="Univariate.html#cb12-1" tabindex="-1"></a><span class="co"># Fit an AR process:</span></span>
-<span id="cb12-2"><a href="Univariate.html#cb12-2" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">arima</span>(growth,<span class="at">order=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>))</span>
-<span id="cb12-3"><a href="Univariate.html#cb12-3" tabindex="-1"></a>phi <span class="ot">&lt;-</span> res<span class="sc">$</span>coef[<span class="dv">1</span>]</span>
-<span id="cb12-4"><a href="Univariate.html#cb12-4" tabindex="-1"></a>T <span class="ot">&lt;-</span> <span class="dv">11</span></span>
-<span id="cb12-5"><a href="Univariate.html#cb12-5" tabindex="-1"></a>y.sim <span class="ot">&lt;-</span> <span class="fu">sim.arma</span>(<span class="at">c=</span><span class="dv">0</span>,phi,<span class="at">theta=</span><span class="dv">1</span>,<span class="at">sigma=</span><span class="dv">1</span>,T,<span class="at">y.0=</span><span class="fu">rep</span>(<span class="dv">0</span>,<span class="fu">length</span>(phi)),</span>
-<span id="cb12-6"><a href="Univariate.html#cb12-6" tabindex="-1"></a>                  <span class="at">nb.sim=</span><span class="dv">1</span>,<span class="at">make.IRF =</span> <span class="dv">1</span>)</span>
-<span id="cb12-7"><a href="Univariate.html#cb12-7" tabindex="-1"></a><span class="fu">par</span>(<span class="at">plt=</span><span class="fu">c</span>(.<span class="dv">15</span>,.<span class="dv">95</span>,.<span class="dv">25</span>,.<span class="dv">95</span>))</span>
-<span id="cb12-8"><a href="Univariate.html#cb12-8" tabindex="-1"></a><span class="fu">plot</span>(<span class="dv">0</span><span class="sc">:</span>(T<span class="dv">-1</span>),y.sim[,<span class="dv">1</span>],<span class="at">type=</span><span class="st">&quot;l&quot;</span>,<span class="at">lwd=</span><span class="dv">3</span>,</span>
-<span id="cb12-9"><a href="Univariate.html#cb12-9" tabindex="-1"></a>     <span class="at">xlab=</span><span class="st">&quot;Time after shock on epsilon&quot;</span>,</span>
-<span id="cb12-10"><a href="Univariate.html#cb12-10" tabindex="-1"></a>     <span class="at">ylab=</span><span class="st">&quot;Dynamic multiplier (shock on epsilon at t=0)&quot;</span>,<span class="at">col=</span><span class="st">&quot;red&quot;</span>)</span>
-<span id="cb12-11"><a href="Univariate.html#cb12-11" tabindex="-1"></a><span class="co"># Fit a MA process:</span></span>
-<span id="cb12-12"><a href="Univariate.html#cb12-12" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">arima</span>(growth,<span class="at">order=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">2</span>))</span>
-<span id="cb12-13"><a href="Univariate.html#cb12-13" tabindex="-1"></a>phi <span class="ot">&lt;-</span> <span class="dv">0</span>;theta <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>,res<span class="sc">$</span>coef[<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>])</span>
-<span id="cb12-14"><a href="Univariate.html#cb12-14" tabindex="-1"></a>y.sim <span class="ot">&lt;-</span> <span class="fu">sim.arma</span>(<span class="at">c=</span><span class="dv">0</span>,phi,theta,<span class="at">sigma=</span><span class="dv">1</span>,T,<span class="at">y.0=</span><span class="fu">rep</span>(<span class="dv">0</span>,<span class="fu">length</span>(phi)),</span>
-<span id="cb12-15"><a href="Univariate.html#cb12-15" tabindex="-1"></a>                  <span class="at">nb.sim=</span><span class="dv">1</span>,<span class="at">make.IRF =</span> <span class="dv">1</span>)</span>
-<span id="cb12-16"><a href="Univariate.html#cb12-16" tabindex="-1"></a><span class="fu">lines</span>(<span class="dv">0</span><span class="sc">:</span>(T<span class="dv">-1</span>),y.sim[,<span class="dv">1</span>],<span class="at">lwd=</span><span class="dv">3</span>,<span class="at">col=</span><span class="st">&quot;red&quot;</span>,<span class="at">lty=</span><span class="dv">2</span>)</span>
-<span id="cb12-17"><a href="Univariate.html#cb12-17" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h=</span><span class="dv">0</span>)</span></code></pre></div>
+<details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="Univariate.html#cb13-1" tabindex="-1"></a><span class="co"># Fit an AR process:</span></span>
+<span id="cb13-2"><a href="Univariate.html#cb13-2" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">arima</span>(growth,<span class="at">order=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>))</span>
+<span id="cb13-3"><a href="Univariate.html#cb13-3" tabindex="-1"></a>phi <span class="ot">&lt;-</span> res<span class="sc">$</span>coef[<span class="dv">1</span>]</span>
+<span id="cb13-4"><a href="Univariate.html#cb13-4" tabindex="-1"></a>T <span class="ot">&lt;-</span> <span class="dv">11</span></span>
+<span id="cb13-5"><a href="Univariate.html#cb13-5" tabindex="-1"></a>y.sim <span class="ot">&lt;-</span> <span class="fu">sim.arma</span>(<span class="at">c=</span><span class="dv">0</span>,phi,<span class="at">theta=</span><span class="dv">1</span>,<span class="at">sigma=</span><span class="dv">1</span>,T,<span class="at">y.0=</span><span class="fu">rep</span>(<span class="dv">0</span>,<span class="fu">length</span>(phi)),</span>
+<span id="cb13-6"><a href="Univariate.html#cb13-6" tabindex="-1"></a>                  <span class="at">nb.sim=</span><span class="dv">1</span>,<span class="at">make.IRF =</span> <span class="dv">1</span>)</span>
+<span id="cb13-7"><a href="Univariate.html#cb13-7" tabindex="-1"></a><span class="fu">par</span>(<span class="at">plt=</span><span class="fu">c</span>(.<span class="dv">15</span>,.<span class="dv">95</span>,.<span class="dv">25</span>,.<span class="dv">95</span>))</span>
+<span id="cb13-8"><a href="Univariate.html#cb13-8" tabindex="-1"></a><span class="fu">plot</span>(<span class="dv">0</span><span class="sc">:</span>(T<span class="dv">-1</span>),y.sim[,<span class="dv">1</span>],<span class="at">type=</span><span class="st">&quot;l&quot;</span>,<span class="at">lwd=</span><span class="dv">3</span>,</span>
+<span id="cb13-9"><a href="Univariate.html#cb13-9" tabindex="-1"></a>     <span class="at">xlab=</span><span class="st">&quot;Time after shock on epsilon&quot;</span>,</span>
+<span id="cb13-10"><a href="Univariate.html#cb13-10" tabindex="-1"></a>     <span class="at">ylab=</span><span class="st">&quot;Dynamic multiplier (shock on epsilon at t=0)&quot;</span>,<span class="at">col=</span><span class="st">&quot;red&quot;</span>)</span>
+<span id="cb13-11"><a href="Univariate.html#cb13-11" tabindex="-1"></a><span class="co"># Fit a MA process:</span></span>
+<span id="cb13-12"><a href="Univariate.html#cb13-12" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">arima</span>(growth,<span class="at">order=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">2</span>))</span>
+<span id="cb13-13"><a href="Univariate.html#cb13-13" tabindex="-1"></a>phi <span class="ot">&lt;-</span> <span class="dv">0</span>;theta <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>,res<span class="sc">$</span>coef[<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>])</span>
+<span id="cb13-14"><a href="Univariate.html#cb13-14" tabindex="-1"></a>y.sim <span class="ot">&lt;-</span> <span class="fu">sim.arma</span>(<span class="at">c=</span><span class="dv">0</span>,phi,theta,<span class="at">sigma=</span><span class="dv">1</span>,T,<span class="at">y.0=</span><span class="fu">rep</span>(<span class="dv">0</span>,<span class="fu">length</span>(phi)),</span>
+<span id="cb13-15"><a href="Univariate.html#cb13-15" tabindex="-1"></a>                  <span class="at">nb.sim=</span><span class="dv">1</span>,<span class="at">make.IRF =</span> <span class="dv">1</span>)</span>
+<span id="cb13-16"><a href="Univariate.html#cb13-16" tabindex="-1"></a><span class="fu">lines</span>(<span class="dv">0</span><span class="sc">:</span>(T<span class="dv">-1</span>),y.sim[,<span class="dv">1</span>],<span class="at">lwd=</span><span class="dv">3</span>,<span class="at">col=</span><span class="st">&quot;red&quot;</span>,<span class="at">lty=</span><span class="dv">2</span>)</span>
+<span id="cb13-17"><a href="Univariate.html#cb13-17" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h=</span><span class="dv">0</span>)</span></code></pre></div>
+</details>
 <div class="figure" style="text-align: left-aligned"><span style="display:block;" id="fig:IRFgdp2"></span>
 <img src="TimeSeries_files/figure-html/IRFgdp2-1.png" alt="Dynamic response of Swiss annual growth to a shock on the innovation $\varepsilon_t$ at date $t=0$. The solid line corresponds to an AR(1) specification; the dashed line corresponds to a MA(2) specification." width="100%" />
 <p class="caption">
@@ -943,8 +973,8 @@ This can be applied recursively to give <span class="math inline">\(\dfrac{\part
 <ol style="list-style-type: lower-roman">
 <li>Initialization: <span class="math inline">\(\dfrac{\partial y_{t+h}}{\partial x_t}=0\)</span> for <span class="math inline">\(h&lt;0\)</span>.</li>
 <li>For <span class="math inline">\(h \ge 0\)</span> and assuming that the first <span class="math inline">\(h-1\)</span> multipliers have been computed, we have:
-<span class="math display" id="eq:dynmultX">\[\begin{eqnarray}
-\dfrac{\partial y_{t+h}}{\partial x_t} &amp;=&amp; \phi_1 \dfrac{\partial y_{t+h-1}}{\partial x_t} + \dots + \phi_p \dfrac{\partial y_{t+h-p}}{\partial x_t} + \beta_h,\tag{2.13}
+<span class="math display" id="eq:dynmultXrec">\[\begin{eqnarray}
+\dfrac{\partial y_{t+h}}{\partial x_t} &amp;=&amp; \phi_1 \dfrac{\partial y_{t+h-1}}{\partial x_t} + \dots + \phi_p \dfrac{\partial y_{t+h-p}}{\partial x_t} + \beta_h,\tag{2.14}
 \end{eqnarray}\]</span>
 where we use the notation <span class="math inline">\(\beta_h=0\)</span> if <span class="math inline">\(h&gt;r\)</span>.</li>
 </ol>
@@ -953,40 +983,44 @@ where we use the notation <span class="math inline">\(\beta_h=0\)</span> if <spa
 <p>It has to be stressed that the definition of the dynamic multipliers (Eq. <a href="Univariate.html#eq:dynmultX">(2.13)</a>) does not reflect a potential persistency of the shock occuring on date <span class="math inline">\(t\)</span> in process <span class="math inline">\(\{x\}\)</span> itself. Going in this direction would necessitate to model the joint dynamics of <span class="math inline">\(x_t\)</span> (for instance using a VAR model, see Section <a href="VAR.html#VAR">3</a>).</p>
 <div class="example">
 <p><span id="exm:OrangeJuice" class="example"><strong>Example 2.1  (Influence of the number of freezing days on the price of orange juice) </strong></span>This example is based on data used in <span class="citation">J. Stock and Watson (<a href="#ref-Stock_Watson_2003">2003</a>)</span> (Chapter 16). The objective is to study the influence of the number of freezing days on the price of orange juice. Let us first estimate a ARMA-X(0,0,3) model:</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="Univariate.html#cb13-1" tabindex="-1"></a><span class="fu">library</span>(IdSS);<span class="fu">library</span>(AER)</span>
-<span id="cb13-2"><a href="Univariate.html#cb13-2" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;FrozenJuice&quot;</span>)</span>
-<span id="cb13-3"><a href="Univariate.html#cb13-3" tabindex="-1"></a>FJ <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(FrozenJuice)</span>
-<span id="cb13-4"><a href="Univariate.html#cb13-4" tabindex="-1"></a>date <span class="ot">&lt;-</span> <span class="fu">time</span>(FrozenJuice)</span>
-<span id="cb13-5"><a href="Univariate.html#cb13-5" tabindex="-1"></a>price <span class="ot">&lt;-</span> FJ<span class="sc">$</span>price<span class="sc">/</span>FJ<span class="sc">$</span>ppi</span>
-<span id="cb13-6"><a href="Univariate.html#cb13-6" tabindex="-1"></a>T <span class="ot">&lt;-</span> <span class="fu">length</span>(price)</span>
-<span id="cb13-7"><a href="Univariate.html#cb13-7" tabindex="-1"></a>k <span class="ot">&lt;-</span> <span class="dv">1</span></span>
-<span id="cb13-8"><a href="Univariate.html#cb13-8" tabindex="-1"></a>dprice <span class="ot">&lt;-</span> <span class="dv">100</span><span class="sc">*</span><span class="fu">log</span>(price[(k<span class="sc">+</span><span class="dv">1</span>)<span class="sc">:</span>T]<span class="sc">/</span>price[<span class="dv">1</span><span class="sc">:</span>(T<span class="sc">-</span>k)])</span>
-<span id="cb13-9"><a href="Univariate.html#cb13-9" tabindex="-1"></a>fdd <span class="ot">&lt;-</span> FJ<span class="sc">$</span>fdd[(k<span class="sc">+</span><span class="dv">1</span>)<span class="sc">:</span>T]</span>
-<span id="cb13-10"><a href="Univariate.html#cb13-10" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">1</span>))</span>
-<span id="cb13-11"><a href="Univariate.html#cb13-11" tabindex="-1"></a><span class="fu">par</span>(<span class="at">plt=</span><span class="fu">c</span>(.<span class="dv">1</span>,.<span class="dv">95</span>,.<span class="dv">15</span>,.<span class="dv">75</span>))</span>
-<span id="cb13-12"><a href="Univariate.html#cb13-12" tabindex="-1"></a><span class="fu">plot</span>(date,price,<span class="at">type=</span><span class="st">&quot;l&quot;</span>,<span class="at">xlab=</span><span class="st">&quot;&quot;</span>,<span class="at">ylab=</span><span class="st">&quot;&quot;</span>,</span>
-<span id="cb13-13"><a href="Univariate.html#cb13-13" tabindex="-1"></a>     <span class="at">main=</span><span class="st">&quot;(a) Price of orange Juice&quot;</span>)</span>
-<span id="cb13-14"><a href="Univariate.html#cb13-14" tabindex="-1"></a><span class="fu">plot</span>(date,<span class="fu">c</span>(<span class="cn">NaN</span>,dprice),<span class="at">type=</span><span class="st">&quot;l&quot;</span>,<span class="at">xlab=</span><span class="st">&quot;&quot;</span>,<span class="at">ylab=</span><span class="st">&quot;&quot;</span>,</span>
-<span id="cb13-15"><a href="Univariate.html#cb13-15" tabindex="-1"></a>     <span class="at">main=</span><span class="st">&quot;(b) Monthly pct Change (y)&quot;</span>)</span>
-<span id="cb13-16"><a href="Univariate.html#cb13-16" tabindex="-1"></a><span class="fu">plot</span>(date,FJ<span class="sc">$</span>fdd,<span class="at">type=</span><span class="st">&quot;l&quot;</span>,<span class="at">xlab=</span><span class="st">&quot;&quot;</span>,<span class="at">ylab=</span><span class="st">&quot;&quot;</span>,</span>
-<span id="cb13-17"><a href="Univariate.html#cb13-17" tabindex="-1"></a>     <span class="at">main=</span><span class="st">&quot;(c) Number of freezing days (x)&quot;</span>)</span></code></pre></div>
+<details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="Univariate.html#cb14-1" tabindex="-1"></a><span class="fu">library</span>(IdSS);<span class="fu">library</span>(AER)</span>
+<span id="cb14-2"><a href="Univariate.html#cb14-2" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;FrozenJuice&quot;</span>)</span>
+<span id="cb14-3"><a href="Univariate.html#cb14-3" tabindex="-1"></a>FJ <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(FrozenJuice)</span>
+<span id="cb14-4"><a href="Univariate.html#cb14-4" tabindex="-1"></a>date <span class="ot">&lt;-</span> <span class="fu">time</span>(FrozenJuice)</span>
+<span id="cb14-5"><a href="Univariate.html#cb14-5" tabindex="-1"></a>price <span class="ot">&lt;-</span> FJ<span class="sc">$</span>price<span class="sc">/</span>FJ<span class="sc">$</span>ppi</span>
+<span id="cb14-6"><a href="Univariate.html#cb14-6" tabindex="-1"></a>T <span class="ot">&lt;-</span> <span class="fu">length</span>(price)</span>
+<span id="cb14-7"><a href="Univariate.html#cb14-7" tabindex="-1"></a>k <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb14-8"><a href="Univariate.html#cb14-8" tabindex="-1"></a>dprice <span class="ot">&lt;-</span> <span class="dv">100</span><span class="sc">*</span><span class="fu">log</span>(price[(k<span class="sc">+</span><span class="dv">1</span>)<span class="sc">:</span>T]<span class="sc">/</span>price[<span class="dv">1</span><span class="sc">:</span>(T<span class="sc">-</span>k)])</span>
+<span id="cb14-9"><a href="Univariate.html#cb14-9" tabindex="-1"></a>fdd <span class="ot">&lt;-</span> FJ<span class="sc">$</span>fdd[(k<span class="sc">+</span><span class="dv">1</span>)<span class="sc">:</span>T]</span>
+<span id="cb14-10"><a href="Univariate.html#cb14-10" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">1</span>))</span>
+<span id="cb14-11"><a href="Univariate.html#cb14-11" tabindex="-1"></a><span class="fu">par</span>(<span class="at">plt=</span><span class="fu">c</span>(.<span class="dv">1</span>,.<span class="dv">95</span>,.<span class="dv">15</span>,.<span class="dv">75</span>))</span>
+<span id="cb14-12"><a href="Univariate.html#cb14-12" tabindex="-1"></a><span class="fu">plot</span>(date,price,<span class="at">type=</span><span class="st">&quot;l&quot;</span>,<span class="at">xlab=</span><span class="st">&quot;&quot;</span>,<span class="at">ylab=</span><span class="st">&quot;&quot;</span>,</span>
+<span id="cb14-13"><a href="Univariate.html#cb14-13" tabindex="-1"></a>     <span class="at">main=</span><span class="st">&quot;(a) Price of orange Juice&quot;</span>)</span>
+<span id="cb14-14"><a href="Univariate.html#cb14-14" tabindex="-1"></a><span class="fu">plot</span>(date,<span class="fu">c</span>(<span class="cn">NaN</span>,dprice),<span class="at">type=</span><span class="st">&quot;l&quot;</span>,<span class="at">xlab=</span><span class="st">&quot;&quot;</span>,<span class="at">ylab=</span><span class="st">&quot;&quot;</span>,</span>
+<span id="cb14-15"><a href="Univariate.html#cb14-15" tabindex="-1"></a>     <span class="at">main=</span><span class="st">&quot;(b) Monthly pct Change (y)&quot;</span>)</span>
+<span id="cb14-16"><a href="Univariate.html#cb14-16" tabindex="-1"></a><span class="fu">plot</span>(date,FJ<span class="sc">$</span>fdd,<span class="at">type=</span><span class="st">&quot;l&quot;</span>,<span class="at">xlab=</span><span class="st">&quot;&quot;</span>,<span class="at">ylab=</span><span class="st">&quot;&quot;</span>,</span>
+<span id="cb14-17"><a href="Univariate.html#cb14-17" tabindex="-1"></a>     <span class="at">main=</span><span class="st">&quot;(c) Number of freezing days (x)&quot;</span>)</span></code></pre></div>
+</details>
 <p><img src="TimeSeries_files/figure-html/freez-1.png" width="672" /></p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="Univariate.html#cb14-1" tabindex="-1"></a>nb.lags <span class="ot">&lt;-</span> <span class="dv">3</span></span>
-<span id="cb14-2"><a href="Univariate.html#cb14-2" tabindex="-1"></a>FDD <span class="ot">&lt;-</span> FJ<span class="sc">$</span>fdd[(nb.lags<span class="sc">+</span><span class="dv">1</span>)<span class="sc">:</span>T]</span>
-<span id="cb14-3"><a href="Univariate.html#cb14-3" tabindex="-1"></a>names.FDD <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
-<span id="cb14-4"><a href="Univariate.html#cb14-4" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>nb.lags){</span>
-<span id="cb14-5"><a href="Univariate.html#cb14-5" tabindex="-1"></a>  FDD <span class="ot">&lt;-</span> <span class="fu">cbind</span>(FDD,FJ<span class="sc">$</span>fdd[(nb.lags<span class="sc">+</span><span class="dv">1</span><span class="sc">-</span>i)<span class="sc">:</span>(T<span class="sc">-</span>i)])</span>
-<span id="cb14-6"><a href="Univariate.html#cb14-6" tabindex="-1"></a>  names.FDD <span class="ot">&lt;-</span> <span class="fu">c</span>(names.FDD,<span class="fu">paste</span>(<span class="st">&quot; Lag &quot;</span>,<span class="fu">toString</span>(i),<span class="at">sep=</span><span class="st">&quot;&quot;</span>))}</span>
-<span id="cb14-7"><a href="Univariate.html#cb14-7" tabindex="-1"></a><span class="fu">colnames</span>(FDD) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot; Lag 0&quot;</span>,names.FDD)</span>
-<span id="cb14-8"><a href="Univariate.html#cb14-8" tabindex="-1"></a>dprice <span class="ot">&lt;-</span> dprice[(<span class="fu">length</span>(dprice)<span class="sc">-</span><span class="fu">dim</span>(FDD)[<span class="dv">1</span>]<span class="sc">+</span><span class="dv">1</span>)<span class="sc">:</span><span class="fu">length</span>(dprice)]</span>
-<span id="cb14-9"><a href="Univariate.html#cb14-9" tabindex="-1"></a>eq <span class="ot">&lt;-</span> <span class="fu">lm</span>(dprice<span class="sc">~</span>FDD)</span>
-<span id="cb14-10"><a href="Univariate.html#cb14-10" tabindex="-1"></a><span class="co"># Compute the Newey-West std errors:</span></span>
-<span id="cb14-11"><a href="Univariate.html#cb14-11" tabindex="-1"></a>var.cov.mat <span class="ot">&lt;-</span> <span class="fu">NeweyWest</span>(eq,<span class="at">lag =</span> <span class="dv">7</span>, <span class="at">prewhite =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb14-12"><a href="Univariate.html#cb14-12" tabindex="-1"></a>robust_se <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fu">diag</span>(var.cov.mat))</span>
-<span id="cb14-13"><a href="Univariate.html#cb14-13" tabindex="-1"></a><span class="co"># Stargazer output (with and without Robust SE)</span></span>
-<span id="cb14-14"><a href="Univariate.html#cb14-14" tabindex="-1"></a>stargazer<span class="sc">::</span><span class="fu">stargazer</span>(eq, eq, <span class="at">type =</span> <span class="st">&quot;text&quot;</span>,</span>
-<span id="cb14-15"><a href="Univariate.html#cb14-15" tabindex="-1"></a>                     <span class="at">column.labels=</span><span class="fu">c</span>(<span class="st">&quot;(no HAC)&quot;</span>,<span class="st">&quot;(HAC)&quot;</span>),<span class="at">keep.stat=</span><span class="st">&quot;n&quot;</span>,</span>
-<span id="cb14-16"><a href="Univariate.html#cb14-16" tabindex="-1"></a>                     <span class="at">se =</span> <span class="fu">list</span>(<span class="cn">NULL</span>,robust_se),<span class="at">no.space =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="Univariate.html#cb15-1" tabindex="-1"></a>nb.lags <span class="ot">&lt;-</span> <span class="dv">3</span></span>
+<span id="cb15-2"><a href="Univariate.html#cb15-2" tabindex="-1"></a>FDD <span class="ot">&lt;-</span> FJ<span class="sc">$</span>fdd[(nb.lags<span class="sc">+</span><span class="dv">1</span>)<span class="sc">:</span>T]</span>
+<span id="cb15-3"><a href="Univariate.html#cb15-3" tabindex="-1"></a>names.FDD <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb15-4"><a href="Univariate.html#cb15-4" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>nb.lags){</span>
+<span id="cb15-5"><a href="Univariate.html#cb15-5" tabindex="-1"></a>  FDD <span class="ot">&lt;-</span> <span class="fu">cbind</span>(FDD,FJ<span class="sc">$</span>fdd[(nb.lags<span class="sc">+</span><span class="dv">1</span><span class="sc">-</span>i)<span class="sc">:</span>(T<span class="sc">-</span>i)])</span>
+<span id="cb15-6"><a href="Univariate.html#cb15-6" tabindex="-1"></a>  names.FDD <span class="ot">&lt;-</span> <span class="fu">c</span>(names.FDD,<span class="fu">paste</span>(<span class="st">&quot; Lag &quot;</span>,<span class="fu">toString</span>(i),<span class="at">sep=</span><span class="st">&quot;&quot;</span>))}</span>
+<span id="cb15-7"><a href="Univariate.html#cb15-7" tabindex="-1"></a><span class="fu">colnames</span>(FDD) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot; Lag 0&quot;</span>,names.FDD)</span>
+<span id="cb15-8"><a href="Univariate.html#cb15-8" tabindex="-1"></a>dprice <span class="ot">&lt;-</span> dprice[(<span class="fu">length</span>(dprice)<span class="sc">-</span><span class="fu">dim</span>(FDD)[<span class="dv">1</span>]<span class="sc">+</span><span class="dv">1</span>)<span class="sc">:</span><span class="fu">length</span>(dprice)]</span>
+<span id="cb15-9"><a href="Univariate.html#cb15-9" tabindex="-1"></a>eq <span class="ot">&lt;-</span> <span class="fu">lm</span>(dprice<span class="sc">~</span>FDD)</span>
+<span id="cb15-10"><a href="Univariate.html#cb15-10" tabindex="-1"></a><span class="co"># Compute the Newey-West std errors:</span></span>
+<span id="cb15-11"><a href="Univariate.html#cb15-11" tabindex="-1"></a>var.cov.mat <span class="ot">&lt;-</span> <span class="fu">NeweyWest</span>(eq,<span class="at">lag =</span> <span class="dv">7</span>, <span class="at">prewhite =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb15-12"><a href="Univariate.html#cb15-12" tabindex="-1"></a>robust_se <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fu">diag</span>(var.cov.mat))</span>
+<span id="cb15-13"><a href="Univariate.html#cb15-13" tabindex="-1"></a><span class="co"># Stargazer output (with and without Robust SE)</span></span>
+<span id="cb15-14"><a href="Univariate.html#cb15-14" tabindex="-1"></a>stargazer<span class="sc">::</span><span class="fu">stargazer</span>(eq, eq, <span class="at">type =</span> <span class="st">&quot;text&quot;</span>,</span>
+<span id="cb15-15"><a href="Univariate.html#cb15-15" tabindex="-1"></a>                     <span class="at">column.labels=</span><span class="fu">c</span>(<span class="st">&quot;(no HAC)&quot;</span>,<span class="st">&quot;(HAC)&quot;</span>),<span class="at">keep.stat=</span><span class="st">&quot;n&quot;</span>,</span>
+<span id="cb15-16"><a href="Univariate.html#cb15-16" tabindex="-1"></a>                     <span class="at">se =</span> <span class="fu">list</span>(<span class="cn">NULL</span>,robust_se),<span class="at">no.space =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+</details>
 <pre><code>## 
 ## =========================================
 ##                  Dependent variable:     
@@ -1010,25 +1044,29 @@ where we use the notation <span class="math inline">\(\beta_h=0\)</span> if <spa
 ## =========================================
 ## Note:         *p&lt;0.1; **p&lt;0.05; ***p&lt;0.01</code></pre>
 <p>Let us now use function <code>estim.armax</code>, from package <code>IdSS</code> to fit an ARMA-X(3,0,1) model:</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="Univariate.html#cb16-1" tabindex="-1"></a>nb.lags.exog <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="co"># number of lags of exog. variable</span></span>
-<span id="cb16-2"><a href="Univariate.html#cb16-2" tabindex="-1"></a>FDD <span class="ot">&lt;-</span> FJ<span class="sc">$</span>fdd[(nb.lags.exog<span class="sc">+</span><span class="dv">1</span>)<span class="sc">:</span>T]</span>
-<span id="cb16-3"><a href="Univariate.html#cb16-3" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>nb.lags.exog){</span>
-<span id="cb16-4"><a href="Univariate.html#cb16-4" tabindex="-1"></a>  FDD <span class="ot">&lt;-</span> <span class="fu">cbind</span>(FDD,FJ<span class="sc">$</span>fdd[(nb.lags.exog<span class="sc">+</span><span class="dv">1</span><span class="sc">-</span>i)<span class="sc">:</span>(T<span class="sc">-</span>i)])}</span>
-<span id="cb16-5"><a href="Univariate.html#cb16-5" tabindex="-1"></a>dprice <span class="ot">&lt;-</span> <span class="dv">100</span><span class="sc">*</span><span class="fu">log</span>(price[(k<span class="sc">+</span><span class="dv">1</span>)<span class="sc">:</span>T]<span class="sc">/</span>price[<span class="dv">1</span><span class="sc">:</span>(T<span class="sc">-</span>k)])</span>
-<span id="cb16-6"><a href="Univariate.html#cb16-6" tabindex="-1"></a>dprice <span class="ot">&lt;-</span> dprice[(<span class="fu">length</span>(dprice)<span class="sc">-</span><span class="fu">dim</span>(FDD)[<span class="dv">1</span>]<span class="sc">+</span><span class="dv">1</span>)<span class="sc">:</span><span class="fu">length</span>(dprice)]</span>
-<span id="cb16-7"><a href="Univariate.html#cb16-7" tabindex="-1"></a>res.armax <span class="ot">&lt;-</span> <span class="fu">estim.armax</span>(<span class="at">Y =</span> dprice,<span class="at">p=</span><span class="dv">3</span>,<span class="at">q=</span><span class="dv">0</span>,<span class="at">X=</span>FDD)</span></code></pre></div>
+<details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="Univariate.html#cb17-1" tabindex="-1"></a>nb.lags.exog <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="co"># number of lags of exog. variable</span></span>
+<span id="cb17-2"><a href="Univariate.html#cb17-2" tabindex="-1"></a>FDD <span class="ot">&lt;-</span> FJ<span class="sc">$</span>fdd[(nb.lags.exog<span class="sc">+</span><span class="dv">1</span>)<span class="sc">:</span>T]</span>
+<span id="cb17-3"><a href="Univariate.html#cb17-3" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>nb.lags.exog){</span>
+<span id="cb17-4"><a href="Univariate.html#cb17-4" tabindex="-1"></a>  FDD <span class="ot">&lt;-</span> <span class="fu">cbind</span>(FDD,FJ<span class="sc">$</span>fdd[(nb.lags.exog<span class="sc">+</span><span class="dv">1</span><span class="sc">-</span>i)<span class="sc">:</span>(T<span class="sc">-</span>i)])}</span>
+<span id="cb17-5"><a href="Univariate.html#cb17-5" tabindex="-1"></a>dprice <span class="ot">&lt;-</span> <span class="dv">100</span><span class="sc">*</span><span class="fu">log</span>(price[(k<span class="sc">+</span><span class="dv">1</span>)<span class="sc">:</span>T]<span class="sc">/</span>price[<span class="dv">1</span><span class="sc">:</span>(T<span class="sc">-</span>k)])</span>
+<span id="cb17-6"><a href="Univariate.html#cb17-6" tabindex="-1"></a>dprice <span class="ot">&lt;-</span> dprice[(<span class="fu">length</span>(dprice)<span class="sc">-</span><span class="fu">dim</span>(FDD)[<span class="dv">1</span>]<span class="sc">+</span><span class="dv">1</span>)<span class="sc">:</span><span class="fu">length</span>(dprice)]</span>
+<span id="cb17-7"><a href="Univariate.html#cb17-7" tabindex="-1"></a>res.armax <span class="ot">&lt;-</span> <span class="fu">estim.armax</span>(<span class="at">Y =</span> dprice,<span class="at">p=</span><span class="dv">3</span>,<span class="at">q=</span><span class="dv">0</span>,<span class="at">X=</span>FDD)</span></code></pre></div>
+</details>
 <p>Figure <a href="Univariate.html#fig:freez4">2.6</a> shows the IRF associated with each of the two models.</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="Univariate.html#cb17-1" tabindex="-1"></a>nb.periods <span class="ot">&lt;-</span> <span class="dv">20</span></span>
-<span id="cb17-2"><a href="Univariate.html#cb17-2" tabindex="-1"></a>IRF1 <span class="ot">&lt;-</span> <span class="fu">sim.arma</span>(<span class="at">c=</span><span class="dv">0</span>,<span class="at">phi=</span><span class="fu">c</span>(<span class="dv">0</span>),<span class="at">theta=</span>eq<span class="sc">$</span>coefficients[<span class="dv">2</span><span class="sc">:</span>(nb.lags<span class="sc">+</span><span class="dv">1</span>)],<span class="at">sigma=</span><span class="dv">1</span>,</span>
-<span id="cb17-3"><a href="Univariate.html#cb17-3" tabindex="-1"></a>                 <span class="at">T=</span>nb.periods,<span class="at">y.0=</span><span class="fu">c</span>(<span class="dv">0</span>),<span class="at">nb.sim=</span><span class="dv">1</span>,<span class="at">make.IRF=</span><span class="dv">1</span>)</span>
-<span id="cb17-4"><a href="Univariate.html#cb17-4" tabindex="-1"></a>IRF2 <span class="ot">&lt;-</span> <span class="fu">sim.arma</span>(<span class="at">c=</span><span class="dv">0</span>,<span class="at">phi=</span>res.armax<span class="sc">$</span>phi,<span class="at">theta=</span>res.armax<span class="sc">$</span>beta,<span class="at">sigma=</span><span class="dv">1</span>,</span>
-<span id="cb17-5"><a href="Univariate.html#cb17-5" tabindex="-1"></a>                 <span class="at">T=</span>nb.periods,<span class="at">y.0=</span><span class="fu">rep</span>(<span class="dv">0</span>,<span class="fu">length</span>(res.armax<span class="sc">$</span>phi)),</span>
-<span id="cb17-6"><a href="Univariate.html#cb17-6" tabindex="-1"></a>                 <span class="at">nb.sim=</span><span class="dv">1</span>,<span class="at">make.IRF=</span><span class="dv">1</span>)</span>
-<span id="cb17-7"><a href="Univariate.html#cb17-7" tabindex="-1"></a><span class="fu">par</span>(<span class="at">plt=</span><span class="fu">c</span>(.<span class="dv">15</span>,.<span class="dv">95</span>,.<span class="dv">2</span>,.<span class="dv">95</span>))</span>
-<span id="cb17-8"><a href="Univariate.html#cb17-8" tabindex="-1"></a><span class="fu">plot</span>(IRF1,<span class="at">type=</span><span class="st">&quot;l&quot;</span>,<span class="at">lwd=</span><span class="dv">2</span>,<span class="at">col=</span><span class="st">&quot;red&quot;</span>,<span class="at">xlab=</span><span class="st">&quot;months after shock&quot;</span>,</span>
-<span id="cb17-9"><a href="Univariate.html#cb17-9" tabindex="-1"></a>     <span class="at">ylab=</span><span class="st">&quot;Chge in price (percent)&quot;</span>)</span>
-<span id="cb17-10"><a href="Univariate.html#cb17-10" tabindex="-1"></a><span class="fu">lines</span>(IRF2,<span class="at">lwd=</span><span class="dv">2</span>,<span class="at">col=</span><span class="st">&quot;red&quot;</span>,<span class="at">lty=</span><span class="dv">2</span>)</span>
-<span id="cb17-11"><a href="Univariate.html#cb17-11" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h=</span><span class="dv">0</span>,<span class="at">col=</span><span class="st">&quot;grey&quot;</span>)</span></code></pre></div>
+<details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="Univariate.html#cb18-1" tabindex="-1"></a>nb.periods <span class="ot">&lt;-</span> <span class="dv">20</span></span>
+<span id="cb18-2"><a href="Univariate.html#cb18-2" tabindex="-1"></a>IRF1 <span class="ot">&lt;-</span> <span class="fu">sim.arma</span>(<span class="at">c=</span><span class="dv">0</span>,<span class="at">phi=</span><span class="fu">c</span>(<span class="dv">0</span>),<span class="at">theta=</span>eq<span class="sc">$</span>coefficients[<span class="dv">2</span><span class="sc">:</span>(nb.lags<span class="sc">+</span><span class="dv">1</span>)],<span class="at">sigma=</span><span class="dv">1</span>,</span>
+<span id="cb18-3"><a href="Univariate.html#cb18-3" tabindex="-1"></a>                 <span class="at">T=</span>nb.periods,<span class="at">y.0=</span><span class="fu">c</span>(<span class="dv">0</span>),<span class="at">nb.sim=</span><span class="dv">1</span>,<span class="at">make.IRF=</span><span class="dv">1</span>)</span>
+<span id="cb18-4"><a href="Univariate.html#cb18-4" tabindex="-1"></a>IRF2 <span class="ot">&lt;-</span> <span class="fu">sim.arma</span>(<span class="at">c=</span><span class="dv">0</span>,<span class="at">phi=</span>res.armax<span class="sc">$</span>phi,<span class="at">theta=</span>res.armax<span class="sc">$</span>beta,<span class="at">sigma=</span><span class="dv">1</span>,</span>
+<span id="cb18-5"><a href="Univariate.html#cb18-5" tabindex="-1"></a>                 <span class="at">T=</span>nb.periods,<span class="at">y.0=</span><span class="fu">rep</span>(<span class="dv">0</span>,<span class="fu">length</span>(res.armax<span class="sc">$</span>phi)),</span>
+<span id="cb18-6"><a href="Univariate.html#cb18-6" tabindex="-1"></a>                 <span class="at">nb.sim=</span><span class="dv">1</span>,<span class="at">make.IRF=</span><span class="dv">1</span>)</span>
+<span id="cb18-7"><a href="Univariate.html#cb18-7" tabindex="-1"></a><span class="fu">par</span>(<span class="at">plt=</span><span class="fu">c</span>(.<span class="dv">15</span>,.<span class="dv">95</span>,.<span class="dv">2</span>,.<span class="dv">95</span>))</span>
+<span id="cb18-8"><a href="Univariate.html#cb18-8" tabindex="-1"></a><span class="fu">plot</span>(IRF1,<span class="at">type=</span><span class="st">&quot;l&quot;</span>,<span class="at">lwd=</span><span class="dv">2</span>,<span class="at">col=</span><span class="st">&quot;red&quot;</span>,<span class="at">xlab=</span><span class="st">&quot;months after shock&quot;</span>,</span>
+<span id="cb18-9"><a href="Univariate.html#cb18-9" tabindex="-1"></a>     <span class="at">ylab=</span><span class="st">&quot;Chge in price (percent)&quot;</span>)</span>
+<span id="cb18-10"><a href="Univariate.html#cb18-10" tabindex="-1"></a><span class="fu">lines</span>(IRF2,<span class="at">lwd=</span><span class="dv">2</span>,<span class="at">col=</span><span class="st">&quot;red&quot;</span>,<span class="at">lty=</span><span class="dv">2</span>)</span>
+<span id="cb18-11"><a href="Univariate.html#cb18-11" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h=</span><span class="dv">0</span>,<span class="at">col=</span><span class="st">&quot;grey&quot;</span>)</span></code></pre></div>
+</details>
 <div class="figure" style="text-align: left-aligned"><span style="display:block;" id="fig:freez4"></span>
 <img src="TimeSeries_files/figure-html/freez4-1.png" alt="Response of changes in orange juice price (in percent) to the number of freezing days. The solid (respectively dashed) line corresponds to the ARMAX(0,0,3) (resp. ARMAX(3,0,1)) model. The first model is estimated by OLS (see above), the second by MLE." width="95%" />
 <p class="caption">
@@ -1071,31 +1109,35 @@ Figure 2.6: Response of changes in orange juice price (in percent) to the number
 <!-- \end{frame} -->
 <div class="example">
 <p><span id="exm:Ramey1" class="example"><strong>Example 2.2  (Real effect of a monetary policy shock) </strong></span>In this example, we make use of monetary shocks identified through high-frequency data (see <span class="citation">Gertler and Karadi (<a href="#ref-Gertler_Karadi_2015">2015</a>)</span>). This dataset comes from <a href="https://econweb.ucsd.edu/~vramey/research.html">Valerie Ramey’s website</a> (see <span class="citation">Ramey (<a href="#ref-Ramey_2016_NBER">2016</a>)</span>).</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="Univariate.html#cb18-1" tabindex="-1"></a><span class="fu">library</span>(IdSS)</span>
-<span id="cb18-2"><a href="Univariate.html#cb18-2" tabindex="-1"></a>T <span class="ot">&lt;-</span> <span class="fu">dim</span>(Ramey)[<span class="dv">1</span>]</span>
-<span id="cb18-3"><a href="Univariate.html#cb18-3" tabindex="-1"></a><span class="co"># Construct growth series:</span></span>
-<span id="cb18-4"><a href="Univariate.html#cb18-4" tabindex="-1"></a>Ramey<span class="sc">$</span>growth <span class="ot">&lt;-</span> Ramey<span class="sc">$</span>LIP <span class="sc">-</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="cn">NaN</span>,<span class="dv">12</span>),Ramey<span class="sc">$</span>LIP[<span class="dv">1</span><span class="sc">:</span>(<span class="fu">length</span>(Ramey<span class="sc">$</span>LIP)<span class="sc">-</span><span class="dv">12</span>)])</span>
-<span id="cb18-5"><a href="Univariate.html#cb18-5" tabindex="-1"></a><span class="co"># Prepare matrix of exogenous variables:</span></span>
-<span id="cb18-6"><a href="Univariate.html#cb18-6" tabindex="-1"></a>vec.lags <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">6</span><span class="sc">:</span><span class="dv">12</span>)</span>
-<span id="cb18-7"><a href="Univariate.html#cb18-7" tabindex="-1"></a>Matrix.of.Exog <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
-<span id="cb18-8"><a href="Univariate.html#cb18-8" tabindex="-1"></a>shocks <span class="ot">&lt;-</span> Ramey<span class="sc">$</span>ED2_TC</span>
-<span id="cb18-9"><a href="Univariate.html#cb18-9" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(vec.lags)){Matrix.of.Exog <span class="ot">&lt;-</span></span>
-<span id="cb18-10"><a href="Univariate.html#cb18-10" tabindex="-1"></a>  <span class="fu">cbind</span>(Matrix.of.Exog,<span class="fu">c</span>(<span class="fu">rep</span>(<span class="cn">NaN</span>,vec.lags[i]),shocks[<span class="dv">1</span><span class="sc">:</span>(T<span class="sc">-</span>vec.lags[i])]))}</span>
-<span id="cb18-11"><a href="Univariate.html#cb18-11" tabindex="-1"></a><span class="co"># Look for dates where data are available:</span></span>
-<span id="cb18-12"><a href="Univariate.html#cb18-12" tabindex="-1"></a>indic.good.dates <span class="ot">&lt;-</span> <span class="fu">complete.cases</span>(Matrix.of.Exog)</span></code></pre></div>
+<details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="Univariate.html#cb19-1" tabindex="-1"></a><span class="fu">library</span>(IdSS)</span>
+<span id="cb19-2"><a href="Univariate.html#cb19-2" tabindex="-1"></a>T <span class="ot">&lt;-</span> <span class="fu">dim</span>(Ramey)[<span class="dv">1</span>]</span>
+<span id="cb19-3"><a href="Univariate.html#cb19-3" tabindex="-1"></a><span class="co"># Construct growth series:</span></span>
+<span id="cb19-4"><a href="Univariate.html#cb19-4" tabindex="-1"></a>Ramey<span class="sc">$</span>growth <span class="ot">&lt;-</span> Ramey<span class="sc">$</span>LIP <span class="sc">-</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="cn">NaN</span>,<span class="dv">12</span>),Ramey<span class="sc">$</span>LIP[<span class="dv">1</span><span class="sc">:</span>(<span class="fu">length</span>(Ramey<span class="sc">$</span>LIP)<span class="sc">-</span><span class="dv">12</span>)])</span>
+<span id="cb19-5"><a href="Univariate.html#cb19-5" tabindex="-1"></a><span class="co"># Prepare matrix of exogenous variables:</span></span>
+<span id="cb19-6"><a href="Univariate.html#cb19-6" tabindex="-1"></a>vec.lags <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">6</span><span class="sc">:</span><span class="dv">12</span>)</span>
+<span id="cb19-7"><a href="Univariate.html#cb19-7" tabindex="-1"></a>Matrix.of.Exog <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb19-8"><a href="Univariate.html#cb19-8" tabindex="-1"></a>shocks <span class="ot">&lt;-</span> Ramey<span class="sc">$</span>ED2_TC</span>
+<span id="cb19-9"><a href="Univariate.html#cb19-9" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(vec.lags)){Matrix.of.Exog <span class="ot">&lt;-</span></span>
+<span id="cb19-10"><a href="Univariate.html#cb19-10" tabindex="-1"></a>  <span class="fu">cbind</span>(Matrix.of.Exog,<span class="fu">c</span>(<span class="fu">rep</span>(<span class="cn">NaN</span>,vec.lags[i]),shocks[<span class="dv">1</span><span class="sc">:</span>(T<span class="sc">-</span>vec.lags[i])]))}</span>
+<span id="cb19-11"><a href="Univariate.html#cb19-11" tabindex="-1"></a><span class="co"># Look for dates where data are available:</span></span>
+<span id="cb19-12"><a href="Univariate.html#cb19-12" tabindex="-1"></a>indic.good.dates <span class="ot">&lt;-</span> <span class="fu">complete.cases</span>(Matrix.of.Exog)</span></code></pre></div>
+</details>
 <div class="figure" style="text-align: left-aligned"><span style="display:block;" id="fig:Ramey1fig"></span>
 <img src="TimeSeries_files/figure-html/Ramey1fig-1.png" alt="The blue line corresponds to monetary-policy shocks identified by means of the Gertler and Karadi (2015)'s approach (high-frequency change in Euro-dollar futures). The black slid line is the year-on-year growth rate of industrial production." width="95%" />
 <p class="caption">
 Figure 2.7: The blue line corresponds to monetary-policy shocks identified by means of the Gertler and Karadi (2015)’s approach (high-frequency change in Euro-dollar futures). The black slid line is the year-on-year growth rate of industrial production.
 </p>
 </div>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="Univariate.html#cb19-1" tabindex="-1"></a><span class="co"># Estimate ARMA-X:</span></span>
-<span id="cb19-2"><a href="Univariate.html#cb19-2" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="dv">1</span>; q <span class="ot">&lt;-</span> <span class="dv">0</span></span>
-<span id="cb19-3"><a href="Univariate.html#cb19-3" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">estim.armax</span>(Ramey<span class="sc">$</span>growth[indic.good.dates],p,q,</span>
-<span id="cb19-4"><a href="Univariate.html#cb19-4" tabindex="-1"></a>                 <span class="at">X=</span>Matrix.of.Exog[indic.good.dates,])</span>
-<span id="cb19-5"><a href="Univariate.html#cb19-5" tabindex="-1"></a><span class="co"># Compute IRF:</span></span>
-<span id="cb19-6"><a href="Univariate.html#cb19-6" tabindex="-1"></a>irf <span class="ot">&lt;-</span> <span class="fu">sim.arma</span>(<span class="dv">0</span>,x<span class="sc">$</span>phi,x<span class="sc">$</span>beta,x<span class="sc">$</span>sigma,<span class="at">T=</span><span class="dv">60</span>,<span class="at">y.0=</span><span class="fu">rep</span>(<span class="dv">0</span>,<span class="fu">length</span>(x<span class="sc">$</span>phi)),</span>
-<span id="cb19-7"><a href="Univariate.html#cb19-7" tabindex="-1"></a>                <span class="at">nb.sim=</span><span class="dv">1</span>,<span class="at">make.IRF=</span><span class="dv">1</span>,<span class="at">X=</span><span class="cn">NaN</span>,<span class="at">beta=</span><span class="cn">NaN</span>)</span></code></pre></div>
+<details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="Univariate.html#cb20-1" tabindex="-1"></a><span class="co"># Estimate ARMA-X:</span></span>
+<span id="cb20-2"><a href="Univariate.html#cb20-2" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="dv">1</span>; q <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb20-3"><a href="Univariate.html#cb20-3" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">estim.armax</span>(Ramey<span class="sc">$</span>growth[indic.good.dates],p,q,</span>
+<span id="cb20-4"><a href="Univariate.html#cb20-4" tabindex="-1"></a>                 <span class="at">X=</span>Matrix.of.Exog[indic.good.dates,])</span>
+<span id="cb20-5"><a href="Univariate.html#cb20-5" tabindex="-1"></a><span class="co"># Compute IRF:</span></span>
+<span id="cb20-6"><a href="Univariate.html#cb20-6" tabindex="-1"></a>irf <span class="ot">&lt;-</span> <span class="fu">sim.arma</span>(<span class="dv">0</span>,x<span class="sc">$</span>phi,x<span class="sc">$</span>beta,x<span class="sc">$</span>sigma,<span class="at">T=</span><span class="dv">60</span>,<span class="at">y.0=</span><span class="fu">rep</span>(<span class="dv">0</span>,<span class="fu">length</span>(x<span class="sc">$</span>phi)),</span>
+<span id="cb20-7"><a href="Univariate.html#cb20-7" tabindex="-1"></a>                <span class="at">nb.sim=</span><span class="dv">1</span>,<span class="at">make.IRF=</span><span class="dv">1</span>,<span class="at">X=</span><span class="cn">NaN</span>,<span class="at">beta=</span><span class="cn">NaN</span>)</span></code></pre></div>
+</details>
 <p>Figure <a href="Univariate.html#fig:Ramey3">2.8</a> displays the resulting IRF, with a 95% confidence band. The code used to produce the confidence bands (i.e., to compute the standard deviation of the dynamic multipliers for the different horizons) is based on the Delta method (see Appendix <a href="append.html#Delta">8.5.2</a>).<a href="#fn8" class="footnote-ref" id="fnref8"><sup>8</sup></a></p>
 <div class="figure" style="text-align: left-aligned"><span style="display:block;" id="fig:Ramey3"></span>
 <img src="TimeSeries_files/figure-html/Ramey3-1.png" alt="Response of industrial-production growth to monetary-policy shocks. Dashed lines correpsond to the $\pm$  2-standard-deviation bands." width="95%" />
@@ -1125,7 +1167,7 @@ f_{Y_T,\dots,Y_1}(y_T,\dots,y_1;\boldsymbol\theta) &amp;=&amp;f_{\underbrace{Y_T
 \end{eqnarray*}\]</span>
 Using the previous expression recursively, one obtains that for any <span class="math inline">\(1 \leq p \leq T\)</span>:
 <span class="math display" id="eq:recursMLE">\[\begin{equation}
-f_{Y_T,\dots,Y_1}(y_T,\dots,y_1;\boldsymbol\theta) = f_{Y_p,\dots,Y_1}(y_p,\dots,y_1;\boldsymbol\theta) \times \prod_{t=p+1}^{T} f_{Y_t|Y_{t-1},\dots,Y_1}(y_t,\dots,y_1;\boldsymbol\theta).\tag{2.14}
+f_{Y_T,\dots,Y_1}(y_T,\dots,y_1;\boldsymbol\theta) = f_{Y_p,\dots,Y_1}(y_p,\dots,y_1;\boldsymbol\theta) \times \prod_{t=p+1}^{T} f_{Y_t|Y_{t-1},\dots,Y_1}(y_t,\dots,y_1;\boldsymbol\theta).\tag{2.15}
 \end{equation}\]</span></p>
 <p>In the time series context, if process <span class="math inline">\(y_t\)</span> is Markovian, then there exists a useful way to rewrite the likelihood <span class="math inline">\(\mathcal{L}(\boldsymbol\theta;\mathbf{y})\)</span>. Let us first recall the definition of a Markovian process:</p>
 <div class="definition">
@@ -1148,7 +1190,7 @@ and
 <span class="math display">\[
 f_{Y_t|Y_{t-1}}(y_t,y_{t-1};\boldsymbol\theta) = \frac{1}{\sqrt{2\pi}\sigma}\exp\left(-\frac{(y_t - c - \phi_1 y_{t-1})^2}{2\sigma^2}\right).
 \]</span></p>
-<p>These expressions can be plugged into Eq. <a href="Univariate.html#eq:recursMLE">(2.14)</a> that ultimately takes the follwing form with <span class="math inline">\(p=1\)</span>
+<p>These expressions can be plugged into Eq. <a href="Univariate.html#eq:recursMLE">(2.15)</a> that ultimately takes the follwing form with <span class="math inline">\(p=1\)</span>
 <span class="math display">\[
 f_{Y_T,\dots,Y_1}(y_T,\dots,y_1;\boldsymbol\theta) = f_{Y_1}(y_1;\boldsymbol\theta) \times \prod_{t=2}^{T} f_{Y_t|Y_{t-1}}(y_t,y_{t-1};\boldsymbol\theta)
 \]</span>
@@ -1168,7 +1210,7 @@ The Maximum Likelihood Estimator of <span class="math inline">\(\boldsymbol\thet
 <li><p><strong>Case 2</strong>: The (conditional) log-likelihood (denoted with a <span class="math inline">\(*\)</span>) is:
 <span class="math display" id="eq:Lstar">\[\begin{eqnarray}
 \log \mathcal{L}^*(\boldsymbol\theta;\mathbf{y})  &amp;=&amp; - \frac{T-1}{2} \log(2\pi) - (T-1)\log(\sigma)\nonumber\\
-&amp;&amp; - \sum_{t=2}^T \left[\frac{(y_t - c - \phi_1 y_{t-1})^2}{2\sigma^2} \right].\tag{2.15}
+&amp;&amp; - \sum_{t=2}^T \left[\frac{(y_t - c - \phi_1 y_{t-1})^2}{2\sigma^2} \right].\tag{2.16}
 \end{eqnarray}\]</span></p></li>
 </ol>
 <p>Exact MLE and conditional MLE have the same asymptotic (i.e. large-sample) distribution. Indeed, when the process is stationary, <span class="math inline">\(f_{Y_1}(y_1;\boldsymbol\theta)\)</span> makes a relatively negligible contribution to <span class="math inline">\(\log \mathcal{L}(\boldsymbol\theta;\mathbf{y})\)</span>.</p>
@@ -1185,16 +1227,16 @@ X = \left[\begin{array}{cc}
 1&amp;y_{T-1}
 \end{array}\right].
 \]</span>
-Eq. <a href="Univariate.html#eq:Lstar">(2.15)</a> then rewrites:
+Eq. <a href="Univariate.html#eq:Lstar">(2.16)</a> then rewrites:
 <span class="math display">\[\begin{eqnarray}
 \log \mathcal{L}^*(\boldsymbol\theta;\mathbf{y})  &amp;=&amp; - \frac{T-1}{2} \log(2\pi) - (T-1)\log(\sigma) \nonumber \\
 &amp;&amp; - \frac{1}{2\sigma^2} \underbrace{(Y-X[c,\phi_1]&#39;)&#39;(Y-X[c,\phi_1]&#39;)}_{=\displaystyle \sum_{t=2}^T (y_t-c-\phi_1 y_{t-1})^2},
 \end{eqnarray}\]</span>
 which is maximised for<a href="#fn9" class="footnote-ref" id="fnref9"><sup>9</sup></a>:
 <span class="math display" id="eq:AROLSsigma" id="eq:AROLSmean">\[\begin{eqnarray}
-[\hat{c},\hat\phi_1]&#39; &amp;=&amp; (X&#39;X)^{-1}X&#39;Y \tag{2.16} \\
+[\hat{c},\hat\phi_1]&#39; &amp;=&amp; (X&#39;X)^{-1}X&#39;Y \tag{2.17} \\
 \hat{\sigma^2} &amp;=&amp; \frac{1}{T-1} \sum_{t=2}^T (y_t - \hat{c} - \hat{\phi_1}y_{t-1})^2 \nonumber \\
-&amp;=&amp; \frac{1}{T-1} Y&#39;(I - X(X&#39;X)^{-1}X&#39;)Y. \tag{2.17}
+&amp;=&amp; \frac{1}{T-1} Y&#39;(I - X(X&#39;X)^{-1}X&#39;)Y. \tag{2.18}
 \end{eqnarray}\]</span></p>
 </div>
 <div id="estimARp" class="section level4 hasAnchor" number="2.8.2.2">
@@ -1214,7 +1256,7 @@ where <span class="math inline">\(f_{Y_p,\dots,Y_{1}}(y_p,\dots,y_{1};\boldsymbo
 \gamma_{p-1} &amp; \gamma_{p-2} &amp; \dots &amp; \gamma_{0} \\
 \end{array}\right],
 \end{eqnarray*}\]</span>
-where the <span class="math inline">\(\gamma_i\)</span>’s are computed using the Yule-Walker equations (Eq. <a href="Univariate.html#eq:gammas">(2.9)</a>). Note that they depend, in a non-linear way, on the model parameters. Hence, the maximization of the exact log-likelihood necessitates numerical optimization procedures. By contrast, the maximization of the conditional log-likelihood <span class="math inline">\(\log \mathcal{L}^*(\boldsymbol\theta;\mathbf{y})\)</span> only requires OLS, using Eqs. <a href="Univariate.html#eq:AROLSmean">(2.16)</a> and <a href="Univariate.html#eq:AROLSsigma">(2.17)</a>, with:
+where the <span class="math inline">\(\gamma_i\)</span>’s are computed using the Yule-Walker equations (Eq. <a href="Univariate.html#eq:gammas">(2.9)</a>). Note that they depend, in a non-linear way, on the model parameters. Hence, the maximization of the exact log-likelihood necessitates numerical optimization procedures. By contrast, the maximization of the conditional log-likelihood <span class="math inline">\(\log \mathcal{L}^*(\boldsymbol\theta;\mathbf{y})\)</span> only requires OLS, using Eqs. <a href="Univariate.html#eq:AROLSmean">(2.17)</a> and <a href="Univariate.html#eq:AROLSsigma">(2.18)</a>, with:
 <span class="math display">\[
 Y = \left[\begin{array}{c}
 y_{p+1}\\
@@ -1229,12 +1271,12 @@ X = \left[\begin{array}{cccc}
 \]</span></p>
 <p>Again, for stationary processes, conditional and exact MLE have the same asymptotic (large-sample) distribution. In small samples, the OLS formula is however biased. Indeed, consider the regression (where <span class="math inline">\(y_t\)</span> follows an AR(p) process):
 <span class="math display" id="eq:OLSregARp">\[\begin{equation}
-y_t = \mathbf{x}_t \boldsymbol\beta+ \varepsilon_t,\tag{2.18}
+y_t = \mathbf{x}_t \boldsymbol\beta+ \varepsilon_t,\tag{2.19}
 \end{equation}\]</span>
 with <span class="math inline">\(\mathbf{x}_t = [1,y_{t-1},\dots,y_{t-p}]\)</span> of dimensions <span class="math inline">\(1\times (p+1)\)</span> and <span class="math inline">\(\boldsymbol\beta = [c,\phi_1,\dots,\phi_p]&#39;\)</span> of dimensions <span class="math inline">\((p+1)\times 1\)</span>.</p>
 <p>The bias results from the fact that <span class="math inline">\(\mathbf{x}_t\)</span> correlates to the <span class="math inline">\(\varepsilon_s\)</span>’s for <span class="math inline">\(s&lt;t\)</span>. To be sure:
 <span class="math display" id="eq:olsar1">\[\begin{equation}
-\mathbf{b} = \boldsymbol{\beta} + (X&#39;X)^{-1}X&#39;\boldsymbol\varepsilon,\tag{2.19}
+\mathbf{b} = \boldsymbol{\beta} + (X&#39;X)^{-1}X&#39;\boldsymbol\varepsilon,\tag{2.20}
 \end{equation}\]</span>
 and because of the specific form of <span class="math inline">\(X\)</span>, we have non-zero correlation<a href="#fn10" class="footnote-ref" id="fnref10"><sup>10</sup></a> between <span class="math inline">\(\mathbf{x}_t\)</span> and <span class="math inline">\(\varepsilon_s\)</span> for <span class="math inline">\(s&lt;t\)</span>, therefore <span class="math inline">\(\mathbb{E}[(X&#39;X)^{-1}X&#39;\boldsymbol\varepsilon] \ne 0\)</span>. Again, asymptotically, the previous expectation goes to zero, and we have:</p>
 <div class="proposition">
@@ -1242,7 +1284,7 @@ and because of the specific form of <span class="math inline">\(X\)</span>, we h
 <span class="math display">\[
 y_t = c + \phi_1 y_{t-1} + \dots + \phi_p y_{t-p} + \varepsilon_t
 \]</span>
-where <span class="math inline">\(\{\varepsilon_{t}\}\)</span> is an i.i.d. white noise process. If <span class="math inline">\(\mathbf{b}\)</span> is the OLS estimator of <span class="math inline">\(\boldsymbol\beta\)</span> (Eq. <a href="Univariate.html#eq:OLSregARp">(2.18)</a>), we have:
+where <span class="math inline">\(\{\varepsilon_{t}\}\)</span> is an i.i.d. white noise process. If <span class="math inline">\(\mathbf{b}\)</span> is the OLS estimator of <span class="math inline">\(\boldsymbol\beta\)</span> (Eq. <a href="Univariate.html#eq:OLSregARp">(2.19)</a>), we have:
 <span class="math display">\[
 \sqrt{T}(\mathbf{b}-\boldsymbol{\beta}) =  \underbrace{\left[\frac{1}{T}\sum_{t=p}^T \mathbf{x}_t\mathbf{x}_t&#39; \right]^{-1}}_{\overset{p}{\rightarrow} \mathbf{Q}^{-1}}
 \underbrace{\sqrt{T} \left[\frac{1}{T}\sum_{t=1}^T \mathbf{x}_t\varepsilon_t \right]}_{\overset{d}{\rightarrow} \mathcal{N}(0,\sigma^2\mathbf{Q})},
@@ -1257,11 +1299,11 @@ where <span class="math inline">\(\mathbf{Q} = \mbox{plim }\frac{1}{T}\sum_{t=p}
 \vdots &amp;\vdots &amp;\vdots &amp;\dots &amp;\vdots \\
 \mu &amp; \gamma_{p-1} + \mu^2 &amp; \gamma_{p-2} + \mu^2 &amp; \dots &amp; \gamma_{0} + \mu^2
 \end{array}
-\right].\tag{2.20}
+\right].\tag{2.21}
 \end{equation}\]</span></p>
 </div>
 <div class="proof">
-<p><span id="unlabeled-div-11" class="proof"><em>Proof</em>. </span>Rearranging Eq. <a href="Univariate.html#eq:olsar1">(2.19)</a>, we have:
+<p><span id="unlabeled-div-11" class="proof"><em>Proof</em>. </span>Rearranging Eq. <a href="Univariate.html#eq:olsar1">(2.20)</a>, we have:
 <span class="math display">\[
 \sqrt{T}(\mathbf{b}-\boldsymbol{\beta}) =  (X&#39;X/T)^{-1}\sqrt{T}(X&#39;\boldsymbol\varepsilon/T).
 \]</span>
@@ -1281,11 +1323,13 @@ Note that, for <span class="math inline">\(j&gt;0\)</span>, we have <span class=
 The convergence in distribution of <span class="math inline">\(\sqrt{T}(X&#39;\boldsymbol\varepsilon/T)=\sqrt{T}\frac{1}{T}\sum_{t=1}^Tv_t\)</span> results from Theorem <a href="Intro.html#thm:CLTcovstat">1.1</a> (applied on <span class="math inline">\(\mathbf{v}_t=\mathbf{x}_t\varepsilon_t\)</span>), using the <span class="math inline">\(\gamma_j^v\)</span> computed above.</p>
 </div>
 <p>These two cases (exact or conditional log-likelihoods) can be implemented when asking R to fit an AR process by means of function <code>arima</code>. Let us for instance use the output gap of the <code>US3var</code> dataset (US quarterly data, covering the period 1959:2 to 2015:1, used in <span class="citation">Gouriéroux, Monfort, and Renne (<a href="#ref-Gourieroux_Monfort_Renne_2017">2017</a>)</span>).</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="Univariate.html#cb20-1" tabindex="-1"></a><span class="fu">library</span>(IdSS)</span>
-<span id="cb20-2"><a href="Univariate.html#cb20-2" tabindex="-1"></a>y <span class="ot">&lt;-</span> US3var<span class="sc">$</span>y.gdp.gap</span>
-<span id="cb20-3"><a href="Univariate.html#cb20-3" tabindex="-1"></a>ar3.Case1 <span class="ot">&lt;-</span> <span class="fu">arima</span>(y,<span class="at">order =</span> <span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">0</span>,<span class="dv">0</span>),<span class="at">method=</span><span class="st">&quot;ML&quot;</span>)</span>
-<span id="cb20-4"><a href="Univariate.html#cb20-4" tabindex="-1"></a>ar3.Case2 <span class="ot">&lt;-</span> <span class="fu">arima</span>(y,<span class="at">order =</span> <span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">0</span>,<span class="dv">0</span>),<span class="at">method=</span><span class="st">&quot;CSS&quot;</span>)</span>
-<span id="cb20-5"><a href="Univariate.html#cb20-5" tabindex="-1"></a><span class="fu">rbind</span>(ar3.Case1<span class="sc">$</span>coef,ar3.Case2<span class="sc">$</span>coef)</span></code></pre></div>
+<details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="Univariate.html#cb21-1" tabindex="-1"></a><span class="fu">library</span>(IdSS)</span>
+<span id="cb21-2"><a href="Univariate.html#cb21-2" tabindex="-1"></a>y <span class="ot">&lt;-</span> US3var<span class="sc">$</span>y.gdp.gap</span>
+<span id="cb21-3"><a href="Univariate.html#cb21-3" tabindex="-1"></a>ar3.Case1 <span class="ot">&lt;-</span> <span class="fu">arima</span>(y,<span class="at">order =</span> <span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">0</span>,<span class="dv">0</span>),<span class="at">method=</span><span class="st">&quot;ML&quot;</span>)</span>
+<span id="cb21-4"><a href="Univariate.html#cb21-4" tabindex="-1"></a>ar3.Case2 <span class="ot">&lt;-</span> <span class="fu">arima</span>(y,<span class="at">order =</span> <span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">0</span>,<span class="dv">0</span>),<span class="at">method=</span><span class="st">&quot;CSS&quot;</span>)</span>
+<span id="cb21-5"><a href="Univariate.html#cb21-5" tabindex="-1"></a><span class="fu">rbind</span>(ar3.Case1<span class="sc">$</span>coef,ar3.Case2<span class="sc">$</span>coef)</span></code></pre></div>
+</details>
 <pre><code>##           ar1         ar2        ar3  intercept
 ## [1,] 1.191267 -0.08934705 -0.1781163 -0.9226007
 ## [2,] 1.192003 -0.08811150 -0.1787662 -1.0341696</code></pre>
@@ -1314,7 +1358,7 @@ Clearly, if <span class="math inline">\(|\theta_1|&lt;1\)</span>, then the error
 \]</span>
 Hence, when <span class="math inline">\(|\theta_1|&lt;1\)</span>, a consistent estimate of the conditional log-likelihood is given by:
 <span class="math display" id="eq:MALstar">\[\begin{equation}
-\log \hat{\mathcal{L}}^*(\boldsymbol\theta;\mathbf{y}) = -\frac{T}{2}\log(2\pi) - \frac{T}{2}\log(\sigma^2) - \sum_{t=1}^T \frac{\hat\varepsilon_t^2}{2\sigma^2}.\tag{2.21}
+\log \hat{\mathcal{L}}^*(\boldsymbol\theta;\mathbf{y}) = -\frac{T}{2}\log(2\pi) - \frac{T}{2}\log(\sigma^2) - \sum_{t=1}^T \frac{\hat\varepsilon_t^2}{2\sigma^2}.\tag{2.22}
 \end{equation}\]</span>
 Loosely speaking, if <span class="math inline">\(|\theta_1|&lt;1\)</span> and if <span class="math inline">\(T\)</span> is sufficiently large:
 <span class="math display">\[
@@ -1326,25 +1370,25 @@ Loosely speaking, if <span class="math inline">\(|\theta_1|&lt;1\)</span> and if
 <h4><span class="header-section-number">2.8.3.2</span> Maximum Likelihood Estimation of MA(q) processes<a href="Univariate.html#estimMAq" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Let us not consider the case of a Gaussian MA(<span class="math inline">\(q\)</span>) process:
 <span class="math display" id="eq:estimMAq">\[\begin{equation}
-y_t = \mu + \varepsilon_t + \theta_1 \varepsilon_{t-1} + \dots + \theta_q \varepsilon_{t-q} , \quad \varepsilon_t \sim i.i.d.\mathcal{N}(0,\sigma^2). \tag{2.22}
+y_t = \mu + \varepsilon_t + \theta_1 \varepsilon_{t-1} + \dots + \theta_q \varepsilon_{t-q} , \quad \varepsilon_t \sim i.i.d.\mathcal{N}(0,\sigma^2). \tag{2.23}
 \end{equation}\]</span></p>
 <p>Let us assume that this process is an <strong>invertible MA process</strong>. That is, assume that the roots of:
 <span class="math display" id="eq:invertible">\[\begin{equation}
-\lambda^q + \theta_1 \lambda^{q-1} + \dots + \theta_{q-1} \lambda + \theta_q = 0 \tag{2.23}
+\lambda^q + \theta_1 \lambda^{q-1} + \dots + \theta_{q-1} \lambda + \theta_q = 0 \tag{2.24}
 \end{equation}\]</span>
-lie strictly inside of the unit circle. In this case, the polynomial <span class="math inline">\(\Theta(L)=1 + \theta_1 L + \dots + \theta_q L^q\)</span> is <em>invertible</em> and Eq. <a href="Univariate.html#eq:estimMAq">(2.22)</a> writes:
+lie strictly inside of the unit circle. In this case, the polynomial <span class="math inline">\(\Theta(L)=1 + \theta_1 L + \dots + \theta_q L^q\)</span> is <em>invertible</em> and Eq. <a href="Univariate.html#eq:estimMAq">(2.23)</a> writes:
 <span class="math display">\[
 \varepsilon_t = \Theta(L)^{-1}(y_t - \mu),
 \]</span>
 which implies that, if we knew all past values of <span class="math inline">\(y_t\)</span>, we would also know <span class="math inline">\(\varepsilon_t\)</span>. In this case, we can consistently estimate the <span class="math inline">\(\varepsilon_t\)</span>’s by recursively computing the <span class="math inline">\(\hat\varepsilon_t\)</span>’s as follows (for <span class="math inline">\(t&gt;0\)</span>):
 <span class="math display" id="eq:condiVarepsiMABB">\[\begin{equation}
-\hat\varepsilon_t = y_t - \mu - \theta_1 \hat\varepsilon_{t-1} - \dots  - \theta_q \hat\varepsilon_{t-q},\tag{2.24}
+\hat\varepsilon_t = y_t - \mu - \theta_1 \hat\varepsilon_{t-1} - \dots  - \theta_q \hat\varepsilon_{t-q},\tag{2.25}
 \end{equation}\]</span>
 with
 <span class="math display" id="eq:condiVarepsiMA">\[\begin{equation}
-\hat\varepsilon_{0}=\dots=\hat\varepsilon_{-q+1}=0.\tag{2.25}
+\hat\varepsilon_{0}=\dots=\hat\varepsilon_{-q+1}=0.\tag{2.26}
 \end{equation}\]</span></p>
-<p>In this context, a consistent estimate of the conditional log-likelihood is still given by Eq. <a href="Univariate.html#eq:MALstar">(2.21)</a>, using Eqs. <a href="Univariate.html#eq:condiVarepsiMABB">(2.24)</a> and <a href="Univariate.html#eq:condiVarepsiMA">(2.25)</a> to recursively compute the <span class="math inline">\(\hat\varepsilon_t\)</span>’s.</p>
+<p>In this context, a consistent estimate of the conditional log-likelihood is still given by Eq. <a href="Univariate.html#eq:MALstar">(2.22)</a>, using Eqs. <a href="Univariate.html#eq:condiVarepsiMABB">(2.25)</a> and <a href="Univariate.html#eq:condiVarepsiMA">(2.26)</a> to recursively compute the <span class="math inline">\(\hat\varepsilon_t\)</span>’s.</p>
 <p>Note that we could determine the exact likelihood of an MA process. Indeed, vector <span class="math inline">\(\mathbf{y} = [y_1,\dots,y_T]&#39;\)</span> is a Gaussian-distributed vector of mean <span class="math inline">\(\boldsymbol\mu = [\mu,\dots,\mu]&#39;\)</span> and of variance:
 <span class="math display">\[
 \boldsymbol\Omega = \left[\begin{array}{ccccccc}
@@ -1371,14 +1415,14 @@ For large samples, the computation of this likelihood however becomes numericall
 y_t = c + \phi_1 y_{t-1} + \dots + \phi_p y_{t-p} + \varepsilon_t + \theta_1 \varepsilon_{t-1} +
 \dots + \theta_q \varepsilon_{t-q} , \; \varepsilon_t \sim i.i.d.\,\mathcal{N}(0,\sigma^2).
 \]</span>
-If the MA part of this process is invertible, the log-likelihood function can be consistently approximated by its conditional counterpart (of the form of Eq. <a href="Univariate.html#eq:MALstar">(2.21)</a>), using consistent estimates <span class="math inline">\(\hat\varepsilon_t\)</span> of the <span class="math inline">\(\varepsilon_t\)</span>. The <span class="math inline">\(\hat\varepsilon_t\)</span>’s are computed recursively as:
+If the MA part of this process is invertible, the log-likelihood function can be consistently approximated by its conditional counterpart (of the form of Eq. <a href="Univariate.html#eq:MALstar">(2.22)</a>), using consistent estimates <span class="math inline">\(\hat\varepsilon_t\)</span> of the <span class="math inline">\(\varepsilon_t\)</span>. The <span class="math inline">\(\hat\varepsilon_t\)</span>’s are computed recursively as:
 <span class="math display" id="eq:recvareps">\[\begin{equation}
-\hat\varepsilon_t = y_t - c - \phi_1 y_{t-1} - \dots - \phi_p y_{t-p} - \theta_1 \hat\varepsilon_{t-1} - \dots - \theta_q \hat\varepsilon_{t-q},\tag{2.26}
+\hat\varepsilon_t = y_t - c - \phi_1 y_{t-1} - \dots - \phi_p y_{t-p} - \theta_1 \hat\varepsilon_{t-1} - \dots - \theta_q \hat\varepsilon_{t-q},\tag{2.27}
 \end{equation}\]</span>
 given some initial conditions, for instance:</p>
 <ol style="list-style-type: lower-alpha">
-<li><span class="math inline">\(\hat\varepsilon_0=\dots=\hat\varepsilon_{-q+1}=0\)</span> and <span class="math inline">\(y_{0}=\dots=y_{-p+1}=\mathbb{E}(y_i)=\mu\)</span>. (Recursions in Eq. <a href="Univariate.html#eq:recvareps">(2.26)</a> then start for <span class="math inline">\(t=1\)</span>.)</li>
-<li><span class="math inline">\(\hat\varepsilon_p=\dots=\hat\varepsilon_{p-q+1}=0\)</span> and actual values of the <span class="math inline">\(y_{i}\)</span>’s for <span class="math inline">\(i \in [1,p]\)</span>. In that case, the first <span class="math inline">\(p\)</span> observations of <span class="math inline">\(y_t\)</span> will not be used. Recursions in Eq. <a href="Univariate.html#eq:recvareps">(2.26)</a> then start for <span class="math inline">\(t=p+1\)</span>.</li>
+<li><span class="math inline">\(\hat\varepsilon_0=\dots=\hat\varepsilon_{-q+1}=0\)</span> and <span class="math inline">\(y_{0}=\dots=y_{-p+1}=\mathbb{E}(y_i)=\mu\)</span>. (Recursions in Eq. <a href="Univariate.html#eq:recvareps">(2.27)</a> then start for <span class="math inline">\(t=1\)</span>.)</li>
+<li><span class="math inline">\(\hat\varepsilon_p=\dots=\hat\varepsilon_{p-q+1}=0\)</span> and actual values of the <span class="math inline">\(y_{i}\)</span>’s for <span class="math inline">\(i \in [1,p]\)</span>. In that case, the first <span class="math inline">\(p\)</span> observations of <span class="math inline">\(y_t\)</span> will not be used. Recursions in Eq. <a href="Univariate.html#eq:recvareps">(2.27)</a> then start for <span class="math inline">\(t=p+1\)</span>.</li>
 </ol>
 </div>
 </div>
@@ -1463,7 +1507,7 @@ If <span class="math inline">\(\lim_{T \rightarrow \infty} \phi(T) = \infty\)</s
 <span class="math display">\[
 y_t = \mathbf{x}_t&#39; \boldsymbol\beta + \varepsilon_t, \quad \varepsilon_t \sim i.i.d. \mathcal{N}(0,\sigma^2).
 \]</span>
-The associated log-likelihood is of the form of Eq. <a href="Univariate.html#eq:MALstar">(2.21)</a>. In that case, we have:
+The associated log-likelihood is of the form of Eq. <a href="Univariate.html#eq:MALstar">(2.22)</a>. In that case, we have:
 <span class="math display">\[\begin{eqnarray*}
 c^{(i)}(k) &amp;=&amp; \frac{- 2 \log \mathcal{L}(\hat{\boldsymbol\theta}_T(k);\mathbf{y})}{T} + \frac{k\phi^{(i)}(T)}{T}\\
 &amp;\approx&amp; \log(2\pi) + \log(\widehat{\sigma^2}) + \frac{1}{T}\sum_{t=1}^T \frac{\varepsilon_t^2}{\widehat{\sigma^2}} + \frac{k\phi^{(i)}(T)}{T}.
@@ -1476,23 +1520,258 @@ Hence <span class="math inline">\(\hat{k}^{(i)} \approx \underset{k}{\mbox{argmi
 </div>
 <div class="example">
 <p><span id="exm:SwissGrowthAIC" class="example"><strong>Example 2.4  (Swiss GDP growth) </strong></span>Consider a long historical time series of the Swiss GDP growth (see Figure <a href="Intro.html#fig:autocov">1.4</a>), taken from the <span class="citation">Jordà, Schularick, and Taylor (<a href="#ref-JST_2017">2017</a>)</span> dataset. Let us look for the best ARMA specification using the AIC criteria:</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="Univariate.html#cb22-1" tabindex="-1"></a><span class="fu">library</span>(IdSS);<span class="fu">data</span>(JST)</span>
-<span id="cb22-2"><a href="Univariate.html#cb22-2" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">subset</span>(JST,iso<span class="sc">==</span><span class="st">&quot;CHE&quot;</span>)</span>
-<span id="cb22-3"><a href="Univariate.html#cb22-3" tabindex="-1"></a>T <span class="ot">&lt;-</span> <span class="fu">dim</span>(data)[<span class="dv">1</span>]</span>
-<span id="cb22-4"><a href="Univariate.html#cb22-4" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="cn">NaN</span>,<span class="fu">log</span>(data<span class="sc">$</span>gdp[<span class="dv">2</span><span class="sc">:</span>T]<span class="sc">/</span>data<span class="sc">$</span>gdp[<span class="dv">1</span><span class="sc">:</span>(T<span class="dv">-1</span>)]))</span>
-<span id="cb22-5"><a href="Univariate.html#cb22-5" tabindex="-1"></a><span class="co"># Use AIC criteria to look for appropriate specif:</span></span>
-<span id="cb22-6"><a href="Univariate.html#cb22-6" tabindex="-1"></a>max.p <span class="ot">&lt;-</span> <span class="dv">3</span>;max.q <span class="ot">&lt;-</span> <span class="dv">3</span>;</span>
-<span id="cb22-7"><a href="Univariate.html#cb22-7" tabindex="-1"></a>all.AIC <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
-<span id="cb22-8"><a href="Univariate.html#cb22-8" tabindex="-1"></a><span class="cf">for</span>(p <span class="cf">in</span> <span class="dv">0</span><span class="sc">:</span>max.p){</span>
-<span id="cb22-9"><a href="Univariate.html#cb22-9" tabindex="-1"></a>  <span class="cf">for</span>(q <span class="cf">in</span> <span class="dv">0</span><span class="sc">:</span>max.q){</span>
-<span id="cb22-10"><a href="Univariate.html#cb22-10" tabindex="-1"></a>    res <span class="ot">&lt;-</span> <span class="fu">arima</span>(y,<span class="at">order=</span><span class="fu">c</span>(p,<span class="dv">0</span>,q))</span>
-<span id="cb22-11"><a href="Univariate.html#cb22-11" tabindex="-1"></a>    <span class="cf">if</span>(res<span class="sc">$</span>aic<span class="sc">&lt;</span><span class="fu">min</span>(all.AIC)){best.p<span class="ot">&lt;-</span>p;best.q<span class="ot">&lt;-</span>q}</span>
-<span id="cb22-12"><a href="Univariate.html#cb22-12" tabindex="-1"></a>    all.AIC <span class="ot">&lt;-</span> <span class="fu">c</span>(all.AIC,res<span class="sc">$</span>aic)}}</span>
-<span id="cb22-13"><a href="Univariate.html#cb22-13" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">c</span>(best.p,best.q))</span></code></pre></div>
+<details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="Univariate.html#cb23-1" tabindex="-1"></a><span class="fu">library</span>(IdSS);<span class="fu">data</span>(JST)</span>
+<span id="cb23-2"><a href="Univariate.html#cb23-2" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">subset</span>(JST,iso<span class="sc">==</span><span class="st">&quot;CHE&quot;</span>)</span>
+<span id="cb23-3"><a href="Univariate.html#cb23-3" tabindex="-1"></a>T <span class="ot">&lt;-</span> <span class="fu">dim</span>(data)[<span class="dv">1</span>]</span>
+<span id="cb23-4"><a href="Univariate.html#cb23-4" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="cn">NaN</span>,<span class="fu">log</span>(data<span class="sc">$</span>gdp[<span class="dv">2</span><span class="sc">:</span>T]<span class="sc">/</span>data<span class="sc">$</span>gdp[<span class="dv">1</span><span class="sc">:</span>(T<span class="dv">-1</span>)]))</span>
+<span id="cb23-5"><a href="Univariate.html#cb23-5" tabindex="-1"></a><span class="co"># Use AIC criteria to look for appropriate specif:</span></span>
+<span id="cb23-6"><a href="Univariate.html#cb23-6" tabindex="-1"></a>max.p <span class="ot">&lt;-</span> <span class="dv">3</span>;max.q <span class="ot">&lt;-</span> <span class="dv">3</span>;</span>
+<span id="cb23-7"><a href="Univariate.html#cb23-7" tabindex="-1"></a>all.AIC <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb23-8"><a href="Univariate.html#cb23-8" tabindex="-1"></a><span class="cf">for</span>(p <span class="cf">in</span> <span class="dv">0</span><span class="sc">:</span>max.p){</span>
+<span id="cb23-9"><a href="Univariate.html#cb23-9" tabindex="-1"></a>  <span class="cf">for</span>(q <span class="cf">in</span> <span class="dv">0</span><span class="sc">:</span>max.q){</span>
+<span id="cb23-10"><a href="Univariate.html#cb23-10" tabindex="-1"></a>    res <span class="ot">&lt;-</span> <span class="fu">arima</span>(y,<span class="at">order=</span><span class="fu">c</span>(p,<span class="dv">0</span>,q))</span>
+<span id="cb23-11"><a href="Univariate.html#cb23-11" tabindex="-1"></a>    <span class="cf">if</span>(res<span class="sc">$</span>aic<span class="sc">&lt;</span><span class="fu">min</span>(all.AIC)){best.p<span class="ot">&lt;-</span>p;best.q<span class="ot">&lt;-</span>q}</span>
+<span id="cb23-12"><a href="Univariate.html#cb23-12" tabindex="-1"></a>    all.AIC <span class="ot">&lt;-</span> <span class="fu">c</span>(all.AIC,res<span class="sc">$</span>aic)}}</span>
+<span id="cb23-13"><a href="Univariate.html#cb23-13" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">c</span>(best.p,best.q))</span></code></pre></div>
+</details>
 <pre><code>## [1] 1 0</code></pre>
 <p>The best specification therefore is an AR(1) model. That is, although an AR(2) (say) would result in a better fit of the data, the fit improvement is not be large enough to compensate for the additional AIC cost associated with an additional parameter.</p>
 </div>
+</div>
+<div id="univariate-exercises" class="section level2 hasAnchor" number="2.10">
+<h2><span class="header-section-number">2.10</span> Exercises<a href="Univariate.html#univariate-exercises" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The following exercises consolidate stationarity, Wold representations, likelihood-based estimation, model identification, and impulse-response analysis. They come from PS1, PS2, and PS3.</p>
+<details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="Univariate.html#cb25-1" tabindex="-1"></a><span class="fu">render_exercises</span>(<span class="st">&quot;ps1&quot;</span>)</span></code></pre></div>
+</details>
+<div class="exercisebox">
+<div class="exercise">
+<p><span id="exr:ex-stationarity" class="exercise"><strong>Exercise 2.1  (Stationarity of ARMA processes) </strong></span><strong>PS1 | Core | Analytical</strong><br />
+Review Section <a href="Univariate.html#ARsection">2.2</a>.</p>
+<p>For each process below, determine whether it is covariance stationary. When it is, identify an ARMA representation and justify your answer using the roots of the autoregressive polynomial.</p>
+<ol style="list-style-type: decimal">
+<li><span class="math inline">\(y_t=y_{t-1}+\varepsilon_t\)</span>.</li>
+<li><span class="math inline">\(y_t=0.9y_{t-1}+\varepsilon_t+\varepsilon_{t-1}\)</span>.</li>
+<li><span class="math inline">\(y_t=\varepsilon_t+\varepsilon_{t-1}+2\varepsilon_{t-2}\)</span>.</li>
+<li><span class="math inline">\(y_t=0.9y_{t-1}+0.2y_{t-2}+\varepsilon_t\)</span>.</li>
+<li><span class="math inline">\(y_t=0.9y_{t-1}-0.2y_{t-2}+\varepsilon_t\)</span>.</li>
+</ol>
+<p>Assume throughout that <span class="math inline">\(\{\varepsilon_t\}\)</span> is white noise with finite variance.</p>
+</div>
+</div>
+<div class="exercisebox">
+<div class="exercise">
+<p><span id="exr:ex-stationarity-transformation" class="exercise"><strong>Exercise 2.2  (A stationary transformation) </strong></span><strong>PS1 | Core | Analytical</strong><br />
+Review Section <a href="Univariate.html#Univariate">2</a>.</p>
+<p>Let <span class="math inline">\(y_t=y_{t-1}+\varepsilon_t\)</span>, where <span class="math inline">\(\{\varepsilon_t\}\)</span> is white noise, and define <span class="math inline">\(x_t=y_t-y_{t-1}\)</span>.</p>
+<ol style="list-style-type: decimal">
+<li>Is <span class="math inline">\(y_t\)</span> covariance stationary?</li>
+<li>Express <span class="math inline">\(x_t\)</span> in terms of the innovation and determine whether <span class="math inline">\(x_t\)</span> is covariance stationary.</li>
+<li>State the order of integration of <span class="math inline">\(y_t\)</span>.</li>
+</ol>
+</div>
+</div>
+<div class="exercisebox">
+<div class="exercise">
+<p><span id="exr:ex-arma-autocovariances" class="exercise"><strong>Exercise 2.3  (Autocovariances of an ARMA(2,1)) </strong></span><strong>PS1 | Advanced | Analytical</strong><br />
+Review Section <a href="Univariate.html#Univariate">2</a>.</p>
+<p>Consider
+<span class="math display">\[
+y_t=\phi_1y_{t-1}+\phi_2y_{t-2}+\varepsilon_t+\varepsilon_{t-1},
+\]</span>
+where <span class="math inline">\(\{\varepsilon_t\}\)</span> is white noise with variance <span class="math inline">\(\sigma^2\)</span> and the AR polynomial is stable. Let <span class="math inline">\(\gamma_h=\operatorname{Cov}(y_t,y_{t-h})\)</span>.</p>
+<ol style="list-style-type: decimal">
+<li>Compute <span class="math inline">\(\operatorname{Cov}(\varepsilon_t,y_t)\)</span> and <span class="math inline">\(\operatorname{Cov}(\varepsilon_{t-1},y_t)\)</span>.</li>
+<li>Derive the equations linking <span class="math inline">\(\gamma_0\)</span>, <span class="math inline">\(\gamma_1\)</span>, and <span class="math inline">\(\gamma_2\)</span>.</li>
+<li>Show that <span class="math inline">\(\gamma_h=\phi_1\gamma_{h-1}+\phi_2\gamma_{h-2}\)</span> for <span class="math inline">\(h\geq2\)</span>.</li>
+<li>Solve the three-equation system for <span class="math inline">\(\gamma_0\)</span>, <span class="math inline">\(\gamma_1\)</span>, and <span class="math inline">\(\gamma_2\)</span> (a matrix expression is acceptable).</li>
+</ol>
+</div>
+</div>
+<div class="exercisebox">
+<div class="exercise">
+<p><span id="exr:ex-wold-forecast" class="exercise"><strong>Exercise 2.4  (Wold representations and forecasts) </strong></span><strong>PS1 | Advanced | Analytical</strong><br />
+Review Section <a href="Univariate.html#IRFARMA">2.6</a>.</p>
+<p>For each stationary process in Exercise <a href="Univariate.html#exr:ex-stationarity">2.1</a>:</p>
+<ol style="list-style-type: decimal">
+<li>Derive the first four Wold coefficients <span class="math inline">\(\psi_0,\ldots,\psi_3\)</span> in <span class="math inline">\(y_t-\mu=\sum_{j=0}^{\infty}\psi_j\varepsilon_{t-j}\)</span>.</li>
+<li>Compute the three-step-ahead conditional forecast <span class="math inline">\(\mathbb E_t(y_{t+3})\)</span>.</li>
+<li>Compute the corresponding forecast-error variance.</li>
+</ol>
+<p>Take the innovations to have variance <span class="math inline">\(\sigma^2\)</span> and state clearly which information set is used.</p>
+</div>
+</div>
+<div class="exercisebox">
+<div class="exercise">
+<p><span id="exr:ex-acf-pacf" class="exercise"><strong>Exercise 2.5  (Reading an ACF and a PACF) </strong></span><strong>PS1 | Core | Empirical interpretation</strong><br />
+Review Section <a href="Univariate.html#PACFapproach">2.4</a>.</p>
+<p>The figure shows a stationary-looking macroeconomic series, together with its sample autocorrelation function (ACF) and partial autocorrelation function (PACF).</p>
+<p><img src="images/exercises/acf-pacf.png" style="width:100.0%" /></p>
+<ol style="list-style-type: decimal">
+<li>What low-order AR or MA specifications are suggested by these diagnostics?</li>
+<li>Can the plots alone establish strict stationarity?</li>
+<li>Explain how you would choose between the candidate models in practice.</li>
+</ol>
+</div>
+</div>
+<details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="Univariate.html#cb26-1" tabindex="-1"></a><span class="fu">render_exercises</span>(<span class="st">&quot;ps2&quot;</span>)</span></code></pre></div>
+</details>
+<div class="exercisebox">
+<div class="exercise">
+<p><span id="exr:ex-exponential-mle" class="exercise"><strong>Exercise 2.6  (Maximum likelihood for an exponential duration) </strong></span><strong>PS2 | Core | Analytical</strong><br />
+Review Section <a href="Univariate.html#Generalities">2.8.1</a>.</p>
+<p>Customer inter-arrival times <span class="math inline">\(y_1,\ldots,y_T\)</span> are i.i.d. exponential with <strong>scale</strong> parameter <span class="math inline">\(\lambda&gt;0\)</span>:
+<span class="math display">\[f(y;\lambda)=\lambda^{-1}\exp(-y/\lambda),\qquad y\geq0.\]</span></p>
+<ol style="list-style-type: decimal">
+<li>Write the log-likelihood.</li>
+<li>Derive the maximum-likelihood estimator of <span class="math inline">\(\lambda\)</span>.</li>
+<li>Compute the Fisher information and the estimator’s asymptotic standard error.</li>
+</ol>
+</div>
+</div>
+<div class="exercisebox">
+<div class="exercise">
+<p><span id="exr:ex-periodic-process" class="exercise"><strong>Exercise 2.7  (A periodically centered AR(1)) </strong></span><strong>PS2 | Advanced | Likelihood and testing</strong><br />
+Review Section <a href="Univariate.html#estimAR1">2.8.2.1</a>.</p>
+<p>Consider
+<span class="math display">\[
+y_t=\cos(\psi t)+\rho\{y_{t-1}-\cos[\psi(t-1)]\}+\varepsilon_t,
+\qquad \varepsilon_t\overset{i.i.d.}{\sim}\mathcal N(0,\sigma^2),
+\]</span>
+with <span class="math inline">\(|\rho|&lt;1\)</span>.</p>
+<ol style="list-style-type: decimal">
+<li>Identify the process followed by <span class="math inline">\(x_t=y_t-\cos(\psi t)\)</span>.</li>
+<li>Derive the unconditional mean and variance of <span class="math inline">\(y_t\)</span>.</li>
+<li>Derive the conditional Gaussian log-likelihood for <span class="math inline">\(\theta=(\psi,\rho,\sigma^2)&#39;\)</span>.</li>
+<li>Explain how to estimate <span class="math inline">\(\theta\)</span> and its asymptotic covariance matrix.</li>
+<li>For monthly data, interpret <span class="math inline">\(\psi=2\pi/12\)</span>.</li>
+<li>Describe Wald and likelihood-ratio tests of <span class="math inline">\(H_0:\psi=2\pi/12\)</span> and <span class="math inline">\(\rho=0.9\)</span>. Give the 5% and 1% critical values.</li>
+</ol>
+</div>
+</div>
+<div class="exercisebox">
+<div class="exercise">
+<p><span id="exr:ex-estimating-arp" class="exercise"><strong>Exercise 2.8  (Estimating an AR(p) model for Swiss inflation) </strong></span><strong>PS2 | Core | Estimation and diagnostics</strong><br />
+Review Section <a href="Univariate.html#estimARp">2.8.2.2</a>.</p>
+<p>The figure shows Swiss year-on-year inflation.</p>
+<p><img src="images/exercises/swiss-inflation.png" style="width:95.0%" /></p>
+<p>Model <span class="math inline">\(y_t=c+\phi_1y_{t-1}+\cdots+\phi_py_{t-p}+\varepsilon_t\)</span>, with <span class="math inline">\(\varepsilon_t\overset{i.i.d.}{\sim}\mathcal N(0,\sigma^2)\)</span>. Let <span class="math inline">\(Y=(y_{p+1},\ldots,y_T)&#39;\)</span> and let <span class="math inline">\(X\)</span> contain an intercept and the <span class="math inline">\(p\)</span> lags.</p>
+<ol style="list-style-type: decimal">
+<li>Give the conditional maximum-likelihood estimators of <span class="math inline">\(\beta=(c,\phi_1,\ldots,\phi_p)&#39;\)</span> and <span class="math inline">\(\sigma^2\)</span>.</li>
+<li>For <span class="math inline">\(p=1\)</span>, <span class="math inline">\(\hat c=0.025\)</span> (s.e. 0.019) and <span class="math inline">\(\hat\phi_1=0.987\)</span> (s.e. 0.006). Is the fitted process stationary? Comment on persistence.</li>
+<li>Regressing the AR(1) residual on its lag gives 0.207 (s.e. 0.034). What does this imply about specification?</li>
+<li>For <span class="math inline">\(p=2\)</span>, the estimates are <span class="math inline">\(\hat c=0.033\)</span>, <span class="math inline">\(\hat\phi_1=1.194\)</span>, and <span class="math inline">\(\hat\phi_2=-0.210\)</span>. The lagged-residual coefficient is <span class="math inline">\(-0.027\)</span> (s.e. 0.035). Check stationarity from the companion roots and assess the new specification.</li>
+</ol>
+</div>
+</div>
+<details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="Univariate.html#cb27-1" tabindex="-1"></a><span class="fu">render_exercises</span>(<span class="st">&quot;ps3&quot;</span>, <span class="st">&quot;ex-irf-forecasts&quot;</span>)</span></code></pre></div>
+</details>
+<div class="exercisebox">
+<div class="exercise">
+<p><span id="exr:ex-irf-forecasts" class="exercise"><strong>Exercise 2.9  (Impulse responses and forecast uncertainty) </strong></span><strong>PS3 | Core | Analytical</strong><br />
+Review Section <a href="Univariate.html#IRFARMA">2.6</a>.</p>
+<p>Let <span class="math inline">\(\varepsilon_t\overset{i.i.d.}{\sim}\mathcal N(0,\sigma^2)\)</span> and consider:</p>
+<ol style="list-style-type: decimal">
+<li><span class="math inline">\(y_t=\varepsilon_t+0.5\varepsilon_{t-1}+0.2\varepsilon_{t-2}\)</span>;</li>
+<li><span class="math inline">\(y_t=1+0.9y_{t-1}+\varepsilon_t\)</span>;</li>
+<li><span class="math inline">\(y_t=1+0.5y_{t-1}+\varepsilon_t+0.5\varepsilon_{t-1}\)</span>.</li>
+</ol>
+<p>For each process:</p>
+<ol style="list-style-type: decimal">
+<li>Compute the impulse responses at horizons 0 through 4.</li>
+<li>State the corresponding first five Wold coefficients.</li>
+<li>Compute the mean squared error of the four-step-ahead forecast.</li>
+<li>Explain how parameter estimation changes forecast uncertainty.</li>
+</ol>
+<p>Finally, consider <span class="math inline">\(y_t=1+0.5y_{t-1}+x_t+0.5x_{t-1}+\varepsilon_t+0.8\varepsilon_{t-1}\)</span>, with <span class="math inline">\(x_t\)</span> strictly exogenous. Compute the dynamic multipliers of <span class="math inline">\(x_t\)</span> at horizons 0 through 4.</p>
+</div>
+</div>
+<div id="exercises-from-the-2024-exam" class="section level3 hasAnchor" number="2.10.1">
+<h3><span class="header-section-number">2.10.1</span> Exercises from the 2024 exam<a href="Univariate.html#exercises-from-the-2024-exam" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="Univariate.html#cb28-1" tabindex="-1"></a><span class="fu">render_exercises</span>(<span class="st">&quot;exam-2024&quot;</span>, <span class="fu">c</span>(</span>
+<span id="cb28-2"><a href="Univariate.html#cb28-2" tabindex="-1"></a>  <span class="st">&quot;ex-exam2024-shared-ar1&quot;</span>,</span>
+<span id="cb28-3"><a href="Univariate.html#cb28-3" tabindex="-1"></a>  <span class="st">&quot;ex-exam2024-autocovariance-sequence&quot;</span>,</span>
+<span id="cb28-4"><a href="Univariate.html#cb28-4" tabindex="-1"></a>  <span class="st">&quot;ex-exam2024-arma-roots&quot;</span>,</span>
+<span id="cb28-5"><a href="Univariate.html#cb28-5" tabindex="-1"></a>  <span class="st">&quot;ex-exam2024-dynamic-multiplier&quot;</span></span>
+<span id="cb28-6"><a href="Univariate.html#cb28-6" tabindex="-1"></a>))</span></code></pre></div>
+</details>
+<div class="exercisebox">
+<div class="exercise">
+<p><span id="exr:ex-exam2024-shared-ar1" class="exercise"><strong>Exercise 2.10  (Two AR(1) processes driven by a common shock) </strong></span><strong>EXAM-2024 | Exam | True/false</strong><br />
+Review Section <a href="Univariate.html#ARsection">2.2</a>.</p>
+<p>Let <span class="math inline">\(x_t=\rho_xx_{t-1}+\varepsilon_t\)</span> and <span class="math inline">\(y_t=\rho_yy_{t-1}+\varepsilon_t\)</span>, where <span class="math inline">\(\varepsilon_t\overset{i.i.d.}{\sim}\mathcal N(0,\sigma^2)\)</span>, <span class="math inline">\(\sigma^2&gt;0\)</span>, and <span class="math inline">\(0&lt;\rho_x&lt;\rho_y&lt;1\)</span>. Conditional moments at date <span class="math inline">\(t\)</span> use the history of both processes.</p>
+<p>State whether each assertion is true or false and justify your answer.</p>
+<ol style="list-style-type: decimal">
+<li>The contemporaneous correlation between <span class="math inline">\(x_t\)</span> and <span class="math inline">\(y_t\)</span> is zero.</li>
+<li><span class="math inline">\(\operatorname{Var}(y_t)=\operatorname{Var}(x_t)\)</span>.</li>
+<li><span class="math inline">\(\mathbb E_t(y_{t+1})=\mathbb E_t(x_{t+1})\)</span>.</li>
+<li><span class="math inline">\(\mathbb E_t(y_{t+h})=\rho_y^hy_t\)</span> for every <span class="math inline">\(h\ge1\)</span>.</li>
+<li><span class="math inline">\(\operatorname{Cov}_t(x_{t+1},y_{t+1})=\sigma^2\)</span>.</li>
+</ol>
+</div>
+</div>
+<div class="exercisebox">
+<div class="exercise">
+<p><span id="exr:ex-exam2024-autocovariance-sequence" class="exercise"><strong>Exercise 2.11  (Interpreting an autocovariance sequence) </strong></span><strong>EXAM-2024 | Exam | True/false</strong><br />
+Review Section <a href="Univariate.html#Univariate">2</a>.</p>
+<p>A covariance-stationary process has <span class="math inline">\(\gamma_0=5\)</span>, <span class="math inline">\(\gamma_1=4\)</span>, <span class="math inline">\(\gamma_2=3\)</span>, <span class="math inline">\(\gamma_3=2\)</span>, <span class="math inline">\(\gamma_4=1\)</span>, and <span class="math inline">\(\gamma_h=0\)</span> for <span class="math inline">\(h&gt;4\)</span>.</p>
+<p>State whether each assertion is true or false and justify your answer.</p>
+<ol style="list-style-type: decimal">
+<li>The process can be a nondegenerate AR(4).</li>
+<li>It could be <span class="math inline">\(y_t=\varepsilon_t+\varepsilon_{t-1}+\varepsilon_{t-2}+\varepsilon_{t-3}+\varepsilon_{t-4}\)</span> with <span class="math inline">\(\operatorname{Var}(\varepsilon_t)=1\)</span>.</li>
+<li><span class="math inline">\(\operatorname{Var}(y_t)=\sum_{h=0}^4\gamma_h\)</span>.</li>
+<li><span class="math inline">\(\operatorname{Corr}(y_{t-1},y_{t-4})=2/5\)</span>.</li>
+<li>Necessarily, <span class="math inline">\(\mathbb E(y_t)=\gamma_0\)</span>.</li>
+</ol>
+</div>
+</div>
+<div class="exercisebox">
+<div class="exercise">
+<p><span id="exr:ex-exam2024-arma-roots" class="exercise"><strong>Exercise 2.12  (ARMA roots and moments) </strong></span><strong>EXAM-2024 | Exam | True/false</strong><br />
+Review Section <a href="Univariate.html#ARsection">2.2</a>.</p>
+<p>Let <span class="math inline">\(\varepsilon_t\overset{i.i.d.}{\sim}\mathcal N(0,\sigma^2)\)</span> and
+<span class="math display">\[
+(1-0.5L^2)x_t=0.1+0.5x_{t-1}+\varepsilon_t,
+\]</span>
+<span class="math display">\[
+(1+1.1L)(1-0.5L)(1+0.4L)y_t=\varepsilon_t,
+\]</span>
+<span class="math display">\[
+z_t+0.8z_{t-1}=(1+L+L^2)\varepsilon_t.
+\]</span></p>
+<p>State whether each assertion is true or false and justify your answer.</p>
+<ol style="list-style-type: decimal">
+<li><span class="math inline">\(x_t\)</span> is covariance stationary.</li>
+<li><span class="math inline">\(y_t\)</span> is covariance stationary.</li>
+<li><span class="math inline">\(z_t\)</span> is covariance stationary.</li>
+<li><span class="math inline">\(\gamma_1(z)=-0.8\gamma_0(z)\)</span>.</li>
+<li><span class="math inline">\(\operatorname{Var}(z_t+0.8z_{t-1})=3\sigma^2\)</span>.</li>
+</ol>
+</div>
+</div>
+<div class="exercisebox">
+<div class="exercise">
+<p><span id="exr:ex-exam2024-dynamic-multiplier" class="exercise"><strong>Exercise 2.13  (A one-date exogenous intervention) </strong></span><strong>EXAM-2024 | Exam | True/false</strong><br />
+Review Section <a href="Univariate.html#ARMAXDynamic">2.7.2</a>.</p>
+<p>For <span class="math inline">\(t\ge0\)</span>, let
+<span class="math display">\[y_t=0.5y_{t-1}+x_t+\varepsilon_t,\qquad \widetilde y_t=0.5\widetilde y_{t-1}+\widetilde x_t+\varepsilon_t,\]</span>
+with <span class="math inline">\(y_0=\widetilde y_0=0\)</span>. The inputs are deterministic, <span class="math inline">\(\widetilde x_t=x_t\)</span> except at one date <span class="math inline">\(s&gt;0\)</span>, and <span class="math inline">\(\widetilde x_s=x_s+1\)</span>.</p>
+<p>State whether each assertion is true or false and justify your answer.</p>
+<ol style="list-style-type: decimal">
+<li>For <span class="math inline">\(t&lt;s\)</span>, <span class="math inline">\(\widetilde y_t=y_t\)</span>.</li>
+<li>For all <span class="math inline">\(t\ge s\)</span>, <span class="math inline">\(\widetilde y_t=y_t\)</span>.</li>
+<li>For every <span class="math inline">\(h\ge0\)</span>, <span class="math inline">\(\widetilde y_{s+h}-y_{s+h}=1\)</span>.</li>
+<li>If <span class="math inline">\(x_t\)</span> is constant, <span class="math inline">\(y_t\)</span> is an AR(1) with an intercept.</li>
+<li><span class="math inline">\(\operatorname{Var}(y_t)=\operatorname{Var}(\widetilde y_t)\)</span>.</li>
+</ol>
+</div>
+</div>
 
+</div>
 </div>
 </div>
 <h3>References<a href="references.html#references" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -1566,7 +1845,7 @@ gitbook.start({
     "size": 2
   },
   "edit": {
-    "link": "https://github.com/rstudio/bookdown-demo/edit/master/02-Univariate.Rmd",
+    "link": "https://github.com/jrenne/TimeSeries_Bookdown/edit/main/02-Univariate.Rmd",
     "text": "Edit"
   },
   "history": {
@@ -1577,7 +1856,7 @@ gitbook.start({
     "link": null,
     "text": null
   },
-  "download": ["TimeSeries.pdf", "TimeSeries.epub"],
+  "download": ["TimeSeries.pdf"],
   "search": {
     "engine": "fuse",
     "options": null
