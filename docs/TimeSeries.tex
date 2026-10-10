@@ -474,7 +474,7 @@ If \(\mathbb{E}(\varepsilon_t^2)=\sigma^2\), it is easily obtained that the unco
 
 The first auto-covariance is:
 \[
-\gamma_1=\mathbb{E}\{(y_t - \mu)(y_{t-1} - \mu)\}=\mathbb{E}\{(\varepsilon_t + \theta \color{red}{\varepsilon_{t-1}})(\color{red}{\varepsilon_{t-1}} + \theta \varepsilon_{t-2})\} = \theta \sigma^2.
+\gamma_1=\mathbb{E}\{(y_t - \mu)(y_{t-1} - \mu)\}=\mathbb{E}\{(\varepsilon_t + \theta {\color{red}\varepsilon_{t-1}})({\color{red}\varepsilon_{t-1}} + \theta \varepsilon_{t-2})\} = \theta \sigma^2.
 \]
 
 It is easily seen that higher-order auto-covariances are zero (\(\gamma_j=0\) for \(j>1\)). Therefore: An MA(1) process is covariance-stationary (Def. \ref{def:covstat}).
@@ -518,8 +518,8 @@ where we use the notation \(\theta_0=1\), and \(\mathbb{V}ar(\varepsilon_t)=\sig
 \begin{proof}
 The unconditional expectation of \(y_t\) does not depend on time, since \(\mathbb{E}(y_t)=\mu\). Turning to the autocovariances, we can extend the series of \(\theta_j\)'s by setting \(\theta_j=0\) for \(j>q\). We then have:
 \begin{eqnarray*}
-\mathbb{E}((y_t-\mu)(y_{t-j}-\mu)) &=& \mathbb{E}\left[(\theta_0 \varepsilon_t +\theta_1 \varepsilon_{t-1} + \dots +\theta_j \color{red}{\varepsilon_{t-j}}+\theta_{j+1} \color{blue}{\varepsilon_{t-j-1}} + \dots) \right.\times \\
-&&\left. (\theta_0 \color{red}{\varepsilon_{t-j}} +\theta_1 \color{blue}{\varepsilon_{t-j-1}} + \dots)\right].
+\mathbb{E}((y_t-\mu)(y_{t-j}-\mu)) &=& \mathbb{E}\left[(\theta_0 \varepsilon_t +\theta_1 \varepsilon_{t-1} + \dots +\theta_j {\color{red}\varepsilon_{t-j}}+\theta_{j+1} {\color{blue}\varepsilon_{t-j-1}} + \dots) \right.\times \\
+&&\left. (\theta_0 {\color{red}\varepsilon_{t-j}} +\theta_1 {\color{blue}\varepsilon_{t-j-1}} + \dots)\right].
 \end{eqnarray*}
 Using the fact that \(\mathbb{E}(\varepsilon_t\varepsilon_s)=0\) if \(t \ne s\) (because \(\{\varepsilon_t\}_{t = -\infty}^{+\infty}\) is a white noise process) leads to the result.
 \end{proof}
@@ -609,9 +609,9 @@ Hence, if \(|\phi| < 1\), the unconditional mean and variance of \(y_t\) are:
 
 Let us compute the \(j^{th}\) autocovariance of the AR(1) process:
 \begin{eqnarray*}
-\mathbb{E}([y_{t} - \mu][y_{t-j} - \mu]) &=& \mathbb{E}([\varepsilon_t + \phi  \varepsilon_{t-1}+ \phi^2 \varepsilon_{t-2} + \dots + \color{red}{\phi^j \varepsilon_{t-j}} + \color{blue}{\phi^{j+1} \varepsilon_{t-j-1}} \dots]\times \\
-&&[\color{red}{\varepsilon_{t-j}} + \color{blue}{\phi \varepsilon_{t-j-1}} + \phi^2 \varepsilon_{t-j-2} + \dots + \phi^k \varepsilon_{t-j-k} + \dots])\\
-&=& \mathbb{E}(\color{red}{\phi^j \varepsilon_{t-j}^2}+\color{blue}{\phi^{j+2} \varepsilon_{t-j-1}^2}+\phi^{j+4} \varepsilon_{t-j-2}^2+\dots)\\
+\mathbb{E}([y_{t} - \mu][y_{t-j} - \mu]) &=& \mathbb{E}([\varepsilon_t + \phi  \varepsilon_{t-1}+ \phi^2 \varepsilon_{t-2} + \dots + {\color{red}\phi^j \varepsilon_{t-j}} + {\color{blue}\phi^{j+1} \varepsilon_{t-j-1}} \dots]\times \\
+&&[{\color{red}\varepsilon_{t-j}} + {\color{blue}\phi \varepsilon_{t-j-1}} + \phi^2 \varepsilon_{t-j-2} + \dots + \phi^k \varepsilon_{t-j-k} + \dots])\\
+&=& \mathbb{E}({\color{red}\phi^j \varepsilon_{t-j}^2}+{\color{blue}\phi^{j+2} \varepsilon_{t-j-1}^2}+\phi^{j+4} \varepsilon_{t-j-2}^2+\dots)\\
 &=& \frac{\phi^j \sigma^2}{1 - \phi^2}.
 \end{eqnarray*}
 
@@ -2064,9 +2064,9 @@ This is obtained by applying the operator \(\frac{\partial}{\partial \varepsilon
 Typically, consider the VAR(2) case. The first steps of the algorithm mentioned in the last bullet point are as follows:
 \begin{eqnarray*}
 y_t &=& \Phi_1 {\color{blue}y_{t-1}} + \Phi_2 y_{t-2} + B \eta_t  \\
-&=& \Phi_1 \color{blue}{(\Phi_1 y_{t-2} + \Phi_2 y_{t-3} + B \eta_{t-1})} + \Phi_2 y_{t-2} + B \eta_t  \\
-&=& B \eta_t + \Phi_1 B \eta_{t-1} + (\Phi_2 + \Phi_1^2) \color{red}{y_{t-2}} + \Phi_1\Phi_2 y_{t-3}  \\
-&=& B \eta_t + \Phi_1 B \eta_{t-1} + (\Phi_2 + \Phi_1^2) \color{red}{(\Phi_1 y_{t-3} + \Phi_2 y_{t-4} + B \eta_{t-2})} + \Phi_1\Phi_2 y_{t-3} \\
+&=& \Phi_1 {\color{blue}(\Phi_1 y_{t-2} + \Phi_2 y_{t-3} + B \eta_{t-1})} + \Phi_2 y_{t-2} + B \eta_t  \\
+&=& B \eta_t + \Phi_1 B \eta_{t-1} + (\Phi_2 + \Phi_1^2) {\color{red}y_{t-2}} + \Phi_1\Phi_2 y_{t-3}  \\
+&=& B \eta_t + \Phi_1 B \eta_{t-1} + (\Phi_2 + \Phi_1^2) {\color{red}(\Phi_1 y_{t-3} + \Phi_2 y_{t-4} + B \eta_{t-2})} + \Phi_1\Phi_2 y_{t-3} \\
 &=& \underbrace{B}_{=\Psi_0} \eta_t + \underbrace{\Phi_1 B}_{=\Psi_1} \eta_{t-1} + \underbrace{(\Phi_2 + \Phi_1^2)B}_{=\Psi_2} \eta_{t-2} + f(y_{t-3},y_{t-4}).
 \end{eqnarray*}
 
@@ -2119,9 +2119,9 @@ where \(\|A\|\) denotes a norm of the matrix \(A\) (e.g.~\(\|A\|=\sqrt{tr(AA')}\
 
 What should be satisfied by \(\Phi_k\)'s and \(\Theta_k\)'s for a VARMA-based process (Eq. \eqref{eq:yVARMA}) to be stationary? The conditions will be similar to that we have in the univariate case. Let us introduce the following notations:
 \begin{eqnarray}
-y_t &=& c + \underbrace{\Phi_1 y_{t-1} + \dots +\Phi_p y_{t-p}}_{\color{blue}{\mbox{AR component}}} +  \label{eq:VARMA2}\\
-&&\underbrace{B \eta_t - \Theta_1 B \eta_{t-1} - \dots - \Theta_q B \eta_{t-q}}_{\color{red}{\mbox{MA component}}} \nonumber\\
-&\Leftrightarrow& \underbrace{ \color{blue}{(I - \Phi_1 L - \dots - \Phi_p L^p)}}_{= \color{blue}{\Phi(L)}}y_t = c +  \underbrace{ \color{red}{(I - \Theta_1 L - \ldots - \Theta_q L^q)}}_{=\color{red}{\Theta(L)}} B \eta_{t}. \nonumber
+y_t &=& c + \underbrace{\Phi_1 y_{t-1} + \dots +\Phi_p y_{t-p}}_{{\color{blue}\mbox{AR component}}} +  \label{eq:VARMA2}\\
+&&\underbrace{B \eta_t - \Theta_1 B \eta_{t-1} - \dots - \Theta_q B \eta_{t-q}}_{{\color{red}\mbox{MA component}}} \nonumber\\
+&\Leftrightarrow& \underbrace{ {\color{blue}(I - \Phi_1 L - \dots - \Phi_p L^p)}}_{= {\color{blue}\Phi(L)}}y_t = c +  \underbrace{ {\color{red}(I - \Theta_1 L - \ldots - \Theta_q L^q)}}_{={\color{red}\Theta(L)}} B \eta_{t}. \nonumber
 \end{eqnarray}
 
 Process \(y_t\) is stationary iff the roots of \(\det(\Phi(z))=0\) are strictly outside the unit circle or, equivalently, iff the eigenvalues of
@@ -2444,8 +2444,8 @@ b_{12} & b_{22}
 \end{array}
 \right] = \left[
 \begin{array}{cc}
-b_{11}^2+b_{12}^2 & \color{red}{b_{11}b_{21}+b_{12}b_{22}} \\
-\color{red}{b_{11}b_{21}+b_{12}b_{22}} & b_{22}^2 + b_{21}^2
+b_{11}^2+b_{12}^2 & {\color{red}b_{11}b_{21}+b_{12}b_{22}} \\
+{\color{red}b_{11}b_{21}+b_{12}b_{22}} & b_{22}^2 + b_{21}^2
 \end{array}
 \right].
 \end{eqnarray*}
@@ -4006,11 +4006,11 @@ Table \ref{tab:estimGARCH2} reports the estimated parameters and their standard 
 \hline
   & Estim. param. & Std dev. & t-stat\\
 \hline
-zeta & 0.6042 & 0.0230 & 26.3054\\
+zeta & 0.6043 & 0.0230 & 26.3021\\
 \hline
-alpha1 & 0.2939 & 0.0289 & 10.1704\\
+alpha1 & 0.2939 & 0.0289 & 10.1696\\
 \hline
-alpha2 & 0.2321 & 0.0250 & 9.2838\\
+alpha2 & 0.2320 & 0.0250 & 9.2825\\
 \hline
 \end{tabular}
 \end{table}
@@ -4054,9 +4054,9 @@ GARCH models can also be estimated by the ML approach.Table \ref{tab:estimGARCH2
 Figure \ref{fig:estimGARCH3X} compare the condiitonal standard deviations (\(\sqrt{h_t}\)) resulting from the ARCH(2) and the GARCH(1,1) specifications.
 
 \begin{verbatim}
-## initial  value 5703.217726 
-## iter  10 value 5359.604659
-## final  value 5359.604659 
+## initial  value 5702.148745 
+## iter  10 value 5358.593494
+## final  value 5358.593494 
 ## stopped after 10 iterations
 \end{verbatim}
 
@@ -4069,11 +4069,11 @@ Figure \ref{fig:estimGARCH3X} compare the condiitonal standard deviations (\(\sq
 \hline
   & Estim. param. & Std dev. & t-stat\\
 \hline
-zeta & 0.2195 & 0.0216 & 10.1753\\
+zeta & 0.2197 & 0.0216 & 10.1727\\
 \hline
-alpha1 & 0.1450 & 0.0152 & 9.5297\\
+alpha1 & 0.1446 & 0.0151 & 9.5725\\
 \hline
-delta1 & 0.8299 & 0.0152 & 54.5175\\
+delta1 & 0.8300 & 0.0152 & 54.6121\\
 \hline
 \end{tabular}
 \end{table}
@@ -4589,24 +4589,24 @@ Then, if \(T>f(q_0)\) and \(T>q_0\), i.e.~if \(T>\max(f(q_0),q_0)\), we have:
 \begin{proof}
 We have:
 \begin{eqnarray}
-\mathbb{E}([y_{t+1} - y^*_{t+1}]^2) &=& \mathbb{E}\left([\color{blue}{\{y_{t+1} - \mathbb{E}(y_{t+1}|x_t)\}} + \color{red}{\{\mathbb{E}(y_{t+1}|x_t)  - y^*_{t+1}\}}]^2\right)\nonumber\\
-&=&  \mathbb{E}\left(\color{blue}{[y_{t+1} - \mathbb{E}(y_{t+1}|x_t)]}^2\right) + \mathbb{E}\left(\color{red}{[\mathbb{E}(y_{t+1}|x_t)  - y^*_{t+1}]}^2\right)\nonumber\\
-&& + 2\mathbb{E}\left( \color{blue}{[y_{t+1} - \mathbb{E}(y_{t+1}|x_t)]}\color{red}{ [\mathbb{E}(y_{t+1}|x_t)  - y^*_{t+1}]}\right). \label{eq:1}
+\mathbb{E}([y_{t+1} - y^*_{t+1}]^2) &=& \mathbb{E}\left([{\color{blue}\{y_{t+1} - \mathbb{E}(y_{t+1}|x_t)\}} + {\color{red}\{\mathbb{E}(y_{t+1}|x_t)  - y^*_{t+1}\}}]^2\right)\nonumber\\
+&=&  \mathbb{E}\left({\color{blue}[y_{t+1} - \mathbb{E}(y_{t+1}|x_t)]}^2\right) + \mathbb{E}\left({\color{red}[\mathbb{E}(y_{t+1}|x_t)  - y^*_{t+1}]}^2\right)\nonumber\\
+&& + 2\mathbb{E}\left( {\color{blue}[y_{t+1} - \mathbb{E}(y_{t+1}|x_t)]}{\color{red} [\mathbb{E}(y_{t+1}|x_t)  - y^*_{t+1}]}\right). \label{eq:1}
 \end{eqnarray}
 Let us focus on the last term. We have:
 \begin{eqnarray*}
-&&\mathbb{E}\left(\color{blue}{[y_{t+1} - \mathbb{E}(y_{t+1}|x_t)]}\color{red}{ [\mathbb{E}(y_{t+1}|x_t)  - y^*_{t+1}]}\right)\\
-&=& \mathbb{E}( \mathbb{E}( \color{blue}{[y_{t+1} - \mathbb{E}(y_{t+1}|x_t)]}\color{red}{ \underbrace{[\mathbb{E}(y_{t+1}|x_t)  - y^*_{t+1}]}_{\mbox{function of $x_t$}}}|x_t))\\
-&=& \mathbb{E}( \color{red}{ [\mathbb{E}(y_{t+1}|x_t)  - y^*_{t+1}]} \mathbb{E}( \color{blue}{[y_{t+1} - \mathbb{E}(y_{t+1}|x_t)]}|x_t))\\
-&=& \mathbb{E}( \color{red}{ [\mathbb{E}(y_{t+1}|x_t)  - y^*_{t+1}]} \color{blue}{\underbrace{[\mathbb{E}(y_{t+1}|x_t) - \mathbb{E}(y_{t+1}|x_t)]}_{=0}})=0.
+&&\mathbb{E}\left({\color{blue}[y_{t+1} - \mathbb{E}(y_{t+1}|x_t)]}{\color{red} [\mathbb{E}(y_{t+1}|x_t)  - y^*_{t+1}]}\right)\\
+&=& \mathbb{E}( \mathbb{E}( {\color{blue}[y_{t+1} - \mathbb{E}(y_{t+1}|x_t)]}{\color{red} \underbrace{[\mathbb{E}(y_{t+1}|x_t)  - y^*_{t+1}]}_{\mbox{function of $x_t$}}}|x_t))\\
+&=& \mathbb{E}( {\color{red} [\mathbb{E}(y_{t+1}|x_t)  - y^*_{t+1}]} \mathbb{E}( {\color{blue}[y_{t+1} - \mathbb{E}(y_{t+1}|x_t)]}|x_t))\\
+&=& \mathbb{E}( {\color{red} [\mathbb{E}(y_{t+1}|x_t)  - y^*_{t+1}]} {\color{blue}\underbrace{[\mathbb{E}(y_{t+1}|x_t) - \mathbb{E}(y_{t+1}|x_t)]}_{=0}})=0.
 \end{eqnarray*}
 
 Therefore, Eq. \eqref{eq:1} becomes:
 \begin{eqnarray*}
 &&\mathbb{E}([y_{t+1} - y^*_{t+1}]^2) \\
-&=&  \underbrace{\mathbb{E}\left(\color{blue}{[y_{t+1} - \mathbb{E}(y_{t+1}|x_t)]}^2\right)}_{\mbox{$\ge 0$ and does not depend on $y^*_{t+1}$}} + \underbrace{\mathbb{E}\left(\color{red}{[\mathbb{E}(y_{t+1}|x_t)  - y^*_{t+1}]}^2\right)}_{\mbox{$\ge 0$ and depends on $y^*_{t+1}$}}.
+&=&  \underbrace{\mathbb{E}\left({\color{blue}[y_{t+1} - \mathbb{E}(y_{t+1}|x_t)]}^2\right)}_{\mbox{$\ge 0$ and does not depend on $y^*_{t+1}$}} + \underbrace{\mathbb{E}\left({\color{red}[\mathbb{E}(y_{t+1}|x_t)  - y^*_{t+1}]}^2\right)}_{\mbox{$\ge 0$ and depends on $y^*_{t+1}$}}.
 \end{eqnarray*}
-This implies that \(\mathbb{E}([y_{t+1} - y^*_{t+1}]^2)\) is always larger than \(\color{blue}{\mathbb{E}([y_{t+1} - \mathbb{E}(y_{t+1}|x_t)]^2)}\), and is therefore minimized if the second term is equal to zero, that is if \(\mathbb{E}(y_{t+1}|x_t) = y^*_{t+1}\).
+This implies that \(\mathbb{E}([y_{t+1} - y^*_{t+1}]^2)\) is always larger than \({\color{blue}\mathbb{E}([y_{t+1} - \mathbb{E}(y_{t+1}|x_t)]^2)}\), and is therefore minimized if the second term is equal to zero, that is if \(\mathbb{E}(y_{t+1}|x_t) = y^*_{t+1}\).
 \end{proof}
 
 \textbf{Proof of Proposition \ref{prp:estimVARGaussian}}

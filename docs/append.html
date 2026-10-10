@@ -148,7 +148,7 @@ div.csl-indent {
 }
 </style>
 
-<link rel="stylesheet" href="style.css" type="text/css" />
+<link rel="stylesheet" href="ecostat-style.css" type="text/css" />
 </head>
 
 <body>
@@ -729,23 +729,23 @@ Then, if <span class="math inline">\(T&gt;f(q_0)\)</span> and <span class="math 
 <div class="proof">
 <p><span id="unlabeled-div-30" class="proof"><em>Proof</em>. </span>We have:
 <span class="math display" id="eq:1">\[\begin{eqnarray}
-\mathbb{E}([y_{t+1} - y^*_{t+1}]^2) &amp;=&amp; \mathbb{E}\left([\color{blue}{\{y_{t+1} - \mathbb{E}(y_{t+1}|x_t)\}} + \color{red}{\{\mathbb{E}(y_{t+1}|x_t)  - y^*_{t+1}\}}]^2\right)\nonumber\\
-&amp;=&amp;  \mathbb{E}\left(\color{blue}{[y_{t+1} - \mathbb{E}(y_{t+1}|x_t)]}^2\right) + \mathbb{E}\left(\color{red}{[\mathbb{E}(y_{t+1}|x_t)  - y^*_{t+1}]}^2\right)\nonumber\\
-&amp;&amp; + 2\mathbb{E}\left( \color{blue}{[y_{t+1} - \mathbb{E}(y_{t+1}|x_t)]}\color{red}{ [\mathbb{E}(y_{t+1}|x_t)  - y^*_{t+1}]}\right). \tag{8.3}
+\mathbb{E}([y_{t+1} - y^*_{t+1}]^2) &amp;=&amp; \mathbb{E}\left([{\color{blue}\{y_{t+1} - \mathbb{E}(y_{t+1}|x_t)\}} + {\color{red}\{\mathbb{E}(y_{t+1}|x_t)  - y^*_{t+1}\}}]^2\right)\nonumber\\
+&amp;=&amp;  \mathbb{E}\left({\color{blue}[y_{t+1} - \mathbb{E}(y_{t+1}|x_t)]}^2\right) + \mathbb{E}\left({\color{red}[\mathbb{E}(y_{t+1}|x_t)  - y^*_{t+1}]}^2\right)\nonumber\\
+&amp;&amp; + 2\mathbb{E}\left( {\color{blue}[y_{t+1} - \mathbb{E}(y_{t+1}|x_t)]}{\color{red} [\mathbb{E}(y_{t+1}|x_t)  - y^*_{t+1}]}\right). \tag{8.3}
 \end{eqnarray}\]</span>
 Let us focus on the last term. We have:
 <span class="math display">\[\begin{eqnarray*}
-&amp;&amp;\mathbb{E}\left(\color{blue}{[y_{t+1} - \mathbb{E}(y_{t+1}|x_t)]}\color{red}{ [\mathbb{E}(y_{t+1}|x_t)  - y^*_{t+1}]}\right)\\
-&amp;=&amp; \mathbb{E}( \mathbb{E}( \color{blue}{[y_{t+1} - \mathbb{E}(y_{t+1}|x_t)]}\color{red}{ \underbrace{[\mathbb{E}(y_{t+1}|x_t)  - y^*_{t+1}]}_{\mbox{function of $x_t$}}}|x_t))\\
-&amp;=&amp; \mathbb{E}( \color{red}{ [\mathbb{E}(y_{t+1}|x_t)  - y^*_{t+1}]} \mathbb{E}( \color{blue}{[y_{t+1} - \mathbb{E}(y_{t+1}|x_t)]}|x_t))\\
-&amp;=&amp; \mathbb{E}( \color{red}{ [\mathbb{E}(y_{t+1}|x_t)  - y^*_{t+1}]} \color{blue}{\underbrace{[\mathbb{E}(y_{t+1}|x_t) - \mathbb{E}(y_{t+1}|x_t)]}_{=0}})=0.
+&amp;&amp;\mathbb{E}\left({\color{blue}[y_{t+1} - \mathbb{E}(y_{t+1}|x_t)]}{\color{red} [\mathbb{E}(y_{t+1}|x_t)  - y^*_{t+1}]}\right)\\
+&amp;=&amp; \mathbb{E}( \mathbb{E}( {\color{blue}[y_{t+1} - \mathbb{E}(y_{t+1}|x_t)]}{\color{red} \underbrace{[\mathbb{E}(y_{t+1}|x_t)  - y^*_{t+1}]}_{\mbox{function of $x_t$}}}|x_t))\\
+&amp;=&amp; \mathbb{E}( {\color{red} [\mathbb{E}(y_{t+1}|x_t)  - y^*_{t+1}]} \mathbb{E}( {\color{blue}[y_{t+1} - \mathbb{E}(y_{t+1}|x_t)]}|x_t))\\
+&amp;=&amp; \mathbb{E}( {\color{red} [\mathbb{E}(y_{t+1}|x_t)  - y^*_{t+1}]} {\color{blue}\underbrace{[\mathbb{E}(y_{t+1}|x_t) - \mathbb{E}(y_{t+1}|x_t)]}_{=0}})=0.
 \end{eqnarray*}\]</span></p>
 <p>Therefore, Eq. <a href="append.html#eq:1">(8.3)</a> becomes:
 <span class="math display">\[\begin{eqnarray*}
 &amp;&amp;\mathbb{E}([y_{t+1} - y^*_{t+1}]^2) \\
-&amp;=&amp;  \underbrace{\mathbb{E}\left(\color{blue}{[y_{t+1} - \mathbb{E}(y_{t+1}|x_t)]}^2\right)}_{\mbox{$\ge 0$ and does not depend on $y^*_{t+1}$}} + \underbrace{\mathbb{E}\left(\color{red}{[\mathbb{E}(y_{t+1}|x_t)  - y^*_{t+1}]}^2\right)}_{\mbox{$\ge 0$ and depends on $y^*_{t+1}$}}.
+&amp;=&amp;  \underbrace{\mathbb{E}\left({\color{blue}[y_{t+1} - \mathbb{E}(y_{t+1}|x_t)]}^2\right)}_{\mbox{$\ge 0$ and does not depend on $y^*_{t+1}$}} + \underbrace{\mathbb{E}\left({\color{red}[\mathbb{E}(y_{t+1}|x_t)  - y^*_{t+1}]}^2\right)}_{\mbox{$\ge 0$ and depends on $y^*_{t+1}$}}.
 \end{eqnarray*}\]</span>
-This implies that <span class="math inline">\(\mathbb{E}([y_{t+1} - y^*_{t+1}]^2)\)</span> is always larger than <span class="math inline">\(\color{blue}{\mathbb{E}([y_{t+1} - \mathbb{E}(y_{t+1}|x_t)]^2)}\)</span>, and is therefore minimized if the second term is equal to zero, that is if <span class="math inline">\(\mathbb{E}(y_{t+1}|x_t) = y^*_{t+1}\)</span>.</p>
+This implies that <span class="math inline">\(\mathbb{E}([y_{t+1} - y^*_{t+1}]^2)\)</span> is always larger than <span class="math inline">\({\color{blue}\mathbb{E}([y_{t+1} - \mathbb{E}(y_{t+1}|x_t)]^2)}\)</span>, and is therefore minimized if the second term is equal to zero, that is if <span class="math inline">\(\mathbb{E}(y_{t+1}|x_t) = y^*_{t+1}\)</span>.</p>
 </div>
 <p><strong>Proof of Proposition <a href="VAR.html#prp:estimVARGaussian">3.2</a></strong></p>
 <div class="proof">

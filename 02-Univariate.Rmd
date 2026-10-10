@@ -24,7 +24,7 @@ $$
 
 The first auto-covariance is:
 $$
-\gamma_1=\mathbb{E}\{(y_t - \mu)(y_{t-1} - \mu)\}=\mathbb{E}\{(\varepsilon_t + \theta \color{red}{\varepsilon_{t-1}})(\color{red}{\varepsilon_{t-1}} + \theta \varepsilon_{t-2})\} = \theta \sigma^2.
+\gamma_1=\mathbb{E}\{(y_t - \mu)(y_{t-1} - \mu)\}=\mathbb{E}\{(\varepsilon_t + \theta {\color{red}\varepsilon_{t-1}})({\color{red}\varepsilon_{t-1}} + \theta \varepsilon_{t-2})\} = \theta \sigma^2.
 $$
 
 It is easily seen that higher-order auto-covariances are zero ($\gamma_j=0$ for $j>1$). Therefore: An MA(1) process is covariance-stationary (Def. \@ref(def:covstat)).
@@ -68,8 +68,8 @@ where we use the notation $\theta_0=1$, and $\mathbb{V}ar(\varepsilon_t)=\sigma^
 :::{.proof}
 The unconditional expectation of $y_t$ does not depend on time, since  $\mathbb{E}(y_t)=\mu$. Turning to the autocovariances, we can extend the series of $\theta_j$'s by setting $\theta_j=0$ for $j>q$. We then have:
 \begin{eqnarray*}
-\mathbb{E}((y_t-\mu)(y_{t-j}-\mu)) &=& \mathbb{E}\left[(\theta_0 \varepsilon_t +\theta_1 \varepsilon_{t-1} + \dots +\theta_j \color{red}{\varepsilon_{t-j}}+\theta_{j+1} \color{blue}{\varepsilon_{t-j-1}} + \dots) \right.\times \\
-&&\left. (\theta_0 \color{red}{\varepsilon_{t-j}} +\theta_1 \color{blue}{\varepsilon_{t-j-1}} + \dots)\right].
+\mathbb{E}((y_t-\mu)(y_{t-j}-\mu)) &=& \mathbb{E}\left[(\theta_0 \varepsilon_t +\theta_1 \varepsilon_{t-1} + \dots +\theta_j {\color{red}\varepsilon_{t-j}}+\theta_{j+1} {\color{blue}\varepsilon_{t-j-1}} + \dots) \right.\times \\
+&&\left. (\theta_0 {\color{red}\varepsilon_{t-j}} +\theta_1 {\color{blue}\varepsilon_{t-j-1}} + \dots)\right].
 \end{eqnarray*}
 Using the fact that $\mathbb{E}(\varepsilon_t\varepsilon_s)=0$ if $t \ne s$ (because $\{\varepsilon_t\}_{t = -\infty}^{+\infty}$ is a white noise process) leads to the result.
 :::
@@ -169,9 +169,9 @@ $$
 
 Let us compute the $j^{th}$ autocovariance of the AR(1) process:
 \begin{eqnarray*}
-\mathbb{E}([y_{t} - \mu][y_{t-j} - \mu]) &=& \mathbb{E}([\varepsilon_t + \phi  \varepsilon_{t-1}+ \phi^2 \varepsilon_{t-2} + \dots + \color{red}{\phi^j \varepsilon_{t-j}} + \color{blue}{\phi^{j+1} \varepsilon_{t-j-1}} \dots]\times \\
-&&[\color{red}{\varepsilon_{t-j}} + \color{blue}{\phi \varepsilon_{t-j-1}} + \phi^2 \varepsilon_{t-j-2} + \dots + \phi^k \varepsilon_{t-j-k} + \dots])\\
-&=& \mathbb{E}(\color{red}{\phi^j \varepsilon_{t-j}^2}+\color{blue}{\phi^{j+2} \varepsilon_{t-j-1}^2}+\phi^{j+4} \varepsilon_{t-j-2}^2+\dots)\\
+\mathbb{E}([y_{t} - \mu][y_{t-j} - \mu]) &=& \mathbb{E}([\varepsilon_t + \phi  \varepsilon_{t-1}+ \phi^2 \varepsilon_{t-2} + \dots + {\color{red}\phi^j \varepsilon_{t-j}} + {\color{blue}\phi^{j+1} \varepsilon_{t-j-1}} \dots]\times \\
+&&[{\color{red}\varepsilon_{t-j}} + {\color{blue}\phi \varepsilon_{t-j-1}} + \phi^2 \varepsilon_{t-j-2} + \dots + \phi^k \varepsilon_{t-j-k} + \dots])\\
+&=& \mathbb{E}({\color{red}\phi^j \varepsilon_{t-j}^2}+{\color{blue}\phi^{j+2} \varepsilon_{t-j-1}^2}+\phi^{j+4} \varepsilon_{t-j-2}^2+\dots)\\
 &=& \frac{\phi^j \sigma^2}{1 - \phi^2}.
 \end{eqnarray*}
 

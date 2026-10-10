@@ -148,7 +148,7 @@ div.csl-indent {
 }
 </style>
 
-<link rel="stylesheet" href="style.css" type="text/css" />
+<link rel="stylesheet" href="ecostat-style.css" type="text/css" />
 </head>
 
 <body>
@@ -317,7 +317,7 @@ where <span class="math inline">\(\{\varepsilon_t\}_{t = -\infty}^{+\infty}\)</s
 \]</span></p>
 <p>The first auto-covariance is:
 <span class="math display">\[
-\gamma_1=\mathbb{E}\{(y_t - \mu)(y_{t-1} - \mu)\}=\mathbb{E}\{(\varepsilon_t + \theta \color{red}{\varepsilon_{t-1}})(\color{red}{\varepsilon_{t-1}} + \theta \varepsilon_{t-2})\} = \theta \sigma^2.
+\gamma_1=\mathbb{E}\{(y_t - \mu)(y_{t-1} - \mu)\}=\mathbb{E}\{(\varepsilon_t + \theta {\color{red}\varepsilon_{t-1}})({\color{red}\varepsilon_{t-1}} + \theta \varepsilon_{t-2})\} = \theta \sigma^2.
 \]</span></p>
 <p>It is easily seen that higher-order auto-covariances are zero (<span class="math inline">\(\gamma_j=0\)</span> for <span class="math inline">\(j&gt;1\)</span>). Therefore: An MA(1) process is covariance-stationary (Def. <a href="Intro.html#def:covstat">1.4</a>).</p>
 <p>From what precedes, the autocorrelation of order <span class="math inline">\(j\)</span> (see Def. <a href="Intro.html#def:autocor">1.6</a>) of an MA(1) process is given by:
@@ -354,8 +354,8 @@ where we use the notation <span class="math inline">\(\theta_0=1\)</span>, and <
 <div class="proof">
 <p><span id="unlabeled-div-3" class="proof"><em>Proof</em>. </span>The unconditional expectation of <span class="math inline">\(y_t\)</span> does not depend on time, since <span class="math inline">\(\mathbb{E}(y_t)=\mu\)</span>. Turning to the autocovariances, we can extend the series of <span class="math inline">\(\theta_j\)</span>’s by setting <span class="math inline">\(\theta_j=0\)</span> for <span class="math inline">\(j&gt;q\)</span>. We then have:
 <span class="math display">\[\begin{eqnarray*}
-\mathbb{E}((y_t-\mu)(y_{t-j}-\mu)) &amp;=&amp; \mathbb{E}\left[(\theta_0 \varepsilon_t +\theta_1 \varepsilon_{t-1} + \dots +\theta_j \color{red}{\varepsilon_{t-j}}+\theta_{j+1} \color{blue}{\varepsilon_{t-j-1}} + \dots) \right.\times \\
-&amp;&amp;\left. (\theta_0 \color{red}{\varepsilon_{t-j}} +\theta_1 \color{blue}{\varepsilon_{t-j-1}} + \dots)\right].
+\mathbb{E}((y_t-\mu)(y_{t-j}-\mu)) &amp;=&amp; \mathbb{E}\left[(\theta_0 \varepsilon_t +\theta_1 \varepsilon_{t-1} + \dots +\theta_j {\color{red}\varepsilon_{t-j}}+\theta_{j+1} {\color{blue}\varepsilon_{t-j-1}} + \dots) \right.\times \\
+&amp;&amp;\left. (\theta_0 {\color{red}\varepsilon_{t-j}} +\theta_1 {\color{blue}\varepsilon_{t-j-1}} + \dots)\right].
 \end{eqnarray*}\]</span>
 Using the fact that <span class="math inline">\(\mathbb{E}(\varepsilon_t\varepsilon_s)=0\)</span> if <span class="math inline">\(t \ne s\)</span> (because <span class="math inline">\(\{\varepsilon_t\}_{t = -\infty}^{+\infty}\)</span> is a white noise process) leads to the result.</p>
 </div>
@@ -447,9 +447,9 @@ Hence, if <span class="math inline">\(|\phi| &lt; 1\)</span>, the unconditional 
 \]</span></p>
 <p>Let us compute the <span class="math inline">\(j^{th}\)</span> autocovariance of the AR(1) process:
 <span class="math display">\[\begin{eqnarray*}
-\mathbb{E}([y_{t} - \mu][y_{t-j} - \mu]) &amp;=&amp; \mathbb{E}([\varepsilon_t + \phi  \varepsilon_{t-1}+ \phi^2 \varepsilon_{t-2} + \dots + \color{red}{\phi^j \varepsilon_{t-j}} + \color{blue}{\phi^{j+1} \varepsilon_{t-j-1}} \dots]\times \\
-&amp;&amp;[\color{red}{\varepsilon_{t-j}} + \color{blue}{\phi \varepsilon_{t-j-1}} + \phi^2 \varepsilon_{t-j-2} + \dots + \phi^k \varepsilon_{t-j-k} + \dots])\\
-&amp;=&amp; \mathbb{E}(\color{red}{\phi^j \varepsilon_{t-j}^2}+\color{blue}{\phi^{j+2} \varepsilon_{t-j-1}^2}+\phi^{j+4} \varepsilon_{t-j-2}^2+\dots)\\
+\mathbb{E}([y_{t} - \mu][y_{t-j} - \mu]) &amp;=&amp; \mathbb{E}([\varepsilon_t + \phi  \varepsilon_{t-1}+ \phi^2 \varepsilon_{t-2} + \dots + {\color{red}\phi^j \varepsilon_{t-j}} + {\color{blue}\phi^{j+1} \varepsilon_{t-j-1}} \dots]\times \\
+&amp;&amp;[{\color{red}\varepsilon_{t-j}} + {\color{blue}\phi \varepsilon_{t-j-1}} + \phi^2 \varepsilon_{t-j-2} + \dots + \phi^k \varepsilon_{t-j-k} + \dots])\\
+&amp;=&amp; \mathbb{E}({\color{red}\phi^j \varepsilon_{t-j}^2}+{\color{blue}\phi^{j+2} \varepsilon_{t-j-1}^2}+\phi^{j+4} \varepsilon_{t-j-2}^2+\dots)\\
 &amp;=&amp; \frac{\phi^j \sigma^2}{1 - \phi^2}.
 \end{eqnarray*}\]</span></p>
 <p>Therefore, the auto-correlation is given by <span class="math inline">\(\rho_j = \phi^j\)</span>.</p>
