@@ -17,3 +17,11 @@ knitr::opts_hooks$set(course_seed = function(options) {
   options
 })
 knitr::opts_chunk$set(course_seed = TRUE, error = FALSE)
+
+# Figure conventions used throughout the course. Captions belong to Bookdown;
+# plot regions contain only axis labels, legends, and lettered panel headings.
+panel_title <- function(letter, title) {
+  paste0("(", letter, ") ", title)
+}
+
+course_greys <- c("black", "grey45", "grey70", "grey85")

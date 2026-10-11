@@ -37,7 +37,7 @@ $$
 $$
 where $z_t \sim i.i.d.\,\mathcal{N}(0,1)$ and $\sigma_t^2 = w + \alpha \varepsilon_{t-1}^2$ (with $w>0$ and $0 \leq \alpha <1$).
 
-```{r simulGARCHointro, fig.cap="Simulation of $\\varepsilon_t$, where $\\varepsilon_{t} = \\sigma_t \\times z_{t}$, with $z_t \\sim i.i.d.\\,\\mathcal{N}(0,1)$.", fig.asp = .6, out.width = "95%", fig.align = 'left-aligned'}
+```{r simulGARCHointro, fig.cap="Simulated ARCH(1) innovation $\\varepsilon_t=\\sigma_tz_t$ with $z_t\\sim i.i.d.\\,\\mathcal{N}(0,1)$ and $\\sigma_t^2=1+0.98\\varepsilon_{t-1}^2$. The sample contains 500 observations and illustrates volatility clustering despite zero serial correlation in levels.", fig.asp = .6, out.width = "95%", fig.align = 'left-aligned'}
 T <- 500
 w <- 1; alpha <- .98
 all_epsilon <- NULL; epsilon_1 <- 0
@@ -81,42 +81,66 @@ $$
 $$
 
 
-## Conditional and unconditional moments
+## Moments and stationarity: the practical view {#conditional-and-unconditional-moments}
 
-If it exists, the **unconditional (or marginal) mean** of the random variable $y_t$ is given by:
-$$
-\mu_t := \mathbb{E}(y_t) = \int_{-\infty}^{\infty} y_t f_{Y_t}(y_t) dy_t,
-$$
-where $f_{Y_t}$ is the unconditional, or marginal, density (p.d.f.) of $y_t$. Note that, in the general case, $Y_t$ and $Y_{t-1}$, may have different densities; that is, in general, $f_{Y_t} \ne f_{Y_{t-1}}$ (and, in particular, $\mu_t \ne \mu_{t-1}$).
+Moments are numerical summaries of a time series. In practice, we will use them to answer three questions:
 
-Similarly, if it exists, the **unconditional (or marginal) variance** of the random variable $y_t$ is:
+1. What is the typical level of the series?
+2. How uncertain or volatile is it?
+3. How strongly is its current value related to its past values?
+
+Let $\mathcal{I}_t$ denote the information available at date $t$, including the current and past observations of the series. We distinguish two perspectives:
+
+| Perspective | Relevant moments | Interpretation |
+|:--|:--|:--|
+| Unconditional | $\mathbb{E}(y_t)$ and $\mathbb{V}ar(y_t)$ | The typical level and dispersion across all possible histories |
+| Conditional on $\mathcal{I}_t$ | $\mathbb{E}_t(y_{t+h}) := \mathbb{E}(y_{t+h}\mid\mathcal{I}_t)$ and $\mathbb{V}ar_t(y_{t+h}) := \mathbb{V}ar(y_{t+h}\mid\mathcal{I}_t)$ | The forecast at date $t$ and the uncertainty surrounding it |
+
+There is no need to write these moments as integrals for the methods developed in this course. What matters is the distinction between a **long-run description** of the process and a **forecast based on today's information**.
+
+For example, consider the stationary AR(1) process
 $$
-\mathbb{V}ar(y_t) = \int_{-\infty}^{\infty} (y_t - \mathbb{E}(y_t))^2 f_{Y_t}(y_t) dy_t.
+y_{t+1}=(1-\phi)m+\phi y_t+\varepsilon_{t+1},
+\qquad |\phi|<1,
 $$
+where $\varepsilon_{t+1}$ has mean zero and variance $\sigma^2$. Its unconditional moments are
+$$
+\mathbb{E}(y_t)=m
+\qquad\mbox{and}\qquad
+\mathbb{V}ar(y_t)=\frac{\sigma^2}{1-\phi^2}.
+$$
+By contrast, its one-step-ahead conditional moments are
+$$
+\mathbb{E}_t(y_{t+1})=(1-\phi)m+\phi y_t
+\qquad\mbox{and}\qquad
+\mathbb{V}ar_t(y_{t+1})=\sigma^2.
+$$
+Thus, a stationary process can have a constant unconditional mean even though its forecast changes with the latest observation.
 
 :::{.definition #autocov name="Autocovariance"}
 
-The $j^{th}$ autocovariance of $y_t$ is given by:
-\begin{eqnarray*}
-\gamma_{j,t} &:=& \mathbb{E}([y_t - \mathbb{E}(y_t)][y_{t-j} - \mathbb{E}(y_{t-j})])\\
-&=& \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} \dots \int_{-\infty}^{\infty} [y_t - \mathbb{E}(y_t)][y_{t-j} - \mathbb{E}(y_{t-j})] \times\\
-&& f_{Y_t,Y_{t-1},\dots,Y_{t-j}}(y_t,y_{t-1},\dots,y_{t-j}) dy_t dy_{t-1} \dots dy_{t-j},
-\end{eqnarray*}
-where $f_{Y_t,Y_{t-1},\dots,Y_{t-j}}(y_t,y_{t-1},\dots,y_{t-j})$ is the joint distribution of $y_t,y_{t-1},\dots,y_{t-j}$.
+The $j^{th}$ autocovariance of $y_t$ measures the linear association between observations separated by $j$ periods:
+$$
+\gamma_{j,t} := \mathbb{C}ov(y_t,y_{t-j})
+= \mathbb{E}\bigl([y_t-\mathbb{E}(y_t)][y_{t-j}-\mathbb{E}(y_{t-j})]\bigr).
+$$
+A positive value means that observations $j$ periods apart tend to deviate from their means in the same direction; a negative value means that they tend to deviate in opposite directions.
 :::
 
 In particular, note that $\gamma_{0,t} = \mathbb{V}ar(y_t)$.
 
 :::{.definition #covstat name="Covariance stationarity"}
-The process $y_t$ is covariance stationary ---or weakly stationary--- if, for all $t$ and $j$,
+The process $y_t$ is covariance stationary ---or weakly stationary--- if its mean is finite and constant and if its autocovariances depend on the lag $j$, but not on the calendar date $t$. That is, for all $t$ and $j$,
 $$
 \mathbb{E}(y_t) = \mu \quad \mbox{and} \quad \mathbb{E}\{(y_t - \mu)(y_{t-j} - \mu)\} = \gamma_j.
 $$
 :::
 
+For a covariance-stationary process, $\mathbb{V}ar(y_t)=\gamma_0$ at every date. Notice that stationarity does **not** imply that conditional moments or forecasts must be constant.
+
 Figure \@ref(fig:NONNstat1) displays the simulation of a process that is not covariance stationary. This process follows $y_t = 0.1t + \varepsilon_t$, where $\varepsilon_t \sim\,i.i.d.\,\mathcal{N}(0,1)$. Indeed, for such a process, we have: $\mathbb{E}(y_t)=0.1t$, which depends on $t$.
 
-```{r NONNstat1, fig.cap="Example of a process that is not covariance stationary. it follows: $y_t = 0.1t + \\varepsilon_t$, where $\\varepsilon_t \\sim \\mathcal{N}(0,1)$.", fig.asp = .6, out.width = "95%", fig.align = 'left-aligned'}
+```{r NONNstat1, fig.cap="Simulated nonstationary process $y_t=0.1t+\\varepsilon_t$, where $\\varepsilon_t\\sim i.i.d.\\,\\mathcal{N}(0,1)$. Its unconditional mean increases linearly with time, so the process is not covariance stationary.", fig.asp = .6, out.width = "95%", fig.align = 'left-aligned'}
 T <- 200
 y <- 0.1*(1:T) + rnorm(T)
 par(plt=c(.1,.95,.1,.95))
@@ -124,25 +148,9 @@ plot(y,xlab="",ylab="",lwd=2,type="l")
 ```
 
 
-:::{.definition #strictstat name="Strict stationarity"}
-The process $y_t$ is strictly stationary if, for all $t$ and all sets of integers $J=\{j_1,\dots,j_n\}$, the distribution of $(y_{t},y_{t+j_1},\dots,y_{t+j_n})$ depends on $J$ but not on $t$.
+:::{.remark}
+A stronger concept, **strict stationarity**, requires the entire joint distribution of the process ---not only its first two moments--- to be invariant over time. In this course, *stationary* will generally mean *covariance stationary* unless explicitly stated otherwise.
 :::
-
-The following process is  covariance stationary but not strictly stationary:
-$$
-y_t = \mathbb{I}_{\{t<1000\}}\varepsilon_{1,t}+\mathbb{I}_{\{t\ge1000\}}\varepsilon_{2,t},
-$$
-where $\varepsilon_{1,t} \sim \mathcal{N}(0,1)$ and $\varepsilon_{2,t} \sim \sqrt{\frac{\nu - 2}{\nu}} t(\nu)$ and $\nu = 4$^[Indeed, $\mathbb{E}[y_t]=\mathbb{I}_{\{t<1000\}}\times \underbrace{\mathbb{E}[\varepsilon_{1,t}]}_{=0}+\mathbb{I}_{\{t\ge1000\}} \times \underbrace{\mathbb{E}[\varepsilon_{2,t}]}_{=0}=0$, $\mathbb{V}ar(y_t)=\mathbb{I}_{\{t<1000\}}\times \underbrace{\mathbb{V}ar(\varepsilon_{1,t})}_{=1}+\mathbb{I}_{\{t\ge1000\}} \times \underbrace{\mathbb{V}ar(\varepsilon_{2,t})}_{=\left(\sqrt{\frac{\nu - 2}{\nu}}\right)^2 \times \frac{\nu}{\nu - 2}=1}=1$ and for $\forall j \geq 1$, $\gamma_{j,t}=\gamma_j=0$ as the $\varepsilon_t$'s are serially uncorrelated.]. A simulated path is displayed in Figure \@ref(fig:NONNstat2).
-
-```{r NONNstat2, fig.cap="Example of a process that is covariance stationary but not strictly stationary. The red lines delineate the 99\\% confidence interval of the standard normal distribution ($\\pm 2.58$).", fig.asp = .6, out.width = "95%", fig.align = 'left-aligned'}
-T <- 2000
-y <- rnorm(T)
-y[(T/2):T] <- rt(n = T/2 + 1,df=4)
-par(plt=c(.1,.95,.15,.95))
-plot(y,xlab="",ylab="",type="l")
-abline(h=-2.58,col="red",lty=3)
-abline(h=2.58,col="red",lty=3)
-```
 
 
 
@@ -166,20 +174,20 @@ Consider a long historical time series of the Swiss GDP growth, taken from the @
 
 [^FootnoteJST]: Version 6 of the dataset, available on [this website](https://www.macrohistory.net).
 
-```{r autocov, fig.cap="Annual growth rate of Swiss GDP, based on the Jorda-Schularick-Taylor Macrohistory Database.", fig.asp = .6, out.width = "95%", fig.align = 'left-aligned'}
+```{r autocov, fig.cap="Annual Swiss real-GDP growth, computed as the log difference of real GDP. The dashed grey line indicates the sample mean. Source: Jordà-Schularick-Taylor Macrohistory Database, release 6.", fig.asp = .6, out.width = "95%", fig.align = 'left-aligned'}
 library(IdSS)
 data(JST);data <- subset(JST,iso=="CHE")
 par(plt=c(.1,.95,.1,.95))
 T <- dim(data)[1]
 data$growth <- c(NaN,log(data$gdp[2:T]/data$gdp[1:(T-1)]))
 plot(data$year,data$growth,type="l",xlab="",ylab="",lwd=2)
-abline(h=mean(data$growth,na.rm = TRUE),col="blue",lty=2,xlab="",ylab="")
+abline(h=mean(data$growth,na.rm = TRUE),col="grey45",lty=2,xlab="",ylab="")
 ```
 
-Figure \@ref(fig:autocov2) shows two scatter plots. In the first one, the coordinates of each point are of the form $(y_{t-1},y_t)$. Hence, the slope of the OLS regression line (in blue) is $\widehat{\mathbb{C}ov}(y_t,y_{t-1})/\widehat{\mathbb{V}ar}(y_{t-1})$ (where the hats indicate that these moments are the sample ones). Assuming that the process is covariance stationary, the slope therefore is an estimate of the auto-correlation of order one. By the same logic, the slope of the blue line in the second plot is an estimate of the auto-correlation of order three.
+Figure \@ref(fig:autocov2) shows two scatter plots. In the first one, the coordinates of each point are of the form $(y_{t-1},y_t)$. Hence, the slope of the OLS regression line is $\widehat{\mathbb{C}ov}(y_t,y_{t-1})/\widehat{\mathbb{V}ar}(y_{t-1})$ (where the hats indicate that these moments are the sample ones). Assuming that the process is covariance stationary, the slope therefore is an estimate of the auto-correlation of order one. By the same logic, the slope of the line in the second plot is an estimate of the auto-correlation of order three.
 
 
-```{r autocov2, echo=FALSE, fig.cap="For order $j$, the slope of the blue line is, approximately, $\\hat{\\gamma}_j/\\widehat{\\mathbb{V}ar}(y_t)$, where hats indicate sample moments.", fig.asp = .6, out.width = "95%", fig.align = 'left-aligned'}
+```{r autocov2, echo=FALSE, fig.cap="Swiss real-GDP growth plotted against its own lags: (a) first lag and (b) third lag. The solid black lines are OLS fits. For lag $j$, the fitted slope is approximately $\\hat{\\gamma}_j/\\widehat{\\mathbb{V}ar}(y_t)$, where hats denote sample moments.", fig.asp = .6, out.width = "95%", fig.align = 'left-aligned'}
 y <- data$growth
 j <- 1;y_1 <- c(rep(NaN,j),y[1:(T-j)])
 j <- 2;y_2 <- c(rep(NaN,j),y[1:(T-j)])
@@ -188,11 +196,11 @@ par(mfrow=c(1,2))
 plot(y_1,y,xlim=c(-.3,.3),ylim=c(-.3,.3),main="(a) order: one",
      xlab=expression(y[t-1]),ylab=expression(y[t]))
 grid()
-abline(lm(y~y_1),col="blue")
+abline(lm(y~y_1),col="black",lwd=2)
 plot(y_3,y,xlim=c(-.3,.3),ylim=c(-.3,.3),main="(b) order: three",
      xlab=expression(y[t-3]),ylab=expression(y[t]))
 grid()
-abline(lm(y~y_3),col="blue")
+abline(lm(y~y_3),col="black",lwd=2)
 ```
 
 
@@ -235,20 +243,20 @@ However, for small samples, Eq. \@ref(eq:covSmplMean) does not necessarily resul
 S^{NW}=\hat\gamma_0 + 2 \sum_{\nu=1}^{q}\left(1-\frac{\nu}{q+1}\right) \hat\gamma_\nu.(\#eq:NWest)
 \end{equation}
 
-Loosely speaking, Theorem \@ref(thm:CLTcovstat) says that, for a given sample size, the higher the "persistency" of a process, the lower the accuracy of the sample mean as an estimate of the population mean. To illustrate, consider three processes that feature the same marginal variance (equal to one, say), but different autocorrelations: 0\%, 70\%, and 99.9\%. Figure \@ref(fig:TVTCL) displays simulated paths of such three processes. It indeed appears that, the larger the autocorrelation of the process, the further the sample mean (dashed red line) from the population mean (red solid line).
+Loosely speaking, Theorem \@ref(thm:CLTcovstat) says that, for a given sample size, the higher the "persistency" of a process, the lower the accuracy of the sample mean as an estimate of the population mean. To illustrate, consider three processes that feature the same marginal variance (equal to one, say), but different autocorrelations: 0\%, 70\%, and 99.9\%. Figure \@ref(fig:TVTCL) displays simulated paths of such three processes. It indeed appears that, the larger the autocorrelation of the process, the further the sample mean (dashed line) from the population mean (solid line).
 
 The same type of simulations can be performed using [this web interface](https://jrenne.shinyapps.io/MacroEc/) (use panel "AR(1)").
 
-```{r TVTCL, echo=FALSE, fig.cap="The three samples have been simulated using the following data generating process: $x_t = \\mu + \\rho (x_{t-1}-\\mu) + \\sqrt{1-\\rho^2}\\varepsilon_t$, where $\\varepsilon_t \\sim \\mathcal{N}(0,1)$. Case A: $\\rho = 0$;  Case B: $\\rho = 0.7$;  Case C: $\\rho = 0.999$. In the three cases, $\\mathbb{E}(x_t)=\\mu=2$ and $\\mathbb{V}ar(x_t)=1$. The dashed (respectively solid) red line indicate the sample (resp. unconditional) mean.", fig.asp = .6, out.width = "100%", fig.align = 'left-aligned'}
+```{r TVTCL, echo=FALSE, fig.cap="Simulated AR(1) processes $x_t = \\mu + \\rho(x_{t-1}-\\mu)+\\sqrt{1-\\rho^2}\\varepsilon_t$, with $\\varepsilon_t\\sim\\mathcal{N}(0,1)$, $\\mu=2$, and $\\mathbb{V}ar(x_t)=1$: (a) $\\rho=0$; (b) $\\rho=0.7$; and (c) $\\rho=0.999$. In each panel, the solid black line marks the population mean and the dashed grey line the sample mean.", fig.asp = .6, out.width = "100%", fig.align = 'left-aligned'}
 all.rho <- c(0,.7,.999)
 par(plt=c(0.1,0.95,0.2,0.75))
 par(mfrow=c(3,1))
 count <- 0
 for(rho in all.rho){
   count <- count + 1
-  if(count==1){main.t <- "Case A"}
-  if(count==2){main.t <- "Case B"}
-  if(count==3){main.t <- "Case C"}
+  if(count==1){main.t <- "(a) rho = 0"}
+  if(count==2){main.t <- "(b) rho = 0.7"}
+  if(count==3){main.t <- "(c) rho = 0.999"}
   N <- 200
   X <- NULL
   mu <- 2
@@ -258,12 +266,12 @@ for(rho in all.rho){
     X <- c(X,mu + rho*(X[length(X)]-mu) + sigma*rnorm(1))
   }
   plot(X,type="l",main=main.t,xlab="",ylab="",lwd=2)
-  abline(h=mu,col="red")
-  abline(h=mean(X),col="red",lty=2)
+  abline(h=mu,col="black")
+  abline(h=mean(X),col="grey45",lty=2)
 }
 ```
 
-## Exercise from the 2024 exam {#introduction-exercises}
+## Exercises from past exams {#introduction-exercises}
 
 ```{r introduction-exercise-renderer, include=FALSE}
 source("R/exercises.R")
@@ -271,4 +279,8 @@ source("R/exercises.R")
 
 ```{r introduction-exam-2024, results='asis'}
 render_exercises("exam-2024", "ex-exam2024-long-run-variance")
+```
+
+```{r introduction-exam-2025, results='asis'}
+render_exercises("exam-2025", "ex-exam2025-autocovariances-and-clt")
 ```

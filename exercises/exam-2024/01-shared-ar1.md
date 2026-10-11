@@ -13,7 +13,7 @@ Let $x_t=\rho_xx_{t-1}+\varepsilon_t$ and $y_t=\rho_yy_{t-1}+\varepsilon_t$, whe
 State whether each assertion is true or false and justify your answer.
 
 1. The contemporaneous correlation between $x_t$ and $y_t$ is zero.
-2. $\operatorname{Var}(y_t)=\operatorname{Var}(x_t)$.
+2. $\mathbb{V}ar(y_t)=\mathbb{V}ar(x_t)$.
 3. $\mathbb E_t(y_{t+1})=\mathbb E_t(x_{t+1})$.
 4. $\mathbb E_t(y_{t+h})=\rho_y^hy_t$ for every $h\ge1$.
-5. $\operatorname{Cov}_t(x_{t+1},y_{t+1})=\sigma^2$.
+5. $\mathbb{C}ov_t(x_{t+1},y_{t+1})=\sigma^2$.

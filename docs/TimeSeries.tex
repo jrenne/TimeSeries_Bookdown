@@ -157,7 +157,7 @@
 
 \title{Introduction to Time Series}
 \author{Jean-Paul Renne}
-\date{2026-10-10}
+\date{2026-10-11}
 
 \usepackage{amsthm}
 \newtheorem{theorem}{Theorem}[chapter]
@@ -265,7 +265,7 @@ The Autoregressive conditional heteroskedasticity process---studied in Section \
 where \(z_t \sim i.i.d.\,\mathcal{N}(0,1)\) and \(\sigma_t^2 = w + \alpha \varepsilon_{t-1}^2\) (with \(w>0\) and \(0 \leq \alpha <1\)).
 
 \begin{figure}
-\includegraphics[width=0.95\linewidth]{TimeSeries_files/figure-latex/simulGARCHointro-1} \caption{Simulation of $\varepsilon_t$, where $\varepsilon_{t} = \sigma_t \times z_{t}$, with $z_t \sim i.i.d.\,\mathcal{N}(0,1)$.}\label{fig:simulGARCHointro}
+\includegraphics[width=0.95\linewidth]{TimeSeries_files/figure-latex/simulGARCHointro-1} \caption{Simulated ARCH(1) innovation $\varepsilon_t=\sigma_tz_t$ with $z_t\sim i.i.d.\,\mathcal{N}(0,1)$ and $\sigma_t^2=1+0.98\varepsilon_{t-1}^2$. The sample contains 500 observations and illustrates volatility clustering despite zero serial correlation in levels.}\label{fig:simulGARCHointro}
 \end{figure}
 
 \end{example}
@@ -294,57 +294,93 @@ Consider a process \(y_t\) whose law of motion is \(y_t = \mu + \phi y_{t-1} + \
 (1-\phi L) y_t = \mu + \varepsilon_t.
 \]
 
-\section{Conditional and unconditional moments}\label{conditional-and-unconditional-moments}
+\section{Moments and stationarity: the practical view}\label{conditional-and-unconditional-moments}
 
-If it exists, the \textbf{unconditional (or marginal) mean} of the random variable \(y_t\) is given by:
-\[
-\mu_t := \mathbb{E}(y_t) = \int_{-\infty}^{\infty} y_t f_{Y_t}(y_t) dy_t,
-\]
-where \(f_{Y_t}\) is the unconditional, or marginal, density (p.d.f.) of \(y_t\). Note that, in the general case, \(Y_t\) and \(Y_{t-1}\), may have different densities; that is, in general, \(f_{Y_t} \ne f_{Y_{t-1}}\) (and, in particular, \(\mu_t \ne \mu_{t-1}\)).
+Moments are numerical summaries of a time series. In practice, we will use them to answer three questions:
 
-Similarly, if it exists, the \textbf{unconditional (or marginal) variance} of the random variable \(y_t\) is:
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  What is the typical level of the series?
+\item
+  How uncertain or volatile is it?
+\item
+  How strongly is its current value related to its past values?
+\end{enumerate}
+
+Let \(\mathcal{I}_t\) denote the information available at date \(t\), including the current and past observations of the series. We distinguish two perspectives:
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Perspective
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Relevant moments
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Interpretation
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Unconditional & \(\mathbb{E}(y_t)\) and \(\mathbb{V}ar(y_t)\) & The typical level and dispersion across all possible histories \\
+Conditional on \(\mathcal{I}_t\) & \(\mathbb{E}_t(y_{t+h}) := \mathbb{E}(y_{t+h}\mid\mathcal{I}_t)\) and \(\mathbb{V}ar_t(y_{t+h}) := \mathbb{V}ar(y_{t+h}\mid\mathcal{I}_t)\) & The forecast at date \(t\) and the uncertainty surrounding it \\
+\end{longtable}
+
+There is no need to write these moments as integrals for the methods developed in this course. What matters is the distinction between a \textbf{long-run description} of the process and a \textbf{forecast based on today's information}.
+
+For example, consider the stationary AR(1) process
 \[
-\mathbb{V}ar(y_t) = \int_{-\infty}^{\infty} (y_t - \mathbb{E}(y_t))^2 f_{Y_t}(y_t) dy_t.
+y_{t+1}=(1-\phi)m+\phi y_t+\varepsilon_{t+1},
+\qquad |\phi|<1,
 \]
+where \(\varepsilon_{t+1}\) has mean zero and variance \(\sigma^2\). Its unconditional moments are
+\[
+\mathbb{E}(y_t)=m
+\qquad\mbox{and}\qquad
+\mathbb{V}ar(y_t)=\frac{\sigma^2}{1-\phi^2}.
+\]
+By contrast, its one-step-ahead conditional moments are
+\[
+\mathbb{E}_t(y_{t+1})=(1-\phi)m+\phi y_t
+\qquad\mbox{and}\qquad
+\mathbb{V}ar_t(y_{t+1})=\sigma^2.
+\]
+Thus, a stationary process can have a constant unconditional mean even though its forecast changes with the latest observation.
 
 \begin{definition}[Autocovariance]
-\protect\hypertarget{def:autocov}{}\label{def:autocov}The \(j^{th}\) autocovariance of \(y_t\) is given by:
-\begin{eqnarray*}
-\gamma_{j,t} &:=& \mathbb{E}([y_t - \mathbb{E}(y_t)][y_{t-j} - \mathbb{E}(y_{t-j})])\\
-&=& \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} \dots \int_{-\infty}^{\infty} [y_t - \mathbb{E}(y_t)][y_{t-j} - \mathbb{E}(y_{t-j})] \times\\
-&& f_{Y_t,Y_{t-1},\dots,Y_{t-j}}(y_t,y_{t-1},\dots,y_{t-j}) dy_t dy_{t-1} \dots dy_{t-j},
-\end{eqnarray*}
-where \(f_{Y_t,Y_{t-1},\dots,Y_{t-j}}(y_t,y_{t-1},\dots,y_{t-j})\) is the joint distribution of \(y_t,y_{t-1},\dots,y_{t-j}\).
+\protect\hypertarget{def:autocov}{}\label{def:autocov}The \(j^{th}\) autocovariance of \(y_t\) measures the linear association between observations separated by \(j\) periods:
+\[
+\gamma_{j,t} := \mathbb{C}ov(y_t,y_{t-j})
+= \mathbb{E}\bigl([y_t-\mathbb{E}(y_t)][y_{t-j}-\mathbb{E}(y_{t-j})]\bigr).
+\]
+A positive value means that observations \(j\) periods apart tend to deviate from their means in the same direction; a negative value means that they tend to deviate in opposite directions.
 \end{definition}
 
 In particular, note that \(\gamma_{0,t} = \mathbb{V}ar(y_t)\).
 
 \begin{definition}[Covariance stationarity]
-\protect\hypertarget{def:covstat}{}\label{def:covstat}The process \(y_t\) is covariance stationary ---or weakly stationary--- if, for all \(t\) and \(j\),
+\protect\hypertarget{def:covstat}{}\label{def:covstat}The process \(y_t\) is covariance stationary ---or weakly stationary--- if its mean is finite and constant and if its autocovariances depend on the lag \(j\), but not on the calendar date \(t\). That is, for all \(t\) and \(j\),
 \[
 \mathbb{E}(y_t) = \mu \quad \mbox{and} \quad \mathbb{E}\{(y_t - \mu)(y_{t-j} - \mu)\} = \gamma_j.
 \]
 \end{definition}
 
+For a covariance-stationary process, \(\mathbb{V}ar(y_t)=\gamma_0\) at every date. Notice that stationarity does \textbf{not} imply that conditional moments or forecasts must be constant.
+
 Figure \ref{fig:NONNstat1} displays the simulation of a process that is not covariance stationary. This process follows \(y_t = 0.1t + \varepsilon_t\), where \(\varepsilon_t \sim\,i.i.d.\,\mathcal{N}(0,1)\). Indeed, for such a process, we have: \(\mathbb{E}(y_t)=0.1t\), which depends on \(t\).
 
 \begin{figure}
-\includegraphics[width=0.95\linewidth]{TimeSeries_files/figure-latex/NONNstat1-1} \caption{Example of a process that is not covariance stationary. it follows: $y_t = 0.1t + \varepsilon_t$, where $\varepsilon_t \sim \mathcal{N}(0,1)$.}\label{fig:NONNstat1}
+\includegraphics[width=0.95\linewidth]{TimeSeries_files/figure-latex/NONNstat1-1} \caption{Simulated nonstationary process $y_t=0.1t+\varepsilon_t$, where $\varepsilon_t\sim i.i.d.\,\mathcal{N}(0,1)$. Its unconditional mean increases linearly with time, so the process is not covariance stationary.}\label{fig:NONNstat1}
 \end{figure}
 
-\begin{definition}[Strict stationarity]
-\protect\hypertarget{def:strictstat}{}\label{def:strictstat}The process \(y_t\) is strictly stationary if, for all \(t\) and all sets of integers \(J=\{j_1,\dots,j_n\}\), the distribution of \((y_{t},y_{t+j_1},\dots,y_{t+j_n})\) depends on \(J\) but not on \(t\).
-\end{definition}
-
-The following process is covariance stationary but not strictly stationary:
-\[
-y_t = \mathbb{I}_{\{t<1000\}}\varepsilon_{1,t}+\mathbb{I}_{\{t\ge1000\}}\varepsilon_{2,t},
-\]
-where \(\varepsilon_{1,t} \sim \mathcal{N}(0,1)\) and \(\varepsilon_{2,t} \sim \sqrt{\frac{\nu - 2}{\nu}} t(\nu)\) and \(\nu = 4\)\footnote{Indeed, \(\mathbb{E}[y_t]=\mathbb{I}_{\{t<1000\}}\times \underbrace{\mathbb{E}[\varepsilon_{1,t}]}_{=0}+\mathbb{I}_{\{t\ge1000\}} \times \underbrace{\mathbb{E}[\varepsilon_{2,t}]}_{=0}=0\), \(\mathbb{V}ar(y_t)=\mathbb{I}_{\{t<1000\}}\times \underbrace{\mathbb{V}ar(\varepsilon_{1,t})}_{=1}+\mathbb{I}_{\{t\ge1000\}} \times \underbrace{\mathbb{V}ar(\varepsilon_{2,t})}_{=\left(\sqrt{\frac{\nu - 2}{\nu}}\right)^2 \times \frac{\nu}{\nu - 2}=1}=1\) and for \(\forall j \geq 1\), \(\gamma_{j,t}=\gamma_j=0\) as the \(\varepsilon_t\)'s are serially uncorrelated.}. A simulated path is displayed in Figure \ref{fig:NONNstat2}.
-
-\begin{figure}
-\includegraphics[width=0.95\linewidth]{TimeSeries_files/figure-latex/NONNstat2-1} \caption{Example of a process that is covariance stationary but not strictly stationary. The red lines delineate the 99\% confidence interval of the standard normal distribution ($\pm 2.58$).}\label{fig:NONNstat2}
-\end{figure}
+\begin{remark}
+A stronger concept, \textbf{strict stationarity}, requires the entire joint distribution of the process ---not only its first two moments--- to be invariant over time. In this course, \emph{stationary} will generally mean \emph{covariance stationary} unless explicitly stated otherwise.
+\end{remark}
 
 \begin{proposition}
 \protect\hypertarget{prp:gammaMinus}{}\label{prp:gammaMinus}If \(y_t\) is covariance stationary, then \(\gamma_j = \gamma_{-j}\).
@@ -364,13 +400,13 @@ Since \(y_t\) is covariance stationary, the covariance between \(y_t\) and \(y_{
 Consider a long historical time series of the Swiss GDP growth, taken from the \citet{JST_2017} dataset.\footnote{Version 6 of the dataset, available on \href{https://www.macrohistory.net}{this website}.}
 
 \begin{figure}
-\includegraphics[width=0.95\linewidth]{TimeSeries_files/figure-latex/autocov-1} \caption{Annual growth rate of Swiss GDP, based on the Jorda-Schularick-Taylor Macrohistory Database.}\label{fig:autocov}
+\includegraphics[width=0.95\linewidth]{TimeSeries_files/figure-latex/autocov-1} \caption{Annual Swiss real-GDP growth, computed as the log difference of real GDP. The dashed grey line indicates the sample mean. Source: Jordà-Schularick-Taylor Macrohistory Database, release 6.}\label{fig:autocov}
 \end{figure}
 
-Figure \ref{fig:autocov2} shows two scatter plots. In the first one, the coordinates of each point are of the form \((y_{t-1},y_t)\). Hence, the slope of the OLS regression line (in blue) is \(\widehat{\mathbb{C}ov}(y_t,y_{t-1})/\widehat{\mathbb{V}ar}(y_{t-1})\) (where the hats indicate that these moments are the sample ones). Assuming that the process is covariance stationary, the slope therefore is an estimate of the auto-correlation of order one. By the same logic, the slope of the blue line in the second plot is an estimate of the auto-correlation of order three.
+Figure \ref{fig:autocov2} shows two scatter plots. In the first one, the coordinates of each point are of the form \((y_{t-1},y_t)\). Hence, the slope of the OLS regression line is \(\widehat{\mathbb{C}ov}(y_t,y_{t-1})/\widehat{\mathbb{V}ar}(y_{t-1})\) (where the hats indicate that these moments are the sample ones). Assuming that the process is covariance stationary, the slope therefore is an estimate of the auto-correlation of order one. By the same logic, the slope of the line in the second plot is an estimate of the auto-correlation of order three.
 
 \begin{figure}
-\includegraphics[width=0.95\linewidth]{TimeSeries_files/figure-latex/autocov2-1} \caption{For order $j$, the slope of the blue line is, approximately, $\hat{\gamma}_j/\widehat{\mathbb{V}ar}(y_t)$, where hats indicate sample moments.}\label{fig:autocov2}
+\includegraphics[width=0.95\linewidth]{TimeSeries_files/figure-latex/autocov2-1} \caption{Swiss real-GDP growth plotted against its own lags: (a) first lag and (b) third lag. The solid black lines are OLS fits. For lag $j$, the fitted slope is approximately $\hat{\gamma}_j/\widehat{\mathbb{V}ar}(y_t)$, where hats denote sample moments.}\label{fig:autocov2}
 \end{figure}
 
 \section{Central Limit Theorem (CLT) for persistent processes}\label{central-limit-theorem-clt-for-persistent-processes}
@@ -410,15 +446,15 @@ However, for small samples, Eq. \eqref{eq:covSmplMean} does not necessarily resu
 S^{NW}=\hat\gamma_0 + 2 \sum_{\nu=1}^{q}\left(1-\frac{\nu}{q+1}\right) \hat\gamma_\nu.\label{eq:NWest}
 \end{equation}
 
-Loosely speaking, Theorem \ref{thm:CLTcovstat} says that, for a given sample size, the higher the ``persistency'' of a process, the lower the accuracy of the sample mean as an estimate of the population mean. To illustrate, consider three processes that feature the same marginal variance (equal to one, say), but different autocorrelations: 0\%, 70\%, and 99.9\%. Figure \ref{fig:TVTCL} displays simulated paths of such three processes. It indeed appears that, the larger the autocorrelation of the process, the further the sample mean (dashed red line) from the population mean (red solid line).
+Loosely speaking, Theorem \ref{thm:CLTcovstat} says that, for a given sample size, the higher the ``persistency'' of a process, the lower the accuracy of the sample mean as an estimate of the population mean. To illustrate, consider three processes that feature the same marginal variance (equal to one, say), but different autocorrelations: 0\%, 70\%, and 99.9\%. Figure \ref{fig:TVTCL} displays simulated paths of such three processes. It indeed appears that, the larger the autocorrelation of the process, the further the sample mean (dashed line) from the population mean (solid line).
 
 The same type of simulations can be performed using \href{https://jrenne.shinyapps.io/MacroEc/}{this web interface} (use panel ``AR(1)'').
 
 \begin{figure}
-\includegraphics[width=1\linewidth]{TimeSeries_files/figure-latex/TVTCL-1} \caption{The three samples have been simulated using the following data generating process: $x_t = \mu + \rho (x_{t-1}-\mu) + \sqrt{1-\rho^2}\varepsilon_t$, where $\varepsilon_t \sim \mathcal{N}(0,1)$. Case A: $\rho = 0$;  Case B: $\rho = 0.7$;  Case C: $\rho = 0.999$. In the three cases, $\mathbb{E}(x_t)=\mu=2$ and $\mathbb{V}ar(x_t)=1$. The dashed (respectively solid) red line indicate the sample (resp. unconditional) mean.}\label{fig:TVTCL}
+\includegraphics[width=1\linewidth]{TimeSeries_files/figure-latex/TVTCL-1} \caption{Simulated AR(1) processes $x_t = \mu + \rho(x_{t-1}-\mu)+\sqrt{1-\rho^2}\varepsilon_t$, with $\varepsilon_t\sim\mathcal{N}(0,1)$, $\mu=2$, and $\mathbb{V}ar(x_t)=1$: (a) $\rho=0$; (b) $\rho=0.7$; and (c) $\rho=0.999$. In each panel, the solid black line marks the population mean and the dashed grey line the sample mean.}\label{fig:TVTCL}
 \end{figure}
 
-\section{Exercise from the 2024 exam}\label{introduction-exercises}
+\section{Exercises from past exams}\label{introduction-exercises}
 
 \Needspace{24\baselineskip}
 
@@ -438,15 +474,53 @@ State whether each assertion is true or false and justify your answer.
 \def\labelenumi{\arabic{enumi}.}
 \tightlist
 \item
-  \(\operatorname{Var}(y_t+y_{t-1})=14\).
+  \(\mathbb{V}ar(y_t+y_{t-1})=14\).
 \item
-  \(\operatorname{Var}(y_{t-1})=\gamma_1\).
+  \(\mathbb{V}ar(y_{t-1})=\gamma_1\).
 \item
   For large \(T\), \(\sqrt T(\bar y_T-\mu)\) is approximately \(\mathcal N(0,16)\).
 \item
-  For large \(T\), \(\operatorname{Var}[\sqrt T(\bar y_T-\mu)]\) is approximately 4.
+  For large \(T\), \(\mathbb{V}ar[\sqrt T(\bar y_T-\mu)]\) is approximately 4.
 \item
   If \(T=1600\) and \(\bar y_T=1\), then 0.70 lies in an approximate 95\% confidence interval for \(\mu\).
+\end{enumerate}
+
+\end{exercise}
+
+\end{exercisebox}
+
+\Needspace{24\baselineskip}
+
+\begin{exercisebox}
+
+\begin{exercise}[Autocovariances, correlations, and the time-series CLT]
+\protect\hypertarget{exr:ex-exam2025-autocovariances-and-clt}{}\label{exr:ex-exam2025-autocovariances-and-clt}
+
+\textbf{EXAM-2025 \textbar{} Exam \textbar{} True/false}\\
+Review Section \ref{Intro}.
+
+A covariance-stationary process \(y_t\) has autocovariances
+\[
+\gamma_0=3,\quad \gamma_1=1.5,\quad \gamma_2=1,\quad \gamma_3=0.5,
+\quad\text{and}\quad \gamma_h=0\ \text{for }h\ge4.
+\]
+Let \(\bar y_T=T^{-1}\sum_{t=1}^T y_t\), where \(T\) is large.
+
+State whether each assertion is true or false and justify your answer.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  The process can be a nondegenerate AR(4).
+\item
+  \(\mathbb{V}ar(\bar y_T)=3\).
+\item
+  The correlation between \(y_{t-3}\) and \(y_{t-5}\) is zero.
+\item
+  If \(\bar y_T=1\) and \(T=900\), an approximate 95\% confidence interval for \(\mathbb E(y_t)\) does not include zero.
+\item
+  \(\mathbb E(y_{t+1})=\mathbb E(y_{t-1})\).
 \end{enumerate}
 
 \end{exercise}
@@ -527,7 +601,7 @@ Using the fact that \(\mathbb{E}(\varepsilon_t\varepsilon_s)=0\) if \(t \ne s\) 
 Figure \ref{fig:simMA} displays simulated paths of two MA processes (an MA(1) and an MA(4)). Such simulations can also be produced by using panel ``ARMA(p,q)'' of \href{https://jrenne.shinyapps.io/MacroEc/}{this web interface}.
 
 \begin{figure}
-\includegraphics[width=0.95\linewidth]{TimeSeries_files/figure-latex/simMA-1} \caption{Simulation of MA processes.}\label{fig:simMA}
+\includegraphics[width=0.95\linewidth]{TimeSeries_files/figure-latex/simMA-1} \caption{Simulated moving-average processes with unit innovation variance and intercept equal to one: (a) MA(1) process with $\theta_0=\theta_1=1$; (b) MA(4) process with $\theta_0=\cdots=\theta_4=1$. The horizontal line marks the intercept.}\label{fig:simMA}
 \end{figure}
 
 What if the order \(q\) of an MA(q) process gets infinite? The notion of \textbf{infinite-order Moving Average process} exists and is important in time series analysis, as it relates to impulse response functions (as illustrated in Section \ref{IRFARMA}). The (infinite) sequence of \(\theta_j\) has to satisfy some conditions for such a process to be well-defined (see Theorem \ref{thm:infMA} below). These conditions relate to the ``summability'' of the components of the sequence \(\{\theta_{i}\}_{i\in\mathbb{N}}\):
@@ -870,7 +944,7 @@ Besides, it can be shown that \(\phi_{p,p}=\phi_p\). Hence \(\phi_{p,p}=\phi_p\)
 As illustrated below, the functions \texttt{acf} and \texttt{pacf} of R allow us to conveniently implement the (P)ACF approach. (In these lines of codes, note also the use of function \texttt{sim.arma} to simulate ARMA processes.)
 
 \begin{figure}
-\includegraphics[width=1\linewidth]{TimeSeries_files/figure-latex/pacf-1} \caption{ACF/PACF analysis of two processes (MA process on the left, AR on the right). The correlations are computed on samples of length 1000.}\label{fig:pacf}
+\includegraphics[width=1\linewidth]{TimeSeries_files/figure-latex/pacf-1} \caption{Simulated samples and correlograms for two processes, each with 1,000 observations. Left column: (a) simulated MA(2) process, (c) its sample autocorrelation function, and (e) its sample partial autocorrelation function. Right column: (b) simulated AR(1) process, (d) its sample autocorrelation function, and (f) its sample partial autocorrelation function.}\label{fig:pacf}
 \end{figure}
 
 \section{Wold decomposition}\label{wold-decomposition}
@@ -979,7 +1053,7 @@ One can use function \texttt{sim.arma} of package \texttt{IdSS} to compute ARMA'
 Consider the annual Swiss GDP growth from the JST macro-history database. Let us first determine relevant orders for AR and MA processes using the (P)ACF approach.
 
 \begin{figure}
-\includegraphics[width=1\linewidth]{TimeSeries_files/figure-latex/IRFgdp1-1} \caption{(P)ACF analysis of Swiss GDP growth.}\label{fig:IRFgdp1}
+\includegraphics[width=1\linewidth]{TimeSeries_files/figure-latex/IRFgdp1-1} \caption{Serial-dependence diagnostics for annual Swiss real-GDP growth: (a) growth series; (b) sample autocorrelation function; and (c) sample partial autocorrelation function. Source: Jordà-Schularick-Taylor Macrohistory Database, release 6.}\label{fig:IRFgdp1}
 \end{figure}
 
 The two bottom plots of Figure \ref{fig:IRFgdp1} suggest that either an MA(2)\footnote{Indeed, the sample autocorrelation coefficients, (\(\rho_j\)), are statistically significant for \(j \leq 2\) where \(\rho_2\) is barely significant} or an AR(1)\footnote{Indeed, the sample partial autocorrelation coefficients, \(\rho_{j,j}\), are statistically significant for \(j=1\) only}could be used to model the GDP growth rate series. Figure \ref{fig:IRFgdp2} shows the IRFs based on these two respective specifications.
@@ -1071,7 +1145,11 @@ It has to be stressed that the definition of the dynamic multipliers (Eq. \eqref
 
 This example is based on data used in \citet{Stock_Watson_2003} (Chapter 16). The objective is to study the influence of the number of freezing days on the price of orange juice. Let us first estimate a ARMA-X(0,0,3) model:
 
+\begin{figure}
+\centering
 \pandocbounded{\includegraphics[keepaspectratio]{TimeSeries_files/figure-latex/freez-1.pdf}}
+\caption{\label{fig:freez}Orange-juice data used in the ARMAX example: (a) real orange-juice price; (b) monthly log price change, in percent; and (c) number of freezing-degree days. Source: FrozenJuice data distributed with the AER package, based on Stock and Watson (2003).}
+\end{figure}
 
 \begin{verbatim}
 ## 
@@ -1111,16 +1189,16 @@ Figure \ref{fig:freez4} shows the IRF associated with each of the two models.
 \begin{example}[Real effect of a monetary policy shock]
 \protect\hypertarget{exm:Ramey1}{}\label{exm:Ramey1}
 
-In this example, we make use of monetary shocks identified through high-frequency data (see \citet{Gertler_Karadi_2015}). This dataset comes from \href{https://econweb.ucsd.edu/~vramey/research.html}{Valerie Ramey's website} (see \citet{Ramey_2016_NBER}).
+In this example, we use the monthly monetary-policy shock developed by Bu, Rogers, and Wu. The series is distributed by the Board of Governors of the Federal Reserve System and is included in the redistributable \texttt{USmonthly} dataset of \texttt{IdSS}.
 
 \begin{figure}
-\includegraphics[width=0.95\linewidth]{TimeSeries_files/figure-latex/Ramey1fig-1} \caption{The blue line corresponds to monetary-policy shocks identified by means of the Gertler and Karadi (2015)'s approach (high-frequency change in Euro-dollar futures). The black slid line is the year-on-year growth rate of industrial production.}\label{fig:Ramey1fig}
+\includegraphics[width=0.95\linewidth]{TimeSeries_files/figure-latex/Ramey1fig-1} \caption{U.S. industrial production and monetary-policy shocks. The solid black line is the year-on-year growth rate of industrial production; the dashed grey line is the monthly BRW monetary-policy shock multiplied by 40 for readability. The common sample begins in 1994. Sources: U.S. government macroeconomic series via FRED and Bu, Rogers, and Wu shock series via the Board of Governors.}\label{fig:Ramey1fig}
 \end{figure}
 
-Figure \ref{fig:Ramey3} displays the resulting IRF, with a 95\% confidence band. The code used to produce the confidence bands (i.e., to compute the standard deviation of the dynamic multipliers for the different horizons) is based on the Delta method (see Appendix \ref{Delta}).\footnote{This method consists in approximating \(\mathbb{V}(ar)(f(\theta))\) with \(\frac{\partial f(\theta)}{\partial \theta}' \mathbb{V}ar(\theta)\frac{\partial f(\theta)}{\partial \theta}\).}
+Figure \ref{fig:Ramey3} displays the resulting IRF, with a 95\% confidence band. The code used to produce the confidence bands (i.e., to compute the standard deviation of the dynamic multipliers for the different horizons) is based on the Delta method (see Appendix \ref{Delta}).\footnote{This method consists in approximating \(\mathbb{V}ar(f(\theta))\) with \(\frac{\partial f(\theta)}{\partial \theta}' \mathbb{V}ar(\theta)\frac{\partial f(\theta)}{\partial \theta}\).}
 
 \begin{figure}
-\includegraphics[width=0.95\linewidth]{TimeSeries_files/figure-latex/Ramey3-1} \caption{Response of industrial-production growth to monetary-policy shocks. Dashed lines correpsond to the $\pm$  2-standard-deviation bands.}\label{fig:Ramey3}
+\includegraphics[width=0.95\linewidth]{TimeSeries_files/figure-latex/Ramey3-1} \caption{Estimated response of U.S. industrial-production growth to a BRW monetary-policy shock. The solid black line is the point estimate; the dashed grey lines are pointwise bands equal to the estimate plus or minus two standard errors, computed with the delta method.}\label{fig:Ramey3}
 \end{figure}
 
 \end{example}
@@ -1612,13 +1690,13 @@ Consider
 \[
 y_t=\phi_1y_{t-1}+\phi_2y_{t-2}+\varepsilon_t+\varepsilon_{t-1},
 \]
-where \(\{\varepsilon_t\}\) is white noise with variance \(\sigma^2\) and the AR polynomial is stable. Let \(\gamma_h=\operatorname{Cov}(y_t,y_{t-h})\).
+where \(\{\varepsilon_t\}\) is white noise with variance \(\sigma^2\) and the AR polynomial is stable. Let \(\gamma_h=\mathbb{C}ov(y_t,y_{t-h})\).
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
 \tightlist
 \item
-  Compute \(\operatorname{Cov}(\varepsilon_t,y_t)\) and \(\operatorname{Cov}(\varepsilon_{t-1},y_t)\).
+  Compute \(\mathbb{C}ov(\varepsilon_t,y_t)\) and \(\mathbb{C}ov(\varepsilon_{t-1},y_t)\).
 \item
   Derive the equations linking \(\gamma_0\), \(\gamma_1\), and \(\gamma_2\).
 \item
@@ -1848,13 +1926,13 @@ State whether each assertion is true or false and justify your answer.
 \item
   The contemporaneous correlation between \(x_t\) and \(y_t\) is zero.
 \item
-  \(\operatorname{Var}(y_t)=\operatorname{Var}(x_t)\).
+  \(\mathbb{V}ar(y_t)=\mathbb{V}ar(x_t)\).
 \item
   \(\mathbb E_t(y_{t+1})=\mathbb E_t(x_{t+1})\).
 \item
   \(\mathbb E_t(y_{t+h})=\rho_y^hy_t\) for every \(h\ge1\).
 \item
-  \(\operatorname{Cov}_t(x_{t+1},y_{t+1})=\sigma^2\).
+  \(\mathbb{C}ov_t(x_{t+1},y_{t+1})=\sigma^2\).
 \end{enumerate}
 
 \end{exercise}
@@ -1881,9 +1959,9 @@ State whether each assertion is true or false and justify your answer.
 \item
   The process can be a nondegenerate AR(4).
 \item
-  It could be \(y_t=\varepsilon_t+\varepsilon_{t-1}+\varepsilon_{t-2}+\varepsilon_{t-3}+\varepsilon_{t-4}\) with \(\operatorname{Var}(\varepsilon_t)=1\).
+  It could be \(y_t=\varepsilon_t+\varepsilon_{t-1}+\varepsilon_{t-2}+\varepsilon_{t-3}+\varepsilon_{t-4}\) with \(\mathbb{V}ar(\varepsilon_t)=1\).
 \item
-  \(\operatorname{Var}(y_t)=\sum_{h=0}^4\gamma_h\).
+  \(\mathbb{V}ar(y_t)=\sum_{h=0}^4\gamma_h\).
 \item
   \(\operatorname{Corr}(y_{t-1},y_{t-4})=2/5\).
 \item
@@ -1929,7 +2007,7 @@ State whether each assertion is true or false and justify your answer.
 \item
   \(\gamma_1(z)=-0.8\gamma_0(z)\).
 \item
-  \(\operatorname{Var}(z_t+0.8z_{t-1})=3\sigma^2\).
+  \(\mathbb{V}ar(z_t+0.8z_{t-1})=3\sigma^2\).
 \end{enumerate}
 
 \end{exercise}
@@ -1964,7 +2042,85 @@ State whether each assertion is true or false and justify your answer.
 \item
   If \(x_t\) is constant, \(y_t\) is an AR(1) with an intercept.
 \item
-  \(\operatorname{Var}(y_t)=\operatorname{Var}(\widetilde y_t)\).
+  \(\mathbb{V}ar(y_t)=\mathbb{V}ar(\widetilde y_t)\).
+\end{enumerate}
+
+\end{exercise}
+
+\end{exercisebox}
+
+\subsection{Exercises from the 2025 exam}\label{exercises-from-the-2025-exam}
+
+\Needspace{24\baselineskip}
+
+\begin{exercisebox}
+
+\begin{exercise}[Conditional moments of two AR(1) processes]
+\protect\hypertarget{exr:ex-exam2025-two-ar1-conditional-moments}{}\label{exr:ex-exam2025-two-ar1-conditional-moments}
+
+\textbf{EXAM-2025 \textbar{} Exam \textbar{} True/false}\\
+Review Section \ref{ARsection}.
+
+Consider
+\[
+x_t=\rho_xx_{t-1}+\varepsilon_t,
+\qquad
+y_t=\rho_yy_{t-1}+\varepsilon_t,
+\]
+where \(\varepsilon_t\overset{i.i.d.}{\sim}\mathcal N(0,\sigma^2)\), \(\sigma^2>0\), and \(0<\rho_x<\rho_y<1\). Conditional moments at date \(t\) use the history of both processes.
+
+State whether each assertion is true or false and justify your answer.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \(\mathbb{V}ar(y_t)>\mathbb{V}ar(x_t)\).
+\item
+  \(\mathbb{V}ar_t(y_{t+2})=\mathbb{V}ar_t(x_{t+2})\).
+\item
+  \(\mathbb E(y_t)>\mathbb E(x_t)\).
+\item
+  \(\mathbb E_{t+1}(y_{t+h})=\rho_y^hy_{t+1}\) for \(h\ge2\).
+\item
+  \(\mathbb{C}ov_t(y_{t+1},y_t)=0\).
+\end{enumerate}
+
+\end{exercise}
+
+\end{exercisebox}
+
+\Needspace{24\baselineskip}
+
+\begin{exercisebox}
+
+\begin{exercise}[Effects and forecasts in an ARMAX model]
+\protect\hypertarget{exr:ex-exam2025-armax-effects-and-forecasts}{}\label{exr:ex-exam2025-armax-effects-and-forecasts}
+
+\textbf{EXAM-2025 \textbar{} Exam \textbar{} True/false}\\
+Review Section \ref{ARMAXDynamic}.
+
+Consider
+\[
+y_t=\phi_1y_{t-1}+\beta_0x_t+\beta_1x_{t-1}+\varepsilon_t,
+\]
+where \(\varepsilon_t\overset{i.i.d.}{\sim}\mathcal N(0,\sigma^2)\) and \(x_t\overset{i.i.d.}{\sim}\mathcal N(\mu_x,\sigma_x^2)\). The two innovation sequences are independent. Conditional moments at date \(t\) use the history of \(x_t\), \(y_t\), and \(\varepsilon_t\).
+
+State whether each assertion is true or false and justify your answer.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Everything else equal, a unit increase in \(x_t\) increases \(y_{t+1}\) by \(\beta_1\).
+\item
+  \(\mathbb E_t(x_{t+1})=\mu_x\).
+\item
+  \(\mathbb E_t(y_{t+1})=\phi_1y_t+\beta_0\mu_x+\beta_1x_t\).
+\item
+  \(\mathbb{V}ar_t(y_{t+1})=\sigma^2\).
+\item
+  Everything else equal, a unit increase in \(\varepsilon_t\) increases \(y_{t+1}\) by \(\phi_1+\beta_0\).
 \end{enumerate}
 
 \end{exercise}
@@ -2098,7 +2254,7 @@ y_{t-1} +
 We can use function \texttt{simul.VARMA} of package \texttt{IdSS} to produce IRFs (using \texttt{indic.IRF=1} in the list of arguments):
 
 \begin{figure}
-\includegraphics[width=0.95\linewidth]{TimeSeries_files/figure-latex/simVAR-1} \caption{Impulse response functions (SVARMA(1,1) specified above).}\label{fig:simVAR}
+\includegraphics[width=0.95\linewidth]{TimeSeries_files/figure-latex/simVAR-1} \caption{Impulse response functions of the bivariate SVARMA(1,1) model specified in Equation \\eqref{eq:VARMA111}: (a) response of $y_{1,t}$ to $\eta_{1,t}$; (b) response of $y_{2,t}$ to $\eta_{1,t}$; (c) response of $y_{1,t}$ to $\eta_{2,t}$; and (d) response of $y_{2,t}$ to $\eta_{2,t}$. Each structural innovation is increased by one unit on impact.}\label{fig:simVAR}
 \end{figure}
 
 \end{example}
@@ -2172,7 +2328,7 @@ y_{i,t} = \phi_i y_{t-1} + \varepsilon_{i,t},
 where \(\phi_i\) is the \(i^{th}\) row of \(\Phi_1\), and where \(\varepsilon_{i,t}\) is a linear combination of \(\eta_t\) and \(\eta_{t-1}\). Since \(y_{t-1}\) (the regressor) is correlated to \(\eta_{t-1}\), it is also correlated to \(\varepsilon_{i,t}\). The OLS regression of \(y_{i,t}\) on \(y_{t-1}\) yields a biased estimator of \(\phi_i\) (see Figure \ref{fig:simulARMAbiased}). Hence, SVARMA models cannot be consistently estimated by simple OLS regressions (contrary to VAR models, as we will see in the next section); instrumental-variable approaches can be employed to estimate SVARMA models (using past values of \(y_t\) as instruments, see, e.g., \citet{Gourieroux_Monfort_Renne_2020}).
 
 \begin{figure}
-\includegraphics[width=0.95\linewidth]{TimeSeries_files/figure-latex/simulARMAbiased-1} \caption{Illustration of the bias obtained when estimating the auto-regressive parameters of an ARMA process by (standard) OLS.}\label{fig:simulARMAbiased}
+\includegraphics[width=0.95\linewidth]{TimeSeries_files/figure-latex/simulARMAbiased-1} \caption{Monte Carlo distributions of the OLS estimator of the autoregressive coefficient in an ARMA(1,1) model, based on 1,000 samples of length 100: (a) $\theta=0$ and (b) $\theta=-0.4$. The true autoregressive coefficient is $\phi=0.8$, marked by the vertical black line.}\label{fig:simulARMAbiased}
 \end{figure}
 
 \section{VAR estimation}\label{estimVAR}
@@ -2604,7 +2760,7 @@ where \(S\), \(r\) and \(F\) respectively correspond to \emph{slow-moving variab
 An equivalent approach consists in computing the Cholesky decomposition of \(BB'\) and the contemporaneous impacts of the monetary policy shock (on the \(n\) endogenous variables) are the components of the column of \(B\) corresponding to the policy variable.
 
 \begin{figure}
-\includegraphics[width=0.95\linewidth]{TimeSeries_files/figure-latex/CEE-1} \caption{Response to a monetary-policy shock. Identification approach of Christiano, Eichenbaum and Evans (1996). Confidence intervals are obtained by boostrapping the estimated VAR model (see inference section).}\label{fig:CEE}
+\includegraphics[width=0.95\linewidth]{TimeSeries_files/figure-latex/CEE-1} \caption{Responses of U.S. macroeconomic variables to a contractionary monetary-policy shock identified recursively as in Christiano, Eichenbaum, and Evans (1996). Solid lines are point estimates; dashed lines are 90\% pointwise confidence bands obtained by bootstrapping the estimated VAR(3). Monthly sample: January 1965–June 1995.}\label{fig:CEE}
 \end{figure}
 
 \subsection{Long-run restrictions}\label{long-run-restrictions}
@@ -2680,16 +2836,20 @@ where \(\Theta_{ij}\) is the element \((i,j)\) of \(\Theta\).
 \citet{Blanchard_Quah_1989} have implemented such long-run restrictions in a small-scale VAR. Two variables are considered: GDP and unemployment. Consequently, the VAR is affected by two types of shocks. Specifically, authors want to identify \textbf{supply shocks} (that can have a permanent effect on output) and \textbf{demand shocks} (that cannot have a permanent effect on output).\footnote{The motivation of the authors regarding their long-run restrictions can be obtained from a traditional Keynesian view of fluctuations. The authors propose a variant of a model from \citet{Fischer_1977}.
 }
 
-\citet{Blanchard_Quah_1989}'s dataset is quarterly, spanning the period from 1950:2 to 1987:4. Their VAR features 8 lags. Here are the data they use:
+The original dataset of \citet{Blanchard_Quah_1989} is quarterly and their VAR features eight lags. The application below uses the open \texttt{IdSS} reconstruction based on public BEA real-GNP and BLS unemployment series, transformed in the same spirit as the original variables.
 
+\begin{figure}
+\centering
 \pandocbounded{\includegraphics[keepaspectratio]{TimeSeries_files/figure-latex/BQ1-1.pdf}}
+\caption{\label{fig:BQ1}Open reconstruction of the quarterly U.S. variables used in the Blanchard--Quah long-run-restriction example: (a) demeaned real-GNP log growth and (b) linearly detrended unemployment. Sample: 1948 Q2--1987 Q4. Sources: U.S. Bureau of Economic Analysis and Bureau of Labor Statistics via FRED.}
+\end{figure}
 
 Estimate a reduced-form VAR(8) model:
 
 Now, let us define a loss function (\texttt{loss}) that is equal to zero if (a) \(BB'=\Omega\) and (b) the element (1,1) of \(\Theta = (Id - \Phi)^{-1} B\) is equal to zero:
 
 \begin{verbatim}
-## [1]  0.8570358 -0.2396345  0.1541395  0.1921221
+## [1]  0.8790657 -0.2270598  0.1606735  0.1765915
 \end{verbatim}
 
 (Note: one can use that type of approach, based on a loss function, to mix short- and long-run restrictions.)
@@ -2698,12 +2858,12 @@ Figure \ref{fig:BQ4} displays the resulting IRFs. Note that, for GDP, we cumulat
 
 \begin{verbatim}
 ##             Dgdp       unemp                       
-## Dgdp   0.7582704 -0.17576173  0.7582694 -0.17576173
-## unemp -0.1757617  0.09433658 -0.1757617  0.09433558
+## Dgdp   0.7985735 -0.17122692  0.7985725 -0.17122692
+## unemp -0.1712269  0.08274171 -0.1712269  0.08274071
 \end{verbatim}
 
 \begin{figure}
-\includegraphics[width=0.95\linewidth]{TimeSeries_files/figure-latex/BQ4-1} \caption{IRF of GDP and unemployment to demand and supply shocks.}\label{fig:BQ4}
+\includegraphics[width=0.95\linewidth]{TimeSeries_files/figure-latex/BQ4-1} \caption{Impulse responses in the Blanchard-Quah model: (a) GDP level to a demand shock; (b) unemployment to a demand shock; (c) GDP level to a supply shock; and (d) unemployment to a supply shock. GDP responses are cumulated from the estimated growth-rate responses.}\label{fig:BQ4}
 \end{figure}
 
 \section{Exercise}\label{var-exercises}
@@ -2777,13 +2937,102 @@ State whether each assertion is true or false and justify your answer.
 \item
   \(\mathbb E_t(y_{t+2})=c+\Phi_1c\).
 \item
-  \(\operatorname{Var}_t(y_{t+1})=BB'\).
+  \(\mathbb{V}ar_t(y_{t+1})=BB'\).
 \item
   Knowing \(\Omega=BB'\) is sufficient to recover an unrestricted \(B\).
 \item
   The contemporaneous impacts of a unit \(\eta_{2,t}\) shock on the three variables are \(B_{1,2}\), \(B_{2,2}\), and \(B_{3,2}\).
 \item
   If \(B\) is lower triangular, an \(\eta_{3,t}\) shock has no contemporaneous effect on \(y_{1,t}\) or \(y_{2,t}\).
+\end{enumerate}
+
+\end{exercise}
+
+\end{exercisebox}
+
+\subsection{Exercises from the 2025 exam}\label{exercises-from-the-2025-exam-1}
+
+\Needspace{24\baselineskip}
+
+\begin{exercisebox}
+
+\begin{exercise}[A VAR(2) in companion form]
+\protect\hypertarget{exr:ex-exam2025-var2-companion-form}{}\label{exr:ex-exam2025-var2-companion-form}
+
+\textbf{EXAM-2025 \textbar{} Exam \textbar{} True/false}\\
+Review Section \ref{VAR}.
+
+Consider the covariance-stationary, zero-intercept VAR(2)
+\[
+y_t=\Phi_1y_{t-1}+\Phi_2y_{t-2}+\varepsilon_t,
+\qquad
+\varepsilon_t\overset{i.i.d.}{\sim}\mathcal N(\mathbf 0_{3\times1},\Omega),
+\]
+where \(y_t\) is \(3\times1\). Define
+\[
+y_t^*=\begin{pmatrix}y_t\\y_{t-1}\end{pmatrix},
+\qquad
+\Phi=\begin{pmatrix}\Phi_1&\Phi_2\\I_3&0_3\end{pmatrix},
+\qquad
+\Omega^*=\begin{pmatrix}\Omega&\mathbf 0_{3\times3}\\\mathbf 0_{3\times3}&\mathbf 0_{3\times3}\end{pmatrix}.
+\]
+
+State whether each assertion is true or false and justify your answer.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \(\mathbb E(y_t)=\mathbf 0_{3\times1}\).
+\item
+  \(\mathbb{V}ar(y_t)\) is the upper-left \(3\times3\) block of \(\sum_{j=0}^{\infty}\Phi^j\Omega^*(\Phi^j)'\).
+\item
+  \(\mathbb E_t(y_{t+2})=\Phi_1y_t+\Phi_2y_{t-2}\).
+\item
+  \(\mathbb E_t(y_{t+h})\) is the upper \(3\times1\) block of \(\Phi^hy_t^*\).
+\item
+  The eigenvalues of \(\Phi\) have modulus strictly larger than one.
+\end{enumerate}
+
+\end{exercise}
+
+\end{exercisebox}
+
+\Needspace{24\baselineskip}
+
+\begin{exercisebox}
+
+\begin{exercise}[Granger causality and forecasts in a VAR(1)]
+\protect\hypertarget{exr:ex-exam2025-var-granger-forecasts}{}\label{exr:ex-exam2025-var-granger-forecasts}
+
+\textbf{EXAM-2025 \textbar{} Exam \textbar{} True/false}\\
+Review Section \ref{BlockGranger}.
+
+Consider the VAR(1)
+\[
+y_t=\Phi y_{t-1}+\varepsilon_t,
+\qquad
+\Phi=\begin{pmatrix}0.9&0\\0.6&0.8\end{pmatrix},
+\qquad
+\varepsilon_t\overset{i.i.d.}{\sim}\mathcal N(\mathbf 0,I_2),
+\]
+where \(y_t=(y_{1,t},y_{2,t})'\). Conditional moments at date \(t\) use current and past information.
+
+State whether each assertion is true or false and justify your answer.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \(y_{1,t}\) is covariance stationary.
+\item
+  \(y_{2,t}\) Granger-causes \(y_{1,t}\).
+\item
+  \(y_{1,t}\) Granger-causes \(y_{2,t}\).
+\item
+  \(\mathbb E_t(y_{t+h})=\Phi^hy_t\) for every \(h\ge0\).
+\item
+  \(\mathbb{V}ar_t(y_{t+2})=I_2+\Phi\Phi'+\Phi^2(\Phi^2)'\).
 \end{enumerate}
 
 \end{exercise}
@@ -3109,7 +3358,7 @@ Here \(d_t=e_{j,t}^2-e_{A,t}^2\), for \(j=B,C\).
 \item
   Discuss the in-sample and out-of-sample rankings.
 \item
-  Using a Newey--West long-run variance with maximum lag 3 and Bartlett weights, estimate \(\operatorname{Var}(\bar d)\).
+  Using a Newey--West long-run variance with maximum lag 3 and Bartlett weights, estimate \(\mathbb{V}ar(\bar d)\).
 \item
   Test at 5\% whether B and C have equal predictive accuracy to A, and interpret the sign of the test statistic.
 \end{enumerate}
@@ -3140,13 +3389,54 @@ State whether each assertion is true or false and justify your answer.
 \item
   For \(h>0\), \(\mathbb E(\pi_{t+h}+\cdots+\pi_{t+1}\mid\varepsilon_t,\varepsilon_{t-1},\ldots)=0.02h+0.4\varepsilon_t\).
 \item
-  \(\operatorname{Var}(\pi_t)=0.01\).
+  \(\mathbb{V}ar(\pi_t)=0.01\).
 \item
   Conditional on \(\varepsilon_t=0\), a 95\% interval for \(\pi_{t+1}\) is \([-1.96\sigma,1.96\sigma]\).
 \item
   \(\pi_t\) is correlated with \(\pi_{t-1}\) but uncorrelated with \(\pi_{t-2}\).
 \item
-  \(\operatorname{Var}_t(\pi_{t+3})=\operatorname{Var}_t(\pi_{t+2})\).
+  \(\mathbb{V}ar_t(\pi_{t+3})=\mathbb{V}ar_t(\pi_{t+2})\).
+\end{enumerate}
+
+\end{exercise}
+
+\end{exercisebox}
+
+\subsection{Exercise from the 2025 exam}\label{exercise-from-the-2025-exam}
+
+\Needspace{24\baselineskip}
+
+\begin{exercisebox}
+
+\begin{exercise}[GDP forecasts from an MA(2) growth model]
+\protect\hypertarget{exr:ex-exam2025-ma2-gdp-forecasting}{}\label{exr:ex-exam2025-ma2-gdp-forecasting}
+
+\textbf{EXAM-2025 \textbar{} Exam \textbar{} True/false}\\
+Review Section \ref{forecasting}.
+
+Let \(y_t=\log(GDP_t/GDP_{t-1})\) and suppose
+\[
+y_t=\mu+\varepsilon_t+0.5\varepsilon_{t-1}+0.2\varepsilon_{t-2},
+\qquad
+\varepsilon_t\overset{i.i.d.}{\sim}\mathcal N(0,\sigma^2).
+\]
+Recall that \(\log(GDP_{t+h})=\log(GDP_t)+y_{t+h}+\cdots+y_{t+1}\). Conditional moments at date \(t\) use current and past information.
+
+State whether each assertion is true or false and justify your answer.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \(\mathbb E_t[\log(GDP_{t+2})]=\log(GDP_t)+2\mu+\varepsilon_{t+2}+1.5\varepsilon_{t+1}+0.7\varepsilon_t\).
+\item
+  \(\mathbb{V}ar(y_t)=0.29\sigma^2\).
+\item
+  Conditional on date-\(t\) information, a 95\% interval for \(y_{t+2}\) is \([\mu-1.96\sigma,\mu+1.96\sigma]\).
+\item
+  The first-order autocorrelation of \(y_t\) is \(0.6/1.29\).
+\item
+  \(\mathbb E[\log(GDP_{t+h}/GDP_t)]=h\mu\).
 \end{enumerate}
 
 \end{exercise}
@@ -3194,20 +3484,20 @@ Let us discuss three issues associated with nonstationary processes:
 
 Consider a non-stationary \(y_t\) process (e.g., \(y_t\) follows a random walk). The estimate of \(\phi\) in the (OLS) regression \(y_t = c + \phi y_{t-1} + \varepsilon_t\) is then biased toward zero. In particular, we have the approximation \(\mathbb{E}(\phi)=1-5.3/T\), where \(T\) is the sample size (see, e.g., \citet{Abadir_1993}). The 5th percentile of the distribution of \(\phi\) is approximately \(1 - 14.1/T\), e.g., 0.824 for \(T=80\). This notably poses problems for forecasts. Indeed, while we have \(\mathbb{E}_t(y_{t+h})=y_t\) if \(y_t\) follows a random walk, someone who would fit an AR(1) process and would obtain for instance \(\hat\phi=0.824\) would obtain that \(\mathbb{E}_t(y_{t+10})=0.144y_t\).
 
-This is illustrated by Figure \ref{fig:nonStat1}. This figure shows, in black, the distributions of \(\hat\phi\), obtained by OLS in the context of the linear model \(y_t = c + \phi y_{t-1} + \varepsilon_t\). These distributions are obtained by simulations. We consider two sample sizes (\(T=50\), left plot, and \(T=200\), right plot). The vertical red bars indicate the means of the distributions, the vertical blue bar gives the approximated mean given by \(1-5.3/T\).
+This is illustrated by Figure \ref{fig:nonStat1}. The figure shows the simulated distributions of \(\hat\phi\), obtained by OLS in the linear model \(y_t = c + \phi y_{t-1} + \varepsilon_t\). We consider two sample sizes (\(T=50\), left plot, and \(T=200\), right plot). The dashed vertical lines indicate the simulation means; the solid vertical lines give the approximations \(1-5.3/T\).
 
 \begin{figure}
-\includegraphics[width=0.95\linewidth]{TimeSeries_files/figure-latex/nonStat1-1} \caption{The densities of based on 1000 simulations of samples of length $T$, they are approximated by the kernel approach.}\label{fig:nonStat1}
+\includegraphics[width=0.95\linewidth]{TimeSeries_files/figure-latex/nonStat1-1} \caption{Kernel-density estimates of the OLS estimator $\hat\phi$ for a unit-root process, based on 1,000 Monte Carlo samples: (a) $T=50$ and (b) $T=200$. The dashed grey line marks the simulation mean; the solid black line marks the approximation $1-5.3/T$.}\label{fig:nonStat1}
 \end{figure}
 
 \subsection{Spurious regressions}\label{spurious-regressions}
 
 Consider two independent non-stationary (unit roots) variables. If we regress one on the other, and if we use the standard OLS formulas to compute the standard deviation of the regression parameter, it can be shown that we will tend to underestimate this standard deviation. As a result, if we use standard \(t\)-statistics to test for the existence of a relationship between the two variables, we will often have false positive, i.e., we will often reject the null hypothesis of no relationship (\(H_0\): regression coefficient = 0). This phenomenon is called \emph{spurious regressions} (see, e.g., these \href{https://www.tylervigen.com/spurious-correlations}{examples}).
 
-This situation is illustrated by Figure \ref{fig:nonStat2}. We simulate two independent random walks, \(x_t\) and \(y_t\), and we regress \(y_t\) on \(x_t\) by OLS. (We consider two different sample sizes, \(T=50\) and \(T=200\).) The black lines represent the densities of the estimated \(\beta\)'s, that are the slope coefficients of the regressions. The blue density represent the asymptotic distribution of \(\beta\) based on to the standard OLS formula (normal distribution of mean zero and of variance \(\hat\sigma^2/\widehat{\mathbb{V}ar}(x_t)\)). The fact that the latter distribution features a smaller variance than the former implies that using the standard OLS inference is misleading, as this distribution overestimates the accuracy of the estimator.
+This situation is illustrated by Figure \ref{fig:nonStat2}. We simulate two independent random walks, \(x_t\) and \(y_t\), and we regress \(y_t\) on \(x_t\) by OLS. (We consider two different sample sizes, \(T=50\) and \(T=200\).) The solid lines represent the densities of the estimated \(\beta\)'s, that are the slope coefficients of the regressions. The dashed densities represent the asymptotic distribution of \(\beta\) based on the standard OLS formula (normal distribution of mean zero and of variance \(\hat\sigma^2/\widehat{\mathbb{V}ar}(x_t)\)). The fact that the latter distribution features a smaller variance than the former implies that using standard OLS inference is misleading, as this distribution overestimates the accuracy of the estimator.
 
 \begin{figure}
-\includegraphics[width=0.95\linewidth]{TimeSeries_files/figure-latex/nonStat2-1} \caption{The densities of based on 1000 simulations of samples of length $T$, they are approximated by the kernel approach.}\label{fig:nonStat2}
+\includegraphics[width=0.95\linewidth]{TimeSeries_files/figure-latex/nonStat2-1} \caption{Distribution of the OLS slope in regressions between two independent random walks, based on 1,000 Monte Carlo samples: (a) $T=50$ and (b) $T=200$. Solid black lines are kernel-density estimates of the simulated slopes; dashed grey lines are the normal approximations implied by conventional OLS standard errors.}\label{fig:nonStat2}
 \end{figure}
 
 \section{Nonstationarity tests}\label{nonstationarity-tests}
@@ -3400,7 +3690,7 @@ This test is a \textbf{one-sided right-tailed} test: one rejects the null if \(\
 Let us use quarterly US data and test the stationarity of inflation and the 3-month short-term rate. Let us first plot the data:
 
 \begin{figure}
-\includegraphics[width=0.95\linewidth]{TimeSeries_files/figure-latex/figInflr-1} \caption{US Inflation (in black) and short-term nominal rates (in red).}\label{fig:figInflr}
+\includegraphics[width=0.95\linewidth]{TimeSeries_files/figure-latex/figInflr-1} \caption{Quarterly U.S. inflation and short-term interest rates, in percent. The solid black line is CPI inflation; the dashed grey line is the three-month nominal interest rate. Source: U.S. government series retrieved through FRED and assembled in the IdSS US3var dataset.}\label{fig:figInflr}
 \end{figure}
 
 Let us now run the tests. Note that the default alternative hypothesis of function \texttt{adf.test} of package \texttt{tseries} is that the process is trend-stationary. Note that when \texttt{kpss.test} returns a p-value of \texttt{0.01}, it means that the true p-value is lower then that.
@@ -3462,7 +3752,7 @@ State whether each assertion is true or false and briefly justify your answer. L
 \def\labelenumi{\arabic{enumi}.}
 \tightlist
 \item
-  \(\operatorname{Var}_t(x_{t+h})\to\infty\) as \(h\to\infty\).
+  \(\mathbb{V}ar_t(x_{t+h})\to\infty\) as \(h\to\infty\).
 \item
   \(x_t\) is not covariance stationary, but \(\Delta x_t\) is.
 \item
@@ -3527,6 +3817,50 @@ At the 5\% level for this specification and sample size, use the approximate cri
 
 \end{exercisebox}
 
+\subsection{Exercise from the 2025 exam}\label{exercise-from-the-2025-exam-1}
+
+\Needspace{24\baselineskip}
+
+\begin{exercisebox}
+
+\begin{exercise}[Lag polynomials, stationarity, and integration]
+\protect\hypertarget{exr:ex-exam2025-lag-polynomials-and-integration}{}\label{exr:ex-exam2025-lag-polynomials-and-integration}
+
+\textbf{EXAM-2025 \textbar{} Exam \textbar{} True/false}\\
+Review Section \ref{NonStat}.
+
+Let \(\varepsilon_t\overset{i.i.d.}{\sim}\mathcal N(0,\sigma^2)\) and consider
+\[
+(1-0.9L)(1+0.5L)y_t=\varepsilon_t,
+\]
+\[
+(1-L)x_t=-0.9x_{t-1}+\varepsilon_t,
+\]
+\[
+(1-0.5L)w_t=0.5w_{t-1}+\varepsilon_t.
+\]
+
+State whether each assertion is true or false and justify your answer.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \(y_t\) is integrated of order one.
+\item
+  \(x_t\) is covariance stationary.
+\item
+  \(w_t\) is covariance stationary.
+\item
+  \(\Delta y_t\) is covariance stationary.
+\item
+  \(\Delta w_t\) is covariance stationary.
+\end{enumerate}
+
+\end{exercise}
+
+\end{exercisebox}
+
 \chapter{Introduction to cointegration}\label{cointeg}
 
 \section{Intuition}\label{intuition}
@@ -3536,7 +3870,7 @@ Many statistical procedures are well-defined only when the processes of interest
 For instance, the left plot of Figure \ref{fig:CointegEx} suggests that the trends of \(x_t\) and \(y_t\) are positively correlated. However, the right plot shows that, for low values of \(h\), the correlation between \(x_t - x_{t-h}\) and \(y_t - y_{t-h}\) is negative. This is notably the case for \(h=1\), which means that the first differences of the two variables (i.e., \(\Delta x_t\) and \(\Delta y_t\)) are negatively correlated. Hence, focusing on the first differences would lead the researcher to think that the relationship between \(x_t\) and \(y_t\) is a negative one (while it is only the case when one focuses on the high-frequency comovements between the two variables).
 
 \begin{figure}
-\includegraphics[width=0.95\linewidth]{TimeSeries_files/figure-latex/CointegEx-1} \caption{Situation where the conditional and uncondional correlation between $x_t$ and $y_t$ do not have the same sign.}\label{fig:CointegEx}
+\includegraphics[width=0.95\linewidth]{TimeSeries_files/figure-latex/CointegEx-1} \caption{Simulated illustration of frequency-dependent comovement: (a) $x_t$ (solid black), $y_t$ (dashed grey), and their common stochastic trend $w_t$ (dotted light grey); (b) correlation between $x_t-x_{t-h}$ and $y_t-y_{t-h}$ as a function of the differencing horizon $h$. Although $x_t$ and $y_t$ share a positive long-run trend, their short-run changes are negatively correlated.}\label{fig:CointegEx}
 \end{figure}
 
 \begin{definition}[Integrated variables]
@@ -3752,7 +4086,7 @@ We say that there is a \emph{long-run relationship} between \(y_{1,t}\) and \(y_
 When \(y_{1,t}\) is substantially above \(y_{2,t}\), \(z_t\) is large, the influence of \(-0.5 z_t\) on \(\Delta y_{1,t+1}\) is negative, which tends to ``correct'' \(y_{1,t}\) and brings it closer to \(y_{2,t}\).
 
 \begin{figure}
-\includegraphics[width=0.95\linewidth]{TimeSeries_files/figure-latex/VECMexmpl-1} \caption{Simulation of $y_{1,t}$ (in blue) and $y_{2,t}$ (in red).}\label{fig:VECMexmpl}
+\includegraphics[width=0.95\linewidth]{TimeSeries_files/figure-latex/VECMexmpl-1} \caption{Simulated cointegrated series $y_{1,t}$ and $y_{2,t}$. The solid black line represents $y_{1,t}$; the dashed grey line represents $y_{2,t}$. Their difference follows the stationary process $z_t=0.3z_{t-1}+\varepsilon_{1,t}-\varepsilon_{2,t}$.}\label{fig:VECMexmpl}
 \end{figure}
 
 \end{example}
@@ -3882,7 +4216,7 @@ Many financial and macroeconomic variables are hit by shocks whose variance is n
 Autoregressive Conditional Heteroskedasticity (ARCH) and its generalized version (GARCH) constitute useful tools to model such time series.
 
 \begin{figure}
-\includegraphics[width=1\linewidth]{TimeSeries_files/figure-latex/GARCHsmireturns-1} \caption{Upper plot: SMI index (daily Close prices); lower plot: daily log returns.}\label{fig:GARCHsmireturns}
+\includegraphics[width=1\linewidth]{TimeSeries_files/figure-latex/GARCHsmireturns-1} \caption{EUR/USD returns and volatility clustering: (a) daily log returns, $100\Delta\log(S_t)$, in percent; (b) 30-day rolling root mean square of daily returns, used as a descriptive volatility measure. Periods of large absolute returns coincide with sustained increases in the rolling measure. Source: Board of Governors of the Federal Reserve System, H.10 series DEXUSEU, retrieved from FRED; 5 January 1999–31 December 2025.}\label{fig:GARCHsmireturns}
 \end{figure}
 
 In order to test whether a times series of shocks \(\{u_1,\dots,u_T\}\) features persistent conditional heteroskedasticity, a simple test has been designed by \citet{Engle_1982}. This test consists in regressing \(u_t^2\) on it last \(m\) lags (i.e., on \(u_{t-1}^2,\dots,u_{t-m}^2\)) by OLS.Under the null hypothesis that \(u_t\) is i.i.d., we have:
@@ -3891,9 +4225,9 @@ T \times R^2 \overset{d}{\rightarrow} \chi^2(m),
 \]
 where \(R^2\) is the centered \(R^2\) of the OLS regression.
 
-Let us employ this test on the return series plotted in the lower panel of Figure \ref{fig:GARCHsmireturns}:
+Let us employ this test on the return series plotted in panel (a) of Figure \ref{fig:GARCHsmireturns}:
 
-The p-value is extremely close to zero. Hence we strongly reject the null of an i.i.d. SMI return.
+The p-value is extremely close to zero. Hence we strongly reject the null of i.i.d. EUR/USD returns.
 
 \section{The ARCH model}\label{ARCH}
 
@@ -3977,7 +4311,7 @@ where \(\theta\), the vector of unknown parameters, is \([\boldsymbol\beta',\zet
 
 Note that one can also use non-Gaussian distributions for \(v_t\). (For that, one has to replace the normal distribution in Eq. \eqref{eq:densityN}.)
 
-Let us fit an ARCH(2) model on the SMI return data (lower plot of Figure \ref{fig:GARCHsmireturns}). For this, we make use of function \texttt{compute.garch} of package \texttt{IdSS}. This function takes four arguments:
+Let us fit an ARCH(2) model on the EUR/USD return data (panel (a) of Figure \ref{fig:GARCHsmireturns}). For this, we make use of function \texttt{compute.garch} of package \texttt{IdSS}. This function takes four arguments:
 
 \begin{itemize}
 \tightlist
@@ -3999,24 +4333,24 @@ Table \ref{tab:estimGARCH2} reports the estimated parameters and their standard 
 
 \begin{table}
 
-\caption{\label{tab:estimGARCH2}ARCH(2), ML estimation results.
-             Data: SMI daily returns.}
+\caption{\label{tab:estimGARCH2}ARCH(2) maximum-likelihood estimates.
+             Data: daily EUR/USD log returns, in percent.}
 \centering
 \begin{tabular}[t]{l|r|r|r}
 \hline
   & Estim. param. & Std dev. & t-stat\\
 \hline
-zeta & 0.6043 & 0.0230 & 26.3021\\
+zeta & -0.2676 & 0.0069 & -38.8331\\
 \hline
-alpha1 & 0.2939 & 0.0289 & 10.1696\\
+alpha1 & -0.0805 & 0.0141 & -5.7278\\
 \hline
-alpha2 & 0.2320 & 0.0250 & 9.2825\\
+alpha2 & -0.1224 & 0.0153 & -8.0204\\
 \hline
 \end{tabular}
 \end{table}
 
 \begin{figure}
-\includegraphics{TimeSeries_files/figure-latex/estimGARCH3-1} \caption{SMI daily returns (in black) and, in red, 95\% confidence interval based on the ARCH(2) estimated model ($\pm 2 \sqrt{h_t}$).}\label{fig:estimGARCH3}
+\includegraphics{TimeSeries_files/figure-latex/estimGARCH3-1} \caption{Daily EUR/USD log returns and conditional-volatility bands from the estimated ARCH(2) model. The solid black line shows returns; dashed grey lines show $\pm 2\sqrt{h_t}$. The estimation sample runs from 5 January 1999 through 31 December 2025.}\label{fig:estimGARCH3}
 \end{figure}
 
 \section{The GARCH model}\label{GARCH}
@@ -4049,37 +4383,41 @@ In that case, the unconditional variance of \(u_t\), i.e.~the unconditional mean
 \mathbb{E}(u_t^2) = \sigma^2 = \frac{\kappa}{1 - \sum_i \delta_i - \sum_i \alpha_i}.
 \]
 
-GARCH models can also be estimated by the ML approach.Table \ref{tab:estimGARCH2X} reports the estimated parameters when fitting an GARCH(1,1) model on the SMI return dataset. Figure
+GARCH models can also be estimated by the ML approach.Table \ref{tab:estimGARCH2X} reports the estimated parameters when fitting an GARCH(1,1) model on the EUR/USD return dataset. Figure
 
 Figure \ref{fig:estimGARCH3X} compare the condiitonal standard deviations (\(\sqrt{h_t}\)) resulting from the ARCH(2) and the GARCH(1,1) specifications.
 
 \begin{verbatim}
-## initial  value 5702.148745 
-## iter  10 value 5358.593494
-## final  value 5358.593494 
+## initial  value 6589.631790 
+## iter  10 value 5610.514412
+## final  value 5610.514412 
 ## stopped after 10 iterations
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in sqrt(diag(solve(res.opt$hessian))): NaNs produced
 \end{verbatim}
 
 \begin{table}
 
-\caption{\label{tab:estimGARCH2X}ARCH(2), ML estimation results.
-             Data: SMI daily returns.}
+\caption{\label{tab:estimGARCH2X}GARCH(1,1) maximum-likelihood estimates.
+             Data: daily EUR/USD log returns, in percent.}
 \centering
 \begin{tabular}[t]{l|r|r|r}
 \hline
   & Estim. param. & Std dev. & t-stat\\
 \hline
-zeta & 0.2197 & 0.0216 & 10.1727\\
+zeta & -0.2128 & NaN & NaN\\
 \hline
-alpha1 & 0.1446 & 0.0151 & 9.5725\\
+alpha1 & -0.0591 & NaN & NaN\\
 \hline
-delta1 & 0.8300 & 0.0152 & 54.6121\\
+delta1 & 0.8600 & NaN & NaN\\
 \hline
 \end{tabular}
 \end{table}
 
 \begin{figure}
-\includegraphics{TimeSeries_files/figure-latex/estimGARCH3X-1} \caption{Estimated conditional standard deviations ($\sqrt{h_t}$) of SMI daily returns: ARCH(2) [black line] and GARCH(1,1) [dotted red line] specifications.}\label{fig:estimGARCH3X}
+\includegraphics{TimeSeries_files/figure-latex/estimGARCH3X-1} \caption{Estimated conditional standard deviation of daily EUR/USD returns. The solid black line is the ARCH(2) estimate; the dashed grey line is the GARCH(1,1) estimate. Both models are estimated by Gaussian maximum likelihood over 5 January 1999–31 December 2025.}\label{fig:estimGARCH3X}
 \end{figure}
 
 \section{ARCH-in-mean}\label{arch-in-mean}
@@ -4157,14 +4495,14 @@ By the same token, it is easily seen that the fraction of the variance of the \(
 \frac{\sum_{i}\hat{X}'_{i,j}\hat{X}_{i,j}}{\sum_{i}X_{i}'X_{i}} & = & \frac{\lambda_{j}}{\sum_{i}\lambda_{i}}.
 \end{eqnarray*}
 
-Let us illustrate PCA on the term structure of yields. The term strucutre of yields (or yield curve) is know to be driven by only a small number of factors (e.g., \citet{Litterman_Scheinkman_1991}). One can typically employ PCA to recover such factors. The data used in the example below are taken from the \href{https://fred.stlouisfed.org}{Fred database} (tickers: ``DGS6MO'',``DGS1'', \ldots). The second plot shows the factor loardings, that indicate that the first factor is a level factor (loadings = black line), the second factor is a slope factor (loadings = blue line), the third factor is a curvature factor (loadings = red line).
+Let us illustrate PCA on the term structure of yields. The term structure of yields (or yield curve) is known to be driven by only a small number of factors (e.g., \citet{Litterman_Scheinkman_1991}). One can employ PCA to recover such factors. The data used in the example below are taken from the \href{https://fred.stlouisfed.org}{FRED database}. The second panel shows the factor loadings: the first factor (solid black line) is a level factor, the second (dashed dark-grey line) is a slope factor, and the third (dotted light-grey line) is a curvature factor.
 
 To run a PCA, one simply has to apply function \texttt{prcomp} to a matrix of data:
 
 Let us know visualize some results. The first plot of Figure \ref{fig:USydsPCA1} shows the share of total variance explained by the different principal components (PCs). The second plot shows the factor loadings. The two bottom plots show how yields (in black) are fitted by linear combinations of the first two PCs only.
 
 \begin{figure}
-\includegraphics{TimeSeries_files/figure-latex/USydsPCA1-1} \caption{Some PCA results. The dataset contains 8 time series of U.S. interest rates of different maturities.}\label{fig:USydsPCA1}
+\includegraphics{TimeSeries_files/figure-latex/USydsPCA1-1} \caption{Principal-component analysis of eight monthly U.S. Treasury yields: (a) share of standardized yield variance explained by each component; (b) loadings of the first three components, shown respectively as solid black, dashed dark-grey, and dotted light-grey lines; (c) observed and two-component fitted one-year yield; and (d) observed and two-component fitted ten-year yield. In panels (c) and (d), observed yields are solid black and fitted yields are dashed grey. Source: Federal Reserve Board H.15 series retrieved through FRED.}\label{fig:USydsPCA1}
 \end{figure}
 
 \section{Linear algebra: definitions and results}\label{LinAlgebra}

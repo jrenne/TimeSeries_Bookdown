@@ -77,7 +77,7 @@ Using the fact that $\mathbb{E}(\varepsilon_t\varepsilon_s)=0$ if $t \ne s$ (bec
 Figure \@ref(fig:simMA) displays simulated paths of two MA processes (an MA(1) and an MA(4)). Such simulations can also be produced by using panel "ARMA(p,q)" of [this web interface](https://jrenne.shinyapps.io/MacroEc/).
 
 
-```{r simMA, echo=TRUE, fig.cap="Simulation of MA processes.", fig.asp = .6, out.width = "95%", fig.align = 'left-aligned'}
+```{r simMA, echo=TRUE, fig.cap="Simulated moving-average processes with unit innovation variance and intercept equal to one: (a) MA(1) process with $\\theta_0=\\theta_1=1$; (b) MA(4) process with $\\theta_0=\\cdots=\\theta_4=1$. The horizontal line marks the intercept.", fig.asp = .6, out.width = "95%", fig.align = 'left-aligned'}
 library(IdSS)
 T <- 100;nb.sim <- 1
 y.0 <- c(0)
@@ -87,12 +87,12 @@ y.sim <- sim.arma(c,phi,theta,sigma,T,y.0,nb.sim)
 par(mfrow=c(1,2))
 par(plt=c(.2,.9,.2,.85))
 plot(y.sim[,1],xlab="",ylab="",type="l",lwd=2,
-     main=expression(paste(theta[0],"=1, ",theta[1],"=1",sep="")))
+     main=expression(paste("(a) ",theta[0],"=1, ",theta[1],"=1",sep="")))
 abline(h=c)
 theta <- c(1,1,1,1,1) # MA(4) specification
 y.sim <- sim.arma(c,phi,theta,sigma,T,y.0,nb.sim)
 plot(y.sim[,1],xlab="",ylab="",type="l",lwd=2,
-     main=expression(paste(theta[0],"=...=",theta[4],"=1",sep="")))
+     main=expression(paste("(b) ",theta[0],"=...=",theta[4],"=1",sep="")))
 abline(h=c)
 ```
 
@@ -496,20 +496,20 @@ Besides, it can be shown that $\phi_{p,p}=\phi_p$. Hence  $\phi_{p,p}=\phi_p$ bu
 
 As illustrated below, the functions `acf` and `pacf` of R allow us to conveniently implement the (P)ACF approach. (In these lines of codes, note also the use of function `sim.arma` to simulate ARMA processes.)
 
-```{r pacf, echo=TRUE, fig.cap="ACF/PACF analysis of two processes (MA process on the left, AR on the right). The correlations are computed on samples of length 1000.", fig.asp = .6, out.width = "100%", fig.align = 'left-aligned'}
+```{r pacf, echo=TRUE, fig.cap="Simulated samples and correlograms for two processes, each with 1,000 observations. Left column: (a) simulated MA(2) process, (c) its sample autocorrelation function, and (e) its sample partial autocorrelation function. Right column: (b) simulated AR(1) process, (d) its sample autocorrelation function, and (f) its sample partial autocorrelation function.", fig.asp = .6, out.width = "100%", fig.align = 'left-aligned'}
 library(IdSS)
 par(mfrow=c(3,2))
 par(plt=c(.2,.9,.2,.95))
 theta <- c(1,2,1);phi=0
 y.sim <- sim.arma(c=0,phi,theta,sigma=1,T=1000,y.0=0,nb.sim=1)
-par(mfg=c(1,1));plot(y.sim,type="l",lwd=2)
-par(mfg=c(2,1));acf(y.sim)
-par(mfg=c(3,1));pacf(y.sim)
+par(mfg=c(1,1));plot(y.sim,type="l",lwd=2,main="(a) Simulated MA(2)")
+par(mfg=c(2,1));acf(y.sim,main="(c) ACF: MA(2)")
+par(mfg=c(3,1));pacf(y.sim,main="(e) PACF: MA(2)")
 theta <- c(1);phi=0.9
 y.sim <- sim.arma(c=0,phi,theta,sigma=1,T=1000,y.0=0,nb.sim=1)
-par(mfg=c(1,2));plot(y.sim,type="l",lwd=2)
-par(mfg=c(2,2));acf(y.sim)
-par(mfg=c(3,2));pacf(y.sim)
+par(mfg=c(1,2));plot(y.sim,type="l",lwd=2,main="(b) Simulated AR(1)")
+par(mfg=c(2,2));acf(y.sim,main="(d) ACF: AR(1)")
+par(mfg=c(3,2));pacf(y.sim,main="(f) PACF: AR(1)")
 ```
 
 
@@ -603,36 +603,38 @@ y.sim <- sim.arma(c,phi,theta,sigma=1,T,y.0=rep(0,length(phi)),
 par(mfrow=c(1,3));par(plt=c(.25,.95,.2,.85))
 plot(0:(T-1),y.sim[,1],type="l",lwd=2,
      main="(a) Process 1",xlab="Time after shock on epsilon",
-     ylab="Dynamic multiplier (shock on epsilon at t=0)",col="red")
+     ylab="Dynamic multiplier (shock on epsilon at t=0)",col="black")
 
 theta <- c(1,.5);phi <- c(0.6)
 y.sim <- sim.arma(c,phi,theta,sigma=1,T,y.0=rep(0,length(phi)),
                   nb.sim=1,make.IRF = 1)
 plot(0:(T-1),y.sim[,1],type="l",lwd=2,
      main="(b) Process 2",xlab="Time after shock on epsilon",
-     ylab="",col="red")
+     ylab="",col="black")
 
 theta <- c(1,1,1);phi <- c(0,0,.5,.4)
 y.sim <- sim.arma(c,phi,theta,sigma=1,T,y.0=rep(0,length(phi)),
                   nb.sim=1,make.IRF = 1)
 plot(0:(T-1),y.sim[,1],type="l",lwd=2,
      main="(c) Process 3",xlab="Time after shock on epsilon",
-     ylab="",col="red")
+     ylab="",col="black")
 ```
 
 
 Consider the annual Swiss GDP growth from the JST macro-history database. Let us first determine relevant orders for AR and MA processes using the (P)ACF approach.
 
-```{r IRFgdp1, echo=TRUE, fig.cap="(P)ACF analysis of Swiss GDP growth.", fig.asp = .6, out.width = "100%", fig.align = 'left-aligned'}
+```{r IRFgdp1, echo=TRUE, fig.cap="Serial-dependence diagnostics for annual Swiss real-GDP growth: (a) growth series; (b) sample autocorrelation function; and (c) sample partial autocorrelation function. Source: Jordà-Schularick-Taylor Macrohistory Database, release 6.", fig.asp = .6, out.width = "100%", fig.align = 'left-aligned'}
 library(IdSS)
 data(JST);data <- subset(JST,iso=="CHE")
 par(plt=c(.1,.95,.1,.95))
 T <- dim(data)[1]
 growth <- log(data$gdp[2:T]/data$gdp[1:(T-1)])
 par(mfrow=c(3,1));par(plt=c(.1,.95,.15,.95))
-plot(data$year[2:T],growth,type="l",xlab="",ylab="",lwd=2)
+plot(data$year[2:T],growth,type="l",xlab="",ylab="",lwd=2,
+     main="(a) Annual real-GDP growth")
 abline(h=0,lty=2)
-acf(growth);pacf(growth)
+acf(growth,main="(b) Autocorrelation function")
+pacf(growth,main="(c) Partial autocorrelation function")
 ```
 
 The two bottom plots of Figure \@ref(fig:IRFgdp1) suggest that either an MA(2)^[Indeed, the sample autocorrelation coefficients, ($\rho_j$), are statistically significant for $j \leq 2$ where $\rho_2$ is barely significant] or an AR(1)^[Indeed, the sample partial autocorrelation coefficients, $\rho_{j,j}$, are statistically significant for $j=1$ only]could be used to model the GDP growth rate series. Figure \@ref(fig:IRFgdp2) shows the IRFs based on these two respective specifications.
@@ -647,13 +649,13 @@ y.sim <- sim.arma(c=0,phi,theta=1,sigma=1,T,y.0=rep(0,length(phi)),
 par(plt=c(.15,.95,.25,.95))
 plot(0:(T-1),y.sim[,1],type="l",lwd=3,
      xlab="Time after shock on epsilon",
-     ylab="Dynamic multiplier (shock on epsilon at t=0)",col="red")
+     ylab="Dynamic multiplier (shock on epsilon at t=0)",col="black")
 # Fit a MA process:
 res <- arima(growth,order=c(0,0,2))
 phi <- 0;theta <- c(1,res$coef[1:2])
 y.sim <- sim.arma(c=0,phi,theta,sigma=1,T,y.0=rep(0,length(phi)),
                   nb.sim=1,make.IRF = 1)
-lines(0:(T-1),y.sim[,1],lwd=3,col="red",lty=2)
+lines(0:(T-1),y.sim[,1],lwd=3,col="grey45",lty=2)
 abline(h=0)
 ```
 
@@ -765,7 +767,7 @@ It has to be stressed that the definition of the dynamic multipliers (Eq. \@ref(
 
 This example is based on data used in @Stock_Watson_2003 (Chapter 16). The objective is to study the influence of the number of freezing days on the price of orange juice. Let us first estimate a ARMA-X(0,0,3) model:
 
-```{r freez, warning=FALSE, message=FALSE}
+```{r freez, warning=FALSE, message=FALSE, fig.cap="Orange-juice data used in the ARMAX example: (a) real orange-juice price; (b) monthly log price change, in percent; and (c) number of freezing-degree days. Source: FrozenJuice data distributed with the AER package, based on Stock and Watson (2003)."}
 library(IdSS);library(AER)
 data("FrozenJuice")
 FJ <- as.data.frame(FrozenJuice)
@@ -825,9 +827,9 @@ IRF2 <- sim.arma(c=0,phi=res.armax$phi,theta=res.armax$beta,sigma=1,
                  T=nb.periods,y.0=rep(0,length(res.armax$phi)),
                  nb.sim=1,make.IRF=1)
 par(plt=c(.15,.95,.2,.95))
-plot(IRF1,type="l",lwd=2,col="red",xlab="months after shock",
+plot(IRF1,type="l",lwd=2,col="black",xlab="months after shock",
      ylab="Chge in price (percent)")
-lines(IRF2,lwd=2,col="red",lty=2)
+lines(IRF2,lwd=2,col="grey45",lty=2)
 abline(h=0,col="grey")
 ```
 :::
@@ -874,35 +876,38 @@ abline(h=0,col="grey")
 
 :::{.example #Ramey1 name="Real effect of a monetary policy shock"}
 
-In this example, we make use of monetary shocks identified through high-frequency data (see @Gertler_Karadi_2015). This dataset comes from [Valerie Ramey's website](https://econweb.ucsd.edu/~vramey/research.html) (see @Ramey_2016_NBER).
+In this example, we use the monthly monetary-policy shock developed by Bu, Rogers, and Wu. The series is distributed by the Board of Governors of the Federal Reserve System and is included in the redistributable `USmonthly` dataset of `IdSS`.
 
 
 ```{r Ramey1}
 library(IdSS)
-T <- dim(Ramey)[1]
+data("USmonthly")
+T <- nrow(USmonthly)
 # Construct growth series:
-Ramey$growth <- Ramey$LIP - c(rep(NaN,12),Ramey$LIP[1:(length(Ramey$LIP)-12)])
+USmonthly$growth <- USmonthly$LIP -
+  c(rep(NA_real_,12),USmonthly$LIP[1:(length(USmonthly$LIP)-12)])
 # Prepare matrix of exogenous variables:
 vec.lags <- c(6:12)
 Matrix.of.Exog <- NULL
-shocks <- Ramey$ED2_TC
+shocks <- USmonthly$BRW
 for(i in 1:length(vec.lags)){Matrix.of.Exog <-
   cbind(Matrix.of.Exog,c(rep(NaN,vec.lags[i]),shocks[1:(T-vec.lags[i])]))}
 # Look for dates where data are available:
 indic.good.dates <- complete.cases(Matrix.of.Exog)
 ```
 
-```{r Ramey1fig, echo=FALSE, fig.cap="The blue line corresponds to monetary-policy shocks identified by means of the Gertler and Karadi (2015)'s approach (high-frequency change in Euro-dollar futures). The black slid line is the year-on-year growth rate of industrial production.", fig.asp = .6, out.width = "95%", fig.align = 'left-aligned'}
+```{r Ramey1fig, echo=FALSE, fig.cap="U.S. industrial production and monetary-policy shocks. The solid black line is the year-on-year growth rate of industrial production; the dashed grey line is the monthly BRW monetary-policy shock multiplied by 40 for readability. The common sample begins in 1994. Sources: U.S. government macroeconomic series via FRED and Bu, Rogers, and Wu shock series via the Board of Governors.", fig.asp = .6, out.width = "95%", fig.align = 'left-aligned'}
 par(mfrow=c(1,1),plt=c(.15,.95,.15,.95))
-plot(Ramey$DATES[indic.good.dates],100*Ramey$growth[indic.good.dates],type="l",
+plot(USmonthly$DATES[indic.good.dates],100*USmonthly$growth[indic.good.dates],type="l",
      ylim=c(-15,10),xlab="",ylab="in percent",lwd=2)
 abline(h=0,col="grey")
-lines(Ramey$DATES[indic.good.dates],40*Ramey$ED2_TC[indic.good.dates],col="blue",lwd=2)
+lines(USmonthly$DATES[indic.good.dates],40*USmonthly$BRW[indic.good.dates],
+      col="grey45",lwd=2,lty=2)
 legend("bottomleft", # places a legend at the appropriate place c("Health","Defense"), # puts text in the legend 
-       c("12-month growth rate of IP","Gertler-Karadi shocks (x 40)"),
-       lty=c(1,1), # gives the legend appropriate symbols (lines)       
+       c("12-month growth rate of IP","BRW shock (x 40)"),
+       lty=c(1,2), # gives the legend appropriate symbols (lines)
        lwd=c(2), # line width
-       col=c("black","blue"), # gives the legend lines the correct color and width
+       col=c("black","grey45"), # gives the legend lines the correct color and width
        pt.bg=c(1),
        pt.cex = c(1),
        bg="white",
@@ -915,17 +920,17 @@ legend("bottomleft", # places a legend at the appropriate place c("Health","Defe
 ```{r Ramey2}
 # Estimate ARMA-X:
 p <- 1; q <- 0
-x <- estim.armax(Ramey$growth[indic.good.dates],p,q,
+x <- estim.armax(USmonthly$growth[indic.good.dates],p,q,
                  X=Matrix.of.Exog[indic.good.dates,])
 # Compute IRF:
 irf <- sim.arma(0,x$phi,x$beta,x$sigma,T=60,y.0=rep(0,length(x$phi)),
                 nb.sim=1,make.IRF=1,X=NaN,beta=NaN)
 ```
 
-Figure \@ref(fig:Ramey3) displays the resulting IRF, with a 95\% confidence band. The code used to produce the confidence bands (i.e., to compute the standard deviation of the dynamic multipliers for the different horizons) is based on the Delta method (see Appendix \@ref(Delta)).^[This method consists in approximating $\mathbb{V}(ar)(f(\theta))$ with $\frac{\partial f(\theta)}{\partial \theta}' \mathbb{V}ar(\theta)\frac{\partial f(\theta)}{\partial \theta}$.]
+Figure \@ref(fig:Ramey3) displays the resulting IRF, with a 95\% confidence band. The code used to produce the confidence bands (i.e., to compute the standard deviation of the dynamic multipliers for the different horizons) is based on the Delta method (see Appendix \@ref(Delta)).^[This method consists in approximating $\mathbb{V}ar(f(\theta))$ with $\frac{\partial f(\theta)}{\partial \theta}' \mathbb{V}ar(\theta)\frac{\partial f(\theta)}{\partial \theta}$.]
 
 
-```{r Ramey3, echo=FALSE, fig.cap="Response of industrial-production growth to monetary-policy shocks. Dashed lines correpsond to the $\\pm$  2-standard-deviation bands.", fig.asp = .6, out.width = "95%", fig.align = 'left-aligned'}
+```{r Ramey3, echo=FALSE, fig.cap="Estimated response of U.S. industrial-production growth to a BRW monetary-policy shock. The solid black line is the point estimate; the dashed grey lines are pointwise bands equal to the estimate plus or minus two standard errors, computed with the delta method.", fig.asp = .6, out.width = "95%", fig.align = 'left-aligned'}
 irf.function <- function(THETA){
   c <- THETA[1]
   phi <- THETA[2:(p+1)]
@@ -937,7 +942,7 @@ irf.function <- function(THETA){
   beta <- THETA[(1+p+q+1+1):(1+p+q+1+(r+1))]
   
   irf <- sim.arma(0,phi,beta,
-                  #sigma=sd(Ramey$ED3_TC,na.rm=TRUE),
+                  #sigma=sd(USmonthly$BRW,na.rm=TRUE),
                   sigma=1,
                   T=60,y.0=rep(0,length(x$phi)),nb.sim=1,make.IRF=1,
                   X=NaN,beta=NaN)
@@ -959,8 +964,8 @@ plot(IRF.0,type="l",
      ylim=c(min(IRF.0-2*sqrt(diag(mat.var.cov.IRF))),max(IRF.0+2*sqrt(diag(mat.var.cov.IRF)))),
      xlab="Number of months after shock",lwd=2,ylab="in percent")
 abline(h=0,col="black",lty=3,lwd=2)
-lines(IRF.0+2*sqrt(diag(mat.var.cov.IRF)),col="blue",lty=2,lwd=2)
-lines(IRF.0-2*sqrt(diag(mat.var.cov.IRF)),col="blue",lty=2,lwd=2)
+lines(IRF.0+2*sqrt(diag(mat.var.cov.IRF)),col="grey45",lty=2,lwd=2)
+lines(IRF.0-2*sqrt(diag(mat.var.cov.IRF)),col="grey45",lty=2,lwd=2)
 ```
 :::
 
@@ -1385,5 +1390,14 @@ render_exercises("exam-2024", c(
   "ex-exam2024-autocovariance-sequence",
   "ex-exam2024-arma-roots",
   "ex-exam2024-dynamic-multiplier"
+))
+```
+
+### Exercises from the 2025 exam
+
+```{r univariate-exam-2025, results='asis'}
+render_exercises("exam-2025", c(
+  "ex-exam2025-two-ar1-conditional-moments",
+  "ex-exam2025-armax-effects-and-forecasts"
 ))
 ```

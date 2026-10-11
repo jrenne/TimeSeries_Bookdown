@@ -39,9 +39,9 @@ Let us discuss three issues associated with nonstationary processes:
 
 Consider a non-stationary $y_t$ process (e.g., $y_t$ follows a random walk). The estimate of $\phi$ in the (OLS) regression $y_t = c + \phi y_{t-1} + \varepsilon_t$ is then biased toward zero. In particular, we have the approximation $\mathbb{E}(\phi)=1-5.3/T$, where $T$ is the sample size (see, e.g., @Abadir_1993). The 5th percentile of the distribution of $\phi$ is approximately $1 - 14.1/T$, e.g., 0.824 for $T=80$. This notably poses problems for forecasts. Indeed, while we have $\mathbb{E}_t(y_{t+h})=y_t$ if $y_t$ follows a random walk, someone who would fit an AR(1) process and would obtain for instance $\hat\phi=0.824$ would obtain that $\mathbb{E}_t(y_{t+10})=0.144y_t$.
 
-This is illustrated by Figure \@ref(fig:nonStat1). This figure shows, in black, the  distributions of $\hat\phi$, obtained by OLS in the context of the linear model $y_t = c + \phi y_{t-1} + \varepsilon_t$. These distributions are obtained by simulations. We consider two sample sizes ($T=50$, left plot, and $T=200$, right plot). The vertical red bars indicate the means of the distributions, the vertical blue bar gives the approximated mean given by $1-5.3/T$.
+This is illustrated by Figure \@ref(fig:nonStat1). The figure shows the simulated distributions of $\hat\phi$, obtained by OLS in the linear model $y_t = c + \phi y_{t-1} + \varepsilon_t$. We consider two sample sizes ($T=50$, left plot, and $T=200$, right plot). The dashed vertical lines indicate the simulation means; the solid vertical lines give the approximations $1-5.3/T$.
 
-```{r nonStat1, echo=FALSE, fig.align = 'left-aligned', out.width = "95%", fig.cap = "The densities of based on 1000 simulations of samples of length $T$, they are approximated by the kernel approach."}
+```{r nonStat1, echo=FALSE, fig.align = 'left-aligned', out.width = "95%", fig.cap = "Kernel-density estimates of the OLS estimator $\\hat\\phi$ for a unit-root process, based on 1,000 Monte Carlo samples: (a) $T=50$ and (b) $T=200$. The dashed grey line marks the simulation mean; the solid black line marks the approximation $1-5.3/T$."}
 library(IdSS)
 y.0 <- c(0)
 c <- 0
@@ -53,19 +53,21 @@ vec.T <- c(50,200)
 y.sim <- sim.arma(c,phi,theta,sigma,max(vec.T)+1,y.0,nb.sim)
 par(mfrow=c(1,2))
 par(plt=c(.2,.9,.2,.85))
+count <- 0
 for(T in vec.T){
+  count <- count + 1
   y_t   <- y.sim[2:(T+1),]
   y_t_1 <- y.sim[1:T,]
   y_t   <- y_t   - matrix(1,T,1) %*% matrix(apply(y_t,2,mean),nrow=1)
   y_t_1 <- y_t_1 - matrix(1,T,1) %*% matrix(apply(y_t_1,2,mean),nrow=1)
   vec.rho.hat <- apply(y_t_1*y_t_1,2,sum)^(-1)*apply(y_t*y_t_1,2,sum)
   dens <- density(vec.rho.hat)
-  main.t <- paste("T =",toString(T))
+  main.t <- paste0("(",letters[count],") T = ",T)
   mean.rho.hat <- sum(dens$x*dens$y)/sum(dens$y)
   plot(dens,xlab=expression(paste("Estimated ",phi,sep="")),ylab="",lwd=2,
        main=main.t)
-  abline(v=1-5.3/T,col="blue")
-  abline(v=mean.rho.hat,col="red",lty=3,lwd=3)
+  abline(v=1-5.3/T,col="black",lwd=2)
+  abline(v=mean.rho.hat,col="grey45",lty=2,lwd=2)
 }
 
 ```
@@ -75,9 +77,9 @@ for(T in vec.T){
 
 Consider two independent non-stationary (unit roots) variables. If we regress one on the other, and if we use the standard OLS formulas to compute the standard deviation of the regression parameter, it can be shown that we will tend to underestimate this standard deviation.  As a result, if we use standard $t$-statistics to test for the existence of a relationship between the two variables, we will often have false positive, i.e., we will often reject the null hypothesis of no relationship ($H_0$: regression coefficient = 0). This phenomenon is called *spurious regressions* (see, e.g., these [examples](https://www.tylervigen.com/spurious-correlations)).
 
-This situation is illustrated by Figure \@ref(fig:nonStat2). We simulate two independent random walks, $x_t$ and $y_t$, and we regress $y_t$ on $x_t$ by OLS. (We consider two different sample sizes, $T=50$ and $T=200$.) The black lines represent the densities of the estimated $\beta$'s, that are the slope coefficients of the regressions. The blue density represent the asymptotic distribution of $\beta$ based on to the standard OLS formula (normal distribution of mean zero and of variance $\hat\sigma^2/\widehat{\mathbb{V}ar}(x_t)$). The fact that the latter distribution features a smaller variance than the former implies that using the standard OLS inference is misleading, as this distribution overestimates the accuracy of the estimator. 
+This situation is illustrated by Figure \@ref(fig:nonStat2). We simulate two independent random walks, $x_t$ and $y_t$, and we regress $y_t$ on $x_t$ by OLS. (We consider two different sample sizes, $T=50$ and $T=200$.) The solid lines represent the densities of the estimated $\beta$'s, that are the slope coefficients of the regressions. The dashed densities represent the asymptotic distribution of $\beta$ based on the standard OLS formula (normal distribution of mean zero and of variance $\hat\sigma^2/\widehat{\mathbb{V}ar}(x_t)$). The fact that the latter distribution features a smaller variance than the former implies that using standard OLS inference is misleading, as this distribution overestimates the accuracy of the estimator.
 
-```{r nonStat2, echo=FALSE, fig.align = 'left-aligned', out.width = "95%", fig.cap = "The densities of based on 1000 simulations of samples of length $T$, they are approximated by the kernel approach."}
+```{r nonStat2, echo=FALSE, fig.align = 'left-aligned', out.width = "95%", fig.cap = "Distribution of the OLS slope in regressions between two independent random walks, based on 1,000 Monte Carlo samples: (a) $T=50$ and (b) $T=200$. Solid black lines are kernel-density estimates of the simulated slopes; dashed grey lines are the normal approximations implied by conventional OLS standard errors."}
 vec.T <- c(50,200)
 
 y.sim <- sim.arma(c,phi,theta,sigma,max(vec.T),y.0,nb.sim)
@@ -86,7 +88,9 @@ x.sim <- sim.arma(c,phi,theta,sigma,max(vec.T),y.0,nb.sim)
 par(mfrow=c(1,2))
 par(plt=c(.2,.9,.2,.85))
 
+count <- 0
 for(T in vec.T){
+  count <- count + 1
   y.t <- y.sim[1:T,]
   x.t <- x.sim[1:T,]
   y.t   <- y.t   - matrix(1,T,1) %*% matrix(apply(y.t,2,mean),nrow=1)
@@ -96,14 +100,15 @@ for(T in vec.T){
   vec.s2 <- apply(residu,2,var)
   vec.stdv <- sqrt(apply(x.t*x.t,2,sum)^(-1)*vec.s2)
   dens <- density(vec.rho.hat)
-  main.t <- paste("T=",toString(T),sep="")
+  main.t <- paste0("(",letters[count],") T = ",T)
   
   mean.rho.hat <- sum(dens$x*dens$y)/sum(dens$y)
   xx <- seq(-2,2,by=.02)
   plot(dens,xlab=expression(paste("Estimated ",beta,sep="")),
        ylab="",lwd=2,main=main.t,
        ylim=c(0,max(dnorm(xx,mean = 0,sd = mean(vec.stdv)))))
-  lines(xx,dnorm(xx,mean = 0,sd = mean(vec.stdv)),col="blue",lwd=2)
+  lines(xx,dnorm(xx,mean = 0,sd = mean(vec.stdv)),
+        col="grey45",lty=2,lwd=2)
   abline(v=0,col="grey",lty=3)
 }
 
@@ -287,12 +292,12 @@ This test is a **one-sided right-tailed** test: one rejects the null if $\xi^{KP
 
 Let us use quarterly US data and test the stationarity of inflation and the 3-month short-term rate. Let us first plot the data:
 
-```{r figInflr,echo=FALSE, fig.align = 'left-aligned', out.width = "95%", fig.cap = "US Inflation (in black) and short-term nominal rates (in red)."}
+```{r figInflr,echo=FALSE, fig.align = 'left-aligned', out.width = "95%", fig.cap = "Quarterly U.S. inflation and short-term interest rates, in percent. The solid black line is CPI inflation; the dashed grey line is the three-month nominal interest rate. Source: U.S. government series retrieved through FRED and assembled in the IdSS US3var dataset."}
 par(plt=c(.15,.95,.1,.95))
 plot(US3var$Date,US3var$infl,ylim=c(0,20),type="l",lwd=2,
      xlab="",ylab="rates, in percent",las=1)
 grid()
-lines(US3var$Date,US3var$r,col="red",lwd=2)
+lines(US3var$Date,US3var$r,col="grey45",lty=2,lwd=2)
 ```
 
 Let us now run the tests. Note that the default alternative hypothesis of function `adf.test` of package `tseries` is that the process is trend-stationary. Note that when `kpss.test`  returns a p-value of `0.01`, it means that the true p-value is lower then that. 
@@ -318,4 +323,10 @@ source("R/exercises.R")
 
 ```{r nonstationarity-ps4, results='asis'}
 render_exercises("ps4", c("ex-order-integration", "ex-integration-true-false", "ex-unit-root-tests"))
+```
+
+### Exercise from the 2025 exam
+
+```{r nonstationarity-exam-2025, results='asis'}
+render_exercises("exam-2025", "ex-exam2025-lag-polynomials-and-integration")
 ```

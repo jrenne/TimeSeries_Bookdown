@@ -6,7 +6,7 @@ Many statistical procedures are well-defined only when the processes of interest
 
 For instance, the left plot of Figure \@ref(fig:CointegEx) suggests that the trends of $x_t$ and $y_t$ are positively correlated. However, the right plot shows that, for low values of $h$, the correlation between $x_t - x_{t-h}$ and $y_t - y_{t-h}$ is negative. This is notably the case for $h=1$, which means that the first differences of the two variables (i.e., $\Delta x_t$ and $\Delta y_t$) are negatively correlated. Hence, focusing on the first differences would lead the researcher to think that the relationship between $x_t$ and $y_t$ is a negative one (while it is only the case when one focuses on the high-frequency comovements between the two variables).
 
-```{r CointegEx, warning=FALSE,echo=FALSE, fig.align = 'left-aligned', out.width = "95%", fig.cap = "Situation where the conditional and uncondional correlation between $x_t$ and $y_t$ do not have the same sign."}
+```{r CointegEx, warning=FALSE,echo=FALSE, fig.align = 'left-aligned', out.width = "95%", fig.cap = "Simulated illustration of frequency-dependent comovement: (a) $x_t$ (solid black), $y_t$ (dashed grey), and their common stochastic trend $w_t$ (dotted light grey); (b) correlation between $x_t-x_{t-h}$ and $y_t-y_{t-h}$ as a function of the differencing horizon $h$. Although $x_t$ and $y_t$ share a positive long-run trend, their short-run changes are negatively correlated."}
 library(IdSS)
 T <- 10000
 T4chart <- 700
@@ -17,9 +17,9 @@ y <- w - cycl
 par(mfrow=c(1,2))
 par(plt=c(.15,.95,.2,.85))
 plot(x[1:T4chart],type="l",xlab="h",ylab="",
-     main=expression(paste(x[t]," and ",y[t],sep="")))
-lines(w[1:T4chart],col="grey",lty=3)
-lines(y[1:T4chart],col="red")
+     main="(a) Simulated series")
+lines(w[1:T4chart],col="grey70",lty=3)
+lines(y[1:T4chart],col="grey45",lty=2)
 all.cor <- NULL
 max.h <- 100
 for(h in 0:max.h){
@@ -30,7 +30,9 @@ for(h in 0:max.h){
   cor.h <- cor(x.t-x.t_h,y.t-y.t_h)
   all.cor <- c(all.cor,cor.h)
 }
-plot(0:max.h,all.cor,lwd=2,type="l",main=expression(paste("Correl. between ",x[t],"-",x[t-h]," and ",y[t],"-",y[t-h],sep="")),xlab="h",ylab="")
+plot(0:max.h,all.cor,lwd=2,type="l",
+     main="(b) Correlation",
+     xlab="h",ylab="")
 abline(h=0,col="grey",lty=3)
 ```
 
@@ -248,7 +250,7 @@ We say that there is a *long-run relationship* between $y_{1,t}$ and $y_{2,t}$:
 
 When $y_{1,t}$ is substantially above $y_{2,t}$, $z_t$ is large, the influence of $-0.5 z_t$ on $\Delta y_{1,t+1}$ is negative, which tends to "correct" $y_{1,t}$ and brings it closer to $y_{2,t}$.
 
-```{r VECMexmpl, echo=FALSE, fig.align = 'left-aligned', out.width = "95%", fig.cap = "Simulation of $y_{1,t}$ (in blue) and $y_{2,t}$ (in red)."}
+```{r VECMexmpl, echo=FALSE, fig.align = 'left-aligned', out.width = "95%", fig.cap = "Simulated cointegrated series $y_{1,t}$ and $y_{2,t}$. The solid black line represents $y_{1,t}$; the dashed grey line represents $y_{2,t}$. Their difference follows the stationary process $z_t=0.3z_{t-1}+\\varepsilon_{1,t}-\\varepsilon_{2,t}$."}
 M <- matrix(c(.5,.2,.5,.8),2,2)
 T <- 200
 Y <- matrix(c(0,0),nrow=1)
@@ -258,8 +260,8 @@ for(t in 2:T){
   Y <- rbind(Y,c(y))
 }
 par(plt=c(.1,.95,.15,.95))
-plot(Y[,1],type="l",col="red",lwd=2,xlab="time t",ylab="")
-lines(Y[,2],type="l",col="blue",lwd=2)
+plot(Y[,1],type="l",col="black",lwd=2,xlab="time t",ylab="")
+lines(Y[,2],type="l",col="grey45",lty=2,lwd=2)
 ```
 :::
 

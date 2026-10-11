@@ -1,0 +1,705 @@
+\relax 
+\providecommand\zref@newlabel[2]{}
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand*\HyPL@Entry[1]{}
+\bibstyle{apalike}
+\HyPL@Entry{0<</S/D>>}
+\newlabel{intro}{{}{5}{Introduction to Time Series}{chapter*.2}{}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {1}Basics}{7}{chapter.1}\protected@file@percent }
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
+\newlabel{Intro}{{1}{7}{Basics}{chapter.1}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {1.1}Shocks and lag operator}{7}{section.1.1}\protected@file@percent }
+\newlabel{shocks-and-lag-operator}{{1.1}{7}{Shocks and lag operator}{section.1.1}{}}
+\zref@newlabel{mdf@pagelabel-1}{\default{1.1}\page{7}\abspage{7}\mdf@pagevalue{7}}
+\newlabel{def:whitenoise}{{1.1}{7}{White noise}{definition.1.1}{}}
+\zref@newlabel{mdf@pagelabel-2}{\default{1.1}\page{7}\abspage{7}\mdf@pagevalue{7}}
+\newlabel{def:MDS}{{1.2}{7}{Martingale Difference Sequence}{definition.1.2}{}}
+\zref@newlabel{mdf@pagelabel-3}{\default{1.1}\page{7}\abspage{7}\mdf@pagevalue{7}}
+\newlabel{exm:ARCH}{{1.1}{7}{ARCH process}{example.1.1}{}}
+\zref@newlabel{mdf@pagelabel-4}{\default{1.1}\page{8}\abspage{8}\mdf@pagevalue{8}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1.1}{\ignorespaces Simulated ARCH(1) innovation $\mitvarepsilon _t=\mitsigma _tz_t$ with $z_t\sim i.i.d.\,\symcal {N}(0,1)$ and $\mitsigma _t^2=1+0.98\mitvarepsilon _{t-1}^2$. The sample contains 500 observations and illustrates volatility clustering despite zero serial correlation in levels.}}{8}{figure.caption.3}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{fig:simulGARCHointro}{{1.1}{8}{Simulated ARCH(1) innovation $\varepsilon _t=\sigma _tz_t$ with $z_t\sim i.i.d.\,\mathcal {N}(0,1)$ and $\sigma _t^2=1+0.98\varepsilon _{t-1}^2$. The sample contains 500 observations and illustrates volatility clustering despite zero serial correlation in levels}{figure.caption.3}{}}
+\zref@newlabel{mdf@pagelabel-5}{\default{1.1}\page{8}\abspage{8}\mdf@pagevalue{8}}
+\newlabel{exm:whiteNotMDS}{{1.2}{8}{}{example.1.2}{}}
+\newlabel{eq:lagOp}{{1.1}{8}{Shocks and lag operator}{equation.1.1}{}}
+\gdef \LT@i {\LT@entry 
+    {1}{149.73268pt}\LT@entry 
+    {1}{155.73268pt}\LT@entry 
+    {1}{149.73268pt}}
+\@writefile{toc}{\contentsline {section}{\numberline {1.2}Moments and stationarity: the practical view}{9}{section.1.2}\protected@file@percent }
+\newlabel{conditional-and-unconditional-moments}{{1.2}{9}{Moments and stationarity: the practical view}{section.1.2}{}}
+\zref@newlabel{mdf@pagelabel-6}{\default{1.2}\page{9}\abspage{9}\mdf@pagevalue{9}}
+\newlabel{def:autocov}{{1.3}{9}{Autocovariance}{definition.1.3}{}}
+\zref@newlabel{mdf@pagelabel-7}{\default{1.2}\page{10}\abspage{10}\mdf@pagevalue{10}}
+\newlabel{def:covstat}{{1.4}{10}{Covariance stationarity}{definition.1.4}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1.2}{\ignorespaces Simulated nonstationary process $y_t=0.1t+\mitvarepsilon _t$, where $\mitvarepsilon _t\sim i.i.d.\,\symcal {N}(0,1)$. Its unconditional mean increases linearly with time, so the process is not covariance stationary.}}{10}{figure.caption.4}\protected@file@percent }
+\newlabel{fig:NONNstat1}{{1.2}{10}{Simulated nonstationary process $y_t=0.1t+\varepsilon _t$, where $\varepsilon _t\sim i.i.d.\,\mathcal {N}(0,1)$. Its unconditional mean increases linearly with time, so the process is not covariance stationary}{figure.caption.4}{}}
+\zref@newlabel{mdf@pagelabel-8}{\default{1.2}\page{10}\abspage{10}\mdf@pagevalue{10}}
+\newlabel{prp:gammaMinus}{{1.1}{10}{}{proposition.1.1}{}}
+\citation{JST_2017}
+\zref@newlabel{mdf@pagelabel-9}{\default{1.2}\page{11}\abspage{11}\mdf@pagevalue{11}}
+\newlabel{def:autocor}{{1.5}{11}{Auto-correlation}{definition.1.5}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1.3}{\ignorespaces Annual Swiss real-GDP growth, computed as the log difference of real GDP. The dashed grey line indicates the sample mean. Source: Jordà-Schularick-Taylor Macrohistory Database, release 6.}}{11}{figure.caption.5}\protected@file@percent }
+\newlabel{fig:autocov}{{1.3}{11}{Annual Swiss real-GDP growth, computed as the log difference of real GDP. The dashed grey line indicates the sample mean. Source: Jordà-Schularick-Taylor Macrohistory Database, release 6}{figure.caption.5}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {1.3}Central Limit Theorem (CLT) for persistent processes}{11}{section.1.3}\protected@file@percent }
+\newlabel{central-limit-theorem-clt-for-persistent-processes}{{1.3}{11}{Central Limit Theorem (CLT) for persistent processes}{section.1.3}{}}
+\citation{Anderson_1971}
+\@writefile{lof}{\contentsline {figure}{\numberline {1.4}{\ignorespaces Swiss real-GDP growth plotted against its own lags: (a) first lag and (b) third lag. The solid black lines are OLS fits. For lag $j$, the fitted slope is approximately $\hat {\mitgamma }_j/\widehat {\symbb {V}ar}(y_t)$, where hats denote sample moments.}}{12}{figure.caption.6}\protected@file@percent }
+\newlabel{fig:autocov2}{{1.4}{12}{Swiss real-GDP growth plotted against its own lags: (a) first lag and (b) third lag. The solid black lines are OLS fits. For lag $j$, the fitted slope is approximately $\hat {\gamma }_j/\widehat {\mathbb {V}ar}(y_t)$, where hats denote sample moments}{figure.caption.6}{}}
+\zref@newlabel{mdf@pagelabel-10}{\default{1.3}\page{12}\abspage{12}\mdf@pagevalue{12}}
+\newlabel{thm:CLTcovstat}{{1.1}{12}{Central Limit Theorem for covariance-stationary processes}{theorem.1.1}{}}
+\newlabel{eq:TCL20}{{1.2}{12}{Central Limit Theorem for covariance-stationary processes}{equation.1.2}{}}
+\newlabel{eq:TCL2}{{1.3}{12}{Central Limit Theorem for covariance-stationary processes}{equation.1.2}{}}
+\newlabel{eq:TCL4ts}{{1.4}{12}{Central Limit Theorem for covariance-stationary processes}{equation.1.2}{}}
+\citation{Newey_West_1987}
+\zref@newlabel{mdf@pagelabel-11}{\default{1.3}\page{13}\abspage{13}\mdf@pagevalue{13}}
+\newlabel{def:LRV}{{1.6}{13}{Long-run variance}{definition.1.6}{}}
+\newlabel{eq:covSmplMean}{{1.5}{13}{Central Limit Theorem (CLT) for persistent processes}{equation.1.5}{}}
+\newlabel{eq:NWest}{{1.6}{13}{Central Limit Theorem (CLT) for persistent processes}{equation.1.6}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {1.4}Exercises from past exams}{13}{section.1.4}\protected@file@percent }
+\newlabel{introduction-exercises}{{1.4}{13}{Exercises from past exams}{section.1.4}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1.5}{\ignorespaces Simulated AR(1) processes $x_t = \mitmu + \mitrho (x_{t-1}-\mitmu )+\sqrt  {1-\mitrho ^2}\mitvarepsilon _t$, with $\mitvarepsilon _t\sim \symcal {N}(0,1)$, $\mitmu =2$, and $\symbb {V}ar(x_t)=1$: (a) $\mitrho =0$; (b) $\mitrho =0.7$; and (c) $\mitrho =0.999$. In each panel, the solid black line marks the population mean and the dashed grey line the sample mean.}}{14}{figure.caption.7}\protected@file@percent }
+\newlabel{fig:TVTCL}{{1.5}{14}{Simulated AR(1) processes $x_t = \mu + \rho (x_{t-1}-\mu )+\sqrt {1-\rho ^2}\varepsilon _t$, with $\varepsilon _t\sim \mathcal {N}(0,1)$, $\mu =2$, and $\mathbb {V}ar(x_t)=1$: (a) $\rho =0$; (b) $\rho =0.7$; and (c) $\rho =0.999$. In each panel, the solid black line marks the population mean and the dashed grey line the sample mean}{figure.caption.7}{}}
+\zref@newlabel{mdf@pagelabel-12}{\default{1.4}\page{14}\abspage{14}\mdf@pagevalue{14}}
+\newlabel{exr:ex-exam2024-long-run-variance}{{1.1}{14}{Autocovariances and the long-run variance}{exercise.1.1}{}}
+\zref@newlabel{mdf@pagelabel-13}{\default{1.4}\page{15}\abspage{15}\mdf@pagevalue{15}}
+\newlabel{exr:ex-exam2025-autocovariances-and-clt}{{1.2}{15}{Autocovariances, correlations, and the time-series CLT}{exercise.1.2}{}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {2}Univariate processes}{17}{chapter.2}\protected@file@percent }
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
+\newlabel{Univariate}{{2}{17}{Univariate processes}{chapter.2}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {2.1}Moving Average (MA) processes}{17}{section.2.1}\protected@file@percent }
+\newlabel{moving-average-ma-processes}{{2.1}{17}{Moving Average (MA) processes}{section.2.1}{}}
+\zref@newlabel{mdf@pagelabel-14}{\default{2.1}\page{17}\abspage{17}\mdf@pagevalue{17}}
+\newlabel{def:MA1}{{2.1}{17}{Moving average process of order one}{definition.2.1}{}}
+\newlabel{eq:MA1111}{{2.1}{17}{Moving average process of order one}{equation.2.1}{}}
+\zref@newlabel{mdf@pagelabel-15}{\default{2.1}\page{18}\abspage{18}\mdf@pagevalue{18}}
+\newlabel{def:MAq}{{2.2}{18}{MA(q) process}{definition.2.2}{}}
+\zref@newlabel{mdf@pagelabel-16}{\default{2.1}\page{18}\abspage{18}\mdf@pagevalue{18}}
+\newlabel{prp:covMAq}{{2.1}{18}{Covariance-stationarity of an MA(q) process}{proposition.2.1}{}}
+\newlabel{eq:autocovMA}{{2.2}{18}{Covariance-stationarity of an MA(q) process}{equation.2.2}{}}
+\zref@newlabel{mdf@pagelabel-17}{\default{2.1}\page{18}\abspage{18}\mdf@pagevalue{18}}
+\newlabel{def:summability}{{2.3}{18}{Absolute and square summability}{definition.2.3}{}}
+\zref@newlabel{mdf@pagelabel-18}{\default{2.1}\page{18}\abspage{18}\mdf@pagevalue{18}}
+\newlabel{thm:infMA}{{2.1}{18}{Existence condition for an infinite MA process}{theorem.2.1}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.1}{\ignorespaces Simulated moving-average processes with unit innovation variance and intercept equal to one: (a) MA(1) process with $\mittheta _0=\mittheta _1=1$; (b) MA(4) process with $\mittheta _0=\cdots =\mittheta _4=1$. The horizontal line marks the intercept.}}{19}{figure.caption.8}\protected@file@percent }
+\newlabel{fig:simMA}{{2.1}{19}{Simulated moving-average processes with unit innovation variance and intercept equal to one: (a) MA(1) process with $\theta _0=\theta _1=1$; (b) MA(4) process with $\theta _0=\cdots =\theta _4=1$. The horizontal line marks the intercept}{figure.caption.8}{}}
+\zref@newlabel{mdf@pagelabel-19}{\default{2.1}\page{19}\abspage{19}\mdf@pagevalue{19}}
+\zref@newlabel{mdf@pagelabel-20}{\default{2.1}\page{19}\abspage{19}\mdf@pagevalue{19}}
+\newlabel{prp:momentsMAinf}{{2.2}{19}{First two moments of an infinite MA process}{proposition.2.2}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {2.2}Auto-Regressive (AR) processes}{20}{section.2.2}\protected@file@percent }
+\newlabel{ARsection}{{2.2}{20}{Auto-Regressive (AR) processes}{section.2.2}{}}
+\zref@newlabel{mdf@pagelabel-21}{\default{2.2}\page{20}\abspage{20}\mdf@pagevalue{20}}
+\newlabel{def:AR1}{{2.4}{20}{First-order AR process (AR(1))}{definition.2.4}{}}
+\zref@newlabel{mdf@pagelabel-22}{\default{2.2}\page{21}\abspage{21}\mdf@pagevalue{21}}
+\newlabel{prp:statioAR1}{{2.3}{21}{Covariance-stationarity of an AR(1) process}{proposition.2.3}{}}
+\zref@newlabel{mdf@pagelabel-23}{\default{2.2}\page{21}\abspage{21}\mdf@pagevalue{21}}
+\newlabel{def:ARp}{{2.5}{21}{AR(p) process}{definition.2.5}{}}
+\newlabel{eq:AR}{{2.3}{21}{AR(p) process}{equation.2.3}{}}
+\newlabel{eq:F}{{2.4}{21}{Auto-Regressive (AR) processes}{equation.2.4}{}}
+\zref@newlabel{mdf@pagelabel-24}{\default{2.2}\page{21}\abspage{21}\mdf@pagevalue{21}}
+\newlabel{prp:Feigen}{{2.4}{21}{The eigenvalues of matrix F}{proposition.2.4}{}}
+\newlabel{eq:Feigen}{{2.5}{21}{The eigenvalues of matrix F}{equation.2.5}{}}
+\zref@newlabel{mdf@pagelabel-25}{\default{2.2}\page{21}\abspage{21}\mdf@pagevalue{21}}
+\newlabel{prp:stability}{{2.5}{21}{Covariance-stationarity of an AR(p) process}{proposition.2.5}{}}
+\newlabel{eq:outside}{{2.6}{21}{Covariance-stationarity of an AR(p) process}{equation.2.6}{}}
+\newlabel{eq:inside}{{2.7}{21}{Covariance-stationarity of an AR(p) process}{equation.2.7}{}}
+\newlabel{eq:EAR}{{2.9}{22}{Auto-Regressive (AR) processes}{equation.2.9}{}}
+\newlabel{eq:gammas}{{2.10}{23}{Auto-Regressive (AR) processes}{equation.2.10}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {2.3}AR-MA processes}{23}{section.2.3}\protected@file@percent }
+\newlabel{ar-ma-processes}{{2.3}{23}{AR-MA processes}{section.2.3}{}}
+\zref@newlabel{mdf@pagelabel-26}{\default{2.3}\page{23}\abspage{23}\mdf@pagevalue{23}}
+\newlabel{def:ARMApq}{{2.6}{23}{ARMA(p,q) process}{definition.2.6}{}}
+\newlabel{eq:ARMApq}{{2.11}{23}{ARMA(p,q) process}{equation.2.11}{}}
+\zref@newlabel{mdf@pagelabel-27}{\default{2.3}\page{23}\abspage{23}\mdf@pagevalue{23}}
+\newlabel{prp:statioARMApq}{{2.6}{23}{Stationarity of an ARMA(p,q) process}{proposition.2.6}{}}
+\newlabel{eq:ARMAwold}{{2.12}{24}{AR-MA processes}{equation.2.12}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {2.4}PACF approach to identify AR/MA processes}{24}{section.2.4}\protected@file@percent }
+\newlabel{PACFapproach}{{2.4}{24}{PACF approach to identify AR/MA processes}{section.2.4}{}}
+\zref@newlabel{mdf@pagelabel-28}{\default{2.4}\page{24}\abspage{24}\mdf@pagevalue{24}}
+\newlabel{def:partialAC}{{2.7}{24}{Partial auto-correlation}{definition.2.7}{}}
+\citation{Anderson_1971}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.2}{\ignorespaces Simulated samples and correlograms for two processes, each with 1,000 observations. Left column: (a) simulated MA(2) process, (c) its sample autocorrelation function, and (e) its sample partial autocorrelation function. Right column: (b) simulated AR(1) process, (d) its sample autocorrelation function, and (f) its sample partial autocorrelation function.}}{25}{figure.caption.9}\protected@file@percent }
+\newlabel{fig:pacf}{{2.2}{25}{Simulated samples and correlograms for two processes, each with 1,000 observations. Left column: (a) simulated MA(2) process, (c) its sample autocorrelation function, and (e) its sample partial autocorrelation function. Right column: (b) simulated AR(1) process, (d) its sample autocorrelation function, and (f) its sample partial autocorrelation function}{figure.caption.9}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {2.5}Wold decomposition}{25}{section.2.5}\protected@file@percent }
+\newlabel{wold-decomposition}{{2.5}{25}{Wold decomposition}{section.2.5}{}}
+\zref@newlabel{mdf@pagelabel-29}{\default{2.5}\page{25}\abspage{25}\mdf@pagevalue{25}}
+\newlabel{thm:Wold}{{2.2}{25}{Wold decomposition}{theorem.2.2}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {2.6}Impulse Response Functions (IRFs) in ARMA models}{26}{section.2.6}\protected@file@percent }
+\newlabel{IRFARMA}{{2.6}{26}{Impulse Response Functions (IRFs) in ARMA models}{section.2.6}{}}
+\zref@newlabel{mdf@pagelabel-30}{\default{2.6}\page{27}\abspage{27}\mdf@pagevalue{27}}
+\newlabel{prp:computPsi}{{2.7}{27}{IRF of an ARMA(p,q) process}{proposition.2.7}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.3}{\ignorespaces IRFs associated with the three processes. Process 1 (MA(2)): $y_t = \mitvarepsilon _t + \mitvarepsilon _{t-1} + \mitvarepsilon _{t-2}$. Process 2 (ARMA(1,1)): $y_{t}=0.6y_{t-1} + \mitvarepsilon _t + 0.5\mitvarepsilon _{t-1}$. Process 3 (ARMA(4,2)): $y_{t}=0.5y_{t-3} + 0.4y_{t-4} + \mitvarepsilon _t + \mitvarepsilon _{t-1} + \mitvarepsilon _{t-2}$.}}{27}{figure.caption.10}\protected@file@percent }
+\newlabel{fig:IRFarma}{{2.3}{27}{IRFs associated with the three processes. Process 1 (MA(2)): $y_t = \varepsilon _t + \varepsilon _{t-1} + \varepsilon _{t-2}$. Process 2 (ARMA(1,1)): $y_{t}=0.6y_{t-1} + \varepsilon _t + 0.5\varepsilon _{t-1}$. Process 3 (ARMA(4,2)): $y_{t}=0.5y_{t-3} + 0.4y_{t-4} + \varepsilon _t + \varepsilon _{t-1} + \varepsilon _{t-2}$}{figure.caption.10}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.4}{\ignorespaces Serial-dependence diagnostics for annual Swiss real-GDP growth: (a) growth series; (b) sample autocorrelation function; and (c) sample partial autocorrelation function. Source: Jordà-Schularick-Taylor Macrohistory Database, release 6.}}{28}{figure.caption.11}\protected@file@percent }
+\newlabel{fig:IRFgdp1}{{2.4}{28}{Serial-dependence diagnostics for annual Swiss real-GDP growth: (a) growth series; (b) sample autocorrelation function; and (c) sample partial autocorrelation function. Source: Jordà-Schularick-Taylor Macrohistory Database, release 6}{figure.caption.11}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {2.7}ARMA processes with exogenous variables (ARMA-X)}{28}{section.2.7}\protected@file@percent }
+\newlabel{ARMAIRF}{{2.7}{28}{ARMA processes with exogenous variables (ARMA-X)}{section.2.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.7.1}Definitions (ARMA-X)}{28}{subsection.2.7.1}\protected@file@percent }
+\newlabel{ARMAXDef}{{2.7.1}{28}{Definitions (ARMA-X)}{subsection.2.7.1}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.5}{\ignorespaces Dynamic response of Swiss annual growth to a shock on the innovation $\mitvarepsilon _t$ at date $t=0$. The solid line corresponds to an AR(1) specification; the dashed line corresponds to a MA(2) specification.}}{29}{figure.caption.12}\protected@file@percent }
+\newlabel{fig:IRFgdp2}{{2.5}{29}{Dynamic response of Swiss annual growth to a shock on the innovation $\varepsilon _t$ at date $t=0$. The solid line corresponds to an AR(1) specification; the dashed line corresponds to a MA(2) specification}{figure.caption.12}{}}
+\zref@newlabel{mdf@pagelabel-31}{\default{2.7.1}\page{29}\abspage{29}\mdf@pagevalue{29}}
+\newlabel{def:exogeneity}{{2.8}{29}{Exogeneity}{definition.2.8}{}}
+\zref@newlabel{mdf@pagelabel-32}{\default{2.7.1}\page{29}\abspage{29}\mdf@pagevalue{29}}
+\newlabel{def:ARMAX}{{2.9}{29}{ARMA-X(p,q,r) model}{definition.2.9}{}}
+\newlabel{eq:DLM}{{2.13}{29}{ARMA-X(p,q,r) model}{equation.2.13}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.7.2}Dynamic multipliers in ARMA-X models}{29}{subsection.2.7.2}\protected@file@percent }
+\newlabel{ARMAXDynamic}{{2.7.2}{29}{Dynamic multipliers in ARMA-X models}{subsection.2.7.2}{}}
+\newlabel{eq:dynmultX}{{2.14}{30}{Dynamic multipliers in ARMA-X models}{equation.2.14}{}}
+\zref@newlabel{mdf@pagelabel-33}{\default{2.7.2}\page{30}\abspage{30}\mdf@pagevalue{30}}
+\newlabel{prp:computPsiARMAX}{{2.8}{30}{Dynamic multipliers in ARMA-X models}{proposition.2.8}{}}
+\newlabel{eq:dynmultXrec}{{2.15}{30}{Dynamic multipliers in ARMA-X models}{equation.2.15}{}}
+\citation{Stock_Watson_2003}
+\zref@newlabel{mdf@pagelabel-34}{\default{2.7.2}\page{31}\abspage{31}\mdf@pagevalue{31}}
+\newlabel{exm:OrangeJuice}{{2.1}{31}{Influence of the number of freezing days on the price of orange juice}{example.2.1}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.6}{\ignorespaces Orange-juice data used in the ARMAX example: (a) real orange-juice price; (b) monthly log price change, in percent; and (c) number of freezing-degree days. Source: FrozenJuice data distributed with the AER package, based on Stock and Watson (2003).}}{31}{figure.caption.13}\protected@file@percent }
+\newlabel{fig:freez}{{2.6}{31}{Orange-juice data used in the ARMAX example: (a) real orange-juice price; (b) monthly log price change, in percent; and (c) number of freezing-degree days. Source: FrozenJuice data distributed with the AER package, based on Stock and Watson (2003)}{figure.caption.13}{}}
+\zref@newlabel{mdf@pagelabel-35}{\default{2.7.2}\page{32}\abspage{32}\mdf@pagevalue{32}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.7}{\ignorespaces Response of changes in orange juice price (in percent) to the number of freezing days. The solid (respectively dashed) line corresponds to the ARMAX(0,0,3) (resp. ARMAX(3,0,1)) model. The first model is estimated by OLS (see above), the second by MLE.}}{32}{figure.caption.14}\protected@file@percent }
+\newlabel{fig:freez4}{{2.7}{32}{Response of changes in orange juice price (in percent) to the number of freezing days. The solid (respectively dashed) line corresponds to the ARMAX(0,0,3) (resp. ARMAX(3,0,1)) model. The first model is estimated by OLS (see above), the second by MLE}{figure.caption.14}{}}
+\zref@newlabel{mdf@pagelabel-36}{\default{2.7.2}\page{32}\abspage{32}\mdf@pagevalue{32}}
+\newlabel{exm:Ramey1}{{2.2}{32}{Real effect of a monetary policy shock}{example.2.2}{}}
+\zref@newlabel{mdf@pagelabel-37}{\default{2.7.2}\page{33}\abspage{33}\mdf@pagevalue{33}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.8}{\ignorespaces U.S. industrial production and monetary-policy shocks. The solid black line is the year-on-year growth rate of industrial production; the dashed grey line is the monthly BRW monetary-policy shock multiplied by 40 for readability. The common sample begins in 1994. Sources: U.S. government macroeconomic series via FRED and Bu, Rogers, and Wu shock series via the Board of Governors.}}{33}{figure.caption.15}\protected@file@percent }
+\newlabel{fig:Ramey1fig}{{2.8}{33}{U.S. industrial production and monetary-policy shocks. The solid black line is the year-on-year growth rate of industrial production; the dashed grey line is the monthly BRW monetary-policy shock multiplied by 40 for readability. The common sample begins in 1994. Sources: U.S. government macroeconomic series via FRED and Bu, Rogers, and Wu shock series via the Board of Governors}{figure.caption.15}{}}
+\zref@newlabel{mdf@pagelabel-38}{\default{2.7.2}\page{34}\abspage{34}\mdf@pagevalue{34}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.9}{\ignorespaces Estimated response of U.S. industrial-production growth to a BRW monetary-policy shock. The solid black line is the point estimate; the dashed grey lines are pointwise bands equal to the estimate plus or minus two standard errors, computed with the delta method.}}{34}{figure.caption.16}\protected@file@percent }
+\newlabel{fig:Ramey3}{{2.9}{34}{Estimated response of U.S. industrial-production growth to a BRW monetary-policy shock. The solid black line is the point estimate; the dashed grey lines are pointwise bands equal to the estimate plus or minus two standard errors, computed with the delta method}{figure.caption.16}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {2.8}Maximum Likelihood Estimation (MLE) of ARMA processes}{34}{section.2.8}\protected@file@percent }
+\newlabel{estimARMA}{{2.8}{34}{Maximum Likelihood Estimation (MLE) of ARMA processes}{section.2.8}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.8.1}Generalities}{34}{subsection.2.8.1}\protected@file@percent }
+\newlabel{Generalities}{{2.8.1}{34}{Generalities}{subsection.2.8.1}{}}
+\newlabel{eq:recursMLE}{{2.16}{34}{Generalities}{equation.2.16}{}}
+\zref@newlabel{mdf@pagelabel-39}{\default{2.8.1}\page{35}\abspage{35}\mdf@pagevalue{35}}
+\newlabel{def:Markov}{{2.10}{35}{Markovian process}{definition.2.10}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.8.2}Maximum Likelihood Estimation of AR processes}{35}{subsection.2.8.2}\protected@file@percent }
+\newlabel{estimAR}{{2.8.2}{35}{Maximum Likelihood Estimation of AR processes}{subsection.2.8.2}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.8.2.1}Maximum Likelihood Estimation of an AR(1) process}{35}{subsubsection.2.8.2.1}\protected@file@percent }
+\newlabel{estimAR1}{{2.8.2.1}{35}{Maximum Likelihood Estimation of an AR(1) process}{subsubsection.2.8.2.1}{}}
+\newlabel{eq:Lstar}{{2.18}{35}{Maximum Likelihood Estimation of an AR(1) process}{equation.2.18}{}}
+\newlabel{eq:AROLSmean}{{2.20}{36}{Maximum Likelihood Estimation of an AR(1) process}{equation.2.20}{}}
+\newlabel{eq:AROLSsigma}{{2.21}{36}{Maximum Likelihood Estimation of an AR(1) process}{equation.2.20}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.8.2.2}Maximum Likelihood Estimation of an AR(p) process}{36}{subsubsection.2.8.2.2}\protected@file@percent }
+\newlabel{estimARp}{{2.8.2.2}{36}{Maximum Likelihood Estimation of an AR(p) process}{subsubsection.2.8.2.2}{}}
+\newlabel{eq:OLSregARp}{{2.22}{37}{Maximum Likelihood Estimation of an AR(p) process}{equation.2.22}{}}
+\newlabel{eq:olsar1}{{2.23}{37}{Maximum Likelihood Estimation of an AR(p) process}{equation.2.23}{}}
+\zref@newlabel{mdf@pagelabel-40}{\default{2.8.2.2}\page{37}\abspage{37}\mdf@pagevalue{37}}
+\newlabel{prp:cgceOLSARp}{{2.9}{37}{Large-sample properties of the OLS estimator of AR(p) models}{proposition.2.9}{}}
+\newlabel{eq:Qols}{{2.24}{37}{Large-sample properties of the OLS estimator of AR(p) models}{equation.2.24}{}}
+\citation{Gourieroux_Monfort_Renne_2017}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.8.3}Maximum Likelihood Estimation of MA processes}{38}{subsection.2.8.3}\protected@file@percent }
+\newlabel{estimMA}{{2.8.3}{38}{Maximum Likelihood Estimation of MA processes}{subsection.2.8.3}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.8.3.1}Maximum Likelihood Estimation of an MA(1) process}{38}{subsubsection.2.8.3.1}\protected@file@percent }
+\newlabel{estimMA1}{{2.8.3.1}{38}{Maximum Likelihood Estimation of an MA(1) process}{subsubsection.2.8.3.1}{}}
+\newlabel{eq:MALstar}{{2.25}{39}{Maximum Likelihood Estimation of an MA(1) process}{equation.2.25}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.8.3.2}Maximum Likelihood Estimation of MA(q) processes}{39}{subsubsection.2.8.3.2}\protected@file@percent }
+\newlabel{estimMAq}{{2.8.3.2}{39}{Maximum Likelihood Estimation of MA(q) processes}{subsubsection.2.8.3.2}{}}
+\newlabel{eq:estimMAq}{{2.26}{39}{Maximum Likelihood Estimation of MA(q) processes}{equation.2.26}{}}
+\newlabel{eq:invertible}{{2.27}{39}{Maximum Likelihood Estimation of MA(q) processes}{equation.2.27}{}}
+\newlabel{eq:condiVarepsiMABB}{{2.28}{39}{Maximum Likelihood Estimation of MA(q) processes}{equation.2.28}{}}
+\newlabel{eq:condiVarepsiMA}{{2.29}{39}{Maximum Likelihood Estimation of MA(q) processes}{equation.2.29}{}}
+\gdef \LT@ii {\LT@entry 
+    {4}{77.22311pt}\LT@entry 
+    {4}{30.25357pt}\LT@entry 
+    {4}{74.1511pt}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.8.4}Maximum Likelihood Estimation of an ARMA(p,q) process}{40}{subsection.2.8.4}\protected@file@percent }
+\newlabel{estimARMApq}{{2.8.4}{40}{Maximum Likelihood Estimation of an ARMA(p,q) process}{subsection.2.8.4}{}}
+\newlabel{eq:recvareps}{{2.30}{40}{Maximum Likelihood Estimation of an ARMA(p,q) process}{equation.2.30}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {2.9}Specification choice}{40}{section.2.9}\protected@file@percent }
+\newlabel{specification-choice}{{2.9}{40}{Specification choice}{section.2.9}{}}
+\zref@newlabel{mdf@pagelabel-41}{\default{2.9}\page{40}\abspage{40}\mdf@pagevalue{40}}
+\newlabel{def:infocriteria}{{2.11}{40}{Information Criteria}{definition.2.11}{}}
+\zref@newlabel{mdf@pagelabel-42}{\default{2.9}\page{41}\abspage{41}\mdf@pagevalue{41}}
+\@writefile{lot}{\contentsline {table}{\numberline {2.1}{\ignorespaces (\#tabcriteria) This table shows \(\mitphi \) functions used by the different criteria.}}{41}{table.2.1}\protected@file@percent }
+\zref@newlabel{mdf@pagelabel-43}{\default{2.9}\page{41}\abspage{41}\mdf@pagevalue{41}}
+\newlabel{prp:infocriteria}{{2.10}{41}{Consistency of the criteria-based lag selection}{proposition.2.10}{}}
+\citation{JST_2017}
+\zref@newlabel{mdf@pagelabel-44}{\default{2.9}\page{42}\abspage{42}\mdf@pagevalue{42}}
+\newlabel{exm:ICOLS}{{2.3}{42}{Linear regression}{example.2.3}{}}
+\zref@newlabel{mdf@pagelabel-45}{\default{2.9}\page{42}\abspage{42}\mdf@pagevalue{42}}
+\newlabel{exm:SwissGrowthAIC}{{2.4}{42}{Swiss GDP growth}{example.2.4}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {2.10}Exercises}{42}{section.2.10}\protected@file@percent }
+\newlabel{univariate-exercises}{{2.10}{42}{Exercises}{section.2.10}{}}
+\zref@newlabel{mdf@pagelabel-46}{\default{2.10}\page{43}\abspage{43}\mdf@pagevalue{43}}
+\newlabel{exr:ex-stationarity}{{2.1}{43}{Stationarity of ARMA processes}{exercise.2.1}{}}
+\zref@newlabel{mdf@pagelabel-47}{\default{2.10}\page{43}\abspage{43}\mdf@pagevalue{43}}
+\newlabel{exr:ex-stationarity-transformation}{{2.2}{43}{A stationary transformation}{exercise.2.2}{}}
+\zref@newlabel{mdf@pagelabel-48}{\default{2.10}\page{44}\abspage{44}\mdf@pagevalue{44}}
+\newlabel{exr:ex-arma-autocovariances}{{2.3}{44}{Autocovariances of an ARMA(2,1)}{exercise.2.3}{}}
+\zref@newlabel{mdf@pagelabel-49}{\default{2.10}\page{44}\abspage{44}\mdf@pagevalue{44}}
+\newlabel{exr:ex-wold-forecast}{{2.4}{44}{Wold representations and forecasts}{exercise.2.4}{}}
+\zref@newlabel{mdf@pagelabel-50}{\default{2.10}\page{45}\abspage{45}\mdf@pagevalue{45}}
+\newlabel{exr:ex-acf-pacf}{{2.5}{45}{Reading an ACF and a PACF}{exercise.2.5}{}}
+\zref@newlabel{mdf@pagelabel-51}{\default{2.10}\page{46}\abspage{46}\mdf@pagevalue{46}}
+\newlabel{exr:ex-exponential-mle}{{2.6}{46}{Maximum likelihood for an exponential duration}{exercise.2.6}{}}
+\zref@newlabel{mdf@pagelabel-52}{\default{2.10}\page{46}\abspage{46}\mdf@pagevalue{46}}
+\newlabel{exr:ex-periodic-process}{{2.7}{46}{A periodically centered AR(1)}{exercise.2.7}{}}
+\zref@newlabel{mdf@pagelabel-53}{\default{2.10}\page{47}\abspage{47}\mdf@pagevalue{47}}
+\newlabel{exr:ex-estimating-arp}{{2.8}{47}{Estimating an AR(p) model for Swiss inflation}{exercise.2.8}{}}
+\zref@newlabel{mdf@pagelabel-54}{\default{2.10}\page{48}\abspage{48}\mdf@pagevalue{48}}
+\newlabel{exr:ex-irf-forecasts}{{2.9}{48}{Impulse responses and forecast uncertainty}{exercise.2.9}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.10.1}Exercises from the 2024 exam}{48}{subsection.2.10.1}\protected@file@percent }
+\newlabel{exercises-from-the-2024-exam}{{2.10.1}{48}{Exercises from the 2024 exam}{subsection.2.10.1}{}}
+\zref@newlabel{mdf@pagelabel-55}{\default{2.10.1}\page{48}\abspage{48}\mdf@pagevalue{48}}
+\newlabel{exr:ex-exam2024-shared-ar1}{{2.10}{48}{Two AR(1) processes driven by a common shock}{exercise.2.10}{}}
+\zref@newlabel{mdf@pagelabel-56}{\default{2.10.1}\page{49}\abspage{49}\mdf@pagevalue{49}}
+\newlabel{exr:ex-exam2024-autocovariance-sequence}{{2.11}{49}{Interpreting an autocovariance sequence}{exercise.2.11}{}}
+\zref@newlabel{mdf@pagelabel-57}{\default{2.10.1}\page{49}\abspage{49}\mdf@pagevalue{49}}
+\newlabel{exr:ex-exam2024-arma-roots}{{2.12}{49}{ARMA roots and moments}{exercise.2.12}{}}
+\zref@newlabel{mdf@pagelabel-58}{\default{2.10.1}\page{50}\abspage{50}\mdf@pagevalue{50}}
+\newlabel{exr:ex-exam2024-dynamic-multiplier}{{2.13}{50}{A one-date exogenous intervention}{exercise.2.13}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.10.2}Exercises from the 2025 exam}{50}{subsection.2.10.2}\protected@file@percent }
+\newlabel{exercises-from-the-2025-exam}{{2.10.2}{50}{Exercises from the 2025 exam}{subsection.2.10.2}{}}
+\zref@newlabel{mdf@pagelabel-59}{\default{2.10.2}\page{50}\abspage{50}\mdf@pagevalue{50}}
+\newlabel{exr:ex-exam2025-two-ar1-conditional-moments}{{2.14}{50}{Conditional moments of two AR(1) processes}{exercise.2.14}{}}
+\zref@newlabel{mdf@pagelabel-60}{\default{2.10.2}\page{51}\abspage{51}\mdf@pagevalue{51}}
+\newlabel{exr:ex-exam2025-armax-effects-and-forecasts}{{2.15}{51}{Effects and forecasts in an ARMAX model}{exercise.2.15}{}}
+\citation{Sims_1980}
+\citation{Stock_Watson_2016}
+\citation{Ramey_2016_NBER}
+\@writefile{toc}{\contentsline {chapter}{\numberline {3}Multivariate models}{53}{chapter.3}\protected@file@percent }
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
+\newlabel{VAR}{{3}{53}{Multivariate models}{chapter.3}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.1}Definition of VARs (and SVARMA) models}{53}{section.3.1}\protected@file@percent }
+\newlabel{definition-of-vars-and-svarma-models}{{3.1}{53}{Definition of VARs (and SVARMA) models}{section.3.1}{}}
+\zref@newlabel{mdf@pagelabel-61}{\default{3.1}\page{53}\abspage{53}\mdf@pagevalue{53}}
+\newlabel{def:SVAR}{{3.1}{53}{(S)VAR model}{definition.3.1}{}}
+\newlabel{eq:yVAR}{{3.1}{53}{(S)VAR model}{equation.3.1}{}}
+\citation{Jorda_2005}
+\zref@newlabel{mdf@pagelabel-62}{\default{3.1}\page{54}\abspage{54}\mdf@pagevalue{54}}
+\newlabel{def:SVARMA}{{3.2}{54}{(S)VARMA model}{definition.3.2}{}}
+\newlabel{eq:yVARMA}{{3.2}{54}{(S)VARMA model}{equation.3.2}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.2}IRFs in SVARMA}{54}{section.3.2}\protected@file@percent }
+\newlabel{IRFSVARMA}{{3.2}{54}{IRFs in SVARMA}{section.3.2}{}}
+\newlabel{eq:boxIRFs}{{3.3}{54}{IRFs in SVARMA}{equation.3.3}{}}
+\newlabel{eq:InfMA}{{3.4}{54}{IRFs in SVARMA}{equation.3.4}{}}
+\zref@newlabel{mdf@pagelabel-63}{\default{3.2}\page{55}\abspage{55}\mdf@pagevalue{55}}
+\newlabel{prp:computPsiVAR}{{3.1}{55}{IRF of a VARMA(p,q) process}{proposition.3.1}{}}
+\zref@newlabel{mdf@pagelabel-64}{\default{3.2}\page{55}\abspage{55}\mdf@pagevalue{55}}
+\newlabel{exm:IRFVARMA}{{3.1}{55}{IRFs of an SVARMA model}{example.3.1}{}}
+\newlabel{eq:VARMA111}{{3.5}{55}{IRFs of an SVARMA model}{equation.3.5}{}}
+\zref@newlabel{mdf@pagelabel-65}{\default{3.2}\page{56}\abspage{56}\mdf@pagevalue{56}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.1}{\ignorespaces Impulse response functions of the bivariate SVARMA(1,1) model specified in Equation  eqref{eq:VARMA111}: (a) response of $y_{1,t}$ to $\miteta _{1,t}$; (b) response of $y_{2,t}$ to $\miteta _{1,t}$; (c) response of $y_{1,t}$ to $\miteta _{2,t}$; and (d) response of $y_{2,t}$ to $\miteta _{2,t}$. Each structural innovation is increased by one unit on impact.}}{56}{figure.caption.17}\protected@file@percent }
+\newlabel{fig:simVAR}{{3.1}{56}{Impulse response functions of the bivariate SVARMA(1,1) model specified in Equation \\eqref{eq:VARMA111}: (a) response of $y_{1,t}$ to $\eta _{1,t}$; (b) response of $y_{2,t}$ to $\eta _{1,t}$; (c) response of $y_{1,t}$ to $\eta _{2,t}$; and (d) response of $y_{2,t}$ to $\eta _{2,t}$. Each structural innovation is increased by one unit on impact}{figure.caption.17}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.3}Covariance-stationary VARMA models}{56}{section.3.3}\protected@file@percent }
+\newlabel{covariance-stationary-varma-models}{{3.3}{56}{Covariance-stationary VARMA models}{section.3.3}{}}
+\newlabel{eq:condiInfiniteMA}{{3.6}{56}{Covariance-stationary VARMA models}{equation.3.6}{}}
+\newlabel{eq:VARMA2}{{3.7}{57}{Covariance-stationary VARMA models}{equation.3.7}{}}
+\newlabel{eq:matrixPHI}{{3.8}{57}{Covariance-stationary VARMA models}{equation.3.8}{}}
+\citation{Gourieroux_Monfort_Renne_2020}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.2}{\ignorespaces Monte Carlo distributions of the OLS estimator of the autoregressive coefficient in an ARMA(1,1) model, based on 1,000 samples of length 100: (a) $\mittheta =0$ and (b) $\mittheta =-0.4$. The true autoregressive coefficient is $\mitphi =0.8$, marked by the vertical black line.}}{58}{figure.caption.18}\protected@file@percent }
+\newlabel{fig:simulARMAbiased}{{3.2}{58}{Monte Carlo distributions of the OLS estimator of the autoregressive coefficient in an ARMA(1,1) model, based on 1,000 samples of length 100: (a) $\theta =0$ and (b) $\theta =-0.4$. The true autoregressive coefficient is $\phi =0.8$, marked by the vertical black line}{figure.caption.18}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.4}VAR estimation}{58}{section.3.4}\protected@file@percent }
+\newlabel{estimVAR}{{3.4}{58}{VAR estimation}{section.3.4}{}}
+\citation{Hamilton_1994}
+\newlabel{eq:PIVAR}{{3.9}{59}{VAR estimation}{equation.3.9}{}}
+\zref@newlabel{mdf@pagelabel-66}{\default{3.4}\page{59}\abspage{59}\mdf@pagevalue{59}}
+\newlabel{prp:estimVARGaussian}{{3.2}{59}{MLE of a Gaussian VAR}{proposition.3.2}{}}
+\newlabel{eq:Pi}{{3.10}{59}{MLE of a Gaussian VAR}{equation.3.10}{}}
+\newlabel{eq:betayx}{{3.11}{59}{MLE of a Gaussian VAR}{equation.3.11}{}}
+\newlabel{eq:olsvar1}{{3.13}{59}{VAR estimation}{equation.3.13}{}}
+\citation{Hamilton_1994}
+\zref@newlabel{mdf@pagelabel-67}{\default{3.4}\page{60}\abspage{60}\mdf@pagevalue{60}}
+\newlabel{prp:OLSVAR}{{3.3}{60}{Asymptotic distribution of the OLS estimate}{proposition.3.3}{}}
+\newlabel{eq:QolsVAR}{{3.14}{60}{Asymptotic distribution of the OLS estimate}{equation.3.14}{}}
+\zref@newlabel{mdf@pagelabel-68}{\default{3.4}\page{60}\abspage{60}\mdf@pagevalue{60}}
+\newlabel{prp:OLSVAR2}{{3.4}{60}{Asymptotic distribution of the OLS estimates}{proposition.3.4}{}}
+\newlabel{eq:asymptPi}{{3.15}{60}{Asymptotic distribution of the OLS estimates}{equation.3.15}{}}
+\newlabel{eq:optimzedLogL}{{3.16}{61}{VAR estimation}{equation.3.16}{}}
+\citation{Granger_1969}
+\@writefile{toc}{\contentsline {section}{\numberline {3.5}Block exogeneity and Granger causality}{62}{section.3.5}\protected@file@percent }
+\newlabel{BlockGranger}{{3.5}{62}{Block exogeneity and Granger causality}{section.3.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.5.1}Block exogeneity}{62}{subsection.3.5.1}\protected@file@percent }
+\newlabel{block-exogeneity}{{3.5.1}{62}{Block exogeneity}{subsection.3.5.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.5.2}Granger Causality}{62}{subsection.3.5.2}\protected@file@percent }
+\newlabel{granger-causality}{{3.5.2}{62}{Granger Causality}{subsection.3.5.2}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.6}Standard identification techniques}{63}{section.3.6}\protected@file@percent }
+\newlabel{identifStruct}{{3.6}{63}{Standard identification techniques}{section.3.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.6.1}The identification problem}{63}{subsection.3.6.1}\protected@file@percent }
+\newlabel{IdentifPbm}{{3.6.1}{63}{The identification problem}{subsection.3.6.1}{}}
+\citation{BERNANKE198649}
+\citation{Sims_1986}
+\citation{Gali_1992}
+\citation{RubioRamirez_et_al_2010}
+\citation{Blanchard_Quah_1989}
+\citation{Faust_Leeper_1997}
+\citation{Gali_1999}
+\citation{Erceg_et_al_2005}
+\citation{NBERc11177}
+\citation{Gerlach_Smets_1995}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.6.2}A stylized example motivating short-run restrictions}{64}{subsection.3.6.2}\protected@file@percent }
+\newlabel{a-stylized-example-motivating-short-run-restrictions}{{3.6.2}{64}{A stylized example motivating short-run restrictions}{subsection.3.6.2}{}}
+\newlabel{eq:systemI}{{3.17}{64}{A stylized example motivating short-run restrictions}{equation.3.17}{}}
+\newlabel{eq:covU}{{3.18}{64}{A stylized example motivating short-run restrictions}{equation.3.18}{}}
+\newlabel{eq:BBBB}{{3.19}{64}{A stylized example motivating short-run restrictions}{equation.3.19}{}}
+\citation{DEDOLA20051543}
+\citation{Christiano_Eichenbaum_Evans_1996}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.6.3}Cholesky: a specific short-run-restriction situation}{65}{subsection.3.6.3}\protected@file@percent }
+\newlabel{cholesky-a-specific-short-run-restriction-situation}{{3.6.3}{65}{Cholesky: a specific short-run-restriction situation}{subsection.3.6.3}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.3}{\ignorespaces Responses of U.S. macroeconomic variables to a contractionary monetary-policy shock identified recursively as in Christiano, Eichenbaum, and Evans (1996). Solid lines are point estimates; dashed lines are 90\% pointwise confidence bands obtained by bootstrapping the estimated VAR(3). Monthly sample: January 1965–June 1995.}}{66}{figure.caption.19}\protected@file@percent }
+\newlabel{fig:CEE}{{3.3}{66}{Responses of U.S. macroeconomic variables to a contractionary monetary-policy shock identified recursively as in Christiano, Eichenbaum, and Evans (1996). Solid lines are point estimates; dashed lines are 90\% pointwise confidence bands obtained by bootstrapping the estimated VAR(3). Monthly sample: January 1965–June 1995}{figure.caption.19}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.6.4}Long-run restrictions}{66}{subsection.3.6.4}\protected@file@percent }
+\newlabel{long-run-restrictions}{{3.6.4}{66}{Long-run restrictions}{subsection.3.6.4}{}}
+\citation{Blanchard_Quah_1989}
+\citation{Fischer_1977}
+\citation{Blanchard_Quah_1989}
+\newlabel{eq:ystarVAR}{{3.20}{67}{Long-run restrictions}{equation.3.20}{}}
+\newlabel{eq:cumul}{{3.21}{67}{Long-run restrictions}{equation.3.21}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.4}{\ignorespaces Open reconstruction of the quarterly U.S. variables used in the Blanchard--Quah long-run-restriction example: (a) demeaned real-GNP log growth and (b) linearly detrended unemployment. Sample: 1948 Q2--1987 Q4. Sources: U.S. Bureau of Economic Analysis and Bureau of Labor Statistics via FRED.}}{68}{figure.caption.20}\protected@file@percent }
+\newlabel{fig:BQ1}{{3.4}{68}{Open reconstruction of the quarterly U.S. variables used in the Blanchard--Quah long-run-restriction example: (a) demeaned real-GNP log growth and (b) linearly detrended unemployment. Sample: 1948 Q2--1987 Q4. Sources: U.S. Bureau of Economic Analysis and Bureau of Labor Statistics via FRED}{figure.caption.20}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.5}{\ignorespaces Impulse responses in the Blanchard-Quah model: (a) GDP level to a demand shock; (b) unemployment to a demand shock; (c) GDP level to a supply shock; and (d) unemployment to a supply shock. GDP responses are cumulated from the estimated growth-rate responses.}}{69}{figure.caption.21}\protected@file@percent }
+\newlabel{fig:BQ4}{{3.5}{69}{Impulse responses in the Blanchard-Quah model: (a) GDP level to a demand shock; (b) unemployment to a demand shock; (c) GDP level to a supply shock; and (d) unemployment to a supply shock. GDP responses are cumulated from the estimated growth-rate responses}{figure.caption.21}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.7}Exercise}{69}{section.3.7}\protected@file@percent }
+\newlabel{var-exercises}{{3.7}{69}{Exercise}{section.3.7}{}}
+\zref@newlabel{mdf@pagelabel-69}{\default{3.7}\page{70}\abspage{70}\mdf@pagevalue{70}}
+\newlabel{exr:ex-var-model}{{3.1}{70}{VAR lag selection, stability, and recursive identification}{exercise.3.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.7.1}Exercise from the 2024 exam}{70}{subsection.3.7.1}\protected@file@percent }
+\newlabel{exercise-from-the-2024-exam}{{3.7.1}{70}{Exercise from the 2024 exam}{subsection.3.7.1}{}}
+\zref@newlabel{mdf@pagelabel-70}{\default{3.7.1}\page{71}\abspage{71}\mdf@pagevalue{71}}
+\newlabel{exr:ex-exam2024-var-forecast-identification}{{3.2}{71}{VAR forecasts and structural impacts}{exercise.3.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.7.2}Exercises from the 2025 exam}{71}{subsection.3.7.2}\protected@file@percent }
+\newlabel{exercises-from-the-2025-exam-1}{{3.7.2}{71}{Exercises from the 2025 exam}{subsection.3.7.2}{}}
+\zref@newlabel{mdf@pagelabel-71}{\default{3.7.2}\page{71}\abspage{71}\mdf@pagevalue{71}}
+\newlabel{exr:ex-exam2025-var2-companion-form}{{3.3}{71}{A VAR(2) in companion form}{exercise.3.3}{}}
+\zref@newlabel{mdf@pagelabel-72}{\default{3.7.2}\page{72}\abspage{72}\mdf@pagevalue{72}}
+\newlabel{exr:ex-exam2025-var-granger-forecasts}{{3.4}{72}{Granger causality and forecasts in a VAR(1)}{exercise.3.4}{}}
+\citation{DEGOOIJER2006443}
+\@writefile{toc}{\contentsline {chapter}{\numberline {4}Forecasting}{73}{chapter.4}\protected@file@percent }
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
+\newlabel{forecasting}{{4}{73}{Forecasting}{chapter.4}{}}
+\zref@newlabel{mdf@pagelabel-73}{\default{4}\page{73}\abspage{73}\mdf@pagevalue{73}}
+\newlabel{prp:smallestMSE}{{4.1}{73}{Smallest MSE}{proposition.4.1}{}}
+\zref@newlabel{mdf@pagelabel-74}{\default{4}\page{74}\abspage{74}\mdf@pagevalue{74}}
+\newlabel{prp:smallestMSElinear}{{4.2}{74}{}{proposition.4.2}{}}
+\newlabel{eq:proj}{{4.1}{74}{}{equation.4.1}{}}
+\newlabel{eq:linproj}{{4.2}{74}{Forecasting}{equation.4.2}{}}
+\zref@newlabel{mdf@pagelabel-75}{\default{4}\page{74}\abspage{74}\mdf@pagevalue{74}}
+\newlabel{exm:fcstMAq}{{4.1}{74}{Forecasting an MA(q) process}{example.4.1}{}}
+\zref@newlabel{mdf@pagelabel-76}{\default{4}\page{75}\abspage{75}\mdf@pagevalue{75}}
+\zref@newlabel{mdf@pagelabel-77}{\default{4}\page{75}\abspage{75}\mdf@pagevalue{75}}
+\newlabel{exm:fcstARp}{{4.2}{75}{Forecasting an AR(p) process}{example.4.2}{}}
+\citation{boxjen76}
+\zref@newlabel{mdf@pagelabel-78}{\default{4}\page{76}\abspage{76}\mdf@pagevalue{76}}
+\newlabel{exm:fcstARMApq}{{4.3}{76}{Forecasting an ARMA(p,q) process}{example.4.3}{}}
+\newlabel{eq:armaForecast}{{4.3}{76}{Forecasting an ARMA(p,q) process}{equation.4.3}{}}
+\citation{Diebold_Mariano_1995}
+\citation{JST_2017}
+\zref@newlabel{mdf@pagelabel-79}{\default{4}\page{78}\abspage{78}\mdf@pagevalue{78}}
+\newlabel{exm:SwissOutOfSample}{{4.4}{78}{Forecasting Swiss GDP growth}{example.4.4}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.1}Exercise}{78}{section.4.1}\protected@file@percent }
+\newlabel{forecasting-exercises}{{4.1}{78}{Exercise}{section.4.1}{}}
+\gdef \LT@iii {\LT@entry 
+    {3}{165.11952pt}\LT@entry 
+    {1}{52.16962pt}\LT@entry 
+    {1}{52.16962pt}\LT@entry 
+    {1}{46.77379pt}}
+\zref@newlabel{mdf@pagelabel-80}{\default{4.1}\page{79}\abspage{79}\mdf@pagevalue{79}}
+\newlabel{exr:ex-forecast-performance}{{4.1}{79}{Forecast comparison and the Diebold–Mariano test}{exercise.4.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1.1}Exercise from the 2024 exam}{79}{subsection.4.1.1}\protected@file@percent }
+\newlabel{exercise-from-the-2024-exam-1}{{4.1.1}{79}{Exercise from the 2024 exam}{subsection.4.1.1}{}}
+\zref@newlabel{mdf@pagelabel-81}{\default{4.1.1}\page{80}\abspage{80}\mdf@pagevalue{80}}
+\newlabel{exr:ex-exam2024-ma1-forecasting}{{4.2}{80}{Inflation forecasts from an MA(1)}{exercise.4.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1.2}Exercise from the 2025 exam}{80}{subsection.4.1.2}\protected@file@percent }
+\newlabel{exercise-from-the-2025-exam}{{4.1.2}{80}{Exercise from the 2025 exam}{subsection.4.1.2}{}}
+\zref@newlabel{mdf@pagelabel-82}{\default{4.1.2}\page{80}\abspage{80}\mdf@pagevalue{80}}
+\newlabel{exr:ex-exam2025-ma2-gdp-forecasting}{{4.3}{80}{GDP forecasts from an MA(2) growth model}{exercise.4.3}{}}
+\citation{Abadir_1993}
+\@writefile{toc}{\contentsline {chapter}{\numberline {5}Non-stationary processes}{81}{chapter.5}\protected@file@percent }
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
+\newlabel{NonStat}{{5}{81}{Non-stationary processes}{chapter.5}{}}
+\newlabel{eq:VarcondRW}{{5.1}{81}{Non-stationary processes}{equation.5.1}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5.1}Issues when working with nonstationary time series}{81}{section.5.1}\protected@file@percent }
+\newlabel{issues-when-working-with-nonstationary-time-series}{{5.1}{81}{Issues when working with nonstationary time series}{section.5.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1.1}The bias of autoregressive coefficient towards zero}{82}{subsection.5.1.1}\protected@file@percent }
+\newlabel{the-bias-of-autoregressive-coefficient-towards-zero}{{5.1.1}{82}{The bias of autoregressive coefficient towards zero}{subsection.5.1.1}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.1}{\ignorespaces Kernel-density estimates of the OLS estimator $\hat \mitphi $ for a unit-root process, based on 1,000 Monte Carlo samples: (a) $T=50$ and (b) $T=200$. The dashed grey line marks the simulation mean; the solid black line marks the approximation $1-5.3/T$.}}{82}{figure.caption.22}\protected@file@percent }
+\newlabel{fig:nonStat1}{{5.1}{82}{Kernel-density estimates of the OLS estimator $\hat \phi $ for a unit-root process, based on 1,000 Monte Carlo samples: (a) $T=50$ and (b) $T=200$. The dashed grey line marks the simulation mean; the solid black line marks the approximation $1-5.3/T$}{figure.caption.22}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1.2}Spurious regressions}{82}{subsection.5.1.2}\protected@file@percent }
+\newlabel{spurious-regressions}{{5.1.2}{82}{Spurious regressions}{subsection.5.1.2}{}}
+\citation{Hamilton_1994}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.2}{\ignorespaces Distribution of the OLS slope in regressions between two independent random walks, based on 1,000 Monte Carlo samples: (a) $T=50$ and (b) $T=200$. Solid black lines are kernel-density estimates of the simulated slopes; dashed grey lines are the normal approximations implied by conventional OLS standard errors.}}{83}{figure.caption.23}\protected@file@percent }
+\newlabel{fig:nonStat2}{{5.2}{83}{Distribution of the OLS slope in regressions between two independent random walks, based on 1,000 Monte Carlo samples: (a) $T=50$ and (b) $T=200$. Solid black lines are kernel-density estimates of the simulated slopes; dashed grey lines are the normal approximations implied by conventional OLS standard errors}{figure.caption.23}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5.2}Nonstationarity tests}{83}{section.5.2}\protected@file@percent }
+\newlabel{nonstationarity-tests}{{5.2}{83}{Nonstationarity tests}{section.5.2}{}}
+\newlabel{eq:AR1}{{5.2}{83}{Nonstationarity tests}{equation.5.2}{}}
+\citation{Phillips_1987}
+\citation{Hamilton_1994}
+\zref@newlabel{mdf@pagelabel-83}{\default{5.2}\page{84}\abspage{84}\mdf@pagevalue{84}}
+\newlabel{thm:cvgceunitroot}{{5.1}{84}{Convergence results}{theorem.5.1}{}}
+\newlabel{eq:biasstat}{{5.6}{84}{Nonstationarity tests}{equation.5.6}{}}
+\newlabel{eq:tstat}{{5.7}{84}{Nonstationarity tests}{equation.5.6}{}}
+\citation{DF1979}
+\newlabel{eq:adf11}{{5.8}{85}{Nonstationarity tests}{equation.5.8}{}}
+\citation{Schwert_1989}
+\citation{Phillips_Perron_1988}
+\citation{Hamilton_1994}
+\citation{Hamilton_1994}
+\citation{Hamilton_1994}
+\citation{KWIATKOWSKI1992159}
+\@writefile{toc}{\contentsline {section}{\numberline {5.3}Stationarity test: KPSS}{87}{section.5.3}\protected@file@percent }
+\newlabel{stationarity-test-kpss}{{5.3}{87}{Stationarity test: KPSS}{section.5.3}{}}
+\zref@newlabel{mdf@pagelabel-84}{\default{5.3}\page{88}\abspage{88}\mdf@pagevalue{88}}
+\newlabel{exm:NonStatExample}{{5.1}{88}{Stationarity of inflation and interest rates}{example.5.1}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.3}{\ignorespaces Quarterly U.S. inflation and short-term interest rates, in percent. The solid black line is CPI inflation; the dashed grey line is the three-month nominal interest rate. Source: U.S. government series retrieved through FRED and assembled in the IdSS US3var dataset.}}{88}{figure.caption.24}\protected@file@percent }
+\newlabel{fig:figInflr}{{5.3}{88}{Quarterly U.S. inflation and short-term interest rates, in percent. The solid black line is CPI inflation; the dashed grey line is the three-month nominal interest rate. Source: U.S. government series retrieved through FRED and assembled in the IdSS US3var dataset}{figure.caption.24}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5.4}Exercises}{88}{section.5.4}\protected@file@percent }
+\newlabel{nonstationarity-exercises}{{5.4}{88}{Exercises}{section.5.4}{}}
+\zref@newlabel{mdf@pagelabel-85}{\default{5.4}\page{89}\abspage{89}\mdf@pagevalue{89}}
+\newlabel{exr:ex-order-integration}{{5.1}{89}{Orders of integration}{exercise.5.1}{}}
+\zref@newlabel{mdf@pagelabel-86}{\default{5.4}\page{89}\abspage{89}\mdf@pagevalue{89}}
+\newlabel{exr:ex-integration-true-false}{{5.2}{89}{True or false: integrated processes}{exercise.5.2}{}}
+\gdef \LT@iv {\LT@entry 
+    {1}{44.3357pt}\LT@entry 
+    {3}{36.95831pt}\LT@entry 
+    {3}{36.95831pt}\LT@entry 
+    {3}{30.95831pt}}
+\zref@newlabel{mdf@pagelabel-87}{\default{5.4}\page{90}\abspage{90}\mdf@pagevalue{90}}
+\newlabel{exr:ex-unit-root-tests}{{5.3}{90}{Interpreting ADF and Phillips–Perron tests}{exercise.5.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4.1}Exercise from the 2025 exam}{90}{subsection.5.4.1}\protected@file@percent }
+\newlabel{exercise-from-the-2025-exam-1}{{5.4.1}{90}{Exercise from the 2025 exam}{subsection.5.4.1}{}}
+\zref@newlabel{mdf@pagelabel-88}{\default{5.4.1}\page{90}\abspage{90}\mdf@pagevalue{90}}
+\newlabel{exr:ex-exam2025-lag-polynomials-and-integration}{{5.4}{90}{Lag polynomials, stationarity, and integration}{exercise.5.4}{}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {6}Introduction to cointegration}{91}{chapter.6}\protected@file@percent }
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
+\newlabel{cointeg}{{6}{91}{Introduction to cointegration}{chapter.6}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6.1}Intuition}{91}{section.6.1}\protected@file@percent }
+\newlabel{intuition}{{6.1}{91}{Intuition}{section.6.1}{}}
+\zref@newlabel{mdf@pagelabel-89}{\default{6.1}\page{91}\abspage{91}\mdf@pagevalue{91}}
+\newlabel{def:Id}{{6.1}{91}{Integrated variables}{definition.6.1}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6.2}The bivariate case}{91}{section.6.2}\protected@file@percent }
+\newlabel{the-bivariate-case}{{6.2}{91}{The bivariate case}{section.6.2}{}}
+\newlabel{eq:yxI1}{{6.1}{91}{The bivariate case}{equation.6.1}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6.1}{\ignorespaces Simulated illustration of frequency-dependent comovement: (a) $x_t$ (solid black), $y_t$ (dashed grey), and their common stochastic trend $w_t$ (dotted light grey); (b) correlation between $x_t-x_{t-h}$ and $y_t-y_{t-h}$ as a function of the differencing horizon $h$. Although $x_t$ and $y_t$ share a positive long-run trend, their short-run changes are negatively correlated.}}{92}{figure.caption.25}\protected@file@percent }
+\newlabel{fig:CointegEx}{{6.1}{92}{Simulated illustration of frequency-dependent comovement: (a) $x_t$ (solid black), $y_t$ (dashed grey), and their common stochastic trend $w_t$ (dotted light grey); (b) correlation between $x_t-x_{t-h}$ and $y_t-y_{t-h}$ as a function of the differencing horizon $h$. Although $x_t$ and $y_t$ share a positive long-run trend, their short-run changes are negatively correlated}{figure.caption.25}{}}
+\newlabel{eq:bTsuperconv}{{6.2}{93}{The bivariate case}{equation.6.2}{}}
+\zref@newlabel{mdf@pagelabel-90}{\default{6.2}\page{93}\abspage{93}\mdf@pagevalue{93}}
+\newlabel{prp:I1process}{{6.1}{93}{Properties of an I(1) process}{proposition.6.1}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6.3}Multivariate case and VECM}{93}{section.6.3}\protected@file@percent }
+\newlabel{multivariate-case-and-vecm}{{6.3}{93}{Multivariate case and VECM}{section.6.3}{}}
+\zref@newlabel{mdf@pagelabel-91}{\default{6.3}\page{94}\abspage{94}\mdf@pagevalue{94}}
+\newlabel{def:Idmultivar}{{6.2}{94}{Order of integration (multivariate case)}{definition.6.2}{}}
+\newlabel{eq:I1}{{6.3}{94}{Order of integration (multivariate case)}{equation.6.3}{}}
+\zref@newlabel{mdf@pagelabel-92}{\default{6.3}\page{94}\abspage{94}\mdf@pagevalue{94}}
+\newlabel{def:cointegration}{{6.3}{94}{Cointegration}{definition.6.3}{}}
+\zref@newlabel{mdf@pagelabel-93}{\default{6.3}\page{94}\abspage{94}\mdf@pagevalue{94}}
+\newlabel{prp:NScondCoint}{{6.2}{94}{Necessary and sufficient conditions of cointegration}{proposition.6.2}{}}
+\newlabel{eq:yVECM1}{{6.4}{94}{Multivariate case and VECM}{equation.6.4}{}}
+\newlabel{eq:BAvecm}{{6.5}{95}{Multivariate case and VECM}{equation.6.5}{}}
+\newlabel{eq:yVECM2}{{6.6}{95}{Multivariate case and VECM}{equation.6.6}{}}
+\zref@newlabel{mdf@pagelabel-94}{\default{6.3}\page{95}\abspage{95}\mdf@pagevalue{95}}
+\newlabel{exm:vecmVAR2}{{6.1}{95}{VAR(2)}{example.6.1}{}}
+\newlabel{eq:VECM3}{{6.7}{95}{Multivariate case and VECM}{equation.6.7}{}}
+\zref@newlabel{mdf@pagelabel-95}{\default{6.3}\page{96}\abspage{96}\mdf@pagevalue{96}}
+\newlabel{exm:ExampleVECM1}{{6.2}{96}{VECM example}{example.6.2}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6.2}{\ignorespaces Simulated cointegrated series $y_{1,t}$ and $y_{2,t}$. The solid black line represents $y_{1,t}$; the dashed grey line represents $y_{2,t}$. Their difference follows the stationary process $z_t=0.3z_{t-1}+\mitvarepsilon _{1,t}-\mitvarepsilon _{2,t}$.}}{96}{figure.caption.26}\protected@file@percent }
+\newlabel{fig:VECMexmpl}{{6.2}{96}{Simulated cointegrated series $y_{1,t}$ and $y_{2,t}$. The solid black line represents $y_{1,t}$; the dashed grey line represents $y_{2,t}$. Their difference follows the stationary process $z_t=0.3z_{t-1}+\varepsilon _{1,t}-\varepsilon _{2,t}$}{figure.caption.26}{}}
+\citation{Johansen_1991}
+\citation{Engle_Granger_1987}
+\citation{Phillips_Ouliaris_1990}
+\@writefile{toc}{\contentsline {section}{\numberline {6.4}Cointegration in practice}{97}{section.6.4}\protected@file@percent }
+\newlabel{cointegration-in-practice}{{6.4}{97}{Cointegration in practice}{section.6.4}{}}
+\citation{Phillips_Ouliaris_1990}
+\zref@newlabel{mdf@pagelabel-96}{\default{6.4}\page{98}\abspage{98}\mdf@pagevalue{98}}
+\newlabel{exm:VECMUS}{{6.3}{98}{VECM for US inflation and nominal interest rate}{example.6.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6.1}{\ignorespaces Results of the second-stage OLS regressions (Engle-Granger approach). The first variable is the short-term nominal interest rate; the second variable is inflation.}}{98}{table.caption.27}\protected@file@percent }
+\newlabel{tab:EngleGrangerUS3}{{6.1}{98}{Results of the second-stage OLS regressions (Engle-Granger approach). The first variable is the short-term nominal interest rate; the second variable is inflation}{table.caption.27}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6.5}Exercise}{98}{section.6.5}\protected@file@percent }
+\newlabel{cointegration-exercises}{{6.5}{98}{Exercise}{section.6.5}{}}
+\zref@newlabel{mdf@pagelabel-97}{\default{6.5}\page{99}\abspage{99}\mdf@pagevalue{99}}
+\newlabel{exr:ex-cointegration}{{6.1}{99}{A bivariate cointegrated VAR}{exercise.6.1}{}}
+\citation{Mandelbrot_1963}
+\citation{Engle_1982}
+\@writefile{toc}{\contentsline {chapter}{\numberline {7}ARCH and GARCH models}{101}{chapter.7}\protected@file@percent }
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
+\newlabel{ARCHGARCH}{{7}{101}{ARCH and GARCH models}{chapter.7}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {7.1}Conditional heteroskedasticity}{101}{section.7.1}\protected@file@percent }
+\newlabel{conditional-heteroskedasticity}{{7.1}{101}{Conditional heteroskedasticity}{section.7.1}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {7.1}{\ignorespaces EUR/USD returns and volatility clustering: (a) daily log returns, $100\mitDelta \log (S_t)$, in percent; (b) 30-day rolling root mean square of daily returns, used as a descriptive volatility measure. Periods of large absolute returns coincide with sustained increases in the rolling measure. Source: Board of Governors of the Federal Reserve System, H.10 series DEXUSEU, retrieved from FRED; 5 January 1999–31 December 2025.}}{101}{figure.caption.28}\protected@file@percent }
+\newlabel{fig:GARCHsmireturns}{{7.1}{101}{EUR/USD returns and volatility clustering: (a) daily log returns, $100\Delta \log (S_t)$, in percent; (b) 30-day rolling root mean square of daily returns, used as a descriptive volatility measure. Periods of large absolute returns coincide with sustained increases in the rolling measure. Source: Board of Governors of the Federal Reserve System, H.10 series DEXUSEU, retrieved from FRED; 5 January 1999–31 December 2025}{figure.caption.28}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {7.2}The ARCH model}{102}{section.7.2}\protected@file@percent }
+\newlabel{ARCH}{{7.2}{102}{The ARCH model}{section.7.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.2.1}The two ARCH specifications}{102}{subsection.7.2.1}\protected@file@percent }
+\newlabel{the-two-arch-specifications}{{7.2.1}{102}{The two ARCH specifications}{subsection.7.2.1}{}}
+\newlabel{eq:linearreg}{{7.1}{102}{The two ARCH specifications}{equation.7.1}{}}
+\newlabel{eq:ut2}{{7.2}{102}{The two ARCH specifications}{equation.7.2}{}}
+\newlabel{eq:condvar}{{7.3}{102}{The two ARCH specifications}{equation.7.3}{}}
+\newlabel{eq:uhv}{{7.4}{103}{The two ARCH specifications}{equation.7.4}{}}
+\newlabel{eq:hARCH}{{7.5}{103}{The two ARCH specifications}{equation.7.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.2.2}Maximum Likelihood Estimation of an ARCH process}{103}{subsection.7.2.2}\protected@file@percent }
+\newlabel{maximum-likelihood-estimation-of-an-arch-process}{{7.2.2}{103}{Maximum Likelihood Estimation of an ARCH process}{subsection.7.2.2}{}}
+\newlabel{eq:densityN}{{7.6}{103}{Maximum Likelihood Estimation of an ARCH process}{equation.7.6}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7.1}{\ignorespaces ARCH(2) maximum-likelihood estimates. Data: daily EUR/USD log returns, in percent.}}{104}{table.caption.29}\protected@file@percent }
+\newlabel{tab:estimGARCH2}{{7.1}{104}{ARCH(2) maximum-likelihood estimates. Data: daily EUR/USD log returns, in percent}{table.caption.29}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {7.2}{\ignorespaces Daily EUR/USD log returns and conditional-volatility bands from the estimated ARCH(2) model. The solid black line shows returns; dashed grey lines show $\pm 2\sqrt  {h_t}$. The estimation sample runs from 5 January 1999 through 31 December 2025.}}{104}{figure.caption.30}\protected@file@percent }
+\newlabel{fig:estimGARCH3}{{7.2}{104}{Daily EUR/USD log returns and conditional-volatility bands from the estimated ARCH(2) model. The solid black line shows returns; dashed grey lines show $\pm 2\sqrt {h_t}$. The estimation sample runs from 5 January 1999 through 31 December 2025}{figure.caption.30}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {7.3}The GARCH model}{104}{section.7.3}\protected@file@percent }
+\newlabel{GARCH}{{7.3}{104}{The GARCH model}{section.7.3}{}}
+\newlabel{eq:hGARCH}{{7.7}{104}{The GARCH model}{equation.7.7}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7.2}{\ignorespaces GARCH(1,1) maximum-likelihood estimates. Data: daily EUR/USD log returns, in percent.}}{105}{table.caption.31}\protected@file@percent }
+\newlabel{tab:estimGARCH2X}{{7.2}{105}{GARCH(1,1) maximum-likelihood estimates. Data: daily EUR/USD log returns, in percent}{table.caption.31}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {7.4}ARCH-in-mean}{105}{section.7.4}\protected@file@percent }
+\newlabel{arch-in-mean}{{7.4}{105}{ARCH-in-mean}{section.7.4}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {7.3}{\ignorespaces Estimated conditional standard deviation of daily EUR/USD returns. The solid black line is the ARCH(2) estimate; the dashed grey line is the GARCH(1,1) estimate. Both models are estimated by Gaussian maximum likelihood over 5 January 1999–31 December 2025.}}{106}{figure.caption.32}\protected@file@percent }
+\newlabel{fig:estimGARCH3X}{{7.3}{106}{Estimated conditional standard deviation of daily EUR/USD returns. The solid black line is the ARCH(2) estimate; the dashed grey line is the GARCH(1,1) estimate. Both models are estimated by Gaussian maximum likelihood over 5 January 1999–31 December 2025}{figure.caption.32}{}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {8}Appendix}{109}{chapter.8}\protected@file@percent }
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
+\newlabel{append}{{8}{109}{Appendix}{chapter.8}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {8.1}Principal component analysis (PCA)}{109}{section.8.1}\protected@file@percent }
+\newlabel{PCAapp}{{8.1}{109}{Principal component analysis (PCA)}{section.8.1}{}}
+\newlabel{eq:PCA11}{{8.1}{109}{Principal component analysis (PCA)}{equation.8.1}{}}
+\citation{Litterman_Scheinkman_1991}
+\@writefile{toc}{\contentsline {section}{\numberline {8.2}Linear algebra: definitions and results}{110}{section.8.2}\protected@file@percent }
+\newlabel{LinAlgebra}{{8.2}{110}{Linear algebra: definitions and results}{section.8.2}{}}
+\zref@newlabel{mdf@pagelabel-98}{\default{8.2}\page{110}\abspage{110}\mdf@pagevalue{110}}
+\newlabel{def:determinant}{{8.1}{110}{Eigenvalues}{definition.8.1}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {8.1}{\ignorespaces Principal-component analysis of eight monthly U.S. Treasury yields: (a) share of standardized yield variance explained by each component; (b) loadings of the first three components, shown respectively as solid black, dashed dark-grey, and dotted light-grey lines; (c) observed and two-component fitted one-year yield; and (d) observed and two-component fitted ten-year yield. In panels (c) and (d), observed yields are solid black and fitted yields are dashed grey. Source: Federal Reserve Board H.15 series retrieved through FRED.}}{111}{figure.caption.33}\protected@file@percent }
+\newlabel{fig:USydsPCA1}{{8.1}{111}{Principal-component analysis of eight monthly U.S. Treasury yields: (a) share of standardized yield variance explained by each component; (b) loadings of the first three components, shown respectively as solid black, dashed dark-grey, and dotted light-grey lines; (c) observed and two-component fitted one-year yield; and (d) observed and two-component fitted ten-year yield. In panels (c) and (d), observed yields are solid black and fitted yields are dashed grey. Source: Federal Reserve Board H.15 series retrieved through FRED}{figure.caption.33}{}}
+\zref@newlabel{mdf@pagelabel-99}{\default{8.2}\page{112}\abspage{112}\mdf@pagevalue{112}}
+\newlabel{prp:determinant}{{8.1}{112}{Properties of the determinant}{proposition.8.1}{}}
+\zref@newlabel{mdf@pagelabel-100}{\default{8.2}\page{112}\abspage{112}\mdf@pagevalue{112}}
+\newlabel{def:MoorPenrose}{{8.2}{112}{Moore-Penrose inverse}{definition.8.2}{}}
+\zref@newlabel{mdf@pagelabel-101}{\default{8.2}\page{112}\abspage{112}\mdf@pagevalue{112}}
+\newlabel{prp:MoorPenrose}{{8.2}{112}{Properties of the Moore-Penrose inverse}{proposition.8.2}{}}
+\zref@newlabel{mdf@pagelabel-102}{\default{8.2}\page{112}\abspage{112}\mdf@pagevalue{112}}
+\newlabel{def:idempotent}{{8.3}{112}{Idempotent matrix}{definition.8.3}{}}
+\zref@newlabel{mdf@pagelabel-103}{\default{8.2}\page{112}\abspage{112}\mdf@pagevalue{112}}
+\newlabel{prp:rootsidempotent}{{8.3}{112}{Roots of an idempotent matrix}{proposition.8.3}{}}
+\zref@newlabel{mdf@pagelabel-104}{\default{8.2}\page{112}\abspage{112}\mdf@pagevalue{112}}
+\newlabel{prp:chi2idempotent}{{8.4}{112}{Idempotent matrix and chi-square distribution}{proposition.8.4}{}}
+\zref@newlabel{mdf@pagelabel-105}{\default{8.2}\page{113}\abspage{113}\mdf@pagevalue{113}}
+\newlabel{prp:constrainedLS}{{8.5}{113}{Constrained least squares}{proposition.8.5}{}}
+\zref@newlabel{mdf@pagelabel-106}{\default{8.2}\page{113}\abspage{113}\mdf@pagevalue{113}}
+\newlabel{prp:inversepartitioned}{{8.6}{113}{Inverse of a partitioned matrix}{proposition.8.6}{}}
+\zref@newlabel{mdf@pagelabel-107}{\default{8.2}\page{113}\abspage{113}\mdf@pagevalue{113}}
+\newlabel{def:FOD}{{8.4}{113}{Matrix derivatives}{definition.8.4}{}}
+\zref@newlabel{mdf@pagelabel-108}{\default{8.2}\page{113}\abspage{113}\mdf@pagevalue{113}}
+\newlabel{prp:partial}{{8.7}{113}{}{proposition.8.7}{}}
+\zref@newlabel{mdf@pagelabel-109}{\default{8.2}\page{113}\abspage{113}\mdf@pagevalue{113}}
+\newlabel{prp:absMs}{{8.8}{113}{Square and absolute summability}{proposition.8.8}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {8.3}Statistical analysis: definitions and results}{114}{section.8.3}\protected@file@percent }
+\newlabel{variousResults}{{8.3}{114}{Statistical analysis: definitions and results}{section.8.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.3.1}Moments and statistics}{114}{subsection.8.3.1}\protected@file@percent }
+\newlabel{moments-and-statistics}{{8.3.1}{114}{Moments and statistics}{subsection.8.3.1}{}}
+\zref@newlabel{mdf@pagelabel-110}{\default{8.3.1}\page{114}\abspage{114}\mdf@pagevalue{114}}
+\newlabel{def:partialcorrel}{{8.5}{114}{Partial correlation}{definition.8.5}{}}
+\newlabel{eq:pc}{{8.2}{114}{Partial correlation}{equation.8.2}{}}
+\zref@newlabel{mdf@pagelabel-111}{\default{8.3.1}\page{114}\abspage{114}\mdf@pagevalue{114}}
+\newlabel{def:skewnesskurtosis}{{8.6}{114}{Skewness and kurtosis}{definition.8.6}{}}
+\zref@newlabel{mdf@pagelabel-112}{\default{8.3.1}\page{114}\abspage{114}\mdf@pagevalue{114}}
+\newlabel{thm:CauchySchwarz}{{8.1}{114}{Cauchy-Schwarz inequality}{theorem.8.1}{}}
+\zref@newlabel{mdf@pagelabel-113}{\default{8.3.1}\page{115}\abspage{115}\mdf@pagevalue{115}}
+\newlabel{def:ergodicity}{{8.7}{115}{Mean ergodicity}{definition.8.7}{}}
+\zref@newlabel{mdf@pagelabel-114}{\default{8.3.1}\page{115}\abspage{115}\mdf@pagevalue{115}}
+\newlabel{def:ergod2nd}{{8.8}{115}{Second-moment ergodicity}{definition.8.8}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.3.2}Standard distributions}{115}{subsection.8.3.2}\protected@file@percent }
+\newlabel{standard-distributions}{{8.3.2}{115}{Standard distributions}{subsection.8.3.2}{}}
+\zref@newlabel{mdf@pagelabel-115}{\default{8.3.2}\page{115}\abspage{115}\mdf@pagevalue{115}}
+\newlabel{def:fstatistics}{{8.9}{115}{F distribution}{definition.8.9}{}}
+\zref@newlabel{mdf@pagelabel-116}{\default{8.3.2}\page{115}\abspage{115}\mdf@pagevalue{115}}
+\newlabel{def:tStudent}{{8.10}{115}{Student-t distribution}{definition.8.10}{}}
+\zref@newlabel{mdf@pagelabel-117}{\default{8.3.2}\page{115}\abspage{115}\mdf@pagevalue{115}}
+\newlabel{def:chi2}{{8.11}{115}{Chi-square distribution}{definition.8.11}{}}
+\zref@newlabel{mdf@pagelabel-118}{\default{8.3.2}\page{116}\abspage{116}\mdf@pagevalue{116}}
+\newlabel{def:Cauchy}{{8.12}{116}{Cauchy distribution}{definition.8.12}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {8.2}{\ignorespaces Pdf of the Cauchy distribution ($\mitmu =0$, $\mitgamma =1$).}}{116}{figure.caption.34}\protected@file@percent }
+\newlabel{fig:Cauchy}{{8.2}{116}{Pdf of the Cauchy distribution ($\mu =0$, $\gamma =1$)}{figure.caption.34}{}}
+\zref@newlabel{mdf@pagelabel-119}{\default{8.3.2}\page{116}\abspage{116}\mdf@pagevalue{116}}
+\newlabel{prp:waldtypeproduct}{{8.9}{116}{Inner product of a multivariate Gaussian variable}{proposition.8.9}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.3.3}Stochastic convergences}{116}{subsection.8.3.3}\protected@file@percent }
+\newlabel{StochConvergences}{{8.3.3}{116}{Stochastic convergences}{subsection.8.3.3}{}}
+\zref@newlabel{mdf@pagelabel-120}{\default{8.3.3}\page{117}\abspage{117}\mdf@pagevalue{117}}
+\newlabel{def:convergenceproba}{{8.13}{117}{Convergence in probability}{definition.8.13}{}}
+\zref@newlabel{mdf@pagelabel-121}{\default{8.3.3}\page{117}\abspage{117}\mdf@pagevalue{117}}
+\newlabel{def:convergenceLr}{{8.14}{117}{Convergence in the Lr norm}{definition.8.14}{}}
+\zref@newlabel{mdf@pagelabel-122}{\default{8.3.3}\page{117}\abspage{117}\mdf@pagevalue{117}}
+\newlabel{def:convergenceAlmost}{{8.15}{117}{Almost sure convergence}{definition.8.15}{}}
+\zref@newlabel{mdf@pagelabel-123}{\default{8.3.3}\page{117}\abspage{117}\mdf@pagevalue{117}}
+\newlabel{def:cvgceDistri}{{8.16}{117}{Convergence in distribution}{definition.8.16}{}}
+\zref@newlabel{mdf@pagelabel-124}{\default{8.3.3}\page{117}\abspage{117}\mdf@pagevalue{117}}
+\newlabel{thm:cauchycritstatic}{{8.2}{117}{Cauchy criterion (non-stochastic case)}{theorem.8.2}{}}
+\zref@newlabel{mdf@pagelabel-125}{\default{8.3.3}\page{117}\abspage{117}\mdf@pagevalue{117}}
+\newlabel{thm:cauchycritstochastic}{{8.3}{117}{Cauchy criterion (stochastic case)}{theorem.8.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.3.4}Multivariate Gaussian distribution}{118}{subsection.8.3.4}\protected@file@percent }
+\newlabel{multivariate-gaussian-distribution}{{8.3.4}{118}{Multivariate Gaussian distribution}{subsection.8.3.4}{}}
+\zref@newlabel{mdf@pagelabel-126}{\default{8.3.4}\page{118}\abspage{118}\mdf@pagevalue{118}}
+\newlabel{prp:pdfMultivarGaussian}{{8.10}{118}{p.d.f. of a multivariate Gaussian variable}{proposition.8.10}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.3.5}Central limit theorem}{118}{subsection.8.3.5}\protected@file@percent }
+\newlabel{CLTappend}{{8.3.5}{118}{Central limit theorem}{subsection.8.3.5}{}}
+\zref@newlabel{mdf@pagelabel-127}{\default{8.3.5}\page{118}\abspage{118}\mdf@pagevalue{118}}
+\newlabel{thm:LLNappendix}{{8.4}{118}{Law of large numbers}{theorem.8.4}{}}
+\zref@newlabel{mdf@pagelabel-128}{\default{8.3.5}\page{118}\abspage{118}\mdf@pagevalue{118}}
+\newlabel{thm:LindbergLevyCLT}{{8.5}{118}{Lindberg-Levy Central limit theorem, CLT}{theorem.8.5}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {8.4}Proofs}{119}{section.8.4}\protected@file@percent }
+\newlabel{AppendixProof}{{8.4}{119}{Proofs}{section.8.4}{}}
+\newlabel{eq:1}{{8.3}{120}{Proofs}{equation.8.3}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {8.5}Inference}{122}{section.8.5}\protected@file@percent }
+\newlabel{Inference}{{8.5}{122}{Inference}{section.8.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.5.1}Monte Carlo method}{122}{subsection.8.5.1}\protected@file@percent }
+\newlabel{MonteCarlo}{{8.5.1}{122}{Monte Carlo method}{subsection.8.5.1}{}}
+\citation{Lutkepohl_1990}
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.5.2}Delta method}{123}{subsection.8.5.2}\protected@file@percent }
+\newlabel{Delta}{{8.5.2}{123}{Delta method}{subsection.8.5.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.5.3}Bootstrap}{123}{subsection.8.5.3}\protected@file@percent }
+\newlabel{Bootstrap}{{8.5.3}{123}{Bootstrap}{subsection.8.5.3}{}}
+\bibdata{book.bib,packages.bib}
+\@writefile{toc}{\contentsline {section}{\numberline {8.6}Statistical Tables}{124}{section.8.6}\protected@file@percent }
+\newlabel{statistical-tables}{{8.6}{124}{Statistical Tables}{section.8.6}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8.1}{\ignorespaces Quantiles of the $\symcal {N}(0,1)$ distribution. If $a$ and $b$ are respectively the row and column number; then the corresponding cell gives $\symbb {P}(0<X\le a+b)$, where $X \sim \symcal {N}(0,1)$.}}{125}{table.caption.35}\protected@file@percent }
+\newlabel{tab:Normal}{{8.1}{125}{Quantiles of the $\mathcal {N}(0,1)$ distribution. If $a$ and $b$ are respectively the row and column number; then the corresponding cell gives $\mathbb {P}(0<X\le a+b)$, where $X \sim \mathcal {N}(0,1)$}{table.caption.35}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8.2}{\ignorespaces Quantiles of the Student-$t$ distribution. The rows correspond to different degrees of freedom ($\mitnu $, say); the columns correspond to different probabilities ($z$, say). The cell gives $q$ that is s.t. $\symbb {P}(-q<X<q)=z$, with $X \sim t(\mitnu )$.}}{126}{table.caption.36}\protected@file@percent }
+\newlabel{tab:Student}{{8.2}{126}{Quantiles of the Student-$t$ distribution. The rows correspond to different degrees of freedom ($\nu $, say); the columns correspond to different probabilities ($z$, say). The cell gives $q$ that is s.t. $\mathbb {P}(-q<X<q)=z$, with $X \sim t(\nu )$}{table.caption.36}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8.3}{\ignorespaces Quantiles of the $\mitchi ^2$ distribution. The rows correspond to different degrees of freedom; the columns correspond to different probabilities.}}{127}{table.caption.37}\protected@file@percent }
+\newlabel{tab:Chi2}{{8.3}{127}{Quantiles of the $\chi ^2$ distribution. The rows correspond to different degrees of freedom; the columns correspond to different probabilities}{table.caption.37}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8.4}{\ignorespaces Quantiles of the $\symcal {F}$ distribution. The columns and rows correspond to different degrees of freedom (resp. $n_1$ and $n_2$). The different panels correspond to different probabilities ($\mitalpha $) The corresponding cell gives $z$ that is s.t. $\symbb {P}(X \le z)=\mitalpha $, with $X \sim \symcal {F}(n_1,n_2)$.}}{128}{table.caption.38}\protected@file@percent }
+\newlabel{tab:Fstat}{{8.4}{128}{Quantiles of the $\mathcal {F}$ distribution. The columns and rows correspond to different degrees of freedom (resp. $n_1$ and $n_2$). The different panels correspond to different probabilities ($\alpha $) The corresponding cell gives $z$ that is s.t. $\mathbb {P}(X \le z)=\alpha $, with $X \sim \mathcal {F}(n_1,n_2)$}{table.caption.38}{}}
+\bibcite{Abadir_1993}{{1}{1993}{{Abadir}}{{}}}
+\bibcite{Anderson_1971}{{2}{1971}{{Anderson}}{{}}}
+\bibcite{BERNANKE198649}{{3}{1986}{{Bernanke}}{{}}}
+\bibcite{Blanchard_Quah_1989}{{4}{1989}{{Blanchard and Quah}}{{}}}
+\bibcite{boxjen76}{{5}{1976}{{Box and Jenkins}}{{}}}
+\bibcite{Christiano_Eichenbaum_Evans_1996}{{6}{1996}{{Christiano et~al.}}{{}}}
+\bibcite{NBERc11177}{{7}{2007}{{Christiano et~al.}}{{}}}
+\bibcite{DEGOOIJER2006443}{{8}{2006}{{{De Gooijer} and Hyndman}}{{}}}
+\bibcite{DEDOLA20051543}{{9}{2005}{{Dedola and Lippi}}{{}}}
+\bibcite{DF1979}{{10}{1979}{{Dickey and Fuller}}{{}}}
+\bibcite{Diebold_Mariano_1995}{{11}{1995}{{Diebold and Mariano}}{{}}}
+\bibcite{Engle_1982}{{12}{1982}{{Engle}}{{}}}
+\bibcite{Engle_Granger_1987}{{13}{1987}{{Engle and Granger}}{{}}}
+\bibcite{Erceg_et_al_2005}{{14}{2005}{{Erceg et~al.}}{{}}}
+\bibcite{Faust_Leeper_1997}{{15}{1997}{{Faust and Leeper}}{{}}}
+\bibcite{Fischer_1977}{{16}{1977}{{Fischer}}{{}}}
+\bibcite{Gali_1999}{{17}{1999}{{Gal\'i}}{{}}}
+\bibcite{Gali_1992}{{18}{1992}{{Galí}}{{}}}
+\bibcite{Gerlach_Smets_1995}{{19}{1995}{{Gerlach and Smets}}{{}}}
+\bibcite{Gourieroux_Monfort_Renne_2020}{{20}{2020}{{Gouri\'eroux et~al.}}{{}}}
+\bibcite{Gourieroux_Monfort_Renne_2017}{{21}{2017}{{Gouriéroux et~al.}}{{}}}
+\bibcite{Granger_1969}{{22}{1969}{{Granger}}{{}}}
+\bibcite{Hamilton_1994}{{23}{1994}{{Hamilton}}{{}}}
+\bibcite{Johansen_1991}{{24}{1991}{{Johansen}}{{}}}
+\bibcite{Jorda_2005}{{25}{2005}{{Jord\`a}}{{}}}
+\bibcite{JST_2017}{{26}{2017}{{Jord\`a et~al.}}{{}}}
+\bibcite{KWIATKOWSKI1992159}{{27}{1992}{{Kwiatkowski et~al.}}{{}}}
+\bibcite{Litterman_Scheinkman_1991}{{28}{1991}{{Litterman and Scheinkman}}{{}}}
+\bibcite{Lutkepohl_1990}{{29}{1990}{{L\"utkepohl}}{{}}}
+\bibcite{Mandelbrot_1963}{{30}{1963}{{Mandelbrot}}{{}}}
+\bibcite{Newey_West_1987}{{31}{1987}{{Newey and West}}{{}}}
+\bibcite{Phillips_Perron_1988}{{32}{1988}{{Phillips and Perron}}{{}}}
+\bibcite{Phillips_1987}{{33}{1987}{{Phillips}}{{}}}
+\bibcite{Phillips_Ouliaris_1990}{{34}{1990}{{Phillips and Ouliaris}}{{}}}
+\bibcite{Ramey_2016_NBER}{{35}{2016}{{Ramey}}{{}}}
+\bibcite{RubioRamirez_et_al_2010}{{36}{2010}{{Ruibio-Ram\'irez et~al.}}{{}}}
+\bibcite{Schwert_1989}{{37}{1989}{{Schwert}}{{}}}
+\bibcite{Sims_1980}{{38}{1980}{{Sims}}{{}}}
+\bibcite{Sims_1986}{{39}{1986}{{Sims}}{{}}}
+\bibcite{Stock_Watson_2016}{{40}{2016}{{Stock and Watson}}{{}}}
+\bibcite{Stock_Watson_2003}{{41}{2003}{{Stock and Watson}}{{}}}
+\gdef \@abspage@last{131}

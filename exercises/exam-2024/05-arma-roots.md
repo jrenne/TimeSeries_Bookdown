@@ -25,4 +25,4 @@ State whether each assertion is true or false and justify your answer.
 2. $y_t$ is covariance stationary.
 3. $z_t$ is covariance stationary.
 4. $\gamma_1(z)=-0.8\gamma_0(z)$.
-5. $\operatorname{Var}(z_t+0.8z_{t-1})=3\sigma^2$.
+5. $\mathbb{V}ar(z_t+0.8z_{t-1})=3\sigma^2$.

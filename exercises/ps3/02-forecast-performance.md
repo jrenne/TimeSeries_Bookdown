@@ -24,6 +24,6 @@ Here $d_t=e_{j,t}^2-e_{A,t}^2$, for $j=B,C$.
 
 1. Discuss the in-sample and out-of-sample rankings.
 
-2. Using a Newey–West long-run variance with maximum lag 3 and Bartlett weights, estimate $\operatorname{Var}(\bar d)$.
+2. Using a Newey–West long-run variance with maximum lag 3 and Bartlett weights, estimate $\mathbb{V}ar(\bar d)$.
 
 3. Test at 5% whether B and C have equal predictive accuracy to A, and interpret the sign of the test statistic.

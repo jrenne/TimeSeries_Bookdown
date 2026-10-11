@@ -124,7 +124,7 @@ y_{t-1} +
 We can use function `simul.VARMA` of package `IdSS` to produce IRFs (using `indic.IRF=1` in the list of arguments):
 
 
-```{r simVAR, fig.align = 'left-aligned', out.width = "95%", fig.cap = "Impulse response functions (SVARMA(1,1) specified above).",message=FALSE}
+```{r simVAR, fig.align = 'left-aligned', out.width = "95%", fig.cap = "Impulse response functions of the bivariate SVARMA(1,1) model specified in Equation \\@ref(eq:VARMA111): (a) response of $y_{1,t}$ to $\\eta_{1,t}$; (b) response of $y_{2,t}$ to $\\eta_{1,t}$; (c) response of $y_{1,t}$ to $\\eta_{2,t}$; and (d) response of $y_{2,t}$ to $\\eta_{2,t}$. Each structural innovation is increased by one unit on impact.",message=FALSE}
 library(IdSS)
 distri <- list(type=c("gaussian","gaussian"),df=c(4,4))
 n <- length(distri$type) # dimension of y_t
@@ -151,9 +151,10 @@ for(i in 1:2){
   if(i == 1){res.sim <- res.sim.1
   }else{res.sim <- res.sim.2}
   for(j in 1:2){
+    panel <- letters[(i - 1) * 2 + j]
     plot(res.sim$Y[j,],las=1,
          type="l",lwd=3,xlab="",ylab="",
-         main=paste("Resp. of y",j,
+         main=paste0("(",panel,") Resp. of y",j,
                     " to a 1-unit increase in eta",i,sep=""))
     abline(h=0,col="grey",lty=3)
   }}
@@ -241,13 +242,15 @@ $$
 where $\phi_i$ is the $i^{th}$ row of $\Phi_1$, and where $\varepsilon_{i,t}$ is a linear combination of $\eta_t$ and $\eta_{t-1}$. Since $y_{t-1}$ (the regressor) is correlated to $\eta_{t-1}$, it is also correlated to $\varepsilon_{i,t}$. The OLS regression of $y_{i,t}$ on $y_{t-1}$ yields a biased estimator of $\phi_i$ (see Figure \@ref(fig:simulARMAbiased)). Hence, SVARMA models cannot be consistently estimated by simple OLS regressions (contrary to VAR models, as we will see in the next section); instrumental-variable approaches can be employed to estimate SVARMA models (using past values of $y_t$ as instruments, see, e.g., @Gourieroux_Monfort_Renne_2020).
 
 
-```{r simulARMAbiased, fig.align = 'left-aligned', out.width = "95%", fig.cap = "Illustration of the bias obtained when estimating the auto-regressive parameters of an ARMA process by (standard) OLS."}
+```{r simulARMAbiased, fig.align = 'left-aligned', out.width = "95%", fig.cap = "Monte Carlo distributions of the OLS estimator of the autoregressive coefficient in an ARMA(1,1) model, based on 1,000 samples of length 100: (a) $\\theta=0$ and (b) $\\theta=-0.4$. The true autoregressive coefficient is $\\phi=0.8$, marked by the vertical black line."}
 N <- 1000 # number of replications
 T <- 100 # sample length
 phi <- .8 # autoregressive parameter
 sigma <- 1
 par(mfrow=c(1,2))
+count <- 0
 for(theta in c(0,-0.4)){
+  count <- count + 1
   all.y <- matrix(0,1,N)
   y     <- all.y
   eta_1 <- rnorm(N)
@@ -262,8 +265,8 @@ for(theta in c(0,-0.4)){
   XY   <- apply(all.y_1 * all.y,2,sum)
   phi.est.OLS <- XX_1 * XY
   plot(density(phi.est.OLS),xlab="OLS estimate of phi",ylab="",
-       main=paste("theta = ",theta,sep=""))
-  abline(v=phi,col="red",lwd=2)}
+       main=paste0("(",letters[count],") theta = ",theta))
+  abline(v=phi,col="black",lwd=2)}
 ```
 
 
@@ -691,7 +694,7 @@ where $S$, $r$ and $F$ respectively correspond to *slow-moving variables*, the p
 An equivalent approach consists in computing the Cholesky decomposition of $BB'$ and the contemporaneous impacts of the monetary policy shock (on the $n$ endogenous variables) are the components of the column of $B$ corresponding to the policy variable.
 
 
-```{r CEE, fig.align = 'left-aligned', out.width = "95%", fig.cap = "Response to a monetary-policy shock. Identification approach of Christiano, Eichenbaum and Evans (1996). Confidence intervals are obtained by boostrapping the estimated VAR model (see inference section).",warning=FALSE,message=FALSE}
+```{r CEE, fig.align = 'left-aligned', out.width = "95%", fig.cap = "Responses of U.S. macroeconomic variables to a contractionary monetary-policy shock identified recursively as in Christiano, Eichenbaum, and Evans (1996). Solid lines are point estimates; dashed lines are 90\\% pointwise confidence bands obtained by bootstrapping the estimated VAR(3). Monthly sample: January 1965–June 1995.",warning=FALSE,message=FALSE}
 library(IdSS);library(vars)
 data("USmonthly")
 # Select sample period:
@@ -802,15 +805,15 @@ where $\Theta_{ij}$ is the element $(i,j)$ of $\Theta$.
 <!-- \end{eqnarray*} -->
 <!-- Then, it appears that the demand shocks have no long-run cumulative impact on $\Delta Y_{t}$, the GDP growth, i.e. no long-term impact on output $Y_t$. The vector of endogenous variables is $y_t = [\Delta Y_{t} \quad u_{t}]'$ where $\Delta Y_{t}$ denotes the GDP growth. -->
 
-@Blanchard_Quah_1989's dataset is quarterly, spanning the period from 1950:2 to 1987:4. Their VAR features 8 lags. Here are the data they use:
+The original dataset of @Blanchard_Quah_1989 is quarterly and their VAR features eight lags. The application below uses the open `IdSS` reconstruction based on public BEA real-GNP and BLS unemployment series, transformed in the same spirit as the original variables.
 
-```{r BQ1}
+```{r BQ1, fig.cap="Open reconstruction of the quarterly U.S. variables used in the Blanchard--Quah long-run-restriction example: (a) demeaned real-GNP log growth and (b) linearly detrended unemployment. Sample: 1948 Q2--1987 Q4. Sources: U.S. Bureau of Economic Analysis and Bureau of Labor Statistics via FRED."}
 library(IdSS)
 data(BQ)
 par(mfrow=c(1,2))
-plot(BQ$Date,BQ$Dgdp,type="l",main="GDP quarterly growth rate",
+plot(BQ$Date,BQ$Dgdp,type="l",main="(a) Quarterly real-GNP growth",
      xlab="",ylab="",lwd=2)
-plot(BQ$Date,BQ$unemp,type="l",ylim=c(-3,6),main="Unemployment rate (gap)",
+plot(BQ$Date,BQ$unemp,type="l",ylim=c(-3,6),main="(b) Unemployment-rate gap",
      xlab="",ylab="",lwd=2)
 ```
 
@@ -845,19 +848,19 @@ print(res.opt$par)
 
 Figure \@ref(fig:BQ4) displays the resulting IRFs. Note that, for GDP, we cumulate the GDP growth IRF, so as to have the response of the GDP in level.
 
-```{r BQ4, fig.align = 'left-aligned', out.width = "95%", fig.cap = "IRF of GDP and unemployment to demand and supply shocks."}
+```{r BQ4, fig.align = 'left-aligned', out.width = "95%", fig.cap = "Impulse responses in the Blanchard-Quah model: (a) GDP level to a demand shock; (b) unemployment to a demand shock; (c) GDP level to a supply shock; and (d) unemployment to a supply shock. GDP responses are cumulated from the estimated growth-rate responses."}
 B.hat <- matrix(res.opt$par,2,2)
 print(cbind(Omega,B.hat %*% t(B.hat)))
 nb.sim <- 40
 par(mfrow=c(2,2));par(plt=c(.15,.95,.15,.8))
 Y <- simul.VAR(c=matrix(0,2,1),Phi,B.hat,nb.sim,y0.star=rep(0,2*8),
                indic.IRF = 1,u.shock = c(1,0))
-plot(cumsum(Y[,1]),type="l",lwd=2,xlab="",ylab="",main="Demand shock on GDP")
-plot(Y[,2],type="l",lwd=2,xlab="",ylab="",main="Demand shock on UNEMP")
+plot(cumsum(Y[,1]),type="l",lwd=2,xlab="",ylab="",main="(a) Demand shock: GDP")
+plot(Y[,2],type="l",lwd=2,xlab="",ylab="",main="(b) Demand shock: unemployment")
 Y <- simul.VAR(c=matrix(0,2,1),Phi,B.hat,nb.sim,y0.star=rep(0,2*8),
                indic.IRF = 1,u.shock = c(0,1))
-plot(cumsum(Y[,1]),type="l",lwd=2,xlab="",ylab="",main="Supply shock on GDP")
-plot(Y[,2],type="l",lwd=2,xlab="",ylab="",main="Supply shock on UNEMP")
+plot(cumsum(Y[,1]),type="l",lwd=2,xlab="",ylab="",main="(c) Supply shock: GDP")
+plot(Y[,2],type="l",lwd=2,xlab="",ylab="",main="(d) Supply shock: unemployment")
 ```
 
 
@@ -875,4 +878,13 @@ render_exercises("ps3", "ex-var-model")
 
 ```{r var-exam-2024, results='asis'}
 render_exercises("exam-2024", "ex-exam2024-var-forecast-identification")
+```
+
+### Exercises from the 2025 exam
+
+```{r var-exam-2025, results='asis'}
+render_exercises("exam-2025", c(
+  "ex-exam2025-var2-companion-form",
+  "ex-exam2025-var-granger-forecasts"
+))
 ```

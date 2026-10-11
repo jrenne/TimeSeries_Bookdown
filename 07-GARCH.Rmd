@@ -6,15 +6,19 @@ Many financial and macroeconomic variables are hit by shocks whose variance is n
 
 Autoregressive Conditional Heteroskedasticity (ARCH) and its generalized version (GARCH) constitute useful tools to model such time series.
 
-```{r GARCHsmireturns, echo=FALSE, fig.cap="Upper plot: SMI index (daily Close prices); lower plot: daily log returns.", fig.asp = .6, out.width = "100%", fig.align = 'left-aligned'}
-library(IdSS);data(smi)
-par(plt=c(0.1,0.95,0.2,0.75))
-smi <- smi[complete.cases(smi),] # remove NaNs
-T <- dim(smi)[1]
-smi$r <- 100*c(NaN,log(smi$Close[2:T]/smi$Close[1:(T-1)]))
-par(plt=c(.15,.95,.2,.95));par(mfrow=c(2,1))
-plot(smi$Date,smi$Close,type="l",xlab="",ylab="",las=1)
-plot(smi$Date,smi$r,type="l",ylab="in percent",xlab="",las=1)
+```{r GARCHsmireturns, echo=FALSE, fig.cap="EUR/USD returns and volatility clustering: (a) daily log returns, $100\\Delta\\log(S_t)$, in percent; (b) 30-day rolling root mean square of daily returns, used as a descriptive volatility measure. Periods of large absolute returns coincide with sustained increases in the rolling measure. Source: Board of Governors of the Federal Reserve System, H.10 series DEXUSEU, retrieved from FRED; 5 January 1999–31 December 2025.", fig.asp = .6, out.width = "100%", fig.align = 'left-aligned'}
+library(IdSS);data(eurusd)
+fx <- data.frame(
+  Date = eurusd$Date[-1],
+  r = 100 * diff(log(eurusd$USD_per_EUR))
+)
+fx$rms30 <- sqrt(as.numeric(stats::filter(fx$r^2, rep(1/30, 30), sides=1)))
+par(mfrow=c(2,1),mar=c(3,5,3,1))
+plot(fx$Date,fx$r,type="l",ylab="Return (percent)",xlab="",las=1,
+     main="(a) Daily EUR/USD log returns")
+abline(h=0)
+plot(fx$Date,fx$rms30,type="l",ylab="30-day RMS (percent)",xlab="",las=1,
+     main="(b) Rolling volatility proxy")
 ```
 
 In order to test whether a times series of shocks $\{u_1,\dots,u_T\}$ features persistent conditional heteroskedasticity, a simple test has been designed by @Engle_1982. This test consists in regressing $u_t^2$ on it last $m$ lags (i.e., on $u_{t-1}^2,\dots,u_{t-m}^2$) by OLS.Under the null hypothesis that $u_t$ is i.i.d., we have:
@@ -23,22 +27,19 @@ T \times R^2 \overset{d}{\rightarrow} \chi^2(m),
 $$
 where $R^2$ is the centered $R^2$ of the OLS regression.
 
-Let us employ this test on the return series plotted in the lower panel of Figure \@ref(fig:GARCHsmireturns):
+Let us employ this test on the return series plotted in panel (a) of Figure \@ref(fig:GARCHsmireturns):
 
 ```{r tesHeterosk}
-library(IdSS);data(smi)
-smi <- smi[complete.cases(smi),] # remove NaNs
-T <- dim(smi)[1]
-smi$r <- 100*c(NaN,log(smi$Close[2:T]/smi$Close[1:(T-1)]))
-u <- smi$r^2
-u_1 <- c(NaN,smi$r[1:(T-1)]^2)
-u_2 <- c(NaN,NaN,smi$r[1:(T-2)]^2)
-eq <- lm(u^2 ~ u_1^2 + u_2^2)
+u <- fx$r^2
+T <- length(u)
+u_1 <- c(NaN,u[1:(T-1)])
+u_2 <- c(NaN,NaN,u[1:(T-2)])
+eq <- lm(u ~ u_1 + u_2)
 test.stat <- length(u)*summary(eq)$r.squared
 pvalue <- 1 - pchisq(q = test.stat,df=2)
 ```
 
-The p-value is extremely close to zero. Hence we strongly reject the null of an i.i.d. SMI return.
+The p-value is extremely close to zero. Hence we strongly reject the null of i.i.d. EUR/USD returns.
 
 
 ## The ARCH model {#ARCH}
@@ -123,7 +124,7 @@ where $\theta$, the vector of unknown parameters, is $[\boldsymbol\beta',\zeta,\
 
 Note that one can also use non-Gaussian distributions for $v_t$. (For that, one has to replace the normal distribution in Eq. \@ref(eq:densityN).)
 
-Let us fit an ARCH(2) model on the SMI return data (lower plot of Figure \@ref(fig:GARCHsmireturns)). For this, we make use of function `compute.garch` of package `IdSS`. This function takes four arguments:
+Let us fit an ARCH(2) model on the EUR/USD return data (panel (a) of Figure \@ref(fig:GARCHsmireturns)). For this, we make use of function `compute.garch` of package `IdSS`. This function takes four arguments:
 
 * vector `theta` contains the model parameterization: first, $\zeta$, then the $\alpha_i$'s, then for GARCH models (see Subsection \@ref(GARCH) below), the $\delta_i$'s.
 * vector `x` contains the observations of the process.
@@ -147,9 +148,8 @@ Now, let us maximize the log-likelihood:
 ```{r estimGARCH1,message=FALSE,results = FALSE}
 m <- 2
 r <- 0 # for ARCH models, r=0
-smi <- smi[4000:dim(smi)[1],] # reduce sample
 par0 <- c(0.62,0.2,0.2)
-res.opt <- optim(par=par0,x=smi$r,m=m,r=r,loglik,
+res.opt <- optim(par=par0,x=fx$r,m=m,r=r,loglik,
                  method="BFGS",hessian=TRUE,
                  control = list(trace=TRUE,maxit = 10))
 estim.param <- res.opt$par
@@ -161,20 +161,20 @@ Table \@ref(tab:estimGARCH2) reports the estimated parameters and their standard
 
 ```{r estimGARCH2,message=FALSE,echo=FALSE}
 tab.results <- cbind(estim.param,std.dev,t.stat)
-estim.arch <- compute.garch(res.opt$par,smi$r,m,r)
+estim.arch <- compute.garch(res.opt$par,fx$r,m,r)
 rownames(tab.results) <- estim.arch$names.param
 colnames(tab.results) <- c("Estim. param.","Std dev.","t-stat")
-knitr::kable(tab.results,caption = "ARCH(2), ML estimation results.
-             Data: SMI daily returns.", digits=4)
+knitr::kable(tab.results,caption = "ARCH(2) maximum-likelihood estimates.
+             Data: daily EUR/USD log returns, in percent.", digits=4)
 ```
 
 
-```{r estimGARCH3, echo=FALSE, fig.cap="SMI daily returns (in black) and, in red, 95\\% confidence interval based on the ARCH(2) estimated model ($\\pm 2 \\sqrt{h_t}$).", fig.align = 'left-aligned'}
+```{r estimGARCH3, echo=FALSE, fig.cap="Daily EUR/USD log returns and conditional-volatility bands from the estimated ARCH(2) model. The solid black line shows returns; dashed grey lines show $\\pm 2\\sqrt{h_t}$. The estimation sample runs from 5 January 1999 through 31 December 2025.", fig.align = 'left-aligned'}
 par(mfrow=c(1,1))
 par(plt=c(0.15,0.95,0.2,0.95))
-plot(smi$Date,smi$r,xlab="",ylab="in percent",type="l")
-lines(smi$Date,-2*sqrt(estim.arch$h),col="red",lty=3)
-lines(smi$Date,+2*sqrt(estim.arch$h),col="red",lty=3)
+plot(fx$Date,fx$r,xlab="",ylab="Return (percent)",type="l")
+lines(fx$Date,-2*sqrt(estim.arch$h),col="grey45",lty=2)
+lines(fx$Date,+2*sqrt(estim.arch$h),col="grey45",lty=2)
 ```
 
 
@@ -209,7 +209,7 @@ $$
 $$
 
 
-GARCH models can also be estimated by the ML approach.Table \@ref(tab:estimGARCH2X) reports the estimated parameters when fitting an GARCH(1,1) model on the SMI return dataset. Figure
+GARCH models can also be estimated by the ML approach.Table \@ref(tab:estimGARCH2X) reports the estimated parameters when fitting an GARCH(1,1) model on the EUR/USD return dataset. Figure
 
 Figure \@ref(fig:estimGARCH3X) compare the condiitonal standard deviations ($\sqrt{h_t}$) resulting from the ARCH(2) and the GARCH(1,1) specifications.
 
@@ -217,26 +217,26 @@ Figure \@ref(fig:estimGARCH3X) compare the condiitonal standard deviations ($\sq
 m <- 1
 r <- 1 # for ARCH models, r=0
 par0 <- c(0.62,0.2,0.2)
-res.opt <- optim(par=par0,x=smi$r,m=m,r=r,loglik,
+res.opt <- optim(par=par0,x=fx$r,m=m,r=r,loglik,
                  method="BFGS",hessian=TRUE,
                  control = list(trace=TRUE,maxit = 10))
 estim.param <- res.opt$par
 std.dev <- sqrt(diag(solve(res.opt$hessian)))
 t.stat <- estim.param/std.dev
 tab.results <- cbind(estim.param,std.dev,t.stat)
-estim.garch <- compute.garch(res.opt$par,smi$r,m,r)
+estim.garch <- compute.garch(res.opt$par,fx$r,m,r)
 rownames(tab.results) <- estim.garch$names.param
 colnames(tab.results) <- c("Estim. param.","Std dev.","t-stat")
-knitr::kable(tab.results,caption = "ARCH(2), ML estimation results.
-             Data: SMI daily returns.", digits=4)
+knitr::kable(tab.results,caption = "GARCH(1,1) maximum-likelihood estimates.
+             Data: daily EUR/USD log returns, in percent.", digits=4)
 ```
 
 
-```{r estimGARCH3X, echo=FALSE, fig.cap="Estimated conditional standard deviations ($\\sqrt{h_t}$) of SMI daily returns: ARCH(2) [black line] and GARCH(1,1) [dotted red line] specifications.", fig.align = 'left-aligned'}
+```{r estimGARCH3X, echo=FALSE, fig.cap="Estimated conditional standard deviation of daily EUR/USD returns. The solid black line is the ARCH(2) estimate; the dashed grey line is the GARCH(1,1) estimate. Both models are estimated by Gaussian maximum likelihood over 5 January 1999–31 December 2025.", fig.align = 'left-aligned'}
 par(mfrow=c(1,1))
 par(plt=c(0.15,0.95,0.2,0.95))
-plot(smi$Date,sqrt(estim.arch$h),ylab="in percent",type="l")
-lines(smi$Date,sqrt(estim.garch$h),ylab="in percent",type="l",col="red",lty=3)
+plot(fx$Date,sqrt(estim.arch$h),ylab="Conditional s.d. (percent)",type="l")
+lines(fx$Date,sqrt(estim.garch$h),type="l",col="grey45",lty=2)
 ```
 
 
@@ -249,6 +249,4 @@ u_t &=& \sqrt{h_t} v_t \\
 h_t &=& \zeta + \alpha_1 u_{t-1}^2 + \dots + \alpha_m u_{t-m}^2,
 \end{eqnarray*}
 where $v_t$ is a zero-mean unit-variance i.i.d. sequence.
-
-
 

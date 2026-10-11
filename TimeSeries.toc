@@ -1,0 +1,84 @@
+\contentsline {chapter}{\numberline {1}Basics}{7}{chapter.1}%
+\contentsline {section}{\numberline {1.1}Shocks and lag operator}{7}{section.1.1}%
+\contentsline {section}{\numberline {1.2}Moments and stationarity: the practical view}{9}{section.1.2}%
+\contentsline {section}{\numberline {1.3}Central Limit Theorem (CLT) for persistent processes}{11}{section.1.3}%
+\contentsline {section}{\numberline {1.4}Exercises from past exams}{13}{section.1.4}%
+\contentsline {chapter}{\numberline {2}Univariate processes}{17}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Moving Average (MA) processes}{17}{section.2.1}%
+\contentsline {section}{\numberline {2.2}Auto-Regressive (AR) processes}{20}{section.2.2}%
+\contentsline {section}{\numberline {2.3}AR-MA processes}{23}{section.2.3}%
+\contentsline {section}{\numberline {2.4}PACF approach to identify AR/MA processes}{24}{section.2.4}%
+\contentsline {section}{\numberline {2.5}Wold decomposition}{25}{section.2.5}%
+\contentsline {section}{\numberline {2.6}Impulse Response Functions (IRFs) in ARMA models}{26}{section.2.6}%
+\contentsline {section}{\numberline {2.7}ARMA processes with exogenous variables (ARMA-X)}{28}{section.2.7}%
+\contentsline {subsection}{\numberline {2.7.1}Definitions (ARMA-X)}{28}{subsection.2.7.1}%
+\contentsline {subsection}{\numberline {2.7.2}Dynamic multipliers in ARMA-X models}{29}{subsection.2.7.2}%
+\contentsline {section}{\numberline {2.8}Maximum Likelihood Estimation (MLE) of ARMA processes}{34}{section.2.8}%
+\contentsline {subsection}{\numberline {2.8.1}Generalities}{34}{subsection.2.8.1}%
+\contentsline {subsection}{\numberline {2.8.2}Maximum Likelihood Estimation of AR processes}{35}{subsection.2.8.2}%
+\contentsline {subsubsection}{\numberline {2.8.2.1}Maximum Likelihood Estimation of an AR(1) process}{35}{subsubsection.2.8.2.1}%
+\contentsline {subsubsection}{\numberline {2.8.2.2}Maximum Likelihood Estimation of an AR(p) process}{36}{subsubsection.2.8.2.2}%
+\contentsline {subsection}{\numberline {2.8.3}Maximum Likelihood Estimation of MA processes}{38}{subsection.2.8.3}%
+\contentsline {subsubsection}{\numberline {2.8.3.1}Maximum Likelihood Estimation of an MA(1) process}{38}{subsubsection.2.8.3.1}%
+\contentsline {subsubsection}{\numberline {2.8.3.2}Maximum Likelihood Estimation of MA(q) processes}{39}{subsubsection.2.8.3.2}%
+\contentsline {subsection}{\numberline {2.8.4}Maximum Likelihood Estimation of an ARMA(p,q) process}{40}{subsection.2.8.4}%
+\contentsline {section}{\numberline {2.9}Specification choice}{40}{section.2.9}%
+\contentsline {section}{\numberline {2.10}Exercises}{42}{section.2.10}%
+\contentsline {subsection}{\numberline {2.10.1}Exercises from the 2024 exam}{48}{subsection.2.10.1}%
+\contentsline {subsection}{\numberline {2.10.2}Exercises from the 2025 exam}{50}{subsection.2.10.2}%
+\contentsline {chapter}{\numberline {3}Multivariate models}{53}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Definition of VARs (and SVARMA) models}{53}{section.3.1}%
+\contentsline {section}{\numberline {3.2}IRFs in SVARMA}{54}{section.3.2}%
+\contentsline {section}{\numberline {3.3}Covariance-stationary VARMA models}{56}{section.3.3}%
+\contentsline {section}{\numberline {3.4}VAR estimation}{58}{section.3.4}%
+\contentsline {section}{\numberline {3.5}Block exogeneity and Granger causality}{62}{section.3.5}%
+\contentsline {subsection}{\numberline {3.5.1}Block exogeneity}{62}{subsection.3.5.1}%
+\contentsline {subsection}{\numberline {3.5.2}Granger Causality}{62}{subsection.3.5.2}%
+\contentsline {section}{\numberline {3.6}Standard identification techniques}{63}{section.3.6}%
+\contentsline {subsection}{\numberline {3.6.1}The identification problem}{63}{subsection.3.6.1}%
+\contentsline {subsection}{\numberline {3.6.2}A stylized example motivating short-run restrictions}{64}{subsection.3.6.2}%
+\contentsline {subsection}{\numberline {3.6.3}Cholesky: a specific short-run-restriction situation}{65}{subsection.3.6.3}%
+\contentsline {subsection}{\numberline {3.6.4}Long-run restrictions}{66}{subsection.3.6.4}%
+\contentsline {section}{\numberline {3.7}Exercise}{69}{section.3.7}%
+\contentsline {subsection}{\numberline {3.7.1}Exercise from the 2024 exam}{70}{subsection.3.7.1}%
+\contentsline {subsection}{\numberline {3.7.2}Exercises from the 2025 exam}{71}{subsection.3.7.2}%
+\contentsline {chapter}{\numberline {4}Forecasting}{73}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Exercise}{78}{section.4.1}%
+\contentsline {subsection}{\numberline {4.1.1}Exercise from the 2024 exam}{79}{subsection.4.1.1}%
+\contentsline {subsection}{\numberline {4.1.2}Exercise from the 2025 exam}{80}{subsection.4.1.2}%
+\contentsline {chapter}{\numberline {5}Non-stationary processes}{81}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Issues when working with nonstationary time series}{81}{section.5.1}%
+\contentsline {subsection}{\numberline {5.1.1}The bias of autoregressive coefficient towards zero}{82}{subsection.5.1.1}%
+\contentsline {subsection}{\numberline {5.1.2}Spurious regressions}{82}{subsection.5.1.2}%
+\contentsline {section}{\numberline {5.2}Nonstationarity tests}{83}{section.5.2}%
+\contentsline {section}{\numberline {5.3}Stationarity test: KPSS}{87}{section.5.3}%
+\contentsline {section}{\numberline {5.4}Exercises}{88}{section.5.4}%
+\contentsline {subsection}{\numberline {5.4.1}Exercise from the 2025 exam}{90}{subsection.5.4.1}%
+\contentsline {chapter}{\numberline {6}Introduction to cointegration}{91}{chapter.6}%
+\contentsline {section}{\numberline {6.1}Intuition}{91}{section.6.1}%
+\contentsline {section}{\numberline {6.2}The bivariate case}{91}{section.6.2}%
+\contentsline {section}{\numberline {6.3}Multivariate case and VECM}{93}{section.6.3}%
+\contentsline {section}{\numberline {6.4}Cointegration in practice}{97}{section.6.4}%
+\contentsline {section}{\numberline {6.5}Exercise}{98}{section.6.5}%
+\contentsline {chapter}{\numberline {7}ARCH and GARCH models}{101}{chapter.7}%
+\contentsline {section}{\numberline {7.1}Conditional heteroskedasticity}{101}{section.7.1}%
+\contentsline {section}{\numberline {7.2}The ARCH model}{102}{section.7.2}%
+\contentsline {subsection}{\numberline {7.2.1}The two ARCH specifications}{102}{subsection.7.2.1}%
+\contentsline {subsection}{\numberline {7.2.2}Maximum Likelihood Estimation of an ARCH process}{103}{subsection.7.2.2}%
+\contentsline {section}{\numberline {7.3}The GARCH model}{104}{section.7.3}%
+\contentsline {section}{\numberline {7.4}ARCH-in-mean}{105}{section.7.4}%
+\contentsline {chapter}{\numberline {8}Appendix}{109}{chapter.8}%
+\contentsline {section}{\numberline {8.1}Principal component analysis (PCA)}{109}{section.8.1}%
+\contentsline {section}{\numberline {8.2}Linear algebra: definitions and results}{110}{section.8.2}%
+\contentsline {section}{\numberline {8.3}Statistical analysis: definitions and results}{114}{section.8.3}%
+\contentsline {subsection}{\numberline {8.3.1}Moments and statistics}{114}{subsection.8.3.1}%
+\contentsline {subsection}{\numberline {8.3.2}Standard distributions}{115}{subsection.8.3.2}%
+\contentsline {subsection}{\numberline {8.3.3}Stochastic convergences}{116}{subsection.8.3.3}%
+\contentsline {subsection}{\numberline {8.3.4}Multivariate Gaussian distribution}{118}{subsection.8.3.4}%
+\contentsline {subsection}{\numberline {8.3.5}Central limit theorem}{118}{subsection.8.3.5}%
+\contentsline {section}{\numberline {8.4}Proofs}{119}{section.8.4}%
+\contentsline {section}{\numberline {8.5}Inference}{122}{section.8.5}%
+\contentsline {subsection}{\numberline {8.5.1}Monte Carlo method}{122}{subsection.8.5.1}%
+\contentsline {subsection}{\numberline {8.5.2}Delta method}{123}{subsection.8.5.2}%
+\contentsline {subsection}{\numberline {8.5.3}Bootstrap}{123}{subsection.8.5.3}%
+\contentsline {section}{\numberline {8.6}Statistical Tables}{124}{section.8.6}%

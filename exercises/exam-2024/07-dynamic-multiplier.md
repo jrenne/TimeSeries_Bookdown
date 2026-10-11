@@ -18,4 +18,4 @@ State whether each assertion is true or false and justify your answer.
 2. For all $t\ge s$, $\widetilde y_t=y_t$.
 3. For every $h\ge0$, $\widetilde y_{s+h}-y_{s+h}=1$.
 4. If $x_t$ is constant, $y_t$ is an AR(1) with an intercept.
-5. $\operatorname{Var}(y_t)=\operatorname{Var}(\widetilde y_t)$.
+5. $\mathbb{V}ar(y_t)=\mathbb{V}ar(\widetilde y_t)$.

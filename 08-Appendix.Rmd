@@ -64,7 +64,7 @@ By the same token, it is easily seen that the fraction of the variance of the $n
 \end{eqnarray*}
 
 
-Let us illustrate PCA on the term structure of yields. The term strucutre of yields (or yield curve) is know to be driven by only a small number of factors (e.g., @Litterman_Scheinkman_1991). One can typically employ PCA to recover such factors. The data used in the example below are taken from the [Fred database](https://fred.stlouisfed.org) (tickers: "DGS6MO","DGS1", ...). The second plot shows the factor loardings, that indicate that the first factor is a level factor (loadings = black line), the second factor is a slope factor (loadings = blue line), the third factor is a curvature factor (loadings = red line).
+Let us illustrate PCA on the term structure of yields. The term structure of yields (or yield curve) is known to be driven by only a small number of factors (e.g., @Litterman_Scheinkman_1991). One can employ PCA to recover such factors. The data used in the example below are taken from the [FRED database](https://fred.stlouisfed.org). The second panel shows the factor loadings: the first factor (solid black line) is a level factor, the second (dashed dark-grey line) is a slope factor, and the third (dotted light-grey line) is a curvature factor.
 
 To run a PCA, one simply has to apply function `prcomp` to a matrix of data:
 
@@ -78,30 +78,30 @@ PCA.yds <- prcomp(yds,center=TRUE,scale. = TRUE)
 
 Let us know visualize some results. The first plot of Figure \@ref(fig:USydsPCA1) shows the share of total variance explained by the different principal components (PCs). The second plot shows the factor loadings. The two bottom plots show how yields (in black) are fitted by linear combinations of the first two PCs only.
 
-```{r USydsPCA1, warning=FALSE,message=FALSE, fig.cap="Some PCA results. The dataset contains 8 time series of U.S. interest rates of different maturities.", fig.align = 'left-aligned'}
+```{r USydsPCA1, warning=FALSE,message=FALSE, fig.cap="Principal-component analysis of eight monthly U.S. Treasury yields: (a) share of standardized yield variance explained by each component; (b) loadings of the first three components, shown respectively as solid black, dashed dark-grey, and dotted light-grey lines; (c) observed and two-component fitted one-year yield; and (d) observed and two-component fitted ten-year yield. In panels (c) and (d), observed yields are solid black and fitted yields are dashed grey. Source: Federal Reserve Board H.15 series retrieved through FRED.", fig.align = 'left-aligned'}
 par(mfrow=c(2,2))
 par(plt=c(.1,.95,.2,.8))
 barplot(PCA.yds$sdev^2/sum(PCA.yds$sdev^2),
-        main="Share of variance expl. by PC's")
+        main="(a) Variance explained by each PC")
 axis(1, at=1:dim(yds)[2], labels=colnames(PCA.yds$x))
 nb.PC <- 2
 plot(-PCA.yds$rotation[,1],type="l",lwd=2,ylim=c(-1,1),
-     main="Factor loadings (1st 3 PCs)",xaxt="n",xlab="")
+     main="(b) Loadings of the first three PCs",xaxt="n",xlab="")
 axis(1, at=1:dim(yds)[2], labels=colnames(yds))
-lines(PCA.yds$rotation[,2],type="l",lwd=2,col="blue")
-lines(PCA.yds$rotation[,3],type="l",lwd=2,col="red")
+lines(PCA.yds$rotation[,2],type="l",lwd=2,col="grey45",lty=2)
+lines(PCA.yds$rotation[,3],type="l",lwd=2,col="grey70",lty=3)
 Y1.hat <- PCA.yds$x[,1:nb.PC] %*% PCA.yds$rotation["Y1",1:2]
 Y1.hat <- mean(USyields$Y1) + sd(USyields$Y1) * Y1.hat
 plot(USyields$date,USyields$Y1,type="l",lwd=2,
-     main="Fit of 1-year yields (2 PCs)",
-     ylab="Obs (black) / Fitted by 2PCs (dashed blue)")
-lines(USyields$date,Y1.hat,col="blue",lty=2,lwd=2)
+     main="(c) One-year yield",
+     ylab="Yield (percent)")
+lines(USyields$date,Y1.hat,col="grey45",lty=2,lwd=2)
 Y10.hat <- PCA.yds$x[,1:nb.PC] %*% PCA.yds$rotation["Y10",1:2]
 Y10.hat <- mean(USyields$Y10) + sd(USyields$Y10) * Y10.hat
 plot(USyields$date,USyields$Y10,type="l",lwd=2,
-     main="Fit of 10-year yields (2 PCs)",
-     ylab="Obs (black) / Fitted by 2PCs (dashed blue)")
-lines(USyields$date,Y10.hat,col="blue",lty=2,lwd=2)
+     main="(d) Ten-year yield",
+     ylab="Yield (percent)")
+lines(USyields$date,Y10.hat,col="grey45",lty=2,lwd=2)
 ```
 
 
@@ -643,7 +643,7 @@ irf.function <- function(THETA){
   r <- dim(Matrix.of.Exog)[2] - 1
   beta <- THETA[(1+p+q+1+1):(1+p+q+1+(r+1))]
   
-  irf <- sim.arma(0,phi,beta,sigma=sd(Ramey$ED3_TC,na.rm=TRUE),T=60,
+  irf <- sim.arma(0,phi,beta,sigma=sd(USmonthly$BRW,na.rm=TRUE),T=60,
                   y.0=rep(0,length(x$phi)),nb.sim=1,make.IRF=1,
                   X=NaN,beta=NaN)
   return(irf)}

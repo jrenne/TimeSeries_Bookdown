@@ -291,7 +291,7 @@ We use a long historical time series of the Swiss GDP growth taken from the @JST
 
 We want to forecast this GDP growth. We envision two specifications : an AR(1) specification (the one advocated by the AIC criteria, see Example \@ref(exm:SwissGrowthAIC)), and an ARMA(2,2) specification. We are interested in 2-year-ahead forecasts (i.e., $h=2$ since the data are yearly).
 
-```{r fcstARMA, warning=FALSE, fig.cap="XXX.", fig.asp = .6, out.width = "95%", fig.align = 'left-aligned'}
+```{r fcstARMA, warning=FALSE}
 library(IdSS)
 library(forecast)
 data <- subset(JST,iso=="CHE")
@@ -312,7 +312,7 @@ With `alternative = "greater"` The alternative hypothesis is that method 2 is mo
 
 Assume now that we want to compare the AR(1) process to a VAR model (see Def. \@ref(def:SVAR)). We consider a bivariate VAR, where GDP growth is complemented with CPI-based inflation rate.
 
-```{r fcstVAR, warning=FALSE,message=FALSE,fig.cap="XXX.", fig.asp = .6, out.width = "95%", fig.align = 'left-aligned'}
+```{r fcstVAR, warning=FALSE,message=FALSE}
 library(vars)
 infl <- c(NaN,log(data$cpi[2:T]/data$cpi[1:(T-1)]))
 y_var <- cbind(y,infl)
@@ -342,4 +342,10 @@ render_exercises("ps3", "ex-forecast-performance")
 
 ```{r forecasting-exam-2024, results='asis'}
 render_exercises("exam-2024", "ex-exam2024-ma1-forecasting")
+```
+
+### Exercise from the 2025 exam
+
+```{r forecasting-exam-2025, results='asis'}
+render_exercises("exam-2025", "ex-exam2025-ma2-gdp-forecasting")
 ```
